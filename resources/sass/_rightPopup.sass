@@ -1,0 +1,49 @@
+.popup_right
+    position: fixed
+    top: 30px
+    right: -570px
+    border-radius: 7px
+    box-shadow: 0 0 10px 0 rgba(100, 105, 112, 0.8)
+    animation: show-popup_right 20s
+
+@keyframes show-popup_right
+    from, to
+        right: -570px
+    5%, 95%
+        right: 10px
+    100%
+        right: -570px
+
+.popup_right__content
+    position: relative
+    padding: 25px
+    width: 500px
+    background-color: #dddde6
+    color: #000
+    font-size: 18px
+    line-height: 30px
+    font-family: Arial, sans-serif
+    text-align: left
+    border-radius: 7px
+
+.popup_right__item
+    margin: 0
+
+.popup_right__close
+    position: absolute
+    top: 1px
+    right: 2px
+    width: 35px
+    height: 35px
+    padding: 0
+    font-size: 37px
+    line-height: 37px
+    color: #000
+    cursor: pointer
+    border-radius: 3px
+    display: flex
+    align-items: center
+    justify-content: center
+
+.popup_right__close:hover
+    background-color: #b5bcca

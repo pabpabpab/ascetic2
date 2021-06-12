@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class AuthLoginRequest extends FormRequest
+{
+
+    public function rules()
+    {
+        return [
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:6', 'max:255'],
+            'remember' => ['boolean'],
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'email' => '«E-mail»',
+            'password' => '«Пароль»',
+            'remember' => '«Запомнить меня»',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'заполните :attribute.',
+            'string' => 'заполните :attribute.',
+            'email' => 'некорректный :attribute.',
+            'boolean' => 'некорректный :attribute.',
+            'max' => ':attribute должно быть не более :max символов.',
+            'min' => 'нужен :attribute не менее :min символов.',
+        ];
+    }
+}

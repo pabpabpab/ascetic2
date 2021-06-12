@@ -1,0 +1,53 @@
+.categories
+    padding: 20px 0
+
+.category__item
+    min-width: 250px
+    width: 300px
+    margin: 0 auto
+    padding: 5px
+    text-align: left
+    font-size: 17px
+    display: flex
+    justify-content: space-between
+    &__icon_edit
+        width: 20px
+        margin: 0 15px 0 0
+        cursor: pointer
+    &__icon_delete
+        height: 18px
+        margin: 0 15px 0 0
+        cursor: pointer
+    &__name
+        text-align: left
+        flex-grow: 10
+    &__products_count
+        color: #9f9f9f
+        margin: 0 10px
+
+.category__button_add
+    color: #000
+    font-size: 15px
+    padding: 20px
+    width: 300px
+    border-radius: 7px
+    border: 0
+    background-color: #cfcfcf
+    box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.5)
+    transform: scaleY(1)
+    opacity: 1
+    animation: show-category__button_add 0.5s
+    animation-iteration-count: 1
+
+.category__button_add:hover
+    background-color: #7f7f7f
+
+
+
+@keyframes show-category__button_add
+    from, to
+        transform: scaleY(0)
+        opacity: 0
+    100%
+        transform: scaleY(1)
+        opacity: 1
