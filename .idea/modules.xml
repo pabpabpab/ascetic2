@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/../laravel2/.idea/laravel2.iml" filepath="$PROJECT_DIR$/../laravel2/.idea/laravel2.iml" />
       <module fileurl="file://$PROJECT_DIR$/../laravel3/.idea/laravel3.iml" filepath="$PROJECT_DIR$/../laravel3/.idea/laravel3.iml" />
       <module fileurl="file://$PROJECT_DIR$/../laravel7/.idea/laravel7.iml" filepath="$PROJECT_DIR$/../laravel7/.idea/laravel7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../_GeekBrains/js2/LESSONS/lesson2-classes-inheritance/lesson2/.idea/lesson2.iml" filepath="$PROJECT_DIR$/../../../_GeekBrains/js2/LESSONS/lesson2-classes-inheritance/lesson2/.idea/lesson2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../_GeekBrains/js2/LESSONS/lesson3-JSON-Callback-Promise-XMLHttpRequest-Fetch/.idea/lesson3-JSON-Callback-Promise-XMLHttpRequest-Fetch.iml" filepath="$PROJECT_DIR$/../../../_GeekBrains/js2/LESSONS/lesson3-JSON-Callback-Promise-XMLHttpRequest-Fetch/.idea/lesson3-JSON-Callback-Promise-XMLHttpRequest-Fetch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../_GeekBrains/js2/LESSONS/lesson4-RegExp/.idea/lesson4-RegExp.iml" filepath="$PROJECT_DIR$/../../../_GeekBrains/js2/LESSONS/lesson4-RegExp/.idea/lesson4-RegExp.iml" />
     </modules>
   </component>
 </project>

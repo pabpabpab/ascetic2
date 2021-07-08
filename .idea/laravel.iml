@@ -125,5 +125,8 @@
     <orderEntry type="module" module-name="laravel2" />
     <orderEntry type="module" module-name="laravel3" />
     <orderEntry type="module" module-name="laravel7" />
+    <orderEntry type="module" module-name="lesson2" />
+    <orderEntry type="module" module-name="lesson3-JSON-Callback-Promise-XMLHttpRequest-Fetch" />
+    <orderEntry type="module" module-name="lesson4-RegExp" />
   </component>
 </module>

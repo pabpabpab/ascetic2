@@ -16,13 +16,13 @@
                 @guest
                     @if (Route::currentRouteName() !== 'login.show')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login.show') }}">Логин</a>
+                            <a class="nav-link" id="loginLink" href="{{ route('login.show') }}">Логин</a>
                         </li>
                     @endif
 
                     @if (Route::currentRouteName() !== 'register.show')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register.show') }}">Регистрация</a>
+                            <a class="nav-link" id="registerLink" href="{{ route('register.show') }}">Регистрация</a>
                         </li>
                     @endif
                 @else

@@ -25,9 +25,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
 /*
-    protected $dispatchesEvents = [
-        'created' => UserRegistered::class,
+    protected $attributes = [
+        'social_id' => null,
+        'social_network' => null,
     ];
 */
 

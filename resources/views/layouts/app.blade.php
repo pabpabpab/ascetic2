@@ -9,11 +9,11 @@
 
     <title>@yield('title')</title>
 
-<!--<script src="{{ asset('js/app.js') }}" defer></script>-->
-
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('css/index.css') }}">
+    <script src="{{ mix('js2/index.js') }}" defer></script>
+
 </head>
 <body>
     <div id="app" class="wrapper">
@@ -21,7 +21,6 @@
         <div class="header">
             @include('blocks.menu')
         </div>
-
         <main class="py-4">
             @yield('content')
         </main>

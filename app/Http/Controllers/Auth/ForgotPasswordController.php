@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AuthEmailRequest;
+use App\Http\Requests\Auth\EmailRequest;
 use App\Mail\PasswordResetLink;
 use App\Models\User;
+use App\Services\Auth\ForgotPasswordService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -20,19 +21,14 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
-
-    // ======================================ПОКАЗАТЬ ФОРМУ==============================================
-
     // ПОКАЗАТЬ ФОРМУ «ЗАБЫЛИ ПАРОЛЬ?»
     public function showForgotForm()
     {
         return view('auth.forgot-password');
     }
 
-    // ================ПРИНЯТЬ МЕТОДОМ POST ЕМАЙЛ, И ОТПРАВИТЬ НА ЭТОТ ЕМАЙЛ RESET LINK==================
-
     // ПРИНЯТЬ МЕТОДОМ POST ЕМАЙЛ, И ОТПРАВИТЬ НА ЭТОТ ЕМАЙЛ RESET LINK
-    public function sendResetLink(AuthEmailRequest $request)
+    public function sendResetLink(EmailRequest $request)
     {
         // $request->validate(['email' => 'required|email']);
 
@@ -51,12 +47,14 @@ class ForgotPasswordController extends Controller
             ->first();
 
 
-        // Если не прошло 60 секунд с последней отправки reset link'а, выходим и показываем уклончивый ответ
-        if ($this->_recentlyCreatedToken($tokenObject)) {
+        // Если не прошло 60 секунд с последней отправки reset link'а,
+        // то выходим и показываем уклончивый ответ
+        if ((new ForgotPasswordService())->recentlyCreatedToken($tokenObject)) {
             return back()->with(['status' => $this->_evasiveAnswer()]);
         }
 
-        // обновить время у записи с $user->email, или вставить запись если ее нет для этого email
+        // обновить время у записи с $user->email,
+        // или вставить запись если ее нет для этого email
         if (blank($tokenObject)) {
             DB::table('password_resets')->insert([
                 'email' => $user->email,
@@ -88,34 +86,4 @@ class ForgotPasswordController extends Controller
                 ссылка была отправлена.
                 Проверьте пожалуйста Вашу почту.';
     }
-
-
-
-    // ПРОШЛО 60 СЕКУНД С ПОСЛЕДНЕГО ОБНОВЛЕНИЯ CREATED_AT У ТОКЕНА? (ПРОТЕКТЕД)
-    protected function _recentlyCreatedToken($tokenObject) {
-        $secondsLimit = 60;
-
-        // записи о токене вообще нет
-        if (blank($tokenObject)) {
-            return false;
-        }
-
-        // created_at из таблицы переделать в timestamp
-        $created_at = Carbon::createFromFormat(
-            'Y-m-d H:i:s',
-            $tokenObject->created_at
-        )->timestamp;
-
-        // timestamp сейчас
-        $now = now()->timestamp;
-
-        // не прошло 60 секунд с последнего обновления created_at у токена?
-        if ($now - $created_at < $secondsLimit) {
-            return true;
-        }
-
-        // прошло больше чем 60 секунд с последнего обновления created_at у токена
-        return false;
-    }
-
 }

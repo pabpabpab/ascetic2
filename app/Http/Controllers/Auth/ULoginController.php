@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\AuthULoginRequest;
-use App\Models\User;
-use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ULoginRequest;
+use App\Services\Auth\ULoginService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Laravel\Socialite\Facades\Socialite;
 
 class ULoginController extends Controller
 {
@@ -18,7 +15,7 @@ class ULoginController extends Controller
     }
 
     // запрос от ulogin.ru методом post (в ответ на запрос из js-виджета со страницы логина)
-    public function response(AuthULoginRequest $request) {
+    public function response(ULoginRequest $request) {
 
         // токен из $_POST['token'] от ulogin.ru
         $token = $request->token;
@@ -42,9 +39,10 @@ class ULoginController extends Controller
                 ->with(['status' => 'Не удалось получить данные от социальной сети.']);
         }
 
+        // соблюсти данные для БД
         // на выходе будет [$socialId, $socialEmail, $socialNetwork, $socialUserName]
         // или null, если отсутствовало поле identity или имя пользователя
-        $normalizedSocialData = $this->_getNormalizedSocialData($socialUserArray);
+        $normalizedSocialData = (new ULoginService())->getNormalizedSocialData($socialUserArray);
 
         // если из _getNormalizedSocialData() был возвращен null
         if (blank($normalizedSocialData)) {
@@ -52,8 +50,9 @@ class ULoginController extends Controller
                 ->with(['status' => 'Не удалось получить данные от социальной сети.']);
         }
 
-        // получить модель User (был отыскан юзер по social_id=identity или создан новый)
-        $localUser = $this->_getUserBySocialId($normalizedSocialData);
+        // получить модель User (отыскать юзера по social_id=identity или создать нового)
+        // на входе будет [$socialId, $socialEmail, $socialNetwork, $socialUserName]
+        $localUser = (new ULoginService())->getUserBySocialId($normalizedSocialData);
 
         // если вдруг null вместо модели User
         if (blank($localUser)) {
@@ -73,77 +72,7 @@ class ULoginController extends Controller
 
         // переход в ЛК
         return redirect()->intended('/home');
-
     }
 
-
-    // соблюсти данные для БД (ПРОТЕКТЕД)
-    protected function _getNormalizedSocialData(array $socUser) {
-
-        $socialId = $socUser['identity'];
-        $socialId = Str::replace('https://', '', $socialId);
-        $socialId = Str::replace('http://', '', $socialId);
-        $socialId = Str::limit($socialId, 50)->trim();
-
-        if (blank($socialId)) {
-            return null;
-        }
-
-        $socialEmail = $socUser['email'];
-        $socialEmail = !$socialEmail ? '' : $socialEmail;
-
-        $socialNetwork = $socUser['network'];
-        $socialNetwork=Str::limit($socialNetwork, 15)->trim();
-
-        $socialUserName = Str::limit(
-            $socUser['first_name']." ".$socUser['last_name'],
-            100
-        )->trim();
-
-        if (blank($socialUserName)) {
-            return null;
-        }
-
-        return [$socialId, $socialEmail, $socialNetwork, $socialUserName];
-    }
-
-
-
-    // отыскать юзера по social_id = identity или создать нового (ПРОТЕКТЕД)
-    protected function _getUserBySocialId(array $normalizedSocialData) {
-        list($socialId, $socialEmail, $socialNetwork, $socialUserName) = $normalizedSocialData;
-
-        $localUser = User::query()
-            ->where('social_id', $socialId)
-            ->first();
-
-        if(is_null($localUser)) {
-            $localUser = new User();
-            $localUser->fill([
-                'name' => $socialUserName,
-                'email' => $socialEmail,
-                'password' => null,
-                'social_id' => $socialId,
-                'social_network' => $socialNetwork,
-            ])->save();
-        }
-
-        return $localUser;
-    }
 }
 
-
-/*
-        $socialNetwork = Str::length($socialNetwork) > 15
-            ? Str::limit($socialNetwork, 15)
-            : $socialNetwork;
-
-        $socialId = Str::length($socialId) > 20
-            ? Str::limit($socialId, 20)
-            : $socialId;
-
-        $socialUserName = Str::length($socialUserName) > 100
-            ? Str::limit($socialUserName, 100)
-            : $socialUserName;
-
-*/

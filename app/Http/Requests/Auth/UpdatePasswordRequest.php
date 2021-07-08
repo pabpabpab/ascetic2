@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthUpdatePasswordRequest extends FormRequest
+class UpdatePasswordRequest extends FormRequest
 {
     public function rules()
     {

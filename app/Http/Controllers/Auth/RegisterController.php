@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AuthRegisterRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +26,7 @@ class RegisterController extends Controller
 
 
     // Создать регистрацию
-    public function store(AuthRegisterRequest $request)
+    public function store(RegisterRequest $request)
     {
         $role = 'user';
         if ($request->email === env('ADMIN_EMAIL')) {
@@ -42,7 +42,9 @@ class RegisterController extends Controller
 
 
         if (blank($user)) {
-            return back()->with(['status' => 'Не удалось создать регистрацию.']);
+            return $request->expectsJson()
+                ? response()->json(['saveSuccess' => false])
+                : back()->with(['status' => 'Не удалось создать регистрацию.']);
         }
 
 
@@ -55,8 +57,11 @@ class RegisterController extends Controller
             'admin' => Auth::user()->_hasRole('admin')
         ]);
 
-        // роут в личный кабинет
-        return redirect()->route('home');
+
+        return $request->expectsJson()
+            ? response()->json(['saveSuccess' => true])
+            : redirect()->route('home');
+
     }
 
 }

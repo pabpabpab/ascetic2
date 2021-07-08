@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthULoginRequest extends FormRequest
+class ULoginRequest extends FormRequest
 {
 
     // post-данные от сервиса ulogin.ru

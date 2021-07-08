@@ -86,7 +86,7 @@ export default {
         }
 
 
-        console.log(product);
+        // console.log(product);
 
 
 

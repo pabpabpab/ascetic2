@@ -7,22 +7,30 @@
         "watch-poll": "node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-options-poll=1000 --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
         "hot": "node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "js2": "./node_modules/webpack/bin/webpack.js --config webpack2.config.js"
+        "production": "node node_modules/cross-env/src/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "js2": "npx webpack --config webpack2.config.js"
     },
 
+
     "devDependencies": {
-        "axios": "^0.19",
-        "cross-env": "^7.0",
-        "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.19",
-        "resolve-url-loader": "^3.1.0",
+        "babel-loader": "^8.2.2",
+        "@babel/core": "^7.14.6",
+        "@babel/preset-env": "^7.14.7",
+        "cross-env": "^7.0.3",
+        "css-loader": "^5.2.6",
+        "laravel-mix": "^5.0.9",
+        "postcss": "^8.3.5",
+        "postcss-loader": "^6.1.0",
+        "resolve-url-loader": "^3.1.4",
         "sass": "^1.35.1",
         "sass-loader": "^10.2.0",
+        "style-loader": "^3.0.0",
         "vue": "^2.6.14",
         "vue-router": "^3.5.2",
         "vue-template-compiler": "^2.6.14",
-        "vuex": "^3.6.2"
+        "vuex": "^3.6.2",
+        "webpack": "^5.40.0",
+        "webpack-cli": "^4.7.2"
     }
 
 }

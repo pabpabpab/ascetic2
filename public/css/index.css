@@ -1,0 +1,273 @@
+.mauto {
+  margin: 0 auto;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.relative {
+  position: relative;
+}
+
+.pdl0 {
+  padding-left: 0;
+}
+
+.pdr0 {
+  padding-right: 0;
+}
+
+.tal {
+  text-align: left;
+}
+
+.register_form__wrapper {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 20px;
+  width: 220px;
+  background-color: #b5bcca;
+  -webkit-box-shadow: 0 0 3px 0 rgba(100, 105, 112, 0.8);
+          box-shadow: 0 0 3px 0 rgba(100, 105, 112, 0.8);
+  border-radius: 7px;
+  font-size: 18px;
+  color: #000;
+  font-weight: 400;
+}
+
+.register_form__alarm {
+  background-color: #b5bcca;
+  -webkit-animation: alarmRegisterForm 0.3s 4 alternate;
+          animation: alarmRegisterForm 0.3s 4 alternate;
+}
+
+@-webkit-keyframes alarmRegisterForm {
+  from, to {
+    background-color: #b5bcca;
+  }
+
+  100% {
+    background-color: #e7e8e9;
+  }
+}
+
+@keyframes alarmRegisterForm {
+  from, to {
+    background-color: #b5bcca;
+  }
+
+  100% {
+    background-color: #e7e8e9;
+  }
+}
+
+.register_form__show {
+  display: block;
+  opacity: 1;
+  -webkit-animation: showRegisterForm 0.5s;
+          animation: showRegisterForm 0.5s;
+}
+
+@-webkit-keyframes showRegisterForm {
+  from, to {
+    opacity: 0;
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
+
+@keyframes showRegisterForm {
+  from, to {
+    opacity: 0;
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
+
+.register_form__hide {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-animation: hideRegisterForm 0.5s;
+          animation: hideRegisterForm 0.5s;
+}
+
+@-webkit-keyframes hideRegisterForm {
+  from, to {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hideRegisterForm {
+  from, to {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.register_form__header {
+  position: relative;
+  font-size: 18px;
+  color: #006;
+  font-weight: 400;
+}
+
+.register_form__close {
+  position: absolute;
+  top: -25px;
+  right: -12px;
+  padding: 0;
+  font-size: 45px;
+  color: #d3d8e0;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.register_form__close:hover {
+  font-size: 45px;
+  color: #909096;
+  font-weight: 100;
+}
+
+.register_input__text {
+  margin: 0;
+  padding: 10px;
+  background-color: #fff;
+  font-size: 15px;
+  color: #000;
+  font-weight: 400;
+  border: 1px solid #909096;
+  outline: 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.register_input__label {
+  display: block;
+  margin: 0;
+  padding: 10px 0 0 0;
+  font-size: 15px;
+  color: #000;
+  font-weight: 400;
+}
+
+.register_input__validation_message {
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  color: #c00000;
+  font-weight: 400;
+  font-family: Arial, sans-serif;
+}
+
+.register_form__submit_button {
+  margin-top: 18px;
+  padding: 10px 15px;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 400;
+  cursor: pointer;
+  background-color: #606066;
+  border: 0;
+}
+
+.register_form__submit_button:hover {
+  background-color: #303036;
+}
+
+.absolute_message__wrapper {
+  position: fixed;
+  z-index: 15;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  -webkit-animation: showAbsoluteMessage 2s;
+          animation: showAbsoluteMessage 2s;
+}
+
+.absolute_message__div {
+  width: 300px;
+  min-height: 80px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #FFFFFF;
+  font-size: 17px;
+  font-family: Arial, sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@-webkit-keyframes showAbsoluteMessage {
+  from, to {
+    opacity: 0;
+  }
+
+  15%, 85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes showAbsoluteMessage {
+  from, to {
+    opacity: 0;
+  }
+
+  15%, 85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+

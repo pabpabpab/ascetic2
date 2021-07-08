@@ -11,6 +11,35 @@ const mix = require('laravel-mix');
  |
  */
 
+/*
 mix.js('resources/js/app.js', 'public/js')
-    .vue()
+    .vue() // из-за этого ошибка
     .sass('resources/sass/app.sass', 'public/css');
+*/
+
+/*
+mix.js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.sass', 'public/css');
+*/
+
+
+mix.js('resources/js2/index.js', 'public/js2')
+    .sass('resources/sass2/index.sass', 'public/css')
+    .webpackConfig({
+        watch: true,
+        watchOptions: {
+            aggregateTimeout: 600,
+            poll: 1000,
+            ignored: /node_modules/,
+        }
+    });
+
+
+/*
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.sass', 'public/css')
+   .js('resources/js2/index.js', 'public/js2')
+   .sass('resources/sass2/index.sass', 'public/css');
+*/
+
+   //.version();

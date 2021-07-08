@@ -1,0 +1,123 @@
+
+module.exports = {
+    mode: 'development',
+    //mode: 'production',
+
+    // entry: './resources/js2/index.js',
+
+    entry: './resources/sass2/common.sass',
+
+    /*
+    entry: {
+        index: './resources/js2/index.js',
+        common: './resources/sass2/common.sass',
+    },
+    */
+    devtool: 'inline-source-map',
+/*
+    output: {
+        path: path.resolve(__dirname, 'public/js2'),
+        filename: 'bundle.js',
+
+        path2: path.resolve(__dirname, 'public/css'),
+        filename2: 'common.css',
+    },
+*/
+
+    output: {
+        path: path.resolve(__dirname, 'public/css'),
+        filename: 'common.css',
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.m?js$/,
+                include: path.resolve(__dirname, 'resources/js2'),
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-object-rest-spread']
+                    }
+                }
+            },
+
+            {
+                test: /\.sass$/i,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    // "style-loader",
+                    // Translates CSS into CommonJS
+                    // "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                ],
+            },
+
+        ]
+    },
+
+
+
+   /*
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                test: /\.js(\?.*)?$/i,
+                //include: path.resolve(__dirname, 'resources/js2'),
+            }),
+        ],
+    },
+  */
+/*
+    watch: true,
+    watchOptions: {
+        aggregateTimeout: 600,
+        poll: 1000,
+        ignored: /node_modules/,
+    },
+*/
+};
+
+
+
+
+
+
+
+
+module.exports = {
+
+    mode: 'production',
+
+    entry: './resources/sass2/common.sass',
+
+    output: {
+        path: path.resolve(__dirname, 'public/css'),
+        filename: 'common.css',
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.sass$/,             
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader'
+                ],
+
+            },
+        ]
+    },
+};
+
+
+
+
+
+
+
+

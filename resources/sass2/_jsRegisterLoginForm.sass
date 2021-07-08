@@ -1,0 +1,106 @@
+$bgColor: #b5bcca
+
+
+.register_form__wrapper
+    position: absolute
+    top: 20px
+    right: 20px
+    padding: 20px
+    width: 220px
+    background-color: $bgColor
+    box-shadow: 0 0 3px 0 rgba(100, 105, 112, 0.8)
+    border-radius: 7px
+    +font(18px,#000,400)
+
+
+
+.register_form__alarm
+    background-color: $bgColor
+    animation: alarmRegisterForm .3s 4 alternate
+@keyframes alarmRegisterForm
+    from, to
+        background-color: $bgColor
+    100%
+        background-color: #e7e8e9
+
+
+.register_form__show
+    display: block
+    opacity: 1
+    animation: showRegisterForm .5s
+@keyframes showRegisterForm
+    from, to
+        opacity: 0
+        display: none
+    100%
+        opacity: 1
+        display: block
+
+
+.register_form__hide
+    visibility: hidden
+    opacity: 0
+    animation: hideRegisterForm .5s
+@keyframes hideRegisterForm
+    from, to
+        opacity: 1
+        visibility: visible
+    100%
+        opacity: 0
+        visibility: hidden
+
+
+.register_form__header
+    position: relative
+    +font(18px,#006,400)
+    // border: 1px solid #000
+
+.register_form__close
+    position: absolute
+    top: -25px
+    right: -12px
+    padding: 0
+    +font(45px,#d3d8e0,100)
+    cursor: pointer
+    &:hover
+        +font(45px,#909096,100)
+
+
+
+
+
+.register_input__text
+    margin: 0
+    padding: 10px
+    background-color: #fff
+    +font(15px,#000,400)
+    border: 1px solid #909096
+    outline: 0
+    width: 100%
+    box-sizing: border-box
+
+.register_input__label
+    display: block
+    margin: 0
+    padding: 10px 0 0 0
+    +font(15px,#000,400)
+    // border: 1px solid #1a202c
+
+.register_input__validation_message
+    //position: absolute
+    bottom: 0
+    left: 0
+    +font(12px,#c00000,400)
+    font-family: Arial, sans-serif
+    // height: 12px
+    // border: 1px solid #000000
+
+.register_form__submit_button
+    margin-top: 18px
+    padding: 10px 15px
+    +font(15px,#fff,400)
+    cursor: pointer
+    background-color: #606066
+    border: 0
+    &:hover
+        background-color: #303036

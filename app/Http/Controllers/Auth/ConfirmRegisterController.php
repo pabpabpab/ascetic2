@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 class ConfirmRegisterController extends Controller
 {
 
-
     // ЭТО ПЕРЕХОД ПО SIGNED URL ИЗ ПИСЬМА. ВЕРИФИЦИРУЕТСЯ ЕМАЙЛ ПОЛЬЗОВАТЕЛЯ.
     public function confirmRegister(Request $request, $fakeUserId)
     {
