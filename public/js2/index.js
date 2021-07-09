@@ -156,6 +156,22 @@ function el(selector) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/getRegisterFormHtml.js":
+/*!***************************************************!*\
+  !*** ./resources/js2/html/getRegisterFormHtml.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getRegisterFormHtml; });
+function getRegisterFormHtml(css) {
+  return "<div id=\"regForm\" class=\"".concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"register_form__header\">\n                    \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F\n                    <div class='register_form__close'>&#215;</div>\n                </div>\n                <label for=\"regName\" class=\"register_input__label\">\u0412\u0430\u0448\u0435 \u0438\u043C\u044F</label>\n                <input type='text' name='name' id='regName' required class=\"register_input__text\">\n                <div id=\"regNameErr\" class=\"register_input__validation_message\"></div>\n\n                <label for=\"regEmail\" class=\"register_input__label\">E-mail</label>\n                <input type='email' name='email' id='regEmail' required class=\"register_input__text\">\n                <div id=\"regEmailErr\" class=\"register_input__validation_message\"></div>\n\n                <label for=\"regPassword\" class=\"register_input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password' id='regPassword' required class=\"register_input__text\">\n                <div id=\"regPasswordErr\" class=\"register_input__validation_message\"></div>\n\n                <label for=\"regPassword_confirmation\" class=\"register_input__label\">\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password_confirmation' id='regPassword_confirmation' required class=\"register_input__text\">\n                <div id=\"regPasswordConfirmationErr\" class=\"register_input__validation_message\"></div>\n\n                <button type=\"submit\" id='regSubmit' class=\"register_form__submit_button\">\n                   \u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F\n                </button>\n            <div>");
+}
+
+/***/ }),
+
 /***/ "./resources/js2/http/csrfToken.js":
 /*!*****************************************!*\
   !*** ./resources/js2/http/csrfToken.js ***!
@@ -223,10 +239,231 @@ __webpack_require__.r(__webpack_exports__);
 
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#registerLink')) {
-  new _register__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  new _register__WEBPACK_IMPORTED_MODULE_1__["default"]('#registerLink');
 } //import onBodyClickListener from './onBodyClickListener.js';
 // import "../sass2/common.sass";
 //onBodyClickListener();
+
+/***/ }),
+
+/***/ "./resources/js2/parentClasses/absoluteForm.js":
+/*!*****************************************************!*\
+  !*** ./resources/js2/parentClasses/absoluteForm.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbsoluteForm; });
+/* harmony import */ var _el_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el.js */ "./resources/js2/el.js");
+/* harmony import */ var _http_postJson__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../http/postJson */ "./resources/js2/http/postJson.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var AbsoluteForm = /*#__PURE__*/function () {
+  function AbsoluteForm(clickSourceSelector) {
+    var _this = this;
+
+    _classCallCheck(this, AbsoluteForm);
+
+    this.disabledSubmit = false;
+    this.enabledTypeinValidation = false;
+
+    if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(clickSourceSelector)) {
+      return;
+    }
+
+    Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(clickSourceSelector).addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      _this._render();
+    });
+    this.postUrl = '';
+    this.successUrl = '';
+    this.wrapSelector = '';
+    this.submitSelector = '';
+    this.basicCss = '';
+    this.alarmCss = '';
+    this.showCss = '';
+    this.hideCss = '';
+    this.validationFunction = null;
+  }
+
+  _createClass(AbsoluteForm, [{
+    key: "_render",
+    value: function _render() {
+      if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        this._firstRender();
+
+        return;
+      }
+
+      this._show();
+    }
+  }, {
+    key: "_firstRender",
+    value: function _firstRender() {
+      var html = this._getFormHtml();
+
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
+
+      this._listenForm();
+    }
+  }, {
+    key: "_getFormHtml",
+    value: function _getFormHtml() {}
+  }, {
+    key: "_listenForm",
+    value: function _listenForm() {
+      var _this2 = this;
+
+      // submit
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.submitSelector).addEventListener('click', function () {
+        _this2._submit(_this2._getUserData());
+      }); // слушать keyup для запуска type-in валидации
+
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).addEventListener('keyup', function () {
+        _this2._doTypeInValidation(_this2._getUserData());
+      }); // скрыть форму при клике мимо
+
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+        _this2._hide(e);
+      });
+    }
+  }, {
+    key: "_getUserData",
+    value: function _getUserData() {}
+  }, {
+    key: "_doTypeInValidation",
+    value: function _doTypeInValidation(userData) {
+      if (!this.enabledTypeinValidation) {
+        return;
+      }
+
+      var errors = this.validationFunction(userData);
+
+      this._showErrors(errors);
+    }
+  }, {
+    key: "_submit",
+    value: function _submit(userData) {
+      var _this3 = this;
+
+      this._turnOffAlarm(); // фронт-валидация введенных данных
+
+
+      var errors = this.validationFunction(userData);
+
+      if (errors) {
+        this._weHaveErrors(errors);
+
+        return;
+      } // если не получено разрешение на submit
+
+
+      if (!this._getSubmitPermission()) {
+        return;
+      } // отправить данные и получить ответ
+
+
+      Object(_http_postJson__WEBPACK_IMPORTED_MODULE_1__["default"])(this.postUrl, userData).then(function (data) {
+        if (data.backValidatorErrors) {
+          _this3._weHaveErrors(data.backValidatorErrors);
+
+          return;
+        }
+
+        if (data.success === true) {
+          _this3._ultimateSuccess();
+        } else {
+          _this3._ultimateFail();
+        }
+      });
+    }
+  }, {
+    key: "_weHaveErrors",
+    value: function _weHaveErrors(errors) {
+      setTimeout(this._turnOnAlarm.bind(this), 1);
+
+      this._showErrors(errors);
+
+      this.enabledTypeinValidation = true;
+    }
+  }, {
+    key: "_showErrors",
+    value: function _showErrors(errors) {}
+  }, {
+    key: "_ultimateSuccess",
+    value: function _ultimateSuccess() {}
+  }, {
+    key: "_ultimateFail",
+    value: function _ultimateFail() {}
+  }, {
+    key: "_getSubmitPermission",
+    value: function _getSubmitPermission() {
+      var _this4 = this;
+
+      // защита от повторного нажатия на 5 сек
+      if (this.disabledSubmit) {
+        return false;
+      }
+
+      this.disabledSubmit = true;
+      setTimeout(function () {
+        _this4.disabledSubmit = false;
+      }, 5000);
+      return true;
+    }
+  }, {
+    key: "_turnOnAlarm",
+    value: function _turnOnAlarm() {
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.alarmCss);
+    }
+  }, {
+    key: "_turnOffAlarm",
+    value: function _turnOffAlarm() {
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.alarmCss);
+    }
+  }, {
+    key: "_hide",
+    value: function _hide(e) {
+      if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      if (e.target.parentNode === Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      if (e.target === Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
+    }
+  }, {
+    key: "_show",
+    value: function _show(e) {
+      if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
+    }
+  }]);
+
+  return AbsoluteForm;
+}();
+
+
 
 /***/ }),
 
@@ -241,141 +478,81 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#registerLink')) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Register; });
 /* harmony import */ var _el_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el.js */ "./resources/js2/el.js");
-/* harmony import */ var _http_postJson_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./http/postJson.js */ "./resources/js2/http/postJson.js");
-/* harmony import */ var _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validation/registerValidation.js */ "./resources/js2/validation/registerValidation.js");
-/* harmony import */ var _absoluteMessage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./absoluteMessage.js */ "./resources/js2/absoluteMessage.js");
+/* harmony import */ var _parentClasses_absoluteForm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parentClasses/absoluteForm.js */ "./resources/js2/parentClasses/absoluteForm.js");
+/* harmony import */ var _html_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./html/getRegisterFormHtml.js */ "./resources/js2/html/getRegisterFormHtml.js");
+/* harmony import */ var _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./validation/registerValidation.js */ "./resources/js2/validation/registerValidation.js");
+/* harmony import */ var _absoluteMessage_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./absoluteMessage.js */ "./resources/js2/absoluteMessage.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
 
 
-var Register = /*#__PURE__*/function () {
-  function Register() {
-    var _this = this;
 
-    var postUrl = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/register';
-    var successUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '/home';
+
+var Register = /*#__PURE__*/function (_AbsoluteForm) {
+  _inherits(Register, _AbsoluteForm);
+
+  var _super = _createSuper(Register);
+
+  function Register(clickSourceSelector) {
+    var _this;
+
+    var postUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '/register';
+    var successUrl = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '/home';
 
     _classCallCheck(this, Register);
 
-    if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#registerLink')) {
-      return;
-    }
-
-    this.postUrl = postUrl;
-    this.successUrl = successUrl;
-    this.disabledSubmit = false;
-    this.enabledTypeinValidation = false;
-    this.basicCss = 'register_form__wrapper';
-    this.showCss = 'register_form__show';
-    this.hideCss = 'register_form__hide';
-    this.alarmCss = 'register_form__alarm';
-    Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#registerLink').addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      _this._render();
-    });
+    _this = _super.call(this, clickSourceSelector);
+    _this.postUrl = postUrl;
+    _this.successUrl = successUrl;
+    _this.wrapSelector = '#regForm';
+    _this.submitSelector = '#regSubmit';
+    _this.basicCss = 'register_form__wrapper';
+    _this.showCss = 'register_form__show';
+    _this.hideCss = 'register_form__hide';
+    _this.alarmCss = 'register_form__alarm';
+    _this.validationFunction = _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_3__["default"];
+    return _this;
   }
 
   _createClass(Register, [{
-    key: "_render",
-    value: function _render() {
-      if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm')) {
-        this._firstRender();
-
-        return;
-      }
-
-      this._show();
-    }
-  }, {
-    key: "_firstRender",
-    value: function _firstRender() {
-      var _this2 = this;
-
-      var html = "<div id=\"regForm\" class=\"".concat(this.basicCss, " ").concat(this.showCss, "\">\n                        <div class=\"register_form__header\">\n                            \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F\n                            <div class='register_form__close'>&#215;</div>\n                        </div>\n                        <label for=\"regName\" class=\"register_input__label\">\u0412\u0430\u0448\u0435 \u0438\u043C\u044F</label>\n                        <input type='text' name='name' id='regName' required class=\"register_input__text\">\n                        <div id=\"regNameErr\" class=\"register_input__validation_message\"></div>\n\n                        <label for=\"regEmail\" class=\"register_input__label\">E-mail</label>\n                        <input type='email' name='email' id='regEmail' required class=\"register_input__text\">\n                        <div id=\"regEmailErr\" class=\"register_input__validation_message\"></div>\n\n                        <label for=\"regPassword\" class=\"register_input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                        <input type='password' name='password' id='regPassword' required class=\"register_input__text\">\n                        <div id=\"regPasswordErr\" class=\"register_input__validation_message\"></div>\n\n                        <label for=\"regPassword_confirmation\" class=\"register_input__label\">\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C</label>\n                        <input type='password' name='password_confirmation' id='regPassword_confirmation' required class=\"register_input__text\">\n                        <div id=\"regPasswordConfirmationErr\" class=\"register_input__validation_message\"></div>\n\n                        <button type=\"submit\" id='regSubmit' class=\"register_form__submit_button\">\n                           \u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F\n                        </button>\n                      </div>");
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regSubmit').addEventListener('click', function () {
-        _this2._submit(_this2._getUserData());
-      });
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm').addEventListener('keyup', function () {
-        if (!_this2.enabledTypeinValidation) return;
-
-        var _registerValidation = Object(_validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_this2._getUserData()),
-            popupErrors = _registerValidation.popupErrors,
-            typeinErrors = _registerValidation.typeinErrors;
-
-        _this2._showErrors(typeinErrors);
-      });
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
-        _this2._hide(e);
+    key: "_getFormHtml",
+    value: function _getFormHtml(data) {
+      return Object(_html_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__["default"])({
+        basicCss: this.basicCss,
+        showCss: this.showCss
       });
     }
   }, {
-    key: "_submit",
-    value: function _submit(userData) {
-      var _this3 = this;
-
-      this._turnOffAlarm();
-
-      var _registerValidation2 = Object(_validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_2__["default"])(userData),
-          popupErrors = _registerValidation2.popupErrors,
-          typeinErrors = _registerValidation2.typeinErrors;
-
-      if (popupErrors) {
-        // console.log(popupErrors);
-        setTimeout(this._turnOnAlarm.bind(this), 1);
-
-        this._showErrors(typeinErrors);
-
-        this.enabledTypeinValidation = true;
-        return;
-      } // защита от повторного нажатия на 5 сек
-
-
-      if (this.disabledSubmit) {
-        return;
-      }
-
-      this.disabledSubmit = true;
-      setTimeout(function () {
-        _this3.disabledSubmit = false;
-      }, 5000); // отправить данные и получить ответ
-
-      Object(_http_postJson_js__WEBPACK_IMPORTED_MODULE_1__["default"])(this.postUrl, userData).then(function (data) {
-        console.log(data);
-
-        if (data.backValidatorErrors) {
-          setTimeout(_this3._turnOnAlarm.bind(_this3), 1);
-
-          _this3._showErrors(data.backValidatorErrors);
-
-          _this3.enabledTypeinValidation = true;
-          return;
-        }
-
-        if (data.saveSuccess === true) {
-          document.location.href = _this3.successUrl;
-        } else {
-          new _absoluteMessage_js__WEBPACK_IMPORTED_MODULE_3__["default"]('Не удалось создать регистрацию.');
-        }
-      });
+    key: "_ultimateSuccess",
+    value: function _ultimateSuccess() {
+      document.location.href = this.successUrl;
     }
   }, {
-    key: "_showErrors",
-    value: function _showErrors(err) {
-      if (!err) err = {};
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regNameErr').innerText = err.name ? err.name[0] : '';
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regEmailErr').innerText = err.email ? err.email[0] : '';
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPasswordErr').innerText = err.password ? err.password[0] : '';
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPasswordConfirmationErr').innerText = err.password_confirmation ? err.password_confirmation[0] : '';
+    key: "_ultimateFail",
+    value: function _ultimateFail() {
+      new _absoluteMessage_js__WEBPACK_IMPORTED_MODULE_4__["default"]('Не удалось создать регистрацию.');
     }
   }, {
     key: "_getUserData",
@@ -388,45 +565,18 @@ var Register = /*#__PURE__*/function () {
       };
     }
   }, {
-    key: "_turnOnAlarm",
-    value: function _turnOnAlarm() {
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm').className = "".concat(this.basicCss, " ").concat(this.alarmCss);
-    }
-  }, {
-    key: "_turnOffAlarm",
-    value: function _turnOffAlarm() {
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm').classList.remove(this.alarmCss);
-    }
-  }, {
-    key: "_hide",
-    value: function _hide(e) {
-      if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm')) {
-        return;
-      }
-
-      if (e.target.parentNode === Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm')) {
-        return;
-      }
-
-      if (e.target === Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm')) {
-        return;
-      }
-
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm').className = "".concat(this.basicCss, " ").concat(this.hideCss);
-    }
-  }, {
-    key: "_show",
-    value: function _show(e) {
-      if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm')) {
-        return;
-      }
-
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regForm').className = "".concat(this.basicCss, " ").concat(this.showCss);
+    key: "_showErrors",
+    value: function _showErrors(err) {
+      if (!err) err = {};
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regNameErr').innerText = err.name ? err.name[0] : '';
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regEmailErr').innerText = err.email ? err.email[0] : '';
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPasswordErr').innerText = err.password ? err.password[0] : '';
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPasswordConfirmationErr').innerText = err.password_confirmation ? err.password_confirmation[0] : '';
     }
   }]);
 
   return Register;
-}();
+}(_parentClasses_absoluteForm_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
 
@@ -462,94 +612,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isEmailValid.js */ "./resources/js2/validation/isEmailValid.js");
 
 function registerValidation(user) {
-  // для длинных сообщений в pop-up блоке
-  var err = {}; // для коротких type-in сообщений под input-полями
-
-  var err2 = {};
+  var err = {};
 
   if (user.name.length === 0) {
-    if (!err.hasOwnProperty('name')) {
-      err.name = [];
-      err2.name = [];
-    }
-
-    err.name.push('заполните «Ваше имя».');
-    err2.name.push('Пожалуйста заполните');
+    if (!err.hasOwnProperty('name')) err.name = [];
+    err.name.push('Пожалуйста заполните');
   }
 
   if (user.email.length === 0) {
-    if (!err.hasOwnProperty('email')) {
-      err.email = [];
-      err2.email = [];
-    }
-
-    err.email.push('заполните «Ваш email».');
-    err2.email.push('Пожалуйста заполните');
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Пожалуйста заполните');
   }
 
   if (user.password.length === 0) {
-    if (!err.hasOwnProperty('password')) {
-      err.password = [];
-      err2.password = [];
-    }
-
-    err.password.push('заполните «Пароль».');
-    err2.password.push('Пожалуйста заполните');
+    if (!err.hasOwnProperty('password')) err.password = [];
+    err.password.push('Пожалуйста заполните');
   }
 
   if (user.password_confirmation.length === 0) {
-    if (!err.hasOwnProperty('password_confirmation')) {
-      err.password_confirmation = [];
-      err2.password_confirmation = [];
-    }
-
-    err.password_confirmation.push('заполните «Подтверждение пароля».');
-    err2.password_confirmation.push('Пожалуйста заполните');
+    if (!err.hasOwnProperty('password_confirmation')) err.password_confirmation = [];
+    err.password_confirmation.push('Пожалуйста заполните');
   }
 
   if (!Object(_isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__["default"])(user.email)) {
-    if (!err.hasOwnProperty('email')) {
-      err.email = [];
-      err2.email = [];
-    }
-
-    err.email.push('некорректный Ваш email.');
-    err2.email.push('Некорректный email');
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Некорректный email');
   }
 
   if (user.password.length > 0 && user.password.length < 6) {
-    if (!err.hasOwnProperty('password')) {
-      err.password = [];
-      err2.password = [];
-    }
-
-    err.password.push('«Пароль» не менее 6 символов.');
-    err2.password.push('Не менее 6 символов');
+    if (!err.hasOwnProperty('password')) err.password = [];
+    err.password.push('Не менее 6 символов');
   }
 
   if (user.password_confirmation.length > 0 && user.password.length > 0) {
     if (user.password_confirmation !== user.password) {
-      if (!err.hasOwnProperty('password_confirmation')) {
-        err.password_confirmation = [];
-        err2.password_confirmation = [];
-      }
-
-      err.password_confirmation.push('пароль подтвержден неверно.');
-      err2.password_confirmation.push('Подтвержден неверно');
+      if (!err.hasOwnProperty('password_confirmation')) err.password_confirmation = [];
+      err.password_confirmation.push('Подтвержден неверно');
     }
   }
 
   for (var key in err) {
-    if (err.hasOwnProperty(key)) return {
-      popupErrors: err,
-      typeinErrors: err2
-    };
+    if (err.hasOwnProperty(key)) {
+      return err;
+    }
   }
 
-  return {
-    popupErrors: null,
-    typeinErrors: null
-  };
+  return null;
 }
 
 /***/ }),

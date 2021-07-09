@@ -43,7 +43,7 @@ class RegisterController extends Controller
 
         if (blank($user)) {
             return $request->expectsJson()
-                ? response()->json(['saveSuccess' => false])
+                ? response()->json(['success' => false])
                 : back()->with(['status' => 'Не удалось создать регистрацию.']);
         }
 
@@ -59,7 +59,7 @@ class RegisterController extends Controller
 
 
         return $request->expectsJson()
-            ? response()->json(['saveSuccess' => true])
+            ? response()->json(['success' => true])
             : redirect()->route('home');
 
     }

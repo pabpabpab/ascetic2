@@ -3,7 +3,7 @@ import Register from "./register";
 
 
 if (el('#registerLink')) {
-    new Register();
+    new Register('#registerLink');
 }
 
 
