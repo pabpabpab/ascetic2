@@ -27,15 +27,20 @@ class LoginController extends Controller
         ];
 
         if (!Auth::attempt($credentials, $remember)) {
-            return back()->withErrors(['result' => 'Логин или пароль неверные.']);
+            return $request->expectsJson()
+                ? response()->json(['success' => false])
+                : back()->withErrors(['result' => 'Логин или пароль неверные.']);
         }
+
 
         $request->session()->regenerate();
 
         $user = Auth::user();
 
         if (blank($user)) {
-            return back()->withErrors(['result' => 'Пользователь не определен.']);
+            return $request->expectsJson()
+                ? response()->json(['success' => false])
+                : back()->withErrors(['result' => 'Пользователь не определен.']);
         }
 
         session([
@@ -44,8 +49,9 @@ class LoginController extends Controller
             'emailVerified' => filled($user->email_verified_at),
         ]);
 
-        return redirect()->intended('/home');
-        //return redirect()->route('home');
+        return $request->expectsJson()
+            ? response()->json(['success' => true, 'userName' => $user->name])
+            : redirect()->intended('/home');
     }
 
 }

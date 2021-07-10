@@ -156,6 +156,38 @@ function el(selector) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/getAuthenticatedMenuHtml.js":
+/*!********************************************************!*\
+  !*** ./resources/js2/html/getAuthenticatedMenuHtml.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getAuthenticatedMenuHtml; });
+function getAuthenticatedMenuHtml(userName) {
+  return "<div id=\"authMenuContent\">\n                <a href=\"/home\">".concat(userName, "</a>\n                <a href=\"/logout\">\u0412\u044B\u0439\u0442\u0438</a>\n            </div>");
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/getLoginFormHtml.js":
+/*!************************************************!*\
+  !*** ./resources/js2/html/getLoginFormHtml.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getLoginFormHtml; });
+function getLoginFormHtml(css) {
+  return "<div id=\"loginForm\" class=\"".concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"register_form__header\">\n                    \u0412\u0445\u043E\u0434 \u0434\u043B\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F\n                    <div class='register_form__close'>&#215;</div>\n                </div>\n\n                <div id=\"failedLoginErr\" class=\"register_input__validation_message mt10\"></div>\n\n                <label for=\"loginEmail\" class=\"register_input__label\">E-mail</label>\n                <input type='email' name='email' id='loginEmail' required class=\"register_input__text\">\n                <div id=\"loginEmailErr\" class=\"register_input__validation_message\"></div>\n\n                <label for=\"loginPassword\" class=\"register_input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password' id='loginPassword' required class=\"register_input__text\">\n                <div id=\"loginPasswordErr\" class=\"register_input__validation_message\"></div>\n\n                <input type=\"checkbox\" name=\"remember\" id=\"loginRemember\" value=\"1\" class=\"login__checkbox_input\">\n                <label for=\"loginRemember\" class=\"login__checkbox_label\">\u0417\u0430\u043F\u043E\u043C\u043D\u0438\u0442\u044C \u043C\u0435\u043D\u044F</label>\n\n                <button type=\"submit\" id='loginSubmit' class=\"register_form__submit_button\">\n                   \u0412\u043E\u0439\u0442\u0438\n                </button>\n            <div>");
+}
+
+/***/ }),
+
 /***/ "./resources/js2/html/getRegisterFormHtml.js":
 /*!***************************************************!*\
   !*** ./resources/js2/html/getRegisterFormHtml.js ***!
@@ -235,14 +267,152 @@ function postJson(url, data) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
 /* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./register */ "./resources/js2/register.js");
+/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login */ "./resources/js2/login.js");
+
 
 
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#registerLink')) {
   new _register__WEBPACK_IMPORTED_MODULE_1__["default"]('#registerLink');
+}
+
+if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginLink')) {
+  new _login__WEBPACK_IMPORTED_MODULE_2__["default"]('#loginLink');
 } //import onBodyClickListener from './onBodyClickListener.js';
 // import "../sass2/common.sass";
 //onBodyClickListener();
+
+/***/ }),
+
+/***/ "./resources/js2/login.js":
+/*!********************************!*\
+  !*** ./resources/js2/login.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
+/* harmony import */ var _el_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el.js */ "./resources/js2/el.js");
+/* harmony import */ var _parentClasses_absoluteForm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parentClasses/absoluteForm.js */ "./resources/js2/parentClasses/absoluteForm.js");
+/* harmony import */ var _html_getLoginFormHtml_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./html/getLoginFormHtml.js */ "./resources/js2/html/getLoginFormHtml.js");
+/* harmony import */ var _html_getAuthenticatedMenuHtml_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./html/getAuthenticatedMenuHtml.js */ "./resources/js2/html/getAuthenticatedMenuHtml.js");
+/* harmony import */ var _validation_loginValidation_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./validation/loginValidation.js */ "./resources/js2/validation/loginValidation.js");
+/* harmony import */ var _absoluteMessage_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./absoluteMessage.js */ "./resources/js2/absoluteMessage.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+var Login = /*#__PURE__*/function (_AbsoluteForm) {
+  _inherits(Login, _AbsoluteForm);
+
+  var _super = _createSuper(Login);
+
+  function Login(clickSourceSelector) {
+    var _this;
+
+    var postUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '/login/do';
+    var successUrl = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '/home';
+
+    _classCallCheck(this, Login);
+
+    _this = _super.call(this, clickSourceSelector);
+    _this.postUrl = postUrl;
+    _this.successUrl = successUrl;
+    _this.wrapSelector = '#loginForm';
+    _this.submitSelector = '#loginSubmit';
+    _this.basicCss = 'register_form__wrapper';
+    _this.showCss = 'register_form__show';
+    _this.hideCss = 'register_form__hide';
+    _this.alarmCss = 'register_form__alarm';
+    _this.validationFunction = _validation_loginValidation_js__WEBPACK_IMPORTED_MODULE_4__["default"];
+    return _this;
+  }
+
+  _createClass(Login, [{
+    key: "_getFormHtml",
+    value: function _getFormHtml() {
+      return Object(_html_getLoginFormHtml_js__WEBPACK_IMPORTED_MODULE_2__["default"])({
+        basicCss: this.basicCss,
+        showCss: this.showCss
+      });
+    }
+  }, {
+    key: "_ultimateSuccess",
+    value: function _ultimateSuccess(data) {
+      var _this2 = this;
+
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authMenuContent').remove();
+      var html = Object(_html_getAuthenticatedMenuHtml_js__WEBPACK_IMPORTED_MODULE_3__["default"])(data.userName);
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authMenu').insertAdjacentHTML('afterbegin', html);
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      setTimeout(function () {
+        Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_this2.wrapSelector).remove();
+      }, 3000);
+      new _absoluteMessage_js__WEBPACK_IMPORTED_MODULE_5__["default"]("\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C, ".concat(data.userName));
+    }
+  }, {
+    key: "_ultimateFail",
+    value: function _ultimateFail() {
+      this._turnOffAlarm();
+
+      setTimeout(this._turnOnAlarm.bind(this), 1);
+
+      this._showErrors({
+        failedLogin: ['Неправильный логин или пароль']
+      });
+
+      this.enabledTypeinValidation = true;
+    }
+  }, {
+    key: "_getUserData",
+    value: function _getUserData() {
+      return {
+        email: Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginEmail').value,
+        password: Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginPassword').value,
+        remember: Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginRemember').value
+      };
+    }
+  }, {
+    key: "_showErrors",
+    value: function _showErrors(err) {
+      if (!err) err = {};
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginEmailErr').innerText = err.email ? err.email[0] : '';
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginPasswordErr').innerText = err.password ? err.password[0] : '';
+      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#failedLoginErr').innerText = err.failedLogin ? err.failedLogin[0] : '';
+    }
+  }]);
+
+  return Login;
+}(_parentClasses_absoluteForm_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
 
 /***/ }),
 
@@ -382,7 +552,7 @@ var AbsoluteForm = /*#__PURE__*/function () {
         }
 
         if (data.success === true) {
-          _this3._ultimateSuccess();
+          _this3._ultimateSuccess(data);
         } else {
           _this3._ultimateFail();
         }
@@ -595,6 +765,47 @@ __webpack_require__.r(__webpack_exports__);
 function isEmailValid(email) {
   var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i;
   return re.test(email);
+}
+
+/***/ }),
+
+/***/ "./resources/js2/validation/loginValidation.js":
+/*!*****************************************************!*\
+  !*** ./resources/js2/validation/loginValidation.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return loginValidation; });
+/* harmony import */ var _isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isEmailValid.js */ "./resources/js2/validation/isEmailValid.js");
+
+function loginValidation(user) {
+  var err = {};
+
+  if (user.email.length === 0) {
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Пожалуйста заполните');
+  }
+
+  if (user.password.length === 0) {
+    if (!err.hasOwnProperty('password')) err.password = [];
+    err.password.push('Пожалуйста заполните');
+  }
+
+  if (!Object(_isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__["default"])(user.email)) {
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Некорректный email');
+  }
+
+  for (var key in err) {
+    if (err.hasOwnProperty(key)) {
+      return err;
+    }
+  }
+
+  return null;
 }
 
 /***/ }),

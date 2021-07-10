@@ -57,7 +57,7 @@ Route::group([
         // ->middleware(['guest', 'makeLogin']);
 
     // логаут
-    Route::post('/logout', 'LogoutController@logout')
+    Route::any('/logout', 'LogoutController@logout')
         ->name('logout');
 
     // переход по signed url из письма, верифицируется емайл

@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .mauto {
   margin: 0 auto;
 }
@@ -200,6 +202,46 @@
 
 .register_form__submit_button:hover {
   background-color: #303036;
+}
+
+.login__checkbox_input {
+  visibility: hidden;
+}
+
+.login__checkbox_label {
+  position: relative;
+  display: block;
+  font-size: 15px;
+  color: #000;
+  font-weight: 400;
+  margin: 0 0 0 20px;
+  cursor: pointer;
+}
+
+.login__checkbox_label::before {
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  border: 1px solid #333;
+  background-color: #fff;
+  content: "";
+}
+
+.login__checkbox_input:checked + .login__checkbox_label::before {
+  position: absolute;
+  content: "\2714";
+  font-size: 21px;
+  color: #000;
+  font-weight: 400;
+  line-height: 15px;
+  background-color: #fcdd0c;
+}
+
+.mt10 {
+  margin-top: 10px;
 }
 
 .absolute_message__wrapper {

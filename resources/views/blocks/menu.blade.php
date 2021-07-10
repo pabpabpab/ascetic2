@@ -11,21 +11,22 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+
                 <!-- Authentication Links -->
                 @guest
-                    @if (Route::currentRouteName() !== 'login.show')
-                        <li class="nav-item">
-                            <a class="nav-link" id="loginLink" href="{{ route('login.show') }}">Логин</a>
-                        </li>
-                    @endif
+                <div id="authMenu">
+                    <div id="authMenuContent">
+                        @if (Route::currentRouteName() !== 'login.show')
+                            <a id="loginLink" href="{{ route('login.show') }}">Логин</a>
+                        @endif
 
-                    @if (Route::currentRouteName() !== 'register.show')
-                        <li class="nav-item">
-                            <a class="nav-link" id="registerLink" href="{{ route('register.show') }}">Регистрация</a>
-                        </li>
-                    @endif
+                        @if (Route::currentRouteName() !== 'register.show')
+                            <a id="registerLink" href="{{ route('register.show') }}">Регистрация</a>
+                        @endif
+                    </div>
+                </div>
                 @else
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ route('home') }}">
                             {{ Auth::user()->name }}
@@ -43,8 +44,9 @@
                             </form>
                         </div>
                     </li>
+                </ul>
                 @endguest
-            </ul>
+
         </div>
     </div>
 </nav>

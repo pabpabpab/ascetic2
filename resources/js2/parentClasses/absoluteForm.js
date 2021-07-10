@@ -94,7 +94,7 @@ export default class AbsoluteForm {
                 return;
             }
             if (data.success === true) {
-                this._ultimateSuccess();
+                this._ultimateSuccess(data);
             } else {
                 this._ultimateFail();
             }
