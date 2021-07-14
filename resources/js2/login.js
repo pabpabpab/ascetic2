@@ -1,34 +1,43 @@
-import el from './el.js';
-import AbsoluteForm from "./parentClasses/absoluteForm.js";
-import getLoginFormHtml from './html/getLoginFormHtml.js';
-import getAuthenticatedMenuHtml from './html/getAuthenticatedMenuHtml.js';
-import loginValidation from "./validation/loginValidation.js";
-import AbsoluteMessage from "./absoluteMessage.js";
+import el from './el';
+import AbsoluteForm from "./parentClasses/absoluteForm";
+import getLoginFormHtml from './html/getLoginFormHtml';
+import getFailedLoginHtml from './html/getFailedLoginHtml';
+import getAuthenticatedMenuHtml from './html/getAuthenticatedMenuHtml';
+import loginValidation from "./validation/loginValidation";
+import AbsoluteFlashMessage from "./absoluteFlashMessage";
+import ForgotPassword from "./forgotPassword";
 
 export default class Login extends AbsoluteForm {
 
-    constructor(clickSourceSelector, postUrl= '/login/do', successUrl = '/home') {
-        super(clickSourceSelector);
+    constructor(data, postUrl= '/login/do', successUrl = '/home') {
+        super(data);
 
         this.postUrl = postUrl;
         this.successUrl = successUrl;
         this.wrapSelector = '#loginForm';
         this.submitSelector = '#loginSubmit';
-        this.basicCss = 'register_form__wrapper';
-        this.showCss = 'register_form__show';
-        this.hideCss = 'register_form__hide';
-        this.alarmCss = 'register_form__alarm';
 
         this.validationFunction = loginValidation;
     }
 
 
-    _getFormHtml() {
+    _preRenderActions() {
+        if (!el('#authBlock')) return;
+        el('#authBlock').className = `auth_block__wrapper hide_block`;
+    }
+
+    _additionalFirstRenderActions() {
+        new ForgotPassword({ clickSourceSelector: '#forgotPasswordLink' });
+    }
+
+
+    _getHtml() {
         return getLoginFormHtml({
             basicCss: this.basicCss,
             showCss: this.showCss,
         });
     }
+
 
     _ultimateSuccess(data) {
         el('#authMenuContent').remove();
@@ -38,14 +47,15 @@ export default class Login extends AbsoluteForm {
         setTimeout(() => {
             el(this.wrapSelector).remove();
         }, 3000);
-        new AbsoluteMessage(`Добро пожаловать, ${data.userName}`);
+        new AbsoluteFlashMessage(`Добро пожаловать, ${data.userName}`);
     }
 
     _ultimateFail() {
         this._turnOffAlarm();
         setTimeout(this._turnOnAlarm.bind(this), 1);
+
         this._showErrors({
-            failedLogin: ['Неправильный логин или пароль']
+            failedLogin: true
         });
         this.enabledTypeinValidation = true;
     }
@@ -62,7 +72,15 @@ export default class Login extends AbsoluteForm {
         if (!err) err = {};
         el('#loginEmailErr').innerText = err.email ? err.email[0] : '';
         el('#loginPasswordErr').innerText = err.password ? err.password[0] : '';
-        el('#failedLoginErr').innerText = err.failedLogin ? err.failedLogin[0] : '';
+
+        if (el('#failedLoginErrorContent')) {
+            el('#failedLoginErrorContent').remove()
+        }
+
+        if (err.failedLogin) {
+            const html = getFailedLoginHtml();
+            el('#failedLoginErr').insertAdjacentHTML('afterbegin', html);
+        }
     }
 
 }

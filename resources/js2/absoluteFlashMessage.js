@@ -1,7 +1,6 @@
-import el from './el.js';
+import el from './el';
 
-
-export default class AbsoluteMessage {
+export default class AbsoluteFlashMessage {
 
     constructor(text) {
         this.text = text;
@@ -10,8 +9,8 @@ export default class AbsoluteMessage {
     }
 
     _render() {
-        const html = `<div id="${this.id}" class="absolute_message__wrapper">
-                           <div class="absolute_message__div">
+        const html = `<div id="${this.id}" class="absolute_message__wrapper absolute_message__show_and_hide">
+                           <div class="absolute_message__div arial_sans-serif">
                                 ${this.text}
                            </div>
                       </div>`;

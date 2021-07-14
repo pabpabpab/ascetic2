@@ -1,16 +1,20 @@
 import el from "./el";
-import Register from "./register";
-import Login from "./login";
+import AuthBlock from "./authBlock";
 
+
+/*
 if (el('#registerLink')) {
-    new Register('#registerLink');
+    new Register({ clickSourceSelector: '#registerLink' });
 }
 
 if (el('#loginLink')) {
-    new Login('#loginLink');
+    new Login({ clickSourceSelector: '#loginLink' });
 }
+*/
 
-
+if (el('.personal_account__icon')) {
+    new AuthBlock({ clickSourceSelector: '.personal_account__icon' });
+}
 
 //import onBodyClickListener from './onBodyClickListener.js';
 // import "../sass2/common.sass";

@@ -1,3 +1,5 @@
+import getULoginWidgetHtml from './getULoginWidgetHtml.js';
+
 export default function getRegisterFormHtml(css) {
     return `<div id="regForm" class="${css.basicCss} ${css.showCss}">
                 <div class="register_form__header">
@@ -20,8 +22,13 @@ export default function getRegisterFormHtml(css) {
                 <input type='password' name='password_confirmation' id='regPassword_confirmation' required class="register_input__text">
                 <div id="regPasswordConfirmationErr" class="register_input__validation_message"></div>
 
-                <button type="submit" id='regSubmit' class="register_form__submit_button">
+                <button type="submit" id='regSubmit' class="register_form__submit_button mt18">
                    Зарегистрироваться
                 </button>
+
+                <div class="register_form__header mt30">
+                    Регистрация через
+                </div>
+                ${getULoginWidgetHtml()}
             <div>`;
 }

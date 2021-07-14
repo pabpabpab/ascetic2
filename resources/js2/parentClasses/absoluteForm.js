@@ -1,51 +1,30 @@
-import el from './../el.js';
+import el from './../el';
 import postJson from "../http/postJson";
+import VisibleBlockByClick from "./visibleBlockByClick";
 
-export default class AbsoluteForm {
+export default class AbsoluteForm extends VisibleBlockByClick {
 
     constructor(clickSourceSelector) {
-        this.disabledSubmit = false;
-        this.enabledTypeinValidation = false;
-
-        if (!el(clickSourceSelector)) {
-            return;
-        }
-        el(clickSourceSelector).addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            this._render();
-        });
+        super(clickSourceSelector);
 
         this.postUrl = '';
         this.successUrl = '';
 
+        this.disabledSubmit = false;
+        this.enabledTypeinValidation = false;
+
         this.wrapSelector = '';
         this.submitSelector = '';
-        this.basicCss = '';
-        this.alarmCss = '';
-        this.showCss = '';
-        this.hideCss = '';
+
+        this.basicCss = 'register_form__wrapper';
+        this.showCss = 'register_form__show';
+        this.hideCss = 'register_form__hide';
+        this.alarmCss = 'register_form__alarm';
 
         this.validationFunction = null;
     }
 
-    _render() {
-        if (!el(this.wrapSelector)) {
-            this._firstRender();
-            return;
-        }
-        this._show();
-    }
-
-    _firstRender() {
-        const html = this._getFormHtml();
-        el('body').insertAdjacentHTML('beforeend', html);
-        this._listenForm();
-    }
-
-    _getFormHtml() {}
-
-    _listenForm() {
+    _listenThisBlock() {
         // submit
         el(this.submitSelector).addEventListener('click', () => {
             this._submit(this._getUserData());
@@ -55,14 +34,10 @@ export default class AbsoluteForm {
         el(this.wrapSelector).addEventListener('keyup', () => {
             this._doTypeInValidation(this._getUserData());
         });
-
-        // скрыть форму при клике мимо
-        el('body').addEventListener('click', (e) => {
-            this._hide(e);
-        });
     }
 
     _getUserData() {}
+
 
     _doTypeInValidation(userData) {
         if (!this.enabledTypeinValidation) {
@@ -130,25 +105,5 @@ export default class AbsoluteForm {
 
     _turnOffAlarm() {
         el(this.wrapSelector).classList.remove(this.alarmCss);
-    }
-
-    _hide(e) {
-        if (!el(this.wrapSelector)) {
-            return;
-        }
-        if (e.target.parentNode === el(this.wrapSelector)) {
-            return;
-        }
-        if (e.target === el(this.wrapSelector)) {
-            return;
-        }
-        el(this.wrapSelector).className = `${this.basicCss} ${this.hideCss}`;
-    }
-
-    _show(e) {
-        if (!el(this.wrapSelector)) {
-            return;
-        }
-        el(this.wrapSelector).className = `${this.basicCss} ${this.showCss}`;
     }
 }

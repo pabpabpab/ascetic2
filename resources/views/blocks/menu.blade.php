@@ -12,20 +12,26 @@
 
             <!-- Right Side Of Navbar -->
 
-                <!-- Authentication Links -->
-                @guest
+            <!-- Authentication Links -->
+            @guest
                 <div id="authMenu">
-                    <div id="authMenuContent">
-                        @if (Route::currentRouteName() !== 'login.show')
-                            <a id="loginLink" href="{{ route('login.show') }}">Логин</a>
-                        @endif
 
-                        @if (Route::currentRouteName() !== 'register.show')
-                            <a id="registerLink" href="{{ route('register.show') }}">Регистрация</a>
-                        @endif
+                    <div id="authMenuContent">
+                        <img alt="Личный кабинет" src="images/lk.jpg" class="personal_account__icon">
                     </div>
+                    {{--
+                    <div id="authMenuContent">
+                       @if (Route::currentRouteName() !== 'login.show')
+                           <a id="loginLink" href="{{ route('login.show') }}">Логин</a>
+                       @endif
+
+                       @if (Route::currentRouteName() !== 'register.show')
+                           <a id="registerLink" href="{{ route('register.show') }}">Регистрация</a>
+                       @endif
+                    </div>
+                    --}}
                 </div>
-                @else
+            @else
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{ route('home') }}">
@@ -34,8 +40,8 @@
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
                                 Выйти
                             </a>
 
@@ -45,8 +51,7 @@
                         </div>
                     </li>
                 </ul>
-                @endguest
-
+            @endguest
         </div>
     </div>
 </nav>

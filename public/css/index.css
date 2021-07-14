@@ -8,6 +8,10 @@
   display: none;
 }
 
+.display-block {
+  display: block;
+}
+
 .display-flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -28,6 +32,72 @@
 
 .tal {
   text-align: left;
+}
+
+.taj {
+  text-align: justify;
+}
+
+.show_block {
+  visibility: visible;
+  opacity: 1;
+  -webkit-animation: showBlock 0.5s;
+          animation: showBlock 0.5s;
+}
+
+@-webkit-keyframes showBlock {
+  from, to {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes showBlock {
+  from, to {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.hide_block {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-animation: hideBlock 0.5s;
+          animation: hideBlock 0.5s;
+}
+
+@-webkit-keyframes hideBlock {
+  from, to {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hideBlock {
+  from, to {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .register_form__wrapper {
@@ -181,8 +251,6 @@
 }
 
 .register_input__validation_message {
-  bottom: 0;
-  left: 0;
   font-size: 12px;
   color: #c00000;
   font-weight: 400;
@@ -190,7 +258,6 @@
 }
 
 .register_form__submit_button {
-  margin-top: 18px;
   padding: 10px 15px;
   font-size: 15px;
   color: #fff;
@@ -202,6 +269,36 @@
 
 .register_form__submit_button:hover {
   background-color: #303036;
+}
+
+.forgot_password__link {
+  text-decoration: none;
+  font-size: 15px;
+  color: #0060c0;
+  font-weight: 400;
+}
+
+.submit_forgot__flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.failed_login__message {
+  font-size: 12px;
+  color: #c00000;
+  font-weight: 400;
+  font-family: Arial, sans-serif;
+  background-color: #d8dbe2;
+  padding: 12px;
+  border: 1px solid #a0aabe;
+  border-radius: 5px;
 }
 
 .login__checkbox_input {
@@ -240,8 +337,27 @@
   background-color: #fcdd0c;
 }
 
+.ulogin_iframe {
+  padding: 0;
+  margin: 7px 0 0 -10px;
+  height: 50px;
+  width: 230px;
+}
+
 .mt10 {
   margin-top: 10px;
+}
+
+.mt18 {
+  margin-top: 18px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mt30 {
+  margin-top: 30px;
 }
 
 .absolute_message__wrapper {
@@ -260,20 +376,104 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.absolute_message__show_and_hide {
   opacity: 0;
-  -webkit-animation: showAbsoluteMessage 2s;
-          animation: showAbsoluteMessage 2s;
+  -webkit-animation: showAndHideAbsoluteMessage 2s;
+          animation: showAndHideAbsoluteMessage 2s;
+}
+
+@-webkit-keyframes showAndHideAbsoluteMessage {
+  from, to {
+    opacity: 0;
+  }
+
+  15%, 85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes showAndHideAbsoluteMessage {
+  from, to {
+    opacity: 0;
+  }
+
+  15%, 85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.absolute_message__show {
+  opacity: 1;
+  -webkit-animation: showAbsoluteMessage 0.5s;
+          animation: showAbsoluteMessage 0.5s;
+}
+
+@-webkit-keyframes showAbsoluteMessage {
+  from, to {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showAbsoluteMessage {
+  from, to {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.absolute_message__hide {
+  opacity: 0;
+  -webkit-animation: hideAbsoluteMessage 0.5s;
+          animation: hideAbsoluteMessage 0.5s;
+}
+
+@-webkit-keyframes hideAbsoluteMessage {
+  from, to {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hideAbsoluteMessage {
+  from, to {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .absolute_message__div {
+  position: relative;
   width: 300px;
   min-height: 80px;
   padding: 20px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.9);
-  color: #FFFFFF;
   font-size: 17px;
-  font-family: Arial, sans-serif;
+  color: #fff;
+  font-weight: 100;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -285,31 +485,77 @@
           align-items: center;
 }
 
-@-webkit-keyframes showAbsoluteMessage {
-  from, to {
-    opacity: 0;
-  }
-
-  15%, 85% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
+.arial_sans-serif {
+  font-family: Arial, sans-serif;
 }
 
-@keyframes showAbsoluteMessage {
-  from, to {
-    opacity: 0;
-  }
+.absolute_message__close {
+  position: absolute;
+  top: -5px;
+  right: 3px;
+  padding: 0;
+  font-size: 35px;
+  color: #ccc;
+  font-weight: 100;
+  cursor: pointer;
+}
 
-  15%, 85% {
-    opacity: 1;
-  }
+.absolute_message__close:hover {
+  font-size: 35px;
+  color: #eee;
+  font-weight: 100;
+}
 
-  100% {
-    opacity: 0;
-  }
+.personal_account__icon {
+  width: 20px;
+  height: 19px;
+  cursor: pointer;
+}
+
+.auth_block__wrapper {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  width: 245px;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.z {
+  border-radius: 10px;
+}
+
+.auth_block__header {
+  font-size: 15px;
+  color: #000;
+  font-weight: 100;
+  padding: 7px 10px;
+  background-color: #fff;
+}
+
+.auth_block__content {
+  font-size: 15px;
+  color: #eee;
+  font-weight: 100;
+  padding: 7px 10px;
+  background-color: #555;
+}
+
+.auth_block__link {
+  text-decoration: none;
+  font-size: 15px;
+  color: #eee;
+  font-weight: 100;
+  border-bottom: 1px dashed #eee;
+}
+
+.mr7 {
+  margin-right: 7px;
+}
+
+.ml7 {
+  margin-left: 7px;
 }
 

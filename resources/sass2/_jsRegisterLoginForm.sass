@@ -84,17 +84,12 @@ $bgColor: #b5bcca
     margin: 0
     padding: 10px 0 0 0
     +font(15px,#000,400)
-    // border: 1px solid #1a202c
 
 .register_input__validation_message
-    //position: absolute
-    bottom: 0
-    left: 0
     +font(12px,#c00000,400)
     font-family: Arial, sans-serif
 
 .register_form__submit_button
-    margin-top: 18px
     padding: 10px 15px
     +font(15px,#fff,400)
     cursor: pointer
@@ -103,7 +98,24 @@ $bgColor: #b5bcca
     &:hover
         background-color: #303036
 
+.forgot_password__link
+    text-decoration: none
+    +font(15px,#0060c0,400)
 
+.submit_forgot__flex
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+
+
+.failed_login__message
+    +font(12px,#c00000,400)
+    font-family: Arial, sans-serif
+    background-color: #d8dbe2
+    padding: 12px
+    border: 1px solid #a0aabe
+    border-radius: 5px
 
 
 
@@ -136,5 +148,19 @@ $bgColor: #b5bcca
 
 
 
+
+
+.ulogin_iframe
+    padding: 0
+    margin: 7px 0 0 -10px
+    height: 50px
+    width: 230px
+
 .mt10
     margin-top: 10px
+.mt18
+    margin-top: 18px
+.mt20
+    margin-top: 20px
+.mt30
+    margin-top: 30px

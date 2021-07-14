@@ -74,5 +74,21 @@ class ULoginController extends Controller
         return redirect()->intended('/home');
     }
 
+
+
+    // запрос из iframe html-кода виджета
+    public function getWidgetHtml() {
+
+        $widget = '<script src="//ulogin.ru/js/ulogin.js"></script>
+                   <div id="uLogin"
+                   data-ulogin="display=panel;theme=flat;fields=first_name,last_name;
+                   providers=vkontakte,odnoklassniki,yandex,facebook,instagram;
+                   hidden=;
+                   redirect_uri=http%3A%2F%2F{{config("app.name")}}%2Fu-login%2Fresponse;
+                   mobilebuttons=0;"></div>';
+        return $widget;
+        //return response()->json($widget);
+    }
+
 }
 

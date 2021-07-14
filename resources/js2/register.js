@@ -2,26 +2,27 @@ import el from './el.js';
 import AbsoluteForm from "./parentClasses/absoluteForm.js";
 import getRegisterFormHtml from './html/getRegisterFormHtml.js';
 import registerValidation from "./validation/registerValidation.js";
-import AbsoluteMessage from "./absoluteMessage.js";
+import AbsoluteFlashMessage from "./absoluteFlashMessage.js";
 
 export default class Register extends AbsoluteForm {
 
-    constructor(clickSourceSelector, postUrl= '/register', successUrl = '/home') {
-        super(clickSourceSelector);
+    constructor(data, postUrl= '/register', successUrl = '/home') {
+        super(data);
 
         this.postUrl = postUrl;
         this.successUrl = successUrl;
         this.wrapSelector = '#regForm';
         this.submitSelector = '#regSubmit';
-        this.basicCss = 'register_form__wrapper';
-        this.showCss = 'register_form__show';
-        this.hideCss = 'register_form__hide';
-        this.alarmCss = 'register_form__alarm';
 
         this.validationFunction = registerValidation;
     }
 
-    _getFormHtml(data) {
+    _preRenderActions() {
+        if (!el('#authBlock')) return;
+        el('#authBlock').className = `auth_block__wrapper hide_block`;
+    }
+
+    _getHtml(data) {
         return getRegisterFormHtml({
             basicCss: this.basicCss,
             showCss: this.showCss,
@@ -33,7 +34,7 @@ export default class Register extends AbsoluteForm {
     }
 
     _ultimateFail() {
-        new AbsoluteMessage('Не удалось создать регистрацию.');
+        new AbsoluteFlashMessage('Не удалось создать регистрацию.');
     }
 
     _getUserData() {

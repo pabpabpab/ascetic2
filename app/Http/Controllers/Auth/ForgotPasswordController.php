@@ -38,7 +38,9 @@ class ForgotPasswordController extends Controller
 
         // Нет такого юзера, показываем одинаковый (уклончивый) ответ все равно
         if (blank($user)) {
-            return back()->with(['status' => $this->_evasiveAnswer()]);
+            return $request->expectsJson()
+                ? response()->json(['success' => false])
+                : back()->with(['status' => $this->_evasiveAnswer()]);
         }
 
         // получить запись о токене из таблицы password_resets, если есть
@@ -50,7 +52,9 @@ class ForgotPasswordController extends Controller
         // Если не прошло 60 секунд с последней отправки reset link'а,
         // то выходим и показываем уклончивый ответ
         if ((new ForgotPasswordService())->recentlyCreatedToken($tokenObject)) {
-            return back()->with(['status' => $this->_evasiveAnswer()]);
+            return $request->expectsJson()
+                ? response()->json(['success' => false])
+                : back()->with(['status' => $this->_evasiveAnswer()]);
         }
 
         // обновить время у записи с $user->email,
@@ -75,7 +79,9 @@ class ForgotPasswordController extends Controller
         info($cntnt);
 
         // успешный ответ с сообщением
-        return back()->with(['status' => $this->_evasiveAnswer()]);
+        return $request->expectsJson()
+            ? response()->json(['success' => true])
+            : back()->with(['status' => $this->_evasiveAnswer()]);
     }
 
 
