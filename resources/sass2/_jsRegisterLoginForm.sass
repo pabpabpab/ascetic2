@@ -24,36 +24,10 @@ $bgColor: #b5bcca
         background-color: #e7e8e9
 
 
-.register_form__show
-    display: block
-    opacity: 1
-    animation: showRegisterForm .5s
-@keyframes showRegisterForm
-    from, to
-        opacity: 0
-        display: none
-    100%
-        opacity: 1
-        display: block
-
-
-.register_form__hide
-    visibility: hidden
-    opacity: 0
-    animation: hideRegisterForm .5s
-@keyframes hideRegisterForm
-    from, to
-        opacity: 1
-        visibility: visible
-    100%
-        opacity: 0
-        visibility: hidden
-
-
 .register_form__header
     position: relative
     +font(18px,#006,400)
-    // border: 1px solid #000
+
 
 .register_form__close
     position: absolute

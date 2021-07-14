@@ -17,8 +17,8 @@ export default class AbsoluteForm extends VisibleBlockByClick {
         this.submitSelector = '';
 
         this.basicCss = 'register_form__wrapper';
-        this.showCss = 'register_form__show';
-        this.hideCss = 'register_form__hide';
+        this.showCss = 'show_block';
+        this.hideCss = 'hide_block';
         this.alarmCss = 'register_form__alarm';
 
         this.validationFunction = null;

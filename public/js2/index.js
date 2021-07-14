@@ -689,15 +689,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _authBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authBlock */ "./resources/js2/authBlock.js");
 
 
-/*
-if (el('#registerLink')) {
-    new Register({ clickSourceSelector: '#registerLink' });
-}
-
-if (el('#loginLink')) {
-    new Login({ clickSourceSelector: '#loginLink' });
-}
-*/
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
   new _authBlock__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -919,8 +910,8 @@ var AbsoluteForm = /*#__PURE__*/function (_VisibleBlockByClick) {
     _this.wrapSelector = '';
     _this.submitSelector = '';
     _this.basicCss = 'register_form__wrapper';
-    _this.showCss = 'register_form__show';
-    _this.hideCss = 'register_form__hide';
+    _this.showCss = 'show_block';
+    _this.hideCss = 'hide_block';
     _this.alarmCss = 'register_form__alarm';
     _this.validationFunction = null;
     return _this;
