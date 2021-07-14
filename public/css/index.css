@@ -350,58 +350,6 @@
   }
 }
 
-.absolute_message__show {
-  opacity: 1;
-  -webkit-animation: showAbsoluteMessage 0.5s;
-          animation: showAbsoluteMessage 0.5s;
-}
-
-@-webkit-keyframes showAbsoluteMessage {
-  from, to {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes showAbsoluteMessage {
-  from, to {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.absolute_message__hide {
-  opacity: 0;
-  -webkit-animation: hideAbsoluteMessage 0.5s;
-          animation: hideAbsoluteMessage 0.5s;
-}
-
-@-webkit-keyframes hideAbsoluteMessage {
-  from, to {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes hideAbsoluteMessage {
-  from, to {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
 .absolute_message__div {
   position: relative;
   width: 300px;

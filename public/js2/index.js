@@ -194,8 +194,8 @@ var AbsoluteMessageWithCloseIcon = /*#__PURE__*/function (_VisibleBlock) {
     _this.id = "absoluteMessageWithCloseIcon".concat(new Date().getTime());
     _this.wrapSelector = "#".concat(_this.id);
     _this.basicCss = 'absolute_message__wrapper';
-    _this.showCss = 'absolute_message__show';
-    _this.hideCss = 'absolute_message__hide';
+    _this.showCss = 'show_block';
+    _this.hideCss = 'hide_block';
 
     _this._render();
 

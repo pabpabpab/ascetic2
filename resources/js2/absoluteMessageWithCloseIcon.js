@@ -13,8 +13,8 @@ export default class AbsoluteMessageWithCloseIcon extends VisibleBlock {
 
         this.wrapSelector = `#${this.id}`;
         this.basicCss = 'absolute_message__wrapper';
-        this.showCss = 'absolute_message__show';
-        this.hideCss = 'absolute_message__hide';
+        this.showCss = 'show_block';
+        this.hideCss = 'hide_block';
 
         this._render();
     }
