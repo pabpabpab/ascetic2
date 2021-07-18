@@ -19,7 +19,11 @@ class CreateProductsTable extends Migration
         DB::statement('CREATE TABLE categories (
             id SERIAL,
             name VARCHAR(100),
-            products_count INT UNSIGNED NOT NULL DEFAULT 0 // добавлено потом
+            products_count INT UNSIGNED NOT NULL DEFAULT 0, // добавлено потом
+            position INT UNSIGNED NOT NULL DEFAULT 0, // добавлено потом (для выстраивания списка категорий на сайте в нужном порядке)
+
+            INDEX products_count_idx(products_count), // добавлено потом
+            INDEX position_idx(position) // добавлено потом
         )');
 
 

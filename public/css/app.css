@@ -43,6 +43,68 @@ h1 {
   text-align: left;
 }
 
+.show_block {
+  visibility: visible;
+  opacity: 0.6;
+  -webkit-animation: showBlock 0.5s;
+          animation: showBlock 0.5s;
+}
+
+@-webkit-keyframes showBlock {
+  from, to {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 0.6;
+    visibility: visible;
+  }
+}
+
+@keyframes showBlock {
+  from, to {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 0.6;
+    visibility: visible;
+  }
+}
+
+.hide_block {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-animation: hideBlock 0.5s;
+          animation: hideBlock 0.5s;
+}
+
+@-webkit-keyframes hideBlock {
+  from, to {
+    opacity: 0.6;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hideBlock {
+  from, to {
+    opacity: 0.6;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .navBar {
   padding: 5px;
   background-color: #FFF;
@@ -173,6 +235,12 @@ h1 {
           justify-content: space-between;
 }
 
+.category__item__icon_arrow {
+  width: 20px;
+  margin: 0 15px 0 0;
+  cursor: pointer;
+}
+
 .category__item__icon_edit {
   width: 20px;
   margin: 0 15px 0 0;
@@ -183,6 +251,11 @@ h1 {
   height: 18px;
   margin: 0 15px 0 0;
   cursor: pointer;
+}
+
+.category__item__stub_icon {
+  width: 20px;
+  margin: 0 15px 0 0;
 }
 
 .category__item__name {
@@ -740,8 +813,8 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   opacity: 0;
-  -webkit-animation: show-absolute_message 2s;
-          animation: show-absolute_message 2s;
+  -webkit-animation: showAbsoluteMessage 2s;
+          animation: showAbsoluteMessage 2s;
 }
 
 .absolute_message_div {
@@ -764,7 +837,7 @@ h1 {
           align-items: center;
 }
 
-@-webkit-keyframes show-absolute_message {
+@-webkit-keyframes showAbsoluteMessage {
   from, to {
     opacity: 0;
   }
@@ -778,7 +851,7 @@ h1 {
   }
 }
 
-@keyframes show-absolute_message {
+@keyframes showAbsoluteMessage {
   from, to {
     opacity: 0;
   }
@@ -790,6 +863,29 @@ h1 {
   100% {
     opacity: 0;
   }
+}
+
+.full_screen_stub {
+  position: fixed;
+  z-index: 150;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #000;
+}
+
+.full_screen_stub__spinner_icon {
+  width: 100px;
 }
 
 .confirmation__dialog_wrapper {

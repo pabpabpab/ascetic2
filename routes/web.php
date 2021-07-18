@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home');
@@ -24,11 +24,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 
 Route::get('/admin', function () {
     return view('admin.index_vuex');
-});
+})->middleware(['auth', 'role:admin']);
+
 
 Route::get('/admin/{any}', function ($any) {
     return view('admin.index_vuex');
-})->where('any', '.*');
+})->where('any', '.*')->middleware(['auth', 'role:admin']);
 
 
 

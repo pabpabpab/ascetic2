@@ -1,4 +1,3 @@
-import el from './el';
 import VisibleBlockByClick from "./parentClasses/visibleBlockByClick";
 import getAuthBlockHtml from "./html/getAuthBlockHtml";
 import Register from "./register";

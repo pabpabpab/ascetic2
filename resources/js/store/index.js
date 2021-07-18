@@ -14,6 +14,7 @@ import products from './products';
 import typeinErrors from './typeinErrors';
 import popupErrors from './popupErrors';
 import absoluteMessage from './absoluteMessage';
+import fullScreenStub from './fullScreenStub';
 import confirmationDialog from './confirmationDialog';
 
 Vue.use(Vuex);
@@ -58,6 +59,7 @@ const store = new Vuex.Store({
         typeinErrors,
         popupErrors,
         absoluteMessage,
+        fullScreenStub,
         confirmationDialog,
     },
 });

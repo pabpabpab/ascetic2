@@ -5,6 +5,7 @@
         <popup-errors v-if="hasPopupErrors"></popup-errors>
         <absolute-message v-if="hasAbsoluteMessage"></absolute-message>
         <confirmation-dialog-box v-if="hasConfirmationRequest"></confirmation-dialog-box>
+        <full-screen-stub v-if="showFullScreenStub"></full-screen-stub>
     </div>
 </template>
 
@@ -15,6 +16,7 @@ import NavBar from "./components/Admin/NavBar";
 import PopupErrors from "./components/Admin/Blocks/PopupErrors";
 import AbsoluteMessage from "./components/Admin/Blocks/AbsoluteMessage";
 import ConfirmationDialogBox from "./components/Admin/Blocks/ConfirmationDialogBox";
+import FullScreenStub from "./components/Admin/Blocks/FullScreenStub";
 
 export default {
     name: 'app',
@@ -23,12 +25,14 @@ export default {
         AbsoluteMessage,
         PopupErrors,
         ConfirmationDialogBox,
+        FullScreenStub,
     },
     computed: {
         ...mapGetters([
             'hasPopupErrors',
             'hasAbsoluteMessage',
-            'hasConfirmationRequest'
+            'hasConfirmationRequest',
+            'showFullScreenStub',
         ]),
     },
     methods: {

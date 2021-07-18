@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -239,11 +239,10 @@ var AbsoluteMessageWithCloseIcon = /*#__PURE__*/function (_VisibleBlock) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AuthBlock; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
-/* harmony import */ var _parentClasses_visibleBlockByClick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parentClasses/visibleBlockByClick */ "./resources/js2/parentClasses/visibleBlockByClick.js");
-/* harmony import */ var _html_getAuthBlockHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./html/getAuthBlockHtml */ "./resources/js2/html/getAuthBlockHtml.js");
-/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./register */ "./resources/js2/register.js");
-/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login */ "./resources/js2/login.js");
+/* harmony import */ var _parentClasses_visibleBlockByClick__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./parentClasses/visibleBlockByClick */ "./resources/js2/parentClasses/visibleBlockByClick.js");
+/* harmony import */ var _html_getAuthBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./html/getAuthBlockHtml */ "./resources/js2/html/getAuthBlockHtml.js");
+/* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./register */ "./resources/js2/register.js");
+/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login */ "./resources/js2/login.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -265,7 +264,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -297,22 +295,22 @@ var AuthBlock = /*#__PURE__*/function (_VisibleBlockByClick) {
         basicCss: this.basicCss,
         showCss: this.showCss
       };
-      return Object(_html_getAuthBlockHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(css);
+      return Object(_html_getAuthBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(css);
     }
   }, {
     key: "_additionalFirstRenderActions",
     value: function _additionalFirstRenderActions() {
-      new _login__WEBPACK_IMPORTED_MODULE_4__["default"]({
+      new _login__WEBPACK_IMPORTED_MODULE_3__["default"]({
         clickSourceSelector: '#loginLink'
       });
-      new _register__WEBPACK_IMPORTED_MODULE_3__["default"]({
+      new _register__WEBPACK_IMPORTED_MODULE_2__["default"]({
         clickSourceSelector: '#registerLink'
       });
     }
   }]);
 
   return AuthBlock;
-}(_parentClasses_visibleBlockByClick__WEBPACK_IMPORTED_MODULE_1__["default"]);
+}(_parentClasses_visibleBlockByClick__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 
@@ -687,6 +685,8 @@ function postJson(url, data) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
 /* harmony import */ var _authBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authBlock */ "./resources/js2/authBlock.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
+
 
 
 
@@ -694,6 +694,10 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon
   new _authBlock__WEBPACK_IMPORTED_MODULE_1__["default"]({
     clickSourceSelector: '.personal_account__icon'
   });
+}
+
+if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage')) {
+  new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_2__["default"](Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage').innerText);
 } //import onBodyClickListener from './onBodyClickListener.js';
 // import "../sass2/common.sass";
 //onBodyClickListener();
@@ -1490,26 +1494,14 @@ function registerValidation(user) {
 
 /***/ }),
 
-/***/ "./resources/sass2/index.sass":
-/*!************************************!*\
-  !*** ./resources/sass2/index.sass ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!*******************************************************************!*\
-  !*** multi ./resources/js2/index.js ./resources/sass2/index.sass ***!
-  \*******************************************************************/
+/***/ 1:
+/*!**************************************!*\
+  !*** multi ./resources/js2/index.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/laravel/resources/js2/index.js */"./resources/js2/index.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/laravel/resources/sass2/index.sass */"./resources/sass2/index.sass");
+module.exports = __webpack_require__(/*! /home/vagrant/code/laravel/resources/js2/index.js */"./resources/js2/index.js");
 
 
 /***/ })

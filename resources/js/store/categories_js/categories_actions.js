@@ -87,6 +87,9 @@ export default {
                     return;
                 }
 
+                // console.log(data);
+
+
                 if (data.saveSuccess === true) {
                     commit('setSingleCategoryFromServer', data.category);
                     dispatch('loadCategories'); // получить обновленный список с сервера
@@ -142,6 +145,8 @@ export default {
                     return;
                 }
 
+                // console.log(data);
+
                 if (data.deleteSuccess === true) {
                     dispatch('loadCategories');
                     const txt = `Категория «${data.category.name}» удалена.`;
@@ -152,6 +157,30 @@ export default {
                 dispatch('delayedAbsoluteMessageCleaning', null, { root: true });
             });
     },
+
+    changePosition({ dispatch, commit, getters, state }, { categoryId, direction }) {
+        dispatch('showFullScreenStub', null, { root: true });
+        const changePositionUrl = getters.changePositionUrl + categoryId;
+        dispatch(
+            'postJson',
+            {
+                url: changePositionUrl,
+                data: { direction },
+            },
+            { root: true }
+        )
+            .then((data) => {
+                if (data.upDownSuccess === true) {
+                    dispatch('loadCategories'); // получить обновленный список с сервера
+                } else {
+                    setTimeout(() => {
+                        commit('setAbsoluteMessage', 'Неудачная попытка изменения позиции.', { root: true });
+                        dispatch('delayedAbsoluteMessageCleaning', null, { root: true });
+                    }, 500);
+                }
+            });
+        dispatch('closeFullScreenStub', null, { root: true });
+    }
 
 };
 

@@ -26,5 +26,9 @@
         </main>
 
     </div>
+
+    @if (session('flashMessage'))
+        <div id="flashMessage">{{ session('flashMessage') }}</div>
+    @endif
 </body>
 </html>

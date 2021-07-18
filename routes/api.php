@@ -18,6 +18,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
+
+
+/*
+ *
+ *
+
+
+
+
+
+
+/*
 // users
 Route::get('/admin/users', '\App\Http\Controllers\Api\Admin\UserController@getAll');
 Route::get('/admin/users/count', '\App\Http\Controllers\Api\Admin\UserController@getCount');
@@ -52,3 +66,57 @@ Route::get('/admin/product/{product}', '\App\Http\Controllers\Api\Admin\ProductC
 Route::post('/admin/product/save/{product?}', '\App\Http\Controllers\Api\Admin\ProductController@save');
 Route::delete('/admin/product/delete/{product}', '\App\Http\Controllers\Api\Admin\ProductController@delete');
 
+*/
+/*
+    Route::get('/myprofile', 'ProfileController@myProfile')
+        ->name('myprofile')
+        ->middleware('auth');
+    Route::post('/save', 'ProfileController@save')
+        ->name('save')
+        ->middleware(['auth', 'checkCurrentPassword', 'uniqueEmail']);
+
+
+*/
+
+
+
+// Админка
+Route::group([
+    'prefix' => '/admin',
+    'namespace' => '\App\Http\Controllers\Api\Admin',
+    'middleware' => ['auth', 'role:admin'],
+], function () {
+
+    // users
+    Route::get('/users', 'UserController@getAll');
+    Route::get('/users/count', 'UserController@getCount');
+    Route::get('/lazy-users/{lastId}', 'UserController@getLazyUsers');
+
+    // single user
+    Route::get('/user/{user}', 'UserController@getOne');
+    Route::post('/user/edit/{user}', 'UserController@update');
+
+    // категории товаров
+    Route::get('/categories', 'CategoryController@getAll');
+    Route::get('/categories/count', 'CategoryController@getCount');
+    // одна категория
+    Route::get('/category/{category}', 'CategoryController@getOne');
+    Route::post('/category/save/{category?}', 'CategoryController@save');
+    Route::delete('/category/delete/{category}', 'CategoryController@delete');
+    Route::post('/category/change-position/{category}', 'CategoryController@changePosition');
+
+    // материалы
+    Route::get('/materials', 'MaterialController@getAll');
+    // цвета
+    Route::get('/colors', 'ColorController@getAll');
+
+    // список товаров
+    Route::get('/products', 'ProductController@getAll');
+    Route::get('/products/count', 'ProductController@getCount');
+    // один товар
+    Route::get('/product/{product}', 'ProductController@getOne');
+    Route::post('/product/save/{product?}', 'ProductController@save');
+    Route::delete('/product/delete/{product}', 'ProductController@delete');
+
+});
+    //->middleware('auth');

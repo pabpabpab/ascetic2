@@ -35,7 +35,6 @@ export default {
             if (this.currentAddingComponent === 'AddCategoryButton') {
                 this.currentAddingComponent = 'CategoryForm';
                 this.rollChildItems = true;
-
                 this.$store.dispatch('categories/cleanValidationErrors');
             } else {
                 this.currentAddingComponent = 'AddCategoryButton';

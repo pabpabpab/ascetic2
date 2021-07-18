@@ -1,9 +1,10 @@
 <template>
     <div class="categories">
         <component
-            v-for="category of categories"
+            v-for="(category, index) of categories"
             :key="category.id"
             :category="category"
+            :index="index"
             :is="currentItemComponents['id' + category.id]"
             @change-item-component="changeItemComponent(category.id);">
         </component>

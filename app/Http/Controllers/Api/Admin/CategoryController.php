@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminCategoryDeleteRequest;
 use App\Http\Requests\AdminCategorySaveRequest;
 use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function getAll(Category $category): JsonResponse
+    public function getAll(CategoryService $categoryService, Category $category): JsonResponse
     {
-        $categories = $category->getAll();
+        $categories = $categoryService->getAll();
         return response()->json($categories);
     }
 
@@ -30,10 +31,11 @@ class CategoryController extends Controller
 
 
 
-    public function save(AdminCategorySaveRequest $request, Category $category): JsonResponse
+    public function save(AdminCategorySaveRequest $request, CategoryService $categoryService, Category $category): JsonResponse
     {
         // instance категории в роуте как {category?}
-        $result = $category->saveOne(
+        $result = $categoryService->saveOne(
+            $category,
             $request->input('name')
         );
 
@@ -54,35 +56,25 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function changePosition(Request $request, CategoryService $categoryService, Category $category): JsonResponse
+    {
+        // instance категории в роуте как {category}
+        if ($request->input('direction') === 'up') {
+            $result = $categoryService->upPosition($category);
+        } else {
+            $result = $categoryService->downPosition($category);
+        }
 
+        return response()->json(['upDownSuccess' => $result['success']]);
+    }
 
     /*
-    public function save(AdminCategorySaveRequest $request, Category $category, $id = 0): JsonResponse
+    public function downPosition(CategoryService $categoryService, Category $category): JsonResponse
     {
-        $result = $category->saveOne(
-            $request->input('name'),
-            $id
-        );
+        // instance категории в роуте как {category}
+        $result = $categoryService->downPosition($category);
 
-        return response()->json([
-            'saveSuccess' => $result['success'],
-            'category' => $result['category']
-        ]);
+        return response()->json(['upDownSuccess' => $result['success']]);
     }
-
-
-
-    public function save(Category $category): JsonResponse
-    {
-        dd($request);
-
-        $result = $category->saveOne(
-            $request->input()
-        );
-
-        return response()->json(['result' => $result]);
-    }
-
-
-    */
+*/
 }

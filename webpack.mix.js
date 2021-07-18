@@ -17,14 +17,35 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.sass', 'public/css');
 */
 
+
+// для админской части
 /*
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.sass', 'public/css');
 */
 
 
+// для публичного js
+/*
 mix.js('resources/js2/index.js', 'public/js2')
-    .sass('resources/sass2/index.sass', 'public/css')
+    .sass('resources/sass2/index.sass', 'public/css');
+*/
+/*
+    .webpackConfig({
+        watch: true,
+        watchOptions: {
+            aggregateTimeout: 600,
+            poll: 1000,
+            ignored: /node_modules/,
+        }
+    });
+*/
+
+
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.sass', 'public/css')
+   .js('resources/js2/index.js', 'public/js2')
+   .sass('resources/sass2/index.sass', 'public/css')
     .webpackConfig({
         watch: true,
         watchOptions: {
@@ -34,12 +55,5 @@ mix.js('resources/js2/index.js', 'public/js2')
         }
     });
 
-
-/*
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.sass', 'public/css')
-   .js('resources/js2/index.js', 'public/js2')
-   .sass('resources/sass2/index.sass', 'public/css');
-*/
 
    //.version();

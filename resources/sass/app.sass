@@ -28,6 +28,36 @@ h1
     text-align: left
 
 
+
+
+.show_block
+    visibility: visible
+    opacity: 0.6
+    animation: showBlock .5s
+@keyframes showBlock
+    from, to
+        opacity: 0
+        visibility: hidden
+    100%
+        opacity: 0.6
+        visibility: visible
+
+.hide_block
+    visibility: hidden
+    opacity: 0
+    animation: hideBlock .5s
+@keyframes hideBlock
+    from, to
+        opacity: 0.6
+        visibility: visible
+    100%
+        opacity: 0
+        visibility: hidden
+
+
+
+
+
 @import "navBar"
 @import "user"
 @import "category"
@@ -42,6 +72,7 @@ h1
 
 @import "rightPopup"
 @import "absoluteMessage"
+@import "fullScreenStub"
 @import "confirmationDialogBox"
 
 
