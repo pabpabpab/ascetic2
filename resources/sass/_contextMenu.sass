@@ -1,0 +1,51 @@
+.context_menu__icon
+    +font(17px, rgb(25, 118, 210), 700)
+    padding: 0 10px
+    // height: 22px
+    font-weight: bold
+    cursor: pointer
+    margin: 0 15px 0 0
+    border-radius: 5px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &:hover
+        background-color: rgb(229, 239, 245)
+
+.context_menu__wrapper
+    position: absolute
+    background-color: rgb(244, 249, 252)
+    box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
+    border-radius: 10px
+    min-width: 190px
+    max-width: 220px
+    padding: 10px 0
+    z-index: 10
+
+
+.context_menu__ul
+    margin: 0
+    padding: 0
+.context_menu__li
+    display: block
+    margin: 0
+    padding: 10px
+    list-style-type: none
+    +font(16px, rgb(70, 70, 70), 400)
+    text-align: left
+    border-bottom: 1px solid rgba(150, 150, 150, 0.3)
+    cursor: pointer
+    &:hover
+        background-color: rgb(207, 217, 224)
+        +font(16px, rgb(0, 0, 0), 400)
+
+.context_menu__li_header
+    display: block
+    margin: 0
+    padding: 10px
+    list-style-type: none
+    +font(16px, #fff, 400)
+    text-align: left
+    background-color: rgb(80, 80, 80)
+    border-bottom: 1px solid rgba(150, 150, 150, 0.3)

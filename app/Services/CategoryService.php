@@ -9,83 +9,88 @@ use Illuminate\Support\Facades\Log;
 
 class CategoryService
 {
-    public function saveOne($category, string $name): array {
-        $model = $category->id > 0 ? $category : new Category();
+    public function saveOne($model, $modelClassName, string $name): array
+    {
+        $model = $model->id > 0 ? $model : new $modelClassName();
         $model->name = $name;
-        $model->position = $model->id > 0 ? $model->position : static::calcNewAddedPosition();
+        $model->position = $model->id > 0 ? $model->position : static::calcNewAddedPosition($modelClassName);
         return [
             'success' => $model->save(),
             'category' => $model
         ];
     }
 
-    public function getAll()
+    public function getAll($modelClassName)
     {
-        return Category::query()
+        return $modelClassName::query()
             ->orderBy('position', 'asc')
             ->get();
     }
 
 
-    protected function calcNewAddedPosition(): int {
-        return static::getMaxPosition() + 100;
+    protected function calcNewAddedPosition($modelClassName): int
+    {
+        return static::getMaxPosition($modelClassName) + 100;
     }
 
 
-    protected function getMaxPosition(): int {
-        $count = Category::count();
+    protected function getMaxPosition($modelClassName): int
+    {
+        $count = $modelClassName::count();
         if ($count === 0) {
             return 0;
         }
-        $maxCategory = Category::query()
+        $maxModel = $modelClassName::query()
             ->orderBy('position', 'desc')
             ->first();
-        return $maxCategory->position;
+        return $maxModel->position;
     }
 
 
-    public function upPosition($currentCategory): array {
-        $currentPosition = $currentCategory->position;
+    public function upPosition($modelClassName, $currentModel): array
+    {
+        $currentPosition = $currentModel->position;
 
-        $previousCategory = Category::query()
+        $previousModel = $modelClassName::query()
             ->where('position', '<', $currentPosition)
-            ->orderBy('position','desc')
+            ->orderBy('position', 'desc')
             ->first();
 
-        if (!$previousCategory) {
+        if (!$previousModel) {
             return ['success' => false];
         }
 
-        $previousPosition = $previousCategory->position;
+        $previousPosition = $previousModel->position;
 
-        $currentCategory->position = $previousPosition;
-        $previousCategory->position = $currentPosition;
+        $currentModel->position = $previousPosition;
+        $previousModel->position = $currentPosition;
 
         return [
-            'success' => $currentCategory->save() && $previousCategory->save()
+            'success' => $currentModel->save() && $previousModel->save()
         ];
     }
 
 
-    public function downPosition($currentCategory): array {
-        $currentPosition = $currentCategory->position;
+    public function downPosition($modelClassName, $currentModel): array
+    {
+        $currentPosition = $currentModel->position;
 
-        $nextCategory = Category::query()
+        $nextModel = $modelClassName::query()
             ->where('position', '>', $currentPosition)
             ->orderBy('position','asc')
             ->first();
 
-        if (!$nextCategory) {
+        if (!$nextModel) {
             return ['success' => false];
         }
 
-        $nextPosition = $nextCategory->position;
+        $nextPosition = $nextModel->position;
 
-        $currentCategory->position = $nextPosition;
-        $nextCategory->position = $currentPosition;
+        $currentModel->position = $nextPosition;
+        $nextModel->position = $currentPosition;
 
         return [
-            'success' => $currentCategory->save() && $nextCategory->save()
+            'success' => $currentModel->save() && $nextModel->save()
         ];
     }
 

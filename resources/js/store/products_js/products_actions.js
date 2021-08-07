@@ -23,12 +23,13 @@ export default {
         const url = getters.productsUrl;
         dispatch('getJson', url, { root: true }).then((data) => {
             commit('setProducts', data);
+            dispatch('closeFullScreenStub', null, { root: true });
         });
     },
 
     // фронт-валидация при вводе (type-in)
     typeinValidation({ dispatch, commit, getters, rootGetters }, product) {
-        commit('cleanPopupErrors', null, { root: true });
+        dispatch('cleanPopupErrors', null, { root: true });
         if (!rootGetters.typeinValidationRequired) {
             return;
         }
@@ -37,8 +38,8 @@ export default {
         commit('setAlarmingInputs', typeinErrors, { root: true });
     },
 
-    async cleanValidationErrors({commit}) {
-        commit('cleanPopupErrors', null, { root: true });
+    async cleanValidationErrors({dispatch, commit}) {
+        dispatch('cleanPopupErrors', null, { root: true });
         commit('resetAlarmingInputs', null, { root: true });
         commit('resetTypeinErrors', null, { root: true });
         commit('disableTypeinValidation', null, { root: true });
@@ -50,10 +51,10 @@ export default {
 
 
     // фронт-валидация, pop-up и type-in сообщения
-    async _frontValidation({ commit, getters }, product) {
+    async _frontValidation({ dispatch, commit, getters }, product) {
         const { popupErrors, typeinErrors } = productValidation(product);
         if (popupErrors) {
-            commit('setPopupErrors', popupErrors, { root: true });
+            dispatch('showPopupErrorsBox', popupErrors, { root: true });
             commit('enableTypeinValidation', null, { root: true });
             commit('setAlarmingInputs', popupErrors, { root: true });
             commit('setTypeinErrors', typeinErrors, { root: true });
@@ -61,79 +62,5 @@ export default {
         }
         return true;
     },
-
-    async saveProduct({ dispatch, commit, getters, state }, { localProduct, photos }) {
-        const product = {...localProduct};
-        product.price = product.price.replace(/\s/g, '');
-        //console.log(localProduct);
-        //console.log(photos);
-
-        const productId = product.id;
-        await dispatch('cleanValidationErrors');
-
-        if (! await dispatch('_frontValidation', product)) {
-            return;
-        }
-
-        const saveProductUrl = productId > 0
-            ? getters.saveProductUrl + productId
-            : getters.saveProductUrl;
-
-
-        // добавить фото в объект продукта
-        for (let i = 0; i < photos.length; i++ ) {
-             product[`photos[${i}]`] = photos[i];
-        }
-
-
-        // console.log(product);
-
-
-
-        dispatch(
-            'postMultipart',
-            {
-                url: saveProductUrl,
-                data: product
-                //data: {textObject: product, photos: photos},
-            },
-            { root: true }
-        )
-            .then((data) => {
-                console.log(data);
-
-                // validatorErrors в данных формируется в форм-реквесте если валидация failed
-
-                if (data.backValidatorErrors) {
-                    commit('setPopupErrors', data.backValidatorErrors, { root: true });
-                    commit('enableTypeinValidation', null, { root: true });
-                    commit('setAlarmingInputs', data.backValidatorErrors, { root: true });
-                    //commit('setTypeinErrors', data.backValidatorErrors, { root: true });
-                    return;
-                }
-
-
-                if (data.saveSuccess === true) {
-                    //commit('setSingleProductFromServer', data.product);
-                    // dispatch('loadCategories'); // получить обновленный список с сервера
-                    commit('disableTypeinValidation', null, { root: true });
-                    const txt = productId > 0
-                        ? `Данные товара «${data.product.name}» сохранены`
-                        : `Добавлен товар «${data.product.name}»`;
-                    commit('setAbsoluteMessage', txt, { root: true });
-                    dispatch('delayedAbsoluteMessageCleaning', null, { root: true });
-
-                    thatRouter.push({ name: 'Products'});
-                    //return;
-
-                } else {
-                    const errorTxt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
-                    commit('setAbsoluteMessage', errorTxt, { root: true });
-                    dispatch('delayedAbsoluteMessageCleaning', null, { root: true });
-                }
-            });
-    },
-
-
 
 };

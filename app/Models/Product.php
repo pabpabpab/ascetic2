@@ -20,13 +20,6 @@ class Product extends Model
     ];
 
 
-    public function getAll()
-    {
-        return static::query()
-            ->orderBy('id', 'asc')
-            ->get();
-    }
-
     // One-to-many (Inverse) / Belongs To (to access its parent Category)
     public function category() {
         return $this->belongsTo(Category::class);

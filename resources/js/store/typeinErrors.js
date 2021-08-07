@@ -1,9 +1,11 @@
 export default {
+
     state: {
         typeinValidationRequired: false,
         alarmingInputs: {}, // ключ - имя input'а, значение - true, в компоненте для показа alarm стил
         typeinErrors: {}, // ключ - имя input'а, значение - массив ошибок
     },
+
     getters: {
         isAlarmingInput: (state) => (key) => state.alarmingInputs[key],
         typeinValidationRequired: (state) => state.typeinValidationRequired,
@@ -17,6 +19,7 @@ export default {
             return '';
         },
     },
+
     mutations: {
         enableTypeinValidation: (state) => {
             state.typeinValidationRequired = true;
@@ -24,7 +27,6 @@ export default {
         disableTypeinValidation: (state) => {
             state.typeinValidationRequired = false;
         },
-
 
         setTypeinErrors: (state, errors) => {
             state.typeinErrors = { ...errors };
@@ -43,4 +45,5 @@ export default {
             state.alarmingInputs = {};
         },
     },
+
 };

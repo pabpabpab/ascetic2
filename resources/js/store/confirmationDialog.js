@@ -1,6 +1,8 @@
 export default {
+    namespaced: true,
     state: {
-        confirmationRequestText: '',
+        enabledFadingCss: false,
+        text: '',
         yesButtonText: '',
         cancelButtonText: '',
         yesAction: '',
@@ -9,8 +11,9 @@ export default {
         finalRedirectRoute: '', // роут после yesAction
     },
     getters: {
-        hasConfirmationRequest: (state) => state.confirmationRequestText.length > 0,
-        confirmationRequestText: (state) => state.confirmationRequestText,
+        enabledFadingCss: (state) => state.enabledFadingCss,
+        showConfirmationRequest: (state) => state.text.length > 0,
+        text: (state) => state.text,
         yesButtonText: (state) => state.yesButtonText,
         cancelButtonText: (state) => state.cancelButtonText,
         yesAction: (state) => state.yesAction,
@@ -19,11 +22,16 @@ export default {
         finalRedirectRoute: (state) => state.finalRedirectRoute,
     },
     mutations: {
+
+        setEnabledFadingCss: (state, val) => {
+            state.enabledFadingCss = val;
+        },
+
         setConfirmationDialog: (state, settings) => {
             // setTimeout() чтобы сначала отработал реактивно сброс выше
             // который может иметься
             setTimeout(() => {
-                state.confirmationRequestText = settings.confirmationRequestText;
+                state.text = settings.confirmationRequestText;
                 state.yesButtonText = settings.yesButtonText;
                 state.cancelButtonText = settings.cancelButtonText;
                 state.yesAction = settings.yesAction;
@@ -34,7 +42,7 @@ export default {
         },
 
         resetConfirmationDialog: (state) => {
-            state.confirmationRequestText = '';
+            state.text = '';
             state.yesButtonText = '';
             state.cancelButtonText = '';
             state.yesAction = '';
@@ -44,8 +52,24 @@ export default {
         },
     },
     actions: {
-        closeConfirmationDialog({ commit }) {
-            commit('resetConfirmationDialog');
+
+        showConfirmationDialog: {
+            root: true,
+            handler ({ commit }, settings) {
+                commit('setConfirmationDialog', settings);
+                commit('setEnabledFadingCss', false);
+            }
         },
+
+        closeConfirmationDialog: {
+            root: true,
+            handler ({ commit }) {
+                commit('setEnabledFadingCss', true);
+                setTimeout(() => {
+                    commit('resetConfirmationDialog');
+                }, 500);
+            }
+        },
+
     },
 };

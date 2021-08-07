@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class AdminProductSaveRequest extends FormRequest
+class ProductSaveRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

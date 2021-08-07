@@ -16,6 +16,10 @@ class CreateColorsTable extends Migration
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50)->unique();
+            $table->unsignedInteger('products_count')->default(0);
+            $table->unsignedInteger('position')->default(0);
+            $table->index('products_count');
+            $table->index('position');
         });
     }
 

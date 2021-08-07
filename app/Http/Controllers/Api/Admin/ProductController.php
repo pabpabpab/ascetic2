@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminProductSaveRequest;
+use App\Http\Requests\Admin\ProductSaveRequest;
 use App\Models\Product;
+use App\Services\ProductSaveService;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -13,9 +14,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function getAll(Product $product): JsonResponse
+    public function getAll(): JsonResponse
     {
-        $products = $product->getAll();
+        // $products = $service->getAll();
+
+        $products = Product::query()
+            ->orderBy('id', 'desc')
+            ->get();
+
         return response()->json($products);
     }
 
@@ -32,11 +38,11 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public function save(AdminProductSaveRequest $request, ProductService $productService, Product $product): JsonResponse
+    public function save(ProductSaveRequest $request, ProductSaveService $service, Product $product): JsonResponse
     {
         // instance товара в роуте как {product?}
         return response()->json(
-            $productService->saveOne($request, $product)
+            $service->saveOne($request, $product)
         );
     }
 

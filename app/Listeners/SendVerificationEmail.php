@@ -39,3 +39,7 @@ class SendVerificationEmail
         info($cntnt);
     }
 }
+
+
+// php artisan make:listener SendVerificationEmail --event=UserRegisteredEvent
+

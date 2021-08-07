@@ -1,19 +1,85 @@
 <template>
     <nav class="navBar">
-        <ul class="navBar__link">
-            <li><router-link :to="{ name: 'MainPage' }">Main</router-link></li>
-            <li><router-link :to="{ name: 'AboutPage' }">About</router-link> </li>
-            <li><router-link :to="{ name: 'UsersPage' }">Users</router-link> </li>
-            <li><router-link :to="{ name: 'Categories' }">Categories</router-link></li>
-            <li><router-link :to="{ name: 'SaveProduct' }">Add product</router-link></li>
-            <li><router-link :to="{ name: 'Products' }">Products</router-link> </li>
+        <div class="navBar_left">
+            <a href="http://asceticshop.ru" class="logo__link">AsceticShop.ru</a>
+            <ul class="navBar__ul">
+                <li>
+                    <router-link :to="{ name: 'SaveProduct' }" :class="saveProductLinkClass">Добавить товар</router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'Products' }" :class="productsLinkClass">Товары</router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'Categories', params: { entity: 'categories' } }" :class="categoriesLinkClass">Категории</router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'Categories', params: { entity: 'materials' } }" :class="materialsLinkClass">Материалы</router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'Categories', params: { entity: 'colors' } }" :class="colorsLinkClass">Цвета</router-link>
+                </li>
+            </ul>
+        </div>
+        <ul class="navBar__ul">
+            <li>
+                <router-link :to="{ name: 'Users' }" :class="usersLinkClass">Пользователи</router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: 'Main' }" :class="mainPageLinkClass">Помощь</router-link>
+            </li>
         </ul>
     </nav>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-    name: 'navbar'
+    name: 'navbar',
+    computed: {
+        saveProductLinkClass() {
+            return {
+                'navBar__link': true,
+                'navBar__link_active': this.$route.name === 'SaveProduct',
+            }
+        },
+        productsLinkClass() {
+            return {
+                'navBar__link': true,
+                'navBar__link_active': this.$route.name === 'Products',
+            }
+        },
+        categoriesLinkClass() {
+            return {
+                'navBar__link': true,
+                'navBar__link_active': this.$route.params.entity === 'categories',
+            }
+        },
+        materialsLinkClass() {
+            return {
+                'navBar__link': true,
+                'navBar__link_active': this.$route.params.entity === 'materials',
+            }
+        },
+        colorsLinkClass() {
+            return {
+                'navBar__link': true,
+                'navBar__link_active': this.$route.params.entity === 'colors',
+            }
+        },
+        usersLinkClass() {
+            return {
+                'navBar__link': true,
+                'navBar__link_active': this.$route.name === 'Users',
+            }
+        },
+        mainPageLinkClass() {
+            return {
+                'navBar__link': true,
+                'navBar__link_active': this.$route.name === 'Main',
+            }
+        },
+    },
 }
 </script>
 

@@ -3,10 +3,11 @@
     top: 30px
     right: -570px
     border-radius: 7px
-    box-shadow: 0 0 10px 0 rgba(100, 105, 112, 0.8)
-    animation: show-popup_right 20s
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3)
 
-@keyframes show-popup_right
+.popup_right__show
+    animation: showRightPopup 20s
+@keyframes showRightPopup
     from, to
         right: -570px
     5%, 95%
@@ -14,36 +15,43 @@
     100%
         right: -570px
 
+.popup_right__hide
+    animation: hideRightPopup .3s
+@keyframes hideRightPopup
+    from, to
+        right: 10px
+    100%
+        right: -570px
+
+
+
 .popup_right__content
     position: relative
     padding: 25px
     width: 500px
-    background-color: #dddde6
-    color: #000
-    font-size: 18px
+    background-color: rgb(224, 235, 241)
+    +font(18px, #000, 400)
     line-height: 30px
-    font-family: Arial, sans-serif
     text-align: left
     border-radius: 7px
 
 .popup_right__item
     margin: 0
 
-.popup_right__close
+.popup_right__collapse_icon
     position: absolute
-    top: 1px
-    right: 2px
-    width: 35px
-    height: 35px
-    padding: 0
-    font-size: 37px
-    line-height: 37px
-    color: #000
+    top: 4px
+    right: 4px
+    width: 25px
+    height: 25px
+    padding: 0 0 3px 0
+    +font(45px, rgb(78, 110, 131), 100)
     cursor: pointer
     border-radius: 3px
     display: flex
-    align-items: center
+    flex-direction: column
     justify-content: center
-
-.popup_right__close:hover
-    background-color: #b5bcca
+    align-items: center
+    &:hover
+        background-color: rgb(176, 199, 214)
+        color: #fff

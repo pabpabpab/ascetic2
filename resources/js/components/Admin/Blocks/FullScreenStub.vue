@@ -18,14 +18,14 @@ export default {
         };
     },
     computed: {
-        ...mapGetters([
-            'closeFullScreenStub',
+        ...mapGetters('fullScreenStub', [
+            'enabledFadingCss',
         ]),
         fullScreenStubClassObject() {
             return {
                 'full_screen_stub': true,
-                'show_block': !this.closeFullScreenStub,
-                'hide_block': this.closeFullScreenStub,
+                'show_transparent_block': !this.enabledFadingCss,
+                'hide_transparent_block': this.enabledFadingCss,
             };
         }
     },

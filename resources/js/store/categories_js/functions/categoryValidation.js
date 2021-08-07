@@ -7,19 +7,19 @@ export default function categoryValidation(category, categories) {
 
     if (category.name.length === 0) {
         if (!err.hasOwnProperty('name')) {err.name = []; err2.name = [];}
-        err.name.push('заполните «Название категории».');
+        err.name.push('заполните «Название».');
         err2.name.push('Пожалуйста заполните');
     }
     if ((category.name.length > 0) && (category.name.length < 2)) {
         if (!err.hasOwnProperty('name')) {err.name = []; err2.name = [];}
-        err.name.push('«Название категории» не менее 2 символов.');
+        err.name.push('«Название» не менее 2 символов.');
         err2.name.push('не менее 2 символов');
     }
 
     if (hasTheSameCategoryName(category, categories)) {
         if (!err.hasOwnProperty('name')) {err.name = []; err2.name = [];}
-        err.name.push('такое название категории уже есть.');
-        err2.name.push('уже есть такая категория');
+        err.name.push('такое название уже есть.');
+        err2.name.push('уже есть такое название');
     }
 
     for (let key in err) {

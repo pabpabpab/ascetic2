@@ -8,7 +8,7 @@
             {{ product.name }}
         </span>
         <span class="product__item__price">
-            {{ product.price }}
+            {{ getPrice(product.parameters) }}
         </span>
         </div>
         <div class="product__item">
@@ -29,6 +29,11 @@ export default {
     name: "ProductItem",
     props: ['product'],
     methods: {
+        getPrice(parameters) {
+            const parametersArr = JSON.parse(parameters);
+            const price = parametersArr.price ?? '';
+            return price ? price + ' ₽' : '';
+        },
         getCategory(parameters) {
             const parametersArr = JSON.parse(parameters);
             const category = parametersArr.category ?? {id: 0, name: ''};

@@ -225,7 +225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_Admin_NavBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Admin/NavBar */ "./resources/js/components/Admin/NavBar.vue");
 /* harmony import */ var _components_Admin_Blocks_PopupErrors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Admin/Blocks/PopupErrors */ "./resources/js/components/Admin/Blocks/PopupErrors.vue");
-/* harmony import */ var _components_Admin_Blocks_AbsoluteMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Admin/Blocks/AbsoluteMessage */ "./resources/js/components/Admin/Blocks/AbsoluteMessage.vue");
+/* harmony import */ var _components_Admin_Blocks_AbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Admin/Blocks/AbsoluteFlashMessage */ "./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue");
 /* harmony import */ var _components_Admin_Blocks_ConfirmationDialogBox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Admin/Blocks/ConfirmationDialogBox */ "./resources/js/components/Admin/Blocks/ConfirmationDialogBox.vue");
 /* harmony import */ var _components_Admin_Blocks_FullScreenStub__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Admin/Blocks/FullScreenStub */ "./resources/js/components/Admin/Blocks/FullScreenStub.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
@@ -234,6 +234,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
 //
 //
 //
@@ -256,13 +258,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: 'app',
   components: {
     NavBar: _components_Admin_NavBar__WEBPACK_IMPORTED_MODULE_1__["default"],
-    AbsoluteMessage: _components_Admin_Blocks_AbsoluteMessage__WEBPACK_IMPORTED_MODULE_3__["default"],
+    AbsoluteFlashMessage: _components_Admin_Blocks_AbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__["default"],
     PopupErrors: _components_Admin_Blocks_PopupErrors__WEBPACK_IMPORTED_MODULE_2__["default"],
     ConfirmationDialogBox: _components_Admin_Blocks_ConfirmationDialogBox__WEBPACK_IMPORTED_MODULE_4__["default"],
     FullScreenStub: _components_Admin_Blocks_FullScreenStub__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['hasPopupErrors', 'hasAbsoluteMessage', 'hasConfirmationRequest', 'showFullScreenStub'])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closePopupErrorsBox'])),
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('popupErrors', ['showPopupErrors'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('absoluteFlashMessage', ['showAbsoluteFlashMessage'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('fullScreenStub', ['showFullScreenStub'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('confirmationDialog', ['showConfirmationRequest'])),
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeAllByClickOnAppTag'])),
   // при переходе по страницам отматывать страницу к верху
   watch: {
     $route: function $route(to, from) {
@@ -270,15 +272,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         window.scrollBy(0, -1000000);
       }
     }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('updateCSRF');
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -301,10 +306,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "AbsoluteMessage",
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeAbsoluteMessageBox'])),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['absoluteMessage' // 'hasAbsoluteMessage',
-  ]))
+  name: "AbsoluteFlashMessage",
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('absoluteFlashMessage', ['text']))
 });
 
 /***/ }),
@@ -319,10 +322,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _assets_edit_icon_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../assets/edit_icon.jpg */ "./resources/assets/edit_icon.jpg");
-/* harmony import */ var _assets_edit_icon_jpg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_edit_icon_jpg__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _assets_delete_icon_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../assets/delete_icon.png */ "./resources/assets/delete_icon.png");
-/* harmony import */ var _assets_delete_icon_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_assets_delete_icon_png__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -349,8 +348,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
-
+ // import edit_icon from "../../../../assets/edit_icon.jpg";
+// import delete_icon from "../../../../assets/delete_icon.png";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ConfirmationDialogBox",
@@ -359,6 +358,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _finalRedirectRoute: ''
     };
   },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('confirmationDialog', ['enabledFadingCss', 'text', 'yesButtonText', 'cancelButtonText', 'yesAction', 'cancelAction', 'yesPayload', 'finalRedirectRoute'])), {}, {
+    dialogBoxClassObject: function dialogBoxClassObject() {
+      return {
+        'confirmation_dialog__wrapper': true,
+        'show_block': !this.enabledFadingCss,
+        'hide_block': this.enabledFadingCss
+      };
+    }
+  }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeConfirmationDialog'])), {}, {
     callYesAction: function callYesAction() {
       this.$store.dispatch(this.yesAction, this.yesPayload);
@@ -374,7 +382,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     }
   }),
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['confirmationRequestText', 'yesButtonText', 'cancelButtonText', 'yesAction', 'cancelAction', 'yesPayload', 'finalRedirectRoute'])),
   mounted: function mounted() {
     // сохранить копию, так как оригинал сбрасывается раньше чем нужен
     this._finalRedirectRoute = this.$store.getters.finalRedirectRoute;
@@ -418,12 +425,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       spinner_icon: _assets_spinner_gif__WEBPACK_IMPORTED_MODULE_0___default.a
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])(['closeFullScreenStub'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('fullScreenStub', ['enabledFadingCss'])), {}, {
     fullScreenStubClassObject: function fullScreenStubClassObject() {
       return {
         'full_screen_stub': true,
-        'show_block': !this.closeFullScreenStub,
-        'hide_block': this.closeFullScreenStub
+        'show_transparent_block': !this.enabledFadingCss,
+        'hide_transparent_block': this.enabledFadingCss
       };
     }
   })
@@ -466,11 +473,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PopupErrors",
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closePopupErrorsBox'])),
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['popupErrors', 'hasPopupErrors'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('popupErrors', ['popupErrors', 'enabledHidingCss'])), {}, {
     popupClassObject: function popupClassObject() {
       return {
-        'popup_right': this.hasPopupErrors,
-        'display-none': !this.hasPopupErrors
+        'popup_right': true,
+        'popup_right__show': !this.enabledHidingCss,
+        'popup_right__hide': this.enabledHidingCss
       };
     }
   })
@@ -487,6 +495,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -500,8 +509,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'navbar'
+  name: 'navbar',
+  computed: {
+    saveProductLinkClass: function saveProductLinkClass() {
+      return {
+        'navBar__link': true,
+        'navBar__link_active': this.$route.name === 'SaveProduct'
+      };
+    },
+    productsLinkClass: function productsLinkClass() {
+      return {
+        'navBar__link': true,
+        'navBar__link_active': this.$route.name === 'Products'
+      };
+    },
+    categoriesLinkClass: function categoriesLinkClass() {
+      return {
+        'navBar__link': true,
+        'navBar__link_active': this.$route.params.entity === 'categories'
+      };
+    },
+    materialsLinkClass: function materialsLinkClass() {
+      return {
+        'navBar__link': true,
+        'navBar__link_active': this.$route.params.entity === 'materials'
+      };
+    },
+    colorsLinkClass: function colorsLinkClass() {
+      return {
+        'navBar__link': true,
+        'navBar__link_active': this.$route.params.entity === 'colors'
+      };
+    },
+    usersLinkClass: function usersLinkClass() {
+      return {
+        'navBar__link': true,
+        'navBar__link_active': this.$route.name === 'Users'
+      };
+    },
+    mainPageLinkClass: function mainPageLinkClass() {
+      return {
+        'navBar__link': true,
+        'navBar__link_active': this.$route.name === 'Main'
+      };
+    }
+  }
 });
 
 /***/ }),
@@ -1755,20 +1829,25 @@ var render = function() {
       attrs: { id: "app" },
       on: {
         click: function($event) {
-          return _vm.closePopupErrorsBox()
+          return _vm.closeAllByClickOnAppTag($event)
         }
       }
     },
     [
       _c("nav-bar"),
       _vm._v(" "),
-      _c("router-view"),
+      _c(
+        "div",
+        { staticClass: "content_wrapper" },
+        [_c("router-view", { key: _vm.$route.path })],
+        1
+      ),
       _vm._v(" "),
-      _vm.hasPopupErrors ? _c("popup-errors") : _vm._e(),
+      _vm.showPopupErrors ? _c("popup-errors") : _vm._e(),
       _vm._v(" "),
-      _vm.hasAbsoluteMessage ? _c("absolute-message") : _vm._e(),
+      _vm.showAbsoluteFlashMessage ? _c("absolute-flash-message") : _vm._e(),
       _vm._v(" "),
-      _vm.hasConfirmationRequest ? _c("confirmation-dialog-box") : _vm._e(),
+      _vm.showConfirmationRequest ? _c("confirmation-dialog-box") : _vm._e(),
       _vm._v(" "),
       _vm.showFullScreenStub ? _c("full-screen-stub") : _vm._e()
     ],
@@ -1782,10 +1861,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=template&id=0d1f1d9c&":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=template&id=0d1f1d9c& ***!
-  \*******************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=template&id=8b241a48&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=template&id=8b241a48& ***!
+  \************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1799,7 +1878,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "absolute_message_wrapper" }, [
     _c("div", { staticClass: "absolute_message_div" }, [
-      _vm._v("\n        " + _vm._s(_vm.absoluteMessage) + "\n    ")
+      _vm._v("\n        " + _vm._s(_vm.text) + "\n    ")
     ])
   ])
 }
@@ -1825,22 +1904,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "confirmation__dialog_wrapper" }, [
-    _c("div", { staticClass: "confirmation__dialog_div" }, [
-      _c("div", [
-        _vm._v(
-          _vm._s(_vm.confirmationRequestText) +
-            " " +
-            _vm._s(_vm.finalRedirectRoute)
-        )
-      ]),
+  return _c("div", { class: _vm.dialogBoxClassObject }, [
+    _c("div", { staticClass: "confirmation_dialog__content" }, [
+      _c("div", [_vm._v(_vm._s(_vm.text))]),
       _vm._v(" "),
-      _c("div", { staticClass: "confirmation__buttons_div" }, [
+      _c("div", { staticClass: "confirmation_dialog__buttons_div" }, [
         _vm.yesButtonText
           ? _c(
               "button",
               {
-                staticClass: "confirmation__button",
+                staticClass: "confirmation_button",
                 on: {
                   click: function($event) {
                     return _vm.callYesAction()
@@ -1860,7 +1933,7 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "confirmation__button",
+            staticClass: "confirmation_button",
             on: {
               click: function($event) {
                 return _vm.closeConfirmationDialog()
@@ -1947,7 +2020,7 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "popup_right__close",
+            staticClass: "popup_right__collapse_icon",
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -1955,7 +2028,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\n            ☒\n        ")]
+          [_vm._v("\n            ×\n        ")]
         )
       ],
       2
@@ -1985,13 +2058,106 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav", { staticClass: "navBar" }, [
-    _c("ul", { staticClass: "navBar__link" }, [
+    _c("div", { staticClass: "navBar_left" }, [
+      _c(
+        "a",
+        { staticClass: "logo__link", attrs: { href: "http://asceticshop.ru" } },
+        [_vm._v("AsceticShop.ru")]
+      ),
+      _vm._v(" "),
+      _c("ul", { staticClass: "navBar__ul" }, [
+        _c(
+          "li",
+          [
+            _c(
+              "router-link",
+              {
+                class: _vm.saveProductLinkClass,
+                attrs: { to: { name: "SaveProduct" } }
+              },
+              [_vm._v("Добавить товар")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          [
+            _c(
+              "router-link",
+              {
+                class: _vm.productsLinkClass,
+                attrs: { to: { name: "Products" } }
+              },
+              [_vm._v("Товары")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          [
+            _c(
+              "router-link",
+              {
+                class: _vm.categoriesLinkClass,
+                attrs: {
+                  to: { name: "Categories", params: { entity: "categories" } }
+                }
+              },
+              [_vm._v("Категории")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          [
+            _c(
+              "router-link",
+              {
+                class: _vm.materialsLinkClass,
+                attrs: {
+                  to: { name: "Categories", params: { entity: "materials" } }
+                }
+              },
+              [_vm._v("Материалы")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          [
+            _c(
+              "router-link",
+              {
+                class: _vm.colorsLinkClass,
+                attrs: {
+                  to: { name: "Categories", params: { entity: "colors" } }
+                }
+              },
+              [_vm._v("Цвета")]
+            )
+          ],
+          1
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("ul", { staticClass: "navBar__ul" }, [
       _c(
         "li",
         [
-          _c("router-link", { attrs: { to: { name: "MainPage" } } }, [
-            _vm._v("Main")
-          ])
+          _c(
+            "router-link",
+            { class: _vm.usersLinkClass, attrs: { to: { name: "Users" } } },
+            [_vm._v("Пользователи")]
+          )
         ],
         1
       ),
@@ -1999,49 +2165,11 @@ var render = function() {
       _c(
         "li",
         [
-          _c("router-link", { attrs: { to: { name: "AboutPage" } } }, [
-            _vm._v("About")
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        [
-          _c("router-link", { attrs: { to: { name: "UsersPage" } } }, [
-            _vm._v("Users")
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        [
-          _c("router-link", { attrs: { to: { name: "Categories" } } }, [
-            _vm._v("Categories")
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        [
-          _c("router-link", { attrs: { to: { name: "SaveProduct" } } }, [
-            _vm._v("Add product")
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        [
-          _c("router-link", { attrs: { to: { name: "Products" } } }, [
-            _vm._v("Products")
-          ])
+          _c(
+            "router-link",
+            { class: _vm.mainPageLinkClass, attrs: { to: { name: "Main" } } },
+            [_vm._v("Помощь")]
+          )
         ],
         1
       )
@@ -18655,28 +18783,6 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/assets/delete_icon.png":
-/*!******************************************!*\
-  !*** ./resources/assets/delete_icon.png ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/delete_icon.png?2edb9b116c4ab2379a029cdcbae4c6af";
-
-/***/ }),
-
-/***/ "./resources/assets/edit_icon.jpg":
-/*!****************************************!*\
-  !*** ./resources/assets/edit_icon.jpg ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/edit_icon.jpg?4b4b00ff3bae8b9676a6afd38623ecd6";
-
-/***/ }),
-
 /***/ "./resources/assets/spinner.gif":
 /*!**************************************!*\
   !*** ./resources/assets/spinner.gif ***!
@@ -18817,17 +18923,17 @@ const app = new Vue({
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Blocks/AbsoluteMessage.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/components/Admin/Blocks/AbsoluteMessage.vue ***!
-  \******************************************************************/
+/***/ "./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AbsoluteMessage_vue_vue_type_template_id_0d1f1d9c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbsoluteMessage.vue?vue&type=template&id=0d1f1d9c& */ "./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=template&id=0d1f1d9c&");
-/* harmony import */ var _AbsoluteMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AbsoluteMessage.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=script&lang=js&");
+/* harmony import */ var _AbsoluteFlashMessage_vue_vue_type_template_id_8b241a48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AbsoluteFlashMessage.vue?vue&type=template&id=8b241a48& */ "./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=template&id=8b241a48&");
+/* harmony import */ var _AbsoluteFlashMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AbsoluteFlashMessage.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -18837,9 +18943,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _AbsoluteMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AbsoluteMessage_vue_vue_type_template_id_0d1f1d9c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _AbsoluteMessage_vue_vue_type_template_id_0d1f1d9c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _AbsoluteFlashMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AbsoluteFlashMessage_vue_vue_type_template_id_8b241a48___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AbsoluteFlashMessage_vue_vue_type_template_id_8b241a48___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -18849,38 +18955,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Admin/Blocks/AbsoluteMessage.vue"
+component.options.__file = "resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
+/***/ "./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AbsoluteMessage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteFlashMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AbsoluteFlashMessage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteFlashMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=template&id=0d1f1d9c&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=template&id=0d1f1d9c& ***!
-  \*************************************************************************************************/
+/***/ "./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=template&id=8b241a48&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=template&id=8b241a48& ***!
+  \******************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteMessage_vue_vue_type_template_id_0d1f1d9c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AbsoluteMessage.vue?vue&type=template&id=0d1f1d9c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Blocks/AbsoluteMessage.vue?vue&type=template&id=0d1f1d9c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteMessage_vue_vue_type_template_id_0d1f1d9c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteFlashMessage_vue_vue_type_template_id_8b241a48___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AbsoluteFlashMessage.vue?vue&type=template&id=8b241a48& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Blocks/AbsoluteFlashMessage.vue?vue&type=template&id=8b241a48&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteFlashMessage_vue_vue_type_template_id_8b241a48___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteMessage_vue_vue_type_template_id_0d1f1d9c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AbsoluteFlashMessage_vue_vue_type_template_id_8b241a48___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -19196,27 +19302,21 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 __webpack_require__.r(__webpack_exports__);
 var routes = [{
   path: '/admin',
-  name: 'MainPage',
+  name: 'Main',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
-  }
-}, {
-  path: '/admin/about',
-  name: 'AboutPage',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../components/Admin/AboutPage.vue */ "./resources/js/components/Admin/AboutPage.vue"));
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
   }
 }, {
   path: '/admin/users',
-  name: 'UsersPage',
+  name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/user/:id',
   name: 'SingleUser',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/Users/SingleUser.vue */ "./resources/js/components/Admin/Users/SingleUser.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/Users/SingleUser.vue */ "./resources/js/components/Admin/Users/SingleUser.vue"));
   }
 },
 /*
@@ -19233,16 +19333,10 @@ var routes = [{
         component: () => import('../components/Admin/oldSaveCategoryPage.vue'),
     },*/
 {
-  path: '/admin/products/categories',
-  name: 'Categories',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
-  }
-}, {
   path: '/admin/products/add',
   name: 'SaveProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/products',
@@ -19250,61 +19344,75 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
-}
-/*
-{
-   path: '*',
-   redirect: '/',
+}, {
+  path: '/admin/products/categories/:entity',
+  name: 'Categories',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+  }
 },
+/*
+    {
+        path: '/admin/products/materials',
+        name: 'Materials',
+        component: () => import('../components/Admin/CategoriesPage.vue'),
+    },
+
+    {
+        path: '/admin/products/colors',
+        name: 'Colors',
+        component: () => import('../components/Admin/CategoriesPage.vue'),
+    },
 */
-];
+{
+  path: '*',
+  redirect: '/'
+}];
 /* harmony default export */ __webpack_exports__["default"] = (routes);
 
 /***/ }),
 
-/***/ "./resources/js/store/absoluteMessage.js":
-/*!***********************************************!*\
-  !*** ./resources/js/store/absoluteMessage.js ***!
-  \***********************************************/
+/***/ "./resources/js/store/absoluteFlashMessage.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/absoluteFlashMessage.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
   state: {
-    absoluteMessage: ''
+    text: ''
   },
   getters: {
-    absoluteMessage: function absoluteMessage(state) {
-      return state.absoluteMessage;
+    text: function text(state) {
+      return state.text;
     },
-    hasAbsoluteMessage: function hasAbsoluteMessage(state) {
-      return state.absoluteMessage.length > 0;
+    showAbsoluteFlashMessage: function showAbsoluteFlashMessage(state) {
+      return state.text.length > 0;
     }
   },
   mutations: {
-    setAbsoluteMessage: function setAbsoluteMessage(state, txt) {
+    setText: function setText(state, txt) {
       // setTimeout() чтобы сначала отработал реактивно сброс выше
       // который может иметься
       setTimeout(function () {
-        state.absoluteMessage = txt;
+        state.text = txt;
       }, 10);
-    },
-    clearAbsoluteMessage: function clearAbsoluteMessage(state) {
-      state.absoluteMessage = '';
     }
   },
   actions: {
-    closeAbsoluteMessageBox: function closeAbsoluteMessageBox(_ref) {
-      var commit = _ref.commit;
-      commit('clearAbsoluteMessage');
-    },
-    delayedAbsoluteMessageCleaning: function delayedAbsoluteMessageCleaning(_ref2) {
-      var commit = _ref2.commit;
-      setTimeout(function () {
-        commit('clearAbsoluteMessage');
-      }, 2000);
+    showAbsoluteFlashMessage: {
+      root: true,
+      handler: function handler(_ref, text) {
+        var commit = _ref.commit;
+        commit('setText', text);
+        setTimeout(function () {
+          commit('setText', '');
+        }, 2200);
+      }
     }
   }
 });
@@ -19324,6 +19432,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _categories_js_categories_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./categories_js/categories_getters */ "./resources/js/store/categories_js/categories_getters.js");
 /* harmony import */ var _categories_js_categories_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./categories_js/categories_mutations */ "./resources/js/store/categories_js/categories_mutations.js");
 /* harmony import */ var _categories_js_categories_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./categories_js/categories_actions */ "./resources/js/store/categories_js/categories_actions.js");
+/* harmony import */ var _categories_js_categories_actions_saveCategory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./categories_js/categories_actions_saveCategory */ "./resources/js/store/categories_js/categories_actions_saveCategory.js");
+/* harmony import */ var _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categories_js/categories_actions_preDeleteCategory */ "./resources/js/store/categories_js/categories_actions_preDeleteCategory.js");
+/* harmony import */ var _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./categories_js/categories_actions_deleteCategory */ "./resources/js/store/categories_js/categories_actions_deleteCategory.js");
+/* harmony import */ var _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./categories_js/categories_actions_changePosition */ "./resources/js/store/categories_js/categories_actions_changePosition.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
 
 
 
@@ -19335,7 +19457,7 @@ __webpack_require__.r(__webpack_exports__);
   state: _categories_js_categories_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _categories_js_categories_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _categories_js_categories_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _categories_js_categories_actions__WEBPACK_IMPORTED_MODULE_3__["default"]
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _categories_js_categories_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _categories_js_categories_actions_saveCategory__WEBPACK_IMPORTED_MODULE_4__["default"]), _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_5__["default"]), _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_6__["default"]), _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_7__["default"])
 });
 
 /***/ }),
@@ -19352,7 +19474,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/categoryValidation */ "./resources/js/store/categories_js/functions/categoryValidation.js");
-/* harmony import */ var _router_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../router/index */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -19360,25 +19481,25 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   // eslint-disable-next-line no-unused-vars
-  loadSingleCategory: function loadSingleCategory(_ref, categoryId) {
+  loadSingleCategory: function loadSingleCategory(_ref, _ref2) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, getters, state, singleCategoryUrl;
+      var dispatch, commit, getters, entity, categoryId, singleCategoryUrl;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters, state = _ref.state;
-              singleCategoryUrl = getters.singleCategoryUrl + categoryId;
+              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters;
+              entity = _ref2.entity, categoryId = _ref2.categoryId;
+              singleCategoryUrl = getters.singleCategoryUrl(entity) + categoryId;
               dispatch('getJson', singleCategoryUrl, {
                 root: true
               }).then(function (data) {
                 commit('setSingleCategoryFromServer', data);
               });
 
-            case 3:
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -19386,15 +19507,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  getCategoriesCount: function getCategoriesCount(_ref2) {
+  getCategoriesCount: function getCategoriesCount(_ref3, entity) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var dispatch, commit, getters, url;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              dispatch = _ref2.dispatch, commit = _ref2.commit, getters = _ref2.getters;
-              url = getters.categoriesCountUrl;
+              dispatch = _ref3.dispatch, commit = _ref3.commit, getters = _ref3.getters;
+              url = getters.categoriesCountUrl(entity);
               dispatch('getJson', url, {
                 root: true
               }).then(function (data) {
@@ -19409,19 +19530,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee2);
     }))();
   },
-  loadCategories: function loadCategories(_ref3) {
+  loadCategories: function loadCategories(_ref4, entity) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var dispatch, commit, getters, url;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              dispatch = _ref3.dispatch, commit = _ref3.commit, getters = _ref3.getters;
-              url = getters.categoriesUrl;
+              dispatch = _ref4.dispatch, commit = _ref4.commit, getters = _ref4.getters;
+              url = getters.categoriesUrl(entity);
               dispatch('getJson', url, {
                 root: true
               }).then(function (data) {
-                commit('setCategories', data);
+                commit('setCategories', {
+                  entity: entity,
+                  data: data
+                });
+                dispatch('closeFullScreenStub', null, {
+                  root: true
+                });
               });
 
             case 3:
@@ -19433,12 +19560,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   // фронт-валидация при вводе (type-in)
-  typeinValidation: function typeinValidation(_ref4, category) {
-    var dispatch = _ref4.dispatch,
-        commit = _ref4.commit,
-        getters = _ref4.getters,
-        rootGetters = _ref4.rootGetters;
-    commit('cleanPopupErrors', null, {
+  typeinValidation: function typeinValidation(_ref5, _ref6) {
+    var dispatch = _ref5.dispatch,
+        commit = _ref5.commit,
+        getters = _ref5.getters,
+        rootGetters = _ref5.rootGetters;
+    var entity = _ref6.entity,
+        category = _ref6.category;
+    dispatch('cleanPopupErrors', null, {
       root: true
     });
 
@@ -19446,7 +19575,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return;
     }
 
-    var _categoryValidation = Object(_functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(category, getters.categories),
+    var categories = getters.categories[entity];
+
+    var _categoryValidation = Object(_functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(category, categories),
         typeinErrors = _categoryValidation.typeinErrors;
 
     commit('setTypeinErrors', typeinErrors, {
@@ -19456,15 +19587,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       root: true
     });
   },
-  cleanValidationErrors: function cleanValidationErrors(_ref5) {
+  // обнулить ошибки
+  cleanValidationErrors: function cleanValidationErrors(_ref7) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var commit;
+      var dispatch, commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              commit = _ref5.commit;
-              commit('cleanPopupErrors', null, {
+              dispatch = _ref7.dispatch, commit = _ref7.commit;
+              dispatch('cleanPopupErrors', null, {
                 root: true
               });
               commit('resetAlarmingInputs', null, {
@@ -19486,23 +19618,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   // фронт-валидация, pop-up и type-in сообщения
-  _frontValidation: function _frontValidation(_ref6, category) {
+  _frontValidation: function _frontValidation(_ref8, _ref9) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-      var commit, getters, _categoryValidation2, popupErrors, typeinErrors;
+      var dispatch, commit, getters, entity, category, categories, _categoryValidation2, popupErrors, typeinErrors;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              commit = _ref6.commit, getters = _ref6.getters;
-              _categoryValidation2 = Object(_functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(category, getters.categories), popupErrors = _categoryValidation2.popupErrors, typeinErrors = _categoryValidation2.typeinErrors;
+              dispatch = _ref8.dispatch, commit = _ref8.commit, getters = _ref8.getters;
+              entity = _ref9.entity, category = _ref9.category;
+              categories = getters.categories[entity];
+              _categoryValidation2 = Object(_functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(category, categories), popupErrors = _categoryValidation2.popupErrors, typeinErrors = _categoryValidation2.typeinErrors;
 
               if (!popupErrors) {
-                _context5.next = 8;
+                _context5.next = 10;
                 break;
               }
 
-              commit('setPopupErrors', popupErrors, {
+              dispatch('showPopupErrorsBox', popupErrors, {
                 root: true
               });
               commit('enableTypeinValidation', null, {
@@ -19516,103 +19650,155 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               });
               return _context5.abrupt("return", false);
 
-            case 8:
+            case 10:
               return _context5.abrupt("return", true);
 
-            case 9:
+            case 11:
             case "end":
               return _context5.stop();
           }
         }
       }, _callee5);
     }))();
-  },
-  saveCategory: function saveCategory(_ref7, category) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-      var dispatch, commit, getters, state, categoryId, saveCategoryUrl;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
-        while (1) {
-          switch (_context6.prev = _context6.next) {
-            case 0:
-              dispatch = _ref7.dispatch, commit = _ref7.commit, getters = _ref7.getters, state = _ref7.state;
-              categoryId = category.id;
-              _context6.next = 4;
-              return dispatch('cleanValidationErrors');
+  }
+}); // для избежания редактирования удаленной страницы уйти на страницу SaveCategory
+//console.log(thatRouter);
 
-            case 4:
-              _context6.next = 6;
-              return dispatch('_frontValidation', category);
+/*
+if (thatRouter.app._route.name === 'EditCategory') {
+    thatRouter.push({ name: 'SaveCategory' });
+}
+*/
 
-            case 6:
-              if (_context6.sent) {
-                _context6.next = 8;
-                break;
-              }
+/***/ }),
 
-              return _context6.abrupt("return");
+/***/ "./resources/js/store/categories_js/categories_actions_changePosition.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/store/categories_js/categories_actions_changePosition.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-            case 8:
-              saveCategoryUrl = categoryId > 0 ? getters.saveCategoryUrl + categoryId : getters.saveCategoryUrl;
-              dispatch('postJson', {
-                url: saveCategoryUrl,
-                data: category
-              }, {
-                root: true
-              }).then(function (data) {
-                // validatorErrors в данных формируется в форм-реквесте если валидация failed
-                if (data.backValidatorErrors) {
-                  commit('setPopupErrors', data.backValidatorErrors, {
-                    root: true
-                  });
-                  commit('setAlarmingInputs', data.backValidatorErrors, {
-                    root: true
-                  });
-                  commit('enableTypeinValidation', null, {
-                    root: true
-                  });
-                  return;
-                } // console.log(data);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  changePosition: function changePosition(_ref, _ref2) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        getters = _ref.getters,
+        state = _ref.state;
+    var entity = _ref2.entity,
+        categoryId = _ref2.categoryId,
+        direction = _ref2.direction;
+    dispatch('closeContextMenu', null, {
+      root: true
+    });
+    dispatch('showFullScreenStub', null, {
+      root: true
+    });
+    var changePositionUrl = getters.changePositionUrl(entity) + categoryId;
+    dispatch('postJson', {
+      url: changePositionUrl,
+      data: {
+        direction: direction
+      }
+    }, {
+      root: true
+    }).then(function (data) {
+      if (data.upDownSuccess === true) {
+        dispatch('loadCategories', entity); // получить обновленный список с сервера
 
+        dispatch('showAbsoluteFlashMessage', 'Сделано.', {
+          root: true
+        }); //закрытие заглушки в loadCategories // dispatch('closeFullScreenStub', null, { root: true });
+      } else {
+        dispatch('closeFullScreenStub', null, {
+          root: true
+        });
+        setTimeout(function () {
+          dispatch('showAbsoluteFlashMessage', 'Неудачная попытка изменения позиции.', {
+            root: true
+          });
+        }, 500);
+      }
+    });
+  }
+});
 
-                if (data.saveSuccess === true) {
-                  commit('setSingleCategoryFromServer', data.category);
-                  dispatch('loadCategories'); // получить обновленный список с сервера
+/***/ }),
 
-                  var txt = categoryId > 0 ? "\u0421\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043E \u043A\u0430\u043A \xAB".concat(data.category.name, "\xBB") : "\u0421\u043E\u0437\u0434\u0430\u043D\u0430 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F \xAB".concat(data.category.name, "\xBB");
-                  commit('setAbsoluteMessage', txt, {
-                    root: true
-                  });
-                  commit('disableTypeinValidation', null, {
-                    root: true
-                  });
-                } else {
-                  var _data$customException;
+/***/ "./resources/js/store/categories_js/categories_actions_deleteCategory.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/store/categories_js/categories_actions_deleteCategory.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-                  var errorTxt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
-                  commit('setAbsoluteMessage', errorTxt, {
-                    root: true
-                  });
-                }
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  deleteCategory: function deleteCategory(_ref, _ref2) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        getters = _ref.getters,
+        state = _ref.state;
+    var entity = _ref2.entity,
+        categoryId = _ref2.categoryId;
+    dispatch('closeConfirmationDialog', null, {
+      root: true
+    });
+    dispatch('deleteJson', getters.deleteCategoryUrl(entity) + categoryId, {
+      root: true
+    }).then(function (data) {
+      dispatch('cleanPopupErrors', null, {
+        root: true
+      });
 
-                dispatch('delayedAbsoluteMessageCleaning', null, {
-                  root: true
-                });
-              });
+      if (data.backValidatorErrors) {
+        commit('setPopupErrors', data.backValidatorErrors, {
+          root: true
+        });
+        return;
+      }
 
-            case 10:
-            case "end":
-              return _context6.stop();
-          }
-        }
-      }, _callee6);
-    }))();
-  },
-  preDeleteCategory: function preDeleteCategory(_ref8, categoryId) {
-    var dispatch = _ref8.dispatch,
-        commit = _ref8.commit,
-        getters = _ref8.getters,
-        state = _ref8.state;
-    var singleCategoryUrl = getters.singleCategoryUrl + categoryId;
+      if (data.deleteSuccess === true) {
+        dispatch('loadCategories', entity);
+        var txt = "\xAB".concat(data.category.name, "\xBB \u0443\u0434\u0430\u043B\u0435\u043D\u043E");
+        dispatch('showAbsoluteFlashMessage', txt, {
+          root: true
+        });
+      } else {
+        dispatch('showAbsoluteFlashMessage', 'неудачная попытка удаления', {
+          root: true
+        });
+      }
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/categories_js/categories_actions_preDeleteCategory.js":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/store/categories_js/categories_actions_preDeleteCategory.js ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  preDeleteCategory: function preDeleteCategory(_ref, _ref2) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        getters = _ref.getters,
+        state = _ref.state;
+    var entity = _ref2.entity,
+        categoryId = _ref2.categoryId;
+    dispatch('closeContextMenu', null, {
+      root: true
+    });
+    var singleCategoryUrl = getters.singleCategoryUrl(entity) + categoryId;
     dispatch('getJson', singleCategoryUrl, {
       root: true
     }).then(function (data) {
@@ -19627,119 +19813,129 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         settings.yesPayload = {};
         settings.finalRedirectRoute = '';
       } else {
-        settings.confirmationRequestText = "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E \xAB".concat(data.name, "\xBB?");
+        settings.confirmationRequestText = "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \xAB".concat(data.name, "\xBB?");
         settings.yesButtonText = 'Удалить';
         settings.cancelButtonText = 'Отменить';
         settings.yesAction = 'categories/deleteCategory';
         settings.cancelAction = 'closeConfirmationDialog';
         settings.yesPayload = {
+          entity: entity,
           categoryId: data.id
         };
         settings.finalRedirectRoute = 'Categories';
       }
 
-      commit('setConfirmationDialog', settings, {
+      dispatch('showConfirmationDialog', settings, {
         root: true
       });
-    });
-  },
-  deleteCategory: function deleteCategory(_ref9, _ref10) {
-    var dispatch = _ref9.dispatch,
-        commit = _ref9.commit,
-        getters = _ref9.getters,
-        state = _ref9.state;
-    var categoryId = _ref10.categoryId;
-    dispatch('closeConfirmationDialog', null, {
-      root: true
-    });
-    dispatch('deleteJson', getters.deleteCategoryUrl + categoryId, {
-      root: true
-    }).then(function (data) {
-      commit('cleanPopupErrors', null, {
-        root: true
-      }); // validatorErrors в данных формируется в форм-реквесте если валидация failed
-
-      if (data.backValidatorErrors) {
-        commit('setPopupErrors', data.backValidatorErrors, {
-          root: true
-        });
-        return;
-      } // console.log(data);
-
-
-      if (data.deleteSuccess === true) {
-        dispatch('loadCategories');
-        var txt = "\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F \xAB".concat(data.category.name, "\xBB \u0443\u0434\u0430\u043B\u0435\u043D\u0430.");
-        commit('setAbsoluteMessage', txt, {
-          root: true
-        });
-      } else {
-        commit('setAbsoluteMessage', 'неудачная попытка удаления', {
-          root: true
-        });
-      }
-
-      dispatch('delayedAbsoluteMessageCleaning', null, {
-        root: true
-      });
-    });
-  },
-  changePosition: function changePosition(_ref11, _ref12) {
-    var dispatch = _ref11.dispatch,
-        commit = _ref11.commit,
-        getters = _ref11.getters,
-        state = _ref11.state;
-    var categoryId = _ref12.categoryId,
-        direction = _ref12.direction;
-    dispatch('showFullScreenStub', null, {
-      root: true
-    });
-    var changePositionUrl = getters.changePositionUrl + categoryId;
-    dispatch('postJson', {
-      url: changePositionUrl,
-      data: {
-        direction: direction
-      }
-    }, {
-      root: true
-    }).then(function (data) {
-      if (data.upDownSuccess === true) {
-        dispatch('loadCategories'); // получить обновленный список с сервера
-      } else {
-        setTimeout(function () {
-          commit('setAbsoluteMessage', 'Неудачная попытка изменения позиции.', {
-            root: true
-          });
-          dispatch('delayedAbsoluteMessageCleaning', null, {
-            root: true
-          });
-        }, 500);
-      }
-    });
-    dispatch('closeFullScreenStub', null, {
-      root: true
     });
   }
 });
-/*
-        // проверить вдруг категория уже удалена
-        if (categoryId > 0) {
-            if (!hasCategory(categoryId, getters.categories)) {
-                commit('setAbsoluteMessage', 'Эта категория не существует.', { root: true });
-                dispatch('delayedAbsoluteMessageCleaning', null, { root: true });
-                // thatRouter.push({ name: 'AboutPage' });
-                return;
-            }
-        }
-*/
-// для избежания редактирования удаленной страницы уйти на страницу SaveCategory
-//console.log(thatRouter);
 
-/*
-if (thatRouter.app._route.name === 'EditCategory') {
-    thatRouter.push({ name: 'SaveCategory' });
-}
-*/
+/***/ }),
+
+/***/ "./resources/js/store/categories_js/categories_actions_saveCategory.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/store/categories_js/categories_actions_saveCategory.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  saveCategory: function saveCategory(_ref, _ref2) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var dispatch, commit, getters, entity, category, categoryId, saveCategoryUrl;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters;
+              entity = _ref2.entity, category = _ref2.category;
+              categoryId = category.id;
+              _context.next = 5;
+              return dispatch('cleanValidationErrors');
+
+            case 5:
+              _context.next = 7;
+              return dispatch('_frontValidation', {
+                entity: entity,
+                category: category
+              });
+
+            case 7:
+              if (_context.sent) {
+                _context.next = 9;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 9:
+              saveCategoryUrl = categoryId > 0 ? getters.saveCategoryUrl(entity) + categoryId : getters.saveCategoryUrl(entity);
+              dispatch('postJson', {
+                url: saveCategoryUrl,
+                data: category
+              }, {
+                root: true
+              }).then(function (data) {
+                // validatorErrors в данных формируется в форм-реквесте если валидация failed
+                if (data.backValidatorErrors) {
+                  dispatch('showPopupErrorsBox', data.backValidatorErrors, {
+                    root: true
+                  });
+                  commit('setAlarmingInputs', data.backValidatorErrors, {
+                    root: true
+                  });
+                  commit('enableTypeinValidation', null, {
+                    root: true
+                  });
+                  return;
+                } // console.log(data);
+
+
+                if (data.saveSuccess === true) {
+                  commit('setSingleCategoryFromServer', data.category);
+                  dispatch('loadCategories', entity); // получить обновленный список с сервера
+
+                  dispatch('scrollWindowBottom', null, {
+                    root: true
+                  });
+                  var txt = categoryId > 0 ? "\u0421\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043E \u043A\u0430\u043A \xAB".concat(data.category.name, "\xBB") : "\u0421\u043E\u0437\u0434\u0430\u043D\u043E \xAB".concat(data.category.name, "\xBB");
+                  dispatch('showAbsoluteFlashMessage', txt, {
+                    root: true
+                  });
+                  commit('disableTypeinValidation', null, {
+                    root: true
+                  });
+                } else {
+                  var _data$customException;
+
+                  var errorTxt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
+                  dispatch('showAbsoluteFlashMessage', errorTxt, {
+                    root: true
+                  });
+                }
+              });
+
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
+});
 
 /***/ }),
 
@@ -19752,27 +19948,45 @@ if (thatRouter.app._route.name === 'EditCategory') {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   categoriesCountUrl: function categoriesCountUrl(state) {
-    return state.categoriesCountUrl;
+    return function (entity) {
+      return state.categoriesCountUrl[entity];
+    };
   },
   categoriesUrl: function categoriesUrl(state) {
-    return state.categoriesUrl;
+    return function (entity) {
+      return state.categoriesUrl[entity];
+    };
   },
   singleCategoryUrl: function singleCategoryUrl(state) {
-    return state.singleCategoryUrl;
+    return function (entity) {
+      return state.singleCategoryUrl[entity];
+    };
   },
   saveCategoryUrl: function saveCategoryUrl(state) {
-    return state.saveCategoryUrl;
+    return function (entity) {
+      return state.saveCategoryUrl[entity];
+    };
   },
   deleteCategoryUrl: function deleteCategoryUrl(state) {
-    return state.deleteCategoryUrl;
+    return function (entity) {
+      return state.deleteCategoryUrl[entity];
+    };
   },
   changePositionUrl: function changePositionUrl(state) {
-    return state.changePositionUrl;
+    return function (entity) {
+      return state.changePositionUrl[entity];
+    };
   },
   categories: function categories(state) {
-    return state.categories;
+    return _objectSpread({}, state.categories);
   },
   categoriesCountFromServer: function categoriesCountFromServer(state) {
     return state.categoriesCountFromServer;
@@ -19812,9 +20026,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  setCategories: function setCategories(state, data) {
-    state.categories.splice(0, state.categories.length);
-    state.categories = _toConsumableArray(data);
+  setCategories: function setCategories(state, _ref) {
+    var entity = _ref.entity,
+        data = _ref.data;
+    state.categories[entity].splice(0, state.categories.length);
+    state.categories[entity] = _toConsumableArray(data);
   },
   setCategoriesCountFromServer: function setCategoriesCountFromServer(state, number) {
     state.categoriesCountFromServer = number;
@@ -19836,16 +20052,76 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  categoriesCountUrl: '/api/admin/categories/count',
-  categoriesUrl: '/api/admin/categories/',
-  singleCategoryUrl: '/api/admin/category/',
-  saveCategoryUrl: '/api/admin/category/save/',
-  deleteCategoryUrl: '/api/admin/category/delete/',
-  changePositionUrl: '/api/admin/category/change-position/',
-  categories: [],
+  categoriesCountUrl: {
+    categories: '/api/admin/categories/count',
+    materials: '/api/admin/materials/count',
+    colors: '/api/admin/colors/count'
+  },
+  categoriesUrl: {
+    categories: '/api/admin/categories/',
+    materials: '/api/admin/materials/',
+    colors: '/api/admin/colors/'
+  },
+  singleCategoryUrl: {
+    categories: '/api/admin/category/',
+    materials: '/api/admin/material/',
+    colors: '/api/admin/color/'
+  },
+  saveCategoryUrl: {
+    categories: '/api/admin/category/save/',
+    materials: '/api/admin/material/save/',
+    colors: '/api/admin/color/save/'
+  },
+  deleteCategoryUrl: {
+    categories: '/api/admin/category/delete/',
+    materials: '/api/admin/material/delete/',
+    colors: '/api/admin/color/delete/'
+  },
+  changePositionUrl: {
+    categories: '/api/admin/category/change-position/',
+    materials: '/api/admin/material/change-position/',
+    colors: '/api/admin/color/change-position/'
+  },
+  //categories: [],
+  categories: {
+    categories: [],
+    materials: [],
+    colors: []
+  },
   categoriesCountFromServer: -1,
   singleCategoryFromServer: null
 });
+/*
+export default {
+    //categoriesCountUrl: '/api/admin/categories/count',
+
+    categoriesCountUrl: {
+        categories: '/api/admin/categories/count',
+        materials: '/api/admin/materials/count',
+        colors: '/api/admin/colors/count',
+    },
+
+
+    categoriesUrl: '/api/admin/categories/',
+    singleCategoryUrl: '/api/admin/category/',
+    saveCategoryUrl: '/api/admin/category/save/',
+    deleteCategoryUrl: '/api/admin/category/delete/',
+    changePositionUrl: '/api/admin/category/change-position/',
+
+
+    materialsCountUrl: '/api/admin/materials/count',
+    materialsUrl: '/api/admin/materials/',
+    singleMaterialUrl: '/api/admin/material/',
+    saveMaterialUrl: '/api/admin/material/save/',
+    deleteMaterialUrl: '/api/admin/material/delete/',
+    MaterialChangePositionUrl: '/api/admin/material/change-position/',
+
+
+    categories: [],
+    categoriesCountFromServer: -1,
+    singleCategoryFromServer: null,
+};
+ */
 
 /***/ }),
 
@@ -19871,7 +20147,7 @@ function categoryValidation(category, categories) {
       err2.name = [];
     }
 
-    err.name.push('заполните «Название категории».');
+    err.name.push('заполните «Название».');
     err2.name.push('Пожалуйста заполните');
   }
 
@@ -19881,7 +20157,7 @@ function categoryValidation(category, categories) {
       err2.name = [];
     }
 
-    err.name.push('«Название категории» не менее 2 символов.');
+    err.name.push('«Название» не менее 2 символов.');
     err2.name.push('не менее 2 символов');
   }
 
@@ -19891,8 +20167,8 @@ function categoryValidation(category, categories) {
       err2.name = [];
     }
 
-    err.name.push('такое название категории уже есть.');
-    err2.name.push('уже есть такая категория');
+    err.name.push('такое название уже есть.');
+    err2.name.push('уже есть такое название');
   }
 
   for (var key in err) {
@@ -19926,84 +20202,6 @@ function hasTheSameCategoryName(category, categories) {
 
 /***/ }),
 
-/***/ "./resources/js/store/colors.js":
-/*!**************************************!*\
-  !*** ./resources/js/store/colors.js ***!
-  \**************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  namespaced: true,
-  state: {
-    colorsUrl: '/api/admin/colors/',
-    colors: []
-  },
-  getters: {
-    colorsUrl: function colorsUrl(state) {
-      return state.colorsUrl;
-    },
-    colors: function colors(state) {
-      return state.colors;
-    }
-  },
-  mutations: {
-    setColors: function setColors(state, data) {
-      state.colors.splice(0, state.colors.length);
-      state.colors = _toConsumableArray(data);
-    }
-  },
-  actions: {
-    loadColors: function loadColors(_ref) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var dispatch, commit, getters, url;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters;
-                url = getters.colorsUrl;
-                dispatch('getJson', url, {
-                  root: true
-                }).then(function (data) {
-                  commit('setColors', data);
-                });
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./resources/js/store/confirmationDialog.js":
 /*!**************************************************!*\
   !*** ./resources/js/store/confirmationDialog.js ***!
@@ -20014,8 +20212,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
   state: {
-    confirmationRequestText: '',
+    enabledFadingCss: false,
+    text: '',
     yesButtonText: '',
     cancelButtonText: '',
     yesAction: '',
@@ -20026,11 +20226,14 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   getters: {
-    hasConfirmationRequest: function hasConfirmationRequest(state) {
-      return state.confirmationRequestText.length > 0;
+    enabledFadingCss: function enabledFadingCss(state) {
+      return state.enabledFadingCss;
     },
-    confirmationRequestText: function confirmationRequestText(state) {
-      return state.confirmationRequestText;
+    showConfirmationRequest: function showConfirmationRequest(state) {
+      return state.text.length > 0;
+    },
+    text: function text(state) {
+      return state.text;
     },
     yesButtonText: function yesButtonText(state) {
       return state.yesButtonText;
@@ -20052,11 +20255,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mutations: {
+    setEnabledFadingCss: function setEnabledFadingCss(state, val) {
+      state.enabledFadingCss = val;
+    },
     setConfirmationDialog: function setConfirmationDialog(state, settings) {
       // setTimeout() чтобы сначала отработал реактивно сброс выше
       // который может иметься
       setTimeout(function () {
-        state.confirmationRequestText = settings.confirmationRequestText;
+        state.text = settings.confirmationRequestText;
         state.yesButtonText = settings.yesButtonText;
         state.cancelButtonText = settings.cancelButtonText;
         state.yesAction = settings.yesAction;
@@ -20066,7 +20272,7 @@ __webpack_require__.r(__webpack_exports__);
       }, 10);
     },
     resetConfirmationDialog: function resetConfirmationDialog(state) {
-      state.confirmationRequestText = '';
+      state.text = '';
       state.yesButtonText = '';
       state.cancelButtonText = '';
       state.yesAction = '';
@@ -20076,9 +20282,201 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   actions: {
-    closeConfirmationDialog: function closeConfirmationDialog(_ref) {
-      var commit = _ref.commit;
-      commit('resetConfirmationDialog');
+    showConfirmationDialog: {
+      root: true,
+      handler: function handler(_ref, settings) {
+        var commit = _ref.commit;
+        commit('setConfirmationDialog', settings);
+        commit('setEnabledFadingCss', false);
+      }
+    },
+    closeConfirmationDialog: {
+      root: true,
+      handler: function handler(_ref2) {
+        var commit = _ref2.commit;
+        commit('setEnabledFadingCss', true);
+        setTimeout(function () {
+          commit('resetConfirmationDialog');
+        }, 500);
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/contextMenu.js":
+/*!*******************************************!*\
+  !*** ./resources/js/store/contextMenu.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    enabledFadingCss: false,
+    target: '',
+    coordinates: {},
+    currentListIndex: 0,
+    lastListIndex: 0,
+    category: {}
+  },
+  getters: {
+    enabledFadingCss: function enabledFadingCss(state) {
+      return state.enabledFadingCss;
+    },
+    coordinates: function coordinates(state) {
+      return state.coordinates;
+    },
+    showCategoriesContextMenu: function showCategoriesContextMenu(state) {
+      return state.target === 'Categories';
+    },
+    currentListIndex: function currentListIndex(state) {
+      return state.currentListIndex;
+    },
+    lastListIndex: function lastListIndex(state) {
+      return state.lastListIndex;
+    },
+    category: function category(state) {
+      return state.category;
+    }
+  },
+  mutations: {
+    setEnabledFadingCss: function setEnabledFadingCss(state, val) {
+      state.enabledFadingCss = val;
+    },
+    setCoordinates: function setCoordinates(state, event) {
+      var x = {
+        left: event.clientX + 15 + 'px'
+      }; // проверка на расстояние от точки клика до нижнего края
+
+      var y = window.innerHeight - event.clientY < 320 ? {
+        bottom: window.innerHeight - event.pageY + 'px'
+      } : {
+        top: event.clientY + window.pageYOffset + 10 + 'px'
+      };
+      state.coordinates = _objectSpread(_objectSpread({}, x), y);
+    },
+    setTarget: function setTarget(state, target) {
+      state.target = target;
+    },
+    resetTargetWithDelay: function resetTargetWithDelay(state) {
+      setTimeout(function () {
+        state.target = '';
+      }, 500);
+    },
+    setCategoriesContextData: function setCategoriesContextData(state, data) {
+      var category = data.category,
+          currentListIndex = data.currentListIndex,
+          lastListIndex = data.lastListIndex;
+      state.category = category;
+      state.currentListIndex = currentListIndex;
+      state.lastListIndex = lastListIndex;
+    }
+  },
+  actions: {
+    showContextMenu: function showContextMenu(_ref, _ref2) {
+      var dispatch = _ref.dispatch,
+          commit = _ref.commit,
+          getters = _ref.getters;
+      var event = _ref2.event,
+          target = _ref2.target,
+          data = _ref2.data;
+      dispatch('setTarget', target).then(function () {
+        commit('setCoordinates', event);
+        commit("set".concat(target, "ContextData"), data);
+        commit('setEnabledFadingCss', false);
+      });
+    },
+    setTarget: function setTarget(_ref3, target) {
+      var commit = _ref3.commit;
+      commit('setTarget', target);
+    },
+    closeContextMenuByClick: function closeContextMenuByClick(_ref4, event) {
+      var commit = _ref4.commit;
+
+      // console.log(event);
+      if (!event) {
+        return;
+      }
+
+      if (event.target.className === 'context_menu__icon') {
+        return;
+      }
+
+      if (!event.target.parentNode) {
+        return;
+      }
+
+      if (event.target.parentNode.className === 'context_menu__ul') {
+        return;
+      }
+
+      commit('setEnabledFadingCss', true);
+      commit('resetTargetWithDelay');
+    },
+    // Регистрация глобального действия в модуле с собственным пространством имён
+    // для вызова из других модулей с namespaced: true
+    closeContextMenu: {
+      root: true,
+      handler: function handler(_ref5) {
+        var commit = _ref5.commit;
+        commit('setEnabledFadingCss', true);
+        commit('resetTargetWithDelay');
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/csrfToken.js":
+/*!*****************************************!*\
+  !*** ./resources/js/store/csrfToken.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  state: {
+    csrfUrl: '/api/admin/csrf',
+    csrfToken: ''
+  },
+  getters: {
+    csrfUrl: function csrfUrl(state) {
+      return state.csrfUrl;
+    },
+    csrfToken: function csrfToken(state) {
+      return state.csrfToken;
+    }
+  },
+  mutations: {
+    setCsrfToken: function setCsrfToken(state, str) {
+      state.csrfToken = str;
+    }
+  },
+  actions: {
+    updateCSRF: function updateCSRF(_ref) {
+      var dispatch = _ref.dispatch,
+          commit = _ref.commit,
+          getters = _ref.getters;
+      var url = getters.csrfUrl;
+      setInterval(function () {
+        dispatch('getJson', url).then(function (data) {
+          commit('setCsrfToken', data); // console.log(data);
+        });
+      }, 100 * 1000); // 100 секунд
     }
   }
 });
@@ -20095,38 +20493,45 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
   state: {
     showFullScreenStub: false,
-    closeFullScreenStub: false
+    enabledFadingCss: false
   },
   getters: {
     showFullScreenStub: function showFullScreenStub(state) {
       return state.showFullScreenStub;
     },
-    closeFullScreenStub: function closeFullScreenStub(state) {
-      return state.closeFullScreenStub;
+    enabledFadingCss: function enabledFadingCss(state) {
+      return state.enabledFadingCss;
     }
   },
   mutations: {
     setShowFullScreenStub: function setShowFullScreenStub(state, val) {
       state.showFullScreenStub = val;
     },
-    setCloseFullScreenStub: function setCloseFullScreenStub(state, val) {
-      state.closeFullScreenStub = val;
+    setEnabledFadingCss: function setEnabledFadingCss(state, val) {
+      state.enabledFadingCss = val;
     }
   },
   actions: {
-    showFullScreenStub: function showFullScreenStub(_ref) {
-      var commit = _ref.commit;
-      commit('setShowFullScreenStub', true);
-      commit('setCloseFullScreenStub', false);
+    showFullScreenStub: {
+      root: true,
+      handler: function handler(_ref) {
+        var commit = _ref.commit;
+        commit('setShowFullScreenStub', true);
+        commit('setEnabledFadingCss', false);
+      }
     },
-    closeFullScreenStub: function closeFullScreenStub(_ref2) {
-      var commit = _ref2.commit;
-      commit('setCloseFullScreenStub', true);
-      setTimeout(function () {
-        commit('setShowFullScreenStub', false);
-      }, 1000);
+    closeFullScreenStub: {
+      root: true,
+      handler: function handler(_ref2) {
+        var commit = _ref2.commit;
+        commit('setEnabledFadingCss', true);
+        setTimeout(function () {
+          commit('setShowFullScreenStub', false);
+        }, 1000);
+      }
     }
   }
 });
@@ -20253,20 +20658,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _router_routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../router/routes */ "./resources/js/router/routes.js");
-/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./http */ "./resources/js/store/http.js");
-/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./users */ "./resources/js/store/users.js");
-/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pagination */ "./resources/js/store/pagination.js");
-/* harmony import */ var _lazyUsers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./lazyUsers */ "./resources/js/store/lazyUsers.js");
-/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user */ "./resources/js/store/user.js");
-/* harmony import */ var _categories__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./categories */ "./resources/js/store/categories.js");
-/* harmony import */ var _materials__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./materials */ "./resources/js/store/materials.js");
-/* harmony import */ var _colors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./colors */ "./resources/js/store/colors.js");
-/* harmony import */ var _products__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./products */ "./resources/js/store/products.js");
-/* harmony import */ var _typeinErrors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./typeinErrors */ "./resources/js/store/typeinErrors.js");
-/* harmony import */ var _popupErrors__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./popupErrors */ "./resources/js/store/popupErrors.js");
-/* harmony import */ var _absoluteMessage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./absoluteMessage */ "./resources/js/store/absoluteMessage.js");
-/* harmony import */ var _fullScreenStub__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./fullScreenStub */ "./resources/js/store/fullScreenStub.js");
-/* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
+/* harmony import */ var _csrfToken__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./csrfToken */ "./resources/js/store/csrfToken.js");
+/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./http */ "./resources/js/store/http.js");
+/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./users */ "./resources/js/store/users.js");
+/* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pagination */ "./resources/js/store/pagination.js");
+/* harmony import */ var _lazyUsers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lazyUsers */ "./resources/js/store/lazyUsers.js");
+/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user */ "./resources/js/store/user.js");
+/* harmony import */ var _categories__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./categories */ "./resources/js/store/categories.js");
+/* harmony import */ var _products__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./products */ "./resources/js/store/products.js");
+/* harmony import */ var _typeinErrors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./typeinErrors */ "./resources/js/store/typeinErrors.js");
+/* harmony import */ var _popupErrors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./popupErrors */ "./resources/js/store/popupErrors.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js/store/absoluteFlashMessage.js");
+/* harmony import */ var _fullScreenStub__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./fullScreenStub */ "./resources/js/store/fullScreenStub.js");
+/* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
+/* harmony import */ var _contextMenu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./contextMenu */ "./resources/js/store/contextMenu.js");
 
 
 
@@ -20287,14 +20692,10 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    csrfToken: '',
     count: 0,
     imgFolderPrefix: 'products-photos-size'
   },
   getters: {
-    csrfToken: function csrfToken(state) {
-      return state.csrfToken;
-    },
     imgFolderPrefix: function imgFolderPrefix(state) {
       return state.imgFolderPrefix;
     }
@@ -20302,35 +20703,33 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   mutations: {
     increment: function increment(state) {
       state.count++;
-    },
-    setCsrfToken: function setCsrfToken(state, str) {
-      state.csrfToken = str;
     }
   },
   actions: {
-    // только в юзерах остался
-    delayedMessageCleaning: function delayedMessageCleaning(_ref, mutationName) {
-      var commit = _ref.commit;
-      setTimeout(function () {
-        commit(mutationName, '&nbsp;');
-      }, 3000);
+    closeAllByClickOnAppTag: function closeAllByClickOnAppTag(_ref, event) {
+      var dispatch = _ref.dispatch;
+      dispatch('closePopupErrorsBox');
+      dispatch('contextMenu/closeContextMenuByClick', event);
+    },
+    scrollWindowBottom: function scrollWindowBottom() {
+      window.scrollBy(0, 1000000);
     }
   },
   modules: {
-    http: _http__WEBPACK_IMPORTED_MODULE_3__["default"],
-    users: _users__WEBPACK_IMPORTED_MODULE_4__["default"],
-    pagination: _pagination__WEBPACK_IMPORTED_MODULE_5__["default"],
-    lazyUsers: _lazyUsers__WEBPACK_IMPORTED_MODULE_6__["default"],
-    user: _user__WEBPACK_IMPORTED_MODULE_7__["default"],
-    categories: _categories__WEBPACK_IMPORTED_MODULE_8__["default"],
-    materials: _materials__WEBPACK_IMPORTED_MODULE_9__["default"],
-    colors: _colors__WEBPACK_IMPORTED_MODULE_10__["default"],
-    products: _products__WEBPACK_IMPORTED_MODULE_11__["default"],
-    typeinErrors: _typeinErrors__WEBPACK_IMPORTED_MODULE_12__["default"],
-    popupErrors: _popupErrors__WEBPACK_IMPORTED_MODULE_13__["default"],
-    absoluteMessage: _absoluteMessage__WEBPACK_IMPORTED_MODULE_14__["default"],
-    fullScreenStub: _fullScreenStub__WEBPACK_IMPORTED_MODULE_15__["default"],
-    confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_16__["default"]
+    http: _http__WEBPACK_IMPORTED_MODULE_4__["default"],
+    users: _users__WEBPACK_IMPORTED_MODULE_5__["default"],
+    pagination: _pagination__WEBPACK_IMPORTED_MODULE_6__["default"],
+    lazyUsers: _lazyUsers__WEBPACK_IMPORTED_MODULE_7__["default"],
+    user: _user__WEBPACK_IMPORTED_MODULE_8__["default"],
+    categories: _categories__WEBPACK_IMPORTED_MODULE_9__["default"],
+    products: _products__WEBPACK_IMPORTED_MODULE_10__["default"],
+    typeinErrors: _typeinErrors__WEBPACK_IMPORTED_MODULE_11__["default"],
+    popupErrors: _popupErrors__WEBPACK_IMPORTED_MODULE_12__["default"],
+    absoluteFlashMessage: _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_13__["default"],
+    fullScreenStub: _fullScreenStub__WEBPACK_IMPORTED_MODULE_14__["default"],
+    confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__["default"],
+    contextMenu: _contextMenu__WEBPACK_IMPORTED_MODULE_16__["default"],
+    csrfToken: _csrfToken__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -20418,84 +20817,6 @@ __webpack_require__.r(__webpack_exports__);
       dispatch('getJson', url).then(function (data) {
         commit('addToLazyUsers', data);
       });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/js/store/materials.js":
-/*!*****************************************!*\
-  !*** ./resources/js/store/materials.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  namespaced: true,
-  state: {
-    materialsUrl: '/api/admin/materials/',
-    materials: []
-  },
-  getters: {
-    materialsUrl: function materialsUrl(state) {
-      return state.materialsUrl;
-    },
-    materials: function materials(state) {
-      return state.materials;
-    }
-  },
-  mutations: {
-    setMaterials: function setMaterials(state, data) {
-      state.materials.splice(0, state.materials.length);
-      state.materials = _toConsumableArray(data);
-    }
-  },
-  actions: {
-    loadMaterials: function loadMaterials(_ref) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var dispatch, commit, getters, url;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters;
-                url = getters.materialsUrl;
-                dispatch('getJson', url, {
-                  root: true
-                }).then(function (data) {
-                  commit('setMaterials', data);
-                });
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
     }
   }
 });
@@ -21159,16 +21480,20 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
   state: {
+    enabledHidingCss: false,
     popupErrors: {} // ключ - имя input'а, значение - массив ошибок
 
   },
   getters: {
+    enabledHidingCss: function enabledHidingCss(state) {
+      return state.enabledHidingCss;
+    },
     popupErrors: function popupErrors(state) {
-      // if (key) { return state.validatorErrors[key]; }
       return state.popupErrors;
     },
-    hasPopupErrors: function hasPopupErrors(state) {
+    showPopupErrors: function showPopupErrors(state) {
       var errors = state.popupErrors;
 
       for (var key in errors) {
@@ -21181,6 +21506,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mutations: {
+    setEnabledHidingCss: function setEnabledHidingCss(state, val) {
+      state.enabledHidingCss = val;
+    },
     setPopupErrors: function setPopupErrors(state, errors) {
       // setTimeout() чтобы сначала отработал реактивно сброс выше
       setTimeout(function () {
@@ -21192,10 +21520,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   actions: {
-    // eslint-disable-next-line no-unused-vars
-    closePopupErrorsBox: function closePopupErrorsBox(_ref) {
-      var commit = _ref.commit;
-      commit('cleanPopupErrors');
+    showPopupErrorsBox: {
+      root: true,
+      handler: function handler(_ref, errors) {
+        var commit = _ref.commit;
+        commit('setPopupErrors', errors);
+        commit('setEnabledHidingCss', false);
+      }
+    },
+    closePopupErrorsBox: {
+      root: true,
+      handler: function handler(_ref2) {
+        var commit = _ref2.commit;
+        var event = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+        commit('setEnabledHidingCss', true);
+        setTimeout(function () {
+          commit('cleanPopupErrors');
+        }, 500);
+      }
+    },
+    cleanPopupErrors: {
+      root: true,
+      handler: function handler(_ref3) {
+        var commit = _ref3.commit;
+        commit('cleanPopupErrors');
+      }
     }
   }
 });
@@ -21215,6 +21564,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_js_products_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./products_js/products_getters */ "./resources/js/store/products_js/products_getters.js");
 /* harmony import */ var _products_js_products_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products_js/products_mutations */ "./resources/js/store/products_js/products_mutations.js");
 /* harmony import */ var _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./products_js/products_actions */ "./resources/js/store/products_js/products_actions.js");
+/* harmony import */ var _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products_js/products_actions_saveProduct */ "./resources/js/store/products_js/products_actions_saveProduct.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -21226,7 +21583,7 @@ __webpack_require__.r(__webpack_exports__);
   state: _products_js_products_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _products_js_products_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _products_js_products_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]
+  actions: _objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"])
 });
 
 /***/ }),
@@ -21386,12 +21743,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_productValidation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/productValidation */ "./resources/js/store/products_js/functions/productValidation.js");
 /* harmony import */ var _functions_getFormattedPrice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/getFormattedPrice */ "./resources/js/store/products_js/functions/getFormattedPrice.js");
 /* harmony import */ var _router_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../router/index */ "./resources/js/router/index.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -21462,6 +21813,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 root: true
               }).then(function (data) {
                 commit('setProducts', data);
+                dispatch('closeFullScreenStub', null, {
+                  root: true
+                });
               });
 
             case 3:
@@ -21478,7 +21832,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         commit = _ref4.commit,
         getters = _ref4.getters,
         rootGetters = _ref4.rootGetters;
-    commit('cleanPopupErrors', null, {
+    dispatch('cleanPopupErrors', null, {
       root: true
     });
 
@@ -21498,13 +21852,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   cleanValidationErrors: function cleanValidationErrors(_ref5) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var commit;
+      var dispatch, commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              commit = _ref5.commit;
-              commit('cleanPopupErrors', null, {
+              dispatch = _ref5.dispatch, commit = _ref5.commit;
+              dispatch('cleanPopupErrors', null, {
                 root: true
               });
               commit('resetAlarmingInputs', null, {
@@ -21544,13 +21898,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // фронт-валидация, pop-up и type-in сообщения
   _frontValidation: function _frontValidation(_ref6, product) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-      var commit, getters, _productValidation2, popupErrors, typeinErrors;
+      var dispatch, commit, getters, _productValidation2, popupErrors, typeinErrors;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
         while (1) {
           switch (_context6.prev = _context6.next) {
             case 0:
-              commit = _ref6.commit, getters = _ref6.getters;
+              dispatch = _ref6.dispatch, commit = _ref6.commit, getters = _ref6.getters;
               _productValidation2 = Object(_functions_productValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(product), popupErrors = _productValidation2.popupErrors, typeinErrors = _productValidation2.typeinErrors;
 
               if (!popupErrors) {
@@ -21558,7 +21912,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 break;
               }
 
-              commit('setPopupErrors', popupErrors, {
+              dispatch('showPopupErrorsBox', popupErrors, {
                 root: true
               });
               commit('enableTypeinValidation', null, {
@@ -21582,35 +21936,65 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee6);
     }))();
-  },
-  saveProduct: function saveProduct(_ref7, _ref8) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/products_js/products_actions_saveProduct.js":
+/*!************************************************************************!*\
+  !*** ./resources/js/store/products_js/products_actions_saveProduct.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../router */ "./resources/js/router/index.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  saveProduct: function saveProduct(_ref, _ref2) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var dispatch, commit, getters, state, localProduct, photos, product, productId, saveProductUrl, i;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
-          switch (_context7.prev = _context7.next) {
+          switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref7.dispatch, commit = _ref7.commit, getters = _ref7.getters, state = _ref7.state;
-              localProduct = _ref8.localProduct, photos = _ref8.photos;
+              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters, state = _ref.state;
+              localProduct = _ref2.localProduct, photos = _ref2.photos;
               product = _objectSpread({}, localProduct);
               product.price = product.price.replace(/\s/g, ''); //console.log(localProduct);
               //console.log(photos);
 
               productId = product.id;
-              _context7.next = 7;
+              _context.next = 7;
               return dispatch('cleanValidationErrors');
 
             case 7:
-              _context7.next = 9;
+              _context.next = 9;
               return dispatch('_frontValidation', product);
 
             case 9:
-              if (_context7.sent) {
-                _context7.next = 11;
+              if (_context.sent) {
+                _context.next = 11;
                 break;
               }
 
-              return _context7.abrupt("return");
+              return _context.abrupt("return");
 
             case 11:
               saveProductUrl = productId > 0 ? getters.saveProductUrl + productId : getters.saveProductUrl; // добавить фото в объект продукта
@@ -21620,6 +22004,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               } // console.log(product);
 
 
+              dispatch('showFullScreenStub', null, {
+                root: true
+              });
               dispatch('postMultipart', {
                 url: saveProductUrl,
                 data: product //data: {textObject: product, photos: photos},
@@ -21627,10 +22014,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }, {
                 root: true
               }).then(function (data) {
-                console.log(data); // validatorErrors в данных формируется в форм-реквесте если валидация failed
-
+                // console.log(data);
+                // validatorErrors в данных формируется в форм-реквесте если валидация failed
                 if (data.backValidatorErrors) {
-                  commit('setPopupErrors', data.backValidatorErrors, {
+                  dispatch('closeFullScreenStub', null, {
+                    root: true
+                  });
+                  dispatch('showPopupErrorsBox', data.backValidatorErrors, {
                     root: true
                   });
                   commit('enableTypeinValidation', null, {
@@ -21645,39 +22035,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (data.saveSuccess === true) {
                   //commit('setSingleProductFromServer', data.product);
-                  // dispatch('loadCategories'); // получить обновленный список с сервера
                   commit('disableTypeinValidation', null, {
                     root: true
                   });
                   var txt = productId > 0 ? "\u0414\u0430\u043D\u043D\u044B\u0435 \u0442\u043E\u0432\u0430\u0440\u0430 \xAB".concat(data.product.name, "\xBB \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u044B") : "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0442\u043E\u0432\u0430\u0440 \xAB".concat(data.product.name, "\xBB");
-                  commit('setAbsoluteMessage', txt, {
+                  dispatch('showAbsoluteFlashMessage', txt, {
                     root: true
                   });
-                  dispatch('delayedAbsoluteMessageCleaning', null, {
-                    root: true
-                  });
-                  _router_index__WEBPACK_IMPORTED_MODULE_3__["default"].push({
+                  _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
                     name: 'Products'
-                  }); //return;
+                  });
                 } else {
                   var _data$customException;
 
-                  var errorTxt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
-                  commit('setAbsoluteMessage', errorTxt, {
+                  dispatch('closeFullScreenStub', null, {
                     root: true
                   });
-                  dispatch('delayedAbsoluteMessageCleaning', null, {
+                  var errorTxt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
+                  dispatch('showAbsoluteFlashMessage', errorTxt, {
                     root: true
                   });
                 }
               });
 
-            case 14:
+            case 15:
             case "end":
-              return _context7.stop();
+              return _context.stop();
           }
         }
-      }, _callee7);
+      }, _callee);
     }))();
   }
 });

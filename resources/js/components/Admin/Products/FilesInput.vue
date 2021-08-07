@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="photo__preview__container">
+        <div class="photo_preview__container" :class="{'mt50': photos.length > 0}">
 
             <div v-for="item of graphicSrc"
                 :key="item.index"
@@ -29,23 +29,23 @@
 
                 <div
                     @click="removePreFile(item.index)"
-                    class="prePhoto__close_icon offset__close_icon">
+                    class="prePhoto__close_icon prePhoto__close_icon_offset">
                     &#10006;
                 </div>
             </div>
 
         </div>
 
-        <div class=input__photo__wrapper>
+        <div class=input_photo__wrapper>
             <input ref="photos"
                    @change="previewFiles()"
                    type="file"
                    accept="image/*"
                    multiple
-                   class="input__photo">
+                   class="input_photo">
 
             <button @click="selectFiles()" class="button__select_photos mauto">
-                Добавить фото
+                {{ buttonHeader }}
             </button>
         </div>
     </div>
@@ -66,6 +66,9 @@ export default {
 
     methods: {
         previewFiles() {
+            if (this.$refs.photos.files.length === 0) {
+                return;
+            }
             this.photos = [...this.$refs.photos.files];
         },
         removePreFile(index) {
@@ -116,6 +119,12 @@ export default {
             return nonGraphicNames; // array of objects
         },
 
+        buttonHeader() {
+            if (this.photos.length > 0) {
+                return 'Заменить фото';
+            }
+            return 'Добавить фото';
+        },
     },
 
 }

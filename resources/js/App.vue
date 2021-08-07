@@ -1,10 +1,12 @@
 <template>
-    <div id="app" class="app" @click="closePopupErrorsBox()">
+    <div id="app" class="app" @click="closeAllByClickOnAppTag($event);">
         <nav-bar></nav-bar>
-        <router-view></router-view>
-        <popup-errors v-if="hasPopupErrors"></popup-errors>
-        <absolute-message v-if="hasAbsoluteMessage"></absolute-message>
-        <confirmation-dialog-box v-if="hasConfirmationRequest"></confirmation-dialog-box>
+        <div class="content_wrapper">
+            <router-view :key="$route.path"></router-view>
+        </div>
+        <popup-errors v-if="showPopupErrors"></popup-errors>
+        <absolute-flash-message v-if="showAbsoluteFlashMessage"></absolute-flash-message>
+        <confirmation-dialog-box v-if="showConfirmationRequest"></confirmation-dialog-box>
         <full-screen-stub v-if="showFullScreenStub"></full-screen-stub>
     </div>
 </template>
@@ -14,7 +16,7 @@
 import {mapActions, mapGetters} from 'vuex';
 import NavBar from "./components/Admin/NavBar";
 import PopupErrors from "./components/Admin/Blocks/PopupErrors";
-import AbsoluteMessage from "./components/Admin/Blocks/AbsoluteMessage";
+import AbsoluteFlashMessage from "./components/Admin/Blocks/AbsoluteFlashMessage";
 import ConfirmationDialogBox from "./components/Admin/Blocks/ConfirmationDialogBox";
 import FullScreenStub from "./components/Admin/Blocks/FullScreenStub";
 
@@ -22,22 +24,28 @@ export default {
     name: 'app',
     components: {
         NavBar,
-        AbsoluteMessage,
+        AbsoluteFlashMessage,
         PopupErrors,
         ConfirmationDialogBox,
         FullScreenStub,
     },
     computed: {
-        ...mapGetters([
-            'hasPopupErrors',
-            'hasAbsoluteMessage',
-            'hasConfirmationRequest',
+        ...mapGetters('popupErrors', [
+            'showPopupErrors',
+        ]),
+        ...mapGetters('absoluteFlashMessage', [
+            'showAbsoluteFlashMessage',
+        ]),
+        ...mapGetters('fullScreenStub', [
             'showFullScreenStub',
+        ]),
+        ...mapGetters('confirmationDialog', [
+            'showConfirmationRequest',
         ]),
     },
     methods: {
         ...mapActions([
-            'closePopupErrorsBox',
+            'closeAllByClickOnAppTag',
         ]),
     },
     // при переходе по страницам отматывать страницу к верху
@@ -47,6 +55,10 @@ export default {
                 window.scrollBy(0, -1000000);
             }
         },
+    },
+
+    mounted() {
+        this.$store.dispatch('updateCSRF');
     },
 }
 </script>

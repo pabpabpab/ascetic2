@@ -1,32 +1,40 @@
 export default {
+    namespaced: true,
     state: {
         showFullScreenStub: false,
-        closeFullScreenStub: false,
+        enabledFadingCss: false,
     },
     getters: {
         showFullScreenStub: (state) => state.showFullScreenStub,
-        closeFullScreenStub: (state) => state.closeFullScreenStub,
+        enabledFadingCss: (state) => state.enabledFadingCss,
     },
     mutations: {
         setShowFullScreenStub: (state, val) => {
             state.showFullScreenStub = val;
         },
-        setCloseFullScreenStub: (state, val) => {
-            state.closeFullScreenStub = val;
+        setEnabledFadingCss: (state, val) => {
+            state.enabledFadingCss = val;
         },
     },
     actions: {
-        showFullScreenStub({ commit }) {
-            commit('setShowFullScreenStub', true);
-            commit('setCloseFullScreenStub', false);
+
+        showFullScreenStub: {
+            root: true,
+            handler ({ commit }) {
+                commit('setShowFullScreenStub', true);
+                commit('setEnabledFadingCss', false);
+            }
         },
 
-        closeFullScreenStub({ commit }) {
-            commit('setCloseFullScreenStub', true);
-
-            setTimeout(() => {
-                commit('setShowFullScreenStub', false);
-            }, 1000);
+        closeFullScreenStub: {
+            root: true,
+            handler ({ commit }) {
+                commit('setEnabledFadingCss', true);
+                setTimeout(() => {
+                    commit('setShowFullScreenStub', false);
+                }, 1000);
+            }
         },
+
     },
 };

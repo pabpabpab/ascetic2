@@ -1,27 +1,18 @@
+
+.content_block__categories
+    padding: 20px 20px 10px 20px
+
+
 .categories
     padding: 20px 0
 
 .category__item
-    min-width: 250px
-    width: 300px
-    margin: 0 auto
-    padding: 5px
+    padding: 20px 5px
     text-align: left
-    font-size: 17px
+    +font(17px, rgb(50, 45, 45), 400)
     display: flex
     justify-content: space-between
-    &__icon_arrow
-        width: 20px
-        margin: 0 15px 0 0
-        cursor: pointer
-    &__icon_edit
-        width: 20px
-        margin: 0 15px 0 0
-        cursor: pointer
-    &__icon_delete
-        height: 18px
-        margin: 0 15px 0 0
-        cursor: pointer
+    border-top: 1px solid rgb(206, 217, 240)
     &__stub_icon
         width: 20px
         margin: 0 15px 0 0
@@ -33,28 +24,28 @@
         margin: 0 10px
 
 .category__button_add
-    color: #000
-    font-size: 15px
+    +font(15px, #fff, 400)
     padding: 20px
     width: 300px
     border-radius: 7px
     border: 0
-    background-color: #cfcfcf
+    background-color: rgb(25, 118, 210)
     box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.5)
+    cursor: pointer
     transform: scaleY(1)
     opacity: 1
-    animation: show-category__button_add 0.5s
+    animation: showCategoryAddButton 0.5s
     animation-iteration-count: 1
-
-.category__button_add:hover
-    background-color: #7f7f7f
-
+    &:hover
+        background-color: rgb(10, 65, 134)
 
 
-@keyframes show-category__button_add
+@keyframes showCategoryAddButton
     from, to
         transform: scaleY(0)
         opacity: 0
     100%
         transform: scaleY(1)
         opacity: 1
+
+

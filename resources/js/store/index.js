@@ -2,48 +2,45 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import routes from "./../router/routes";
 
+import csrfToken from './csrfToken';
 import http from './http';
 import users from './users';
 import pagination from './pagination';
 import lazyUsers from './lazyUsers';
 import user from './user';
 import categories from './categories';
-import materials from './materials';
-import colors from './colors';
 import products from './products';
 import typeinErrors from './typeinErrors';
 import popupErrors from './popupErrors';
-import absoluteMessage from './absoluteMessage';
+import absoluteFlashMessage from './absoluteFlashMessage';
 import fullScreenStub from './fullScreenStub';
 import confirmationDialog from './confirmationDialog';
+import contextMenu from './contextMenu';
+
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
 
     state: {
-        csrfToken: '',
         count: 0,
         imgFolderPrefix: 'products-photos-size',
     },
     getters: {
-        csrfToken: (state) => state.csrfToken,
         imgFolderPrefix: (state) => state.imgFolderPrefix,
     },
     mutations: {
         increment: (state) => {
             state.count++;
         },
-        setCsrfToken: (state, str) => {
-            state.csrfToken = str;
-        },
     },
     actions: {
-        // только в юзерах остался
-        delayedMessageCleaning({ commit }, mutationName) {
-            setTimeout(() => {
-                commit(mutationName, '&nbsp;');
-            }, 3000);
+        closeAllByClickOnAppTag({ dispatch }, event) {
+            dispatch('closePopupErrorsBox');
+            dispatch('contextMenu/closeContextMenuByClick', event);
+        },
+        scrollWindowBottom() {
+            window.scrollBy(0, 1000000);
         },
     },
     modules: {
@@ -53,14 +50,14 @@ const store = new Vuex.Store({
         lazyUsers,
         user,
         categories,
-        materials,
-        colors,
         products,
         typeinErrors,
         popupErrors,
-        absoluteMessage,
+        absoluteFlashMessage,
         fullScreenStub,
         confirmationDialog,
+        contextMenu,
+        csrfToken,
     },
 });
 

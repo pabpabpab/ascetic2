@@ -36,3 +36,7 @@ class UserRegisteredEvent
         return new PrivateChannel('channel-name');
     }
 }
+
+
+// php artisan make:event UserRegisteredEvent
+

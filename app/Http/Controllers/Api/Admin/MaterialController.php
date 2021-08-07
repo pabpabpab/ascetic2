@@ -3,15 +3,69 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\MaterialDeleteRequest;
+use App\Http\Requests\Admin\MaterialSaveRequest;
 use App\Models\Material;
+use App\Services\CategoryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
 {
-    public function getAll(Material $material): JsonResponse
+    protected $modelClassName = "App\Models\Material";
+
+    public function getAll(CategoryService $categoryService): JsonResponse
     {
-        $materials = $material->getAll();
+        $materials = $categoryService->getAll($this->modelClassName);
         return response()->json($materials);
+    }
+
+    public function getCount(): JsonResponse
+    {
+        $count = $this->modelClassName::count();
+        return response()->json($count);
+    }
+
+    public function getOne(Material $material): JsonResponse
+    {
+        return response()->json($material);
+    }
+
+    public function save(MaterialSaveRequest $request, CategoryService $categoryService, Material $material): JsonResponse
+    {
+        // instance категории в роуте как {material?}
+        $result = $categoryService->saveOne(
+            $material,
+            $this->modelClassName,
+            $request->input('name')
+        );
+
+        return response()->json([
+            'saveSuccess' => $result['success'],
+            'category' => $result['category']
+        ]);
+    }
+
+    public function delete(MaterialDeleteRequest $request, Material $material): JsonResponse
+    {
+        // instance категории в роуте как {material}
+        $result = $material->delete();
+
+        return response()->json([
+            'deleteSuccess' => $result,
+            'category' => $material
+        ]);
+    }
+
+    public function changePosition(Request $request, CategoryService $categoryService, Material $material): JsonResponse
+    {
+        // instance категории в роуте как {category}
+        if ($request->input('direction') === 'up') {
+            $result = $categoryService->upPosition($this->modelClassName, $material);
+        } else {
+            $result = $categoryService->downPosition($this->modelClassName, $material);
+        }
+
+        return response()->json(['upDownSuccess' => $result['success']]);
     }
 }

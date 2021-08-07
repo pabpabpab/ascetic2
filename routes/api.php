@@ -22,11 +22,61 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-/*
- *
- *
+// Админка
+Route::group([
+    'prefix' => '/admin',
+    'namespace' => '\App\Http\Controllers\Api\Admin',
+    'middleware' => ['auth', 'role:admin'],
+], function () {
 
+    // csrf
+    Route::get('/csrf', function () { return response()->json(csrf_token()); });
 
+    // users
+    Route::get('/users', 'UserController@getAll');
+    Route::get('/users/count', 'UserController@getCount');
+    Route::get('/lazy-users/{lastId}', 'UserController@getLazyUsers');
+
+    // single user
+    Route::get('/user/{user}', 'UserController@getOne');
+    Route::post('/user/edit/{user}', 'UserController@update');
+
+    // категории товаров
+    Route::get('/categories', 'CategoryController@getAll');
+    Route::get('/categories/count', 'CategoryController@getCount');
+    // одна категория
+    Route::get('/category/{category}', 'CategoryController@getOne');
+    Route::post('/category/save/{category?}', 'CategoryController@save');
+    Route::delete('/category/delete/{category}', 'CategoryController@delete');
+    Route::post('/category/change-position/{category}', 'CategoryController@changePosition');
+
+    // материалы
+    Route::get('/materials', 'MaterialController@getAll');
+    Route::get('/materials/count', 'MaterialController@getCount');
+    // один материал
+    Route::get('/material/{material}', 'MaterialController@getOne');
+    Route::post('/material/save/{material?}', 'MaterialController@save');
+    Route::delete('/material/delete/{material}', 'MaterialController@delete');
+    Route::post('/material/change-position/{material}', 'MaterialController@changePosition');
+
+    // цвета
+    Route::get('/colors', 'ColorController@getAll');
+    Route::get('/colors/count', 'ColorController@getCount');
+    // один материал
+    Route::get('/color/{color}', 'ColorController@getOne');
+    Route::post('/color/save/{color?}', 'ColorController@save');
+    Route::delete('/color/delete/{color}', 'ColorController@delete');
+    Route::post('/color/change-position/{color}', 'ColorController@changePosition');
+
+    // список товаров
+    Route::get('/products', 'ProductController@getAll');
+    Route::get('/products/count', 'ProductController@getCount');
+    // один товар
+    Route::get('/product/{product}', 'ProductController@getOne');
+    Route::post('/product/save/{product?}', 'ProductController@save');
+    Route::delete('/product/delete/{product}', 'ProductController@delete');
+
+});
 
 
 
@@ -77,46 +127,3 @@ Route::delete('/admin/product/delete/{product}', '\App\Http\Controllers\Api\Admi
 
 
 */
-
-
-
-// Админка
-Route::group([
-    'prefix' => '/admin',
-    'namespace' => '\App\Http\Controllers\Api\Admin',
-    'middleware' => ['auth', 'role:admin'],
-], function () {
-
-    // users
-    Route::get('/users', 'UserController@getAll');
-    Route::get('/users/count', 'UserController@getCount');
-    Route::get('/lazy-users/{lastId}', 'UserController@getLazyUsers');
-
-    // single user
-    Route::get('/user/{user}', 'UserController@getOne');
-    Route::post('/user/edit/{user}', 'UserController@update');
-
-    // категории товаров
-    Route::get('/categories', 'CategoryController@getAll');
-    Route::get('/categories/count', 'CategoryController@getCount');
-    // одна категория
-    Route::get('/category/{category}', 'CategoryController@getOne');
-    Route::post('/category/save/{category?}', 'CategoryController@save');
-    Route::delete('/category/delete/{category}', 'CategoryController@delete');
-    Route::post('/category/change-position/{category}', 'CategoryController@changePosition');
-
-    // материалы
-    Route::get('/materials', 'MaterialController@getAll');
-    // цвета
-    Route::get('/colors', 'ColorController@getAll');
-
-    // список товаров
-    Route::get('/products', 'ProductController@getAll');
-    Route::get('/products/count', 'ProductController@getCount');
-    // один товар
-    Route::get('/product/{product}', 'ProductController@getOne');
-    Route::post('/product/save/{product?}', 'ProductController@save');
-    Route::delete('/product/delete/{product}', 'ProductController@delete');
-
-});
-    //->middleware('auth');

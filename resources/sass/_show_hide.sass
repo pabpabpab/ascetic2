@@ -1,0 +1,49 @@
+.show_block
+    visibility: visible
+    opacity: 1
+    animation: showBlock .5s
+@keyframes showBlock
+    from, to
+        opacity: 0
+        visibility: hidden
+    100%
+        opacity: 1
+        visibility: visible
+
+.hide_block
+    visibility: hidden
+    opacity: 0
+    animation: hideBlock .5s
+@keyframes hideBlock
+    from, to
+        opacity: 1
+        visibility: visible
+    100%
+        opacity: 0
+        visibility: hidden
+
+
+
+.show_transparent_block
+    visibility: visible
+    opacity: 0.6
+    animation: showTransparentBlock .5s
+@keyframes showTransparentBlock
+    from, to
+        opacity: 0
+        visibility: hidden
+    100%
+        opacity: 0.6
+        visibility: visible
+
+.hide_transparent_block
+    visibility: hidden
+    opacity: 0
+    animation: hideTransparentBlock .5s
+@keyframes hideTransparentBlock
+    from, to
+        opacity: 0.6
+        visibility: visible
+    100%
+        opacity: 0
+        visibility: hidden

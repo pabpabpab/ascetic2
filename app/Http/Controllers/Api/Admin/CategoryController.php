@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminCategoryDeleteRequest;
-use App\Http\Requests\AdminCategorySaveRequest;
+use App\Http\Requests\Admin\CategoryDeleteRequest;
+use App\Http\Requests\Admin\CategorySaveRequest;
 use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Http\JsonResponse;
@@ -12,15 +12,19 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function getAll(CategoryService $categoryService, Category $category): JsonResponse
+
+    protected $modelClassName = "App\Models\Category";
+
+
+    public function getAll(CategoryService $categoryService): JsonResponse
     {
-        $categories = $categoryService->getAll();
+        $categories = $categoryService->getAll($this->modelClassName);
         return response()->json($categories);
     }
 
     public function getCount(): JsonResponse
     {
-        $count = Category::count();
+        $count = $this->modelClassName::count();
         return response()->json($count);
     }
 
@@ -31,11 +35,12 @@ class CategoryController extends Controller
 
 
 
-    public function save(AdminCategorySaveRequest $request, CategoryService $categoryService, Category $category): JsonResponse
+    public function save(CategorySaveRequest $request, CategoryService $categoryService, Category $category): JsonResponse
     {
         // instance категории в роуте как {category?}
         $result = $categoryService->saveOne(
             $category,
+            $this->modelClassName,
             $request->input('name')
         );
 
@@ -45,7 +50,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function delete(AdminCategoryDeleteRequest $request, Category $category): JsonResponse
+    public function delete(CategoryDeleteRequest $request, Category $category): JsonResponse
     {
         // instance категории в роуте как {category}
         $result = $category->delete();
@@ -60,21 +65,12 @@ class CategoryController extends Controller
     {
         // instance категории в роуте как {category}
         if ($request->input('direction') === 'up') {
-            $result = $categoryService->upPosition($category);
+            $result = $categoryService->upPosition($this->modelClassName, $category);
         } else {
-            $result = $categoryService->downPosition($category);
+            $result = $categoryService->downPosition($this->modelClassName, $category);
         }
 
         return response()->json(['upDownSuccess' => $result['success']]);
     }
 
-    /*
-    public function downPosition(CategoryService $categoryService, Category $category): JsonResponse
-    {
-        // instance категории в роуте как {category}
-        $result = $categoryService->downPosition($category);
-
-        return response()->json(['upDownSuccess' => $result['success']]);
-    }
-*/
 }

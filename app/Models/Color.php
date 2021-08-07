@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Color extends Model
 {
@@ -14,13 +16,27 @@ class Color extends Model
         'name',
     ];
 
+
+    protected $attributes = [
+        'products_count' => 0,
+    ];
+
     public $timestamps = false;
 
 
-    public function getAll()
+    /**
+     * The products that belong to the color.
+     * Many-to-many relationship for products
+     */
+
+    public function products(): BelongsToMany
     {
-        return static::query()
-            ->orderBy('id', 'asc')
-            ->get();
+        return $this->belongsToMany(
+            Product::class,
+            'products_colors',
+            'color_id',
+            'product_id'
+        );
     }
+
 }

@@ -2,17 +2,12 @@
 const routes = [
     {
         path: '/admin',
-        name: 'MainPage',
+        name: 'Main',
         component: () => import('../components/Admin/MainPage.vue'),
     },
     {
-        path: '/admin/about',
-        name: 'AboutPage',
-        component: () => import('../components/Admin/AboutPage.vue'),
-    },
-    {
         path: '/admin/users',
-        name: 'UsersPage',
+        name: 'Users',
         component: () => import('../components/Admin/UsersPage.vue'),
     },
     {
@@ -34,12 +29,6 @@ const routes = [
         component: () => import('../components/Admin/oldSaveCategoryPage.vue'),
     },*/
 
-    {
-        path: '/admin/products/categories',
-        name: 'Categories',
-        component: () => import('../components/Admin/CategoriesPage.vue'),
-    },
-
 
     {
         path: '/admin/products/add',
@@ -47,20 +36,34 @@ const routes = [
         component: () => import('../components/Admin/SaveProductPage.vue'),
     },
 
-
     {
         path: '/admin/products',
         name: 'Products',
         component: () => import('../components/Admin/ProductsPage.vue'),
     },
 
+    {
+        path: '/admin/products/categories/:entity',
+        name: 'Categories',
+        component: () => import('../components/Admin/CategoriesPage.vue'),
+    },
+/*
+    {
+        path: '/admin/products/materials',
+        name: 'Materials',
+        component: () => import('../components/Admin/CategoriesPage.vue'),
+    },
 
-    /*
-   {
-       path: '*',
-       redirect: '/',
-   },
-   */
+    {
+        path: '/admin/products/colors',
+        name: 'Colors',
+        component: () => import('../components/Admin/CategoriesPage.vue'),
+    },
+*/
+    {
+        path: '*',
+        redirect: '/',
+    },
 ];
 
 export default routes;

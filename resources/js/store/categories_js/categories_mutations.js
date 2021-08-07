@@ -1,7 +1,7 @@
 export default {
-    setCategories: (state, data) => {
-        state.categories.splice(0, state.categories.length);
-        state.categories = [ ...data ];
+    setCategories: (state, { entity, data }) => {
+        state.categories[entity].splice(0, state.categories.length);
+        state.categories[entity] = [ ...data ];
     },
     setCategoriesCountFromServer: (state, number) => {
         state.categoriesCountFromServer = number;

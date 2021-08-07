@@ -1,57 +1,63 @@
 <template>
-    <div>
-        <h1>Категории товаров</h1>
-        <component
-            :is="currentAddingComponent"
-            @change-adding-component="changeAddingComponent()">
-        </component>
-        <categories
-            :rollChildItems="rollChildItems"
-            @close-adding-component="closeAddingComponent()">
-        </categories>
+    <div class="show_block">
+        <h1>{{ getHeader }}</h1>
+        <div class="content_block content_block__categories">
+            <component
+                :is="currentAddingComponent"
+                @change-adding-component="changeAddingComponent()">
+            </component>
+            <categories
+                :collapseItemsCommand="collapseItemsCommand"
+                @close-adding-component="closeAddingComponent()">
+            </categories>
+        </div>
     </div>
 </template>
 
 <script>
-import AddCategoryButton from "./Products/AddCategoryButton";
-import CategoryForm from "./Products/CategoryForm";
-import Categories from "./Products/Categories";
-import {mapActions} from "vuex";
+import AddCategoryButton from "./Categories/AddCategoryButton";
+import CategoryForm from "./Categories/CategoryForm";
+import Categories from "./Categories/Categories";
+
 export default {
     name: "CategoriesPage",
     components: {
         AddCategoryButton,
-        Categories,
         CategoryForm,
+        Categories,
     },
     data() {
         return {
             currentAddingComponent: 'AddCategoryButton',
-            rollChildItems: false,
+            collapseItemsCommand: false,
+            header: {
+                categories: 'Категории товаров',
+                materials: 'Материалы',
+                colors: 'Цвета',
+            },
         };
+    },
+    computed: {
+        getHeader() {
+            const entity = this.$route.params.entity;
+            return this.header[entity];
+        },
     },
     methods: {
         changeAddingComponent() {
             if (this.currentAddingComponent === 'AddCategoryButton') {
                 this.currentAddingComponent = 'CategoryForm';
-                this.rollChildItems = true;
+                this.collapseItemsCommand = true;
                 this.$store.dispatch('categories/cleanValidationErrors');
             } else {
                 this.currentAddingComponent = 'AddCategoryButton';
-                this.rollChildItems = false;
+                this.collapseItemsCommand = false;
             }
         },
         closeAddingComponent() {
             this.currentAddingComponent = 'AddCategoryButton';
-            this.rollChildItems = false;
+            this.collapseItemsCommand = false;
         },
     },
-    /*
-    computed: {
-        currentAddingComponent() {
-            return "tab-" + this.currentTab.toLowerCase();
-        }
-    }
-    */
 }
 </script>

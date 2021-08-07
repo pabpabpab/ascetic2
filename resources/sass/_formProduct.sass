@@ -1,20 +1,35 @@
+.content_block__product_form
+    padding: 30px
 
-.input__photo
+.input_text__product_form
+    width: 100%
+
+
+.materials_colors_block
+    display: flex
+    align-items: start
+    justify-content: space-between
+
+
+.product_form__property_header
+    +font(15px, rgb(80, 70, 70), 400)
+    text-align: left
+    padding: 0
+    margin: 0
+
+
+
+
+.input_photo
     position: absolute
     top: -500px
 
-.input__photo__wrapper
-    width: 300px
-    margin: 0 auto 20px auto
-
-
 .button__select_photos
-    padding: 10px
-    background-color: #e0e0e8
-    border: 2px dashed #606060
+    background-color: #FFF
+    border: 2px dashed rgb(100, 90, 90)
     border-radius: 5px
-    box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.5)
-    color: #000
+    box-shadow: 0 0 7px 0 rgba(155, 155, 155, 0.5)
+    +font(15px, rgb(80, 70, 70), 400)
     cursor: pointer
     outline: none
     width: 300px
@@ -22,13 +37,16 @@
     display: flex
     align-items: center
     justify-content: center
-    transition: border 0.3s
-.button__select_photos:hover
-    background-color: #e0e0f0
-    border: 2px dashed #0066ff
+    transition: border .3s, box-shadow .3s
+    &:hover
+        border: 2px dashed #0060ff
+        box-shadow: 0 0 15px 0 rgba(155, 155, 155, 0.6)
+        color: rgb(50, 45, 45)
+        // background-color: #e0e0f0
 
-.photo__preview__container
-    width: 300px
+
+.photo_preview__container
+    width: 100%
     margin: 20px auto
     display: flex
     flex-wrap: wrap
@@ -53,7 +71,7 @@
     opacity: 0
     transition: opacity 0.3s
 
-.offset__close_icon
+.prePhoto__close_icon_offset
     right: 0
     top: -25px
 
@@ -64,48 +82,22 @@
     height: 70px
     margin: 0 10px 10px 0
 
-
 .preFile_name
     margin: 0 10px 10px 0
     font-weight: bold
 
-.photo__btn__add
-    padding: 20px
 
 
-
-
-
-
-
-.input__text__product
-    padding: 10px
-    color: #000
-    width: 300px
-    box-sizing: border-box
-    //border: 1px solid #000
-
-.input__textarea
-    height: 100px
 
 
 
 .button__save_product
-    padding: 10px
-    background-color: #c0c0c8
-    border: 1px solid #fff
-    border-radius: 5px
-    box-shadow: 0 0 15px 0 rgba(255, 255, 255, 0.5)
-    color: #000
+    +font(15px, #fff, 400)
+    padding: 20px
+    width: 300px
+    border-radius: 7px
+    border: 0
+    background-color: rgb(25, 118, 210)
     cursor: pointer
-    outline: none
-    width: 150px
-    height: 38px
-    display: flex
-    align-items: center
-    justify-content: center
-.button__save_product:hover
-    background-color: #000
-    color: #FFF
-
-
+    &:hover
+        background-color: rgb(10, 65, 134)

@@ -1,63 +1,42 @@
-@import "vars"
+
+=font($size,$color,$weight)
+    font-size: $size
+    color: $color
+    font-weight: $weight
 
 body, html, #app, .app
+    height: 100% // важно для клика по документу
     padding: 0
     margin: 0
-    background-color: #e6e6e6
+    color: rgb(50, 45, 45)
+    background-color: rgb(244, 249, 252)
     text-align: center
 
+html
+    font-family: 'Source Sans Pro', sans-serif
+
+a
+    text-decoration: none
+
 h1
-    font-size: 21px
-    margin-top: 20px
+    +font(22px, rgb(80, 75, 75), 700)
+    font-family: 'Oswald', sans-serif
+    letter-spacing: 1px
 
-.mauto
+.content_wrapper
+    padding: 20px 0 50px 0
+
+.content_block
+    min-width: 500px
+    width: 500px
+    background-color: #fff
+    box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
     margin: 0 auto
-.display-none
-    display: none
-.display-flex
-    display: flex
-.relative
-    position: relative
-
-.pdl0
-    padding-left: 0
-.pdr0
-    padding-right: 0
-
-.tal
-    text-align: left
 
 
 
-
-.show_block
-    visibility: visible
-    opacity: 0.6
-    animation: showBlock .5s
-@keyframes showBlock
-    from, to
-        opacity: 0
-        visibility: hidden
-    100%
-        opacity: 0.6
-        visibility: visible
-
-.hide_block
-    visibility: hidden
-    opacity: 0
-    animation: hideBlock .5s
-@keyframes hideBlock
-    from, to
-        opacity: 0.6
-        visibility: visible
-    100%
-        opacity: 0
-        visibility: hidden
-
-
-
-
-
+@import "vars"
+@import "show_hide"
 @import "navBar"
 @import "user"
 @import "category"
@@ -74,8 +53,47 @@ h1
 @import "absoluteMessage"
 @import "fullScreenStub"
 @import "confirmationDialogBox"
+@import "contextMenu"
 
 
 
 
+.mauto
+    margin: 0 auto
+.display-none
+    display: none
+.display-flex
+    display: flex
+.relative
+    position: relative
+.w100
+    width: 100%
 
+.pdl0
+    padding-left: 0
+.pdr0
+    padding-right: 0
+
+.tal
+    text-align: left
+.tac
+    text-align: center
+
+
+
+.pd20
+    padding: 20px
+.mt10
+    margin-top: 10px
+.mt20
+    margin-top: 20px
+.mt30
+    margin-top: 30px
+.mt40
+    margin-top: 40px
+.mt50
+    margin-top: 50px
+.mb20
+    margin-bottom: 20px
+.m20px_auto
+    margin: 20px auto

@@ -5,9 +5,9 @@
             <p v-for="error of popupErrors" class="popup_right__item">
                - {{error[0]}}
             </p>
-            <div class='popup_right__close'
+            <div class='popup_right__collapse_icon'
                 @click.prevent="closePopupErrorsBox()">
-                &#9746;
+                &#215;
             </div>
         </div>
     </div>
@@ -24,16 +24,18 @@ export default {
         ]),
     },
     computed: {
-        ...mapGetters([
+        ...mapGetters('popupErrors', [
             'popupErrors',
-            'hasPopupErrors',
+            'enabledHidingCss'
         ]),
+
         popupClassObject() {
             return {
-                'popup_right': this.hasPopupErrors,
-                'display-none': !this.hasPopupErrors
+                'popup_right': true,
+                'popup_right__show': !this.enabledHidingCss,
+                'popup_right__hide': this.enabledHidingCss
             };
-        }
+        },
     },
 }
 </script>

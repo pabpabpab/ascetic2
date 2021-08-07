@@ -1,53 +1,8 @@
-
-
-.button__save_category
-    margin: 0 0 0 5px
-    padding: 10px
-    background-color: #cccccc
-    border-radius: 5px
-    color: #000
-    cursor: pointer
-    outline: none
-    width: 38px
-    height: 38px
-    display: flex
-    align-items: center
-    justify-content: center
-.button__save_category:hover
-    background-color: #000
-    color: #FFF
-
-.icon__collapse_form
-    position: absolute
-    top: 0
-    right: -31px
-    width: 12px
-    height: 12px
-    padding: 0
-    font-size: 12px
-    line-height: 13px
-    color: #000
-    font-weight: bold
-    cursor: pointer
-    background-color: #d0dee0
-    border: 2px solid #808088
-    border-radius: 3px
-    display: flex
-    align-items: center
-    justify-content: center
-.icon__collapse_form:hover
-    background-color: #c0ced0
-
 .category_form__div
-    width: 300px
-    border: 1px dotted rgba(100,100,120,0.3)
-    background-color: #e0e0e8
+    width: 410px
+    border: 1px dotted rgba(184, 204, 219, 0.9)
+    background-color: rgb(227, 237, 243)
     border-radius: 5px
-
-.pd20
-    padding: 20px
-.mt20
-    margin-top: 20px
 
 .category_form__animation_open
     opacity: 1
@@ -55,10 +10,10 @@
     height: 180px
     padding: 20px
     margin-top: 20px
-    animation: expand-category_form 1s
+    animation: expandCategoryForm 0.5s
     animation-iteration-count: 1
 
-@keyframes expand-category_form
+@keyframes expandCategoryForm
     from, to
         transform: scaleY(0)
         height: 0
@@ -72,20 +27,16 @@
         padding: 20px
         margin-top: 20px
 
-
-
-
-
 .category_form__animation_close
     opacity: 0
     transform: scaleY(0)
     height: 0
     padding: 0
     margin-top: 0
-    animation: roll-category_form 0.5s
+    animation: collapseCategoryForm 0.5s
     animation-iteration-count: 1
 
-@keyframes roll-category_form
+@keyframes collapseCategoryForm
     from, to
         transform: scaleY(1)
         opacity: 1
@@ -98,3 +49,56 @@
         height: 0
         padding: 0
         margin-top: 0
+
+
+.button__save_category
+    margin: 0 0 0 5px
+    padding: 10px
+    background-color: rgb(226, 235, 241)
+    border: 1px solid rgba(184, 204, 219, 0.9)
+    box-shadow: 0 3px 7px rgb(0, 0, 0, 0.2)
+    border-radius: 5px
+    +font(17px, #000, 400)
+    cursor: pointer
+    outline: none
+    width: 54px
+    height: 54px
+    display: flex
+    align-items: center
+    justify-content: center
+    &:hover
+        background-color: rgb(80, 70, 70)
+        color: #fff
+        box-shadow: 0 3px 3px rgba(96, 146, 248, 0.9)
+
+
+
+.icon__collapse_category_form
+    position: absolute
+    top: 0
+    right: -31px
+    width: 25px
+    height: 25px
+    padding: 0 0 3px 0
+    +font(45px, rgb(78, 110, 131), 100)
+    cursor: pointer
+    background-color: rgb(226, 235, 241)
+    border: 1px solid rgba(184, 204, 219, 0.9)
+    border-radius: 3px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &:hover
+        background-color: rgb(176, 199, 214)
+        color: #fff
+
+
+
+.input_text__category_form
+    width: 360px
+
+
+.category_edit_form_item__border_top
+    border-top: 1px solid rgb(206, 217, 240)
+

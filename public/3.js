@@ -86,6 +86,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     previewFiles: function previewFiles() {
+      if (this.$refs.photos.files.length === 0) {
+        return;
+      }
+
       this.photos = _toConsumableArray(this.$refs.photos.files);
     },
     removePreFile: function removePreFile(index) {
@@ -136,6 +140,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       return nonGraphicNames; // array of objects
+    },
+    buttonHeader: function buttonHeader() {
+      if (this.photos.length > 0) {
+        return 'Заменить фото';
+      }
+
+      return 'Добавить фото';
     }
   }
 });
@@ -280,6 +291,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -302,25 +341,74 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       zeroProduct: {},
       action: 'create',
       // create/edit
-      formHeaderProductName: '',
+      productNameHeader: '',
       animationClassObject: {
         'product_form__animation_open pd20 mt20': true,
         'product_form__animation_close': false
+      },
+      textarea: {
+        style: {// height: '100px'
+        },
+        prevLength: 0
       }
     };
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['saveProduct', 'typeinValidation'])),
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('materials', ['materials'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('colors', ['colors'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['isAlarmingInput', 'typeinErrors'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['saveProduct', 'typeinValidation'])), {}, {
+    fitTextareaHeight: function fitTextareaHeight(event) {
+      var _this = this;
+
+      if (event.target.scrollHeight > event.target.clientHeight) {
+        this.textarea.prevLength = event.target.value.length;
+
+        if (event.target.clientHeight > 500) {
+          return;
+        }
+
+        this._increaseTextareaHeight(event);
+
+        return;
+      }
+
+      if (!this._hasDecreaseInTextareaLength(event)) {
+        return;
+      }
+
+      this._resetTextareaHeight();
+
+      setTimeout(function () {
+        _this.fitTextareaHeight(event);
+      }, 10);
+    },
+    _increaseTextareaHeight: function _increaseTextareaHeight(event) {
+      var style = {
+        height: event.target.scrollHeight + 20 + 'px'
+      };
+      this.textarea.style = _objectSpread({}, style);
+    },
+    _hasDecreaseInTextareaLength: function _hasDecreaseInTextareaLength(event) {
+      if (event.target.value.length / this.textarea.prevLength < 0.85) {
+        this.textarea.prevLength = event.target.value.length;
+        return true;
+      }
+
+      return false;
+    },
+    _resetTextareaHeight: function _resetTextareaHeight() {
+      var style = {};
+      this.textarea.style = _objectSpread({}, style);
+    }
+  }),
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['isAlarmingInput', 'typeinErrors'])), {}, {
     localPrice: function localPrice() {
       return this.localProduct.price;
     }
   }),
   watch: {
     localPrice: function localPrice(value) {
-      var _this = this;
+      var _this2 = this;
 
       this.$store.dispatch('products/formatPrice', value).then(function (data) {
-        _this.localProduct.price = data;
+        _this2.localProduct.price = data;
       }); //this.localProduct.price = this.$options.filters.priceFormat(value);
     }
   },
@@ -328,87 +416,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     // в этом хуке localProduct нулевая
     // скопировать для reset'а в будущем при create
     this.zeroProduct = _objectSpread({}, this.localProduct);
-    this.$store.dispatch('categories/loadCategories');
-    this.$store.dispatch('materials/loadMaterials');
-    this.$store.dispatch('colors/loadColors');
+    this.$store.dispatch('categories/loadCategories', 'categories');
+    this.$store.dispatch('categories/loadCategories', 'materials');
+    this.$store.dispatch('categories/loadCategories', 'colors');
   }
-}); //this.nonGraphicNames = [];
-//this.graphicSrc = [];
-
-/*
-
-
-            <div class="input__wrapper">
-                <p class="input__validation_message"
-                   v-html="typeinErrors('material_id')">
-                </p>
-                <label>
-                    <select multiple
-                        class="input__text__product"
-                        :class="{ 'input_alarm': isAlarmingInput('material_id') }"
-                        v-model="localProduct.material_id">
-                        <option disabled value="">Укажите материал</option>
-                        <option
-                            v-for="material of materials"
-                            :key="material.id"
-                            :value="material.id">
-                            {{material.name}}
-                        </option>
-                    </select>
-                </label>
-            </div>
-
-
-
-
-
-            <div class="input__wrapper">
-                <p class="input__validation_message"
-                   v-html="typeinErrors('color_id')">
-                </p>
-                <label>
-                    <select multiple
-                        class="input__text__product"
-                        :class="{ 'input_alarm': isAlarmingInput('color_id') }"
-                        v-model="localProduct.color_id">
-                        <option disabled value="">Укажите цвет</option>
-                        <option
-                            v-for="color of colors"
-                            :key="color.id"
-                            :value="color.id">
-                            {{color.name}}
-                        </option>
-                    </select>
-                </label>
-            </div>
-
-
-
-
-
-let photoCounter = 0;
-for (let i = 0; i < this.photos.length; i++) {
-    const photo = this.photos[i];
-
-    if (!/\.(jpe?g|png|gif|bmp|webp)$/i.test(photo.name)) {
-        this.nonGraphicNames.push({
-            name: photo.name,
-            index: i
-        });
-        photoCounter++;
-        continue;
-    }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-        this.graphicSrc.push({
-            url: reader.result,
-            index: i
-        });
-    }
-    reader.readAsDataURL(photo);
-    photoCounter++;
-}*/
+});
 
 /***/ }),
 
@@ -430,7 +442,10 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "photo__preview__container" },
+      {
+        staticClass: "photo_preview__container",
+        class: { mt50: _vm.photos.length > 0 }
+      },
       [
         _vm._l(_vm.graphicSrc, function(item) {
           return _c(
@@ -471,7 +486,8 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "prePhoto__close_icon offset__close_icon",
+                  staticClass:
+                    "prePhoto__close_icon prePhoto__close_icon_offset",
                   on: {
                     click: function($event) {
                       return _vm.removePreFile(item.index)
@@ -487,10 +503,10 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "input__photo__wrapper" }, [
+    _c("div", { staticClass: "input_photo__wrapper" }, [
       _c("input", {
         ref: "photos",
-        staticClass: "input__photo",
+        staticClass: "input_photo",
         attrs: { type: "file", accept: "image/*", multiple: "" },
         on: {
           change: function($event) {
@@ -509,7 +525,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("\n            Добавить фото\n        ")]
+        [_vm._v("\n            " + _vm._s(_vm.buttonHeader) + "\n        ")]
       )
     ])
   ])
@@ -536,200 +552,213 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "product_form__div mauto", class: _vm.animationClassObject },
-    [
-      _vm.action === "edit"
-        ? _c("h1", { staticClass: "tal" }, [
-            _vm._v("Редактировать товар "),
-            _c("br"),
-            _vm._v("«" + _vm._s(_vm.formHeaderProductName) + "»")
-          ])
-        : _c("h1", { staticClass: "tal" }, [_vm._v("Добавить товар")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c("div", { staticClass: "input__wrapper" }, [
-            _c("p", {
-              staticClass: "input__validation_message",
-              domProps: { innerHTML: _vm._s(_vm.typeinErrors("category_id")) }
-            }),
-            _vm._v(" "),
-            _c("label", [
-              _c(
-                "select",
+  return _c("div", { staticClass: "show_block" }, [
+    _vm.action === "edit"
+      ? _c("h1", [
+          _vm._v("Редактировать товар "),
+          _c("br"),
+          _vm._v("«" + _vm._s(_vm.productNameHeader) + "»")
+        ])
+      : _c("h1", [_vm._v("Добавить товар")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "content_block content_block__product_form" },
+      [
+        _c("div", { staticClass: "input_text__container mt20" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.localProduct.name,
+                expression: "localProduct.name"
+              }
+            ],
+            staticClass: "input_text input_text__product_form",
+            class: { input_alarm: _vm.isAlarmingInput("name") },
+            attrs: { type: "text", maxlength: "50", placeholder: " " },
+            domProps: { value: _vm.localProduct.name },
+            on: {
+              keyup: function($event) {
+                return _vm.typeinValidation(_vm.localProduct)
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.localProduct, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "input_text__label" }, [
+            _vm._v("Введите название товара")
+          ]),
+          _vm._v(" "),
+          _c("p", {
+            staticClass: "validation_message_at_input",
+            domProps: { innerHTML: _vm._s(_vm.typeinErrors("name")) }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input_text__container mt30" }, [
+          _c(
+            "select",
+            {
+              directives: [
                 {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.localProduct.category_id,
-                      expression: "localProduct.category_id"
-                    }
-                  ],
-                  staticClass: "input__text__product",
-                  class: { input_alarm: _vm.isAlarmingInput("category_id") },
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.localProduct,
-                          "category_id",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      },
-                      function($event) {
-                        return _vm.typeinValidation(_vm.localProduct)
-                      }
-                    ]
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.localProduct.category_id,
+                  expression: "localProduct.category_id"
+                }
+              ],
+              staticClass: "input_select input_text__product_form",
+              class: { input_alarm: _vm.isAlarmingInput("category_id") },
+              attrs: { required: "" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.localProduct,
+                      "category_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  function($event) {
+                    return _vm.typeinValidation(_vm.localProduct)
                   }
-                },
-                [
-                  _c("option", { attrs: { disabled: "", value: "" } }, [
-                    _vm._v("Выберите категорию")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.categories, function(category) {
-                    return _c(
-                      "option",
-                      { key: category.id, domProps: { value: category.id } },
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { disabled: "" } }),
+              _vm._v(" "),
+              _vm._l(_vm.categories["categories"], function(category) {
+                return _c(
+                  "option",
+                  { key: category.id, domProps: { value: category.id } },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(category.name) +
+                        "\n                "
+                    )
+                  ]
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("label", { staticClass: "input_select__label" }, [
+            _vm._v("Выберите категорию")
+          ]),
+          _vm._v(" "),
+          _c("p", {
+            staticClass: "validation_message_at_input",
+            domProps: { innerHTML: _vm._s(_vm.typeinErrors("category_id")) }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "materials_colors_block mt30" }, [
+          _c(
+            "div",
+            [
+              _c("p", { staticClass: "product_form__property_header" }, [
+                _vm._v("Материал")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.categories["materials"], function(material) {
+                return _c(
+                  "p",
+                  { key: material.id, staticClass: "checkbox_input__item tal" },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.localProduct.material_ids,
+                          expression: "localProduct.material_ids"
+                        }
+                      ],
+                      staticClass: "checkbox_input",
+                      attrs: { type: "checkbox", id: "material" + material.id },
+                      domProps: {
+                        value: material.id,
+                        checked: Array.isArray(_vm.localProduct.material_ids)
+                          ? _vm._i(_vm.localProduct.material_ids, material.id) >
+                            -1
+                          : _vm.localProduct.material_ids
+                      },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$a = _vm.localProduct.material_ids,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = material.id,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.localProduct,
+                                    "material_ids",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.localProduct,
+                                    "material_ids",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.localProduct, "material_ids", $$c)
+                            }
+                          },
+                          function($event) {
+                            return _vm.typeinValidation(_vm.localProduct)
+                          }
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "checkbox_label",
+                        attrs: { for: "material" + material.id }
+                      },
                       [
                         _vm._v(
                           "\n                        " +
-                            _vm._s(category.name) +
+                            _vm._s(material.name) +
                             "\n                    "
                         )
                       ]
                     )
-                  })
-                ],
-                2
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "input__wrapper" }, [
-            _c("p", {
-              staticClass: "input__validation_message",
-              domProps: { innerHTML: _vm._s(_vm.typeinErrors("name")) }
-            }),
-            _vm._v(" "),
-            _c("label", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.localProduct.name,
-                    expression: "localProduct.name"
-                  }
-                ],
-                staticClass: "input__text__product",
-                class: { input_alarm: _vm.isAlarmingInput("name") },
-                attrs: {
-                  type: "text",
-                  maxlength: "50",
-                  placeholder: "Ведите название товара"
-                },
-                domProps: { value: _vm.localProduct.name },
-                on: {
-                  keyup: function($event) {
-                    return _vm.typeinValidation(_vm.localProduct)
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.localProduct, "name", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "input__wrapper" },
-            [
+                  ]
+                )
+              }),
+              _vm._v(" "),
               _c("p", {
-                staticClass: "input__validation_message",
+                staticClass: "validation_message_at_input mt10 ml_minus3",
                 domProps: {
                   innerHTML: _vm._s(_vm.typeinErrors("material_ids"))
                 }
-              }),
-              _vm._v(" "),
-              _c("p", { staticClass: "tal" }, [_vm._v("Материал")]),
-              _vm._v(" "),
-              _vm._l(_vm.materials, function(material) {
-                return _c("p", { key: material.id, staticClass: "tal" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.localProduct.material_ids,
-                        expression: "localProduct.material_ids"
-                      }
-                    ],
-                    attrs: { type: "checkbox", id: "material" + material.id },
-                    domProps: {
-                      value: material.id,
-                      checked: Array.isArray(_vm.localProduct.material_ids)
-                        ? _vm._i(_vm.localProduct.material_ids, material.id) >
-                          -1
-                        : _vm.localProduct.material_ids
-                    },
-                    on: {
-                      change: [
-                        function($event) {
-                          var $$a = _vm.localProduct.material_ids,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = material.id,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(
-                                  _vm.localProduct,
-                                  "material_ids",
-                                  $$a.concat([$$v])
-                                )
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  _vm.localProduct,
-                                  "material_ids",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
-                            }
-                          } else {
-                            _vm.$set(_vm.localProduct, "material_ids", $$c)
-                          }
-                        },
-                        function($event) {
-                          return _vm.typeinValidation(_vm.localProduct)
-                        }
-                      ]
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "material" + material.id } }, [
-                    _vm._v(_vm._s(material.name))
-                  ])
-                ])
               })
             ],
             2
@@ -737,185 +766,205 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "input__wrapper" },
             [
-              _c("p", {
-                staticClass: "input__validation_message",
-                domProps: { innerHTML: _vm._s(_vm.typeinErrors("color_ids")) }
+              _c("p", { staticClass: "product_form__property_header" }, [
+                _vm._v("Цвет")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.categories["colors"], function(color) {
+                return _c(
+                  "p",
+                  { key: color.id, staticClass: "checkbox_input__item tal" },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.localProduct.color_ids,
+                          expression: "localProduct.color_ids"
+                        }
+                      ],
+                      staticClass: "checkbox_input",
+                      attrs: { type: "checkbox", id: "color" + color.id },
+                      domProps: {
+                        value: color.id,
+                        checked: Array.isArray(_vm.localProduct.color_ids)
+                          ? _vm._i(_vm.localProduct.color_ids, color.id) > -1
+                          : _vm.localProduct.color_ids
+                      },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$a = _vm.localProduct.color_ids,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = color.id,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.localProduct,
+                                    "color_ids",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.localProduct,
+                                    "color_ids",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.localProduct, "color_ids", $$c)
+                            }
+                          },
+                          function($event) {
+                            return _vm.typeinValidation(_vm.localProduct)
+                          }
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "checkbox_label",
+                        attrs: { for: "color" + color.id }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(color.name) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  ]
+                )
               }),
               _vm._v(" "),
-              _c("p", { staticClass: "tal" }, [_vm._v("Цвет")]),
-              _vm._v(" "),
-              _vm._l(_vm.colors, function(color) {
-                return _c("p", { key: color.id, staticClass: "tal" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.localProduct.color_ids,
-                        expression: "localProduct.color_ids"
-                      }
-                    ],
-                    attrs: { type: "checkbox", id: "color" + color.id },
-                    domProps: {
-                      value: color.id,
-                      checked: Array.isArray(_vm.localProduct.color_ids)
-                        ? _vm._i(_vm.localProduct.color_ids, color.id) > -1
-                        : _vm.localProduct.color_ids
-                    },
-                    on: {
-                      change: [
-                        function($event) {
-                          var $$a = _vm.localProduct.color_ids,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = color.id,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(
-                                  _vm.localProduct,
-                                  "color_ids",
-                                  $$a.concat([$$v])
-                                )
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  _vm.localProduct,
-                                  "color_ids",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
-                            }
-                          } else {
-                            _vm.$set(_vm.localProduct, "color_ids", $$c)
-                          }
-                        },
-                        function($event) {
-                          return _vm.typeinValidation(_vm.localProduct)
-                        }
-                      ]
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "color" + color.id } }, [
-                    _vm._v(_vm._s(color.name))
-                  ])
-                ])
+              _c("p", {
+                staticClass: "validation_message_at_input mt10 ml_minus3",
+                domProps: { innerHTML: _vm._s(_vm.typeinErrors("color_ids")) }
               })
             ],
             2
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "input__wrapper" }, [
-            _c("p", {
-              staticClass: "input__validation_message",
-              domProps: { innerHTML: _vm._s(_vm.typeinErrors("description")) }
-            }),
-            _vm._v(" "),
-            _c("label", [
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.localProduct.description,
-                    expression: "localProduct.description"
-                  }
-                ],
-                staticClass: "input__text__product input__textarea",
-                class: { input_alarm: _vm.isAlarmingInput("description") },
-                attrs: { placeholder: "Введите описание товара" },
-                domProps: { value: _vm.localProduct.description },
-                on: {
-                  keyup: function($event) {
-                    return _vm.typeinValidation(_vm.localProduct)
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.localProduct,
-                      "description",
-                      $event.target.value
-                    )
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "input__wrapper" }, [
-            _c("p", {
-              staticClass: "input__validation_message",
-              domProps: { innerHTML: _vm._s(_vm.typeinErrors("price")) }
-            }),
-            _vm._v(" "),
-            _c("label", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.localProduct.price,
-                    expression: "localProduct.price"
-                  }
-                ],
-                staticClass: "input__text__product",
-                class: { input_alarm: _vm.isAlarmingInput("price") },
-                attrs: {
-                  type: "text",
-                  maxlength: "21",
-                  placeholder: "Ведите цену товара"
-                },
-                domProps: { value: _vm.localProduct.price },
-                on: {
-                  keyup: function($event) {
-                    return _vm.typeinValidation(_vm.localProduct)
-                  },
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.localProduct, "price", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("files-input", {
-            model: {
-              value: _vm.photos,
-              callback: function($$v) {
-                _vm.photos = $$v
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input_text__container mt40" }, [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.localProduct.description,
+                expression: "localProduct.description"
+              }
+            ],
+            staticClass: "input_text input_textarea input_text__product_form",
+            class: { input_alarm: _vm.isAlarmingInput("description") },
+            style: _vm.textarea.style,
+            attrs: { placeholder: " " },
+            domProps: { value: _vm.localProduct.description },
+            on: {
+              keyup: function($event) {
+                return _vm.typeinValidation(_vm.localProduct)
               },
-              expression: "photos"
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.localProduct, "description", $event.target.value)
+                },
+                function($event) {
+                  return _vm.fitTextareaHeight($event)
+                }
+              ]
             }
           }),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "button__save_product mauto",
-              on: {
-                click: function($event) {
-                  return _vm.saveProduct({
-                    localProduct: _vm.localProduct,
-                    photos: _vm.photos
-                  })
-                }
+          _c("label", { staticClass: "input_text__label" }, [
+            _vm._v("Введите описание товара")
+          ]),
+          _vm._v(" "),
+          _c("p", {
+            staticClass: "validation_message_at_input",
+            domProps: { innerHTML: _vm._s(_vm.typeinErrors("description")) }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input_text__container mt30" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.localProduct.price,
+                expression: "localProduct.price"
               }
+            ],
+            staticClass: "input_text input_text__product_form",
+            class: { input_alarm: _vm.isAlarmingInput("price") },
+            attrs: { type: "text", maxlength: "21", placeholder: " " },
+            domProps: { value: _vm.localProduct.price },
+            on: {
+              keyup: function($event) {
+                return _vm.typeinValidation(_vm.localProduct)
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.localProduct, "price", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("label", { staticClass: "input_text__label" }, [
+            _vm._v("Введите цену товара (в рублях)")
+          ]),
+          _vm._v(" "),
+          _c("p", {
+            staticClass: "validation_message_at_input",
+            domProps: { innerHTML: _vm._s(_vm.typeinErrors("price")) }
+          })
+        ]),
+        _vm._v(" "),
+        _c("files-input", {
+          model: {
+            value: _vm.photos,
+            callback: function($$v) {
+              _vm.photos = $$v
             },
-            [_vm._v("\n            Ok\n        ")]
-          )
-        ],
-        1
-      )
-    ]
-  )
+            expression: "photos"
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "button__save_product mauto mt30",
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                return _vm.saveProduct({
+                  localProduct: _vm.localProduct,
+                  photos: _vm.photos
+                })
+              }
+            }
+          },
+          [_vm._v("\n            Сохранить\n        ")]
+        )
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

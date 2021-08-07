@@ -45,6 +45,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "ProductItem",
   props: ['product'],
   methods: {
+    getPrice: function getPrice(parameters) {
+      var _parametersArr$price;
+
+      var parametersArr = JSON.parse(parameters);
+      var price = (_parametersArr$price = parametersArr.price) !== null && _parametersArr$price !== void 0 ? _parametersArr$price : '';
+      return price ? price + ' ₽' : '';
+    },
     getCategory: function getCategory(parameters) {
       var _parametersArr$catego;
 
@@ -181,7 +188,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "product__item__price" }, [
-        _vm._v("\n        " + _vm._s(_vm.product.price) + "\n    ")
+        _vm._v(
+          "\n        " + _vm._s(_vm.getPrice(_vm.product.parameters)) + "\n    "
+        )
       ])
     ]),
     _vm._v(" "),

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use App\Rules\NoProductsInTheCategory;
 use Illuminate\Contracts\Validation\Validator;
@@ -9,33 +9,17 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 use Symfony\Component\Console\Input\Input;
 
-class AdminCategoryDeleteRequest extends FormRequest
+class MaterialDeleteRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    /*
-    public function authorize()
-    {
-        return false;
-    }
-    */
 
 
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'category' => $this->route('category'),
+            'category' => $this->route('material'),
         ]);
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
 
     public function rules()
     {
