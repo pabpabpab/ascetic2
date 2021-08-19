@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\PhotoManager;
 
 
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-class PhotoUploadService
+class PhotoUploader
 {
 
     public function saveUploadedFiles($files, $productId): array {
@@ -27,8 +27,8 @@ class PhotoUploadService
 
                 $timeName++;
 
-                // сохранить 5 версий разного размера этого фото
-                for ($i = 1; $i <= 5; $i++) {
+                // сохранить 6 версий разного размера этого фото, 6 - просто копия исходника
+                for ($i = 1; $i <= 6; $i++) {
                     $newFileName = $productId."s".$i."-".$timeName.".".$ext;
                     $this->_savePhotoVersion($file, $newFileName, $i);
                 }
@@ -51,22 +51,14 @@ class PhotoUploadService
 
         $ext = explode('.', $newFileName)[1];
 
-        if ($width > 0) {
+        if ($i === 6) {
+            Image::make($file)->save($fullPath, 100, $ext);
+        } elseif ($width > 0) {
             Image::make($file)->widen($width)->save($fullPath, 95, $ext);
         } elseif ($height > 0) {
             Image::make($file)->heighten($height)->save($fullPath, 95, $ext);
         }
     }
 
-    /*
-        //$path = Storage::disk('public')->putFileAs($folderName, $file, $newFileName);
-        //$fullPath = Storage::disk('public')->path($path);
-
-        if ($width > 0) {
-            Image::make($fullPath)->widen($width)->save(null, 95);
-        } elseif ($height > 0) {
-            Image::make($fullPath)->heighten($height)->save(null, 95);
-        }
-   */
 
 }

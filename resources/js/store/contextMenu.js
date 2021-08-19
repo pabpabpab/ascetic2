@@ -7,14 +7,22 @@ export default {
         currentListIndex: 0,
         lastListIndex: 0,
         category: {},
+        product: {},
+        productId: 0,
+        photoName: '',
     },
     getters: {
         enabledFadingCss: (state) => state.enabledFadingCss,
         coordinates: (state) => state.coordinates,
         showCategoriesContextMenu: (state) => state.target === 'Categories',
+        showProductsContextMenu: (state) => state.target === 'Products',
+        showPhotosContextMenu: (state) => state.target === 'Photos',
         currentListIndex: (state) => state.currentListIndex,
         lastListIndex: (state) => state.lastListIndex,
         category: (state) => state.category,
+        product: (state) => state.product,
+        productId: (state) => state.productId,
+        photoName: (state) => state.photoName,
     },
     mutations: {
 
@@ -22,20 +30,53 @@ export default {
             state.enabledFadingCss = val;
         },
 
-        setCoordinates: (state, event) => {
+        setCoordinatesForCategoriesContext: (state, event) => {
+            const icon = event.target.getBoundingClientRect();
 
             const x = {
-                left: (event.clientX + 15) + 'px'
+                left: (icon.x + 25) + 'px'
             }
 
             // проверка на расстояние от точки клика до нижнего края
-            const y = window.innerHeight - event.clientY < 320
+            const y = window.innerHeight - event.clientY < 300
                 ? {
                     bottom: (window.innerHeight - event.pageY) + 'px'
                 }
                 : {
-                    top: event.clientY + window.pageYOffset + 10 + 'px'
+                    top: icon.y + window.pageYOffset + 21 + 'px'
                 };
+
+            state.coordinates = { ...x, ...y };
+        },
+
+        setCoordinatesForProductsContext: (state, event) => {
+            const icon = event.target.getBoundingClientRect();
+
+            const xOffset = -185;
+
+            const x = {
+                left: (icon.x + xOffset) + 'px'
+            }
+
+            const y = {
+                    top: icon.y + window.pageYOffset + 4 + 'px'
+                };
+
+            state.coordinates = { ...x, ...y };
+        },
+
+        setCoordinatesForPhotosContext: (state, event) => {
+            const icon = event.target.getBoundingClientRect();
+
+            const xOffset = -240;
+
+            const x = {
+                left: (icon.x + xOffset) + 'px'
+            }
+
+            const y = {
+                top: icon.y - 27 + 'px'
+            };
 
             state.coordinates = { ...x, ...y };
         },
@@ -57,12 +98,25 @@ export default {
             state.lastListIndex = lastListIndex;
         },
 
+        setProductsContextData: (state, data) => {
+            const { product } = data;
+            state.product = product;
+        },
+
+        setPhotosContextData: (state, data) => {
+            const { productId, photoName, currentListIndex, lastListIndex } = data;
+            state.productId = productId;
+            state.photoName = photoName;
+            state.currentListIndex = currentListIndex;
+            state.lastListIndex = lastListIndex;
+        },
+
     },
     actions: {
 
         showContextMenu({ dispatch, commit, getters }, { event, target, data }) {
             dispatch('setTarget', target).then(() => {
-                commit('setCoordinates', event);
+                commit(`setCoordinatesFor${target}Context`, event);
                 commit(`set${target}ContextData`, data);
                 commit('setEnabledFadingCss', false);
             });

@@ -7,16 +7,17 @@ export default {
                 dispatch('cleanPopupErrors', null, { root: true });
 
                 if (data.backValidatorErrors) {
-                    commit('setPopupErrors', data.backValidatorErrors, { root: true });
+                    dispatch('showPopupErrorsBox', data.backValidatorErrors, {root: true});
                     return;
                 }
 
                 if (data.deleteSuccess === true) {
                     dispatch('loadCategories', entity);
                     const txt = `«${data.category.name}» удалено`;
-                    dispatch('showAbsoluteFlashMessage', txt, { root: true });
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1.5}, { root: true });
                 } else {
-                    dispatch('showAbsoluteFlashMessage', 'неудачная попытка удаления', { root: true });
+                    const txt = `неудачная попытка удаления`;
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
             });
     },

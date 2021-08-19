@@ -3,7 +3,8 @@
 
 namespace App\Services;
 
-
+use App\Services\PhotoManager\PhotoTrait;
+use App\Services\PhotoManager\PhotoUploader;
 use App\Events\ProductModifiedEvent;
 use App\Models\Product;
 use App\Models\ProductDescription;
@@ -15,20 +16,14 @@ use Illuminate\Support\Facades\Storage;
 class ProductSaveService
 {
 
-    public function __construct(PhotoUploadService $uploadService)
+    use PhotoTrait;
+
+
+    public function saveOne($request, $product): array
     {
-        $this->uploadService = $uploadService;
-    }
-
-
-
-    public function saveOne($request, $product) {
-
         // info($request->input());
 
-        // старт транзакции
         DB::beginTransaction();
-
 
         try {
 
@@ -69,7 +64,7 @@ class ProductSaveService
 
         // СОХРАНИТЬ НА ДИСКЕ ФОТКИ И ПОЛУЧИТЬ МАССИВ ИХ ИМЕН
         try {
-            $photoNameArr = $this->uploadService->saveUploadedFiles(
+            $photoNameArr = (new PhotoUploader())->saveUploadedFiles(
                 $request->file('photos'),
                 $product->id
             );
@@ -84,13 +79,14 @@ class ProductSaveService
         }
 
 
-        // СОХРАНИТЬ ДАННЫЕ О ФОТО В ГЛАВНУЮ ТАБЛИЦУ В ВИДЕ JSON И В СВЯЗАННУЮ ТАБЛИЦУ
+        // СОХРАНИТЬ ДАННЫЕ О ФОТО В СВЯЗАННУЮ ТАБЛИЦУ И В ГЛАВНУЮ ТАБЛИЦУ В ВИДЕ JSON
         try {
+            // вставить имена фоток в таблицу photo
+            $this->_insertPhotoNamesIntoPhotoTable($product, $photoNameArr);
+
             // упаковать пути до фоток и сохранить
             $product->photo_set = json_encode($photoNameArr);
             $product->save();
-            // вставить имена фоток в таблицу photo
-            $this->_savePhotoNamesIntoRelatedTable($product, $photoNameArr);
         }
         catch (\Exception $e) {
             DB::rollback();
@@ -119,11 +115,17 @@ class ProductSaveService
     protected function _saveDataIntoRelatedTables($product, $request)
     {
         // вставка description using save method on relationship (one-to-one)
-        $product->description()->save(
-            new ProductDescription([
+        if ($request->id) {
+            $productDescriptionModel = $product->description;
+            $productDescriptionModel->description = $request->description;
+        } else {
+            $productDescriptionModel = new ProductDescription([
                 'description' => $request->description
-            ])
-        );
+            ]);
+        }
+        $product->description()->save($productDescriptionModel);
+
+
         // вставка colors_ids (или синхронизация) в pivot table
         $product->colors()->sync(
             $this->_getArrayOfIntegers($request->color_ids)
@@ -177,20 +179,6 @@ class ProductSaveService
 
     }
 
-
-
-    // ВСТАВИТЬ ИМЕНА ФОТОК В ТАБЛИЦУ photo
-    protected function _savePhotoNamesIntoRelatedTable($product, $photoNameArr)
-    {
-        // подготовить массив имен фоток, для вставки в таблицу photo через one-to-many
-        $photos = [];
-        foreach ($photoNameArr as $photoName) {
-            $photos[] = ['filename' => $photoName];
-        }
-
-        // вставить фотки в таблицу photo, используя photo() relationship
-        $product->photo()->createMany($photos);
-    }
 
 
 

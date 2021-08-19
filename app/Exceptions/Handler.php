@@ -70,7 +70,7 @@ class Handler extends ExceptionHandler
                     'customExceptionMessage' => 'Несоответствие защитного токена. Перезагрузите страницу.'
                 ]);
             }  else {
-                return back()->withErrors(['result' => 'Сервер устал ждать и закрыл сессию. Попробуйте выполнить действие снова.']);
+                return back()->withErrors(['result' => 'Сервер закрыл сессию. Перезагрузите страницу.']);
             }
         }
 

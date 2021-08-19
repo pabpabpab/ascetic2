@@ -12,6 +12,7 @@ class ProductDescription extends Model
     protected $table = 'products_descriptions';
 
     protected $fillable = [
+        'id',
         'product_id',
         'description'
     ];

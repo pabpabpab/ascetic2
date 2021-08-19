@@ -1,24 +1,36 @@
 <template>
-    <div>
-        <div class="product__item">
-        <span class="product__item__name">
-            {{ product.id }}
-        </span>
+    <div class="product__item">
+        <div>
             <span class="product__item__name">
-            {{ product.name }}
-        </span>
-        <span class="product__item__price">
-            {{ getPrice(product.parameters) }}
-        </span>
+                {{ product.id }}
+            </span>
+            <span class="product__item__name">
+                {{ product.name }}
+            </span>
+            <span class="product__item__price">
+                {{ getPrice(product.parameters) }}
+            </span>
         </div>
-        <div class="product__item">
+        <div>
             <p v-html="`${getMaterials(product.parameters)}
             / ${getColors(product.parameters)}
             / ${getCategory(product.parameters)}`"></p>
         </div>
-        <div class="product__item">
+        <div>
+            <p v-html="getMainPhoto(product.id, product.photo_set)"></p>
             <p v-html="getPhotos(product.id, product.photo_set, 1)"></p>
         </div>
+
+        <span class="context_menu__icon__product"
+            @mouseover="showContextMenu({
+                event: $event,
+                target: 'Products',
+                data: {
+                    product: product,
+                }
+            })">
+            &#8942;
+        </span>
     </div>
 </template>
 
@@ -29,6 +41,10 @@ export default {
     name: "ProductItem",
     props: ['product'],
     methods: {
+        ...mapActions('contextMenu', [
+            'showContextMenu',
+        ]),
+
         getPrice(parameters) {
             const parametersArr = JSON.parse(parameters);
             const price = parametersArr.price ?? '';
@@ -53,6 +69,23 @@ export default {
             });
             return colorsArr.join(', ');
         },
+
+        getMainPhoto(productId, photoInfo, sizeIndex = 3) {
+            const photoInfoArr = JSON.parse(photoInfo);
+            if (!photoInfoArr)
+                return;
+            const folderName = `/storage/${this.imgFolderPrefix}${sizeIndex}`;
+            const fileNamePrefix = `${productId}s${sizeIndex}-`;
+            const imgClass = `photo__size${sizeIndex}`;
+
+            const mainPhotoTimeName = photoInfoArr[0];
+
+            return `<img alt=""
+                    src="${folderName}/${fileNamePrefix}${mainPhotoTimeName}"
+                    class="${imgClass}" />`;
+        },
+
+
         getPhotos(productId, photoInfo, sizeIndex) {
             const photoInfoArr = JSON.parse(photoInfo);
             if (!photoInfoArr)
@@ -66,6 +99,8 @@ export default {
             });
             return photoArr.join('');
         },
+
+
 
     },
     computed: {

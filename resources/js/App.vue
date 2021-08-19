@@ -7,7 +7,7 @@
         <popup-errors v-if="showPopupErrors"></popup-errors>
         <absolute-flash-message v-if="showAbsoluteFlashMessage"></absolute-flash-message>
         <confirmation-dialog-box v-if="showConfirmationRequest"></confirmation-dialog-box>
-        <full-screen-stub v-if="showFullScreenStub"></full-screen-stub>
+        <waiting-screen v-if="showWaitingScreen"></waiting-screen>
     </div>
 </template>
 
@@ -18,7 +18,7 @@ import NavBar from "./components/Admin/NavBar";
 import PopupErrors from "./components/Admin/Blocks/PopupErrors";
 import AbsoluteFlashMessage from "./components/Admin/Blocks/AbsoluteFlashMessage";
 import ConfirmationDialogBox from "./components/Admin/Blocks/ConfirmationDialogBox";
-import FullScreenStub from "./components/Admin/Blocks/FullScreenStub";
+import WaitingScreen from "./components/Admin/Blocks/WaitingScreen";
 
 export default {
     name: 'app',
@@ -27,7 +27,7 @@ export default {
         AbsoluteFlashMessage,
         PopupErrors,
         ConfirmationDialogBox,
-        FullScreenStub,
+        WaitingScreen,
     },
     computed: {
         ...mapGetters('popupErrors', [
@@ -36,8 +36,8 @@ export default {
         ...mapGetters('absoluteFlashMessage', [
             'showAbsoluteFlashMessage',
         ]),
-        ...mapGetters('fullScreenStub', [
-            'showFullScreenStub',
+        ...mapGetters('waitingScreen', [
+            'showWaitingScreen',
         ]),
         ...mapGetters('confirmationDialog', [
             'showConfirmationRequest',

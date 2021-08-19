@@ -36,11 +36,11 @@ export default {
                     const txt = categoryId > 0
                         ? `Сохранено как «${data.category.name}»`
                         : `Создано «${data.category.name}»`;
-                    dispatch('showAbsoluteFlashMessage', txt, {root: true});
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1.5}, {root: true});
                     commit('disableTypeinValidation', null, {root: true});
                 } else {
-                    const errorTxt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
-                    dispatch('showAbsoluteFlashMessage', errorTxt, {root: true});
+                    const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, {root: true});
                 }
             });
     },

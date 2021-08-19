@@ -12,7 +12,7 @@ export default {
         const productId = product.id;
         await dispatch('cleanValidationErrors');
 
-        if (! await dispatch('_frontValidation', product)) {
+        if (!await dispatch('_frontValidation', product)) {
             return;
         }
 
@@ -29,7 +29,7 @@ export default {
 
         // console.log(product);
 
-        dispatch('showFullScreenStub', null, { root: true });
+        dispatch('showWaitingScreen', null, { root: true });
 
         dispatch(
             'postMultipart',
@@ -41,11 +41,9 @@ export default {
             { root: true }
         )
             .then((data) => {
-                // console.log(data);
-
                 // validatorErrors в данных формируется в форм-реквесте если валидация failed
                 if (data.backValidatorErrors) {
-                    dispatch('closeFullScreenStub', null, { root: true });
+                    dispatch('hideWaitingScreen', null, { root: true });
                     dispatch('showPopupErrorsBox', data.backValidatorErrors, { root: true });
                     commit('enableTypeinValidation', null, { root: true });
                     commit('setAlarmingInputs', data.backValidatorErrors, { root: true });
@@ -54,20 +52,23 @@ export default {
                 }
 
 
+                // console.log(data);
+
+
                 if (data.saveSuccess === true) {
                     //commit('setSingleProductFromServer', data.product);
                     commit('disableTypeinValidation', null, { root: true });
 
                     const txt = productId > 0
-                        ? `Данные товара «${data.product.name}» сохранены`
+                        ? `Данные товара «${data.product.name}» сохранены.`
                         : `Добавлен товар «${data.product.name}»`;
-                    dispatch('showAbsoluteFlashMessage', txt, { root: true });
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
 
                     thatRouter.push({ name: 'Products'});
                 } else {
-                    dispatch('closeFullScreenStub', null, { root: true });
-                    const errorTxt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
-                    dispatch('showAbsoluteFlashMessage', errorTxt, { root: true });
+                    dispatch('hideWaitingScreen', null, { root: true });
+                    const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
             });
     },

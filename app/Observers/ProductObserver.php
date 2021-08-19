@@ -8,7 +8,7 @@ use App\Models\Product;
 class ProductObserver
 {
 
-    public function deleting(Product $product)
+    public function deleted(Product $product)
     {
         // конечные действия в App\Listeners\ProductModifiedListener
         event(new ProductModifiedEvent($product));

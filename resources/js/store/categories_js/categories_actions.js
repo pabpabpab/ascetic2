@@ -23,7 +23,7 @@ export default {
         const url = getters.categoriesUrl(entity);
         dispatch('getJson', url, { root: true }).then((data) => {
             commit('setCategories', { entity, data });
-            dispatch('closeFullScreenStub', null, { root: true });
+            dispatch('hideWaitingScreen', null, { root: true });
         });
    },
 

@@ -11,7 +11,7 @@ export default {
     },
   },
   actions: {
-    getJson(context, url) {
+    async getJson(context, url) {
       return fetch(url)
          .then((result) => {
              context.commit('setCsrfToken', result.headers.get('X-CSRF-Token'));

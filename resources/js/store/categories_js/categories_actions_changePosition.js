@@ -2,7 +2,7 @@ export default {
 
     changePosition({ dispatch, commit, getters, state }, { entity, categoryId, direction }) {
         dispatch('closeContextMenu', null, { root: true });
-        dispatch('showFullScreenStub', null, { root: true });
+        dispatch('showWaitingScreen', null, { root: true });
         const changePositionUrl = getters.changePositionUrl(entity) + categoryId;
         dispatch(
             'postJson',
@@ -15,13 +15,13 @@ export default {
             .then((data) => {
                 if (data.upDownSuccess === true) {
                     dispatch('loadCategories', entity); // получить обновленный список с сервера
-                    dispatch('showAbsoluteFlashMessage', 'Сделано.', { root: true });
-                    //закрытие заглушки в loadCategories // dispatch('closeFullScreenStub', null, { root: true });
+                    const txt = 'Сделано.';
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.8}, { root: true });
+                    //закрытие заглушки в loadCategories // dispatch('hideWaitingScreen', null, { root: true });
                 } else {
-                    dispatch('closeFullScreenStub', null, { root: true });
-                    setTimeout(() => {
-                        dispatch('showAbsoluteFlashMessage', 'Неудачная попытка изменения позиции.', { root: true });
-                    }, 500);
+                    dispatch('hideWaitingScreen', null, { root: true });
+                    const txt = 'Неудачная попытка изменения позиции.';
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
             });
     },

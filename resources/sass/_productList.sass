@@ -1,18 +1,54 @@
+
+.content_block__products
+    width: 90%
+    padding: 20px 20px 10px 20px
+
+
 .products
+    width: 100%
     padding: 20px 0
+    // border: 1px solid #ccc
+    display: flex
+    justify-content: flex-start
+    flex-wrap: wrap
 
 .product__item
+    position: relative
+    display: block
     min-width: 250px
     width: 250px
-    margin: 0 auto
-    padding: 5px
+    margin: 10px
+    padding: 20px 10px
     text-align: left
-    font-size: 17px
-    display: flex
-    justify-content: space-between
+    border: 1px solid #ddd
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2)
+    transition: border .3s, box-shadow .3s
+    &:hover
+        border: 1px solid #fff
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2)
+        //transform: scale(1.02)
     &__name
+        +font(17px, rgb(80, 75, 75), 400)
         text-align: left
         flex-grow: 10
     &__price
-        color: #9f9f9f
+        +font(17px, #9f9f9f, 400)
         margin: 0 10px
+
+
+
+
+.context_menu__icon__product
+    position: absolute
+    top: 5px
+    right: 2px
+    +font(17px, rgb(25, 118, 210), 700)
+    padding: 0 10px
+    cursor: pointer
+    border-radius: 5px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &:hover
+        background-color: rgb(229, 239, 245)

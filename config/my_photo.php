@@ -20,6 +20,7 @@ return [
         'size3' => 'products-photos-size3',
         'size4' => 'products-photos-size4',
         'size5' => 'products-photos-size5',
+        'size6' => 'products-photos-size6',
     ],
 
 

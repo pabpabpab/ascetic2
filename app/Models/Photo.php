@@ -13,6 +13,7 @@ class Photo extends Model
     protected $table = 'photo';
 
     protected $fillable = [
+        'id',
         'product_id',
         'filename'
     ];

@@ -13,7 +13,7 @@ import products from './products';
 import typeinErrors from './typeinErrors';
 import popupErrors from './popupErrors';
 import absoluteFlashMessage from './absoluteFlashMessage';
-import fullScreenStub from './fullScreenStub';
+import waitingScreen from './waitingScreen';
 import confirmationDialog from './confirmationDialog';
 import contextMenu from './contextMenu';
 
@@ -54,7 +54,7 @@ const store = new Vuex.Store({
         typeinErrors,
         popupErrors,
         absoluteFlashMessage,
-        fullScreenStub,
+        waitingScreen,
         confirmationDialog,
         contextMenu,
         csrfToken,

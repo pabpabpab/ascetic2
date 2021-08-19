@@ -53,6 +53,7 @@ class CreateProductsTable extends Migration
         // Описание товаров
         DB::statement('DROP TABLE IF EXISTS products_descriptions');
         DB::statement('CREATE TABLE products_descriptions (
+            id SERIAL,
             product_id BIGINT UNSIGNED NOT NULL,
 	        description TEXT,
 	        deleted_at DATETIME,
@@ -63,6 +64,7 @@ class CreateProductsTable extends Migration
         // Фото товаров
         DB::statement('DROP TABLE IF EXISTS photo');
         DB::statement('CREATE TABLE photo (
+            id SERIAL,
             product_id BIGINT UNSIGNED NOT NULL,
             filename VARCHAR(100),
             deleted_at DATETIME,

@@ -2,7 +2,7 @@
     <div class="show_block">
 
 
-        <h1 v-if="action==='edit'">Редактировать товар <br>«{{productNameHeader}}»</h1>
+        <h1 v-if="action==='edit'">Редактировать товар «{{localProduct.name}}»</h1>
         <h1 v-else>Добавить товар</h1>
 
         <div class="content_block content_block__product_form">
@@ -103,7 +103,6 @@
             <div class="input_text__container mt40">
                 <textarea class="input_text input_textarea input_text__product_form"
                     :class="{ 'input_alarm': isAlarmingInput('description') }"
-                    :style="textarea.style"
                     placeholder=" "
                     @keyup="typeinValidation(localProduct);"
                     @input="fitTextareaHeight($event);"
@@ -135,7 +134,12 @@
             </div>
 
 
-            <files-input v-model="photos"></files-input>
+            <files-input
+                v-if="action==='create'"
+                v-model="photos"
+                owner="ProductForm"
+                class="mt30">
+            </files-input>
 
             <button class="button__save_product mauto mt30"
                 @click.stop="saveProduct({localProduct, photos})">
@@ -150,6 +154,8 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import FilesInput from "./FilesInput";
+import _fitTextareaHeight from './functions/fitTextareaHeight';
+import getFormattedPrice from './functions/getFormattedPrice';
 
 export default {
     name: "ProductForm",
@@ -166,20 +172,7 @@ export default {
                 color_ids: [],
             },
             photos: [],
-            zeroProduct: {},
-            action: 'create', // create/edit
-            productNameHeader: '',
-            animationClassObject: {
-                'product_form__animation_open pd20 mt20': true,
-                'product_form__animation_close': false
-            },
-
-            textarea: {
-                style: {
-                    // height: '100px'
-                },
-                prevLength: 0,
-            }
+            action: 'create',
         };
     },
 
@@ -188,47 +181,8 @@ export default {
             'saveProduct',
             'typeinValidation'
         ]),
-
-
         fitTextareaHeight(event) {
-            if (event.target.scrollHeight > event.target.clientHeight) {
-                this.textarea.prevLength = event.target.value.length;
-                if (event.target.clientHeight > 500) {
-                    return;
-                }
-                this._increaseTextareaHeight(event);
-                return;
-            }
-
-            if (!this._hasDecreaseInTextareaLength(event)) {
-                return;
-            }
-
-            this._resetTextareaHeight();
-
-            setTimeout(() => {
-                this.fitTextareaHeight(event);
-            },10);
-        },
-
-        _increaseTextareaHeight(event) {
-            const style = {
-                height: event.target.scrollHeight + 20 + 'px'
-            }
-            this.textarea.style = { ...style };
-        },
-
-        _hasDecreaseInTextareaLength(event) {
-            if (event.target.value.length / this.textarea.prevLength < 0.85) {
-                this.textarea.prevLength = event.target.value.length;
-                return true;
-            }
-            return false;
-        },
-
-        _resetTextareaHeight() {
-            const style = {};
-            this.textarea.style = { ...style };
+            _fitTextareaHeight(event);
         },
     },
 
@@ -250,20 +204,34 @@ export default {
 
     watch:{
         localPrice(value) {
-            this.$store.dispatch('products/formatPrice', value).then((data) => {
-                this.localProduct.price = data;
-            });
-            //this.localProduct.price = this.$options.filters.priceFormat(value);
+            this.localProduct.price = getFormattedPrice(value);
+        },
+        singleProductFromServer(val) {
+            if (!val) {
+                return;
+            }
+            // console.log(val);
+            const parameters = JSON.parse(val.product.parameters);
+            this.localProduct = {
+                id: val.product.id,
+                category_id: val.product.category_id,
+                name: val.product.name,
+                price: parameters.price,
+                description: val.description.description,
+                material_ids: parameters.materials.map((item) => item.id),
+                color_ids: parameters.colors.map((item) => item.id),
+            }
         },
     },
 
     mounted() {
-        // в этом хуке localProduct нулевая
-        // скопировать для reset'а в будущем при create
-        this.zeroProduct = {...this.localProduct};
         this.$store.dispatch('categories/loadCategories', 'categories');
         this.$store.dispatch('categories/loadCategories', 'materials');
         this.$store.dispatch('categories/loadCategories', 'colors');
+        if (this.$route.params.id) {
+            this.action = 'edit';
+            this.$store.dispatch('products/loadSingleProduct', this.$route.params.id);
+        }
     },
 }
 </script>

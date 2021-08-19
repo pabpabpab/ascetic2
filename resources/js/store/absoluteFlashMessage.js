@@ -19,11 +19,11 @@ export default {
     actions: {
         showAbsoluteFlashMessage: {
             root: true,
-            handler ({ commit }, text) {
+            handler ({ commit }, {text, sec}) {
                 commit('setText', text);
                 setTimeout(() => {
                     commit('setText', '');
-                }, 2200);
+                }, sec * 1000);
             }
         },
     },

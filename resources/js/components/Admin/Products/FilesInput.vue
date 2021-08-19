@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="photo_preview__container" :class="{'mt50': photos.length > 0}">
+        <div class="photo_preview__container" :class="{'mt20': photos.length > 0}">
 
             <div v-for="item of graphicSrc"
                 :key="item.index"
@@ -44,7 +44,10 @@
                    multiple
                    class="input_photo">
 
-            <button @click="selectFiles()" class="button__select_photos mauto">
+            <button
+                v-if="showPhotoButton"
+                @click="selectFiles()"
+                class="button__select_photos mauto">
                 {{ buttonHeader }}
             </button>
         </div>
@@ -57,7 +60,7 @@ export default {
     name: "FilesInput",
     // пропс value, потому что в родителе v-model, который есть как
     // :value="photos"  @input="photos = $event"
-    props: ['value'],
+    props: ['value', 'owner', 'resetPhotosCmd'],
     data() {
         return {
             photos: [],
@@ -76,6 +79,14 @@ export default {
         },
         selectFiles() {
             this.$refs.photos.click();
+        },
+        resetPhotos() {
+            this.photos = [...[]];
+            setTimeout(() => {
+                if (this.photos.length > 0) {
+                    this.resetPhotos();
+                }
+            }, 500);
         },
     },
 
@@ -124,6 +135,24 @@ export default {
                 return 'Заменить фото';
             }
             return 'Добавить фото';
+        },
+
+        showPhotoButton() {
+            // показывать кнопку «Добавить/Заменить фото» всегда, кроме случая ниже
+            return !(this.owner === 'ProductPhotoManager' && this.photos.length > 0);
+        },
+    },
+
+    watch:{
+        resetPhotosCmd(val) {
+            if (!val) {
+                return;
+            }
+            /*
+            if (this.photos.length > 0) {
+                this.photos = [...[]];
+            }*/
+            this.resetPhotos();
         },
     },
 

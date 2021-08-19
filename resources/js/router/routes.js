@@ -37,6 +37,12 @@ const routes = [
     },
 
     {
+        path: '/admin/products/edit/:id',
+        name: 'EditProduct',
+        component: () => import('../components/Admin/SaveProductPage.vue'),
+    },
+
+    {
         path: '/admin/products',
         name: 'Products',
         component: () => import('../components/Admin/ProductsPage.vue'),

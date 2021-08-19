@@ -10,7 +10,7 @@
                     lastListIndex: lastListIndex
                 }
             })"
-            class="context_menu__icon">
+            class="context_menu__icon__category">
             &#8942;
         </span>
 

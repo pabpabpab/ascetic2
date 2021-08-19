@@ -1,14 +1,15 @@
 import productValidation from './functions/productValidation';
-import getFormattedPrice from './functions/getFormattedPrice';
 import thatRouter from './../../router/index';
 
 export default {
     // eslint-disable-next-line no-unused-vars
-    async loadSingleProduct({dispatch, commit, getters, state}, productId) {
+    loadSingleProduct({dispatch, commit, getters, state}, productId) {
         const singleProductUrl = getters.singleProductUrl + productId;
         dispatch('getJson', singleProductUrl, { root: true })
             .then((data) => {
+                // console.log(data);
                 commit('setSingleProductFromServer', data);
+                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 
@@ -22,8 +23,9 @@ export default {
     async loadProducts({ dispatch, commit, getters }) {
         const url = getters.productsUrl;
         dispatch('getJson', url, { root: true }).then((data) => {
+            //console.log(data);
             commit('setProducts', data);
-            dispatch('closeFullScreenStub', null, { root: true });
+            dispatch('hideWaitingScreen', null, { root: true });
         });
     },
 
@@ -43,10 +45,6 @@ export default {
         commit('resetAlarmingInputs', null, { root: true });
         commit('resetTypeinErrors', null, { root: true });
         commit('disableTypeinValidation', null, { root: true });
-    },
-
-    async formatPrice(context, price) {
-        return getFormattedPrice(price);
     },
 
 

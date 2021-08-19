@@ -1,7 +1,9 @@
 <template>
-    <div>
+    <div class="show_block">
         <h1>Список товаров</h1>
-        <products></products>
+        <div class="content_block content_block__products">
+            <products></products>
+        </div>
     </div>
 </template>
 

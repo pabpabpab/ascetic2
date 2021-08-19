@@ -27,6 +27,7 @@ export default {
     },
     mounted() {
         this.$store.dispatch('categories/getCategoriesCount');
+        this.$store.dispatch('updateCSRF', 5);
     },
 }
 </script>

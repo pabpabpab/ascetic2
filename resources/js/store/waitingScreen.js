@@ -1,16 +1,16 @@
 export default {
     namespaced: true,
     state: {
-        showFullScreenStub: false,
+        showWaitingScreen: false,
         enabledFadingCss: false,
     },
     getters: {
-        showFullScreenStub: (state) => state.showFullScreenStub,
+        showWaitingScreen: (state) => state.showWaitingScreen,
         enabledFadingCss: (state) => state.enabledFadingCss,
     },
     mutations: {
-        setShowFullScreenStub: (state, val) => {
-            state.showFullScreenStub = val;
+        setShowWaitingScreen: (state, val) => {
+            state.showWaitingScreen = val;
         },
         setEnabledFadingCss: (state, val) => {
             state.enabledFadingCss = val;
@@ -18,20 +18,20 @@ export default {
     },
     actions: {
 
-        showFullScreenStub: {
+        showWaitingScreen: {
             root: true,
             handler ({ commit }) {
-                commit('setShowFullScreenStub', true);
+                commit('setShowWaitingScreen', true);
                 commit('setEnabledFadingCss', false);
             }
         },
 
-        closeFullScreenStub: {
+        hideWaitingScreen: {
             root: true,
             handler ({ commit }) {
                 commit('setEnabledFadingCss', true);
                 setTimeout(() => {
-                    commit('setShowFullScreenStub', false);
+                    commit('setShowWaitingScreen', false);
                 }, 1000);
             }
         },

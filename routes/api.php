@@ -75,6 +75,16 @@ Route::group([
     Route::get('/product/{product}', 'ProductController@getOne');
     Route::post('/product/save/{product?}', 'ProductController@save');
     Route::delete('/product/delete/{product}', 'ProductController@delete');
+    // photo manager
+    Route::delete('/product/photo/delete/{product}/{photoName}', 'ProductController@deletePhoto')
+        ->where('photoName', '[0-9]+\.[a-z]+');
+    Route::get('/product/photo/rotate/{product}/{photoName}/{angle}', 'ProductController@rotatePhoto')
+        ->where('photoName', '[0-9]+\.[a-z]+')
+        ->where('angle', '90|180|270');
+    Route::get('/product/photo/move/{product}/{photoName}/{to}', 'ProductController@movePhoto')
+        ->where('photoName', '[0-9]+\.[a-z]+')
+        ->where('to', 'first|up|down');
+    Route::post('/product/photo/add/{product}', 'ProductController@addPhoto');
 
 });
 

@@ -17,14 +17,14 @@ export default {
     },
 
     actions: {
-        updateCSRF({ dispatch, commit, getters }) {
+        updateCSRF({ dispatch, commit, getters }, seconds = 30) {
             const url = getters.csrfUrl;
             setInterval(() => {
                 dispatch('getJson', url).then((data) => {
                     commit('setCsrfToken', data);
                     // console.log(data);
                 });
-            }, 100*1000); // 100 секунд
+            }, seconds*1000);
         },
     },
 
