@@ -1,17 +1,20 @@
 <template>
     <div :class="contextMenuClassObject" :style="coordinates">
         <ul class="context_menu__ul">
-            <li  class="context_menu__li context_menu__li_black"
-                 @click="rotatePhoto({productId, photoName, angle: 270})">
-                Повернуть на 90&deg; &#8635;
-            </li>
-            <li  class="context_menu__li context_menu__li_black"
-                 @click="rotatePhoto({productId, photoName, angle: 180})">
-                Повернуть на 180&deg;
-            </li>
-            <li  class="context_menu__li context_menu__li_black"
-                 @click="rotatePhoto({productId, photoName, angle: 90})">
-                Повернуть на 90&deg;&#8634;
+
+            <li  class="context_menu__li__multiple_black">
+                    <span class="context_menu__li__multiple__item_black"
+                          @click="rotatePhoto({productId, photoName, angle: 270})">
+                        &#8635; 90&deg;
+                    </span>
+                    <span class="context_menu__li__multiple__item_black"
+                          @click="rotatePhoto({productId, photoName, angle: 180})">
+                        180&deg;
+                    </span>
+                    <span class="context_menu__li__multiple__item_black"
+                          @click="rotatePhoto({productId, photoName, angle: 90})">
+                        90&deg;&#8634;
+                    </span>
             </li>
 
             <li class="context_menu__li context_menu__li_black"

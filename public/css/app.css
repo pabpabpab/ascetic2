@@ -1455,6 +1455,37 @@ h1 {
   background-color: rgba(100, 100, 100, 0.9);
 }
 
+.context_menu__li__multiple_black {
+  margin: 0;
+  padding: 3px 8px;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.context_menu__li__multiple__item_black {
+  display: block;
+  margin: 0;
+  padding: 7px;
+  font-size: 16px;
+  color: #e8e8e8;
+  font-weight: 400;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.context_menu__li__multiple__item_black:hover {
+  background-color: rgba(100, 100, 100, 0.9);
+  color: #fff;
+}
+
 .photo_management__screen {
   position: fixed;
   z-index: 10;

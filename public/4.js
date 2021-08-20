@@ -81,7 +81,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   name: "FilesInput",
   // пропс value, потому что в родителе v-model, который есть как
   // :value="photos"  @input="photos = $event"
-  props: ['value', 'owner', 'resetPhotosCmd'],
+  props: ['value', 'owner'],
   data: function data() {
     return {
       photos: []
@@ -100,16 +100,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     selectFiles: function selectFiles() {
       this.$refs.photos.click();
-    },
-    resetPhotos: function resetPhotos() {
-      var _this = this;
-
-      this.photos = [].concat();
-      setTimeout(function () {
-        if (_this.photos.length > 0) {
-          _this.resetPhotos();
-        }
-      }, 500);
     }
   },
   computed: {
@@ -164,20 +154,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     showPhotoButton: function showPhotoButton() {
       // показывать кнопку «Добавить/Заменить фото» всегда, кроме случая ниже
       return !(this.owner === 'ProductPhotoManager' && this.photos.length > 0);
-    }
-  },
-  watch: {
-    resetPhotosCmd: function resetPhotosCmd(val) {
-      if (!val) {
-        return;
-      }
-      /*
-      if (this.photos.length > 0) {
-          this.photos = [...[]];
-      }*/
-
-
-      this.resetPhotos();
     }
   }
 });

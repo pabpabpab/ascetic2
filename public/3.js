@@ -56,6 +56,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PhotosContextMenu",
@@ -269,7 +272,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   name: "FilesInput",
   // пропс value, потому что в родителе v-model, который есть как
   // :value="photos"  @input="photos = $event"
-  props: ['value', 'owner', 'resetPhotosCmd'],
+  props: ['value', 'owner'],
   data: function data() {
     return {
       photos: []
@@ -288,16 +291,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     selectFiles: function selectFiles() {
       this.$refs.photos.click();
-    },
-    resetPhotos: function resetPhotos() {
-      var _this = this;
-
-      this.photos = [].concat();
-      setTimeout(function () {
-        if (_this.photos.length > 0) {
-          _this.resetPhotos();
-        }
-      }, 500);
     }
   },
   computed: {
@@ -352,20 +345,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     showPhotoButton: function showPhotoButton() {
       // показывать кнопку «Добавить/Заменить фото» всегда, кроме случая ниже
       return !(this.owner === 'ProductPhotoManager' && this.photos.length > 0);
-    }
-  },
-  watch: {
-    resetPhotosCmd: function resetPhotosCmd(val) {
-      if (!val) {
-        return;
-      }
-      /*
-      if (this.photos.length > 0) {
-          this.photos = [...[]];
-      }*/
-
-
-      this.resetPhotos();
     }
   }
 });
@@ -643,7 +622,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         photo_set: []
       },
       photos: [],
-      resetPhotosCmd: false
+      resetFilesInputKey: 0
     };
   },
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])('products', ['enabledFadingCss', 'singleProductFromServer'])), {}, {
@@ -661,17 +640,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])('products', ['closeProductPhotoManager', 'addPhotos'])), {}, {
     resetPhotos: function resetPhotos() {
-      if (this.photos.length > 0) {
-        this.photos = [].concat();
-        this.resetPhotosCmd = true;
-      }
-      /*
-      setTimeout(() => {
-          if (this.photos.length > 0) {
-              this.resetPhotos();
-          }
-      }, 500);*/
+      this.photos = [].concat(); // изменение resetFilesInputKey заставит перерисоваться компонент <files-input>
 
+      this.resetFilesInputKey++;
     },
     sendPhotos: function sendPhotos() {
       var _this = this;
@@ -812,56 +783,58 @@ var render = function() {
     { class: _vm.contextMenuClassObject, style: _vm.coordinates },
     [
       _c("ul", { staticClass: "context_menu__ul" }, [
-        _c(
-          "li",
-          {
-            staticClass: "context_menu__li context_menu__li_black",
-            on: {
-              click: function($event) {
-                return _vm.rotatePhoto({
-                  productId: _vm.productId,
-                  photoName: _vm.photoName,
-                  angle: 270
-                })
+        _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+          _c(
+            "span",
+            {
+              staticClass: "context_menu__li__multiple__item_black",
+              on: {
+                click: function($event) {
+                  return _vm.rotatePhoto({
+                    productId: _vm.productId,
+                    photoName: _vm.photoName,
+                    angle: 270
+                  })
+                }
               }
-            }
-          },
-          [_vm._v("\n            Повернуть на 90° ↻\n        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            staticClass: "context_menu__li context_menu__li_black",
-            on: {
-              click: function($event) {
-                return _vm.rotatePhoto({
-                  productId: _vm.productId,
-                  photoName: _vm.photoName,
-                  angle: 180
-                })
+            },
+            [_vm._v("\n                    ↻ 90°\n                ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "context_menu__li__multiple__item_black",
+              on: {
+                click: function($event) {
+                  return _vm.rotatePhoto({
+                    productId: _vm.productId,
+                    photoName: _vm.photoName,
+                    angle: 180
+                  })
+                }
               }
-            }
-          },
-          [_vm._v("\n            Повернуть на 180°\n        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            staticClass: "context_menu__li context_menu__li_black",
-            on: {
-              click: function($event) {
-                return _vm.rotatePhoto({
-                  productId: _vm.productId,
-                  photoName: _vm.photoName,
-                  angle: 90
-                })
+            },
+            [_vm._v("\n                    180°\n                ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "context_menu__li__multiple__item_black",
+              on: {
+                click: function($event) {
+                  return _vm.rotatePhoto({
+                    productId: _vm.productId,
+                    photoName: _vm.photoName,
+                    angle: 90
+                  })
+                }
               }
-            }
-          },
-          [_vm._v("\n            Повернуть на 90°↺\n        ")]
-        ),
+            },
+            [_vm._v("\n                    90°↺\n                ")]
+          )
+        ]),
         _vm._v(" "),
         _vm.currentListIndex > 0
           ? _c(
@@ -1328,10 +1301,8 @@ var render = function() {
         { staticClass: "photo_input__panel" },
         [
           _c("files-input", {
-            attrs: {
-              owner: "ProductPhotoManager",
-              resetPhotosCmd: _vm.resetPhotosCmd
-            },
+            key: _vm.resetFilesInputKey,
+            attrs: { owner: "ProductPhotoManager" },
             model: {
               value: _vm.photos,
               callback: function($$v) {

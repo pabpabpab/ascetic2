@@ -23,9 +23,9 @@
 
             <div class="photo_input__panel">
                 <files-input
+                    :key="resetFilesInputKey"
                     v-model="photos"
-                    owner="ProductPhotoManager"
-                    :resetPhotosCmd="resetPhotosCmd">
+                    owner="ProductPhotoManager">
                 </files-input>
 
                 <div v-if="showButtonsPanel" class="send_cancel_buttons__panel">
@@ -70,7 +70,7 @@ export default {
                 photo_set: []
             },
             photos: [],
-            resetPhotosCmd: false,
+            resetFilesInputKey: 0,
         };
     },
     computed: {
@@ -101,17 +101,9 @@ export default {
             'addPhotos',
         ]),
         resetPhotos() {
-            if (this.photos.length > 0) {
-                this.photos = [...[]];
-                this.resetPhotosCmd = true;
-            }
-
-            /*
-            setTimeout(() => {
-                if (this.photos.length > 0) {
-                    this.resetPhotos();
-                }
-            }, 500);*/
+            this.photos = [...[]];
+            // изменение resetFilesInputKey заставит перерисоваться компонент <files-input>
+            this.resetFilesInputKey++;
         },
         sendPhotos() {
             this.$store.dispatch('products/addPhotos', {

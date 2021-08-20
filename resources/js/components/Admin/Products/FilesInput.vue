@@ -60,7 +60,7 @@ export default {
     name: "FilesInput",
     // пропс value, потому что в родителе v-model, который есть как
     // :value="photos"  @input="photos = $event"
-    props: ['value', 'owner', 'resetPhotosCmd'],
+    props: ['value', 'owner'],
     data() {
         return {
             photos: [],
@@ -79,14 +79,6 @@ export default {
         },
         selectFiles() {
             this.$refs.photos.click();
-        },
-        resetPhotos() {
-            this.photos = [...[]];
-            setTimeout(() => {
-                if (this.photos.length > 0) {
-                    this.resetPhotos();
-                }
-            }, 500);
         },
     },
 
@@ -140,19 +132,6 @@ export default {
         showPhotoButton() {
             // показывать кнопку «Добавить/Заменить фото» всегда, кроме случая ниже
             return !(this.owner === 'ProductPhotoManager' && this.photos.length > 0);
-        },
-    },
-
-    watch:{
-        resetPhotosCmd(val) {
-            if (!val) {
-                return;
-            }
-            /*
-            if (this.photos.length > 0) {
-                this.photos = [...[]];
-            }*/
-            this.resetPhotos();
         },
     },
 
