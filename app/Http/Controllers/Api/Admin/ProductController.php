@@ -9,28 +9,26 @@ use App\Services\PhotoManager\PhotoAppender;
 use App\Services\PhotoManager\PhotoMover;
 use App\Services\PhotoManager\PhotoRemover;
 use App\Services\PhotoManager\PhotoRotator;
+use App\Services\ProductForceDeleteService;
+use App\Services\ProductListService;
 use App\Services\ProductSaveService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
-    public function getAll(): JsonResponse
+    public function getAll(ProductListService $service, $whichProducts): JsonResponse
     {
-        // $products = $service->getAll();
-
-        $products = Product::query()
-            ->orderBy('id', 'desc')
-            ->get();
-
+        $products = $service->getAll($whichProducts);
         return response()->json($products);
     }
 
 
     public function getCount(): JsonResponse
     {
-        $count = Product::count();
-        return response()->json($count);
+        return response()->json(
+            Product::count()
+        );
     }
 
 
@@ -53,12 +51,26 @@ class ProductController extends Controller
     public function delete(Request $request, Product $product): JsonResponse
     {
         // instance товара в роуте как {product}
-        $result = $product->delete();
-
         return response()->json([
-            'deleteSuccess' => $result,
+            'deleteSuccess' => $product->delete(),
             'product' => $product
         ]);
+    }
+
+    public function restore($id): JsonResponse
+    {
+        $product = Product::onlyTrashed()->find($id);
+        return response()->json([
+            'restoreSuccess' => $product->restore(),
+            'product' => $product
+        ]);
+    }
+
+    public function forceDelete(ProductForceDeleteService $service, $id): JsonResponse
+    {
+        return response()->json(
+            $service->forceDeleteOne($id)
+        );
     }
 
     public function deletePhoto(PhotoRemover $manager, Product $product, $photoName): JsonResponse

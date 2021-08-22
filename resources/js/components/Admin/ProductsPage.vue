@@ -1,18 +1,18 @@
 <template>
     <div class="show_block">
-        <h1>Список товаров</h1>
-        <div class="content_block content_block__products">
-            <products></products>
-        </div>
+        <product-list-header></product-list-header>
+        <products></products>
     </div>
 </template>
 
 <script>
 import Products from "./Products/Products";
+import ProductListHeader from "./Products/ProductListHeader";
 
 export default {
     name: "ProductsPage",
     components: {
+        ProductListHeader,
         Products,
     },
 }

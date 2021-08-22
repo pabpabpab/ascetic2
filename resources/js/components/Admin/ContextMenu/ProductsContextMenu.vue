@@ -4,16 +4,30 @@
             <li class="context_menu__li_header context_menu__li_header_black">
                 «{{ product.name }}»
             </li>
-            <li @click="editProduct(product.id)" class="context_menu__li context_menu__li_black">
-                Редактировать
-            </li>
-            <li @click="showProductPhotoManager(product)" class="context_menu__li context_menu__li_black">
-                Фото изменить / добавить
-            </li>
-            <li class="context_menu__li context_menu__li_black" style="border: 0;"
-                @click="preDeleteProduct(product.id)">
-                Удалить товар
-            </li>
+
+            <template v-if="isTrashedProduct">
+                <li class="context_menu__li context_menu__li_black" style="border: 0;"
+                    @click="restoreProduct(product.id)">
+                    Восстановить товар
+                </li>
+                <li class="context_menu__li context_menu__li_black" style="border: 0;"
+                    @click="preDeleteProduct(product)">
+                    Удалить безвозвратно
+                </li>
+            </template>
+            <template v-else>
+                <li @click="editProduct(product.id)" class="context_menu__li context_menu__li_black">
+                    Редактировать
+                </li>
+                <li @click="showProductPhotoManager(product)" class="context_menu__li context_menu__li_black">
+                    Фото изменить / добавить
+                </li>
+                <li class="context_menu__li context_menu__li_black" style="border: 0;"
+                    @click="preDeleteProduct(product)">
+                    Удалить товар
+                </li>
+            </template>
+
         </ul>
     </div>
 </template>
@@ -35,11 +49,15 @@ export default {
                 'show_block': !this.enabledFadingCss,
                 'hide_block': this.enabledFadingCss,
             };
-        }
+        },
+        isTrashedProduct() {
+            return Boolean(this.product.deleted_at);
+        },
     },
     methods: {
         ...mapActions('products', [
             'preDeleteProduct',
+            'restoreProduct',
             'showProductPhotoManager',
         ]),
         editProduct(id) {

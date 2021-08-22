@@ -43,7 +43,7 @@ const routes = [
     },
 
     {
-        path: '/admin/products',
+        path: '/admin/products/:which',
         name: 'Products',
         component: () => import('../components/Admin/ProductsPage.vue'),
     },

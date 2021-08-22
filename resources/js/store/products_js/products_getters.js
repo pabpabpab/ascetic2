@@ -4,6 +4,8 @@ export default {
     singleProductUrl: (state) => state.singleProductUrl,
     saveProductUrl: (state) => state.saveProductUrl,
     deleteProductUrl: (state) => state.deleteProductUrl,
+    restoreProductUrl: (state) => state.restoreProductUrl,
+    forceDeleteProductUrl: (state) => state.forceDeleteProductUrl,
     deleteProductPhotoUrl: (state) => state.deleteProductPhotoUrl,
     rotateProductPhotoUrl: (state) => state.rotateProductPhotoUrl,
     moveProductPhotoUrl: (state) => state.moveProductPhotoUrl,

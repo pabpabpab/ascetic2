@@ -1,5 +1,5 @@
 import productValidation from './functions/productValidation';
-import thatRouter from './../../router/index';
+import thatRouter from "../../router";
 
 export default {
     // eslint-disable-next-line no-unused-vars
@@ -20,10 +20,10 @@ export default {
         });
     },
 
-    async loadProducts({ dispatch, commit, getters }) {
-        const url = getters.productsUrl;
+    async loadProducts({ dispatch, commit, getters }, whichProducts = 'active') {
+        const url = getters.productsUrl + whichProducts;
         dispatch('getJson', url, { root: true }).then((data) => {
-            //console.log(data);
+            // console.log(data);
             commit('setProducts', data);
             dispatch('hideWaitingScreen', null, { root: true });
         });

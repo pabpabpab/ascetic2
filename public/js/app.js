@@ -542,7 +542,7 @@ __webpack_require__.r(__webpack_exports__);
     productsLinkClass: function productsLinkClass() {
       return {
         'navBar__link': true,
-        'navBar__link_active': this.$route.name === 'Products'
+        'navBar__link_active': this.$route.name === 'Products' && this.$route.params.which === 'active'
       };
     },
     categoriesLinkClass: function categoriesLinkClass() {
@@ -2088,7 +2088,7 @@ var render = function() {
               "router-link",
               {
                 class: _vm.productsLinkClass,
-                attrs: { to: { name: "Products" } }
+                attrs: { to: { name: "Products", params: { which: "active" } } }
               },
               [_vm._v("Товары")]
             )
@@ -19345,7 +19345,7 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
-  path: '/admin/products',
+  path: '/admin/products/:which',
   name: 'Products',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
@@ -21616,7 +21616,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./products_js/products_actions */ "./resources/js/store/products_js/products_actions.js");
 /* harmony import */ var _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products_js/products_actions_saveProduct */ "./resources/js/store/products_js/products_actions_saveProduct.js");
 /* harmony import */ var _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./products_js/products_actions_preDeleteProduct */ "./resources/js/store/products_js/products_actions_preDeleteProduct.js");
-/* harmony import */ var _products_js_products_actions_deleteProduct__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./products_js/products_actions_deleteProduct */ "./resources/js/store/products_js/products_actions_deleteProduct.js");
+/* harmony import */ var _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./products_js/products_actions_deleteAndRestoreProduct */ "./resources/js/store/products_js/products_actions_deleteAndRestoreProduct.js");
 /* harmony import */ var _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./products_js/products_actions_photoManagment */ "./resources/js/store/products_js/products_actions_photoManagment.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -21639,7 +21639,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   state: _products_js_products_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _products_js_products_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _products_js_products_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_7__["default"])
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_7__["default"])
 });
 
 /***/ }),
@@ -21767,7 +21767,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _functions_productValidation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/productValidation */ "./resources/js/store/products_js/functions/productValidation.js");
-/* harmony import */ var _router_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../router/index */ "./resources/js/router/index.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../router */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -21818,25 +21818,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   loadProducts: function loadProducts(_ref3) {
+    var _arguments = arguments;
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var dispatch, commit, getters, url;
+      var dispatch, commit, getters, whichProducts, url;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               dispatch = _ref3.dispatch, commit = _ref3.commit, getters = _ref3.getters;
-              url = getters.productsUrl;
+              whichProducts = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : 'active';
+              url = getters.productsUrl + whichProducts;
               dispatch('getJson', url, {
                 root: true
               }).then(function (data) {
-                //console.log(data);
+                // console.log(data);
                 commit('setProducts', data);
                 dispatch('hideWaitingScreen', null, {
                   root: true
                 });
               });
 
-            case 3:
+            case 4:
             case "end":
               return _context2.stop();
           }
@@ -21943,10 +21945,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./resources/js/store/products_js/products_actions_deleteProduct.js":
-/*!**************************************************************************!*\
-  !*** ./resources/js/store/products_js/products_actions_deleteProduct.js ***!
-  \**************************************************************************/
+/***/ "./resources/js/store/products_js/products_actions_deleteAndRestoreProduct.js":
+/*!************************************************************************************!*\
+  !*** ./resources/js/store/products_js/products_actions_deleteAndRestoreProduct.js ***!
+  \************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -21989,6 +21991,72 @@ __webpack_require__.r(__webpack_exports__);
         var _txt = 'неудачная попытка удаления';
         dispatch('showAbsoluteFlashMessage', {
           text: _txt,
+          sec: 2
+        }, {
+          root: true
+        });
+      }
+    });
+  },
+  restoreProduct: function restoreProduct(_ref2, productId) {
+    var dispatch = _ref2.dispatch,
+        commit = _ref2.commit,
+        getters = _ref2.getters;
+    dispatch('closeContextMenu', null, {
+      root: true
+    });
+    dispatch('getJson', getters.restoreProductUrl + productId, {
+      root: true
+    }).then(function (data) {
+      // console.log(data);
+      if (data.restoreSuccess === true) {
+        dispatch('loadProducts', 'trashed');
+        var txt = "\u0422\u043E\u0432\u0430\u0440 \xAB".concat(data.product.name, "\xBB \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D.");
+        dispatch('showAbsoluteFlashMessage', {
+          text: txt,
+          sec: 2
+        }, {
+          root: true
+        }); // thatRouter.push({ name: 'Products', params: {which: 'active'}});
+      } else {
+        var _txt2 = 'неудачная попытка';
+        dispatch('showAbsoluteFlashMessage', {
+          text: _txt2,
+          sec: 2
+        }, {
+          root: true
+        });
+      }
+    });
+  },
+  forceDeleteProduct: function forceDeleteProduct(_ref3, productId) {
+    var dispatch = _ref3.dispatch,
+        commit = _ref3.commit,
+        getters = _ref3.getters,
+        state = _ref3.state;
+    dispatch('closeConfirmationDialog', null, {
+      root: true
+    });
+    dispatch('deleteJson', getters.forceDeleteProductUrl + productId, {
+      root: true
+    }).then(function (data) {
+      // console.log(data);
+      if (data.deleteSuccess === true) {
+        dispatch('loadProducts', 'trashed');
+        var txt = "\u0422\u043E\u0432\u0430\u0440 \xAB".concat(data.productName, "\xBB \u0443\u0434\u0430\u043B\u0435\u043D \u0431\u0435\u0437\u0432\u043E\u0437\u0432\u0440\u0430\u0442\u043D\u043E.");
+        dispatch('showAbsoluteFlashMessage', {
+          text: txt,
+          sec: 2
+        }, {
+          root: true
+        });
+      } else {
+        var _data$customException;
+
+        var _txt3 = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка удаления';
+
+        dispatch('showAbsoluteFlashMessage', {
+          text: _txt3,
           sec: 2
         }, {
           root: true
@@ -22261,7 +22329,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  preDeleteProduct: function preDeleteProduct(_ref, productId) {
+  preDeleteProduct: function preDeleteProduct(_ref, product) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
         getters = _ref.getters,
@@ -22269,21 +22337,23 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeContextMenu', null, {
       root: true
     });
-    var singleProductUrl = getters.singleProductUrl + productId;
-    dispatch('getJson', singleProductUrl, {
-      root: true
-    }).then(function (data) {
-      var settings = {};
-      settings.confirmationRequestText = "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440 \xAB".concat(data.product.name, "\xBB?");
-      settings.yesButtonText = 'Удалить';
-      settings.cancelButtonText = 'Отменить';
+    var settings = {};
+    settings.yesButtonText = 'Удалить';
+    settings.cancelButtonText = 'Отменить';
+    settings.yesPayload = product.id;
+    settings.cancelAction = 'closeConfirmationDialog';
+    settings.finalRedirectRoute = 'Products';
+
+    if (product.deleted_at) {
+      settings.confirmationRequestText = "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440 \xAB".concat(product.name, "\xBB \u0431\u0435\u0437\u0432\u043E\u0437\u0432\u0440\u0430\u0442\u043D\u043E?");
+      settings.yesAction = 'products/forceDeleteProduct';
+    } else {
+      settings.confirmationRequestText = "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440 \xAB".concat(product.name, "\xBB?");
       settings.yesAction = 'products/deleteProduct';
-      settings.cancelAction = 'closeConfirmationDialog';
-      settings.yesPayload = data.product.id;
-      settings.finalRedirectRoute = 'Products';
-      dispatch('showConfirmationDialog', settings, {
-        root: true
-      });
+    }
+
+    dispatch('showConfirmationDialog', settings, {
+      root: true
     });
   }
 });
@@ -22395,7 +22465,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     root: true
                   });
                   _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
-                    name: 'Products'
+                    name: 'Products',
+                    params: {
+                      which: 'active'
+                    }
                   });
                 } else {
                   var _data$customException;
@@ -22451,6 +22524,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   deleteProductUrl: function deleteProductUrl(state) {
     return state.deleteProductUrl;
+  },
+  restoreProductUrl: function restoreProductUrl(state) {
+    return state.restoreProductUrl;
+  },
+  forceDeleteProductUrl: function forceDeleteProductUrl(state) {
+    return state.forceDeleteProductUrl;
   },
   deleteProductPhotoUrl: function deleteProductPhotoUrl(state) {
     return state.deleteProductPhotoUrl;
@@ -22565,6 +22644,8 @@ __webpack_require__.r(__webpack_exports__);
   singleProductUrl: '/api/admin/product/',
   saveProductUrl: '/api/admin/product/save/',
   deleteProductUrl: '/api/admin/product/delete/',
+  forceDeleteProductUrl: '/api/admin/product/delete/force/',
+  restoreProductUrl: '/api/admin/product/restore/',
   deleteProductPhotoUrl: '/api/admin/product/photo/delete/',
   rotateProductPhotoUrl: '/api/admin/product/photo/rotate/',
   moveProductPhotoUrl: '/api/admin/product/photo/move/',

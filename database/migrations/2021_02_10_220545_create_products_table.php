@@ -56,10 +56,10 @@ class CreateProductsTable extends Migration
             id SERIAL,
             product_id BIGINT UNSIGNED NOT NULL,
 	        description TEXT,
-	        deleted_at DATETIME,
             UNIQUE product_id_idx(product_id),
             FOREIGN KEY product_id_fk(product_id) REFERENCES products(id)
         )');
+        // deleted_at DATETIME,
 
         // Фото товаров
         DB::statement('DROP TABLE IF EXISTS photo');
@@ -67,12 +67,12 @@ class CreateProductsTable extends Migration
             id SERIAL,
             product_id BIGINT UNSIGNED NOT NULL,
             filename VARCHAR(100),
-            deleted_at DATETIME,
             INDEX product_id_idx(product_id),
-            INDEX deleted_at_idx(deleted_at),
 
             FOREIGN KEY (product_id) REFERENCES products(id)
         )');
+        // deleted_at DATETIME,
+        // INDEX deleted_at_idx(deleted_at),
 
     }
 

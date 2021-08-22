@@ -1,7 +1,25 @@
 
+.products_header
+    display: flex
+    justify-content: space-between
+    width: 90%
+
+
+.products_header__link
+    +font(17px, rgb(25, 118, 213), 400)
+    display: block
+    padding: 15px
+    background-color: #fff
+    border-radius: 5px
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
+    transition: box-shadow .3s
+    &:hover
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2)
+
 .content_block__products
     width: 90%
     padding: 20px 20px 10px 20px
+    box-sizing: border-box
 
 
 .products

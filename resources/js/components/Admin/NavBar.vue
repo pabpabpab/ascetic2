@@ -7,7 +7,7 @@
                     <router-link :to="{ name: 'SaveProduct' }" :class="saveProductLinkClass">Добавить товар</router-link>
                 </li>
                 <li>
-                    <router-link :to="{ name: 'Products' }" :class="productsLinkClass">Товары</router-link>
+                    <router-link :to="{ name: 'Products', params: { which: 'active' } }" :class="productsLinkClass">Товары</router-link>
                 </li>
                 <li>
                     <router-link :to="{ name: 'Categories', params: { entity: 'categories' } }" :class="categoriesLinkClass">Категории</router-link>
@@ -46,7 +46,7 @@ export default {
         productsLinkClass() {
             return {
                 'navBar__link': true,
-                'navBar__link_active': this.$route.name === 'Products',
+                'navBar__link_active': this.$route.name === 'Products' && this.$route.params.which === 'active',
             }
         },
         categoriesLinkClass() {

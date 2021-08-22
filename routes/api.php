@@ -69,12 +69,19 @@ Route::group([
     Route::post('/color/change-position/{color}', 'ColorController@changePosition');
 
     // список товаров
-    Route::get('/products', 'ProductController@getAll');
+    Route::get('/products/{whichProducts?}', 'ProductController@getAll')
+        ->where('whichProducts', 'active|trashed');
     Route::get('/products/count', 'ProductController@getCount');
+
     // один товар
     Route::get('/product/{product}', 'ProductController@getOne');
     Route::post('/product/save/{product?}', 'ProductController@save');
     Route::delete('/product/delete/{product}', 'ProductController@delete');
+    Route::get('/product/restore/{id}', 'ProductController@restore')
+        ->where('id', '[0-9]+');
+    Route::delete('/product/delete/force/{id}', 'ProductController@forceDelete')
+        ->where('id', '[0-9]+');
+
     // photo manager
     Route::delete('/product/photo/delete/{product}/{photoName}', 'ProductController@deletePhoto')
         ->where('photoName', '[0-9]+\.[a-z]+');

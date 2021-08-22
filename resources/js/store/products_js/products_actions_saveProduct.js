@@ -64,7 +64,7 @@ export default {
                         : `Добавлен товар «${data.product.name}»`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
 
-                    thatRouter.push({ name: 'Products'});
+                    thatRouter.push({ name: 'Products', params: {which: 'active'}});
                 } else {
                     dispatch('hideWaitingScreen', null, { root: true });
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
