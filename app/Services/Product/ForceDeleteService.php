@@ -1,14 +1,15 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\Product;
 
 
 use App\Models\Product;
+use App\Services\ExceptionService;
 use App\Services\PhotoManager\PhotoTrait;
 use Illuminate\Support\Facades\DB;
 
-class ProductForceDeleteService
+class ForceDeleteService
 {
     use PhotoTrait;
 

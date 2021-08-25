@@ -329,7 +329,11 @@ h1 {
 }
 
 .categories {
+  background-color: white;
   padding: 20px 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .category__item {
@@ -345,6 +349,7 @@ h1 {
       -ms-flex-pack: justify;
           justify-content: space-between;
   border-top: 1px solid #ced9f0;
+  background-color: white;
 }
 
 .category__item__stub_icon {
@@ -362,6 +367,16 @@ h1 {
 .category__item__products_count {
   color: #9f9f9f;
   margin: 0 10px;
+}
+
+.draggableCategory {
+  position: absolute;
+  z-index: 300;
+  min-width: 300px;
+  border: 0;
+  background-color: #f4f9fc;
+  -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .category__button_add {

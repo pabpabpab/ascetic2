@@ -36,6 +36,12 @@ export default {
         colors: '/api/admin/color/change-position/',
     },
 
+    moveUrl: {
+        categories: '/api/admin/category/move/',
+        materials: '/api/admin/material/move/',
+        colors: '/api/admin/color/move/',
+    },
+
     //categories: [],
 
 

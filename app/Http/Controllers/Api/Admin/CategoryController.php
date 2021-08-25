@@ -73,4 +73,15 @@ class CategoryController extends Controller
         return response()->json(['upDownSuccess' => $result['success']]);
     }
 
+    public function move(Request $request, CategoryService $categoryService, Category $category): JsonResponse
+    {
+        // instance категории в роуте как {category}
+        $result = $categoryService->move(
+            $this->modelClassName,
+            $category
+        );
+
+        return response()->json(['moveSuccess' => $result['success']]);
+    }
+
 }

@@ -1,5 +1,7 @@
 <template>
-    <div class="show_block">
+    <div class="show_block"
+         @mousemove="myDragMove($event)"
+         @mouseup="myDragStop({ event: $event, entity: $route.params.entity })">
         <h1>{{ getHeader }}</h1>
         <div class="content_block content_block__categories">
             <component
@@ -18,6 +20,7 @@
 import AddCategoryButton from "./Categories/AddCategoryButton";
 import CategoryForm from "./Categories/CategoryForm";
 import Categories from "./Categories/Categories";
+import {mapActions} from "vuex";
 
 export default {
     name: "CategoriesPage",
@@ -44,6 +47,10 @@ export default {
         },
     },
     methods: {
+        ...mapActions('dragAndDrop', [
+            'myDragMove',
+            'myDragStop',
+        ]),
         changeAddingComponent() {
             if (this.currentAddingComponent === 'AddCategoryButton') {
                 this.currentAddingComponent = 'CategoryForm';

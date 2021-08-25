@@ -19444,11 +19444,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categories_js/categories_actions_preDeleteCategory */ "./resources/js/store/categories_js/categories_actions_preDeleteCategory.js");
 /* harmony import */ var _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./categories_js/categories_actions_deleteCategory */ "./resources/js/store/categories_js/categories_actions_deleteCategory.js");
 /* harmony import */ var _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./categories_js/categories_actions_changePosition */ "./resources/js/store/categories_js/categories_actions_changePosition.js");
+/* harmony import */ var _categories_js_categories_actions_moveCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./categories_js/categories_actions_moveCategory */ "./resources/js/store/categories_js/categories_actions_moveCategory.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -19465,7 +19467,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   state: _categories_js_categories_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _categories_js_categories_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _categories_js_categories_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _categories_js_categories_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _categories_js_categories_actions_saveCategory__WEBPACK_IMPORTED_MODULE_4__["default"]), _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_5__["default"]), _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_6__["default"]), _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_7__["default"])
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _categories_js_categories_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _categories_js_categories_actions_saveCategory__WEBPACK_IMPORTED_MODULE_4__["default"]), _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_5__["default"]), _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_6__["default"]), _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_7__["default"]), _categories_js_categories_actions_moveCategory__WEBPACK_IMPORTED_MODULE_8__["default"])
 });
 
 /***/ }),
@@ -19669,14 +19671,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee5);
     }))();
   }
-}); // для избежания редактирования удаленной страницы уйти на страницу SaveCategory
-//console.log(thatRouter);
-
-/*
-if (thatRouter.app._route.name === 'EditCategory') {
-    thatRouter.push({ name: 'SaveCategory' });
-}
-*/
+});
 
 /***/ }),
 
@@ -19795,6 +19790,102 @@ __webpack_require__.r(__webpack_exports__);
       }
     });
   }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/categories_js/categories_actions_moveCategory.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/store/categories_js/categories_actions_moveCategory.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  moveCategory: {
+    root: true,
+    handler: function handler(_ref, _ref2) {
+      var dispatch = _ref.dispatch,
+          commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var currentIndex = _ref2.currentIndex,
+          newIndex = _ref2.newIndex,
+          entity = _ref2.entity;
+      // именно в такой последовательности
+      var operatedCategoryId = state.categories[entity][currentIndex]['id'];
+      commit('moveCategory', {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        entity: entity
+      });
+      var closestTopCategoryId = state.categories[entity][newIndex - 1]['id'];
+      dispatch('showWaitingScreen', null, {
+        root: true
+      });
+      var moveUrl = getters.moveUrl(entity) + operatedCategoryId;
+      dispatch('postJson', {
+        url: moveUrl,
+        data: {
+          closestTopCategoryId: closestTopCategoryId,
+          entity: entity
+        }
+      }, {
+        root: true
+      }).then(function (data) {
+        if (data.moveSuccess === true) {
+          dispatch('loadCategories', entity); // получить обновленный список с сервера
+
+          var txt = 'Сделано.';
+          dispatch('showAbsoluteFlashMessage', {
+            text: txt,
+            sec: 0.8
+          }, {
+            root: true
+          }); //закрытие заглушки в loadCategories // dispatch('hideWaitingScreen', null, { root: true });
+        } else {
+          dispatch('loadCategories', entity); // отобразить обратно
+
+          var _txt = 'Неудачная попытка перемещения.';
+          dispatch('showAbsoluteFlashMessage', {
+            text: _txt,
+            sec: 2
+          }, {
+            root: true
+          });
+        }
+      });
+    }
+  }
+  /*
+  changePosition({ dispatch, commit, getters, state }, { entity, categoryId, direction }) {
+      dispatch('closeContextMenu', null, { root: true });
+      dispatch('showWaitingScreen', null, { root: true });
+      const changePositionUrl = getters.changePositionUrl(entity) + categoryId;
+      dispatch(
+          'postJson',
+          {
+              url: changePositionUrl,
+              data: { direction },
+          },
+          { root: true }
+      )
+          .then((data) => {
+              if (data.upDownSuccess === true) {
+                  dispatch('loadCategories', entity); // получить обновленный список с сервера
+                  const txt = 'Сделано.';
+                  dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.8}, { root: true });
+                  //закрытие заглушки в loadCategories // dispatch('hideWaitingScreen', null, { root: true });
+              } else {
+                  dispatch('hideWaitingScreen', null, { root: true });
+                  const txt = 'Неудачная попытка изменения позиции.';
+                  dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
+              }
+          });
+  },*/
+
 });
 
 /***/ }),
@@ -20013,6 +20104,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return state.changePositionUrl[entity];
     };
   },
+  moveUrl: function moveUrl(state) {
+    return function (entity) {
+      return state.moveUrl[entity];
+    };
+  },
   categories: function categories(state) {
     return _objectSpread({}, state.categories);
   },
@@ -20065,6 +20161,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   setSingleCategoryFromServer: function setSingleCategoryFromServer(state, category) {
     state.singleCategoryFromServer = _objectSpread({}, category);
+  },
+  moveCategory: function moveCategory(state, _ref2) {
+    var currentIndex = _ref2.currentIndex,
+        newIndex = _ref2.newIndex,
+        entity = _ref2.entity;
+    var categories = state.categories[entity]; // вырвать из массива и получить наш элемент, который двигаем
+
+    var operatedItem = categories.splice(currentIndex, 1)[0]; // вставить наш элемент на новое место
+
+    categories.splice(newIndex, 0, operatedItem);
+    state.categories[entity] = _toConsumableArray(categories);
   }
 });
 
@@ -20109,6 +20216,11 @@ __webpack_require__.r(__webpack_exports__);
     categories: '/api/admin/category/change-position/',
     materials: '/api/admin/material/change-position/',
     colors: '/api/admin/color/change-position/'
+  },
+  moveUrl: {
+    categories: '/api/admin/category/move/',
+    materials: '/api/admin/material/move/',
+    colors: '/api/admin/color/move/'
   },
   //categories: [],
   categories: {
@@ -20567,6 +20679,149 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/dragAndDrop.js":
+/*!*******************************************!*\
+  !*** ./resources/js/store/dragAndDrop.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    //draggableIndexes: {},
+    //dragLeft: 0,
+    dragTop: 0,
+    currentIndex: -1,
+    yCoordinatesOfItems: [] //newIndex: -1,
+
+  },
+  getters: {
+    currentIndex: function currentIndex(state) {
+      return state.currentIndex;
+    },
+    isDragging: function isDragging(state) {
+      return function (index) {
+        return state.currentIndex === index;
+      };
+    },
+    topOfIndex: function topOfIndex(state) {
+      return function (index) {
+        if (state.currentIndex !== index) {
+          return 0;
+        }
+
+        return state.dragTop + 'px';
+      };
+    },
+    yCoordinatesOfItems: function yCoordinatesOfItems(state) {
+      return state.yCoordinatesOfItems;
+    } //newIndex: (state) => state.newIndex,
+
+  },
+  mutations: {
+    setCurrentIndex: function setCurrentIndex(state, value) {
+      state.currentIndex = value;
+    },
+    setDragTop: function setDragTop(state, value) {
+      state.dragTop = value;
+    },
+    myDragStop: function myDragStop(state) {
+      state.currentIndex = -1;
+      state.dragTop = 0;
+    },
+    addYIntoYCoordinates: function addYIntoYCoordinates(state, y) {
+      state.yCoordinatesOfItems.push(y);
+    },
+    resetYCoordinates: function resetYCoordinates(state) {
+      state.yCoordinatesOfItems = [];
+    }
+    /*
+    setNewIndex: (state, value) => {
+        state.newIndex = value;
+    },*/
+
+  },
+  actions: {
+    resetYCoordinates: function resetYCoordinates(_ref, cycleNumber) {
+      var commit = _ref.commit;
+
+      if (cycleNumber === 0) {
+        commit('resetYCoordinates');
+      }
+
+      return true;
+    },
+    myDragStart: function myDragStart(_ref2, _ref3) {
+      var dispatch = _ref2.dispatch,
+          commit = _ref2.commit,
+          getters = _ref2.getters;
+      var index = _ref3.index,
+          event = _ref3.event;
+      //commit('setNewIndex', -1);
+      commit('setCurrentIndex', index);
+      commit('setDragTop', event.pageY);
+    },
+    myDragMove: function myDragMove(_ref4, event) {
+      var dispatch = _ref4.dispatch,
+          commit = _ref4.commit,
+          getters = _ref4.getters;
+
+      if (getters.currentIndex > -1) {
+        //console.log(event.pageY);
+        commit('setDragTop', event.pageY);
+      }
+    },
+    myDragStop: function myDragStop(_ref5, _ref6) {
+      var dispatch = _ref5.dispatch,
+          commit = _ref5.commit,
+          getters = _ref5.getters;
+      var event = _ref6.event,
+          entity = _ref6.entity;
+      var currentIndex = getters.currentIndex;
+      dispatch('moveCategoryItem', {
+        currentIndex: currentIndex,
+        event: event,
+        entity: entity
+      });
+      commit('myDragStop');
+    },
+    moveCategoryItem: function moveCategoryItem(_ref7, _ref8) {
+      var dispatch = _ref7.dispatch,
+          commit = _ref7.commit,
+          getters = _ref7.getters;
+      var currentIndex = _ref8.currentIndex,
+          event = _ref8.event,
+          entity = _ref8.entity;
+      var coordsArr = getters.yCoordinatesOfItems;
+      var newIndex;
+
+      for (var i = coordsArr.length; i >= 0; i--) {
+        if (event.pageY > coordsArr[i]) {
+          //commit('setNewIndex', i + 1);
+          newIndex = i + 1;
+          break;
+        }
+      } //console.log('currentIndex - ' + currentIndex);
+      //console.log('newIndex - ' + newIndex);
+      //console.log('entity - ' + entity);
+
+
+      dispatch('moveCategory', {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        entity: entity
+      }, {
+        root: true
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/http.js":
 /*!************************************!*\
   !*** ./resources/js/store/http.js ***!
@@ -20722,6 +20977,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _waitingScreen__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./waitingScreen */ "./resources/js/store/waitingScreen.js");
 /* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
 /* harmony import */ var _contextMenu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./contextMenu */ "./resources/js/store/contextMenu.js");
+/* harmony import */ var _dragAndDrop__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDrop */ "./resources/js/store/dragAndDrop.js");
+
 
 
 
@@ -20766,6 +21023,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     }
   },
   modules: {
+    csrfToken: _csrfToken__WEBPACK_IMPORTED_MODULE_3__["default"],
     http: _http__WEBPACK_IMPORTED_MODULE_4__["default"],
     users: _users__WEBPACK_IMPORTED_MODULE_5__["default"],
     pagination: _pagination__WEBPACK_IMPORTED_MODULE_6__["default"],
@@ -20779,7 +21037,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     waitingScreen: _waitingScreen__WEBPACK_IMPORTED_MODULE_14__["default"],
     confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__["default"],
     contextMenu: _contextMenu__WEBPACK_IMPORTED_MODULE_16__["default"],
-    csrfToken: _csrfToken__WEBPACK_IMPORTED_MODULE_3__["default"]
+    dragAndDrop: _dragAndDrop__WEBPACK_IMPORTED_MODULE_17__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);

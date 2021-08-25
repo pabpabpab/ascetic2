@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\Product;
 
 
 use App\Models\Product;
 
-class ProductListService
+class ListService
 {
     public function getAll($which)
     {

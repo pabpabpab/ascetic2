@@ -16,7 +16,7 @@ import absoluteFlashMessage from './absoluteFlashMessage';
 import waitingScreen from './waitingScreen';
 import confirmationDialog from './confirmationDialog';
 import contextMenu from './contextMenu';
-
+import dragAndDrop from './dragAndDrop';
 
 Vue.use(Vuex);
 
@@ -44,6 +44,7 @@ const store = new Vuex.Store({
         },
     },
     modules: {
+        csrfToken,
         http,
         users,
         pagination,
@@ -57,7 +58,7 @@ const store = new Vuex.Store({
         waitingScreen,
         confirmationDialog,
         contextMenu,
-        csrfToken,
+        dragAndDrop,
     },
 });
 

@@ -1,5 +1,9 @@
 <template>
-    <div class="category__item">
+    <div ref="cat" class="category__item" :class="draggableItemClass"
+         :style="{
+                'top': topOfIndex(index),
+            }"
+         @mousedown="myDragStart({index: index, event: $event})">
         <span
             @mouseover="showContextMenu({
                 event: $event,
@@ -26,6 +30,7 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
+import categoriesDragAndDropMethods from "./someMethods/categoriesDragAndDropMethods";
 /*
 import arrow_up_icon from "./../../../../assets/arrow_up_icon.jpg"
 import arrow_down_icon from "./../../../../assets/arrow_down_icon.jpg"
@@ -35,7 +40,14 @@ import delete_icon from "./../../../../assets/delete_icon.png"
 export default {
     name: "CategoryItem",
     props: ['category', 'index'],
-
+    /*
+    data() {
+        return {
+            draggableIndex: -1,
+            //dragLeft: 0,
+            dragTop: 0,
+        };
+    },*/
     /*
     data() {
         return {
@@ -50,29 +62,36 @@ export default {
         ...mapGetters('categories', [
             'categories',
         ]),
+        ...mapGetters('dragAndDrop', [
+            'isDragging',
+            'topOfIndex',
+        ]),
         lastListIndex() {
             return this.categories[this.$route.params.entity].length - 1;
+        },
+        draggableItemClass() {
+            return {
+                'draggableCategory': this.isDragging(this.index),
+            };
         },
     },
     methods: {
         ...mapActions('contextMenu', [
             'showContextMenu',
         ]),
+        ...mapActions('dragAndDrop', [
+            'myDragStart',
+        ]),
+    },
+
+    mounted() {
+        this.$store.dispatch('dragAndDrop/resetYCoordinates', this.index).then(
+            () => {
+                const y = this.$refs.cat.getBoundingClientRect().y;
+                this.$store.commit('dragAndDrop/addYIntoYCoordinates', y);
+            }
+        );
     },
 }
 
-
-/*
-
-
-        <img :src="edit_icon"
-             alt="Редактировать" title="Редактировать"
-             class="category__item__icon_edit"
-             @click="$emit('change-item-component', category.id)">
-
-
-<router-link class="user__nameLink" :to="'/admin/products_js/category/edit/' + category.id">
-            <img :src="edit_icon" alt="Редактировать" title="Редактировать" class="category__item__icon_edit">
-        </router-link>
- */
 </script>

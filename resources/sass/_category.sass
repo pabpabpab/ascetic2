@@ -4,7 +4,11 @@
 
 
 .categories
+    background-color: rgb(255, 255, 255)
     padding: 20px 0
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
 
 .category__item
     padding: 20px 5px
@@ -13,6 +17,7 @@
     display: flex
     justify-content: space-between
     border-top: 1px solid rgb(206, 217, 240)
+    background-color: rgb(255, 255, 255)
     &__stub_icon
         width: 20px
         margin: 0 15px 0 0
@@ -22,6 +27,14 @@
     &__products_count
         color: #9f9f9f
         margin: 0 10px
+
+.draggableCategory
+    position: absolute
+    z-index: 300
+    min-width: 300px
+    border: 0
+    background-color: rgb(244, 249, 252)
+    box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
 
 .category__button_add
     +font(15px, #fff, 400)

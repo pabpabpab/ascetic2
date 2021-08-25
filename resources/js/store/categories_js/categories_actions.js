@@ -63,13 +63,3 @@ export default {
 
 };
 
-
-
-
-// для избежания редактирования удаленной страницы уйти на страницу SaveCategory
-//console.log(thatRouter);
-/*
-if (thatRouter.app._route.name === 'EditCategory') {
-    thatRouter.push({ name: 'SaveCategory' });
-}
-*/

@@ -49,6 +49,8 @@ Route::group([
     Route::post('/category/save/{category?}', 'CategoryController@save');
     Route::delete('/category/delete/{category}', 'CategoryController@delete');
     Route::post('/category/change-position/{category}', 'CategoryController@changePosition');
+    Route::post('/category/move/{category}', 'CategoryController@move');
+
 
     // материалы
     Route::get('/materials', 'MaterialController@getAll');
@@ -58,6 +60,8 @@ Route::group([
     Route::post('/material/save/{material?}', 'MaterialController@save');
     Route::delete('/material/delete/{material}', 'MaterialController@delete');
     Route::post('/material/change-position/{material}', 'MaterialController@changePosition');
+    Route::post('/material/move/{material}', 'MaterialController@move');
+
 
     // цвета
     Route::get('/colors', 'ColorController@getAll');
@@ -67,6 +71,7 @@ Route::group([
     Route::post('/color/save/{color?}', 'ColorController@save');
     Route::delete('/color/delete/{color}', 'ColorController@delete');
     Route::post('/color/change-position/{color}', 'ColorController@changePosition');
+    Route::post('/color/move/{color}', 'ColorController@move');
 
     // список товаров
     Route::get('/products/{whichProducts?}', 'ProductController@getAll')

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Admin;
+namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ColorDeleteRequest;
@@ -67,5 +67,17 @@ class ColorController extends Controller
         }
 
         return response()->json(['upDownSuccess' => $result['success']]);
+    }
+
+
+    public function move(Request $request, CategoryService $categoryService, Color $color): JsonResponse
+    {
+        // instance категории в роуте как {category}
+        $result = $categoryService->move(
+            $this->modelClassName,
+            $color
+        );
+
+        return response()->json(['moveSuccess' => $result['success']]);
     }
 }

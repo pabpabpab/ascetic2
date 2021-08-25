@@ -9,15 +9,15 @@ use App\Services\PhotoManager\PhotoAppender;
 use App\Services\PhotoManager\PhotoMover;
 use App\Services\PhotoManager\PhotoRemover;
 use App\Services\PhotoManager\PhotoRotator;
-use App\Services\ProductForceDeleteService;
-use App\Services\ProductListService;
-use App\Services\ProductSaveService;
+use App\Services\Product\ForceDeleteService;
+use App\Services\Product\ListService;
+use App\Services\Product\SaveService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
-    public function getAll(ProductListService $service, $whichProducts): JsonResponse
+    public function getAll(ListService $service, $whichProducts): JsonResponse
     {
         $products = $service->getAll($whichProducts);
         return response()->json($products);
@@ -40,7 +40,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function save(ProductSaveRequest $request, ProductSaveService $service, Product $product): JsonResponse
+    public function save(ProductSaveRequest $request, SaveService $service, Product $product): JsonResponse
     {
         // instance товара в роуте как {product?}
         return response()->json(
@@ -66,7 +66,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function forceDelete(ProductForceDeleteService $service, $id): JsonResponse
+    public function forceDelete(ForceDeleteService $service, $id): JsonResponse
     {
         return response()->json(
             $service->forceDeleteOne($id)

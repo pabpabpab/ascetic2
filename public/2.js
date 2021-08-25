@@ -47,12 +47,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _CategoryItemEditForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategoryItemEditForm */ "./resources/js/components/Admin/Categories/CategoryItemEditForm.vue");
-/* harmony import */ var _CategoryItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CategoryItem */ "./resources/js/components/Admin/Categories/CategoryItem.vue");
-/* harmony import */ var _ContextMenu_CategoriesContextMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ContextMenu/CategoriesContextMenu */ "./resources/js/components/Admin/ContextMenu/CategoriesContextMenu.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _CategoryItemEditForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryItemEditForm */ "./resources/js/components/Admin/Categories/CategoryItemEditForm.vue");
+/* harmony import */ var _CategoryItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategoryItem */ "./resources/js/components/Admin/Categories/CategoryItem.vue");
+/* harmony import */ var _ContextMenu_CategoriesContextMenu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ContextMenu/CategoriesContextMenu */ "./resources/js/components/Admin/ContextMenu/CategoriesContextMenu.vue");
+/* harmony import */ var _someMethods_categoriesItemsMethods__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./someMethods/categoriesItemsMethods */ "./resources/js/components/Admin/Categories/someMethods/categoriesItemsMethods.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -64,12 +63,6 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -99,12 +92,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Categories",
   components: {
-    CategoryItem: _CategoryItem__WEBPACK_IMPORTED_MODULE_3__["default"],
-    CategoryItemEditForm: _CategoryItemEditForm__WEBPACK_IMPORTED_MODULE_2__["default"],
-    CategoriesContextMenu: _ContextMenu_CategoriesContextMenu__WEBPACK_IMPORTED_MODULE_4__["default"]
+    CategoryItem: _CategoryItem__WEBPACK_IMPORTED_MODULE_2__["default"],
+    CategoryItemEditForm: _CategoryItemEditForm__WEBPACK_IMPORTED_MODULE_1__["default"],
+    CategoriesContextMenu: _ContextMenu_CategoriesContextMenu__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   props: ['collapseItemsCommand'],
   data: function data() {
@@ -117,68 +111,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       editionComponentName: 'CategoryItemEditForm'
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('contextMenu', ['showCategoriesContextMenu'])),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['closeContextMenu'])), {}, {
-    changeItemComponent: function changeItemComponent(itemId) {
-      var _this = this;
-
-      this.closeContextMenu();
-      this.$emit('close-adding-component');
-
-      this._getNewComponentName(itemId).then(function (newName) {
-        _this._collapseItems();
-
-        var temp = _objectSpread({}, _this.currentComponentsNames);
-
-        temp['id' + itemId] = newName;
-        _this.currentComponentsNames = _objectSpread({}, temp);
-      });
-    },
-    _getNewComponentName: function _getNewComponentName(itemId) {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!(_this2.currentComponentsNames['id' + itemId] === _this2.categoryComponentName)) {
-                  _context.next = 2;
-                  break;
-                }
-
-                return _context.abrupt("return", _this2.editionComponentName);
-
-              case 2:
-                return _context.abrupt("return", _this2.categoryComponentName);
-
-              case 3:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    _collapseItems: function _collapseItems() {
-      var temp = _objectSpread({}, this.currentComponentsNames);
-
-      for (var key in temp) {
-        temp[key] = this.categoryComponentName;
-      }
-
-      this.currentComponentsNames = _objectSpread({}, temp);
-    },
-    _initComponentsNames: function _initComponentsNames(categories) {
-      var _this3 = this;
-
-      var temp = {};
-      categories.forEach(function (item) {
-        temp['id' + item.id] = _this3.categoryComponentName;
-      });
-      this.currentComponentsNames = _objectSpread({}, temp);
-    }
-  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeContextMenu'])), _someMethods_categoriesItemsMethods__WEBPACK_IMPORTED_MODULE_4__["default"]),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showCategoriesContextMenu'])),
   watch: {
     categories: function categories(newCategories, oldCategories) {
       var categories = _toConsumableArray(newCategories[this.$route.params.entity]);
@@ -330,6 +264,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _someMethods_categoriesDragAndDropMethods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./someMethods/categoriesDragAndDropMethods */ "./resources/js/components/Admin/Categories/someMethods/categoriesDragAndDropMethods.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -362,6 +297,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 /*
 import arrow_up_icon from "./../../../../assets/arrow_up_icon.jpg"
@@ -377,6 +317,15 @@ import delete_icon from "./../../../../assets/delete_icon.png"
   /*
   data() {
       return {
+          draggableIndex: -1,
+          //dragLeft: 0,
+          dragTop: 0,
+      };
+  },*/
+
+  /*
+  data() {
+      return {
           edit_icon: edit_icon,
           delete_icon: delete_icon,
           arrow_up_icon: arrow_up_icon,
@@ -384,26 +333,27 @@ import delete_icon from "./../../../../assets/delete_icon.png"
       };
   },
   */
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDrop', ['isDragging', 'topOfIndex'])), {}, {
     lastListIndex: function lastListIndex() {
       return this.categories[this.$route.params.entity].length - 1;
+    },
+    draggableItemClass: function draggableItemClass() {
+      return {
+        'draggableCategory': this.isDragging(this.index)
+      };
     }
   }),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu']))
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('dragAndDrop', ['myDragStart'])),
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$store.dispatch('dragAndDrop/resetYCoordinates', this.index).then(function () {
+      var y = _this.$refs.cat.getBoundingClientRect().y;
+
+      _this.$store.commit('dragAndDrop/addYIntoYCoordinates', y);
+    });
+  }
 });
-/*
-
-
-        <img :src="edit_icon"
-             alt="Редактировать" title="Редактировать"
-             class="category__item__icon_edit"
-             @click="$emit('change-item-component', category.id)">
-
-
-<router-link class="user__nameLink" :to="'/admin/products_js/category/edit/' + category.id">
-            <img :src="edit_icon" alt="Редактировать" title="Редактировать" class="category__item__icon_edit">
-        </router-link>
- */
 
 /***/ }),
 
@@ -526,6 +476,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Categories_AddCategoryButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Categories/AddCategoryButton */ "./resources/js/components/Admin/Categories/AddCategoryButton.vue");
 /* harmony import */ var _Categories_CategoryForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Categories/CategoryForm */ "./resources/js/components/Admin/Categories/CategoryForm.vue");
 /* harmony import */ var _Categories_Categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Categories/Categories */ "./resources/js/components/Admin/Categories/Categories.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -542,6 +499,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 
@@ -569,7 +529,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.header[entity];
     }
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])('dragAndDrop', ['myDragMove', 'myDragStop'])), {}, {
     changeAddingComponent: function changeAddingComponent() {
       if (this.currentAddingComponent === 'AddCategoryButton') {
         this.currentAddingComponent = 'CategoryForm';
@@ -584,7 +544,7 @@ __webpack_require__.r(__webpack_exports__);
       this.currentAddingComponent = 'AddCategoryButton';
       this.collapseItemsCommand = false;
     }
-  }
+  })
 });
 
 /***/ }),
@@ -863,36 +823,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "category__item" }, [
-    _c(
-      "span",
-      {
-        staticClass: "context_menu__icon__category",
-        on: {
-          mouseover: function($event) {
-            return _vm.showContextMenu({
-              event: $event,
-              target: "Categories",
-              data: {
-                category: _vm.category,
-                currentListIndex: _vm.index,
-                lastListIndex: _vm.lastListIndex
-              }
-            })
-          }
-        }
+  return _c(
+    "div",
+    {
+      ref: "cat",
+      staticClass: "category__item",
+      class: _vm.draggableItemClass,
+      style: {
+        top: _vm.topOfIndex(_vm.index)
       },
-      [_vm._v("\n        ⋮\n    ")]
-    ),
-    _vm._v(" "),
-    _c("span", { staticClass: "category__item__name" }, [
-      _vm._v("\n        " + _vm._s(_vm.category.name) + "\n    ")
-    ]),
-    _vm._v(" "),
-    _c("span", { staticClass: "category__item__products_count" }, [
-      _vm._v("\n        " + _vm._s(_vm.category.products_count) + "\n    ")
-    ])
-  ])
+      on: {
+        mousedown: function($event) {
+          return _vm.myDragStart({ index: _vm.index, event: $event })
+        }
+      }
+    },
+    [
+      _c(
+        "span",
+        {
+          staticClass: "context_menu__icon__category",
+          on: {
+            mouseover: function($event) {
+              return _vm.showContextMenu({
+                event: $event,
+                target: "Categories",
+                data: {
+                  category: _vm.category,
+                  currentListIndex: _vm.index,
+                  lastListIndex: _vm.lastListIndex
+                }
+              })
+            }
+          }
+        },
+        [_vm._v("\n        ⋮\n    ")]
+      ),
+      _vm._v(" "),
+      _c("span", { staticClass: "category__item__name" }, [
+        _vm._v("\n        " + _vm._s(_vm.category.name) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "category__item__products_count" }, [
+        _vm._v("\n        " + _vm._s(_vm.category.products_count) + "\n    ")
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1025,34 +1001,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "show_block" }, [
-    _c("h1", [_vm._v(_vm._s(_vm.getHeader))]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "content_block content_block__categories" },
-      [
-        _c(_vm.currentAddingComponent, {
-          tag: "component",
-          on: {
-            "change-adding-component": function($event) {
-              return _vm.changeAddingComponent()
+  return _c(
+    "div",
+    {
+      staticClass: "show_block",
+      on: {
+        mousemove: function($event) {
+          return _vm.myDragMove($event)
+        },
+        mouseup: function($event) {
+          return _vm.myDragStop({
+            event: $event,
+            entity: _vm.$route.params.entity
+          })
+        }
+      }
+    },
+    [
+      _c("h1", [_vm._v(_vm._s(_vm.getHeader))]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content_block content_block__categories" },
+        [
+          _c(_vm.currentAddingComponent, {
+            tag: "component",
+            on: {
+              "change-adding-component": function($event) {
+                return _vm.changeAddingComponent()
+              }
             }
-          }
-        }),
-        _vm._v(" "),
-        _c("categories", {
-          attrs: { collapseItemsCommand: _vm.collapseItemsCommand },
-          on: {
-            "close-adding-component": function($event) {
-              return _vm.closeAddingComponent()
+          }),
+          _vm._v(" "),
+          _c("categories", {
+            attrs: { collapseItemsCommand: _vm.collapseItemsCommand },
+            on: {
+              "close-adding-component": function($event) {
+                return _vm.closeAddingComponent()
+              }
             }
-          }
-        })
-      ],
-      1
-    )
-  ])
+          })
+        ],
+        1
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1505,6 +1498,141 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoryItemEditForm_vue_vue_type_template_id_33194937___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Categories/someMethods/categoriesDragAndDropMethods.js":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Categories/someMethods/categoriesDragAndDropMethods.js ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  myDrag: function myDrag(index, event) {
+    this.draggableIndex = index;
+    console.log(this.draggableIndex); //this.moveAt(event);
+  },
+  myMove: function myMove(event) {
+    console.log(this.draggableIndex);
+
+    if (this.draggableIndex !== -1) {
+      console.log('uuu');
+      this.dragTop = event.pageY - 12;
+    }
+  },
+  moveAt: function moveAt(event) {
+    if (this.draggableIndex !== -1) {
+      this.dragTop = event.pageY - 12;
+    }
+  },
+  myDragStop: function myDragStop() {
+    this.draggableIndex = -1;
+    this.dragTop = 0;
+    console.log('zzz');
+  },
+  isDragging: function isDragging(index) {
+    return this.draggableIndex === index;
+  },
+  positionOfIndex: function positionOfIndex(index) {
+    return this.isDragging(index) ? 'absolute' : 'relative';
+  },
+  leftOfIndex: function leftOfIndex(index) {
+    return this.isDragging(index) ? this.dragLeft + 'px' : 0;
+  },
+  topOfIndex: function topOfIndex(index) {
+    return this.isDragging(index) ? this.dragTop + 'px' : 0;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Categories/someMethods/categoriesItemsMethods.js":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Categories/someMethods/categoriesItemsMethods.js ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  changeItemComponent: function changeItemComponent(itemId) {
+    var _this = this;
+
+    this.closeContextMenu();
+    this.$emit('close-adding-component');
+
+    this._getNewComponentName(itemId).then(function (newName) {
+      _this._collapseItems();
+
+      var temp = _objectSpread({}, _this.currentComponentsNames);
+
+      temp['id' + itemId] = newName;
+      _this.currentComponentsNames = _objectSpread({}, temp);
+    });
+  },
+  _getNewComponentName: function _getNewComponentName(itemId) {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (!(_this2.currentComponentsNames['id' + itemId] === _this2.categoryComponentName)) {
+                _context.next = 2;
+                break;
+              }
+
+              return _context.abrupt("return", _this2.editionComponentName);
+
+            case 2:
+              return _context.abrupt("return", _this2.categoryComponentName);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  _collapseItems: function _collapseItems() {
+    var temp = _objectSpread({}, this.currentComponentsNames);
+
+    for (var key in temp) {
+      temp[key] = this.categoryComponentName;
+    }
+
+    this.currentComponentsNames = _objectSpread({}, temp);
+  },
+  _initComponentsNames: function _initComponentsNames(categories) {
+    var _this3 = this;
+
+    var temp = {};
+    categories.forEach(function (item) {
+      temp['id' + item.id] = _this3.categoryComponentName;
+    });
+    this.currentComponentsNames = _objectSpread({}, temp);
+  }
+});
 
 /***/ }),
 

@@ -1,8 +1,9 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\Product;
 
+use App\Services\ExceptionService;
 use App\Services\PhotoManager\PhotoTrait;
 use App\Services\PhotoManager\PhotoUploader;
 use App\Events\ProductModifiedEvent;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-class ProductSaveService
+class SaveService
 {
 
     use PhotoTrait;

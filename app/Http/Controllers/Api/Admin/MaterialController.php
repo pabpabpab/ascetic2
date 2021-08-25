@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MaterialDeleteRequest;
 use App\Http\Requests\Admin\MaterialSaveRequest;
+use App\Models\Category;
 use App\Models\Material;
 use App\Services\CategoryService;
 use Illuminate\Http\JsonResponse;
@@ -67,5 +68,17 @@ class MaterialController extends Controller
         }
 
         return response()->json(['upDownSuccess' => $result['success']]);
+    }
+
+
+    public function move(Request $request, CategoryService $categoryService, Material $material): JsonResponse
+    {
+        // instance категории в роуте как {category}
+        $result = $categoryService->move(
+            $this->modelClassName,
+            $material
+        );
+
+        return response()->json(['moveSuccess' => $result['success']]);
     }
 }

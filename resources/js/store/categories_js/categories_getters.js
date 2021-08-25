@@ -5,6 +5,7 @@ export default {
     saveCategoryUrl: (state) => (entity) => state.saveCategoryUrl[entity],
     deleteCategoryUrl: (state) => (entity) => state.deleteCategoryUrl[entity],
     changePositionUrl: (state) => (entity) => state.changePositionUrl[entity],
+    moveUrl: (state) => (entity) => state.moveUrl[entity],
 
     categories: (state) => {return {...state.categories};},
 

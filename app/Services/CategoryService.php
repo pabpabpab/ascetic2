@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class CategoryService
@@ -91,6 +92,24 @@ class CategoryService
 
         return [
             'success' => $currentModel->save() && $nextModel->save()
+        ];
+    }
+
+
+    public function move($modelClassName, $currentModel): array
+    {
+        $closestTopModel = $modelClassName::find(request()->input('closestTopCategoryId'));
+        $table = request()->input('entity');
+
+        DB::table($table)
+            ->where('position', '>', $closestTopModel->position)
+            ->update(['position' =>  DB::raw('position + 100')]);
+
+        // назначить позицию следующую от позиции рядом с которой вставляем
+        $currentModel->position = $closestTopModel->position + 100;
+
+        return [
+            'success' => $currentModel->save()
         ];
     }
 
