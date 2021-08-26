@@ -372,9 +372,9 @@ h1 {
 .draggableCategory {
   position: absolute;
   z-index: 300;
-  min-width: 300px;
+  min-width: 450px;
   border: 0;
-  background-color: #f4f9fc;
+  background-color: rgba(244, 249, 252, 0.7);
   -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }

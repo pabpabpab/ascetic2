@@ -20695,15 +20695,20 @@ __webpack_require__.r(__webpack_exports__);
     //dragLeft: 0,
     dragTop: 0,
     currentIndex: -1,
-    yCoordinatesOfItems: []
+    yCoordinatesOfItems: [],
+    startY: -1,
+    isDragging: false
   },
   getters: {
     currentIndex: function currentIndex(state) {
       return state.currentIndex;
     },
+    startY: function startY(state) {
+      return state.startY;
+    },
     isDragging: function isDragging(state) {
       return function (index) {
-        return state.currentIndex === index;
+        return state.currentIndex === index && state.isDragging;
       };
     },
     topOfIndex: function topOfIndex(state) {
@@ -20726,8 +20731,15 @@ __webpack_require__.r(__webpack_exports__);
     setDragTop: function setDragTop(state, value) {
       state.dragTop = value;
     },
+    setStartY: function setStartY(state, value) {
+      state.startY = value;
+    },
+    setIsDragging: function setIsDragging(state, value) {
+      state.isDragging = value;
+    },
     myDragStop: function myDragStop(state) {
       state.currentIndex = -1;
+      state.isDragging = false;
       state.dragTop = 0;
     },
     addYIntoYCoordinates: function addYIntoYCoordinates(state, y) {
@@ -20754,29 +20766,44 @@ __webpack_require__.r(__webpack_exports__);
       var index = _ref3.index,
           event = _ref3.event;
       commit('setCurrentIndex', index);
-      commit('setDragTop', event.pageY);
+      commit('setStartY', event.pageY); //commit('setDragTop', event.pageY);
     },
     myDragMove: function myDragMove(_ref4, event) {
       var dispatch = _ref4.dispatch,
           commit = _ref4.commit,
-          getters = _ref4.getters;
+          getters = _ref4.getters,
+          state = _ref4.state;
 
-      if (getters.currentIndex > -1) {
+      if (getters.currentIndex === -1) {
+        return;
+      }
+
+      if (state.isDragging) {
+        commit('setDragTop', event.pageY);
+      }
+
+      if (Math.abs(getters.startY - event.pageY) > 15) {
+        commit('setIsDragging', true);
         commit('setDragTop', event.pageY);
       }
     },
     myDragStop: function myDragStop(_ref5, _ref6) {
       var dispatch = _ref5.dispatch,
           commit = _ref5.commit,
-          getters = _ref5.getters;
+          getters = _ref5.getters,
+          state = _ref5.state;
       var event = _ref6.event,
           entity = _ref6.entity;
       var currentIndex = getters.currentIndex;
-      dispatch('moveCategoryItem', {
-        currentIndex: currentIndex,
-        event: event,
-        entity: entity
-      });
+
+      if (state.isDragging) {
+        dispatch('moveCategoryItem', {
+          currentIndex: currentIndex,
+          event: event,
+          entity: entity
+        });
+      }
+
       commit('myDragStop');
     },
     moveCategoryItem: function moveCategoryItem(_ref7, _ref8) {
@@ -20804,11 +20831,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (newIndex >= coordsArr.length) {
         newIndex = coordsArr.length - 1;
-      }
+      } //console.log('currentIndex - ' + currentIndex);
+      //console.log('newIndex - ' + newIndex);
+      //console.log('entity - ' + entity);
 
-      console.log('currentIndex - ' + currentIndex);
-      console.log('newIndex - ' + newIndex);
-      console.log('entity - ' + entity);
+
       dispatch('moveCategory', {
         currentIndex: currentIndex,
         newIndex: newIndex,

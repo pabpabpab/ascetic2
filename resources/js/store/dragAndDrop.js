@@ -7,13 +7,16 @@ export default {
         dragTop: 0,
         currentIndex: -1,
         yCoordinatesOfItems: [],
+        startY: -1,
+        isDragging: false,
     },
 
     getters: {
         currentIndex: (state) => state.currentIndex,
+        startY: (state) => state.startY,
 
         isDragging: (state) => (index) => {
-            return state.currentIndex === index;
+            return state.currentIndex === index && state.isDragging;
         },
 
         topOfIndex: (state) => (index) => {
@@ -34,8 +37,15 @@ export default {
         setDragTop: (state, value) => {
             state.dragTop = value;
         },
+        setStartY: (state, value) => {
+            state.startY = value;
+        },
+        setIsDragging: (state, value) => {
+            state.isDragging = value;
+        },
         myDragStop: (state) => {
             state.currentIndex = -1;
+            state.isDragging = false;
             state.dragTop = 0;
         },
         addYIntoYCoordinates: (state, y) => {
@@ -56,18 +66,28 @@ export default {
 
         myDragStart({ dispatch, commit, getters }, {index, event}) {
             commit('setCurrentIndex', index);
-            commit('setDragTop', event.pageY);
+            commit('setStartY', event.pageY);
+            //commit('setDragTop', event.pageY);
         },
 
-        myDragMove({ dispatch, commit, getters }, event) {
-            if (getters.currentIndex > -1) {
+        myDragMove({ dispatch, commit, getters, state }, event) {
+            if (getters.currentIndex === -1) {
+                return;
+            }
+            if (state.isDragging) {
+                commit('setDragTop', event.pageY);
+            }
+            if (Math.abs(getters.startY - event.pageY) > 15) {
+                commit('setIsDragging', true);
                 commit('setDragTop', event.pageY);
             }
         },
 
-        myDragStop({ dispatch, commit, getters }, { event, entity }) {
+        myDragStop({ dispatch, commit, getters, state }, { event, entity }) {
             const currentIndex = getters.currentIndex;
-            dispatch('moveCategoryItem', { currentIndex, event, entity });
+            if (state.isDragging) {
+                dispatch('moveCategoryItem', { currentIndex, event, entity });
+            }
             commit('myDragStop');
         },
 
@@ -88,9 +108,9 @@ export default {
             if (newIndex >= coordsArr.length) {
                 newIndex = coordsArr.length - 1;
             }
-            console.log('currentIndex - ' + currentIndex);
-            console.log('newIndex - ' + newIndex);
-            console.log('entity - ' + entity);
+            //console.log('currentIndex - ' + currentIndex);
+            //console.log('newIndex - ' + newIndex);
+            //console.log('entity - ' + entity);
             dispatch(
                 'moveCategory',
                 {

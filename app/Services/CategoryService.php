@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Log;
 
 class CategoryService
 {
+    protected $positionStep = 10;
+
+
     public function saveOne($model, $modelClassName, string $name): array
     {
         $model = $model->id > 0 ? $model : new $modelClassName();
@@ -31,7 +34,7 @@ class CategoryService
 
     protected function calcNewAddedPosition($modelClassName): int
     {
-        return static::getMaxPosition($modelClassName) + 100;
+        return static::getMaxPosition($modelClassName) + $this->positionStep;
     }
 
 
@@ -111,10 +114,10 @@ class CategoryService
         // сдвинуть все нижестоящие, чтобы освободить место для draggable категории
         DB::table($table)
             ->where('position', '>', $closestTopPosition)
-            ->update(['position' =>  DB::raw('position + 100')]);
+            ->update(['position' =>  DB::raw('position + 10')]); // 10 - positionStep
 
         // назначить позицию следующую от позиции рядом с которой вставляем
-        $currentModel->position = $closestTopPosition + 100;
+        $currentModel->position = $closestTopPosition + $this->positionStep;
 
         return [
             'success' => $currentModel->save()
