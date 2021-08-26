@@ -7,7 +7,6 @@ export default {
         dragTop: 0,
         currentIndex: -1,
         yCoordinatesOfItems: [],
-        //newIndex: -1,
     },
 
     getters: {
@@ -25,7 +24,6 @@ export default {
         },
 
         yCoordinatesOfItems: (state) => state.yCoordinatesOfItems,
-        //newIndex: (state) => state.newIndex,
 
     },
 
@@ -46,10 +44,6 @@ export default {
         resetYCoordinates: (state) => {
             state.yCoordinatesOfItems = [];
         },
-        /*
-        setNewIndex: (state, value) => {
-            state.newIndex = value;
-        },*/
     },
 
     actions: {
@@ -61,14 +55,12 @@ export default {
         },
 
         myDragStart({ dispatch, commit, getters }, {index, event}) {
-            //commit('setNewIndex', -1);
             commit('setCurrentIndex', index);
             commit('setDragTop', event.pageY);
         },
 
         myDragMove({ dispatch, commit, getters }, event) {
             if (getters.currentIndex > -1) {
-                //console.log(event.pageY);
                 commit('setDragTop', event.pageY);
             }
         },
@@ -81,17 +73,24 @@ export default {
 
         moveCategoryItem({ dispatch, commit, getters }, { currentIndex, event, entity }) {
             const coordsArr = getters.yCoordinatesOfItems;
-            let newIndex;
+            let newIndex = -1;
             for (let i = coordsArr.length; i >= 0; i--) {
                 if (event.pageY > coordsArr[i]) {
-                    //commit('setNewIndex', i + 1);
                     newIndex = i + 1;
                     break;
                 }
             }
-            //console.log('currentIndex - ' + currentIndex);
-            //console.log('newIndex - ' + newIndex);
-            //console.log('entity - ' + entity);
+            // курсор мыши не был ниже никакого элемента, значит был выше всех элементов (ставим первым элементом)
+            if (newIndex === -1) {
+                newIndex = 0;
+            }
+            // новый индекс больше всех индексов, значит ставим элемент последним в списке
+            if (newIndex >= coordsArr.length) {
+                newIndex = coordsArr.length - 1;
+            }
+            console.log('currentIndex - ' + currentIndex);
+            console.log('newIndex - ' + newIndex);
+            console.log('entity - ' + entity);
             dispatch(
                 'moveCategory',
                 {

@@ -98,15 +98,23 @@ class CategoryService
 
     public function move($modelClassName, $currentModel): array
     {
-        $closestTopModel = $modelClassName::find(request()->input('closestTopCategoryId'));
+        $closestTopCategoryId = request()->input('closestTopCategoryId');
+
+        $closestTopPosition = $closestTopCategoryId === 0
+            ? 0
+            : $modelClassName::find($closestTopCategoryId)->position;
+
+
+        //$closestTopModel = $modelClassName::find($closestTopCategoryId);
         $table = request()->input('entity');
 
+        // сдвинуть все нижестоящие, чтобы освободить место для draggable категории
         DB::table($table)
-            ->where('position', '>', $closestTopModel->position)
+            ->where('position', '>', $closestTopPosition)
             ->update(['position' =>  DB::raw('position + 100')]);
 
         // назначить позицию следующую от позиции рядом с которой вставляем
-        $currentModel->position = $closestTopModel->position + 100;
+        $currentModel->position = $closestTopPosition + 100;
 
         return [
             'success' => $currentModel->save()

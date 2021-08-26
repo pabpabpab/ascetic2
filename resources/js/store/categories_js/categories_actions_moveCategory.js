@@ -8,7 +8,7 @@ export default {
             // именно в такой последовательности
             const operatedCategoryId = state.categories[entity][currentIndex]['id'];
             commit('moveCategory', {currentIndex, newIndex, entity});
-            const closestTopCategoryId = state.categories[entity][newIndex-1]['id'];
+            const closestTopCategoryId = newIndex === 0 ? 0 : state.categories[entity][newIndex-1]['id'];
 
             dispatch('showWaitingScreen', null, { root: true });
             const moveUrl = getters.moveUrl(entity) + operatedCategoryId;

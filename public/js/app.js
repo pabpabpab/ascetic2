@@ -19821,7 +19821,7 @@ __webpack_require__.r(__webpack_exports__);
         newIndex: newIndex,
         entity: entity
       });
-      var closestTopCategoryId = state.categories[entity][newIndex - 1]['id'];
+      var closestTopCategoryId = newIndex === 0 ? 0 : state.categories[entity][newIndex - 1]['id'];
       dispatch('showWaitingScreen', null, {
         root: true
       });
@@ -20695,8 +20695,7 @@ __webpack_require__.r(__webpack_exports__);
     //dragLeft: 0,
     dragTop: 0,
     currentIndex: -1,
-    yCoordinatesOfItems: [] //newIndex: -1,
-
+    yCoordinatesOfItems: []
   },
   getters: {
     currentIndex: function currentIndex(state) {
@@ -20718,8 +20717,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     yCoordinatesOfItems: function yCoordinatesOfItems(state) {
       return state.yCoordinatesOfItems;
-    } //newIndex: (state) => state.newIndex,
-
+    }
   },
   mutations: {
     setCurrentIndex: function setCurrentIndex(state, value) {
@@ -20738,11 +20736,6 @@ __webpack_require__.r(__webpack_exports__);
     resetYCoordinates: function resetYCoordinates(state) {
       state.yCoordinatesOfItems = [];
     }
-    /*
-    setNewIndex: (state, value) => {
-        state.newIndex = value;
-    },*/
-
   },
   actions: {
     resetYCoordinates: function resetYCoordinates(_ref, cycleNumber) {
@@ -20760,7 +20753,6 @@ __webpack_require__.r(__webpack_exports__);
           getters = _ref2.getters;
       var index = _ref3.index,
           event = _ref3.event;
-      //commit('setNewIndex', -1);
       commit('setCurrentIndex', index);
       commit('setDragTop', event.pageY);
     },
@@ -20770,7 +20762,6 @@ __webpack_require__.r(__webpack_exports__);
           getters = _ref4.getters;
 
       if (getters.currentIndex > -1) {
-        //console.log(event.pageY);
         commit('setDragTop', event.pageY);
       }
     },
@@ -20796,19 +20787,28 @@ __webpack_require__.r(__webpack_exports__);
           event = _ref8.event,
           entity = _ref8.entity;
       var coordsArr = getters.yCoordinatesOfItems;
-      var newIndex;
+      var newIndex = -1;
 
       for (var i = coordsArr.length; i >= 0; i--) {
         if (event.pageY > coordsArr[i]) {
-          //commit('setNewIndex', i + 1);
           newIndex = i + 1;
           break;
         }
-      } //console.log('currentIndex - ' + currentIndex);
-      //console.log('newIndex - ' + newIndex);
-      //console.log('entity - ' + entity);
+      } // курсор мыши не был ниже никакого элемента, значит был выше всех элементов (ставим первым элементом)
 
 
+      if (newIndex === -1) {
+        newIndex = 0;
+      } // новый индекс больше всех индексов, значит ставим элемент последним в списке
+
+
+      if (newIndex >= coordsArr.length) {
+        newIndex = coordsArr.length - 1;
+      }
+
+      console.log('currentIndex - ' + currentIndex);
+      console.log('newIndex - ' + newIndex);
+      console.log('entity - ' + entity);
       dispatch('moveCategory', {
         currentIndex: currentIndex,
         newIndex: newIndex,
