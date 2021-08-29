@@ -16,7 +16,8 @@ import absoluteFlashMessage from './absoluteFlashMessage';
 import waitingScreen from './waitingScreen';
 import confirmationDialog from './confirmationDialog';
 import contextMenu from './contextMenu';
-import dragAndDrop from './dragAndDrop';
+import dragAndDropByY from './dragAndDropByY';
+import dragAndDropByXY from './dragAndDropByXY';
 
 Vue.use(Vuex);
 
@@ -58,7 +59,8 @@ const store = new Vuex.Store({
         waitingScreen,
         confirmationDialog,
         contextMenu,
-        dragAndDrop,
+        dragAndDropByY,
+        dragAndDropByXY,
     },
 });
 

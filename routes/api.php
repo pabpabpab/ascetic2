@@ -86,6 +86,7 @@ Route::group([
         ->where('id', '[0-9]+');
     Route::delete('/product/delete/force/{id}', 'ProductController@forceDelete')
         ->where('id', '[0-9]+');
+    Route::post('/product/move/{product}', 'ProductController@move');
 
     // photo manager
     Route::delete('/product/photo/delete/{product}/{photoName}', 'ProductController@deletePhoto')

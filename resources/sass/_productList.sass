@@ -20,6 +20,9 @@
     width: 90%
     padding: 20px 20px 10px 20px
     box-sizing: border-box
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
 
 
 .products
@@ -53,7 +56,12 @@
         +font(17px, #9f9f9f, 400)
         margin: 0 10px
 
-
+.draggableProduct
+    position: absolute
+    z-index: 300
+    background-color: rgb(255, 255, 255)
+    box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
+    pointer-events: none
 
 
 .context_menu__icon__product

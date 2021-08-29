@@ -1,7 +1,8 @@
 <template>
-    <div ref="cat" class="category__item" :class="draggableItemClass"
+    <div ref="cat" class="category__item"
+         :class="draggableItemClass"
          :style="{
-                'top': topOfIndex(index),
+                'top': topByIndex(index),
             }"
          @mousedown="myDragStart({index: index, event: $event})">
         <span
@@ -62,9 +63,9 @@ export default {
         ...mapGetters('categories', [
             'categories',
         ]),
-        ...mapGetters('dragAndDrop', [
+        ...mapGetters('dragAndDropByY', [
             'isDragging',
-            'topOfIndex',
+            'topByIndex',
         ]),
         lastListIndex() {
             return this.categories[this.$route.params.entity].length - 1;
@@ -72,23 +73,25 @@ export default {
         draggableItemClass() {
             return {
                 'draggableCategory': this.isDragging(this.index),
+                //'underDraggableCategory': this.underDraggable(this.index) && !this.isDragging(this.index),
             };
         },
+
     },
     methods: {
         ...mapActions('contextMenu', [
             'showContextMenu',
         ]),
-        ...mapActions('dragAndDrop', [
+        ...mapActions('dragAndDropByY', [
             'myDragStart',
         ]),
     },
 
     mounted() {
-        this.$store.dispatch('dragAndDrop/resetYCoordinates', this.index).then(
+        this.$store.dispatch('dragAndDropByY/resetYCoordinates', this.index).then(
             () => {
                 const y = this.$refs.cat.getBoundingClientRect().y;
-                this.$store.commit('dragAndDrop/addYIntoYCoordinates', y);
+                this.$store.commit('dragAndDropByY/addYIntoYCoordinates', y);
             }
         );
     },

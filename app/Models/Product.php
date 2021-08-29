@@ -17,6 +17,7 @@ class Product extends Model
         'category_id',
         'name',
         'price',
+        'position',
     ];
 
 
@@ -41,7 +42,7 @@ class Product extends Model
             Photo::class,
             'product_id',
             'id'
-        );
+        )->orderBy('position', 'asc');
     }
 
 

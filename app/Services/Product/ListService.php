@@ -17,14 +17,14 @@ class ListService
     protected function activeProducts()
     {
         return Product::query()
-            ->orderBy('id', 'desc')
+            ->orderBy('position', 'desc')
             ->get();
     }
 
     protected function trashedProducts()
     {
         return Product::onlyTrashed()
-            ->orderBy('id', 'desc')
+            ->orderBy('position', 'desc')
             ->get();
     }
 }

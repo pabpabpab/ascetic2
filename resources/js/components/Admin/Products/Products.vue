@@ -3,9 +3,10 @@
 
         <div class="products">
             <product-item
-                v-for="product of products"
+                v-for="(product, index) of products"
                 :key="product.id"
-                :product="product">
+                :product="product"
+                :index="index">
             </product-item>
 
 

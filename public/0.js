@@ -42,8 +42,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
-    this.$store.dispatch('categories/getCategoriesCount');
-    this.$store.dispatch('updateCSRF', 5);
+    this.$store.dispatch('categories/getCategoriesCount'); //this.$store.dispatch('updateCSRF', 5);
   }
 });
 

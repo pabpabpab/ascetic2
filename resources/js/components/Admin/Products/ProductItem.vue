@@ -1,5 +1,12 @@
 <template>
-    <div class="product__item">
+    <div ref="product" class="product__item"
+         :class="draggableItemClass"
+         :style="{
+            'left': leftByIndex(index),
+            'top': topByIndex(index),
+         }"
+         @mousedown="myDragStart({index: index, event: $event})"
+         @mouseup.stop="myDragStop({ event: $event, clickedIndex: index, entity: 'Product' })">
         <div>
             <span class="product__item__name">
                 {{ product.id }}
@@ -22,7 +29,7 @@
         </div>
 
         <span class="context_menu__icon__product"
-            @mouseover="showContextMenu({
+            @mouseover.click="showContextMenu({
                 event: $event,
                 target: 'Products',
                 data: {
@@ -39,10 +46,14 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "ProductItem",
-    props: ['product'],
+    props: ['product', 'index'],
     methods: {
         ...mapActions('contextMenu', [
             'showContextMenu',
+        ]),
+        ...mapActions('dragAndDropByXY', [
+            'myDragStart',
+            'myDragStop',
         ]),
 
         getPrice(parameters) {
@@ -107,6 +118,26 @@ export default {
         ...mapGetters([
             'imgFolderPrefix',
         ]),
+        ...mapGetters('dragAndDropByXY', [
+            'isDragging',
+            'leftByIndex',
+            'topByIndex',
+        ]),
+        draggableItemClass() {
+            return {
+                'draggableProduct': this.isDragging(this.index),
+            };
+        },
+    },
+
+    mounted() {
+        this.$store.dispatch('dragAndDropByXY/resetCoordinates', this.index).then(
+            () => {
+                const xy = this.$refs.product.getBoundingClientRect();
+                this.$store.commit('dragAndDropByXY/addXIntoXCoordinates', xy.x);
+                this.$store.commit('dragAndDropByXY/addYIntoYCoordinates', xy.y);
+            }
+        );
     },
 
 }

@@ -42,8 +42,8 @@ h1 {
 .show_block {
   visibility: visible;
   opacity: 1;
-  -webkit-animation: showBlock 0.5s;
-          animation: showBlock 0.5s;
+  -webkit-animation: showBlock 0.3s;
+          animation: showBlock 0.3s;
 }
 
 @-webkit-keyframes showBlock {
@@ -73,8 +73,8 @@ h1 {
 .hide_block {
   visibility: hidden;
   opacity: 0;
-  -webkit-animation: hideBlock 0.5s;
-          animation: hideBlock 0.5s;
+  -webkit-animation: hideBlock 0.3s;
+          animation: hideBlock 0.3s;
 }
 
 @-webkit-keyframes hideBlock {
@@ -104,8 +104,8 @@ h1 {
 .show_transparent_block {
   visibility: visible;
   opacity: 0.6;
-  -webkit-animation: showTransparentBlock 0.5s;
-          animation: showTransparentBlock 0.5s;
+  -webkit-animation: showTransparentBlock 0.3s;
+          animation: showTransparentBlock 0.3s;
 }
 
 @-webkit-keyframes showTransparentBlock {
@@ -135,8 +135,8 @@ h1 {
 .hide_transparent_block {
   visibility: hidden;
   opacity: 0;
-  -webkit-animation: hideTransparentBlock 0.5s;
-          animation: hideTransparentBlock 0.5s;
+  -webkit-animation: hideTransparentBlock 0.3s;
+          animation: hideTransparentBlock 0.3s;
 }
 
 @-webkit-keyframes hideTransparentBlock {
@@ -1049,6 +1049,9 @@ h1 {
   padding: 20px 20px 10px 20px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .products {
@@ -1102,6 +1105,15 @@ h1 {
   color: #9f9f9f;
   font-weight: 400;
   margin: 0 10px;
+}
+
+.draggableProduct {
+  position: absolute;
+  z-index: 300;
+  background-color: white;
+  -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
 }
 
 .context_menu__icon__product {

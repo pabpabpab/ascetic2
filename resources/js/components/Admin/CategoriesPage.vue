@@ -47,7 +47,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions('dragAndDrop', [
+        ...mapActions('dragAndDropByY', [
             'myDragMove',
             'myDragStop',
         ]),

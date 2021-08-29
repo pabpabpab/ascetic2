@@ -11,6 +11,7 @@ use App\Services\PhotoManager\PhotoRemover;
 use App\Services\PhotoManager\PhotoRotator;
 use App\Services\Product\ForceDeleteService;
 use App\Services\Product\ListService;
+use App\Services\Product\MoveService;
 use App\Services\Product\SaveService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -73,6 +74,14 @@ class ProductController extends Controller
         );
     }
 
+    public function move(Request $request, MoveService $service, Product $product): JsonResponse
+    {
+        // instance категории в роуте как {category}
+        $result = $service->move($product);
+
+        return response()->json(['moveSuccess' => $result['success']]);
+    }
+
     public function deletePhoto(PhotoRemover $manager, Product $product, $photoName): JsonResponse
     {
         // instance товара в роуте как {product}
@@ -104,5 +113,6 @@ class ProductController extends Controller
             $manager->appendPhoto($product, $request)
         );
     }
+
 
 }

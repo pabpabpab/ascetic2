@@ -2,8 +2,6 @@ export default {
 
     namespaced: true,
     state: {
-        //draggableIndexes: {},
-        //dragLeft: 0,
         dragTop: 0,
         currentIndex: -1,
         yCoordinatesOfItems: [],
@@ -15,11 +13,12 @@ export default {
         currentIndex: (state) => state.currentIndex,
         startY: (state) => state.startY,
 
+
         isDragging: (state) => (index) => {
             return state.currentIndex === index && state.isDragging;
         },
 
-        topOfIndex: (state) => (index) => {
+        topByIndex: (state) => (index) => {
             if (state.currentIndex !== index) {
                 return 0;
             }
@@ -78,6 +77,7 @@ export default {
                 commit('setDragTop', event.pageY);
             }
             if (Math.abs(getters.startY - event.pageY) > 15) {
+                dispatch('closeContextMenu', null, { root: true });
                 commit('setIsDragging', true);
                 commit('setDragTop', event.pageY);
             }
@@ -108,9 +108,7 @@ export default {
             if (newIndex >= coordsArr.length) {
                 newIndex = coordsArr.length - 1;
             }
-            //console.log('currentIndex - ' + currentIndex);
-            //console.log('newIndex - ' + newIndex);
-            //console.log('entity - ' + entity);
+
             dispatch(
                 'moveCategory',
                 {

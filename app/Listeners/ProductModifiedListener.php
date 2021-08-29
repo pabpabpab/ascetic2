@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\ProductModifiedEvent;
 use App\Models\Product;
-use App\Services\ProductObserverService;
+use App\Services\Product\ObserverService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -29,9 +29,9 @@ class ProductModifiedListener
     public function handle(ProductModifiedEvent $event)
     {
         $product = $event->product;
-        ProductObserverService::saveProductsCountForCategory($product);
-        ProductObserverService::saveProductsCountForMaterial($product);
-        ProductObserverService::saveProductsCountForColor($product);
+        ObserverService::saveProductsCountForCategory($product);
+        ObserverService::saveProductsCountForMaterial($product);
+        ObserverService::saveProductsCountForColor($product);
     }
 }
 

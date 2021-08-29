@@ -15,7 +15,8 @@ class Photo extends Model
     protected $fillable = [
         'id',
         'product_id',
-        'filename'
+        'filename',
+        'position',
     ];
 
     public $timestamps = false;

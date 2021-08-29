@@ -32,6 +32,8 @@ class SaveService
 
             // СОХРАНИТЬ ОСНОВНЫЕ ДАННЫЕ
             $product->fill($request->input());
+            $product->position = $product->id > 0 ? $product->position : $this->_calcNewAddedPosition();
+            //$product->position = 23;
             $product->save(); // теперь у $product есть id
 
             // ВСТАВКА ДАННЫХ В СВЯЗАННЫЕ ТАБЛИЦЫ
@@ -218,6 +220,20 @@ class SaveService
         return $formattedPrice;
     }
 
+
+
+    protected function _calcNewAddedPosition(): int
+    {
+        if (Product::count() === 0) {
+            return 1;
+        }
+
+        $maxModel =Product::query()
+            ->orderBy('position', 'desc')
+            ->first();
+
+        return $maxModel->position + 1;
+    }
 
 }
 

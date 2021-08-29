@@ -274,7 +274,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mounted: function mounted() {
+    var _this = this;
+
     this.$store.dispatch('updateCSRF');
+    window.addEventListener('scroll', function () {
+      _this.$store.dispatch('closeContextMenu');
+    });
+  },
+  destroyed: function destroyed() {
+    var _this2 = this;
+
+    window.removeEventListener('scroll', function () {
+      _this2.$store.dispatch('closeContextMenu');
+    });
   }
 });
 
@@ -19348,13 +19360,13 @@ var routes = [{
   path: '/admin/products/:which',
   name: 'Products',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
   }
 },
 /*
@@ -19859,33 +19871,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   }
-  /*
-  changePosition({ dispatch, commit, getters, state }, { entity, categoryId, direction }) {
-      dispatch('closeContextMenu', null, { root: true });
-      dispatch('showWaitingScreen', null, { root: true });
-      const changePositionUrl = getters.changePositionUrl(entity) + categoryId;
-      dispatch(
-          'postJson',
-          {
-              url: changePositionUrl,
-              data: { direction },
-          },
-          { root: true }
-      )
-          .then((data) => {
-              if (data.upDownSuccess === true) {
-                  dispatch('loadCategories', entity); // получить обновленный список с сервера
-                  const txt = 'Сделано.';
-                  dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.8}, { root: true });
-                  //закрытие заглушки в loadCategories // dispatch('hideWaitingScreen', null, { root: true });
-              } else {
-                  dispatch('hideWaitingScreen', null, { root: true });
-                  const txt = 'Неудачная попытка изменения позиции.';
-                  dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
-              }
-          });
-  },*/
-
 });
 
 /***/ }),
@@ -20582,10 +20567,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     showContextMenu: function showContextMenu(_ref, _ref2) {
       var dispatch = _ref.dispatch,
           commit = _ref.commit,
-          getters = _ref.getters;
+          getters = _ref.getters,
+          rootState = _ref.rootState;
       var event = _ref2.event,
           target = _ref2.target,
           data = _ref2.data;
+
+      if (rootState['dragAndDropByXY']['isDragging']) {
+        return;
+      }
+
+      if (rootState['dragAndDropByY']['isDragging']) {
+        return;
+      }
+
       dispatch('setTarget', target).then(function () {
         commit("setCoordinatesFor".concat(target, "Context"), event);
         commit("set".concat(target, "ContextData"), data);
@@ -20666,7 +20661,7 @@ __webpack_require__.r(__webpack_exports__);
       var dispatch = _ref.dispatch,
           commit = _ref.commit,
           getters = _ref.getters;
-      var seconds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 30;
+      var seconds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
       var url = getters.csrfUrl;
       setInterval(function () {
         dispatch('getJson', url).then(function (data) {
@@ -20679,10 +20674,232 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/store/dragAndDrop.js":
-/*!*******************************************!*\
-  !*** ./resources/js/store/dragAndDrop.js ***!
-  \*******************************************/
+/***/ "./resources/js/store/dragAndDropByXY.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/dragAndDropByXY.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../router */ "./resources/js/router/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    dragLeft: 0,
+    dragTop: 0,
+    currentIndex: -1,
+    xCoordinatesOfItems: [],
+    yCoordinatesOfItems: [],
+    startX: -1,
+    startY: -1,
+    isDragging: false
+  },
+  getters: {
+    currentIndex: function currentIndex(state) {
+      return state.currentIndex;
+    },
+    startX: function startX(state) {
+      return state.startX;
+    },
+    startY: function startY(state) {
+      return state.startY;
+    },
+    isDragging: function isDragging(state) {
+      return function (index) {
+        return state.currentIndex === index && state.isDragging;
+      };
+    },
+    leftByIndex: function leftByIndex(state) {
+      return function (index) {
+        if (state.currentIndex !== index) {
+          return 0;
+        }
+
+        return state.dragLeft + 'px';
+      };
+    },
+    topByIndex: function topByIndex(state) {
+      return function (index) {
+        if (state.currentIndex !== index) {
+          return 0;
+        }
+
+        return state.dragTop + 'px';
+      };
+    },
+    xCoordinatesOfItems: function xCoordinatesOfItems(state) {
+      return state.xCoordinatesOfItems;
+    },
+    yCoordinatesOfItems: function yCoordinatesOfItems(state) {
+      return state.yCoordinatesOfItems;
+    },
+    getIndexByXY: function getIndexByXY(state) {
+      return function (xy) {
+        var maxIndex = state.yCoordinatesOfItems.length - 1;
+
+        if (xy.y < state.yCoordinatesOfItems[0] && xy.x < state.xCoordinatesOfItems[0]) {
+          return 0;
+        }
+
+        if (xy.y > state.yCoordinatesOfItems[maxIndex] && xy.x > state.xCoordinatesOfItems[maxIndex]) {
+          return maxIndex + 1;
+        }
+
+        return -1;
+      };
+    }
+  },
+  mutations: {
+    setCurrentIndex: function setCurrentIndex(state, value) {
+      state.currentIndex = value;
+    },
+    setDragLeft: function setDragLeft(state, value) {
+      state.dragLeft = value;
+    },
+    setDragTop: function setDragTop(state, value) {
+      state.dragTop = value;
+    },
+    setStartX: function setStartX(state, value) {
+      state.startX = value;
+    },
+    setStartY: function setStartY(state, value) {
+      state.startY = value;
+    },
+    setIsDragging: function setIsDragging(state, value) {
+      state.isDragging = value;
+    },
+    myDragStop: function myDragStop(state) {
+      state.currentIndex = -1;
+      state.isDragging = false;
+      state.dragLeft = 0;
+      state.dragTop = 0;
+    },
+    addXIntoXCoordinates: function addXIntoXCoordinates(state, x) {
+      state.xCoordinatesOfItems.push(x);
+    },
+    addYIntoYCoordinates: function addYIntoYCoordinates(state, y) {
+      state.yCoordinatesOfItems.push(y);
+    },
+    resetCoordinates: function resetCoordinates(state) {
+      state.xCoordinatesOfItems = [];
+      state.yCoordinatesOfItems = [];
+    }
+  },
+  actions: {
+    resetCoordinates: function resetCoordinates(_ref, cycleNumber) {
+      var commit = _ref.commit;
+
+      if (cycleNumber === 0) {
+        commit('resetCoordinates');
+      }
+
+      return true;
+    },
+    myDragStart: function myDragStart(_ref2, _ref3) {
+      var dispatch = _ref2.dispatch,
+          commit = _ref2.commit,
+          getters = _ref2.getters;
+      var index = _ref3.index,
+          event = _ref3.event;
+
+      if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.params.which === 'trashed') {
+        return;
+      }
+
+      commit('setCurrentIndex', index);
+      commit('setStartX', event.pageX);
+      commit('setStartY', event.pageY);
+    },
+    myDragMove: function myDragMove(_ref4, event) {
+      var dispatch = _ref4.dispatch,
+          commit = _ref4.commit,
+          getters = _ref4.getters,
+          state = _ref4.state;
+
+      if (getters.currentIndex === -1) {
+        return;
+      }
+
+      if (state.isDragging) {
+        commit('setDragLeft', event.pageX);
+        commit('setDragTop', event.pageY);
+      }
+
+      if (Math.abs(getters.startX - event.pageX) > 15 || Math.abs(getters.startY - event.pageY) > 15) {
+        dispatch('closeContextMenu', null, {
+          root: true
+        });
+        commit('setIsDragging', true);
+        commit('setDragLeft', event.pageX);
+        commit('setDragTop', event.pageY);
+      }
+    },
+    myDragStop: function myDragStop(_ref5, _ref6) {
+      var dispatch = _ref5.dispatch,
+          commit = _ref5.commit,
+          getters = _ref5.getters,
+          state = _ref5.state;
+      var event = _ref6.event,
+          clickedIndex = _ref6.clickedIndex,
+          entity = _ref6.entity;
+
+      if (!state.isDragging) {
+        commit('myDragStop');
+        return;
+      }
+
+      var currentIndex = getters.currentIndex;
+      var newIndex = clickedIndex > -1 ? clickedIndex : getters.getIndexByXY({
+        x: event.pageX,
+        y: event.pageY
+      });
+      dispatch('moveItem', {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        entity: entity
+      });
+      commit('myDragStop');
+    },
+    moveItem: function moveItem(_ref7, _ref8) {
+      var dispatch = _ref7.dispatch,
+          commit = _ref7.commit,
+          getters = _ref7.getters,
+          state = _ref7.state;
+      var currentIndex = _ref8.currentIndex,
+          newIndex = _ref8.newIndex,
+          entity = _ref8.entity;
+
+      if (newIndex === -1) {
+        return;
+      }
+
+      var vector = 'Above';
+
+      if (newIndex === state.yCoordinatesOfItems.length) {
+        newIndex = state.yCoordinatesOfItems.length - 1;
+        vector = 'Below';
+      }
+
+      dispatch('move' + entity, {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        vector: vector
+      }, {
+        root: true
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/dragAndDropByY.js":
+/*!**********************************************!*\
+  !*** ./resources/js/store/dragAndDropByY.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -20691,8 +20908,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    //draggableIndexes: {},
-    //dragLeft: 0,
     dragTop: 0,
     currentIndex: -1,
     yCoordinatesOfItems: [],
@@ -20711,7 +20926,7 @@ __webpack_require__.r(__webpack_exports__);
         return state.currentIndex === index && state.isDragging;
       };
     },
-    topOfIndex: function topOfIndex(state) {
+    topByIndex: function topByIndex(state) {
       return function (index) {
         if (state.currentIndex !== index) {
           return 0;
@@ -20783,6 +20998,9 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (Math.abs(getters.startY - event.pageY) > 15) {
+        dispatch('closeContextMenu', null, {
+          root: true
+        });
         commit('setIsDragging', true);
         commit('setDragTop', event.pageY);
       }
@@ -20831,10 +21049,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (newIndex >= coordsArr.length) {
         newIndex = coordsArr.length - 1;
-      } //console.log('currentIndex - ' + currentIndex);
-      //console.log('newIndex - ' + newIndex);
-      //console.log('entity - ' + entity);
-
+      }
 
       dispatch('moveCategory', {
         currentIndex: currentIndex,
@@ -21004,7 +21219,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _waitingScreen__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./waitingScreen */ "./resources/js/store/waitingScreen.js");
 /* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
 /* harmony import */ var _contextMenu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./contextMenu */ "./resources/js/store/contextMenu.js");
-/* harmony import */ var _dragAndDrop__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDrop */ "./resources/js/store/dragAndDrop.js");
+/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
+/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
+
 
 
 
@@ -21064,7 +21281,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     waitingScreen: _waitingScreen__WEBPACK_IMPORTED_MODULE_14__["default"],
     confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__["default"],
     contextMenu: _contextMenu__WEBPACK_IMPORTED_MODULE_16__["default"],
-    dragAndDrop: _dragAndDrop__WEBPACK_IMPORTED_MODULE_17__["default"]
+    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__["default"],
+    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -21902,12 +22120,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./products_js/products_actions_saveProduct */ "./resources/js/store/products_js/products_actions_saveProduct.js");
 /* harmony import */ var _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./products_js/products_actions_preDeleteProduct */ "./resources/js/store/products_js/products_actions_preDeleteProduct.js");
 /* harmony import */ var _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./products_js/products_actions_deleteAndRestoreProduct */ "./resources/js/store/products_js/products_actions_deleteAndRestoreProduct.js");
-/* harmony import */ var _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./products_js/products_actions_photoManagment */ "./resources/js/store/products_js/products_actions_photoManagment.js");
+/* harmony import */ var _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./products_js/products_actions_moveProduct */ "./resources/js/store/products_js/products_actions_moveProduct.js");
+/* harmony import */ var _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products_js/products_actions_photoManagment */ "./resources/js/store/products_js/products_actions_photoManagment.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -21924,7 +22144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   state: _products_js_products_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _products_js_products_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _products_js_products_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_7__["default"])
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_9__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_8__["default"])
 });
 
 /***/ }),
@@ -22348,6 +22568,74 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/products_js/products_actions_moveProduct.js":
+/*!************************************************************************!*\
+  !*** ./resources/js/store/products_js/products_actions_moveProduct.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  moveProduct: {
+    root: true,
+    handler: function handler(_ref, _ref2) {
+      var dispatch = _ref.dispatch,
+          commit = _ref.commit,
+          getters = _ref.getters,
+          state = _ref.state;
+      var currentIndex = _ref2.currentIndex,
+          newIndex = _ref2.newIndex,
+          vector = _ref2.vector;
+      // именно в такой последовательности
+      var operatedId = state.products[currentIndex]['id'];
+      var closestId = state.products[newIndex]['id'];
+      commit('moveProduct', {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        vector: vector
+      });
+      dispatch('showWaitingScreen', null, {
+        root: true
+      });
+      dispatch('postJson', {
+        url: getters.moveProductUrl + operatedId,
+        data: {
+          closestId: closestId,
+          vector: vector
+        }
+      }, {
+        root: true
+      }).then(function (data) {
+        if (data.moveSuccess === true) {
+          dispatch('loadProducts', 'active'); // получить обновленный список с сервера
+
+          var txt = 'Сделано.';
+          dispatch('showAbsoluteFlashMessage', {
+            text: txt,
+            sec: 0.8
+          }, {
+            root: true
+          }); //закрытие заглушки в loadProducts // dispatch('hideWaitingScreen', null, { root: true });
+        } else {
+          dispatch('loadProducts', 'active'); // отобразить обратно
+
+          var _txt = 'Неудачная попытка перемещения.';
+          dispatch('showAbsoluteFlashMessage', {
+            text: _txt,
+            sec: 2
+          }, {
+            root: true
+          });
+        }
+      });
+    }
   }
 });
 
@@ -22816,6 +23104,9 @@ __webpack_require__.r(__webpack_exports__);
   forceDeleteProductUrl: function forceDeleteProductUrl(state) {
     return state.forceDeleteProductUrl;
   },
+  moveProductUrl: function moveProductUrl(state) {
+    return state.moveProductUrl;
+  },
   deleteProductPhotoUrl: function deleteProductPhotoUrl(state) {
     return state.deleteProductPhotoUrl;
   },
@@ -22894,13 +23185,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     });
     state.products.splice(index, 1, product);
   },
+  moveProduct: function moveProduct(state, _ref) {
+    var currentIndex = _ref.currentIndex,
+        newIndex = _ref.newIndex,
+        vector = _ref.vector;
+    var products = state.products; // вырвать из массива и получить наш элемент, который двигаем
 
-  /*
-   setProductsItem: (state, product) => {
-       const index = state.products.findIndex(item => item.id === product.id);
-       state.products.splice(index, 1, product);
-   },
-   */
+    var operatedItem = products.splice(currentIndex, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+
+    if (currentIndex < newIndex && newIndex !== state.products.length) {
+      newIndex--;
+    } // вставить наш элемент на новое место
+
+
+    products.splice(newIndex, 0, operatedItem);
+    state.products = _toConsumableArray(products);
+  },
   setShowProductPhotoManager: function setShowProductPhotoManager(state, value) {
     state.showProductPhotoManager = value;
   },
@@ -22931,6 +23231,7 @@ __webpack_require__.r(__webpack_exports__);
   deleteProductUrl: '/api/admin/product/delete/',
   forceDeleteProductUrl: '/api/admin/product/delete/force/',
   restoreProductUrl: '/api/admin/product/restore/',
+  moveProductUrl: '/api/admin/product/move/',
   deleteProductPhotoUrl: '/api/admin/product/photo/delete/',
   rotateProductPhotoUrl: '/api/admin/product/photo/rotate/',
   moveProductPhotoUrl: '/api/admin/product/photo/move/',

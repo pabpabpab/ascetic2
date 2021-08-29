@@ -7,6 +7,8 @@ export default {
     deleteProductUrl: '/api/admin/product/delete/',
     forceDeleteProductUrl: '/api/admin/product/delete/force/',
     restoreProductUrl: '/api/admin/product/restore/',
+    moveProductUrl: '/api/admin/product/move/',
+
     deleteProductPhotoUrl: '/api/admin/product/photo/delete/',
     rotateProductPhotoUrl: '/api/admin/product/photo/rotate/',
     moveProductPhotoUrl: '/api/admin/product/photo/move/',

@@ -114,7 +114,13 @@ export default {
     },
     actions: {
 
-        showContextMenu({ dispatch, commit, getters }, { event, target, data }) {
+        showContextMenu({ dispatch, commit, getters, rootState }, { event, target, data }) {
+            if (rootState['dragAndDropByXY']['isDragging']) {
+                return;
+            }
+            if (rootState['dragAndDropByY']['isDragging']) {
+                return;
+            }
             dispatch('setTarget', target).then(() => {
                 commit(`setCoordinatesFor${target}Context`, event);
                 commit(`set${target}ContextData`, data);

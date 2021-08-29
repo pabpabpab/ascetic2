@@ -4,6 +4,8 @@
 namespace App\Services\PhotoManager;
 
 
+use App\Models\Photo;
+use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
 trait PhotoTrait
@@ -38,10 +40,26 @@ trait PhotoTrait
     {
         // подготовить массив имен фоток, для вставки в таблицу photo через one-to-many
         $photos = [];
+        $position = static::_calcNewPhotoPosition();
         foreach ($photoNameArr as $photoName) {
-            $photos[] = ['filename' => $photoName];
+            $photos[] = ['filename' => $photoName, 'position' => $position];
+            $position++;
         }
         // вставить фотки в таблицу photo, используя photo() relationship
         $product->photo()->createMany($photos);
+    }
+
+    // получить макс position + 1
+    protected function _calcNewPhotoPosition(): int
+    {
+        if (Photo::count() === 0) {
+            return 1;
+        }
+
+        $maxModel = Photo::query()
+            ->orderBy('position', 'desc')
+            ->first();
+
+        return $maxModel->position + 1;
     }
 }

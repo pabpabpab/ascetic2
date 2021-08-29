@@ -36,10 +36,12 @@ class CreateProductsTable extends Migration
             price DECIMAL(11, 2) NOT NULL DEFAULT 0,
             parameters JSON,
             photo_set JSON,
+            position BIGINT UNSIGNED NOT NULL DEFAULT 0, // добавлено потом (для выстраивания списка товаров)
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
             deleted_at DATETIME,
 
+            INDEX position_idx(position), // добавлено потом
             INDEX category_idx(category_id),
             INDEX price_idx(price),
             INDEX product_name_idx(name(15)),
@@ -67,7 +69,9 @@ class CreateProductsTable extends Migration
             id SERIAL,
             product_id BIGINT UNSIGNED NOT NULL,
             filename VARCHAR(100),
+            position BIGINT UNSIGNED NOT NULL DEFAULT 0, // добавлено потом (для выстраивания списка фото)
             INDEX product_id_idx(product_id),
+            INDEX position_idx(position), // добавлено потом
 
             FOREIGN KEY (product_id) REFERENCES products(id)
         )');

@@ -59,6 +59,15 @@ export default {
 
     mounted() {
         this.$store.dispatch('updateCSRF');
+
+        window.addEventListener('scroll', () => {
+            this.$store.dispatch('closeContextMenu');
+        });
+    },
+    destroyed () {
+        window.removeEventListener('scroll', () => {
+            this.$store.dispatch('closeContextMenu');
+        });
     },
 }
 </script>

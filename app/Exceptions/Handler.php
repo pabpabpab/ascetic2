@@ -67,7 +67,7 @@ class Handler extends ExceptionHandler
             if ($request->wantsJson()) {
                 return response()->json([
                     'saveSuccess' => false,
-                    'customExceptionMessage' => 'Несоответствие защитного токена. Перезагрузите страницу.'
+                    'customExceptionMessage' => 'Несоответствие защитного токена. Повторите попытку через 10 секунд. При неудаче перезагрузите страницу.'
                 ]);
             }  else {
                 return back()->withErrors(['result' => 'Сервер закрыл сессию. Перезагрузите страницу.']);
