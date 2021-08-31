@@ -1,13 +1,14 @@
 <template>
-    <div ref="product" class="product__item"
-         :class="draggableItemClass"
+    <div ref="product"
+         class="product__item"
+         :class="draggableProductItemClass"
          :style="{
-            'left': leftByIndex(index),
-            'top': topByIndex(index),
+            'left': entity === 'Product' ? leftByIndex(index) : 0,
+            'top': entity === 'Product' ? topByIndex(index) : 0,
          }"
-         @mousedown="myDragStart({index: index, event: $event})"
+         @mousedown="myDragStart({index: index, event: $event, entity: 'Product'})"
          @mouseup.stop="myDragStop({ event: $event, clickedIndex: index, entity: 'Product' })">
-        <div>
+         <div>
             <span class="product__item__name">
                 {{ product.id }}
             </span>
@@ -119,23 +120,27 @@ export default {
             'imgFolderPrefix',
         ]),
         ...mapGetters('dragAndDropByXY', [
+            'entity',
             'isDragging',
             'leftByIndex',
             'topByIndex',
         ]),
-        draggableItemClass() {
+        ...mapGetters('products', [
+            'showProductPhotoManager',
+        ]),
+        draggableProductItemClass() {
             return {
-                'draggableProduct': this.isDragging(this.index),
+                'draggableProduct': this.isDragging(this.index) && this.entity === 'Product',
             };
         },
     },
 
     mounted() {
-        this.$store.dispatch('dragAndDropByXY/resetCoordinates', this.index).then(
+        this.$store.dispatch('dragAndDropByXY/resetCoordinates', {cycleNumber: this.index, entity: 'Product'}).then(
             () => {
                 const xy = this.$refs.product.getBoundingClientRect();
-                this.$store.commit('dragAndDropByXY/addXIntoXCoordinates', xy.x);
-                this.$store.commit('dragAndDropByXY/addYIntoYCoordinates', xy.y);
+                this.$store.commit('dragAndDropByXY/addXIntoXCoordinates', {x: xy.x, entity: 'Product'});
+                this.$store.commit('dragAndDropByXY/addYIntoYCoordinates', {y: xy.y, entity: 'Product'});
             }
         );
     },

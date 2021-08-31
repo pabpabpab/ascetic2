@@ -11,8 +11,6 @@ export default {
         //xCoordinatesOfItems: [],
         //yCoordinatesOfItems: [],
 
-        xCoordinatesOfProducts: [],
-        yCoordinatesOfProducts: [],
         xCoordinatesOfPhotos: [],
         yCoordinatesOfPhotos: [],
 
@@ -48,8 +46,6 @@ export default {
         //xCoordinatesOfItems: (state) => state.xCoordinatesOfItems,
         //yCoordinatesOfItems: (state) => state.yCoordinatesOfItems,
 
-        xCoordinatesOfProducts: (state) => state.xCoordinatesOfProducts,
-        yCoordinatesOfProducts: (state) => state.yCoordinatesOfProducts,
         xCoordinatesOfPhotos: (state) => state.xCoordinatesOfPhotos,
         yCoordinatesOfPhotos: (state) => state.yCoordinatesOfPhotos,
 
@@ -123,12 +119,11 @@ export default {
             if (router.currentRoute.params.which === 'trashed') {
                 return;
             }
-            //console.log('index - ' + index);
-            //console.log(event);
+
             commit('setEntity', entity);
             commit('setCurrentIndex', index);
-            commit('setStartX', event.pageX);
-            commit('setStartY', event.pageY);
+            commit('setStartX', event.x);
+            commit('setStartY', event.y);
         },
 
         myDragMove({ dispatch, commit, getters, state }, {event, entity}) {
@@ -137,14 +132,14 @@ export default {
                 return;
             }
             if (state.isDragging) {
-                commit('setDragLeft', event.pageX);
-                commit('setDragTop', event.pageY);
+                commit('setDragLeft', event.x);
+                commit('setDragTop', event.y);
             }
-            if ((Math.abs(getters.startX - event.pageX) > 15) || (Math.abs(getters.startY - event.pageY) > 15)) {
+            if ((Math.abs(getters.startX - event.x) > 15) || (Math.abs(getters.startY - event.y) > 15)) {
                 dispatch('closeContextMenu', null, { root: true });
                 commit('setIsDragging', true);
-                commit('setDragLeft', event.pageX);
-                commit('setDragTop', event.pageY);
+                commit('setDragLeft', event.x);
+                commit('setDragTop', event.y);
             }
         },
 
@@ -158,13 +153,17 @@ export default {
 
             const newIndex = clickedIndex > -1
                 ? clickedIndex
-                : getters.getIndexByXY({ x: event.pageX, y: event.pageY, entity: entity });
+                : getters.getIndexByXY({ x: event.x, y: event.y, entity: entity });
 
             dispatch('moveItem', { currentIndex, newIndex, entity });
             commit('myDragStop');
         },
 
         moveItem({ dispatch, commit, getters, state }, { currentIndex, newIndex, entity }) {
+            //console.log('currentIndex - ' + currentIndex);
+            //console.log('newIndex - ' + newIndex);
+
+
             if (newIndex === -1) {
                 return;
             }
@@ -176,7 +175,7 @@ export default {
             }
 
             dispatch(
-                'move' + entity,
+                'move' + entity + 'ByDragAndDrop',
                 {
                     currentIndex: currentIndex,
                     newIndex: newIndex,

@@ -18,6 +18,7 @@ import confirmationDialog from './confirmationDialog';
 import contextMenu from './contextMenu';
 import dragAndDropByY from './dragAndDropByY';
 import dragAndDropByXY from './dragAndDropByXY';
+import dragAndDropInAbsDiv from './dragAndDropInAbsDiv';
 
 Vue.use(Vuex);
 
@@ -61,6 +62,7 @@ const store = new Vuex.Store({
         contextMenu,
         dragAndDropByY,
         dragAndDropByXY,
+        dragAndDropInAbsDiv,
     },
 });
 

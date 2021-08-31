@@ -29,8 +29,8 @@ class PhotoMover
 
             $occupiedPhotoRecord = DB::table('photo')
                 ->where('product_id', $product->id)
-                ->where('id', $direction[$to]['sign'], $operatedPhotoRecord->id)
-                ->orderBy('id', $direction[$to]['order'])
+                ->where('position', $direction[$to]['sign'], $operatedPhotoRecord->position)
+                ->orderBy('position', $direction[$to]['order'])
                 ->first();
 
             $exchangeResult = $this->_exchangePhotoNames($operatedPhotoRecord, $occupiedPhotoRecord);

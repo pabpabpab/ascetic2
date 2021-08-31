@@ -98,6 +98,7 @@ Route::group([
         ->where('photoName', '[0-9]+\.[a-z]+')
         ->where('to', 'first|up|down');
     Route::post('/product/photo/add/{product}', 'ProductController@addPhoto');
+    Route::post('/product/photo/moveByDragAndDrop/{product}', 'ProductController@movePhotoByDragAndDrop');
 
 });
 

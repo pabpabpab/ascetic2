@@ -20523,12 +20523,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     setCoordinatesForPhotosContext: function setCoordinatesForPhotosContext(state, event) {
       var icon = event.target.getBoundingClientRect();
-      var xOffset = -240;
+      var xOffset = -170;
       var x = {
         left: icon.x + xOffset + 'px'
       };
       var y = {
-        top: icon.y - 27 + 'px'
+        top: icon.y + 'px'
       };
       state.coordinates = _objectSpread(_objectSpread({}, x), y);
     },
@@ -20688,16 +20688,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
+    entity: '',
     dragLeft: 0,
     dragTop: 0,
     currentIndex: -1,
-    xCoordinatesOfItems: [],
-    yCoordinatesOfItems: [],
+    //xCoordinatesOfItems: [],
+    //yCoordinatesOfItems: [],
+    xCoordinatesOfProducts: [],
+    yCoordinatesOfProducts: [],
+    xCoordinatesOfPhotos: [],
+    yCoordinatesOfPhotos: [],
     startX: -1,
     startY: -1,
     isDragging: false
   },
   getters: {
+    entity: function entity(state) {
+      return state.entity;
+    },
     currentIndex: function currentIndex(state) {
       return state.currentIndex;
     },
@@ -20730,21 +20738,30 @@ __webpack_require__.r(__webpack_exports__);
         return state.dragTop + 'px';
       };
     },
-    xCoordinatesOfItems: function xCoordinatesOfItems(state) {
-      return state.xCoordinatesOfItems;
+    //xCoordinatesOfItems: (state) => state.xCoordinatesOfItems,
+    //yCoordinatesOfItems: (state) => state.yCoordinatesOfItems,
+    xCoordinatesOfProducts: function xCoordinatesOfProducts(state) {
+      return state.xCoordinatesOfProducts;
     },
-    yCoordinatesOfItems: function yCoordinatesOfItems(state) {
-      return state.yCoordinatesOfItems;
+    yCoordinatesOfProducts: function yCoordinatesOfProducts(state) {
+      return state.yCoordinatesOfProducts;
+    },
+    xCoordinatesOfPhotos: function xCoordinatesOfPhotos(state) {
+      return state.xCoordinatesOfPhotos;
+    },
+    yCoordinatesOfPhotos: function yCoordinatesOfPhotos(state) {
+      return state.yCoordinatesOfPhotos;
     },
     getIndexByXY: function getIndexByXY(state) {
-      return function (xy) {
-        var maxIndex = state.yCoordinatesOfItems.length - 1;
+      return function (data) {
+        var entity = data.entity;
+        var maxIndex = state['yCoordinatesOf' + entity + 's'].length - 1;
 
-        if (xy.y < state.yCoordinatesOfItems[0] && xy.x < state.xCoordinatesOfItems[0]) {
+        if (data.y < state['yCoordinatesOf' + entity + 's'][0] && data.x < state['xCoordinatesOf' + entity + 's'][0]) {
           return 0;
         }
 
-        if (xy.y > state.yCoordinatesOfItems[maxIndex] && xy.x > state.xCoordinatesOfItems[maxIndex]) {
+        if (data.y > state['yCoordinatesOf' + entity + 's'][maxIndex] && data.x > state['xCoordinatesOf' + entity + 's'][maxIndex]) {
           return maxIndex + 1;
         }
 
@@ -20753,6 +20770,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mutations: {
+    setEntity: function setEntity(state, value) {
+      state.entity = value;
+    },
     setCurrentIndex: function setCurrentIndex(state, value) {
       state.currentIndex = value;
     },
@@ -20772,53 +20792,67 @@ __webpack_require__.r(__webpack_exports__);
       state.isDragging = value;
     },
     myDragStop: function myDragStop(state) {
+      state.entity = '';
       state.currentIndex = -1;
       state.isDragging = false;
       state.dragLeft = 0;
       state.dragTop = 0;
     },
-    addXIntoXCoordinates: function addXIntoXCoordinates(state, x) {
-      state.xCoordinatesOfItems.push(x);
+    addXIntoXCoordinates: function addXIntoXCoordinates(state, _ref) {
+      var x = _ref.x,
+          entity = _ref.entity;
+      state['xCoordinatesOf' + entity + 's'].push(x);
     },
-    addYIntoYCoordinates: function addYIntoYCoordinates(state, y) {
-      state.yCoordinatesOfItems.push(y);
+    addYIntoYCoordinates: function addYIntoYCoordinates(state, _ref2) {
+      var y = _ref2.y,
+          entity = _ref2.entity;
+      state['yCoordinatesOf' + entity + 's'].push(y);
     },
-    resetCoordinates: function resetCoordinates(state) {
-      state.xCoordinatesOfItems = [];
-      state.yCoordinatesOfItems = [];
+    resetCoordinates: function resetCoordinates(state, entity) {
+      state['xCoordinatesOf' + entity + 's'] = [];
+      state['yCoordinatesOf' + entity + 's'] = [];
     }
   },
   actions: {
-    resetCoordinates: function resetCoordinates(_ref, cycleNumber) {
-      var commit = _ref.commit;
+    resetCoordinates: function resetCoordinates(_ref3, _ref4) {
+      var commit = _ref3.commit;
+      var cycleNumber = _ref4.cycleNumber,
+          entity = _ref4.entity;
 
       if (cycleNumber === 0) {
-        commit('resetCoordinates');
+        commit('resetCoordinates', entity);
       }
 
       return true;
     },
-    myDragStart: function myDragStart(_ref2, _ref3) {
-      var dispatch = _ref2.dispatch,
-          commit = _ref2.commit,
-          getters = _ref2.getters;
-      var index = _ref3.index,
-          event = _ref3.event;
+    myDragStart: function myDragStart(_ref5, _ref6) {
+      var dispatch = _ref5.dispatch,
+          commit = _ref5.commit,
+          getters = _ref5.getters;
+      var index = _ref6.index,
+          event = _ref6.event,
+          entity = _ref6.entity;
 
       if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.params.which === 'trashed') {
         return;
-      }
+      } //console.log('index - ' + index);
+      //console.log(event);
 
+
+      commit('setEntity', entity);
       commit('setCurrentIndex', index);
       commit('setStartX', event.pageX);
       commit('setStartY', event.pageY);
     },
-    myDragMove: function myDragMove(_ref4, event) {
-      var dispatch = _ref4.dispatch,
-          commit = _ref4.commit,
-          getters = _ref4.getters,
-          state = _ref4.state;
+    myDragMove: function myDragMove(_ref7, _ref8) {
+      var dispatch = _ref7.dispatch,
+          commit = _ref7.commit,
+          getters = _ref7.getters,
+          state = _ref7.state;
+      var event = _ref8.event,
+          entity = _ref8.entity;
 
+      //console.log(event);
       if (getters.currentIndex === -1) {
         return;
       }
@@ -20837,14 +20871,14 @@ __webpack_require__.r(__webpack_exports__);
         commit('setDragTop', event.pageY);
       }
     },
-    myDragStop: function myDragStop(_ref5, _ref6) {
-      var dispatch = _ref5.dispatch,
-          commit = _ref5.commit,
-          getters = _ref5.getters,
-          state = _ref5.state;
-      var event = _ref6.event,
-          clickedIndex = _ref6.clickedIndex,
-          entity = _ref6.entity;
+    myDragStop: function myDragStop(_ref9, _ref10) {
+      var dispatch = _ref9.dispatch,
+          commit = _ref9.commit,
+          getters = _ref9.getters,
+          state = _ref9.state;
+      var event = _ref10.event,
+          clickedIndex = _ref10.clickedIndex,
+          entity = _ref10.entity;
 
       if (!state.isDragging) {
         commit('myDragStop');
@@ -20854,7 +20888,8 @@ __webpack_require__.r(__webpack_exports__);
       var currentIndex = getters.currentIndex;
       var newIndex = clickedIndex > -1 ? clickedIndex : getters.getIndexByXY({
         x: event.pageX,
-        y: event.pageY
+        y: event.pageY,
+        entity: entity
       });
       dispatch('moveItem', {
         currentIndex: currentIndex,
@@ -20863,14 +20898,14 @@ __webpack_require__.r(__webpack_exports__);
       });
       commit('myDragStop');
     },
-    moveItem: function moveItem(_ref7, _ref8) {
-      var dispatch = _ref7.dispatch,
-          commit = _ref7.commit,
-          getters = _ref7.getters,
-          state = _ref7.state;
-      var currentIndex = _ref8.currentIndex,
-          newIndex = _ref8.newIndex,
-          entity = _ref8.entity;
+    moveItem: function moveItem(_ref11, _ref12) {
+      var dispatch = _ref11.dispatch,
+          commit = _ref11.commit,
+          getters = _ref11.getters,
+          state = _ref11.state;
+      var currentIndex = _ref12.currentIndex,
+          newIndex = _ref12.newIndex,
+          entity = _ref12.entity;
 
       if (newIndex === -1) {
         return;
@@ -20878,8 +20913,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var vector = 'Above';
 
-      if (newIndex === state.yCoordinatesOfItems.length) {
-        newIndex = state.yCoordinatesOfItems.length - 1;
+      if (newIndex === state['yCoordinatesOf' + entity + 's'].length) {
+        newIndex = state['yCoordinatesOf' + entity + 's'].length - 1;
         vector = 'Below';
       }
 
@@ -21064,6 +21099,255 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/dragAndDropInAbsDiv.js":
+/*!***************************************************!*\
+  !*** ./resources/js/store/dragAndDropInAbsDiv.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../router */ "./resources/js/router/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    entity: '',
+    dragLeft: 0,
+    dragTop: 0,
+    currentIndex: -1,
+    //xCoordinatesOfItems: [],
+    //yCoordinatesOfItems: [],
+    xCoordinatesOfPhotos: [],
+    yCoordinatesOfPhotos: [],
+    startX: -1,
+    startY: -1,
+    isDragging: false
+  },
+  getters: {
+    entity: function entity(state) {
+      return state.entity;
+    },
+    currentIndex: function currentIndex(state) {
+      return state.currentIndex;
+    },
+    startX: function startX(state) {
+      return state.startX;
+    },
+    startY: function startY(state) {
+      return state.startY;
+    },
+    isDragging: function isDragging(state) {
+      return function (index) {
+        return state.currentIndex === index && state.isDragging;
+      };
+    },
+    leftByIndex: function leftByIndex(state) {
+      return function (index) {
+        if (state.currentIndex !== index) {
+          return 0;
+        }
+
+        return state.dragLeft + 'px';
+      };
+    },
+    topByIndex: function topByIndex(state) {
+      return function (index) {
+        if (state.currentIndex !== index) {
+          return 0;
+        }
+
+        return state.dragTop + 'px';
+      };
+    },
+    //xCoordinatesOfItems: (state) => state.xCoordinatesOfItems,
+    //yCoordinatesOfItems: (state) => state.yCoordinatesOfItems,
+    xCoordinatesOfPhotos: function xCoordinatesOfPhotos(state) {
+      return state.xCoordinatesOfPhotos;
+    },
+    yCoordinatesOfPhotos: function yCoordinatesOfPhotos(state) {
+      return state.yCoordinatesOfPhotos;
+    },
+    getIndexByXY: function getIndexByXY(state) {
+      return function (data) {
+        var entity = data.entity;
+        var maxIndex = state['yCoordinatesOf' + entity + 's'].length - 1;
+
+        if (data.y < state['yCoordinatesOf' + entity + 's'][0] && data.x < state['xCoordinatesOf' + entity + 's'][0]) {
+          return 0;
+        }
+
+        if (data.y > state['yCoordinatesOf' + entity + 's'][maxIndex] && data.x > state['xCoordinatesOf' + entity + 's'][maxIndex]) {
+          return maxIndex + 1;
+        }
+
+        return -1;
+      };
+    }
+  },
+  mutations: {
+    setEntity: function setEntity(state, value) {
+      state.entity = value;
+    },
+    setCurrentIndex: function setCurrentIndex(state, value) {
+      state.currentIndex = value;
+    },
+    setDragLeft: function setDragLeft(state, value) {
+      state.dragLeft = value;
+    },
+    setDragTop: function setDragTop(state, value) {
+      state.dragTop = value;
+    },
+    setStartX: function setStartX(state, value) {
+      state.startX = value;
+    },
+    setStartY: function setStartY(state, value) {
+      state.startY = value;
+    },
+    setIsDragging: function setIsDragging(state, value) {
+      state.isDragging = value;
+    },
+    myDragStop: function myDragStop(state) {
+      state.entity = '';
+      state.currentIndex = -1;
+      state.isDragging = false;
+      state.dragLeft = 0;
+      state.dragTop = 0;
+    },
+    addXIntoXCoordinates: function addXIntoXCoordinates(state, _ref) {
+      var x = _ref.x,
+          entity = _ref.entity;
+      state['xCoordinatesOf' + entity + 's'].push(x);
+    },
+    addYIntoYCoordinates: function addYIntoYCoordinates(state, _ref2) {
+      var y = _ref2.y,
+          entity = _ref2.entity;
+      state['yCoordinatesOf' + entity + 's'].push(y);
+    },
+    resetCoordinates: function resetCoordinates(state, entity) {
+      state['xCoordinatesOf' + entity + 's'] = [];
+      state['yCoordinatesOf' + entity + 's'] = [];
+    }
+  },
+  actions: {
+    resetCoordinates: function resetCoordinates(_ref3, _ref4) {
+      var commit = _ref3.commit;
+      var cycleNumber = _ref4.cycleNumber,
+          entity = _ref4.entity;
+
+      if (cycleNumber === 0) {
+        commit('resetCoordinates', entity);
+      }
+
+      return true;
+    },
+    myDragStart: function myDragStart(_ref5, _ref6) {
+      var dispatch = _ref5.dispatch,
+          commit = _ref5.commit,
+          getters = _ref5.getters;
+      var index = _ref6.index,
+          event = _ref6.event,
+          entity = _ref6.entity;
+
+      if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.params.which === 'trashed') {
+        return;
+      }
+
+      commit('setEntity', entity);
+      commit('setCurrentIndex', index);
+      commit('setStartX', event.x);
+      commit('setStartY', event.y);
+    },
+    myDragMove: function myDragMove(_ref7, _ref8) {
+      var dispatch = _ref7.dispatch,
+          commit = _ref7.commit,
+          getters = _ref7.getters,
+          state = _ref7.state;
+      var event = _ref8.event,
+          entity = _ref8.entity;
+
+      //console.log(event);
+      if (getters.currentIndex === -1) {
+        return;
+      }
+
+      if (state.isDragging) {
+        commit('setDragLeft', event.x);
+        commit('setDragTop', event.y);
+      }
+
+      if (Math.abs(getters.startX - event.x) > 15 || Math.abs(getters.startY - event.y) > 15) {
+        dispatch('closeContextMenu', null, {
+          root: true
+        });
+        commit('setIsDragging', true);
+        commit('setDragLeft', event.x);
+        commit('setDragTop', event.y);
+      }
+    },
+    myDragStop: function myDragStop(_ref9, _ref10) {
+      var dispatch = _ref9.dispatch,
+          commit = _ref9.commit,
+          getters = _ref9.getters,
+          state = _ref9.state;
+      var event = _ref10.event,
+          clickedIndex = _ref10.clickedIndex,
+          entity = _ref10.entity;
+
+      if (!state.isDragging) {
+        commit('myDragStop');
+        return;
+      }
+
+      var currentIndex = getters.currentIndex;
+      var newIndex = clickedIndex > -1 ? clickedIndex : getters.getIndexByXY({
+        x: event.x,
+        y: event.y,
+        entity: entity
+      });
+      dispatch('moveItem', {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        entity: entity
+      });
+      commit('myDragStop');
+    },
+    moveItem: function moveItem(_ref11, _ref12) {
+      var dispatch = _ref11.dispatch,
+          commit = _ref11.commit,
+          getters = _ref11.getters,
+          state = _ref11.state;
+      var currentIndex = _ref12.currentIndex,
+          newIndex = _ref12.newIndex,
+          entity = _ref12.entity;
+
+      //console.log('currentIndex - ' + currentIndex);
+      //console.log('newIndex - ' + newIndex);
+      if (newIndex === -1) {
+        return;
+      }
+
+      var vector = 'Above';
+
+      if (newIndex === state['yCoordinatesOf' + entity + 's'].length) {
+        newIndex = state['yCoordinatesOf' + entity + 's'].length - 1;
+        vector = 'Below';
+      }
+
+      dispatch('move' + entity + 'ByDragAndDrop', {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        vector: vector
+      }, {
+        root: true
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/http.js":
 /*!************************************!*\
   !*** ./resources/js/store/http.js ***!
@@ -21221,6 +21505,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contextMenu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./contextMenu */ "./resources/js/store/contextMenu.js");
 /* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
 /* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
+/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
+
 
 
 
@@ -21282,7 +21568,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__["default"],
     contextMenu: _contextMenu__WEBPACK_IMPORTED_MODULE_16__["default"],
     dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__["default"],
-    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__["default"]
+    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__["default"],
+    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_19__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -22887,6 +23174,70 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     });
+  },
+  movePhotoByDragAndDrop: {
+    root: true,
+    handler: function handler(_ref11, _ref12) {
+      var dispatch = _ref11.dispatch,
+          commit = _ref11.commit,
+          getters = _ref11.getters,
+          state = _ref11.state;
+      var currentIndex = _ref12.currentIndex,
+          newIndex = _ref12.newIndex,
+          vector = _ref12.vector;
+      var productId = state.singleProductFromServer.product.id;
+      var photoSet = JSON.parse(state.singleProductFromServer.product.photo_set);
+      var operatedPhotoName = photoSet[currentIndex];
+      var targetPhotoName = photoSet[newIndex];
+      commit('movePhoto', {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        vector: vector
+      });
+      dispatch('showWaitingScreen', null, {
+        root: true
+      });
+      dispatch('postJson', {
+        url: getters.moveByDragAndDropPhotoUrl + productId,
+        data: {
+          operatedPhotoName: operatedPhotoName,
+          targetPhotoName: targetPhotoName,
+          vector: vector
+        }
+      }, {
+        root: true
+      }).then(function (data) {
+        if (data.moveSuccess === true) {
+          commit('setSingleProductPhoto', data.photoSet);
+          commit('updateProductsBySingleProduct');
+          dispatch('hideWaitingScreen', null, {
+            root: true
+          });
+          var txt = "\u0421\u0434\u0435\u043B\u0430\u043D\u043E.";
+          dispatch('showAbsoluteFlashMessage', {
+            text: txt,
+            sec: 0.5
+          }, {
+            root: true
+          });
+        } else {
+          var _data$customException5;
+
+          dispatch('hideWaitingScreen', null, {
+            root: true
+          });
+
+          var _txt5 = (_data$customException5 = data.customExceptionMessage) !== null && _data$customException5 !== void 0 ? _data$customException5 : 'Неудачная попытка перемещения.';
+
+          dispatch('showAbsoluteFlashMessage', {
+            text: _txt5,
+            sec: 2
+          }, {
+            root: true
+          });
+        }
+      });
+    }
   }
 });
 
@@ -23116,6 +23467,9 @@ __webpack_require__.r(__webpack_exports__);
   moveProductPhotoUrl: function moveProductPhotoUrl(state) {
     return state.moveProductPhotoUrl;
   },
+  moveByDragAndDropPhotoUrl: function moveByDragAndDropPhotoUrl(state) {
+    return state.moveByDragAndDropPhotoUrl;
+  },
   addProductPhotoUrl: function addProductPhotoUrl(state) {
     return state.addProductPhotoUrl;
   },
@@ -23201,6 +23555,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     products.splice(newIndex, 0, operatedItem);
     state.products = _toConsumableArray(products);
   },
+  movePhoto: function movePhoto(state, _ref2) {
+    var currentIndex = _ref2.currentIndex,
+        newIndex = _ref2.newIndex,
+        vector = _ref2.vector;
+    var singleProduct = state.singleProductFromServer;
+    var photoSet = JSON.parse(singleProduct.product.photo_set); // вырвать из массива и получить наш элемент, который двигаем
+
+    var operatedItem = photoSet.splice(currentIndex, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+
+    if (currentIndex < newIndex && newIndex !== photoSet.length) {
+      newIndex--;
+    } // вставить наш элемент на новое место
+
+
+    photoSet.splice(newIndex, 0, operatedItem);
+    singleProduct.product.photo_set = JSON.stringify(photoSet);
+    state.singleProductFromServer = _objectSpread({}, singleProduct);
+  },
   setShowProductPhotoManager: function setShowProductPhotoManager(state, value) {
     state.showProductPhotoManager = value;
   },
@@ -23235,10 +23607,11 @@ __webpack_require__.r(__webpack_exports__);
   deleteProductPhotoUrl: '/api/admin/product/photo/delete/',
   rotateProductPhotoUrl: '/api/admin/product/photo/rotate/',
   moveProductPhotoUrl: '/api/admin/product/photo/move/',
+  moveByDragAndDropPhotoUrl: '/api/admin/product/photo/moveByDragAndDrop/',
   addProductPhotoUrl: '/api/admin/product/photo/add/',
   products: [],
   productsCountFromServer: 0,
-  singleProductFromServer: null,
+  singleProductFromServer: {},
   // productPhotosUrl: '/api/admin/product/photos/',
   showProductPhotoManager: false,
   enabledFadingCss: false

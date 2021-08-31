@@ -11,6 +11,7 @@ export default {
     deleteProductPhotoUrl: (state) => state.deleteProductPhotoUrl,
     rotateProductPhotoUrl: (state) => state.rotateProductPhotoUrl,
     moveProductPhotoUrl: (state) => state.moveProductPhotoUrl,
+    moveByDragAndDropPhotoUrl: (state) => state.moveByDragAndDropPhotoUrl,
     addProductPhotoUrl: (state) => state.addProductPhotoUrl,
 
     products: (state) => state.products,

@@ -22,16 +22,24 @@
                 @click="movePhoto({productId, photoName, to: 'first'})">
                 Сделать главным
             </li>
-            <li class="context_menu__li context_menu__li_black"
-                v-if="currentListIndex > 0"
-                @click="movePhoto({productId, photoName, to: 'up'})">
-                Сдвинуть влево (вверх)
+
+
+            <li class="context_menu__li__multiple_black">
+                Сдвинуть
+                <span v-if="currentListIndex > 0"
+                      title="влево (вверх)"
+                      class="context_menu__li__multiple__item_black"
+                      @click="movePhoto({productId, photoName, to: 'up'})">
+                    &larr; &uarr;
+                </span>
+                <span v-if="currentListIndex < lastListIndex"
+                      title="вправо (вниз)"
+                      class="context_menu__li__multiple__item_black"
+                      @click="movePhoto({productId, photoName, to: 'down'})">
+                    &darr; &rarr;
+                </span>
             </li>
-            <li class="context_menu__li context_menu__li_black"
-                v-if="currentListIndex < lastListIndex"
-                @click="movePhoto({productId, photoName, to: 'down'})">
-                Сдвинуть вправо (вниз)
-            </li>
+
 
             <li class="context_menu__li context_menu__li_black" style="border: 0;"
                 @click="deletePhoto({productId, photoName})">

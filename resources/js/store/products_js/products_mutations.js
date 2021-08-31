@@ -38,6 +38,25 @@ export default {
     },
 
 
+    movePhoto: (state, {currentIndex, newIndex, vector}) => {
+        const singleProduct = state.singleProductFromServer;
+        const photoSet = JSON.parse(singleProduct.product.photo_set)
+
+        // вырвать из массива и получить наш элемент, который двигаем
+        const operatedItem = photoSet.splice(currentIndex, 1)[0];
+
+        // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+        if ((currentIndex < newIndex) && (newIndex !== photoSet.length)) {
+            newIndex--;
+        }
+
+        // вставить наш элемент на новое место
+        photoSet.splice(newIndex, 0, operatedItem);
+        singleProduct.product.photo_set = JSON.stringify(photoSet);
+        state.singleProductFromServer = { ...singleProduct };
+    },
+
+
 
     setShowProductPhotoManager: (state, value) => {
         state.showProductPhotoManager = value;

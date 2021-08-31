@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\ProductSaveRequest;
 use App\Models\Product;
 use App\Services\PhotoManager\PhotoAppender;
 use App\Services\PhotoManager\PhotoMover;
+use App\Services\PhotoManager\PhotoMoverByDragAndDrop;
 use App\Services\PhotoManager\PhotoRemover;
 use App\Services\PhotoManager\PhotoRotator;
 use App\Services\Product\ForceDeleteService;
@@ -111,6 +112,14 @@ class ProductController extends Controller
         // instance товара в роуте как {product}
         return response()->json(
             $manager->appendPhoto($product, $request)
+        );
+    }
+
+    public function movePhotoByDragAndDrop(PhotoMoverByDragAndDrop $manager, Product $product): JsonResponse
+    {
+        // instance товара в роуте как {product}
+        return response()->json(
+            $manager->movePhotoByDragAndDrop($product)
         );
     }
 

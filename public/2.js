@@ -59,6 +59,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PhotosContextMenu",
@@ -403,16 +411,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PhotoManagerItem",
-  props: ['photoName', 'productId', 'index', 'length'],
+  props: ['photoName', 'productId', 'photoIndex', 'length'],
   data: function data() {
     return {
       sizeIndex: 3
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {
     photoSrc: function photoSrc() {
       return "".concat(this.folderName, "/").concat(this.fileNamePrefix).concat(this.photoName);
     },
@@ -425,11 +440,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     imgClass: function imgClass() {
       return "photo__size".concat(this.sizeIndex);
     },
-    lastListIndex: function lastListIndex() {
+    lastPhotoListIndex: function lastPhotoListIndex() {
       return this.length - 1;
     }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropInAbsDiv', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductPhotoManager'])), {}, {
+    draggablePhotoItemClass: function draggablePhotoItemClass() {
+      return {
+        'draggablePhoto': this.isDragging(this.photoIndex) && this.entity === 'Photo'
+      };
+    }
   }),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu']))
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('dragAndDropInAbsDiv', ['myDragStart', 'myDragStop'])),
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$store.dispatch('dragAndDropInAbsDiv/resetCoordinates', {
+      cycleNumber: this.photoIndex,
+      entity: 'Photo'
+    }).then(function () {
+      var xy = _this.$refs.photo.getBoundingClientRect();
+
+      _this.$store.commit('dragAndDropInAbsDiv/addXIntoXCoordinates', {
+        x: xy.x,
+        entity: 'Photo'
+      });
+
+      _this.$store.commit('dragAndDropInAbsDiv/addYIntoYCoordinates', {
+        y: xy.y,
+        entity: 'Photo'
+      });
+    });
+  }
 });
 
 /***/ }),
@@ -450,6 +491,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -551,22 +593,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return photoArr.join('');
     }
   }),
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['isDragging', 'leftByIndex', 'topByIndex'])), {}, {
-    draggableItemClass: function draggableItemClass() {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductPhotoManager'])), {}, {
+    draggableProductItemClass: function draggableProductItemClass() {
       return {
-        'draggableProduct': this.isDragging(this.index)
+        'draggableProduct': this.isDragging(this.index) && this.entity === 'Product'
       };
     }
   }),
   mounted: function mounted() {
     var _this = this;
 
-    this.$store.dispatch('dragAndDropByXY/resetCoordinates', this.index).then(function () {
+    this.$store.dispatch('dragAndDropByXY/resetCoordinates', {
+      cycleNumber: this.index,
+      entity: 'Product'
+    }).then(function () {
       var xy = _this.$refs.product.getBoundingClientRect();
 
-      _this.$store.commit('dragAndDropByXY/addXIntoXCoordinates', xy.x);
+      _this.$store.commit('dragAndDropByXY/addXIntoXCoordinates', {
+        x: xy.x,
+        entity: 'Product'
+      });
 
-      _this.$store.commit('dragAndDropByXY/addYIntoYCoordinates', xy.y);
+      _this.$store.commit('dragAndDropByXY/addYIntoYCoordinates', {
+        y: xy.y,
+        entity: 'Product'
+      });
     });
   }
 });
@@ -683,6 +734,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -709,7 +766,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])('products', ['enabledFadingCss', 'singleProductFromServer'])), {}, {
     photoScreenClassObject: function photoScreenClassObject() {
       return {
-        'photo_management__screen': true,
+        'photo_manager__screen': true,
         'show_block': !this.enabledFadingCss,
         'hide_block': this.enabledFadingCss
       };
@@ -735,7 +792,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return _this.resetPhotos();
       });
     }
-  }),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])('dragAndDropInAbsDiv', ['myDragMove', 'myDragStop'])),
   watch: {
     singleProductFromServer: function singleProductFromServer(val) {
       if (!val) {
@@ -957,43 +1014,48 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm.currentListIndex > 0
-          ? _c(
-              "li",
-              {
-                staticClass: "context_menu__li context_menu__li_black",
-                on: {
-                  click: function($event) {
-                    return _vm.movePhoto({
-                      productId: _vm.productId,
-                      photoName: _vm.photoName,
-                      to: "up"
-                    })
+        _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+          _vm._v("\n            Сдвинуть\n            "),
+          _vm.currentListIndex > 0
+            ? _c(
+                "span",
+                {
+                  staticClass: "context_menu__li__multiple__item_black",
+                  attrs: { title: "влево (вверх)" },
+                  on: {
+                    click: function($event) {
+                      return _vm.movePhoto({
+                        productId: _vm.productId,
+                        photoName: _vm.photoName,
+                        to: "up"
+                      })
+                    }
                   }
-                }
-              },
-              [_vm._v("\n            Сдвинуть влево (вверх)\n        ")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.currentListIndex < _vm.lastListIndex
-          ? _c(
-              "li",
-              {
-                staticClass: "context_menu__li context_menu__li_black",
-                on: {
-                  click: function($event) {
-                    return _vm.movePhoto({
-                      productId: _vm.productId,
-                      photoName: _vm.photoName,
-                      to: "down"
-                    })
+                },
+                [_vm._v("\n                ← ↑\n            ")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentListIndex < _vm.lastListIndex
+            ? _c(
+                "span",
+                {
+                  staticClass: "context_menu__li__multiple__item_black",
+                  attrs: { title: "вправо (вниз)" },
+                  on: {
+                    click: function($event) {
+                      return _vm.movePhoto({
+                        productId: _vm.productId,
+                        photoName: _vm.photoName,
+                        to: "down"
+                      })
+                    }
                   }
-                }
-              },
-              [_vm._v("\n            Сдвинуть вправо (вниз)\n        ")]
-            )
-          : _vm._e(),
+                },
+                [_vm._v("\n                ↓ →\n            ")]
+              )
+            : _vm._e()
+        ]),
         _vm._v(" "),
         _c(
           "li",
@@ -1280,31 +1342,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "photo_management__item" }, [
-    _c("img", { class: _vm.imgClass, attrs: { alt: "", src: _vm.photoSrc } }),
-    _vm._v(" "),
-    _c(
-      "span",
-      {
-        staticClass: "context_menu__icon__photo_manager",
-        on: {
-          mouseover: function($event) {
-            return _vm.showContextMenu({
-              event: $event,
-              target: "Photos",
-              data: {
-                productId: _vm.productId,
-                photoName: _vm.photoName,
-                currentListIndex: _vm.index,
-                lastListIndex: _vm.lastListIndex
-              }
-            })
-          }
-        }
+  return _c(
+    "div",
+    {
+      ref: "photo",
+      staticClass: "photo_manager__item",
+      class: _vm.draggablePhotoItemClass,
+      style: {
+        left: _vm.leftByIndex(_vm.photoIndex),
+        top: _vm.topByIndex(_vm.photoIndex)
       },
-      [_vm._v("\n        ⋮\n    ")]
-    )
-  ])
+      on: {
+        mousedown: function($event) {
+          $event.stopPropagation()
+          return _vm.myDragStart({
+            index: _vm.photoIndex,
+            event: $event,
+            entity: "Photo"
+          })
+        },
+        mouseup: function($event) {
+          $event.stopPropagation()
+          return _vm.myDragStop({
+            event: $event,
+            clickedIndex: _vm.photoIndex,
+            entity: "Photo"
+          })
+        }
+      }
+    },
+    [
+      _c("img", {
+        class: _vm.imgClass,
+        staticStyle: { "pointer-events": "none" },
+        attrs: { alt: "", src: _vm.photoSrc }
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "context_menu__icon__photo_manager",
+          on: {
+            mouseover: function($event) {
+              return _vm.showContextMenu({
+                event: $event,
+                target: "Photos",
+                data: {
+                  productId: _vm.productId,
+                  photoName: _vm.photoName,
+                  currentListIndex: _vm.photoIndex,
+                  lastListIndex: _vm.lastPhotoListIndex
+                }
+              })
+            }
+          }
+        },
+        [_vm._v("\n        ⋮\n    ")]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1333,14 +1429,18 @@ var render = function() {
     {
       ref: "product",
       staticClass: "product__item",
-      class: _vm.draggableItemClass,
+      class: _vm.draggableProductItemClass,
       style: {
-        left: _vm.leftByIndex(_vm.index),
-        top: _vm.topByIndex(_vm.index)
+        left: _vm.entity === "Product" ? _vm.leftByIndex(_vm.index) : 0,
+        top: _vm.entity === "Product" ? _vm.topByIndex(_vm.index) : 0
       },
       on: {
         mousedown: function($event) {
-          return _vm.myDragStart({ index: _vm.index, event: $event })
+          return _vm.myDragStart({
+            index: _vm.index,
+            event: $event,
+            entity: "Product"
+          })
         },
         mouseup: function($event) {
           $event.stopPropagation()
@@ -1531,105 +1631,133 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.photoScreenClassObject }, [
-    _c("div", { staticClass: "photo_management__content_wrapper" }, [
-      _c("div", { staticClass: "photo_management__content" }, [
-        _c("h1", [
-          _vm._v(
-            "Фото товара «" +
-              _vm._s(_vm.product.name) +
-              "» " +
-              _vm._s(_vm.product.price) +
-              " ₽"
+  return _c(
+    "div",
+    {
+      class: _vm.photoScreenClassObject,
+      on: {
+        mousemove: function($event) {
+          $event.stopPropagation()
+          return _vm.myDragMove({ event: $event, entity: "Product" })
+        },
+        mouseup: function($event) {
+          $event.stopPropagation()
+          return _vm.myDragStop({
+            event: $event,
+            clickedIndex: -1,
+            entity: "Photo"
+          })
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "photo_manager__content_wrapper" }, [
+        _c(
+          "div",
+          { staticClass: "photo_manager__top_row_container_for_collapse_icon" },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "photo_manager__collapse_icon photo_manager__collapse_icon_main",
+                on: {
+                  click: function($event) {
+                    return _vm.closeProductPhotoManager()
+                  }
+                }
+              },
+              [_vm._v("\n                ×\n            ")]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "photo_manager__content" }, [
+          _c("h1", [
+            _vm._v(
+              "Фото товара «" +
+                _vm._s(_vm.product.name) +
+                "» " +
+                _vm._s(_vm.product.price) +
+                " ₽"
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "photo_manager__photos" },
+            [
+              _vm._l(_vm.product.photo_set, function(photoName, photoIndex) {
+                return _c("photo-manager-item", {
+                  key: photoName,
+                  attrs: {
+                    photoName: photoName,
+                    productId: _vm.product.id,
+                    length: _vm.product.photo_set.length,
+                    photoIndex: photoIndex
+                  }
+                })
+              }),
+              _vm._v(" "),
+              _vm.showPhotosContextMenu ? _c("photos-context-menu") : _vm._e()
+            ],
+            2
           )
         ]),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "photo_management__photos" },
+          { staticClass: "photo_input__panel" },
           [
-            _vm._l(_vm.product.photo_set, function(photoName, index) {
-              return _c("photo-manager-item", {
-                key: photoName,
-                attrs: {
-                  photoName: photoName,
-                  productId: _vm.product.id,
-                  length: _vm.product.photo_set.length,
-                  index: index
-                }
-              })
+            _c("files-input", {
+              key: _vm.resetFilesInputKey,
+              attrs: { owner: "ProductPhotoManager" },
+              model: {
+                value: _vm.photos,
+                callback: function($$v) {
+                  _vm.photos = $$v
+                },
+                expression: "photos"
+              }
             }),
             _vm._v(" "),
-            _vm.showPhotosContextMenu ? _c("photos-context-menu") : _vm._e()
+            _vm.showButtonsPanel
+              ? _c("div", { staticClass: "send_cancel_buttons__panel" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button__save_product",
+                      on: {
+                        click: function($event) {
+                          $event.stopPropagation()
+                          return _vm.sendPhotos()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Добавить\n                ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "photo_manager__collapse_icon photo_manager__collapse_icon_for_photo_input_panel",
+                      on: {
+                        click: function($event) {
+                          return _vm.resetPhotos()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    ×\n                ")]
+                  )
+                ])
+              : _vm._e()
           ],
-          2
+          1
         )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "photo_input__panel" },
-        [
-          _c("files-input", {
-            key: _vm.resetFilesInputKey,
-            attrs: { owner: "ProductPhotoManager" },
-            model: {
-              value: _vm.photos,
-              callback: function($$v) {
-                _vm.photos = $$v
-              },
-              expression: "photos"
-            }
-          }),
-          _vm._v(" "),
-          _vm.showButtonsPanel
-            ? _c("div", { staticClass: "send_cancel_buttons__panel" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "button__save_product",
-                    on: {
-                      click: function($event) {
-                        $event.stopPropagation()
-                        return _vm.sendPhotos()
-                      }
-                    }
-                  },
-                  [_vm._v("\n                    Добавить\n                ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "photo_management__collapse_icon",
-                    on: {
-                      click: function($event) {
-                        return _vm.resetPhotos()
-                      }
-                    }
-                  },
-                  [_vm._v("\n                    ×\n                ")]
-                )
-              ])
-            : _vm._e()
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "photo_management__collapse_icon",
-          on: {
-            click: function($event) {
-              return _vm.closeProductPhotoManager()
-            }
-          }
-        },
-        [_vm._v("\n            ×\n        ")]
-      )
-    ])
-  ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1701,7 +1829,7 @@ var render = function() {
       staticClass: "show_block",
       on: {
         mousemove: function($event) {
-          return _vm.myDragMove($event)
+          return _vm.myDragMove({ event: $event, entity: "Product" })
         },
         mouseup: function($event) {
           return _vm.myDragStop({

@@ -133,4 +133,41 @@ export default {
             });
     },
 
+
+
+    movePhotoByDragAndDrop: {
+        root: true,
+        handler ({ dispatch, commit, getters, state }, {currentIndex, newIndex, vector}) {
+            const productId = state.singleProductFromServer.product.id;
+            const photoSet = JSON.parse(state.singleProductFromServer.product.photo_set)
+            const operatedPhotoName = photoSet[currentIndex];
+            const targetPhotoName = photoSet[newIndex];
+
+            commit('movePhoto', {currentIndex, newIndex, vector});
+            dispatch('showWaitingScreen', null, { root: true });
+
+            dispatch (
+                'postJson',
+                {
+                    url: getters.moveByDragAndDropPhotoUrl + productId,
+                    data: { operatedPhotoName, targetPhotoName, vector },
+                },
+                { root: true }
+            )
+                .then((data) => {
+                    if (data.moveSuccess === true) {
+                        commit('setSingleProductPhoto', data.photoSet);
+                        commit('updateProductsBySingleProduct');
+                        dispatch('hideWaitingScreen', null, { root: true });
+                        const txt = `Сделано.`;
+                        dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.5}, { root: true });
+                    } else {
+                        dispatch('hideWaitingScreen', null, { root: true });
+                        const txt = data.customExceptionMessage ?? 'Неудачная попытка перемещения.';
+                        dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
+                    }
+                });
+        }
+    },
+
 }

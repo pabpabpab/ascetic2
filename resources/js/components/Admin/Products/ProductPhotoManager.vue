@@ -1,17 +1,27 @@
 <template>
-    <div :class="photoScreenClassObject">
-        <div class="photo_management__content_wrapper">
+    <div :class="photoScreenClassObject"
+         @mousemove.stop="myDragMove({event: $event, entity: 'Product'})"
+         @mouseup.stop="myDragStop({ event: $event, clickedIndex: -1, entity: 'Photo' })">
 
-            <div class="photo_management__content">
+        <div class="photo_manager__content_wrapper">
+
+            <div class="photo_manager__top_row_container_for_collapse_icon">
+                <div class='photo_manager__collapse_icon photo_manager__collapse_icon_main'
+                     @click="closeProductPhotoManager()">
+                    &#215;
+                </div>
+            </div>
+
+            <div class="photo_manager__content">
                 <h1>Фото товара «{{ product.name }}» {{ product.price }} ₽</h1>
-                <div class="photo_management__photos">
+                <div class="photo_manager__photos">
                     <photo-manager-item
-                        v-for="(photoName, index) of product.photo_set"
+                        v-for="(photoName, photoIndex) of product.photo_set"
                         :key="photoName"
                         :photoName="photoName"
                         :productId="product.id"
                         :length="product.photo_set.length"
-                        :index="index">
+                        :photoIndex="photoIndex">
                     </photo-manager-item>
 
                     <photos-context-menu
@@ -34,17 +44,13 @@
                         Добавить
                     </button>
 
-                    <div class='photo_management__collapse_icon'
+                    <div class='photo_manager__collapse_icon photo_manager__collapse_icon_for_photo_input_panel'
                          @click="resetPhotos()">
                         &#215;
                     </div>
                 </div>
             </div>
 
-            <div class='photo_management__collapse_icon'
-                 @click="closeProductPhotoManager()">
-                &#215;
-            </div>
         </div>
     </div>
 </template>
@@ -80,7 +86,7 @@ export default {
         ]),
         photoScreenClassObject() {
             return {
-                'photo_management__screen': true,
+                'photo_manager__screen': true,
                 'show_block': !this.enabledFadingCss,
                 'hide_block': this.enabledFadingCss,
             };
@@ -113,6 +119,10 @@ export default {
                 () => this.resetPhotos()
             );
         },
+        ...mapActions('dragAndDropInAbsDiv', [
+            'myDragMove',
+            'myDragStop',
+        ]),
     },
 
     watch:{

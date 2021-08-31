@@ -1,6 +1,6 @@
 <template>
     <div class="show_block"
-         @mousemove="myDragMove($event)"
+         @mousemove="myDragMove({event: $event, entity: 'Product'})"
          @mouseup="myDragStop({ event: $event, clickedIndex: -1, entity: 'Product' })">
         <product-list-header></product-list-header>
         <products></products>

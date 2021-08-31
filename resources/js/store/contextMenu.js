@@ -68,14 +68,14 @@ export default {
         setCoordinatesForPhotosContext: (state, event) => {
             const icon = event.target.getBoundingClientRect();
 
-            const xOffset = -240;
+            const xOffset = -170;
 
             const x = {
                 left: (icon.x + xOffset) + 'px'
             }
 
             const y = {
-                top: icon.y - 27 + 'px'
+                top: icon.y + 'px'
             };
 
             state.coordinates = { ...x, ...y };
