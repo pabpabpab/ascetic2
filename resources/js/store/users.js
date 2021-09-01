@@ -7,6 +7,7 @@ import actions from './users_js/users_actions';
 
 /* eslint no-shadow: ["error", { "allow": ["state", "getters", "mutations", "actions"] }] */
 export default {
+    namespaced: true,
     state,
     getters,
     mutations,

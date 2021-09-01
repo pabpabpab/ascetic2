@@ -1,6 +1,6 @@
 <template>
     <div ref="photo" class="photo_manager__item"
-         :class="draggablePhotoItemClass"
+         :class="[draggablePhotoItemClass, underDraggablePhotoItemClass]"
          :style="{
             'left': leftByIndex(photoIndex),
             'top': topByIndex(photoIndex),
@@ -66,6 +66,11 @@ export default {
         draggablePhotoItemClass() {
             return {
                 'draggablePhoto': this.isDragging(this.photoIndex) && this.entity === 'Photo',
+            };
+        },
+        underDraggablePhotoItemClass() {
+            return {
+                'underDraggablePhoto': !this.isDragging(this.photoIndex) && this.entity === 'Photo',
             };
         },
     },

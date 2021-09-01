@@ -1,35 +1,26 @@
 export default {
 
-    customized: (state) => state.customized,
-    customizedLength: (state) => state.customized.length,
+    customized: (state) => (entity) => state.customized[entity],
+    customizedLength: (state) => (entity) => state.customized[entity].length,
     //
-    currentPageIndex: (state) => state.currentPage,
-    currentPageNumber: (state) => state.currentPage + 1,
+    currentPageIndex: (state) => (entity) => state.currentPage[entity],
+    currentPageNumber: (state) => (entity) => state.currentPage[entity] + 1,
     //
-    paginationLinksShot: (state) => state.paginationLinksShot,
-    paginationLinkCssArr: (state) => state.paginationLinkCssArr,
-    paginationLinkCssArrLength: (state) => state.paginationLinkCssArr.length,
+    paginationLinksShot: (state) => (entity) => state.paginationLinksShot[entity],
+    paginationLinkCssArr: (state) => (entity) => state.paginationLinkCssArr[entity],
+    paginationLinkCssArrLength: (state) => (entity) => state.paginationLinkCssArr[entity].length,
     //
-    filtered: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['filtered'],
-    filteredLength: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['filtered'].length,
+    filtered: (state) => (entity) => state.filtered[entity],
+    filteredLength: (state) => (entity) => state.filtered[entity].length,
     //
-    wing: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['half_length_of_pagination_shot'],
+    wing: (state) => state.half_length_of_pagination_shot,
     //
-    minimumPagesForComplexPagination: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['minimumPagesForComplexPagination'],
-    quantityPerPage: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['quantityPerPage'],
-    copyOfQuantityPerPage: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['copyOfQuantityPerPage'],
+    quantityPerPage: (state) => (entity) => state.quantityPerPage[entity],
+    copyOfQuantityPerPage: (state) => (entity) => state.copyOfQuantityPerPage[entity],
+    minimumPagesForComplexPagination: (state) => (entity) => state.minimumPagesForComplexPagination[entity],
     //
-    inactivePaginationLinkCss: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['inactivePaginationLinkCss'],
-    activePaginationLinkCss: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['activePaginationLinkCss'],
-
+    inactivePaginationLinkCss: (state) => state.inactivePaginationLinkCss,
+    activePaginationLinkCss: (state) => state.activePaginationLinkCss,
 };
 
 

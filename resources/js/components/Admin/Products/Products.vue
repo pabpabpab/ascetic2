@@ -2,13 +2,16 @@
     <div class="content_block content_block__products">
 
         <div class="products">
+            <pagination entity="products" class="pdb20"></pagination>
+
             <product-item
-                v-for="(product, index) of products"
-                :key="product.id"
-                :product="product"
+                v-for="(item, index) of items"
+                :key="item.id"
+                :product="item"
                 :index="index">
             </product-item>
 
+            <pagination entity="products" class="pdt20"></pagination>
 
             <products-context-menu
                 v-if="showProductsContextMenu">
@@ -22,6 +25,7 @@
 
 <script>
 import ProductItem from "./ProductItem";
+import Pagination from "./../Blocks/Pagination";
 import ProductsContextMenu from "../ContextMenu/ProductsContextMenu";
 import ProductPhotoManager from "./ProductPhotoManager";
 import {mapGetters} from "vuex";
@@ -31,17 +35,24 @@ export default {
     props: ['whichProducts'],
     components: {
         ProductItem,
+        Pagination,
         ProductsContextMenu,
         ProductPhotoManager,
     },
     computed: {
         ...mapGetters('products', [
-            'products',
             'showProductPhotoManager',
         ]),
         ...mapGetters('contextMenu', [
             'showProductsContextMenu',
         ]),
+        ...mapGetters([
+            'currentPageIndex',
+            'customized',
+        ]),
+        items() {
+            return this.customized('products')[this.currentPageIndex('products')];
+        },
     },
     mounted() {
         this.$store.dispatch('products/loadProducts', this.$route.params.which);

@@ -1,5 +1,168 @@
 export default {
+
+    // =======================скопировать оригинал в filtered=============================
+    setFiltered({ dispatch, commit }, { entity, data }) {
+        commit('setFiltered', { entity, data });
+    },
+
     // ===============================разбить по страницам================================
+    divideIntoPages({ dispatch, commit, getters, state }, { entity, customQuantityPerPage }) {
+        commit('setQuantityPerPage',  { entity: entity, quantityPerPage: customQuantityPerPage });
+        // указатель страниц на первую
+        commit('setCurrentPage',  { entity: entity, index: 0 });
+        // очистить массив items
+        commit('clearCustomized', entity);
+        // очистить css ссылок пагинации
+        commit('clearPaginationLinkCssArr', entity);
+        // =====<разбиваем по страницам в соответствии со state.quantityPerPage>=====
+        let pageCounter = 0;
+        let itemCounter = 0;
+        const quantityPerPage = getters.quantityPerPage(entity);
+        //
+        const inactiveCss = getters.inactivePaginationLinkCss;
+        for (let i = 0; i < getters.filteredLength(entity); i += 1) {
+
+            // страница заполнена
+            if (itemCounter === quantityPerPage) {
+                itemCounter = 0;
+                pageCounter += 1;
+            }
+
+            // начинаем следующую страницу
+            if (itemCounter === 0) {
+                // создаем следующую страницу
+                commit('pushNewPageIntoCustomized', entity);
+                // сделать ссылку на эту страницу неактивной
+                commit('pushIntoPaginationLinkCssArr', {entity: entity, cssClass: inactiveCss});
+            }
+
+            // пушим item в страницу
+            commit('pushIntoCustomized', {
+                entity: entity,
+                pageCounter: pageCounter,
+                item: getters.filtered(entity)[i]
+            });
+
+            itemCounter += 1;
+        }
+        // =====</разбиваем по страницам в соответствии со state.quantityPerPage>=====
+
+        // установить активную ссылку
+        commit('setPaginationLinkCssArrByIndex', {
+            entity: entity,
+            index: getters.currentPageIndex(entity),
+            cssClass: getters.activePaginationLinkCss,
+        });
+
+        // сформировать активный кадр ссылок пагинации
+        dispatch('makePaginationLinksShot', entity);
+    },
+
+
+    // ==========================пагинация: какую страницу items показать=======================
+    showPage({ dispatch, commit, state, getters }, { entity, page }) {
+        const customizedLength = getters.customizedLength(entity);
+        let index;
+        if (page < 0) {
+            index = 0;
+        } else if (page >= customizedLength) {
+            index = customizedLength - 1;
+        } else {
+            index = page;
+        }
+        // установить указатель страницы на требуюмую
+        commit('setCurrentPage', { entity, index });
+        // сбросить css ссылок пагинации в неактивный css
+        dispatch('resetPaginationLinkCss', entity);
+        // установить активный css-стиль ссылки для актуальной страницы
+        const cssClass = getters.activePaginationLinkCss;
+        commit('setPaginationLinkCssArrByIndex', { entity, index, cssClass });
+        // сформировать активный кадр ссылок пагинации
+        dispatch('makePaginationLinksShot', entity);
+    },
+
+    // ========================сбросить css ссылок пагинации==============================
+    resetPaginationLinkCss({ state, getters, commit }, entity) {
+        const cssArrLength = getters.paginationLinkCssArrLength(entity);
+        // очистить css ссылок пагинации
+        commit('clearPaginationLinkCssArr', entity);
+        // заполнить неактивным css
+        const cssClass = getters.inactivePaginationLinkCss;
+        for (let i = 0; i < cssArrLength; i += 1) {
+            commit('pushIntoPaginationLinkCssArr', {entity, cssClass});
+        }
+    },
+
+    // ========================сформировать активный кадр ссылок пагинации========================
+    makePaginationLinksShot({ commit, state, getters, rootState }, entity) {
+        const customizedLength = getters.customizedLength(entity);
+        const currentPageNumber = getters.currentPageNumber(entity);
+        const minimumPages = getters.minimumPagesForComplexPagination(entity);
+        const wing = getters.wing;
+
+        let border1;
+        let border2;
+
+        // очистить
+        commit('clearPaginationLinksShot', entity);
+
+        // =====================<если страниц мало>=========================
+        if ((customizedLength < minimumPages) || (customizedLength <= wing * 3))  {
+            border1 = 1;
+            border2 = customizedLength;
+            commit('fillPaginationLinkShot', { entity, border1, border2 });
+            return;
+        }
+
+        // ==============<все что ниже это когда страниц много>=============
+
+        // =========<currentPage находится в конце блока пагинации>=========
+        if ((currentPageNumber + wing + 2) > customizedLength) {
+            border1 = ((currentPageNumber - wing) > (customizedLength - wing * 2))
+                ? (customizedLength - wing * 2)
+                : (currentPageNumber - wing);
+            border2 = customizedLength;
+            commit('fillPaginationLinkShot', { entity, border1, border2 });
+            return;
+        }
+
+        // =========<currentPage находится в начале блока пагинации>========
+        if (currentPageNumber - wing - 2 < 1) {
+            border1 = 1;
+            border2 = ((currentPageNumber + wing) < (wing * 2))
+                ? (wing * 2)
+                : (currentPageNumber + wing);
+
+            // заплатка
+            if (currentPageNumber === 1) {
+                if (wing === 1) border2 = 3;
+                if (wing === 0) border2 = 1;
+            }
+
+            commit('fillPaginationLinkShot', { entity, border1, border2 });
+            return;
+        }
+
+        // ========<currentPage находится в середине блока пагинации>=======
+        border1 = currentPageNumber - wing;
+        border2 = currentPageNumber + wing;
+        commit('fillPaginationLinkShot', { entity, border1, border2 });
+    },
+};
+
+
+
+
+/*
+export default {
+
+    setFiltered({ dispatch, commit, state, getters }, { moduleName, data }) {
+
+    },
+
+
+
+        // ===============================разбить по страницам================================
     divideIntoPages({ dispatch, commit, state, getters, rootState, rootGetters }, { moduleName, customQuantityPerPage }) {
         commit('setQuantityPerPage',  { rootState, moduleName, quantityPerPage: customQuantityPerPage });
         // указатель страниц на первую
@@ -11,7 +174,12 @@ export default {
         // =====<разбиваем по страницам в соответствии со state.quantityPerPage>=====
         let pageCounter = 0;
         let itemCounter = 0;
-        const quantityPerPage = getters.quantityPerPage(moduleName);
+        //const quantityPerPage = getters.quantityPerPage(moduleName);
+        //const quantityPerPage = rootState[moduleName]['quantityPerPage'];
+        //const quantityPerPage = rootGetters[moduleName]['quantityPerPage'];
+        const quantityPerPage = rootGetters['users/quantityPerPage'];
+        console.log(quantityPerPage);
+        //console.log(state);
         //
         const inactiveCss = getters.inactivePaginationLinkCss(moduleName);
         for (let i = 0; i < getters.filteredLength(moduleName); i += 1) {
@@ -146,6 +314,17 @@ export default {
         commit('fillPaginationLinkShot', { border1, border2 });
     },
 };
+
+ */
+
+
+
+
+
+
+
+
+
 
 
 /*

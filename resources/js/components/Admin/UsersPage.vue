@@ -3,8 +3,8 @@
         <lazy-users></lazy-users>
     </DIV>
     <DIV v-else>
-        <users module-name="users"></users>
-        <pagination module-name="users"></pagination>
+        <users></users>
+        <pagination entity="users"></pagination>
     </DIV>
 </template>
 
@@ -20,12 +20,12 @@ export default {
         LazyUsers: () => import('./Users/LazyUsers.vue'),
     },
     computed: {
-        ...mapGetters([
+        ...mapGetters('users', [
             'showLazyUsers',
         ]),
     },
     mounted() {
-        this.$store.dispatch('getUsersCount');
+        this.$store.dispatch('users/getUsersCount');
     },
 };
 </script>

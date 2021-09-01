@@ -1,14 +1,14 @@
 <template>
     <nav class="pagination_nav">
 
-        <table :class="containerClass" v-if="customizedLength > 1"><tr>
+        <table :class="containerClass" v-if="customizedLength(entity) > 1"><tr>
             <td>
                 <a href="#" class="pagination_link"
                    @click.prevent="showPage({
-                        moduleName,
-                        page: currentPageIndex - 1
+                        entity: entity,
+                        page: currentPageIndex(entity) - 1
                    })">
-                    <i class="fas fa-angle-left"></i>
+                    <i class="fas fa-angle-left">&lt;</i>
                 </a>
             </td>
 
@@ -17,7 +17,7 @@
                 <div class="pagination_left" v-if="showFirstPageWithDots">
                     <a href="#" class="pagination_link"
                        @click.prevent="showPage({
-                            moduleName,
+                            entity: entity,
                             page: 0
                        })">
                         1
@@ -29,10 +29,10 @@
 
                 <div class="pagination_middle">
                     <a href="#"
-                       v-for="item of paginationLinksShot" :key="item"
-                       :class="paginationLinkCssArr[item - 1]"
+                       v-for="item of paginationLinksShot(entity)" :key="item"
+                       :class="paginationLinkCssArr(entity)[item - 1]"
                        @click.prevent="showPage({
-                            moduleName,
+                            entity: entity,
                             page: item - 1
                        })">
                         {{ item }}
@@ -46,10 +46,10 @@
                     </span>
                     <a href="#" class="pagination_link"
                        @click.prevent="showPage({
-                            moduleName,
-                            page: customizedLength - 1
+                            entity: entity,
+                            page: customizedLength(entity) - 1
                        })" v-if="showLastPageWithDots">
-                        {{ customizedLength }}
+                        {{ customizedLength(entity) }}
                     </a>
                 </div>
 
@@ -58,30 +58,31 @@
             <td>
                 <a href="#" class="pagination_link"
                    @click.prevent="showPage({
-                        moduleName,
-                        page: currentPageIndex + 1
+                        entity: entity,
+                        page: currentPageIndex(entity) + 1
                    })">
-                      <i class="fas fa-angle-right"></i>
+                      <i class="fas fa-angle-right">&gt;</i>
                 </a>
             </td>
+
         </tr></table>
 
-        <div v-if="customizedLength > 1" class="viewAll">
+        <div v-if="customizedLength(entity) > 1" class="viewAll">
             <a href="#" class="pagination_link"
                @click.prevent="divideIntoPages({
-                    moduleName,
+                    entity: entity,
                     customQuantityPerPage: 1000000
                });">
-                View all
+                Показать все
             </a>
         </div>
-        <div v-if="quantityPerPage(moduleName) === 1000000" class="viewAll" >
+        <div v-if="quantityPerPage(entity) === 1000000" class="viewAll" >
             <a href="#" class="pagination_link"
                @click.prevent="divideIntoPages({
-                    moduleName,
-                    customQuantityPerPage: copyOfQuantityPerPage(moduleName)
+                    entity: entity,
+                    customQuantityPerPage: copyOfQuantityPerPage(entity)
                });">
-                Split into pages
+                По страницам
             </a>
         </div>
 
@@ -94,7 +95,7 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'Pagination',
-    props: ['moduleName'],
+    props: ['entity'],
     methods: {
         ...mapActions([
             'showPage',
@@ -115,23 +116,23 @@ export default {
             'minimumPagesForComplexPagination',
         ]),
         aLotOfPages() {
-            if (this.customizedLength < this.minimumPagesForComplexPagination(this.moduleName)) {
+            if (this.customizedLength(this.entity) < this.minimumPagesForComplexPagination(this.entity)) {
                 return false;
             }
-            return this.customizedLength > (this.wing(this.moduleName) * 3);
+            return this.customizedLength(this.entity) > (this.wing * 3);
         },
         showFirstPageWithDots() {
-            return this.aLotOfPages && (this.currentPageNumber > (this.wing(this.moduleName) + 2));
+            return this.aLotOfPages && (this.currentPageNumber(this.entity) > (this.wing + 2));
         },
         showLastPageWithDots() {
             /* eslint max-len: ["error", { "code": 130 }] */
-            return this.aLotOfPages && ((this.currentPageNumber + (this.wing(this.moduleName) + 1)) < this.customizedLength);
+            return this.aLotOfPages && ((this.currentPageNumber(this.entity) + (this.wing + 1)) < this.customizedLength(this.entity));
         },
         containerClass() {
             if (this.aLotOfPages) {
-                return 'pagination_table pagination_width_outer mauto';
+                return 'pagination_table pagination_width_outer';
             }
-            return 'pagination_table mauto';
+            return 'pagination_table';
         },
         innerContainerClass() {
             if (this.aLotOfPages) {

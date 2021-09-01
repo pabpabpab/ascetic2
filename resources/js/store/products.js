@@ -8,7 +8,6 @@ import a4 from './products_js/products_actions_deleteAndRestoreProduct';
 import a5 from './products_js/products_actions_moveProduct';
 import a6 from './products_js/products_actions_photoManagment';
 
-/* eslint no-shadow: ["error", { "allow": ["state", "getters", "mutations", "actions"] }] */
 export default {
     namespaced: true,
     state,

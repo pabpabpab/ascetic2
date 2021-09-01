@@ -1,4 +1,5 @@
 export default {
+    namespaced: true,
     state: {
         lazyUsersUrl: '/api/admin/lazy-users/',
         lazyUsers: [],
@@ -7,9 +8,9 @@ export default {
     getters: {
         lazyUsersUrl: (state) => state.lazyUsersUrl,
         lazyUsers: (state) => state.lazyUsers,
-        lazyUsersLength: (state) => state.lazyUsers.length,
+        //lazyUsersLength: (state) => state.lazyUsers.length,
         lastLoadedLazyUserId: (state) => state.lastLoadedLazyUserId,
-        showLoadMoreButton: (state, getters) => getters.usersCount > getters.lazyUsersLength,
+        showLoadMoreButton: (state, getters, rootState) => rootState['users']['usersCount'] > state.lazyUsers.length,
     },
     mutations: {
         setLazyUsers: (state, data) => {
@@ -36,15 +37,15 @@ export default {
         */
     },
     actions: {
-        loadLazyUsers({ dispatch, commit, getters, state }) {
+        loadLazyUsers({ dispatch, commit, getters }) {
             const url = getters.lazyUsersUrl + getters.lastLoadedLazyUserId;
-            dispatch('getJson', url).then((data) => {
+            dispatch('getJson', url, { root: true }).then((data) => {
                 commit('setLazyUsers', data);
             });
         },
-        loadMoreLazyUsers({ dispatch, commit, getters, state }) {
+        loadMoreLazyUsers({ dispatch, commit, getters }) {
             const url = getters.lazyUsersUrl + getters.lastLoadedLazyUserId;
-            dispatch('getJson', url).then((data) => {
+            dispatch('getJson', url, { root: true }).then((data) => {
                 commit('addToLazyUsers', data);
             });
         },

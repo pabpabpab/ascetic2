@@ -13,7 +13,7 @@ import { mapGetters } from 'vuex';
 
 export default {
     name: 'Users',
-    props: ['moduleName'],
+    // props: ['moduleName'],
     components: {
         UserItem: () => import('./UserItem.vue')
     },
@@ -28,11 +28,11 @@ export default {
             'customized',
         ]),
         items() {
-            return this.customized[this.currentPageIndex];
+            return this.customized('users')[this.currentPageIndex('users')];
         },
     },
     mounted() {
-        this.$store.dispatch('loadUsers', this.moduleName);
+        this.$store.dispatch('users/loadUsers');
     },
 };
 </script>

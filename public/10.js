@@ -34,15 +34,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./Users/Users.vue */ "./resources/js/components/Admin/Users/Users.vue"));
     },
     Pagination: function Pagination() {
-      return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./Blocks/Pagination.vue */ "./resources/js/components/Admin/Blocks/Pagination.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./Blocks/Pagination.vue */ "./resources/js/components/Admin/Blocks/Pagination.vue"));
     },
     LazyUsers: function LazyUsers() {
       return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./Users/LazyUsers.vue */ "./resources/js/components/Admin/Users/LazyUsers.vue"));
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['showLazyUsers'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['showLazyUsers'])),
   mounted: function mounted() {
-    this.$store.dispatch('getUsersCount');
+    this.$store.dispatch('users/getUsersCount');
   }
 });
 
@@ -68,9 +68,9 @@ var render = function() {
     : _c(
         "DIV",
         [
-          _c("users", { attrs: { "module-name": "users" } }),
+          _c("users"),
           _vm._v(" "),
-          _c("pagination", { attrs: { "module-name": "users" } })
+          _c("pagination", { attrs: { entity: "users" } })
         ],
         1
       )

@@ -3,8 +3,9 @@ export default {
     usersUrl: '/api/admin/users',
     usersCount: 6,
     users: [],
-    filtered: [],
 
+
+    /*
     // ПАГИНАЦИЯ
     // если страниц меньше, показывать все
     minimumPagesForComplexPagination: 9,
@@ -18,8 +19,5 @@ export default {
     inactivePaginationLinkCss: 'pagination_link',
     // половина длины активного кадра ссылок пагинации
     half_length_of_pagination_shot: 1,
-
-
-    // установка пользователя в строке поиска в хедере
-    searchStringOnUsers: '',
+*/
 };

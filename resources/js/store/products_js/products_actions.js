@@ -25,7 +25,15 @@ export default {
         dispatch('getJson', url, { root: true }).then((data) => {
             // console.log(data);
             commit('setProducts', data);
-            dispatch('hideWaitingScreen', null, { root: true });
+            dispatch('setFiltered', { entity: 'products', data: data }, { root: true }).then(() => {
+                // ниже передаю параметр quantityPerPage = 0 для совместимости,
+                // так как данный action может вызываться из других компонентов с параметром quantityPerPage
+                dispatch('divideIntoPages',  {
+                    entity: 'products',
+                    customQuantityPerPage: 0
+                }, { root: true });
+                dispatch('hideWaitingScreen', null, { root: true });
+            });
         });
     },
 

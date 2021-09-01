@@ -11,6 +11,7 @@ export default {
         }
     },
     // ==========================filtered=======================
+    /*
     setFilteredUsers: (state, data) => {
         state.filtered.splice(0, state.filtered.length);
         for (let i = 0; i < data.length; i += 1) {
@@ -18,15 +19,12 @@ export default {
         }
         // console.log(state.filtered);
     },
-
+*/
     /*
     clearFilteredUsers: (state) => {
         state.filtered.splice(0, state.filtered.length);
     },
    */
-    // ====================установки фильтров==================
-    clearSearchStringOnUsers: (state) => {
-        state.searchStringOnUsers = '';
-    },
+
 
 };

@@ -29,7 +29,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Users',
-  props: ['moduleName'],
+  // props: ['moduleName'],
   components: {
     UserItem: function UserItem() {
       return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./UserItem.vue */ "./resources/js/components/Admin/Users/UserItem.vue"));
@@ -42,11 +42,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['currentPageIndex', 'customized'])), {}, {
     items: function items() {
-      return this.customized[this.currentPageIndex];
+      return this.customized('users')[this.currentPageIndex('users')];
     }
   }),
   mounted: function mounted() {
-    this.$store.dispatch('loadUsers', this.moduleName);
+    this.$store.dispatch('users/loadUsers');
   }
 });
 
