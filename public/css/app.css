@@ -1006,6 +1006,7 @@ h1 {
   padding: 20px 10px;
   text-align: left;
   border: 1px solid #ddd;
+  border-radius: 5px;
   -webkit-box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2);
           box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2);
   -webkit-transition: border 0.3s, -webkit-box-shadow 0.3s;
@@ -1092,9 +1093,46 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  border: 1px solid #00f;
+}
+
+.quantity_per_page__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 300px;
+  padding: 10px;
+  height: 30px;
+  border: 1px solid #f00;
+}
+
+.quantity_per_page__title {
+  height: 30px;
+  font-size: 15px;
+  color: #6e6e6e;
+  font-weight: 400;
+  padding: 0 10px 0 0;
+}
+
+.quantity_per_page__select_input {
+  margin-right: 20px;
+  padding: 8px;
+  font-size: 15px;
+  color: #6e6e6e;
+  font-weight: 300;
+  border-radius: 5px;
+  background-color: #fff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .pagination_table {
@@ -1143,20 +1181,20 @@ h1 {
   text-decoration: none;
   margin: 1px;
   padding: 7px 10px;
-  color: #000000;
+  color: #504b4b;
   font-size: 18px;
   -webkit-transition: color 0.2s, background-color 0.2s;
   transition: color 0.2s, background-color 0.2s;
 }
 
 .pagination_link:hover {
-  background-color: #4a4a4a;
+  background-color: #504b4b;
   color: #ffffff;
 }
 
 .active_pagination_link {
   padding: 7px 10px;
-  background-color: #4a4a4a;
+  background-color: #504b4b;
   color: #ffffff;
   font-size: 18px;
 }

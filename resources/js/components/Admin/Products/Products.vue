@@ -46,7 +46,7 @@ export default {
         ...mapGetters('contextMenu', [
             'showProductsContextMenu',
         ]),
-        ...mapGetters([
+        ...mapGetters('pagination', [
             'currentPageIndex',
             'customized',
         ]),

@@ -108,12 +108,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Pagination',
   props: ['entity'],
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['showPage', 'divideIntoPages'])),
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['currentPageIndex', 'currentPageNumber', 'customized', 'customizedLength', 'paginationLinksShot', 'paginationLinkCssArr', 'quantityPerPage', 'copyOfQuantityPerPage', 'wing', 'minimumPagesForComplexPagination'])), {}, {
+  data: function data() {
+    return {
+      customQuantityPerPage: 0
+    };
+  },
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('pagination', ['showPage'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['divideIntoPages'])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'currentPageNumber', 'customized', 'customizedLength', 'paginationLinksShot', 'paginationLinkCssArr', 'quantityPerPage', 'copyOfQuantityPerPage', 'wing', 'minimumPagesForComplexPagination'])), {}, {
     aLotOfPages: function aLotOfPages() {
       if (this.customizedLength(this.entity) < this.minimumPagesForComplexPagination(this.entity)) {
         return false;
@@ -142,7 +169,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return 'pagination_numbers_container';
     }
-  })
+  }),
+  mounted: function mounted() {
+    // обратная связь (от стора в v-model) при включении
+    this.customQuantityPerPage = this.quantityPerPage(this.entity);
+  }
 });
 
 /***/ }),
@@ -163,6 +194,69 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("nav", { staticClass: "pagination_nav" }, [
+    _c("div", { staticClass: "quantity_per_page__wrapper" }, [
+      _c("p", { staticClass: "quantity_per_page__title" }, [
+        _vm._v("Показывать по")
+      ]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.customQuantityPerPage,
+              expression: "customQuantityPerPage"
+            }
+          ],
+          staticClass: "quantity_per_page__select_input",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.customQuantityPerPage = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              function($event) {
+                return _vm.divideIntoPages({
+                  entity: _vm.entity,
+                  customQuantityPerPage: _vm.customQuantityPerPage
+                })
+              }
+            ]
+          }
+        },
+        [
+          _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "9" } }, [_vm._v("9")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "15" } }, [_vm._v("15")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "30" } }, [_vm._v("30")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "100" } }, [_vm._v("100")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "1000000" } }, [_vm._v("Все")])
+        ]
+      )
+    ]),
+    _vm._v(" "),
     _vm.customizedLength(_vm.entity) > 1
       ? _c("table", { class: _vm.containerClass }, [
           _c("tr", [
@@ -342,7 +436,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n            По страницам\n        ")]
+            [_vm._v("\n            Разбить по страницам\n        ")]
           )
         ])
       : _vm._e()

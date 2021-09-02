@@ -884,7 +884,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ProductsContextMenu: _ContextMenu_ProductsContextMenu__WEBPACK_IMPORTED_MODULE_2__["default"],
     ProductPhotoManager: _ProductPhotoManager__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('products', ['showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(['currentPageIndex', 'customized'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('products', ['showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
     items: function items() {
       return this.customized('products')[this.currentPageIndex('products')];
     }

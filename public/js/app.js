@@ -20696,8 +20696,6 @@ __webpack_require__.r(__webpack_exports__);
     //yCoordinatesOfItems: [],
     xCoordinatesOfProducts: [],
     yCoordinatesOfProducts: [],
-    xCoordinatesOfPhotos: [],
-    yCoordinatesOfPhotos: [],
     startX: -1,
     startY: -1,
     isDragging: false
@@ -20745,12 +20743,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     yCoordinatesOfProducts: function yCoordinatesOfProducts(state) {
       return state.yCoordinatesOfProducts;
-    },
-    xCoordinatesOfPhotos: function xCoordinatesOfPhotos(state) {
-      return state.xCoordinatesOfPhotos;
-    },
-    yCoordinatesOfPhotos: function yCoordinatesOfPhotos(state) {
-      return state.yCoordinatesOfPhotos;
     },
     getIndexByXY: function getIndexByXY(state) {
       return function (data) {
@@ -20852,7 +20844,6 @@ __webpack_require__.r(__webpack_exports__);
       var event = _ref8.event,
           entity = _ref8.entity;
 
-      //console.log(event);
       if (getters.currentIndex === -1) {
         return;
       }
@@ -20890,7 +20881,9 @@ __webpack_require__.r(__webpack_exports__);
         x: event.pageX,
         y: event.pageY,
         entity: entity
-      });
+      }); //console.log('currentIndex - ' + currentIndex);
+      //console.log('newIndex - ' + newIndex);
+
       dispatch('moveItem', {
         currentIndex: currentIndex,
         newIndex: newIndex,
@@ -20918,7 +20911,7 @@ __webpack_require__.r(__webpack_exports__);
         vector = 'Below';
       }
 
-      dispatch('move' + entity, {
+      dispatch('move' + entity + 'ByDragAndDrop', {
         currentIndex: currentIndex,
         newIndex: newIndex,
         vector: vector
@@ -21684,6 +21677,7 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint no-shadow: ["error", { "allow": ["state", "getters", "mutations", "actions"] }] */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
   state: _pagination_js_pagination_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _pagination_js_pagination_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _pagination_js_pagination_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -21703,80 +21697,87 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   // =======================скопировать оригинал в filtered=============================
-  setFiltered: function setFiltered(_ref, _ref2) {
-    var dispatch = _ref.dispatch,
-        commit = _ref.commit;
-    var entity = _ref2.entity,
-        data = _ref2.data;
-    commit('setFiltered', {
-      entity: entity,
-      data: data
-    });
+  setFiltered: {
+    root: true,
+    handler: function handler(_ref, _ref2) {
+      var dispatch = _ref.dispatch,
+          commit = _ref.commit;
+      var entity = _ref2.entity,
+          data = _ref2.data;
+      commit('setFiltered', {
+        entity: entity,
+        data: data
+      });
+    }
   },
   // ===============================разбить по страницам================================
-  divideIntoPages: function divideIntoPages(_ref3, _ref4) {
-    var dispatch = _ref3.dispatch,
-        commit = _ref3.commit,
-        getters = _ref3.getters,
-        state = _ref3.state;
-    var entity = _ref4.entity,
-        customQuantityPerPage = _ref4.customQuantityPerPage;
-    commit('setQuantityPerPage', {
-      entity: entity,
-      quantityPerPage: customQuantityPerPage
-    }); // указатель страниц на первую
-
-    commit('setCurrentPage', {
-      entity: entity,
-      index: 0
-    }); // очистить массив items
-
-    commit('clearCustomized', entity); // очистить css ссылок пагинации
-
-    commit('clearPaginationLinkCssArr', entity); // =====<разбиваем по страницам в соответствии со state.quantityPerPage>=====
-
-    var pageCounter = 0;
-    var itemCounter = 0;
-    var quantityPerPage = getters.quantityPerPage(entity); //
-
-    var inactiveCss = getters.inactivePaginationLinkCss;
-
-    for (var i = 0; i < getters.filteredLength(entity); i += 1) {
-      // страница заполнена
-      if (itemCounter === quantityPerPage) {
-        itemCounter = 0;
-        pageCounter += 1;
-      } // начинаем следующую страницу
-
-
-      if (itemCounter === 0) {
-        // создаем следующую страницу
-        commit('pushNewPageIntoCustomized', entity); // сделать ссылку на эту страницу неактивной
-
-        commit('pushIntoPaginationLinkCssArr', {
-          entity: entity,
-          cssClass: inactiveCss
-        });
-      } // пушим item в страницу
-
-
-      commit('pushIntoCustomized', {
+  divideIntoPages: {
+    root: true,
+    handler: function handler(_ref3, _ref4) {
+      var dispatch = _ref3.dispatch,
+          commit = _ref3.commit,
+          getters = _ref3.getters,
+          state = _ref3.state;
+      var entity = _ref4.entity,
+          customQuantityPerPage = _ref4.customQuantityPerPage;
+      console.log(customQuantityPerPage);
+      commit('setQuantityPerPage', {
         entity: entity,
-        pageCounter: pageCounter,
-        item: getters.filtered(entity)[i]
-      });
-      itemCounter += 1;
-    } // =====</разбиваем по страницам в соответствии со state.quantityPerPage>=====
-    // установить активную ссылку
+        quantityPerPage: customQuantityPerPage
+      }); // указатель страниц на первую
+
+      commit('setCurrentPage', {
+        entity: entity,
+        index: 0
+      }); // очистить массив items
+
+      commit('clearCustomized', entity); // очистить css ссылок пагинации
+
+      commit('clearPaginationLinkCssArr', entity); // =====<разбиваем по страницам в соответствии со state.quantityPerPage>=====
+
+      var pageCounter = 0;
+      var itemCounter = 0;
+      var quantityPerPage = getters.quantityPerPage(entity); //
+
+      var inactiveCss = getters.inactivePaginationLinkCss;
+
+      for (var i = 0; i < getters.filteredLength(entity); i += 1) {
+        // страница заполнена
+        if (itemCounter === quantityPerPage) {
+          itemCounter = 0;
+          pageCounter += 1;
+        } // начинаем следующую страницу
 
 
-    commit('setPaginationLinkCssArrByIndex', {
-      entity: entity,
-      index: getters.currentPageIndex(entity),
-      cssClass: getters.activePaginationLinkCss
-    }); // сформировать активный кадр ссылок пагинации
+        if (itemCounter === 0) {
+          // создаем следующую страницу
+          commit('pushNewPageIntoCustomized', entity); // сделать ссылку на эту страницу неактивной
 
-    dispatch('makePaginationLinksShot', entity);
+          commit('pushIntoPaginationLinkCssArr', {
+            entity: entity,
+            cssClass: inactiveCss
+          });
+        } // пушим item в страницу
+
+
+        commit('pushIntoCustomized', {
+          entity: entity,
+          pageCounter: pageCounter,
+          item: getters.filtered(entity)[i]
+        });
+        itemCounter += 1;
+      } // =====</разбиваем по страницам в соответствии со state.quantityPerPage>=====
+      // установить активную ссылку
+
+
+      commit('setPaginationLinkCssArrByIndex', {
+        entity: entity,
+        index: getters.currentPageIndex(entity),
+        cssClass: getters.activePaginationLinkCss
+      }); // сформировать активный кадр ссылок пагинации
+
+      dispatch('makePaginationLinksShot', entity);
+    }
   },
   // ==========================пагинация: какую страницу items показать=======================
   showPage: function showPage(_ref5, _ref6) {
@@ -21897,6 +21898,28 @@ __webpack_require__.r(__webpack_exports__);
       border1: border1,
       border2: border2
     });
+  },
+  //============================move item by drag and drop==============================
+  moveItemInPaginated: {
+    root: true,
+    handler: function handler(_ref9, _ref10) {
+      var commit = _ref9.commit;
+      var currentIndexInPage = _ref10.currentIndexInPage,
+          newIndexInPage = _ref10.newIndexInPage,
+          operatedId = _ref10.operatedId,
+          targetId = _ref10.targetId,
+          entity = _ref10.entity;
+      commit('moveItemInFiltered', {
+        operatedId: operatedId,
+        targetId: targetId,
+        entity: entity
+      });
+      commit('moveItemInCustomized', {
+        currentIndexInPage: currentIndexInPage,
+        newIndexInPage: newIndexInPage,
+        entity: entity
+      });
+    }
   }
 });
 /*
@@ -22361,6 +22384,24 @@ export default {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   setFiltered: function setFiltered(state, _ref) {
     var entity = _ref.entity,
@@ -22462,65 +22503,54 @@ __webpack_require__.r(__webpack_exports__);
     if (quantityPerPage < 1000000) {
       state.copyOfQuantityPerPage[entity] = quantityPerPage;
     }
+  },
+  //===================move item by drag and drop==================
+  moveItemInFiltered: function moveItemInFiltered(state, _ref9) {
+    var operatedId = _ref9.operatedId,
+        targetId = _ref9.targetId,
+        entity = _ref9.entity;
+    var filtered = state.filtered[entity]; // найти индексы элементов по id
+
+    var currentIndex = filtered.findIndex(function (item) {
+      return item.id === operatedId;
+    });
+    var newIndex = filtered.findIndex(function (item) {
+      return item.id === targetId;
+    }); // вырвать из массива и получить наш элемент, который двигаем
+
+    var operatedItem = filtered.splice(currentIndex, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+
+    if (currentIndex < newIndex && newIndex !== state.filtered[entity].length) {
+      newIndex--;
+    } // вставить наш элемент на новое место
+
+
+    filtered.splice(newIndex, 0, operatedItem);
+    state.filtered[entity] = _toConsumableArray(filtered);
+  },
+  moveItemInCustomized: function moveItemInCustomized(state, _ref10) {
+    var currentIndexInPage = _ref10.currentIndexInPage,
+        newIndexInPage = _ref10.newIndexInPage,
+        entity = _ref10.entity;
+    var customized = state.customized;
+    var currentPageIndex = state.currentPage[entity]; // взять товары той страницы где происходило перемещение
+
+    var pageProducts = customized[entity][currentPageIndex]; // вырвать из массива и получить наш элемент, который двигаем
+
+    var operatedItem = pageProducts.splice(currentIndexInPage, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+
+    if (currentIndexInPage < newIndexInPage && newIndexInPage !== state.customized[entity][currentPageIndex].length) {
+      newIndexInPage--;
+    } // вставить наш элемент на новое место
+
+
+    pageProducts.splice(newIndexInPage, 0, operatedItem); // обновить локальный customized
+
+    customized[entity][currentPageIndex] = _toConsumableArray(pageProducts); // обновить весь customized в state
+
+    state.customized = _objectSpread({}, customized);
   }
 });
-/*
-    setCurrentPage: (state, payload) => {
-        const { rootState, moduleName, index } = payload;
-        rootState[moduleName]['currentPage'] = index;
-    },
-
-    // =================PaginationLinkCssArr======================
-    clearPaginationLinkCssArr: (state, payload) => {
-        const { rootState, moduleName } = payload;
-        const len = rootState[moduleName]['paginationLinkCssArr'].length;
-        rootState[moduleName]['paginationLinkCssArr'].splice(0, len);
-    },
-    pushIntoPaginationLinkCssArr: (state, payload) => {
-        const { rootState, moduleName, cssClass } = payload;
-        rootState[moduleName]['paginationLinkCssArr'].push(cssClass);
-    },
-    setPaginationLinkCssArrByIndex: (state, payload) => {
-        const { rootState, moduleName, index, cssClass } = payload;
-        rootState[moduleName]['paginationLinkCssArr'].splice(index, 1, cssClass);
-    },
-
-    // ==================paginationLinksShot=======================
-    clearPaginationLinksShot: (state, payload) => {
-        const { rootState, moduleName } = payload;
-        rootState[moduleName]['paginationLinksShot'].splice(0, rootState[moduleName]['paginationLinksShot'].length);
-    },
-    pushIntoPaginationLinkShot: (state, payload) => {
-        const { rootState, moduleName, item } = payload;
-        rootState[moduleName]['paginationLinksShot'].push(item);
-    },
-    fillPaginationLinkShot: (state, payload) => {
-        const { rootState, moduleName, border1, border2 } = payload;
-        for (let i = border1; i <= border2; i += 1) {
-            rootState[moduleName]['paginationLinksShot'].push(i);
-        }
-    },
-
-    // =================quantityPerPage===================
-    setQuantityPerPage: (state, payload) => {
-        const { rootState, moduleName, quantityPerPage } = payload;
-        rootState[moduleName]['quantityPerPage'] = quantityPerPage;
-        if (quantityPerPage < 1000000) {
-            rootState[moduleName]['copyOfQuantityPerPage'] = quantityPerPage;
-        }
-    },
-
-    // ======================customized=========================
-    clearCustomized: (state, payload) => {
-        const { rootState, moduleName } = payload;
-        rootState[moduleName]['customized'].splice(0, rootState[moduleName]['customized'].length);
-    },
-    pushIntoCustomized: (state, payload) => {
-        const { rootState, moduleName, pageCounter, item } = payload;
-        rootState[moduleName]['customized'][pageCounter].push(item);
-    },
-
-*/
 
 /***/ }),
 
@@ -22562,12 +22592,12 @@ __webpack_require__.r(__webpack_exports__);
   // установка пользователем в выпадающем списке кол-ва items на страницу
   quantityPerPage: {
     users: 6,
-    products: 6
+    products: 3
   },
   // для выхода из View all обратно в пагинацию
   copyOfQuantityPerPage: {
     users: 6,
-    products: 6
+    products: 3
   },
   // если страниц меньше, показывать все
   minimumPagesForComplexPagination: {
@@ -23163,39 +23193,46 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  moveProduct: {
+  moveProductByDragAndDrop: {
     root: true,
     handler: function handler(_ref, _ref2) {
       var dispatch = _ref.dispatch,
           commit = _ref.commit,
           getters = _ref.getters,
-          state = _ref.state;
+          state = _ref.state,
+          rootState = _ref.rootState;
       var currentIndex = _ref2.currentIndex,
           newIndex = _ref2.newIndex,
           vector = _ref2.vector;
-      // именно в такой последовательности
-      var operatedId = state.products[currentIndex]['id'];
-      var closestId = state.products[newIndex]['id'];
-      commit('moveProduct', {
-        currentIndex: currentIndex,
-        newIndex: newIndex,
-        vector: vector
+      var currentPageIndex = rootState.pagination.currentPage.products;
+      var products = rootState.pagination.customized.products[currentPageIndex];
+      var operatedId = products[currentIndex]['id'];
+      var targetId = products[newIndex]['id'];
+      commit('moveProductInProductsById', {
+        operatedId: operatedId,
+        targetId: targetId
       });
-      dispatch('showWaitingScreen', null, {
+      dispatch('moveItemInPaginated', {
+        currentIndexInPage: currentIndex,
+        newIndexInPage: newIndex,
+        operatedId: operatedId,
+        targetId: targetId,
+        entity: 'products'
+      }, {
         root: true
-      });
+      }); // dispatch('showWaitingScreen', null, { root: true });
+
       dispatch('postJson', {
         url: getters.moveProductUrl + operatedId,
         data: {
-          closestId: closestId,
+          targetId: targetId,
           vector: vector
         }
       }, {
         root: true
       }).then(function (data) {
         if (data.moveSuccess === true) {
-          dispatch('loadProducts', 'active'); // получить обновленный список с сервера
-
+          //dispatch('loadProducts', 'active'); // получить обновленный список с сервера
           var txt = 'Сделано.';
           dispatch('showAbsoluteFlashMessage', {
             text: txt,
@@ -23813,9 +23850,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  setEnabledFadingCss: function setEnabledFadingCss(state, value) {
+    state.enabledFadingCss = value;
+  },
   setProducts: function setProducts(state, data) {
     state.products.splice(0, state.products.length);
     state.products = _toConsumableArray(data);
+  },
+  setProductsCountFromServer: function setProductsCountFromServer(state, number) {
+    state.productsCountFromServer = number;
   },
   setSingleProductFromServer: function setSingleProductFromServer(state, product) {
     state.singleProductFromServer = _objectSpread({}, product);
@@ -23832,11 +23875,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     });
     state.products.splice(index, 1, product);
   },
-  moveProduct: function moveProduct(state, _ref) {
-    var currentIndex = _ref.currentIndex,
-        newIndex = _ref.newIndex,
-        vector = _ref.vector;
-    var products = state.products; // вырвать из массива и получить наш элемент, который двигаем
+  // ---------------------при drag and drop --------------------------
+  moveProductInProductsById: function moveProductInProductsById(state, _ref) {
+    var operatedId = _ref.operatedId,
+        targetId = _ref.targetId;
+    var products = state.products; // найти индексы элементов по id
+
+    var currentIndex = products.findIndex(function (item) {
+      return item.id === operatedId;
+    });
+    var newIndex = products.findIndex(function (item) {
+      return item.id === targetId;
+    }); // вырвать из массива и получить наш элемент, который двигаем
 
     var operatedItem = products.splice(currentIndex, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
 
@@ -23848,6 +23898,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     products.splice(newIndex, 0, operatedItem);
     state.products = _toConsumableArray(products);
   },
+  // ---------------------при drag and drop --------------------------
   movePhoto: function movePhoto(state, _ref2) {
     var currentIndex = _ref2.currentIndex,
         newIndex = _ref2.newIndex,
@@ -23868,12 +23919,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   setShowProductPhotoManager: function setShowProductPhotoManager(state, value) {
     state.showProductPhotoManager = value;
-  },
-  setProductsCountFromServer: function setProductsCountFromServer(state, number) {
-    state.productsCountFromServer = number;
-  },
-  setEnabledFadingCss: function setEnabledFadingCss(state, value) {
-    state.enabledFadingCss = value;
   }
 });
 

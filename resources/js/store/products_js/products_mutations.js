@@ -1,7 +1,15 @@
 export default {
+    setEnabledFadingCss: (state, value) => {
+        state.enabledFadingCss = value;
+    },
+
     setProducts: (state, data) => {
         state.products.splice(0, state.products.length);
         state.products = [ ...data ];
+    },
+
+    setProductsCountFromServer: (state, number) => {
+        state.productsCountFromServer = number;
     },
 
     setSingleProductFromServer: (state, product) => {
@@ -22,8 +30,14 @@ export default {
     },
 
 
-    moveProduct: (state, {currentIndex, newIndex, vector}) => {
+    // ---------------------при drag and drop --------------------------
+    moveProductInProductsById: (state, {operatedId, targetId}) => {
         const products = state.products;
+
+        // найти индексы элементов по id
+        let currentIndex = products.findIndex(item => item.id === operatedId);
+        let newIndex = products.findIndex(item => item.id === targetId);
+
         // вырвать из массива и получить наш элемент, который двигаем
         const operatedItem = products.splice(currentIndex, 1)[0];
 
@@ -38,6 +52,7 @@ export default {
     },
 
 
+    // ---------------------при drag and drop --------------------------
     movePhoto: (state, {currentIndex, newIndex, vector}) => {
         const singleProduct = state.singleProductFromServer;
         const photoSet = JSON.parse(singleProduct.product.photo_set)
@@ -62,11 +77,6 @@ export default {
         state.showProductPhotoManager = value;
     },
 
-    setProductsCountFromServer: (state, number) => {
-        state.productsCountFromServer = number;
-    },
 
-    setEnabledFadingCss: (state, value) => {
-        state.enabledFadingCss = value;
-    },
+
 };

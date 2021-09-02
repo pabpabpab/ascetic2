@@ -11,14 +11,14 @@ class MoveService
 {
     public function move($operatedProduct): array
     {
-        $closestId = request()->input('closestId');
+        $targetId = request()->input('targetId');
         $vector = request()->input('vector');
 
-        $closestPosition = Product::find($closestId)->position;
+        $targetPosition = Product::find($targetId)->position;
 
         $makePlaceMethod = "_makePlace".$vector;
 
-        $operatedProduct->position = $this->$makePlaceMethod($closestPosition);
+        $operatedProduct->position = $this->$makePlaceMethod($targetPosition);
 
         return [
             'success' => $operatedProduct->save()

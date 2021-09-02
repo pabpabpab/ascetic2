@@ -13,8 +13,6 @@ export default {
 
         xCoordinatesOfProducts: [],
         yCoordinatesOfProducts: [],
-        xCoordinatesOfPhotos: [],
-        yCoordinatesOfPhotos: [],
 
         startX: -1,
         startY: -1,
@@ -50,8 +48,6 @@ export default {
 
         xCoordinatesOfProducts: (state) => state.xCoordinatesOfProducts,
         yCoordinatesOfProducts: (state) => state.yCoordinatesOfProducts,
-        xCoordinatesOfPhotos: (state) => state.xCoordinatesOfPhotos,
-        yCoordinatesOfPhotos: (state) => state.yCoordinatesOfPhotos,
 
         getIndexByXY: (state) => (data) => {
 
@@ -132,7 +128,6 @@ export default {
         },
 
         myDragMove({ dispatch, commit, getters, state }, {event, entity}) {
-            //console.log(event);
             if (getters.currentIndex === -1) {
                 return;
             }
@@ -160,6 +155,9 @@ export default {
                 ? clickedIndex
                 : getters.getIndexByXY({ x: event.pageX, y: event.pageY, entity: entity });
 
+            //console.log('currentIndex - ' + currentIndex);
+            //console.log('newIndex - ' + newIndex);
+
             dispatch('moveItem', { currentIndex, newIndex, entity });
             commit('myDragStop');
         },
@@ -176,7 +174,7 @@ export default {
             }
 
             dispatch(
-                'move' + entity,
+                'move' + entity + 'ByDragAndDrop',
                 {
                     currentIndex: currentIndex,
                     newIndex: newIndex,

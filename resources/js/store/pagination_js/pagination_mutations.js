@@ -79,64 +79,49 @@ export default {
             state.copyOfQuantityPerPage[entity] = quantityPerPage;
         }
     },
+    //===================move item by drag and drop==================
+
+    moveItemInFiltered: (state, { operatedId, targetId, entity }) => {
+        const filtered = state.filtered[entity];
+
+        // найти индексы элементов по id
+        let currentIndex = filtered.findIndex(item => item.id === operatedId);
+        let newIndex = filtered.findIndex(item => item.id === targetId);
+
+        // вырвать из массива и получить наш элемент, который двигаем
+        const operatedItem = filtered.splice(currentIndex, 1)[0];
+
+        // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+        if ((currentIndex < newIndex) && (newIndex !== state.filtered[entity].length)) {
+            newIndex--;
+        }
+
+        // вставить наш элемент на новое место
+        filtered.splice(newIndex, 0, operatedItem);
+        state.filtered[entity] = [ ...filtered ];
+    },
+
+    moveItemInCustomized: (state, { currentIndexInPage, newIndexInPage, entity }) => {
+        const customized = state.customized;
+        const currentPageIndex = state.currentPage[entity];
+
+        // взять товары той страницы где происходило перемещение
+        const pageProducts = customized[entity][currentPageIndex];
+
+        // вырвать из массива и получить наш элемент, который двигаем
+        const operatedItem = pageProducts.splice(currentIndexInPage, 1)[0];
+
+        // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+        if ((currentIndexInPage < newIndexInPage) && (newIndexInPage !== state.customized[entity][currentPageIndex].length)) {
+            newIndexInPage--;
+        }
+
+        // вставить наш элемент на новое место
+        pageProducts.splice(newIndexInPage, 0, operatedItem);
+        // обновить локальный customized
+        customized[entity][currentPageIndex] = [ ...pageProducts ];
+
+        // обновить весь customized в state
+        state.customized = { ...customized };
+    },
 };
-
-
-/*
-    setCurrentPage: (state, payload) => {
-        const { rootState, moduleName, index } = payload;
-        rootState[moduleName]['currentPage'] = index;
-    },
-
-    // =================PaginationLinkCssArr======================
-    clearPaginationLinkCssArr: (state, payload) => {
-        const { rootState, moduleName } = payload;
-        const len = rootState[moduleName]['paginationLinkCssArr'].length;
-        rootState[moduleName]['paginationLinkCssArr'].splice(0, len);
-    },
-    pushIntoPaginationLinkCssArr: (state, payload) => {
-        const { rootState, moduleName, cssClass } = payload;
-        rootState[moduleName]['paginationLinkCssArr'].push(cssClass);
-    },
-    setPaginationLinkCssArrByIndex: (state, payload) => {
-        const { rootState, moduleName, index, cssClass } = payload;
-        rootState[moduleName]['paginationLinkCssArr'].splice(index, 1, cssClass);
-    },
-
-    // ==================paginationLinksShot=======================
-    clearPaginationLinksShot: (state, payload) => {
-        const { rootState, moduleName } = payload;
-        rootState[moduleName]['paginationLinksShot'].splice(0, rootState[moduleName]['paginationLinksShot'].length);
-    },
-    pushIntoPaginationLinkShot: (state, payload) => {
-        const { rootState, moduleName, item } = payload;
-        rootState[moduleName]['paginationLinksShot'].push(item);
-    },
-    fillPaginationLinkShot: (state, payload) => {
-        const { rootState, moduleName, border1, border2 } = payload;
-        for (let i = border1; i <= border2; i += 1) {
-            rootState[moduleName]['paginationLinksShot'].push(i);
-        }
-    },
-
-    // =================quantityPerPage===================
-    setQuantityPerPage: (state, payload) => {
-        const { rootState, moduleName, quantityPerPage } = payload;
-        rootState[moduleName]['quantityPerPage'] = quantityPerPage;
-        if (quantityPerPage < 1000000) {
-            rootState[moduleName]['copyOfQuantityPerPage'] = quantityPerPage;
-        }
-    },
-
-    // ======================customized=========================
-    clearCustomized: (state, payload) => {
-        const { rootState, moduleName } = payload;
-        rootState[moduleName]['customized'].splice(0, rootState[moduleName]['customized'].length);
-    },
-    pushIntoCustomized: (state, payload) => {
-        const { rootState, moduleName, pageCounter, item } = payload;
-        rootState[moduleName]['customized'][pageCounter].push(item);
-    },
-
-*/
-

@@ -32,12 +32,12 @@ export default {
     // установка пользователем в выпадающем списке кол-ва items на страницу
     quantityPerPage: {
         users: 6,
-        products: 6,
+        products: 3,
     },
     // для выхода из View all обратно в пагинацию
     copyOfQuantityPerPage: {
         users: 6,
-        products: 6,
+        products: 3,
     },
     // если страниц меньше, показывать все
     minimumPagesForComplexPagination: {

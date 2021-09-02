@@ -4,17 +4,42 @@
     //height: 50px
     display: flex
     align-items: center
-    justify-content: space-between
-    // border: 1px solid #00f
+    justify-content: flex-end
+    border: 1px solid #00f
 
 
+.quantity_per_page__wrapper
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    width: 300px
+    padding: 10px
+    height: 30px
+    border: 1px solid #f00
 
+.quantity_per_page__title
+    height: 30px
+    +font(15px, #6e6e6e, 400)
+    padding: 0 10px 0 0
+
+.quantity_per_page__select_input
+    margin-right: 20px
+    padding: 8px
+    +font(15px, #6e6e6e, 300)
+    border-radius: 5px
+    background-color: #fff
+    //border: 1px solid #ccc
+    box-sizing: border-box
+    //outline: 0
+    //-webkit-appearance: none
+    //-moz-appearance: none
+    //appearance: none
 
 .pagination_table
     padding: 0
     margin: 0
     height: 20px
-    // border: 1px solid #f00
+    //border: 1px solid #f00
 .pagination_width_outer
     width: 250px
     // border: 1px solid #ff0
@@ -47,16 +72,16 @@
     text-decoration: none
     margin: 1px
     padding: 7px 10px
-    color: #000000
+    color: #504b4b
     font-size: 18px
     transition: color 0.2s, background-color 0.2s
 .pagination_link:hover
-    background-color: #4a4a4a
+    background-color: #504b4b
     color: #ffffff
 
 .active_pagination_link
     padding: 7px 10px
-    background-color: #4a4a4a
+    background-color: #504b4b
     color: #ffffff
     font-size: 18px
 

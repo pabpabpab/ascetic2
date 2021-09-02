@@ -23,7 +23,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters([
+        ...mapGetters('pagination', [
             'currentPageIndex',
             'customized',
         ]),

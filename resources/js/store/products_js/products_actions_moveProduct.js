@@ -1,26 +1,39 @@
 export default {
 
-    moveProduct: {
+    moveProductByDragAndDrop: {
         root: true,
-        handler ({ dispatch, commit, getters, state }, {currentIndex, newIndex, vector}) {
-            // именно в такой последовательности
-            const operatedId = state.products[currentIndex]['id'];
-            const closestId = state.products[newIndex]['id'];
-            commit('moveProduct', {currentIndex, newIndex, vector});
+        handler ({ dispatch, commit, getters, state, rootState }, {currentIndex, newIndex, vector}) {
 
-            dispatch('showWaitingScreen', null, { root: true });
+            const currentPageIndex = rootState.pagination.currentPage.products;
+            const products = rootState.pagination.customized.products[currentPageIndex];
+
+            const operatedId = products[currentIndex]['id'];
+            const targetId = products[newIndex]['id'];
+
+            commit('moveProductInProductsById', {operatedId, targetId});
+
+            dispatch('moveItemInPaginated', {
+                currentIndexInPage: currentIndex,
+                newIndexInPage: newIndex,
+                operatedId: operatedId,
+                targetId: targetId,
+                entity: 'products'
+            }, { root: true });
+
+
+            // dispatch('showWaitingScreen', null, { root: true });
 
             dispatch (
                 'postJson',
                 {
                     url: getters.moveProductUrl + operatedId,
-                    data: { closestId, vector },
+                    data: { targetId, vector },
                 },
                 { root: true }
             )
                 .then((data) => {
                     if (data.moveSuccess === true) {
-                        dispatch('loadProducts', 'active'); // получить обновленный список с сервера
+                        //dispatch('loadProducts', 'active'); // получить обновленный список с сервера
                         const txt = 'Сделано.';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.8}, { root: true });
                         //закрытие заглушки в loadProducts // dispatch('hideWaitingScreen', null, { root: true });

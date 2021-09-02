@@ -1,6 +1,28 @@
 <template>
     <nav class="pagination_nav">
 
+        <div class="quantity_per_page__wrapper">
+            <p class="quantity_per_page__title">Показывать по</p>
+            <select class="quantity_per_page__select_input"
+                    v-model="customQuantityPerPage"
+                    @change="divideIntoPages({
+                        entity: entity,
+                        customQuantityPerPage: customQuantityPerPage
+                    });">
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="1000000">Все</option>
+            </select>
+        </div>
+
+
+
         <table :class="containerClass" v-if="customizedLength(entity) > 1"><tr>
             <td>
                 <a href="#" class="pagination_link"
@@ -82,7 +104,7 @@
                     entity: entity,
                     customQuantityPerPage: copyOfQuantityPerPage(entity)
                });">
-                По страницам
+                Разбить по страницам
             </a>
         </div>
 
@@ -96,14 +118,21 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
     name: 'Pagination',
     props: ['entity'],
+    data() {
+        return {
+            customQuantityPerPage: 0,
+        };
+    },
     methods: {
-        ...mapActions([
+        ...mapActions('pagination', [
             'showPage',
+        ]),
+        ...mapActions([
             'divideIntoPages',
         ]),
     },
     computed: {
-        ...mapGetters([
+        ...mapGetters('pagination', [
             'currentPageIndex',
             'currentPageNumber',
             'customized',
@@ -140,6 +169,10 @@ export default {
             }
             return 'pagination_numbers_container';
         },
+    },
+    mounted() {
+        // обратная связь (от стора в v-model) при включении
+        this.customQuantityPerPage = this.quantityPerPage(this.entity);
     },
 };
 </script>
