@@ -1,3 +1,5 @@
+import getCookie from './functions/getCookie';
+
 export default {
 
     customized: (state) => (entity) => state.customized[entity],
@@ -15,7 +17,8 @@ export default {
     //
     wing: (state) => state.half_length_of_pagination_shot,
     //
-    quantityPerPage: (state) => (entity) => state.quantityPerPage[entity],
+    quantityPerPage: (state) => (entity) => getCookie(entity + 'QuantityPerPage') ?? state.quantityPerPage[entity],
+    //quantityPerPage: (state) => (entity) => state.quantityPerPage[entity],
     copyOfQuantityPerPage: (state) => (entity) => state.copyOfQuantityPerPage[entity],
     minimumPagesForComplexPagination: (state) => (entity) => state.minimumPagesForComplexPagination[entity],
     //

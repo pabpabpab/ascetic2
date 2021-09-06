@@ -1,36 +1,17 @@
 <template>
     <nav class="pagination_nav">
 
-        <div class="quantity_per_page__wrapper">
-            <p class="quantity_per_page__title">Показывать по</p>
-            <select class="quantity_per_page__select_input"
-                    v-model="customQuantityPerPage"
-                    @change="divideIntoPages({
-                        entity: entity,
-                        customQuantityPerPage: customQuantityPerPage
-                    });">
-                <option value="1">1</option>
-                <option value="3">3</option>
-                <option value="6">6</option>
-                <option value="9">9</option>
-                <option value="15">15</option>
-                <option value="30">30</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                <option value="1000000">Все</option>
-            </select>
-        </div>
-
-
+        <quantity-per-page-of-pagination :entity="entity" :key="Number(quantityPerPage)"></quantity-per-page-of-pagination>
 
         <table :class="containerClass" v-if="customizedLength(entity) > 1"><tr>
+
             <td>
                 <a href="#" class="pagination_link"
                    @click.prevent="showPage({
                         entity: entity,
                         page: currentPageIndex(entity) - 1
                    })">
-                    <i class="fas fa-angle-left">&lt;</i>
+                    <i class="fas fa-angle-left">&larr;</i>
                 </a>
             </td>
 
@@ -83,21 +64,13 @@
                         entity: entity,
                         page: currentPageIndex(entity) + 1
                    })">
-                      <i class="fas fa-angle-right">&gt;</i>
+                      <i class="fas fa-angle-right"> &rarr; </i>
                 </a>
             </td>
 
         </tr></table>
 
-        <div v-if="customizedLength(entity) > 1" class="viewAll">
-            <a href="#" class="pagination_link"
-               @click.prevent="divideIntoPages({
-                    entity: entity,
-                    customQuantityPerPage: 1000000
-               });">
-                Показать все
-            </a>
-        </div>
+
         <div v-if="quantityPerPage(entity) === 1000000" class="viewAll" >
             <a href="#" class="pagination_link"
                @click.prevent="divideIntoPages({
@@ -114,9 +87,13 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import QuantityPerPageOfPagination from "./QuantityPerPageOfPagination";
 
 export default {
     name: 'Pagination',
+    components: {
+        QuantityPerPageOfPagination,
+    },
     props: ['entity'],
     data() {
         return {
@@ -169,10 +146,6 @@ export default {
             }
             return 'pagination_numbers_container';
         },
-    },
-    mounted() {
-        // обратная связь (от стора в v-model) при включении
-        this.customQuantityPerPage = this.quantityPerPage(this.entity);
     },
 };
 </script>

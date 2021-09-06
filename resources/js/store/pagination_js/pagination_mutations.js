@@ -55,14 +55,16 @@ export default {
 
     // ======================customized=========================
     clearCustomized: (state, entity) => {
-        const customized = state.customized;
+        const customized = { ...state.customized };
         customized[entity] = [];
-        state.customized = customized;
+        state.customized = { ...customized };
+
     },
     pushIntoCustomized: (state, { entity, pageCounter, item }) => {
         const customized = state.customized;
         customized[entity][pageCounter].push(item);
         state.customized = customized;
+        //console.log(customized);
     },
     pushNewPageIntoCustomized: (state, entity) => {
         const customized = state.customized;

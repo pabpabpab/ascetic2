@@ -21686,6 +21686,65 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/store/pagination_js/functions/getCookie.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/store/pagination_js/functions/getCookie.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getCookie; });
+function getCookie(name) {
+  var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+/***/ }),
+
+/***/ "./resources/js/store/pagination_js/functions/setCookie.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/store/pagination_js/functions/setCookie.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setCookie; });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function setCookie(name, value) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  options = _objectSpread({
+    path: '/'
+  }, options);
+
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+
+  var updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+  for (var optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    var optionValue = options[optionKey];
+
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+
+/***/ }),
+
 /***/ "./resources/js/store/pagination_js/pagination_actions.js":
 /*!****************************************************************!*\
   !*** ./resources/js/store/pagination_js/pagination_actions.js ***!
@@ -21695,6 +21754,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _functions_setCookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/setCookie */ "./resources/js/store/pagination_js/functions/setCookie.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   // =======================скопировать оригинал в filtered=============================
   setFiltered: {
@@ -21720,7 +21781,14 @@ __webpack_require__.r(__webpack_exports__);
           state = _ref3.state;
       var entity = _ref4.entity,
           customQuantityPerPage = _ref4.customQuantityPerPage;
-      console.log(customQuantityPerPage);
+
+      //document.body.style.cssText='overflow: scroll;';
+      if (customQuantityPerPage > 0) {
+        Object(_functions_setCookie__WEBPACK_IMPORTED_MODULE_0__["default"])(entity + 'QuantityPerPage', customQuantityPerPage, {
+          'max-age': 31536000
+        });
+      }
+
       commit('setQuantityPerPage', {
         entity: entity,
         quantityPerPage: customQuantityPerPage
@@ -21737,7 +21805,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var pageCounter = 0;
       var itemCounter = 0;
-      var quantityPerPage = getters.quantityPerPage(entity); //
+      var quantityPerPage = Number(getters.quantityPerPage(entity)); //
 
       var inactiveCss = getters.inactivePaginationLinkCss;
 
@@ -21922,326 +21990,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-/*
-export default {
-
-    setFiltered({ dispatch, commit, state, getters }, { moduleName, data }) {
-
-    },
-
-
-
-        // ===============================разбить по страницам================================
-    divideIntoPages({ dispatch, commit, state, getters, rootState, rootGetters }, { moduleName, customQuantityPerPage }) {
-        commit('setQuantityPerPage',  { rootState, moduleName, quantityPerPage: customQuantityPerPage });
-        // указатель страниц на первую
-        commit('setCurrentPage', 0);
-        // очистить массив items
-        commit('clearCustomized');
-        // очистить css ссылок пагинации
-        commit('clearPaginationLinkCssArr');
-        // =====<разбиваем по страницам в соответствии со state.quantityPerPage>=====
-        let pageCounter = 0;
-        let itemCounter = 0;
-        //const quantityPerPage = getters.quantityPerPage(moduleName);
-        //const quantityPerPage = rootState[moduleName]['quantityPerPage'];
-        //const quantityPerPage = rootGetters[moduleName]['quantityPerPage'];
-        const quantityPerPage = rootGetters['users/quantityPerPage'];
-        console.log(quantityPerPage);
-        //console.log(state);
-        //
-        const inactiveCss = getters.inactivePaginationLinkCss(moduleName);
-        for (let i = 0; i < getters.filteredLength(moduleName); i += 1) {
-
-            // страница заполнена
-            if (itemCounter === quantityPerPage) {
-                itemCounter = 0;
-                pageCounter += 1;
-            }
-
-            // начинаем следующую страницу
-            if (itemCounter === 0) {
-                // создаем следующую страницу
-                state.customized.push([]);
-                // сделать ссылку на эту страницу неактивной
-                commit('pushIntoPaginationLinkCssArr', inactiveCss);
-            }
-
-            // пушим user в страницу
-            commit('pushIntoCustomized', {
-                pageCounter,
-                item: getters.filtered(moduleName)[i]
-            });
-
-            itemCounter += 1;
-        }
-        // =====</разбиваем по страницам в соответствии со state.quantityPerPage>=====
-
-        // установить активную ссылку
-        commit('setPaginationLinkCssArrByIndex', {
-            index: getters.currentPageIndex,
-            cssClass: getters.activePaginationLinkCss(moduleName),
-        });
-
-        // сформировать активный кадр ссылок пагинации
-        dispatch('makePaginationLinksShot', moduleName);
-    },
-
-
-    // ==========================пагинация: какую страницу items показать=======================
-    showPage({ dispatch, commit, state, getters }, { moduleName, page }) {
-        const { customizedLength } = getters;
-        let index;
-        if (page < 0) {
-            index = 0;
-        } else if (page >= customizedLength) {
-            index = customizedLength - 1;
-        } else {
-            index = page;
-        }
-        // установить указатель страницы на требуюмую
-        commit('setCurrentPage', index);
-        // сбросить css ссылок пагинации в неактивный css
-        dispatch('resetPaginationLinkCss', moduleName);
-        // установить активный css-стиль ссылки для актуальной страницы
-        const cssClass = getters.activePaginationLinkCss(moduleName);
-        commit('setPaginationLinkCssArrByIndex', { index, cssClass });
-        // сформировать активный кадр ссылок пагинации
-        dispatch('makePaginationLinksShot', moduleName);
-    },
-
-    // ========================сбросить css ссылок пагинации==============================
-    resetPaginationLinkCss({ state, getters, commit }, moduleName) {
-        const cssArrLength = getters.paginationLinkCssArrLength;
-        // очистить css ссылок пагинации
-        commit('clearPaginationLinkCssArr');
-        // заполнить неактивным css
-        const cssClass = getters.inactivePaginationLinkCss(moduleName);
-        for (let i = 0; i < cssArrLength; i += 1) {
-            commit('pushIntoPaginationLinkCssArr', cssClass);
-        }
-    },
-
-    // ========================сформировать активный кадр ссылок пагинации========================
-    makePaginationLinksShot({ commit, state, getters, rootState }, moduleName) {
-        const {
-            customizedLength,
-            currentPageNumber,
-            minimumPagesForComplexPagination,
-            wing,
-        } = getters;
-
-        const _minimumPages = minimumPagesForComplexPagination(moduleName);
-        const _wing = wing(moduleName);
-
-        let border1;
-        let border2;
-
-        // очистить
-        commit('clearPaginationLinksShot');
-
-        // =====================<если страниц мало>=========================
-        if ((customizedLength < _minimumPages) || (customizedLength <= _wing * 3))  {
-            border1 = 1;
-            border2 = customizedLength;
-            commit('fillPaginationLinkShot', { border1, border2 });
-            return;
-        }
-
-        // ==============<все что ниже это когда страниц много>=============
-
-        // =========<currentPage находится в конце блока пагинации>=========
-        if ((currentPageNumber + _wing + 2) > customizedLength) {
-            border1 = ((currentPageNumber - _wing) > (customizedLength - _wing * 2))
-                ? (customizedLength - _wing * 2)
-                : (currentPageNumber - _wing);
-            border2 = customizedLength;
-            commit('fillPaginationLinkShot', { border1, border2 });
-            return;
-        }
-
-        // =========<currentPage находится в начале блока пагинации>========
-        if (currentPageNumber - _wing - 2 < 1) {
-            border1 = 1;
-            border2 = ((currentPageNumber + _wing) < (_wing * 2))
-                ? (_wing * 2)
-                : (currentPageNumber + _wing);
-
-            // заплатка
-            if (currentPageNumber === 1) {
-                if (_wing === 1) border2 = 3;
-                if (_wing === 0) border2 = 1;
-            }
-
-            commit('fillPaginationLinkShot', { border1, border2 });
-            return;
-        }
-
-        // ========<currentPage находится в середине блока пагинации>=======
-        border1 = currentPageNumber - _wing;
-        border2 = currentPageNumber + _wing;
-        commit('fillPaginationLinkShot', { border1, border2 });
-    },
-};
-
- */
-
-/*
-export default {
-    // ===============================разбить по страницам================================
-    divideIntoPages({ dispatch, commit, state, getters, rootState, rootGetters }, { moduleName, customQuantityPerPage }) {
-        commit('setQuantityPerPage',  { rootState, moduleName, quantityPerPage: customQuantityPerPage });
-        // указатель страниц на первую
-        commit('setCurrentPage', { rootState, moduleName, index: 0 });
-        // очистить массив items
-        commit('clearCustomized', { rootState, moduleName });
-        // очистить css ссылок пагинации
-        commit('clearPaginationLinkCssArr', { rootState, moduleName });
-        // =====<разбиваем по страницам в соответствии со state.quantityPerPage>=====
-        let pageCounter = 0;
-        let itemCounter = 0;
-        const quantityPerPage = getters.quantityPerPage(moduleName);
-        //
-        const inactiveCss = getters.inactivePaginationLinkCss(moduleName);
-        for (let i = 0; i < getters.filteredLength(moduleName); i += 1) {
-
-            // страница заполнена
-            if (itemCounter === quantityPerPage) {
-                itemCounter = 0;
-                pageCounter += 1;
-            }
-
-            // начинаем следующую страницу
-            if (itemCounter === 0) {
-                // создаем следующую страницу
-                rootState[moduleName]['customized'].push([]);
-                // сделать ссылку на эту страницу неактивной
-                commit('pushIntoPaginationLinkCssArr', { rootState, moduleName, cssClass: inactiveCss });
-            }
-
-            // пушим user в страницу
-            commit('pushIntoCustomized', {
-                rootState,
-                moduleName,
-                pageCounter,
-                item: getters.filtered(moduleName)[i],
-                // item: rootState[moduleName]['filtered'][i]
-            });
-
-            itemCounter += 1;
-        }
-        // =====</разбиваем по страницам в соответствии со state.quantityPerPage>=====
-        // установить активную ссылку
-        commit('setPaginationLinkCssArrByIndex', {
-            rootState,
-            moduleName,
-            index: getters.currentPageIndex(moduleName),
-            cssClass: getters.activePaginationLinkCss(moduleName),
-        });
-        // сформировать активный кадр ссылок пагинации
-        dispatch('makePaginationLinksShot', moduleName);
-    },
-
-
-    // ==========================пагинация: какую страницу items показать=======================
-    showPage({ dispatch, commit, state, getters, rootState }, { moduleName, page }) {
-        const { customizedLength } = getters;
-        let index;
-        if (page < 0) {
-            index = 0;
-        } else if (page >= customizedLength(moduleName)) {
-            index = customizedLength(moduleName) - 1;
-        } else {
-            index = page;
-        }
-        // установить указатель страницы на требуюмую
-        commit('setCurrentPage', { rootState, moduleName, index });
-        // сбросить css ссылок пагинации
-        dispatch('resetPaginationLinkCss', moduleName);
-        // установить активный css-стиль ссылки для актуальной страницы
-        const cssClass = getters.activePaginationLinkCss(moduleName);
-        commit('setPaginationLinkCssArrByIndex', { rootState, moduleName, index, cssClass });
-        // сформировать активный кадр ссылок пагинации
-        dispatch('makePaginationLinksShot', moduleName);
-    },
-
-    // ========================сбросить css ссылок пагинации==============================
-    resetPaginationLinkCss({ state, getters, commit, rootState }, moduleName) {
-        const paginationCssArrLength = getters.paginationLinkCssArrLength(moduleName);
-        // очистить css ссылок пагинации
-        commit('clearPaginationLinkCssArr', { rootState, moduleName });
-        // заполнить неактивным css
-        const cssClass = getters.inactivePaginationLinkCss(moduleName);
-        for (let i = 0; i < paginationCssArrLength; i += 1) {
-            commit('pushIntoPaginationLinkCssArr', { rootState, moduleName, cssClass });
-        }
-    },
-
-    // ========================сформировать активный кадр ссылок пагинации========================
-    makePaginationLinksShot({ commit, state, getters, rootState }, moduleName) {
-        const {
-            customizedLength,
-            currentPageNumber,
-            minimumPagesForComplexPagination,
-            wing,
-        } = getters;
-
-        const _customizedLength = customizedLength(moduleName);
-        const _currentPageNumber = currentPageNumber(moduleName);
-        const _minimumPagesForComplexPagination = minimumPagesForComplexPagination(moduleName);
-        const _wing = wing(moduleName);
-
-        let border1;
-        let border2;
-
-        // очистить
-        commit('clearPaginationLinksShot', { rootState, moduleName });
-
-        // =====================<если страниц мало>=========================
-        if ((_customizedLength < _minimumPagesForComplexPagination) || (_customizedLength <= _wing * 3))  {
-            border1 = 1;
-            border2 = _customizedLength;
-            commit('fillPaginationLinkShot', { rootState, moduleName, border1, border2 });
-            return;
-        }
-
-        // ==============<все что ниже это когда страниц много>=============
-
-        // =========<currentPage находится в конце блока пагинации>=========
-        if ((_currentPageNumber + _wing + 2) > _customizedLength) {
-            border1 = ((_currentPageNumber - _wing) > (_customizedLength - _wing * 2))
-                ? (_customizedLength - _wing * 2)
-                : (_currentPageNumber - _wing);
-            border2 = _customizedLength;
-            commit('fillPaginationLinkShot', { rootState, moduleName, border1, border2 });
-            return;
-        }
-
-        // =========<currentPage находится в начале блока пагинации>========
-        if (_currentPageNumber - _wing - 2 < 1) {
-            border1 = 1;
-            border2 = ((_currentPageNumber + _wing) < (_wing * 2))
-                ? (_wing * 2)
-                : (_currentPageNumber + _wing);
-
-            // заплатка
-            if (_currentPageNumber === 1) {
-                if (_wing === 1) border2 = 3;
-                if (_wing === 0) border2 = 1;
-            }
-
-            commit('fillPaginationLinkShot', { rootState, moduleName, border1, border2 });
-            return;
-        }
-
-        // ========<currentPage находится в середине блока пагинации>=======
-        border1 = _currentPageNumber - _wing;
-        border2 = _currentPageNumber + _wing;
-        commit('fillPaginationLinkShot', { rootState, moduleName, border1, border2 });
-    },
-};
-
- */
 
 /***/ }),
 
@@ -22254,6 +22002,8 @@ export default {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _functions_getCookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/getCookie */ "./resources/js/store/pagination_js/functions/getCookie.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   customized: function customized(state) {
     return function (entity) {
@@ -22310,9 +22060,12 @@ __webpack_require__.r(__webpack_exports__);
   //
   quantityPerPage: function quantityPerPage(state) {
     return function (entity) {
-      return state.quantityPerPage[entity];
+      var _getCookie;
+
+      return (_getCookie = Object(_functions_getCookie__WEBPACK_IMPORTED_MODULE_0__["default"])(entity + 'QuantityPerPage')) !== null && _getCookie !== void 0 ? _getCookie : state.quantityPerPage[entity];
     };
   },
+  //quantityPerPage: (state) => (entity) => state.quantityPerPage[entity],
   copyOfQuantityPerPage: function copyOfQuantityPerPage(state) {
     return function (entity) {
       return state.copyOfQuantityPerPage[entity];
@@ -22384,12 +22137,6 @@ export default {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -22401,6 +22148,12 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   setFiltered: function setFiltered(state, _ref) {
@@ -22472,9 +22225,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   // ======================customized=========================
   clearCustomized: function clearCustomized(state, entity) {
-    var customized = state.customized;
+    var customized = _objectSpread({}, state.customized);
+
     customized[entity] = [];
-    state.customized = customized;
+    state.customized = _objectSpread({}, customized);
   },
   pushIntoCustomized: function pushIntoCustomized(state, _ref7) {
     var entity = _ref7.entity,
@@ -22482,7 +22236,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         item = _ref7.item;
     var customized = state.customized;
     customized[entity][pageCounter].push(item);
-    state.customized = customized;
+    state.customized = customized; //console.log(customized);
   },
   pushNewPageIntoCustomized: function pushNewPageIntoCustomized(state, entity) {
     var customized = state.customized;
@@ -22605,7 +22359,7 @@ __webpack_require__.r(__webpack_exports__);
     products: 9
   },
   // css ссылки на активную страницу
-  activePaginationLinkCss: 'pagination_link active_pagination_link',
+  activePaginationLinkCss: 'pagination_link pagination_link_active',
   // css ссылки на неактивную страницу
   inactivePaginationLinkCss: 'pagination_link',
   // половина длины активного кадра ссылок пагинации

@@ -986,7 +986,7 @@ h1 {
 
 .products {
   width: 100%;
-  padding: 20px 0;
+  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1096,7 +1096,6 @@ h1 {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  border: 1px solid #00f;
 }
 
 .quantity_per_page__wrapper {
@@ -1112,27 +1111,30 @@ h1 {
   width: 300px;
   padding: 10px;
   height: 30px;
-  border: 1px solid #f00;
 }
 
-.quantity_per_page__title {
-  height: 30px;
+.quantity_per_page__label {
   font-size: 15px;
-  color: #6e6e6e;
-  font-weight: 400;
-  padding: 0 10px 0 0;
+  color: #888080;
+  font-weight: 300;
+  padding: 8px;
 }
 
 .quantity_per_page__select_input {
-  margin-right: 20px;
-  padding: 8px;
+  margin-right: 10px;
+  padding: 6px 25px 6px 15px;
   font-size: 15px;
-  color: #6e6e6e;
-  font-weight: 300;
-  border-radius: 5px;
-  background-color: #fff;
+  color: #888080;
+  font-weight: 100;
+  border: 1px solid #f8f0f0;
+  background-color: #f8f0f0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  outline: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .pagination_table {
@@ -1149,54 +1151,122 @@ h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   color: #000;
 }
 
 .pagination_width_inner {
-  width: 230px;
+  min-width: 230px;
 }
 
 .pagination_left {
-  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .pagination_middle {
-  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .pagination_right {
-  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .pagination_dots {
-  display: inline-block;
-  padding: 0;
-  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 1px;
+  height: 30px;
+  width: 36px;
+  font-size: 18px;
+  color: #888080;
+  font-weight: 300;
+  background-color: #f8f0f0;
+  border-radius: 3px;
 }
 
 .pagination_link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   text-decoration: none;
   margin: 1px;
-  padding: 7px 10px;
-  color: #504b4b;
-  font-size: 18px;
+  height: 30px;
+  width: 42px;
+  font-size: 17px;
+  color: #888080;
+  font-weight: 300;
+  background-color: #f8f0f0;
+  border-radius: 3px;
   -webkit-transition: color 0.2s, background-color 0.2s;
   transition: color 0.2s, background-color 0.2s;
 }
 
 .pagination_link:hover {
-  background-color: #504b4b;
-  color: #ffffff;
+  color: #fff;
+  background-color: #a8a0a0;
 }
 
-.active_pagination_link {
-  padding: 7px 10px;
-  background-color: #504b4b;
-  color: #ffffff;
-  font-size: 18px;
+.pagination_link_active {
+  color: #fff;
+  background-color: #a8a0a0;
 }
 
 .viewAll {

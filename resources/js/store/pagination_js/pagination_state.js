@@ -46,7 +46,7 @@ export default {
     },
 
     // css ссылки на активную страницу
-    activePaginationLinkCss: 'pagination_link active_pagination_link',
+    activePaginationLinkCss: 'pagination_link pagination_link_active',
     // css ссылки на неактивную страницу
     inactivePaginationLinkCss: 'pagination_link',
     // половина длины активного кадра ссылок пагинации
