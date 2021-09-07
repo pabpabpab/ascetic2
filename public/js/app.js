@@ -22065,12 +22065,7 @@ __webpack_require__.r(__webpack_exports__);
       return (_getCookie = Object(_functions_getCookie__WEBPACK_IMPORTED_MODULE_0__["default"])(entity + 'QuantityPerPage')) !== null && _getCookie !== void 0 ? _getCookie : state.quantityPerPage[entity];
     };
   },
-  //quantityPerPage: (state) => (entity) => state.quantityPerPage[entity],
-  copyOfQuantityPerPage: function copyOfQuantityPerPage(state) {
-    return function (entity) {
-      return state.copyOfQuantityPerPage[entity];
-    };
-  },
+  //
   minimumPagesForComplexPagination: function minimumPagesForComplexPagination(state) {
     return function (entity) {
       return state.minimumPagesForComplexPagination[entity];
@@ -22084,47 +22079,6 @@ __webpack_require__.r(__webpack_exports__);
     return state.activePaginationLinkCss;
   }
 });
-/*
-export default {
-    filtered: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['filtered'],
-    filteredLength: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['filtered'].length,
-    //
-    customized: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['customized'],
-    customizedLength: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['customized'].length,
-    //
-    currentPageIndex: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['currentPage'],
-    currentPageNumber: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['currentPage'] + 1,
-    wing: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['half_length_of_pagination_shot'],
-    //
-    minimumPagesForComplexPagination: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['minimumPagesForComplexPagination'],
-    quantityPerPage: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['quantityPerPage'],
-    copyOfQuantityPerPage: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['copyOfQuantityPerPage'],
-
-    inactivePaginationLinkCss: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['inactivePaginationLinkCss'],
-    activePaginationLinkCss: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['activePaginationLinkCss'],
-
-
-    paginationLinksShot: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['paginationLinksShot'],
-    paginationLinkCssArr: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['paginationLinkCssArr'],
-    paginationLinkCssArrLength: (state, getters, rootState) =>
-        (moduleName) => rootState[moduleName]['paginationLinkCssArr'].length,
-
-};
-*/
 
 /***/ }),
 
@@ -22167,7 +22121,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       filtered[entity].push(data[i]);
     }
 
-    state.filtered = filtered; // console.log(state.filtered);
+    state.filtered = filtered;
   },
   // =========================================================
   setCurrentPage: function setCurrentPage(state, _ref2) {
@@ -22253,10 +22207,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
 
     state.quantityPerPage[entity] = quantityPerPage;
-
-    if (quantityPerPage < 1000000) {
-      state.copyOfQuantityPerPage[entity] = quantityPerPage;
-    }
   },
   //===================move item by drag and drop==================
   moveItemInFiltered: function moveItemInFiltered(state, _ref9) {
@@ -22345,11 +22295,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   // установка пользователем в выпадающем списке кол-ва items на страницу
   quantityPerPage: {
-    users: 6,
-    products: 3
-  },
-  // для выхода из View all обратно в пагинацию
-  copyOfQuantityPerPage: {
     users: 6,
     products: 3
   },

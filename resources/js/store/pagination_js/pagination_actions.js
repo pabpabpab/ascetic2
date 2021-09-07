@@ -9,7 +9,6 @@ export default {
             commit('setFiltered', { entity, data });
         }
     },
-
     // ===============================разбить по страницам================================
     divideIntoPages: {
         root: true,

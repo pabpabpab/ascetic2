@@ -15,6 +15,7 @@
             <option value="30">30</option>
             <option value="50">50</option>
             <option value="100">100</option>
+            <option value="300">300</option>
             <option value="1000000">Все</option>
         </select>
     </div>

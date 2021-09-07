@@ -1,9 +1,12 @@
 <template>
     <nav class="pagination_nav">
 
+
         <quantity-per-page-of-pagination :entity="entity" :key="Number(quantityPerPage)"></quantity-per-page-of-pagination>
 
+
         <table :class="containerClass" v-if="customizedLength(entity) > 1"><tr>
+
 
             <td>
                 <a href="#" class="pagination_link"
@@ -14,6 +17,9 @@
                     <i class="fas fa-angle-left">&larr;</i>
                 </a>
             </td>
+
+
+
 
             <td :class="innerContainerClass">
 
@@ -42,7 +48,6 @@
                     </a>
                 </div>
 
-                <!-- eslint-disable max-len -->
                 <div class="pagination_right" v-if="showLastPageWithDots">
                     <span class="pagination_dots">
                         ...
@@ -58,6 +63,9 @@
 
             </td>
 
+
+
+
             <td>
                 <a href="#" class="pagination_link"
                    @click.prevent="showPage({
@@ -68,19 +76,8 @@
                 </a>
             </td>
 
+
         </tr></table>
-
-
-        <div v-if="quantityPerPage(entity) === 1000000" class="viewAll" >
-            <a href="#" class="pagination_link"
-               @click.prevent="divideIntoPages({
-                    entity: entity,
-                    customQuantityPerPage: copyOfQuantityPerPage(entity)
-               });">
-                Разбить по страницам
-            </a>
-        </div>
-
 
     </nav>
 </template>
@@ -117,7 +114,6 @@ export default {
             'paginationLinksShot',
             'paginationLinkCssArr',
             'quantityPerPage',
-            'copyOfQuantityPerPage',
             'wing',
             'minimumPagesForComplexPagination',
         ]),

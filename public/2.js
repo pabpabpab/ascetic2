@@ -101,9 +101,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -118,7 +115,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('pagination', ['showPage'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['divideIntoPages'])),
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'currentPageNumber', 'customized', 'customizedLength', 'paginationLinksShot', 'paginationLinkCssArr', 'quantityPerPage', 'copyOfQuantityPerPage', 'wing', 'minimumPagesForComplexPagination'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'currentPageNumber', 'customized', 'customizedLength', 'paginationLinksShot', 'paginationLinkCssArr', 'quantityPerPage', 'wing', 'minimumPagesForComplexPagination'])), {}, {
     aLotOfPages: function aLotOfPages() {
       if (this.customizedLength(this.entity) < this.minimumPagesForComplexPagination(this.entity)) {
         return false;
@@ -168,6 +165,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -379,30 +377,6 @@ var render = function() {
               ])
             ])
           ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.quantityPerPage(_vm.entity) === 1000000
-        ? _c("div", { staticClass: "viewAll" }, [
-            _c(
-              "a",
-              {
-                staticClass: "pagination_link",
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.divideIntoPages({
-                      entity: _vm.entity,
-                      customQuantityPerPage: _vm.copyOfQuantityPerPage(
-                        _vm.entity
-                      )
-                    })
-                  }
-                }
-              },
-              [_vm._v("\n            Разбить по страницам\n        ")]
-            )
-          ])
         : _vm._e()
     ],
     1
@@ -494,6 +468,8 @@ var render = function() {
         _c("option", { attrs: { value: "50" } }, [_vm._v("50")]),
         _vm._v(" "),
         _c("option", { attrs: { value: "100" } }, [_vm._v("100")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "300" } }, [_vm._v("300")]),
         _vm._v(" "),
         _c("option", { attrs: { value: "1000000" } }, [_vm._v("Все")])
       ]

@@ -8,7 +8,6 @@ export default {
             filtered[entity].push(data[i]);
         }
         state.filtered = filtered;
-        // console.log(state.filtered);
     },
     // =========================================================
     setCurrentPage: (state, { entity, index }) => {
@@ -58,7 +57,6 @@ export default {
         const customized = { ...state.customized };
         customized[entity] = [];
         state.customized = { ...customized };
-
     },
     pushIntoCustomized: (state, { entity, pageCounter, item }) => {
         const customized = state.customized;
@@ -77,9 +75,6 @@ export default {
             return;
         }
         state.quantityPerPage[entity] = quantityPerPage;
-        if (quantityPerPage < 1000000) {
-            state.copyOfQuantityPerPage[entity] = quantityPerPage;
-        }
     },
     //===================move item by drag and drop==================
 
