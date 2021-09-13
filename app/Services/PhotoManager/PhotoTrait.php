@@ -5,7 +5,6 @@ namespace App\Services\PhotoManager;
 
 
 use App\Models\Photo;
-use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
 trait PhotoTrait
@@ -25,14 +24,26 @@ trait PhotoTrait
     }
 
     // получить массив имен фото из таблицы photo
-    protected function _getPhotoNamesArray($product): array
+    protected function _getPhotoNamesAndAltsAsArrays($product): array
     {
-        $photoNameArr = [];
+        $photoNameArr = []; $photoAltArr = [];
         foreach ($product->photo as $ph) {
             $photoNameArr[] = $ph->filename;
+            $photoAltArr[] = $ph->alt_text;
         }
-        return $photoNameArr;
+        return [$photoNameArr, $photoAltArr];
     }
+
+
+    // сохранить массивы имен фоток и alt'ов в product в виде json
+    protected function _syncPhotoNamesAndAltsInProduct($product): bool
+    {
+        [$photoNameArr, $photoAltArr] = $this->_getPhotoNamesAndAltsAsArrays($product);
+        $product->photo_set = json_encode($photoNameArr);
+        $product->photo_alt_set = json_encode($photoAltArr);
+        return $product->save();
+    }
+
 
 
     // вставить имена фоток в таблицу photo

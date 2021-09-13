@@ -67,11 +67,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PhotosContextMenu",
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'enabledFadingCss', 'productId', 'photoName', 'currentListIndex', 'lastListIndex'])), {}, {
-    contextMenuClassObject: function contextMenuClassObject() {
+    contextMenuClass: function contextMenuClass() {
       return {
         'context_menu__wrapper context_menu__wrapper_black': true,
         'show_block': !this.enabledFadingCss,
@@ -79,11 +82,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   }),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['deletePhoto', 'rotatePhoto', 'movePhoto']))
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['deletePhoto', 'rotatePhoto', 'movePhoto'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('seoManager', ['showSeoManager']))
 });
 /*
 <template>
-    <div :class="contextMenuClassObject" :style="coordinates">
+    <div :class="contextMenuClass" :style="coordinates">
         <ul class="context_menu__ul">
             <li class="context_menu__li_header">
                 «{{ product.name }}»
@@ -113,7 +116,7 @@ export default {
             'enabledFadingCss',
             'product',
         ]),
-        contextMenuClassObject() {
+        contextMenuClass() {
             return {
                 'context_menu__wrapper': true,
                 'show_block': !this.enabledFadingCss,
@@ -187,11 +190,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductsContextMenu",
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'enabledFadingCss', 'product'])), {}, {
-    contextMenuClassObject: function contextMenuClassObject() {
+    contextMenuClass: function contextMenuClass() {
       return {
         'context_menu__wrapper context_menu__wrapper_black': true,
         'show_block': !this.enabledFadingCss,
@@ -202,7 +211,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Boolean(this.product.deleted_at);
     }
   }),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['preDeleteProduct', 'restoreProduct', 'showProductPhotoManager'])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['preDeleteProduct', 'restoreProduct', 'showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('seoManager', ['showSeoManager'])), {}, {
     editProduct: function editProduct(id) {
       this.$router.push({
         name: 'EditProduct',
@@ -681,7 +690,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PhotoManagerItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PhotoManagerItem */ "./resources/js/components/Admin/Products/PhotoManagerItem.vue");
 /* harmony import */ var _FilesInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilesInput */ "./resources/js/components/Admin/Products/FilesInput.vue");
 /* harmony import */ var _ContextMenu_PhotosContextMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../ContextMenu/PhotosContextMenu */ "./resources/js/components/Admin/ContextMenu/PhotosContextMenu.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Blocks_SeoManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../Blocks/SeoManager */ "./resources/js/components/Admin/Blocks/SeoManager.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -745,6 +755,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 
 
@@ -754,7 +767,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     PhotoManagerItem: _PhotoManagerItem__WEBPACK_IMPORTED_MODULE_0__["default"],
     FilesInput: _FilesInput__WEBPACK_IMPORTED_MODULE_1__["default"],
-    PhotosContextMenu: _ContextMenu_PhotosContextMenu__WEBPACK_IMPORTED_MODULE_2__["default"]
+    PhotosContextMenu: _ContextMenu_PhotosContextMenu__WEBPACK_IMPORTED_MODULE_2__["default"],
+    SeoManager: _Blocks_SeoManager__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -768,20 +782,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       resetFilesInputKey: 0
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])('products', ['enabledFadingCss', 'singleProductFromServer'])), {}, {
-    photoScreenClassObject: function photoScreenClassObject() {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('products', ['enabledFadingCss', 'singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('contextMenu', ['showPhotosContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('seoManager', ['showSeoManager'])), {}, {
+    photoScreenClass: function photoScreenClass() {
       return {
         'photo_manager__screen': true,
         'show_block': !this.enabledFadingCss,
         'hide_block': this.enabledFadingCss
       };
-    }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])('contextMenu', ['showPhotosContextMenu'])), {}, {
+    },
     showButtonsPanel: function showButtonsPanel() {
       return this.photos.length > 0;
     }
   }),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])('products', ['closeProductPhotoManager', 'addPhotos'])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapActions"])('products', ['closeProductPhotoManager', 'addPhotos'])), {}, {
     resetPhotos: function resetPhotos() {
       this.photos = [].concat(); // изменение resetFilesInputKey заставит перерисоваться компонент <files-input>
 
@@ -797,7 +810,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return _this.resetPhotos();
       });
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])('dragAndDropInAbsDiv', ['myDragMove', 'myDragStop'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapActions"])('dragAndDropInAbsDiv', ['myDragMove', 'myDragStop'])),
   watch: {
     singleProductFromServer: function singleProductFromServer(val) {
       if (!val) {
@@ -838,7 +851,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Blocks_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../Blocks/Pagination */ "./resources/js/components/Admin/Blocks/Pagination.vue");
 /* harmony import */ var _ContextMenu_ProductsContextMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ContextMenu/ProductsContextMenu */ "./resources/js/components/Admin/ContextMenu/ProductsContextMenu.vue");
 /* harmony import */ var _ProductPhotoManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductPhotoManager */ "./resources/js/components/Admin/Products/ProductPhotoManager.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Blocks_SeoManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../Blocks/SeoManager */ "./resources/js/components/Admin/Blocks/SeoManager.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -870,6 +884,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 
@@ -882,9 +898,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ProductItem: _ProductItem__WEBPACK_IMPORTED_MODULE_0__["default"],
     Pagination: _Blocks_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"],
     ProductsContextMenu: _ContextMenu_ProductsContextMenu__WEBPACK_IMPORTED_MODULE_2__["default"],
-    ProductPhotoManager: _ProductPhotoManager__WEBPACK_IMPORTED_MODULE_3__["default"]
+    ProductPhotoManager: _ProductPhotoManager__WEBPACK_IMPORTED_MODULE_3__["default"],
+    SeoManager: _Blocks_SeoManager__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('products', ['showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])('products', ['showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
     items: function items() {
       return this.customized('products')[this.currentPageIndex('products')];
     }
@@ -952,145 +969,157 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { class: _vm.contextMenuClassObject, style: _vm.coordinates },
-    [
-      _c("ul", { staticClass: "context_menu__ul" }, [
-        _c("li", { staticClass: "context_menu__li__multiple_black" }, [
-          _c(
-            "span",
-            {
-              staticClass: "context_menu__li__multiple__item_black",
-              on: {
-                click: function($event) {
-                  return _vm.rotatePhoto({
-                    productId: _vm.productId,
-                    photoName: _vm.photoName,
-                    angle: 270
-                  })
-                }
+  return _c("div", { class: _vm.contextMenuClass, style: _vm.coordinates }, [
+    _c("ul", { staticClass: "context_menu__ul" }, [
+      _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+        _c(
+          "span",
+          {
+            staticClass: "context_menu__li__multiple__item_black",
+            on: {
+              click: function($event) {
+                return _vm.rotatePhoto({
+                  productId: _vm.productId,
+                  photoName: _vm.photoName,
+                  angle: 270
+                })
               }
-            },
-            [_vm._v("\n                    ↻ 90°\n                ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "context_menu__li__multiple__item_black",
-              on: {
-                click: function($event) {
-                  return _vm.rotatePhoto({
-                    productId: _vm.productId,
-                    photoName: _vm.photoName,
-                    angle: 180
-                  })
-                }
-              }
-            },
-            [_vm._v("\n                    180°\n                ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "context_menu__li__multiple__item_black",
-              on: {
-                click: function($event) {
-                  return _vm.rotatePhoto({
-                    productId: _vm.productId,
-                    photoName: _vm.photoName,
-                    angle: 90
-                  })
-                }
-              }
-            },
-            [_vm._v("\n                    90°↺\n                ")]
-          )
-        ]),
+            }
+          },
+          [_vm._v("\n                    ↻ 90°\n                ")]
+        ),
         _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "context_menu__li__multiple__item_black",
+            on: {
+              click: function($event) {
+                return _vm.rotatePhoto({
+                  productId: _vm.productId,
+                  photoName: _vm.photoName,
+                  angle: 180
+                })
+              }
+            }
+          },
+          [_vm._v("\n                    180°\n                ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "context_menu__li__multiple__item_black",
+            on: {
+              click: function($event) {
+                return _vm.rotatePhoto({
+                  productId: _vm.productId,
+                  photoName: _vm.photoName,
+                  angle: 90
+                })
+              }
+            }
+          },
+          [_vm._v("\n                    90°↺\n                ")]
+        )
+      ]),
+      _vm._v(" "),
+      _vm.currentListIndex > 0
+        ? _c(
+            "li",
+            {
+              staticClass: "context_menu__li context_menu__li_black",
+              on: {
+                click: function($event) {
+                  return _vm.movePhoto({
+                    productId: _vm.productId,
+                    photoName: _vm.photoName,
+                    to: "first"
+                  })
+                }
+              }
+            },
+            [_vm._v("\n            Сделать главным\n        ")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+        _vm._v("\n            Сдвинуть\n            "),
         _vm.currentListIndex > 0
           ? _c(
-              "li",
+              "span",
               {
-                staticClass: "context_menu__li context_menu__li_black",
+                staticClass: "context_menu__li__multiple__item_black",
+                attrs: { title: "влево (вверх)" },
                 on: {
                   click: function($event) {
                     return _vm.movePhoto({
                       productId: _vm.productId,
                       photoName: _vm.photoName,
-                      to: "first"
+                      to: "up"
                     })
                   }
                 }
               },
-              [_vm._v("\n            Сделать главным\n        ")]
+              [_vm._v("\n                ← ↑\n            ")]
             )
           : _vm._e(),
         _vm._v(" "),
-        _c("li", { staticClass: "context_menu__li__multiple_black" }, [
-          _vm._v("\n            Сдвинуть\n            "),
-          _vm.currentListIndex > 0
-            ? _c(
-                "span",
-                {
-                  staticClass: "context_menu__li__multiple__item_black",
-                  attrs: { title: "влево (вверх)" },
-                  on: {
-                    click: function($event) {
-                      return _vm.movePhoto({
-                        productId: _vm.productId,
-                        photoName: _vm.photoName,
-                        to: "up"
-                      })
-                    }
+        _vm.currentListIndex < _vm.lastListIndex
+          ? _c(
+              "span",
+              {
+                staticClass: "context_menu__li__multiple__item_black",
+                attrs: { title: "вправо (вниз)" },
+                on: {
+                  click: function($event) {
+                    return _vm.movePhoto({
+                      productId: _vm.productId,
+                      photoName: _vm.photoName,
+                      to: "down"
+                    })
                   }
-                },
-                [_vm._v("\n                ← ↑\n            ")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentListIndex < _vm.lastListIndex
-            ? _c(
-                "span",
-                {
-                  staticClass: "context_menu__li__multiple__item_black",
-                  attrs: { title: "вправо (вниз)" },
-                  on: {
-                    click: function($event) {
-                      return _vm.movePhoto({
-                        productId: _vm.productId,
-                        photoName: _vm.photoName,
-                        to: "down"
-                      })
-                    }
-                  }
-                },
-                [_vm._v("\n                ↓ →\n            ")]
-              )
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            staticClass: "context_menu__li context_menu__li_black",
-            staticStyle: { border: "0" },
-            on: {
-              click: function($event) {
-                return _vm.deletePhoto({
-                  productId: _vm.productId,
-                  photoName: _vm.photoName
-                })
-              }
+                }
+              },
+              [_vm._v("\n                ↓ →\n            ")]
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          staticClass: "context_menu__li context_menu__li_black",
+          on: {
+            click: function($event) {
+              return _vm.showSeoManager({
+                entity: "photo",
+                data: { productId: _vm.productId, photoName: _vm.photoName }
+              })
             }
-          },
-          [_vm._v("\n            Удалить\n        ")]
-        )
-      ])
-    ]
-  )
+          }
+        },
+        [_vm._v("\n            SEO для фото\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          staticClass: "context_menu__li context_menu__li_black",
+          staticStyle: { border: "0" },
+          on: {
+            click: function($event) {
+              return _vm.deletePhoto({
+                productId: _vm.productId,
+                photoName: _vm.photoName
+              })
+            }
+          }
+        },
+        [_vm._v("\n            Удалить фото\n        ")]
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1114,111 +1143,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { class: _vm.contextMenuClassObject, style: _vm.coordinates },
-    [
-      _c(
-        "ul",
-        { staticClass: "context_menu__ul" },
-        [
-          _c(
-            "li",
-            {
-              staticClass:
-                "context_menu__li_header context_menu__li_header_black"
-            },
-            [
-              _vm._v(
-                "\n            «" + _vm._s(_vm.product.name) + "»\n        "
+  return _c("div", { class: _vm.contextMenuClass, style: _vm.coordinates }, [
+    _c(
+      "ul",
+      { staticClass: "context_menu__ul" },
+      [
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li_header context_menu__li_header_black"
+          },
+          [_vm._v("\n            «" + _vm._s(_vm.product.name) + "»\n        ")]
+        ),
+        _vm._v(" "),
+        _vm.isTrashedProduct
+          ? [
+              _c(
+                "li",
+                {
+                  staticClass: "context_menu__li context_menu__li_black",
+                  staticStyle: { border: "0" },
+                  on: {
+                    click: function($event) {
+                      return _vm.restoreProduct(_vm.product.id)
+                    }
+                  }
+                },
+                [_vm._v("\n                Восстановить товар\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "context_menu__li context_menu__li_black",
+                  staticStyle: { border: "0" },
+                  on: {
+                    click: function($event) {
+                      return _vm.preDeleteProduct(_vm.product)
+                    }
+                  }
+                },
+                [_vm._v("\n                Удалить безвозвратно\n            ")]
               )
             ]
-          ),
-          _vm._v(" "),
-          _vm.isTrashedProduct
-            ? [
-                _c(
-                  "li",
-                  {
-                    staticClass: "context_menu__li context_menu__li_black",
-                    staticStyle: { border: "0" },
-                    on: {
-                      click: function($event) {
-                        return _vm.restoreProduct(_vm.product.id)
-                      }
+          : [
+              _c(
+                "li",
+                {
+                  staticClass: "context_menu__li context_menu__li_black",
+                  on: {
+                    click: function($event) {
+                      return _vm.editProduct(_vm.product.id)
                     }
-                  },
-                  [_vm._v("\n                Восстановить товар\n            ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "context_menu__li context_menu__li_black",
-                    staticStyle: { border: "0" },
-                    on: {
-                      click: function($event) {
-                        return _vm.preDeleteProduct(_vm.product)
-                      }
+                  }
+                },
+                [_vm._v("\n                Редактировать\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "context_menu__li context_menu__li_black",
+                  on: {
+                    click: function($event) {
+                      return _vm.showProductPhotoManager(_vm.product)
                     }
-                  },
-                  [
-                    _vm._v(
-                      "\n                Удалить безвозвратно\n            "
-                    )
-                  ]
-                )
-              ]
-            : [
-                _c(
-                  "li",
-                  {
-                    staticClass: "context_menu__li context_menu__li_black",
-                    on: {
-                      click: function($event) {
-                        return _vm.editProduct(_vm.product.id)
-                      }
+                  }
+                },
+                [_vm._v("\n                Фото-менеджер\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "context_menu__li context_menu__li_black",
+                  on: {
+                    click: function($event) {
+                      return _vm.showSeoManager({
+                        entity: "product",
+                        data: { id: _vm.product.id }
+                      })
                     }
-                  },
-                  [_vm._v("\n                Редактировать\n            ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "context_menu__li context_menu__li_black",
-                    on: {
-                      click: function($event) {
-                        return _vm.showProductPhotoManager(_vm.product)
-                      }
+                  }
+                },
+                [_vm._v("\n                SEO для товара\n            ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "context_menu__li context_menu__li_black",
+                  staticStyle: { border: "0" },
+                  on: {
+                    click: function($event) {
+                      return _vm.preDeleteProduct(_vm.product)
                     }
-                  },
-                  [
-                    _vm._v(
-                      "\n                Фото изменить / добавить\n            "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    staticClass: "context_menu__li context_menu__li_black",
-                    staticStyle: { border: "0" },
-                    on: {
-                      click: function($event) {
-                        return _vm.preDeleteProduct(_vm.product)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Удалить товар\n            ")]
-                )
-              ]
-        ],
-        2
-      )
-    ]
-  )
+                  }
+                },
+                [_vm._v("\n                Удалить товар\n            ")]
+              )
+            ]
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1649,7 +1677,7 @@ var render = function() {
   return _c(
     "div",
     {
-      class: _vm.photoScreenClassObject,
+      class: _vm.photoScreenClass,
       on: {
         mousemove: function($event) {
           $event.stopPropagation()
@@ -1714,7 +1742,11 @@ var render = function() {
                 })
               }),
               _vm._v(" "),
-              _vm.showPhotosContextMenu ? _c("photos-context-menu") : _vm._e()
+              _vm.showPhotosContextMenu ? _c("photos-context-menu") : _vm._e(),
+              _vm._v(" "),
+              _vm.showSeoManager
+                ? _c("seo-manager", { attrs: { entity: "photo" } })
+                : _vm._e()
             ],
             2
           )
@@ -1820,7 +1852,11 @@ var render = function() {
         _vm._v(" "),
         _vm.showProductsContextMenu ? _c("products-context-menu") : _vm._e(),
         _vm._v(" "),
-        _vm.showProductPhotoManager ? _c("product-photo-manager") : _vm._e()
+        _vm.showProductPhotoManager ? _c("product-photo-manager") : _vm._e(),
+        _vm._v(" "),
+        _vm.showSeoManager && !_vm.showProductPhotoManager
+          ? _c("seo-manager", { attrs: { entity: "product" } })
+          : _vm._e()
       ],
       2
     )

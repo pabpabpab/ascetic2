@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ColorDeleteRequest;
 use App\Http\Requests\Admin\ColorSaveRequest;
 use App\Models\Color;
-use App\Services\CategoryService;
+use App\Services\Category\CategoryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

@@ -371,7 +371,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('confirmationDialog', ['enabledFadingCss', 'text', 'yesButtonText', 'cancelButtonText', 'yesAction', 'cancelAction', 'yesPayload', 'finalRedirectRoute'])), {}, {
-    dialogBoxClassObject: function dialogBoxClassObject() {
+    dialogBoxClass: function dialogBoxClass() {
       return {
         'confirmation_dialog__wrapper': true,
         'show_block': !this.enabledFadingCss,
@@ -438,7 +438,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "PopupErrors",
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closePopupErrorsBox'])),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('popupErrors', ['popupErrors', 'enabledHidingCss'])), {}, {
-    popupClassObject: function popupClassObject() {
+    popupClass: function popupClass() {
       return {
         'popup_right': true,
         'popup_right__show': !this.enabledHidingCss,
@@ -486,7 +486,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('waitingScreen', ['enabledFadingCss'])), {}, {
-    waitingScreenClassObject: function waitingScreenClassObject() {
+    waitingScreenClass: function waitingScreenClass() {
       return {
         'waiting_screen': true,
         'show_transparent_block': !this.enabledFadingCss,
@@ -1916,7 +1916,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.dialogBoxClassObject }, [
+  return _c("div", { class: _vm.dialogBoxClass }, [
     _c("div", { staticClass: "confirmation_dialog__content" }, [
       _c("div", [_vm._v(_vm._s(_vm.text))]),
       _vm._v(" "),
@@ -1986,7 +1986,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.popupClassObject }, [
+  return _c("div", { class: _vm.popupClass }, [
     _c(
       "div",
       { staticClass: "popup_right__content" },
@@ -2040,7 +2040,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.waitingScreenClassObject }, [
+  return _c("div", { class: _vm.waitingScreenClass }, [
     _c("img", {
       staticClass: "waiting_screen__spinner_icon",
       attrs: { src: _vm.spinner_icon, alt: "Spinner" }
@@ -19348,25 +19348,25 @@ var routes = [{
   path: '/admin/products/add',
   name: 'SaveProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/products/edit/:id',
   name: 'EditProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/products/:which',
   name: 'Products',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
   }
 },
 /*
@@ -20523,12 +20523,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     setCoordinatesForPhotosContext: function setCoordinatesForPhotosContext(state, event) {
       var icon = event.target.getBoundingClientRect();
-      var xOffset = -170;
+      var xOffset = -162;
+      var yOffset = -2;
       var x = {
         left: icon.x + xOffset + 'px'
       };
       var y = {
-        top: icon.y + 'px'
+        top: icon.y + yOffset + 'px'
       };
       state.coordinates = _objectSpread(_objectSpread({}, x), y);
     },
@@ -21496,9 +21497,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _waitingScreen__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./waitingScreen */ "./resources/js/store/waitingScreen.js");
 /* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
 /* harmony import */ var _contextMenu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./contextMenu */ "./resources/js/store/contextMenu.js");
-/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
-/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
-/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
+/* harmony import */ var _seoManager__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./seoManager */ "./resources/js/store/seoManager.js");
+/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
+/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
+/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
+
 
 
 
@@ -21560,9 +21563,10 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     waitingScreen: _waitingScreen__WEBPACK_IMPORTED_MODULE_14__["default"],
     confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__["default"],
     contextMenu: _contextMenu__WEBPACK_IMPORTED_MODULE_16__["default"],
-    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__["default"],
-    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__["default"],
-    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_19__["default"]
+    seoManager: _seoManager__WEBPACK_IMPORTED_MODULE_21__["default"],
+    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_18__["default"],
+    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_19__["default"],
+    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_20__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -23652,6 +23656,222 @@ __webpack_require__.r(__webpack_exports__);
   // productPhotosUrl: '/api/admin/product/photos/',
   showProductPhotoManager: false,
   enabledFadingCss: false
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/seoManager.js":
+/*!******************************************!*\
+  !*** ./resources/js/store/seoManager.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+// import thatRouter from "../router";
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    seoUrl: {
+      category: '/api/admin/category/seo/',
+      product: '/api/admin/product/seo/',
+      photo: '/api/admin/product/photo/seo/'
+    },
+    saveSeoUrl: {
+      category: '/api/admin/category/seo/save/',
+      product: '/api/admin/product/seo/save/',
+      photo: '/api/admin/product/photo/seo/save/'
+    },
+    seoData: {
+      category: {},
+      product: {},
+      photo: {}
+    },
+    showSeoManager: false,
+    enabledFadingCss: false
+  },
+  getters: {
+    seoUrl: function seoUrl(state) {
+      return function (entity) {
+        return state.seoUrl[entity];
+      };
+    },
+    saveSeoUrl: function saveSeoUrl(state) {
+      return function (entity) {
+        return state.saveSeoUrl[entity];
+      };
+    },
+    seoData: function seoData(state) {
+      return function (entity) {
+        if (!entity) {
+          return state.seoData;
+        }
+
+        return state.seoData[entity];
+      };
+    },
+    showSeoManager: function showSeoManager(state) {
+      return state.showSeoManager;
+    },
+    enabledFadingCss: function enabledFadingCss(state) {
+      return state.enabledFadingCss;
+    }
+  },
+  mutations: {
+    setServerData: function setServerData(state, _ref) {
+      var entity = _ref.entity,
+          data = _ref.data;
+
+      //console.log(data);
+      var seoData = _objectSpread({}, state.seoData);
+
+      seoData[entity] = _objectSpread({}, data);
+      state.seoData = _objectSpread({}, seoData); //console.log(state.seoData);
+    },
+    clearSeoData: function clearSeoData(state, entity) {
+      var seoData = _objectSpread({}, state.seoData);
+
+      seoData[entity] = {};
+      state.seoData = _objectSpread({}, seoData);
+    },
+    updateOnlySeoData: function updateOnlySeoData(state, _ref2) {
+      var entity = _ref2.entity,
+          data = _ref2.data;
+
+      //console.log(data);
+      var seoData = _objectSpread({}, state.seoData);
+
+      seoData[entity].seo = _objectSpread({}, data);
+      state.seoData = _objectSpread({}, seoData); //console.log(state.seoData);
+    },
+    setShowSeoManager: function setShowSeoManager(state, value) {
+      state.showSeoManager = value;
+    },
+    setEnabledFadingCss: function setEnabledFadingCss(state, value) {
+      state.enabledFadingCss = value;
+    }
+  },
+  actions: {
+    showSeoManager: function showSeoManager(_ref3, _ref4) {
+      var dispatch = _ref3.dispatch,
+          commit = _ref3.commit,
+          getters = _ref3.getters,
+          state = _ref3.state;
+      var entity = _ref4.entity,
+          data = _ref4.data;
+      //console.log(data);
+      dispatch('closeContextMenu', null, {
+        root: true
+      });
+      dispatch('showWaitingScreen', null, {
+        root: true
+      });
+      document.body.style.cssText = 'overflow:hidden;';
+      commit('clearSeoData', entity);
+      dispatch('loadSeoData', {
+        entity: entity,
+        data: data
+      }).then(function () {
+        dispatch('hideWaitingScreen', null, {
+          root: true
+        });
+        commit('setEnabledFadingCss', false);
+        commit('setShowSeoManager', true);
+      });
+    },
+    loadSeoData: function loadSeoData(_ref5, _ref6) {
+      var dispatch = _ref5.dispatch,
+          commit = _ref5.commit,
+          getters = _ref5.getters,
+          state = _ref5.state;
+      var entity = _ref6.entity,
+          data = _ref6.data;
+      var urlParams = {
+        product: data.id,
+        category: data.id,
+        photo: data.productId + '/' + data.photoName
+      };
+      var seoUrl = getters.seoUrl(entity) + urlParams[entity];
+      dispatch('getJson', seoUrl, {
+        root: true
+      }).then(function (data) {
+        //console.log(data);
+        commit('setServerData', {
+          entity: entity,
+          data: data
+        });
+      });
+    },
+    saveSeoData: function saveSeoData(_ref7, _ref8) {
+      var dispatch = _ref7.dispatch,
+          commit = _ref7.commit,
+          getters = _ref7.getters,
+          state = _ref7.state;
+      var entity = _ref8.entity,
+          data = _ref8.data;
+      //console.log(data);
+      var urlParams = {
+        product: data.entityId,
+        category: data.entityId,
+        photo: data.entityId + '/' + data.photoName
+      };
+      var saveSeoUrl = state.saveSeoUrl[entity] + urlParams[entity];
+      dispatch('showWaitingScreen', null, {
+        root: true
+      });
+      dispatch('postJson', {
+        url: saveSeoUrl,
+        data: data
+      }, {
+        root: true
+      }).then(function (data) {
+        //console.log(data);
+        dispatch('hideWaitingScreen', null, {
+          root: true
+        });
+
+        if (data.saveSuccess === true) {
+          commit('updateOnlySeoData', {
+            entity: entity,
+            data: data.seo
+          });
+          var txt = "\u0421\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043E.";
+          dispatch('showAbsoluteFlashMessage', {
+            text: txt,
+            sec: 1
+          }, {
+            root: true
+          });
+        } else {
+          var _data$customException;
+
+          var _txt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
+
+          dispatch('showAbsoluteFlashMessage', {
+            text: _txt,
+            sec: 2
+          }, {
+            root: true
+          });
+        }
+      });
+    },
+    closeSeoManager: function closeSeoManager(_ref9) {
+      var commit = _ref9.commit;
+      document.body.style.cssText = 'overflow:auto;';
+      commit('setEnabledFadingCss', true);
+      setTimeout(function () {
+        commit('setShowSeoManager', false);
+      }, 500);
+    }
+  }
 });
 
 /***/ }),

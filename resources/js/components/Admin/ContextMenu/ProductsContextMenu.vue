@@ -1,5 +1,5 @@
 <template>
-    <div :class="contextMenuClassObject" :style="coordinates">
+    <div :class="contextMenuClass" :style="coordinates">
         <ul class="context_menu__ul">
             <li class="context_menu__li_header context_menu__li_header_black">
                 «{{ product.name }}»
@@ -16,11 +16,17 @@
                 </li>
             </template>
             <template v-else>
-                <li @click="editProduct(product.id)" class="context_menu__li context_menu__li_black">
+                <li class="context_menu__li context_menu__li_black"
+                    @click="editProduct(product.id)">
                     Редактировать
                 </li>
-                <li @click="showProductPhotoManager(product)" class="context_menu__li context_menu__li_black">
-                    Фото изменить / добавить
+                <li class="context_menu__li context_menu__li_black"
+                    @click="showProductPhotoManager(product)">
+                    Фото-менеджер
+                </li>
+                <li class="context_menu__li context_menu__li_black"
+                    @click="showSeoManager({entity: 'product', data: {id: product.id}})" >
+                    SEO для товара
                 </li>
                 <li class="context_menu__li context_menu__li_black" style="border: 0;"
                     @click="preDeleteProduct(product)">
@@ -43,7 +49,7 @@ export default {
             'enabledFadingCss',
             'product',
         ]),
-        contextMenuClassObject() {
+        contextMenuClass() {
             return {
                 'context_menu__wrapper context_menu__wrapper_black': true,
                 'show_block': !this.enabledFadingCss,
@@ -59,6 +65,9 @@ export default {
             'preDeleteProduct',
             'restoreProduct',
             'showProductPhotoManager',
+        ]),
+        ...mapActions('seoManager', [
+            'showSeoManager',
         ]),
         editProduct(id) {
             this.$router.push({ name: 'EditProduct', params: { id: id } });

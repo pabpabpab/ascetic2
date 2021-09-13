@@ -26,4 +26,13 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
+
+    // One-to-one relationship for category SEO text
+    public function seoText() {
+        return $this->hasOne(
+            CategorySEOText::class,
+            'category_id'
+        );
+    }
+
 }

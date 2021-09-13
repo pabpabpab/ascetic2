@@ -12,3 +12,5 @@ class ProductColor extends Pivot
     protected $table = 'products_colors';
     public $incrementing = true;
 }
+
+// php artisan make:model ProductColor --pivot

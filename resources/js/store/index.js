@@ -16,6 +16,7 @@ import absoluteFlashMessage from './absoluteFlashMessage';
 import waitingScreen from './waitingScreen';
 import confirmationDialog from './confirmationDialog';
 import contextMenu from './contextMenu';
+import seoManager from './seoManager';
 import dragAndDropByY from './dragAndDropByY';
 import dragAndDropByXY from './dragAndDropByXY';
 import dragAndDropInAbsDiv from './dragAndDropInAbsDiv';
@@ -60,6 +61,7 @@ const store = new Vuex.Store({
         waitingScreen,
         confirmationDialog,
         contextMenu,
+        seoManager,
         dragAndDropByY,
         dragAndDropByXY,
         dragAndDropInAbsDiv,

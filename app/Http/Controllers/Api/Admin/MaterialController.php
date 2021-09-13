@@ -7,7 +7,7 @@ use App\Http\Requests\Admin\MaterialDeleteRequest;
 use App\Http\Requests\Admin\MaterialSaveRequest;
 use App\Models\Category;
 use App\Models\Material;
-use App\Services\CategoryService;
+use App\Services\Category\CategoryService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

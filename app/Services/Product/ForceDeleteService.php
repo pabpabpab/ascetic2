@@ -29,8 +29,8 @@ class ForceDeleteService
 
 
         try {
-            $photoNames = $this->_getPhotoNamesArray($product);
-            foreach ($photoNames as $photoName) {
+            [$photoNameArr, $photoAltArr] = $this->_getPhotoNamesAndAltsAsArrays($product);
+            foreach ($photoNameArr as $photoName) {
                 $this->_deletePhotoFromDisk($productId, $photoName);
             }
         }
@@ -46,6 +46,14 @@ class ForceDeleteService
         DB::beginTransaction();
 
         try {
+
+            foreach ($product->photo as $photo) {
+                $photo->seoText()->delete();
+            }
+
+            DB::table('products_seo_texts')
+                ->where('product_id', $productId)
+                ->delete();
 
             DB::table('photo')
                 ->where('product_id', $productId)

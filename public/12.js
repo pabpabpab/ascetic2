@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[4],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[12],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Categories/AddCategoryButton.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************!*\
@@ -52,6 +52,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CategoryItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategoryItem */ "./resources/js/components/Admin/Categories/CategoryItem.vue");
 /* harmony import */ var _ContextMenu_CategoriesContextMenu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ContextMenu/CategoriesContextMenu */ "./resources/js/components/Admin/ContextMenu/CategoriesContextMenu.vue");
 /* harmony import */ var _someMethods_categoriesItemsMethods__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./someMethods/categoriesItemsMethods */ "./resources/js/components/Admin/Categories/someMethods/categoriesItemsMethods.js");
+/* harmony import */ var _Blocks_SeoManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../Blocks/SeoManager */ "./resources/js/components/Admin/Blocks/SeoManager.vue");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -88,6 +89,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -98,7 +103,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     CategoryItem: _CategoryItem__WEBPACK_IMPORTED_MODULE_2__["default"],
     CategoryItemEditForm: _CategoryItemEditForm__WEBPACK_IMPORTED_MODULE_1__["default"],
-    CategoriesContextMenu: _ContextMenu_CategoriesContextMenu__WEBPACK_IMPORTED_MODULE_3__["default"]
+    CategoriesContextMenu: _ContextMenu_CategoriesContextMenu__WEBPACK_IMPORTED_MODULE_3__["default"],
+    SeoManager: _Blocks_SeoManager__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   props: ['collapseItemsCommand'],
   data: function data() {
@@ -112,7 +118,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeContextMenu'])), _someMethods_categoriesItemsMethods__WEBPACK_IMPORTED_MODULE_4__["default"]),
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showCategoriesContextMenu'])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showCategoriesContextMenu'])),
   watch: {
     categories: function categories(newCategories, oldCategories) {
       var categories = _toConsumableArray(newCategories[this.$route.params.entity]);
@@ -207,7 +213,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: ''
       },
       zeroCategory: {},
-      animationClassObject: {
+      animationClass: {
         'category_form__animation_open pd20 mt20': true,
         'category_form__animation_close': false
       }
@@ -225,7 +231,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     changeAddingComponent: function changeAddingComponent() {
       var _this = this;
 
-      this.animationClassObject = {
+      this.animationClass = {
         'category_form__animation_open': false,
         'category_form__animation_close': true
       };
@@ -426,7 +432,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         name: ''
       },
       categoryNameHeader: '',
-      animationClassObject: {
+      animationClass: {
         'category_form__animation_open pd20 mt20': true,
         'category_form__animation_close': false
       }
@@ -436,7 +442,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     changeItemComponent: function changeItemComponent(itemId) {
       var _this = this;
 
-      this.animationClassObject = {
+      this.animationClass = {
         'category_form__animation_open': false,
         'category_form__animation_close': true
       };
@@ -613,8 +619,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CategoriesContextMenu",
+  props: ['entity'],
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'currentListIndex', 'lastListIndex', 'category', 'enabledFadingCss'])), {}, {
-    contextMenuClassObject: function contextMenuClassObject() {
+    contextMenuClass: function contextMenuClass() {
       return {
         'context_menu__wrapper': true,
         'show_block': !this.enabledFadingCss,
@@ -695,8 +702,13 @@ var render = function() {
       _vm._v(" "),
       _vm.showCategoriesContextMenu
         ? _c("categories-context-menu", {
+            attrs: { entity: _vm.$route.params.entity },
             on: { "change-item-component": _vm.changeItemComponent }
           })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showSeoManager && _vm.$route.params.entity === "categories"
+        ? _c("seo-manager", { attrs: { entity: "category" } })
         : _vm._e()
     ],
     2
@@ -728,7 +740,7 @@ var render = function() {
     "div",
     {
       staticClass: "category_form__div mauto relative",
-      class: _vm.animationClassObject
+      class: _vm.animationClass
     },
     [
       _c("h1", { staticClass: "tal" }, [_vm._v(_vm._s(_vm.getCreationHeader))]),
@@ -903,7 +915,7 @@ var render = function() {
       "div",
       {
         staticClass: "category_form__div m20px_auto relative",
-        class: _vm.animationClassObject
+        class: _vm.animationClass
       },
       [
         _c("h1", { staticClass: "tal" }, [
@@ -1075,101 +1087,99 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { class: _vm.contextMenuClassObject, style: _vm.coordinates },
-    [
-      _c("ul", { staticClass: "context_menu__ul" }, [
-        _c("li", { staticClass: "context_menu__li_header" }, [
-          _vm._v("\n            «" + _vm._s(_vm.category.name) + "»\n        ")
-        ]),
-        _vm._v(" "),
-        _vm.currentListIndex > 0
-          ? _c(
-              "li",
-              {
-                staticClass: "context_menu__li",
-                on: {
-                  click: function($event) {
-                    return _vm.changePosition({
-                      entity: _vm.$route.params.entity,
-                      categoryId: _vm.category.id,
-                      direction: "up"
-                    })
-                  }
+  return _c("div", { class: _vm.contextMenuClass, style: _vm.coordinates }, [
+    _c("ul", { staticClass: "context_menu__ul" }, [
+      _c("li", { staticClass: "context_menu__li_header" }, [
+        _vm._v("\n            «" + _vm._s(_vm.category.name) + "»\n        ")
+      ]),
+      _vm._v(" "),
+      _vm.currentListIndex > 0
+        ? _c(
+            "li",
+            {
+              staticClass: "context_menu__li",
+              on: {
+                click: function($event) {
+                  return _vm.changePosition({
+                    entity: _vm.$route.params.entity,
+                    categoryId: _vm.category.id,
+                    direction: "up"
+                  })
                 }
-              },
-              [_vm._v("\n            Вверх на 1 позицию\n        ")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.currentListIndex < _vm.lastListIndex
-          ? _c(
-              "li",
-              {
-                staticClass: "context_menu__li",
-                on: {
-                  click: function($event) {
-                    return _vm.changePosition({
-                      entity: _vm.$route.params.entity,
-                      categoryId: _vm.category.id,
-                      direction: "down"
-                    })
-                  }
+              }
+            },
+            [_vm._v("\n            Вверх на 1 позицию\n        ")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentListIndex < _vm.lastListIndex
+        ? _c(
+            "li",
+            {
+              staticClass: "context_menu__li",
+              on: {
+                click: function($event) {
+                  return _vm.changePosition({
+                    entity: _vm.$route.params.entity,
+                    categoryId: _vm.category.id,
+                    direction: "down"
+                  })
                 }
-              },
-              [_vm._v("\n            Вниз на 1 позицию\n        ")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            staticClass: "context_menu__li",
-            on: {
-              click: function($event) {
-                return _vm.$emit("change-item-component", _vm.category.id)
               }
+            },
+            [_vm._v("\n            Вниз на 1 позицию\n        ")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          staticClass: "context_menu__li",
+          on: {
+            click: function($event) {
+              return _vm.$emit("change-item-component", _vm.category.id)
             }
-          },
-          [_vm._v("\n            Редактировать\n        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            staticClass: "context_menu__li",
-            on: {
-              click: function($event) {
-                return _vm.preDeleteCategory({
-                  entity: _vm.$route.params.entity,
-                  categoryId: _vm.category.id
-                })
+          }
+        },
+        [_vm._v("\n            Редактировать\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          staticClass: "context_menu__li",
+          on: {
+            click: function($event) {
+              return _vm.preDeleteCategory({
+                entity: _vm.$route.params.entity,
+                categoryId: _vm.category.id
+              })
+            }
+          }
+        },
+        [_vm._v("\n            Удалить\n        ")]
+      ),
+      _vm._v(" "),
+      _vm.entity === "categories"
+        ? _c(
+            "li",
+            {
+              staticClass: "context_menu__li",
+              staticStyle: { border: "0" },
+              on: {
+                click: function($event) {
+                  return _vm.showSeoManager({
+                    entity: "category",
+                    data: { id: _vm.category.id }
+                  })
+                }
               }
-            }
-          },
-          [_vm._v("\n            Удалить\n        ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          {
-            staticClass: "context_menu__li",
-            staticStyle: { border: "0" },
-            on: {
-              click: function($event) {
-                return _vm.showSeoManager({
-                  entity: "category",
-                  data: { id: _vm.category.id }
-                })
-              }
-            }
-          },
-          [_vm._v("\n            SEO\n        ")]
-        )
-      ])
-    ]
-  )
+            },
+            [_vm._v("\n            SEO\n        ")]
+          )
+        : _vm._e()
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

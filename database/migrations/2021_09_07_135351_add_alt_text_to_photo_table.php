@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIdToPhotoTable extends Migration
+class AddAltTextToPhotoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddIdToPhotoTable extends Migration
     public function up()
     {
         Schema::table('photo', function (Blueprint $table) {
-            $table->id();
+            $table->string('alt_text', 100)
+                ->after('filename')
+                ->default('');
         });
     }
 
@@ -26,11 +28,10 @@ class AddIdToPhotoTable extends Migration
     public function down()
     {
         Schema::table('photo', function (Blueprint $table) {
-            $table->dropIndex(['id']);
+            $table->dropColumn(['alt_text']);
         });
     }
 }
 
-// php artisan make:migration add_id_to_photo_table
 
-
+// php artisan make:migration add_alt_text_to_photo_table

@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryDeleteRequest;
 use App\Http\Requests\Admin\CategorySaveRequest;
 use App\Models\Category;
-use App\Services\CategoryService;
+use App\Services\Category\CategoryService;
+use App\Services\Category\SeoService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -83,5 +84,22 @@ class CategoryController extends Controller
 
         return response()->json(['moveSuccess' => $result['success']]);
     }
+
+    public function getSeoData(Category $category): JsonResponse
+    {
+        return response()->json([
+            'category' => $category,
+            'seo' => $category->seoText,
+        ]);
+    }
+
+    public function saveSeoData(SeoService $service, Category $category): JsonResponse
+    {
+        // instance товара в роуте как {category}
+        return response()->json(
+            $service->saveSeoData($category)
+        );
+    }
+
 
 }

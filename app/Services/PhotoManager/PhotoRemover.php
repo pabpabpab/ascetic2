@@ -4,6 +4,7 @@
 namespace App\Services\PhotoManager;
 
 
+use App\Models\Photo;
 use App\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
 
@@ -17,8 +18,9 @@ class PhotoRemover
 
         try {
             $deleteResult = $this->_deletePhotoFromPhotoTable($product, $photoName);
-            $product->photo_set = json_encode($this->_getPhotoNamesArray($product));
-            $product->save();
+
+            $this->_syncPhotoNamesAndAltsInProduct($product);
+            // $product->refresh();
 
             if ((bool) $deleteResult) {
                 $this->_deletePhotoFromDisk($product->id, $photoName);
@@ -50,9 +52,14 @@ class PhotoRemover
 
     protected function _deletePhotoFromPhotoTable($product, $photoName): int
     {
-        return DB::table('photo')
+        $photoRecord = DB::table('photo')
             ->where('product_id', $product->id)
             ->where('filename', $photoName)
-            ->delete();
+            ->first();
+
+        $photo = Photo::find($photoRecord->id);
+
+        $photo->seoText()->delete();
+        return $photo->delete();
     }
 }

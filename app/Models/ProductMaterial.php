@@ -12,3 +12,5 @@ class ProductMaterial extends Pivot
     protected $table = 'products_materials';
     public $incrementing = true;
 }
+
+// php artisan make:model ProductMaterial --pivot

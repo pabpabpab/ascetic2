@@ -33,11 +33,15 @@ class PhotoMover
                 ->orderBy('position', $direction[$to]['order'])
                 ->first();
 
-            $exchangeResult = $this->_exchangePhotoNames($operatedPhotoRecord, $occupiedPhotoRecord);
+            //$exchangeResult = $this->_exchangePhotoNames($operatedPhotoRecord, $occupiedPhotoRecord);
+
+            $exchangeResult = $this->_exchangePhotosPosition($operatedPhotoRecord, $occupiedPhotoRecord);
+
+
 
             if ($exchangeResult) {
-                $product->photo_set = json_encode($this->_getPhotoNamesArray($product));
-                $product->save();
+                $this->_syncPhotoNamesAndAltsInProduct($product);
+                // $product->refresh();
 
                 DB::commit();
                 return [
@@ -67,8 +71,8 @@ class PhotoMover
         ];
     }
 
-
-    protected function _exchangePhotoNames($operatedPhotoRecord, $occupiedPhotoRecord): int
+/*
+    protected function _exchangePhotoNames($operatedPhotoRecord, $occupiedPhotoRecord): bool
     {
         $affected1 = DB::table('photo')
             ->where('id', $occupiedPhotoRecord->id)
@@ -77,6 +81,19 @@ class PhotoMover
         $affected2 = DB::table('photo')
             ->where('id', $operatedPhotoRecord->id)
             ->update(['filename' =>  $occupiedPhotoRecord->filename]);
+
+        return $affected1 === 1 && $affected2 === 1;
+    }
+   */
+    protected function _exchangePhotosPosition($operatedPhotoRecord, $occupiedPhotoRecord): bool
+    {
+        $affected1 = DB::table('photo')
+            ->where('id', $occupiedPhotoRecord->id)
+            ->update(['position' =>  $operatedPhotoRecord->position]);
+
+        $affected2 = DB::table('photo')
+            ->where('id', $operatedPhotoRecord->id)
+            ->update(['position' =>  $occupiedPhotoRecord->position]);
 
         return $affected1 === 1 && $affected2 === 1;
     }

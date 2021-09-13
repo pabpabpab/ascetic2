@@ -1,5 +1,5 @@
 <template>
-    <div :class="dialogBoxClassObject">
+    <div :class="dialogBoxClass">
         <div class="confirmation_dialog__content">
             <div>{{text}}</div>
             <div class="confirmation_dialog__buttons_div">
@@ -42,7 +42,7 @@ export default {
             'yesPayload',
             'finalRedirectRoute',
         ]),
-        dialogBoxClassObject() {
+        dialogBoxClass() {
             return {
                 'confirmation_dialog__wrapper': true,
                 'show_block': !this.enabledFadingCss,

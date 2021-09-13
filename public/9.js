@@ -32,7 +32,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   // props: ['moduleName'],
   components: {
     UserItem: function UserItem() {
-      return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./UserItem.vue */ "./resources/js/components/Admin/Users/UserItem.vue"));
+      return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./UserItem.vue */ "./resources/js/components/Admin/Users/UserItem.vue"));
     }
   },
   data: function data() {

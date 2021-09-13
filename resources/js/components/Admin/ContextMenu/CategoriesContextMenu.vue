@@ -1,5 +1,5 @@
 <template>
-    <div :class="contextMenuClassObject" :style="coordinates">
+    <div :class="contextMenuClass" :style="coordinates">
         <ul class="context_menu__ul">
             <li class="context_menu__li_header">
                 «{{ category.name }}»
@@ -26,12 +26,16 @@
                 @click="$emit('change-item-component', category.id)">
                 Редактировать
             </li>
-            <li class="context_menu__li" style="border: 0;"
+            <li class="context_menu__li"
                 @click="preDeleteCategory({
                     entity: $route.params.entity,
                     categoryId: category.id
                 })">
                 Удалить
+            </li>
+            <li v-if="entity==='categories'" class="context_menu__li" style="border: 0;"
+                @click="showSeoManager({entity: 'category', data: {id: category.id}})" >
+                SEO
             </li>
         </ul>
     </div>
@@ -42,6 +46,7 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "CategoriesContextMenu",
+    props: ['entity'],
     computed: {
         ...mapGetters('contextMenu', [
             'coordinates',
@@ -50,7 +55,7 @@ export default {
             'category',
             'enabledFadingCss'
         ]),
-        contextMenuClassObject() {
+        contextMenuClass() {
             return {
                 'context_menu__wrapper': true,
                 'show_block': !this.enabledFadingCss,
@@ -62,6 +67,9 @@ export default {
         ...mapActions('categories', [
             'preDeleteCategory',
             'changePosition',
+        ]),
+        ...mapActions('seoManager', [
+            'showSeoManager',
         ]),
     },
 

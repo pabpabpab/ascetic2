@@ -33,8 +33,9 @@ class PhotoRotator
             $updated = $this->_updatePhotoNameInPhotoTable($product->id, $photoName, $newPhotoName);
 
             if ((bool) $updated) {
-                $product->photo_set = json_encode($this->_getPhotoNamesArray($product));
-                $product->save();
+                $this->_syncPhotoNamesAndAltsInProduct($product);
+                //$product->refresh();
+
                 $this->_deletePhotoFromDisk($product->id, $photoName);
             }
 

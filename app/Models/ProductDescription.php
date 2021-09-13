@@ -29,3 +29,8 @@ class ProductDescription extends Model
     public $timestamps = false;
 
 }
+
+
+// php artisan make:model ProductDescription
+
+

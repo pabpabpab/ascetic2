@@ -1,5 +1,5 @@
 <template>
-    <div :class="photoScreenClassObject"
+    <div :class="photoScreenClass"
          @mousemove.stop="myDragMove({event: $event, entity: 'Product'})"
          @mouseup.stop="myDragStop({ event: $event, clickedIndex: -1, entity: 'Photo' })">
 
@@ -27,6 +27,8 @@
                     <photos-context-menu
                         v-if="showPhotosContextMenu">
                     </photos-context-menu>
+
+                    <seo-manager entity="photo" v-if="showSeoManager"></seo-manager>
                 </div>
             </div>
 
@@ -59,6 +61,8 @@
 import PhotoManagerItem from "./PhotoManagerItem";
 import FilesInput from "./FilesInput";
 import PhotosContextMenu from "./../ContextMenu/PhotosContextMenu";
+import SeoManager from "./../Blocks/SeoManager";
+
 import {mapActions, mapGetters} from "vuex";
 export default {
     name: "ProductsPhotoManagement",
@@ -66,6 +70,7 @@ export default {
         PhotoManagerItem,
         FilesInput,
         PhotosContextMenu,
+        SeoManager,
     },
     data() {
         return {
@@ -84,22 +89,26 @@ export default {
             'enabledFadingCss',
             'singleProductFromServer'
         ]),
-        photoScreenClassObject() {
-            return {
-                'photo_manager__screen': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        },
         ...mapGetters([
             'imgFolderPrefix',
         ]),
         ...mapGetters('contextMenu', [
             'showPhotosContextMenu',
         ]),
+        ...mapGetters('seoManager', [
+            'showSeoManager',
+        ]),
+        photoScreenClass() {
+            return {
+                'photo_manager__screen': true,
+                'show_block': !this.enabledFadingCss,
+                'hide_block': this.enabledFadingCss,
+            };
+        },
         showButtonsPanel() {
             return this.photos.length > 0;
-        }
+        },
+
     },
     methods: {
         ...mapActions('products', [

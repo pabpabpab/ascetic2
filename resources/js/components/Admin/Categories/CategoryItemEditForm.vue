@@ -1,7 +1,7 @@
 <template>
     <div class="category_edit_form_item__border_top">
         <div class="category_form__div m20px_auto relative"
-             :class="animationClassObject">
+             :class="animationClass">
             <h1 class="tal">Редактировать «{{ categoryNameHeader }}»</h1>
 
             <div>
@@ -51,7 +51,7 @@ export default {
                 name: '',
             },
             categoryNameHeader: '',
-            animationClassObject: {
+            animationClass: {
                 'category_form__animation_open pd20 mt20': true,
                 'category_form__animation_close': false
             },
@@ -63,7 +63,7 @@ export default {
             'typeinValidation'
         ]),
         changeItemComponent(itemId) {
-            this.animationClassObject = {
+            this.animationClass = {
                 'category_form__animation_open': false,
                 'category_form__animation_close': true
             };

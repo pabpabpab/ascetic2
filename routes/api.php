@@ -50,7 +50,8 @@ Route::group([
     Route::delete('/category/delete/{category}', 'CategoryController@delete');
     Route::post('/category/change-position/{category}', 'CategoryController@changePosition');
     Route::post('/category/move/{category}', 'CategoryController@move');
-
+    Route::get('/category/seo/{category}', 'CategoryController@getSeoData');
+    Route::post('/category/seo/save/{category}', 'CategoryController@saveSeoData');
 
     // материалы
     Route::get('/materials', 'MaterialController@getAll');
@@ -87,6 +88,8 @@ Route::group([
     Route::delete('/product/delete/force/{id}', 'ProductController@forceDelete')
         ->where('id', '[0-9]+');
     Route::post('/product/move/{product}', 'ProductController@move');
+    Route::get('/product/seo/{product}', 'ProductController@getSeoData');
+    Route::post('/product/seo/save/{product}', 'ProductController@saveSeoData');
 
     // photo manager
     Route::delete('/product/photo/delete/{product}/{photoName}', 'ProductController@deletePhoto')
@@ -99,6 +102,12 @@ Route::group([
         ->where('to', 'first|up|down');
     Route::post('/product/photo/add/{product}', 'ProductController@addPhoto');
     Route::post('/product/photo/moveByDragAndDrop/{product}', 'ProductController@movePhotoByDragAndDrop');
+
+    Route::get('/product/photo/seo/{product}/{photoName}', 'ProductController@getPhotoSeoData')
+        ->where('photoName', '[0-9]+\.[a-z]+');
+    Route::post('/product/photo/seo/save/{product}/{photoName}', 'ProductController@savePhotoSeoData')
+        ->where('photoName', '[0-9]+\.[a-z]+');
+
 
 });
 

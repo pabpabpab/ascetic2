@@ -1,5 +1,5 @@
 <template>
-    <div :class="contextMenuClassObject" :style="coordinates">
+    <div :class="contextMenuClass" :style="coordinates">
         <ul class="context_menu__ul">
 
             <li  class="context_menu__li__multiple_black">
@@ -23,7 +23,6 @@
                 Сделать главным
             </li>
 
-
             <li class="context_menu__li__multiple_black">
                 Сдвинуть
                 <span v-if="currentListIndex > 0"
@@ -40,10 +39,14 @@
                 </span>
             </li>
 
+            <li class="context_menu__li context_menu__li_black"
+                @click="showSeoManager({entity: 'photo', data: {productId, photoName}})" >
+                SEO для фото
+            </li>
 
             <li class="context_menu__li context_menu__li_black" style="border: 0;"
                 @click="deletePhoto({productId, photoName})">
-                Удалить
+                Удалить фото
             </li>
         </ul>
     </div>
@@ -62,7 +65,7 @@ export default {
             'currentListIndex',
             'lastListIndex',
         ]),
-        contextMenuClassObject() {
+        contextMenuClass() {
             return {
                 'context_menu__wrapper context_menu__wrapper_black': true,
                 'show_block': !this.enabledFadingCss,
@@ -75,6 +78,9 @@ export default {
             'deletePhoto',
             'rotatePhoto',
             'movePhoto',
+        ]),
+        ...mapActions('seoManager', [
+            'showSeoManager',
         ]),
     },
 }
@@ -90,7 +96,7 @@ export default {
 
 /*
 <template>
-    <div :class="contextMenuClassObject" :style="coordinates">
+    <div :class="contextMenuClass" :style="coordinates">
         <ul class="context_menu__ul">
             <li class="context_menu__li_header">
                 «{{ product.name }}»
@@ -120,7 +126,7 @@ export default {
             'enabledFadingCss',
             'product',
         ]),
-        contextMenuClassObject() {
+        contextMenuClass() {
             return {
                 'context_menu__wrapper': true,
                 'show_block': !this.enabledFadingCss,

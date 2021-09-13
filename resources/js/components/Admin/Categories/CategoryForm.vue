@@ -1,6 +1,6 @@
 <template>
     <div class="category_form__div mauto relative"
-         :class="animationClassObject">
+         :class="animationClass">
         <h1 class="tal">{{ getCreationHeader }}</h1>
 
         <div>
@@ -61,7 +61,7 @@ export default {
                 name: '',
             },
             zeroCategory: {},
-            animationClassObject: {
+            animationClass: {
                 'category_form__animation_open pd20 mt20': true,
                 'category_form__animation_close': false
             },
@@ -90,7 +90,7 @@ export default {
             'typeinValidation'
         ]),
         changeAddingComponent() {
-            this.animationClassObject = {
+            this.animationClass = {
                 'category_form__animation_open': false,
                 'category_form__animation_close': true
             };

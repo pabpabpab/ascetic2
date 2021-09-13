@@ -1,0 +1,155 @@
+.seo_manager__screen
+    position: fixed
+    z-index: 20
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: rgba(0, 0, 0, 0.5)
+
+.seo_manager__content_wrapper
+    position: relative
+    width: 85%
+    height: 85%
+    box-sizing: border-box
+    margin: auto
+    padding: 10px 50px 10px 30px
+    background-color: #f8f8f8
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.seo_manager__content_wrapper__from_photo_manager
+    width: 93%
+    height: 95%
+
+.seo_manager__collapse_icon
+    position: absolute
+    top: 10px
+    right: 10px
+    width: 35px
+    height: 35px
+    padding: 0 0 3px 0
+    +font(65px, rgb(78, 110, 131), 100)
+    cursor: pointer
+    border-radius: 3px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &:hover
+        background-color: rgb(80, 80, 80)
+        color: #fff
+
+
+
+
+
+.seo_manager__header
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 100px
+    min-height: 100px
+    background-color: #f8f8f8
+    width: 100%
+    border-radius: 5px
+    //box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3)
+
+.seo_manager__header__photo
+    height: 80px
+    border-radius: 5px
+    margin-right: 30px
+
+
+
+
+.seo_manager__content
+    text-align: left
+    width: 100%
+    height: 80%
+    max-height: 85%
+    margin: 0
+    padding: 0 15px 25px 15px
+    box-sizing: border-box
+    overflow-y: auto
+    background-color: #f8f8f8
+    +font(17px, rgb(80, 75, 75), 400)
+    // border: 1px solid #00f
+    &::-webkit-scrollbar
+        width: 15px
+        background-color: #f0f0f0
+        padding: 0 10px
+        border-radius: 10px
+    &::-webkit-scrollbar-thumb
+        background-color: #aaa
+        border: 4px solid #f0f0f0
+        border-radius: 10px
+
+
+
+
+
+.seo_manager__button_panel
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 90px
+    background-color: #f8f8f8
+    width: 100%
+    border-radius: 5px
+
+
+
+
+.seo_manager__save_button
+    +font(15px, #fff, 400)
+    padding: 20px
+    width: 300px
+    border-radius: 7px
+    border: 0
+    background-color: rgb(25, 118, 210)
+    cursor: pointer
+    &:hover
+        background-color: rgb(10, 65, 134)
+
+
+
+.seo_manager__input_label
+    display: block
+    +font(17px, #686060, 400)
+    font-family: 'Source Sans Pro'
+    padding: 25px 0 5px 0
+    margin: 0
+
+
+
+.seo_manager__input_textarea
+    margin: 0
+    width: 100%
+    padding: 17px 15px
+    background-color: #fff
+    border: 1px solid #cdd1d4
+    box-shadow: inset 0 0 8px rgba(150, 150, 150, 0.3)
+    border-radius: 5px
+    box-sizing: border-box
+    +font(17px, #383030, 400)
+    line-height: 17px
+    outline: 0
+    &:focus
+        border: 1px solid rgba(80, 171, 252, 0.6)
+        box-shadow: inset 0 0 5px rgba(96, 146, 248, 0.4)
+
+
+
+.seo_manager__input_textarea_alt
+    height: 8%
+
+.seo_manager__input_textarea_title
+    height: 20%
+
+.seo_manager__input_textarea_description
+    height: 30%

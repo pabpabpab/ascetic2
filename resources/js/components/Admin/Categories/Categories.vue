@@ -11,8 +11,11 @@
 
         <categories-context-menu
             v-if="showCategoriesContextMenu"
+            :entity="$route.params.entity"
             @change-item-component="changeItemComponent">
         </categories-context-menu>
+
+        <seo-manager entity="category" v-if="showSeoManager && $route.params.entity === 'categories'"></seo-manager>
     </div>
 </template>
 
@@ -22,6 +25,7 @@ import CategoryItemEditForm from "./CategoryItemEditForm";
 import CategoryItem from "./CategoryItem";
 import CategoriesContextMenu from "../ContextMenu/CategoriesContextMenu";
 import categoriesItemsMethods from './someMethods/categoriesItemsMethods';
+import SeoManager from "./../Blocks/SeoManager";
 
 export default {
     name: "Categories",
@@ -29,6 +33,7 @@ export default {
         CategoryItem,
         CategoryItemEditForm,
         CategoriesContextMenu,
+        SeoManager,
     },
     props: ['collapseItemsCommand'],
     data() {
@@ -51,6 +56,9 @@ export default {
     computed: {
         ...mapGetters('categories', [
             'categories',
+        ]),
+        ...mapGetters('seoManager', [
+            'showSeoManager',
         ]),
         ...mapGetters('contextMenu', [
             'showCategoriesContextMenu',

@@ -33,3 +33,6 @@ class CreateColorsTable extends Migration
         Schema::dropIfExists('colors');
     }
 }
+
+
+// php artisan make:migration create_colors_table

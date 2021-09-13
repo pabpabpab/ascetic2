@@ -1,5 +1,5 @@
 <template>
-    <div :class="popupClassObject">
+    <div :class="popupClass">
         <div class="popup_right__content">
             Пожалуйста:<br>
             <p v-for="error of popupErrors" class="popup_right__item">
@@ -29,7 +29,7 @@ export default {
             'enabledHidingCss'
         ]),
 
-        popupClassObject() {
+        popupClass() {
             return {
                 'popup_right': true,
                 'popup_right__show': !this.enabledHidingCss,

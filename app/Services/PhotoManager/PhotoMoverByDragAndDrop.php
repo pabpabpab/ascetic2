@@ -37,8 +37,8 @@ class PhotoMoverByDragAndDrop
             $operatedPhoto->position = $this->$makePlaceMethod($product->id, $targetPhoto->position);
             $operatedPhoto->save();
 
-            $product->photo_set = json_encode($this->_getPhotoNamesArray($product));
-            $product->save();
+            $this->_syncPhotoNamesAndAltsInProduct($product);
+            // $product->refresh();
 
             DB::commit();
             return [

@@ -10,10 +10,12 @@ use App\Services\PhotoManager\PhotoMover;
 use App\Services\PhotoManager\PhotoMoverByDragAndDrop;
 use App\Services\PhotoManager\PhotoRemover;
 use App\Services\PhotoManager\PhotoRotator;
+use App\Services\PhotoManager\PhotoSeoService;
 use App\Services\Product\ForceDeleteService;
 use App\Services\Product\ListService;
 use App\Services\Product\MoveService;
 use App\Services\Product\SaveService;
+use App\Services\Product\SeoService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -123,5 +125,39 @@ class ProductController extends Controller
         );
     }
 
+    public function getSeoData(Product $product): JsonResponse
+    {
+        return response()->json([
+            'product' => $product,
+            'description' => $product->description,
+            'seo' => $product->seoText,
+        ]);
+    }
+
+    public function saveSeoData(SeoService $service, Product $product): JsonResponse
+    {
+        // instance товара в роуте как {product}
+        return response()->json(
+            $service->saveSeoData($product)
+        );
+    }
+
+    public function getPhotoSeoData(PhotoSeoService $service, Product $product, $photoName): JsonResponse
+    {
+        // instance товара в роуте как {product}
+        return response()->json([
+            'product' => $product,
+            'photoName' => $photoName,
+            'seo' => $service->getPhotoSeoModel($product, $photoName),
+        ]);
+    }
+
+    public function savePhotoSeoData(PhotoSeoService $service, Product $product, $photoName): JsonResponse
+    {
+        // instance товара в роуте как {product}
+        return response()->json(
+            $service->saveSeoData($product, $photoName)
+        );
+    }
 
 }

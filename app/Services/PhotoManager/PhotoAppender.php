@@ -18,18 +18,19 @@ class PhotoAppender
         DB::beginTransaction();
 
         try {
-            // $photoNameArr = $this->uploadService->saveUploadedFiles(
-            $photoNameArr = (new PhotoUploader())->saveUploadedFiles(
+            $additionalPhotoNameArr = (new PhotoUploader())->saveUploadedFiles(
                 $request->file('photos'),
                 $product->id
             );
 
 
-            if ($photoNameArr) {
-                $this->_insertPhotoNamesIntoPhotoTable($product, $photoNameArr);
+            if ($additionalPhotoNameArr) {
+                $this->_insertPhotoNamesIntoPhotoTable($product, $additionalPhotoNameArr);
 
-                $product->photo_set = json_encode($this->_getPhotoNamesArray($product));
-                $product->save();
+
+                $this->_syncPhotoNamesAndAltsInProduct($product);
+                // $product->refresh();
+
 
                 DB::commit();
 

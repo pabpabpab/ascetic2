@@ -1,5 +1,5 @@
 <template>
-    <div :class="waitingScreenClassObject">
+    <div :class="waitingScreenClass">
         <img :src="spinner_icon"
              alt="Spinner"
              class="waiting_screen__spinner_icon">
@@ -21,7 +21,7 @@ export default {
         ...mapGetters('waitingScreen', [
             'enabledFadingCss',
         ]),
-        waitingScreenClassObject() {
+        waitingScreenClass() {
             return {
                 'waiting_screen': true,
                 'show_transparent_block': !this.enabledFadingCss,

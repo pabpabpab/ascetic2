@@ -21,6 +21,11 @@ class Product extends Model
     ];
 
 
+    protected $attributes = [
+        'photo_alt_set' => '[]',
+    ];
+
+
     // One-to-many (Inverse) / Belongs To (to access its parent Category)
     public function category() {
         return $this->belongsTo(Category::class);
@@ -71,6 +76,15 @@ class Product extends Model
             'products_materials',
             'product_id',
             'material_id'
+        );
+    }
+
+
+    // One-to-one relationship for product SEO text
+    public function seoText() {
+        return $this->hasOne(
+            ProductSEOText::class,
+            'product_id'
         );
     }
 
