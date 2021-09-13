@@ -162,8 +162,6 @@ export default {
         moveItem({ dispatch, commit, getters, state }, { currentIndex, newIndex, entity }) {
             //console.log('currentIndex - ' + currentIndex);
             //console.log('newIndex - ' + newIndex);
-
-
             if (newIndex === -1) {
                 return;
             }

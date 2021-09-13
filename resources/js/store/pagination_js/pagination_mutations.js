@@ -102,11 +102,11 @@ export default {
         const customized = state.customized;
         const currentPageIndex = state.currentPage[entity];
 
-        // взять товары той страницы где происходило перемещение
-        const pageProducts = customized[entity][currentPageIndex];
+        // взять items той страницы где происходило перемещение
+        const pageItems = customized[entity][currentPageIndex];
 
         // вырвать из массива и получить наш элемент, который двигаем
-        const operatedItem = pageProducts.splice(currentIndexInPage, 1)[0];
+        const operatedItem = pageItems.splice(currentIndexInPage, 1)[0];
 
         // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
         if ((currentIndexInPage < newIndexInPage) && (newIndexInPage !== state.customized[entity][currentPageIndex].length)) {
@@ -114,10 +114,36 @@ export default {
         }
 
         // вставить наш элемент на новое место
-        pageProducts.splice(newIndexInPage, 0, operatedItem);
+        pageItems.splice(newIndexInPage, 0, operatedItem);
         // обновить локальный customized
-        customized[entity][currentPageIndex] = [ ...pageProducts ];
+        customized[entity][currentPageIndex] = [ ...pageItems ];
 
+        // обновить весь customized в state
+        state.customized = { ...customized };
+    },
+
+    //===================update photoSet of item in filtered==================
+    updatePhotosetOfItemInFiltered: (state, { entity, itemId, photoSet }) => {
+        const filtered = state.filtered[entity];
+        const itemIndex = filtered.findIndex(item => item.id === itemId);
+        filtered[itemIndex].photo_set = photoSet;
+        state.filtered[entity] = [ ...filtered ];
+    },
+
+    //===================update photoSet of item in customized==================
+    updatePhotosetOfItemInCustomized: (state, { entity, itemId, photoSet }) => {
+        const customized = state.customized;
+        const currentPageIndex = state.currentPage[entity];
+
+        // взять items той страницы где обновляется элемент
+        const pageItems = customized[entity][currentPageIndex];
+        // его индекс
+        const itemIndex = pageItems.findIndex(item => item.id === itemId);
+        // обновить элемент
+        pageItems[itemIndex].photo_set = photoSet;
+
+        // обновить локальный customized
+        customized[entity][currentPageIndex] = [ ...pageItems ];
         // обновить весь customized в state
         state.customized = { ...customized };
     },

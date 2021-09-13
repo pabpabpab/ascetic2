@@ -71,12 +71,9 @@ export default {
         state.singleProductFromServer = { ...singleProduct };
     },
 
-
-
+    // ------------------------------------------------------------------
     setShowProductPhotoManager: (state, value) => {
         state.showProductPhotoManager = value;
     },
-
-
 
 };

@@ -21992,6 +21992,26 @@ __webpack_require__.r(__webpack_exports__);
         entity: entity
       });
     }
+  },
+  //============================update photoSet of item in paginated==============================
+  updatePhotosetOfItemInPaginated: {
+    root: true,
+    handler: function handler(_ref11, _ref12) {
+      var commit = _ref11.commit;
+      var entity = _ref12.entity,
+          itemId = _ref12.itemId,
+          photoSet = _ref12.photoSet;
+      commit('updatePhotosetOfItemInFiltered', {
+        entity: entity,
+        itemId: itemId,
+        photoSet: photoSet
+      });
+      commit('updatePhotosetOfItemInCustomized', {
+        entity: entity,
+        itemId: itemId,
+        photoSet: photoSet
+      });
+    }
   }
 });
 
@@ -22241,20 +22261,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         newIndexInPage = _ref10.newIndexInPage,
         entity = _ref10.entity;
     var customized = state.customized;
-    var currentPageIndex = state.currentPage[entity]; // взять товары той страницы где происходило перемещение
+    var currentPageIndex = state.currentPage[entity]; // взять items той страницы где происходило перемещение
 
-    var pageProducts = customized[entity][currentPageIndex]; // вырвать из массива и получить наш элемент, который двигаем
+    var pageItems = customized[entity][currentPageIndex]; // вырвать из массива и получить наш элемент, который двигаем
 
-    var operatedItem = pageProducts.splice(currentIndexInPage, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+    var operatedItem = pageItems.splice(currentIndexInPage, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
 
     if (currentIndexInPage < newIndexInPage && newIndexInPage !== state.customized[entity][currentPageIndex].length) {
       newIndexInPage--;
     } // вставить наш элемент на новое место
 
 
-    pageProducts.splice(newIndexInPage, 0, operatedItem); // обновить локальный customized
+    pageItems.splice(newIndexInPage, 0, operatedItem); // обновить локальный customized
 
-    customized[entity][currentPageIndex] = _toConsumableArray(pageProducts); // обновить весь customized в state
+    customized[entity][currentPageIndex] = _toConsumableArray(pageItems); // обновить весь customized в state
+
+    state.customized = _objectSpread({}, customized);
+  },
+  //===================update photoSet of item in filtered==================
+  updatePhotosetOfItemInFiltered: function updatePhotosetOfItemInFiltered(state, _ref11) {
+    var entity = _ref11.entity,
+        itemId = _ref11.itemId,
+        photoSet = _ref11.photoSet;
+    var filtered = state.filtered[entity];
+    var itemIndex = filtered.findIndex(function (item) {
+      return item.id === itemId;
+    });
+    filtered[itemIndex].photo_set = photoSet;
+    state.filtered[entity] = _toConsumableArray(filtered);
+  },
+  //===================update photoSet of item in customized==================
+  updatePhotosetOfItemInCustomized: function updatePhotosetOfItemInCustomized(state, _ref12) {
+    var entity = _ref12.entity,
+        itemId = _ref12.itemId,
+        photoSet = _ref12.photoSet;
+    var customized = state.customized;
+    var currentPageIndex = state.currentPage[entity]; // взять items той страницы где обновляется элемент
+
+    var pageItems = customized[entity][currentPageIndex]; // его индекс
+
+    var itemIndex = pageItems.findIndex(function (item) {
+      return item.id === itemId;
+    }); // обновить элемент
+
+    pageItems[itemIndex].photo_set = photoSet; // обновить локальный customized
+
+    customized[entity][currentPageIndex] = _toConsumableArray(pageItems); // обновить весь customized в state
 
     state.customized = _objectSpread({}, customized);
   }
@@ -23243,6 +23295,13 @@ __webpack_require__.r(__webpack_exports__);
         if (data.moveSuccess === true) {
           commit('setSingleProductPhoto', data.photoSet);
           commit('updateProductsBySingleProduct');
+          dispatch('updatePhotosetOfItemInPaginated', {
+            entity: 'products',
+            itemId: productId,
+            photoSet: data.photoSet
+          }, {
+            root: true
+          });
           dispatch('hideWaitingScreen', null, {
             root: true
           });
@@ -23620,6 +23679,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     singleProduct.product.photo_set = JSON.stringify(photoSet);
     state.singleProductFromServer = _objectSpread({}, singleProduct);
   },
+  // ------------------------------------------------------------------
   setShowProductPhotoManager: function setShowProductPhotoManager(state, value) {
     state.showProductPhotoManager = value;
   }

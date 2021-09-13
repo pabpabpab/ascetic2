@@ -170,6 +170,16 @@ export default {
             commit('moveItemInCustomized', { currentIndexInPage, newIndexInPage, entity });
         }
     },
+
+    //============================update photoSet of item in paginated==============================
+    updatePhotosetOfItemInPaginated: {
+        root: true,
+        handler ({ commit }, { entity, itemId, photoSet }) {
+            commit('updatePhotosetOfItemInFiltered', { entity, itemId, photoSet });
+            commit('updatePhotosetOfItemInCustomized', { entity, itemId, photoSet });
+        }
+    },
+
 };
 
 
