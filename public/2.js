@@ -660,27 +660,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductListHeader",
@@ -1613,56 +1592,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "products_header mauto" },
-    [
-      _c("div", { staticClass: "w100px" }),
-      _vm._v(" "),
-      _vm.$route.params.which === "trashed"
-        ? [
-            _c("h1", [_vm._v("Удаленные товары")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "products_header__link",
-                    attrs: {
-                      to: { name: "Products", params: { which: "active" } }
-                    }
-                  },
-                  [_vm._v("\n                Активные\n            ")]
-                )
-              ],
-              1
-            )
-          ]
-        : [
-            _c("h1", [_vm._v(_vm._s(_vm.listHeader))]),
-            _vm._v(" "),
-            _c(
-              "div",
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "products_header__link",
-                    attrs: {
-                      to: { name: "Products", params: { which: "trashed" } }
-                    }
-                  },
-                  [_vm._v("\n                Удаленные\n            ")]
-                )
-              ],
-              1
-            )
-          ]
-    ],
-    2
-  )
+  return _c("div", { staticClass: "products_header mauto" }, [
+    _c("h1", [_vm._v(_vm._s(_vm.listHeader))])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

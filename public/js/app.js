@@ -541,6 +541,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'navbar',
@@ -2080,6 +2102,7 @@ var render = function() {
       _c("ul", { staticClass: "navBar__ul" }, [
         _c(
           "li",
+          { staticClass: "navBar__li" },
           [
             _c(
               "router-link",
@@ -2095,14 +2118,48 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          { staticClass: "navBar__li" },
           [
             _c(
               "router-link",
               {
+                staticClass: "navBar__link_complex",
                 class: _vm.productsLinkClass,
                 attrs: { to: { name: "Products", params: { which: "active" } } }
               },
-              [_vm._v("Товары")]
+              [
+                _vm._v("\n                    Товары\n\n                    "),
+                _c("div", { staticClass: "navBar__link__arrow" }, [
+                  _c("div", { staticClass: "navBar__drop_menu" }, [
+                    _c("ul", { staticClass: "navBar__drop_menu__ul" }, [
+                      _c(
+                        "li",
+                        { staticClass: "navBar__drop_menu__li" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "navBar__drop_menu__link",
+                              attrs: {
+                                to: {
+                                  name: "Products",
+                                  params: { which: "trashed" }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        Удаленные\n                                    "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ])
+              ]
             )
           ],
           1
@@ -2110,6 +2167,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          { staticClass: "navBar__li" },
           [
             _c(
               "router-link",
@@ -2127,6 +2185,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          { staticClass: "navBar__li" },
           [
             _c(
               "router-link",
@@ -2144,6 +2203,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "li",
+          { staticClass: "navBar__li" },
           [
             _c(
               "router-link",
@@ -2164,6 +2224,7 @@ var render = function() {
     _c("ul", { staticClass: "navBar__ul" }, [
       _c(
         "li",
+        { staticClass: "navBar__li" },
         [
           _c(
             "router-link",
@@ -2176,6 +2237,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
+        { staticClass: "navBar__li" },
         [
           _c(
             "router-link",

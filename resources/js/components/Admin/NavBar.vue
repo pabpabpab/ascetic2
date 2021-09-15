@@ -3,28 +3,50 @@
         <div class="navBar_left">
             <a href="http://asceticshop.ru" class="logo__link">AsceticShop.ru</a>
             <ul class="navBar__ul">
-                <li>
+                <li class="navBar__li">
                     <router-link :to="{ name: 'SaveProduct' }" :class="saveProductLinkClass">Добавить товар</router-link>
                 </li>
-                <li>
-                    <router-link :to="{ name: 'Products', params: { which: 'active' } }" :class="productsLinkClass">Товары</router-link>
+
+                <li class="navBar__li">
+                    <router-link
+                        :to="{ name: 'Products', params: { which: 'active' } }"
+                        class="navBar__link_complex"
+                        :class="productsLinkClass">
+                        Товары
+
+                        <div class="navBar__link__arrow">
+                            <div class="navBar__drop_menu">
+                                <ul class="navBar__drop_menu__ul">
+                                    <li class="navBar__drop_menu__li">
+                                        <router-link :to="{ name: 'Products', params: { which: 'trashed' } }"
+                                                     class="navBar__drop_menu__link">
+                                            Удаленные
+                                        </router-link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </router-link>
+
                 </li>
-                <li>
+
+                <li class="navBar__li">
                     <router-link :to="{ name: 'Categories', params: { entity: 'categories' } }" :class="categoriesLinkClass">Категории</router-link>
                 </li>
-                <li>
+                <li class="navBar__li">
                     <router-link :to="{ name: 'Categories', params: { entity: 'materials' } }" :class="materialsLinkClass">Материалы</router-link>
                 </li>
-                <li>
+                <li class="navBar__li">
                     <router-link :to="{ name: 'Categories', params: { entity: 'colors' } }" :class="colorsLinkClass">Цвета</router-link>
                 </li>
             </ul>
         </div>
         <ul class="navBar__ul">
-            <li>
+            <li class="navBar__li">
                 <router-link :to="{ name: 'Users' }" :class="usersLinkClass">Пользователи</router-link>
             </li>
-            <li>
+            <li class="navBar__li">
                 <router-link :to="{ name: 'Main' }" :class="mainPageLinkClass">Помощь</router-link>
             </li>
         </ul>
