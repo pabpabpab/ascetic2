@@ -3,7 +3,7 @@ import thatRouter from "../../router";
 export default {
 
 
-    async saveProduct({ dispatch, commit, getters, state }, { localProduct, photos }) {
+    async saveProduct({ dispatch, commit, state }, { localProduct, photos }) {
         const product = {...localProduct};
         product.price = product.price.replace(/\s/g, '');
         //console.log(localProduct);
@@ -17,15 +17,14 @@ export default {
         }
 
         const saveProductUrl = productId > 0
-            ? getters.saveProductUrl + productId
-            : getters.saveProductUrl;
+            ? state.url['saveProduct'] + productId
+            : state.url['saveProduct'];
 
 
         // добавить фото в объект продукта
         for (let i = 0; i < photos.length; i++ ) {
             product[`photos[${i}]`] = photos[i];
         }
-
 
         // console.log(product);
 
@@ -36,7 +35,6 @@ export default {
             {
                 url: saveProductUrl,
                 data: product
-                //data: {textObject: product, photos: photos},
             },
             { root: true }
         )
@@ -51,9 +49,7 @@ export default {
                     return;
                 }
 
-
                 // console.log(data);
-
 
                 if (data.saveSuccess === true) {
                     //commit('setSingleProductFromServer', data.product);

@@ -1,5 +1,5 @@
 <template>
-    <div class="categories">
+    <div class="categories__list">
         <component
             v-for="(category, index) of categories[$route.params.entity]"
             :key="category.id"

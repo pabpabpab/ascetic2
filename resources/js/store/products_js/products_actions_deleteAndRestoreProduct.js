@@ -1,8 +1,8 @@
 export default {
 
-    deleteProduct({ dispatch, commit, getters, state }, productId) {
+    deleteProduct({ dispatch, commit, state }, productId) {
         dispatch('closeConfirmationDialog', null, { root: true });
-        dispatch('deleteJson', getters.deleteProductUrl + productId, { root: true })
+        dispatch('deleteJson', state.url['deleteProduct'] + productId, { root: true })
             .then((data) => {
                 dispatch('cleanPopupErrors', null, { root: true });
 
@@ -10,9 +10,6 @@ export default {
                     dispatch('showPopupErrorsBox', data.backValidatorErrors, {root: true});
                     return;
                 }
-
-                // console.log(data);
-
 
                 if (data.deleteSuccess === true) {
                     dispatch('loadProducts');
@@ -26,13 +23,17 @@ export default {
     },
 
 
-    restoreProduct({ dispatch, commit, getters }, productId) {
+    restoreProduct({ dispatch, commit, state }, productId) {
         dispatch('closeContextMenu', null, {root: true});
-        dispatch('getJson', getters.restoreProductUrl + productId, { root: true })
+        dispatch('getJson', state.url['restoreProduct'] + productId, { root: true })
             .then((data) => {
                 // console.log(data);
                 if (data.restoreSuccess === true) {
-                    dispatch('loadProducts', 'trashed');
+                    const routeOfTrashedProducts = {
+                        name: 'Products',
+                        params: {which: 'trashed'}
+                    };
+                    dispatch('loadProducts', routeOfTrashedProducts);
                     const txt = `Товар «${data.product.name}» восстановлен.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     // thatRouter.push({ name: 'Products', params: {which: 'active'}});
@@ -44,13 +45,17 @@ export default {
     },
 
 
-    forceDeleteProduct({ dispatch, commit, getters, state }, productId) {
+    forceDeleteProduct({ dispatch, commit, state }, productId) {
         dispatch('closeConfirmationDialog', null, { root: true });
-        dispatch('deleteJson', getters.forceDeleteProductUrl + productId, { root: true })
+        dispatch('deleteJson', state.url['forceDeleteProduct'] + productId, { root: true })
             .then((data) => {
                 // console.log(data);
                 if (data.deleteSuccess === true) {
-                    dispatch('loadProducts', 'trashed');
+                    const routeOfTrashedProducts = {
+                        name: 'Products',
+                        params: {which: 'trashed'}
+                    };
+                    dispatch('loadProducts', routeOfTrashedProducts);
                     const txt = `Товар «${data.productName}» удален безвозвратно.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 } else {

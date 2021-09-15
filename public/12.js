@@ -308,6 +308,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /*
@@ -341,6 +353,14 @@ import delete_icon from "./../../../../assets/delete_icon.png"
   },
   */
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByY', ['isDragging', 'topByIndex'])), {}, {
+    singularEntityName: function singularEntityName() {
+      var singularEntityName = {
+        categories: 'category',
+        materials: 'material',
+        colors: 'color'
+      };
+      return singularEntityName[this.$route.params.entity];
+    },
     lastListIndex: function lastListIndex() {
       return this.categories[this.$route.params.entity].length - 1;
     },
@@ -884,8 +904,26 @@ var render = function() {
       _vm._v(" "),
       _c("span", { staticClass: "category__item__products_count" }, [
         _vm._v("\n        " + _vm._s(_vm.category.products_count) + "\n    ")
-      ])
-    ]
+      ]),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        {
+          staticClass: "products_header__link",
+          attrs: {
+            to: {
+              name: "ProductsByCategory",
+              params: {
+                categoryEntity: _vm.singularEntityName,
+                slug: "slug"
+              }
+            }
+          }
+        },
+        [_vm._v("\n        " + _vm._s(_vm.category.products_count) + "\n    ")]
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []

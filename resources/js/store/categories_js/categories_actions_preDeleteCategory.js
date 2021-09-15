@@ -1,8 +1,8 @@
 export default {
 
-    preDeleteCategory({dispatch, commit, getters, state}, {entity, categoryId}) {
+    preDeleteCategory({dispatch, commit, state}, {entity, categoryId}) {
         dispatch('closeContextMenu', null, {root: true});
-        const singleCategoryUrl = getters.singleCategoryUrl(entity) + categoryId;
+        const singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
         dispatch('getJson', singleCategoryUrl, {root: true})
             .then((data) => {
                 const settings = {};

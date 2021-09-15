@@ -1,9 +1,9 @@
 export default {
 
-    changePosition({ dispatch, commit, getters, state }, { entity, categoryId, direction }) {
+    changePosition({ dispatch, commit, state }, { entity, categoryId, direction }) {
         dispatch('closeContextMenu', null, { root: true });
         dispatch('showWaitingScreen', null, { root: true });
-        const changePositionUrl = getters.changePositionUrl(entity) + categoryId;
+        const changePositionUrl = state.changePositionUrl[entity] + categoryId;
         dispatch(
             'postJson',
             {

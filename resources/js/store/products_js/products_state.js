@@ -1,25 +1,29 @@
 export default {
-    productsCountUrl: '/api/admin/products/count',
-    productsUrl: '/api/admin/products/',
-    singleProductUrl: '/api/admin/product/',
-    saveProductUrl: '/api/admin/product/save/',
 
-    deleteProductUrl: '/api/admin/product/delete/',
-    forceDeleteProductUrl: '/api/admin/product/delete/force/',
-    restoreProductUrl: '/api/admin/product/restore/',
-    moveProductUrl: '/api/admin/product/move/',
+    url: {
+        productsCount: '/api/admin/products/count',
+        products: '/api/admin/products/',
+        productsByCategory: '/api/admin/products/by/',
+        singleProduct: '/api/admin/product/',
+        saveProduct: '/api/admin/product/save/',
 
-    deleteProductPhotoUrl: '/api/admin/product/photo/delete/',
-    rotateProductPhotoUrl: '/api/admin/product/photo/rotate/',
-    moveProductPhotoUrl: '/api/admin/product/photo/move/',
-    moveByDragAndDropPhotoUrl: '/api/admin/product/photo/moveByDragAndDrop/',
-    addProductPhotoUrl: '/api/admin/product/photo/add/',
+        deleteProduct: '/api/admin/product/delete/',
+        forceDeleteProduct: '/api/admin/product/delete/force/',
+        restoreProduct: '/api/admin/product/restore/',
+        moveProduct: '/api/admin/product/move/',
+
+        deleteProductPhoto: '/api/admin/product/photo/delete/',
+        rotateProductPhoto: '/api/admin/product/photo/rotate/',
+        moveProductPhoto: '/api/admin/product/photo/move/',
+        moveByDragAndDropPhoto: '/api/admin/product/photo/moveByDragAndDrop/',
+        addProductPhoto: '/api/admin/product/photo/add/',
+    },
 
     products: [],
+    listHeader: '',
     productsCountFromServer: 0,
     singleProductFromServer: {},
 
-    // productPhotosUrl: '/api/admin/product/photos/',
     showProductPhotoManager: false,
     enabledFadingCss: false,
 };

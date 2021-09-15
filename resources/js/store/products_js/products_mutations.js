@@ -8,6 +8,27 @@ export default {
         state.products = [ ...data ];
     },
 
+    setListHeader: (state, { route, data }) => {
+        const paramName = {
+            Products: 'which',
+            ProductsByCategory: 'categoryEntity'
+        }
+
+        const header = {
+            Products: {
+                active: 'Список товаров',
+                trashed: 'Удаленные товары',
+            },
+            ProductsByCategory: {
+                category: data.name,
+                material: `Товары из материала «${data.name}»`,
+                color: `Товары цвета «${data.name}»`,
+            }
+        }
+
+        state.listHeader = header[route.name][route.params[paramName[route.name]]];
+    },
+
     setProductsCountFromServer: (state, number) => {
         state.productsCountFromServer = number;
     },

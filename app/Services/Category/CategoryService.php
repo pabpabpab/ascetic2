@@ -7,6 +7,7 @@ namespace App\Services\Category;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class CategoryService
 {
@@ -17,6 +18,7 @@ class CategoryService
     {
         $model = $model->id > 0 ? $model : new $modelClassName();
         $model->name = $name;
+        $model->slug = Str::slug($name, '-');
         $model->position = $model->id > 0 ? $model->position : static::calcNewAddedPosition($modelClassName);
         return [
             'success' => $model->save(),

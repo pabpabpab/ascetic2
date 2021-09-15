@@ -1,14 +1,14 @@
 export default {
 
-    async saveCategory({dispatch, commit, getters}, {entity, category}) {
+    async saveCategory({dispatch, commit, state}, {entity, category}) {
         const categoryId = category.id;
         await dispatch('cleanValidationErrors');
         if (!await dispatch('_frontValidation', {entity, category})) {
             return;
         }
         const saveCategoryUrl = categoryId > 0
-            ? getters.saveCategoryUrl(entity) + categoryId
-            : getters.saveCategoryUrl(entity);
+            ? state.saveCategoryUrl[entity] + categoryId
+            : state.saveCategoryUrl[entity];
 
         dispatch(
             'postJson',

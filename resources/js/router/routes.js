@@ -48,6 +48,22 @@ const routes = [
         component: () => import('../components/Admin/ProductsPage.vue'),
     },
 
+
+
+
+
+
+    {
+        path: '/admin/products/by/:categoryEntity/:slug',
+        name: 'ProductsByCategory',
+        component: () => import('../components/Admin/ProductsPage.vue'),
+    },
+
+
+
+
+
+
     {
         path: '/admin/products/categories/:entity',
         name: 'Categories',

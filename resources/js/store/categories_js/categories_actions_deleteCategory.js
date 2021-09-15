@@ -1,8 +1,8 @@
 export default {
 
-    deleteCategory({ dispatch, commit, getters, state }, { entity, categoryId }) {
+    deleteCategory({ dispatch, state }, { entity, categoryId }) {
         dispatch('closeConfirmationDialog', null, { root: true });
-        dispatch('deleteJson', getters.deleteCategoryUrl(entity) + categoryId, { root: true })
+        dispatch('deleteJson', state.deleteCategoryUrl[entity] + categoryId, { root: true })
             .then((data) => {
                 dispatch('cleanPopupErrors', null, { root: true });
 

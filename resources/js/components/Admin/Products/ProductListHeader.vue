@@ -1,6 +1,7 @@
 <template>
 
     <div class="products_header mauto">
+
         <div class="w100px"></div>
 
         <template v-if="$route.params.which === 'trashed'">
@@ -12,20 +13,28 @@
             </div>
         </template>
         <template v-else>
-            <h1>Список товаров</h1>
+            <h1>{{ listHeader }}</h1>
             <div>
                 <router-link :to="{ name: 'Products', params: { which: 'trashed' } }" class="products_header__link">
                     Удаленные
                 </router-link>
             </div>
         </template>
+
     </div>
 
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: "ProductListHeader",
+    computed: {
+        ...mapGetters('products', [
+            'listHeader',
+        ]),
+    },
 }
 </script>
 

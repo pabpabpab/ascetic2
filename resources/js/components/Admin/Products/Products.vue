@@ -61,7 +61,8 @@ export default {
         },
     },
     mounted() {
-        this.$store.dispatch('products/loadProducts', this.$route.params.which);
+        //this.$store.dispatch('products/loadProducts', this.$route.params.which);
+        this.$store.dispatch('products/loadProducts', this.$route);
     },
 }
 </script>

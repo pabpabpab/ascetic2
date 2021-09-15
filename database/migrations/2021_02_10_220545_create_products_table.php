@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             name VARCHAR(100) UNIQUE,
             products_count INT UNSIGNED NOT NULL DEFAULT 0, // добавлено потом
             position INT UNSIGNED NOT NULL DEFAULT 0, // добавлено потом (для выстраивания списка категорий на сайте в нужном порядке)
+            slug VARCHAR(130) UNIQUE,
 
             INDEX products_count_idx(products_count), // добавлено потом
             INDEX position_idx(position) // добавлено потом
@@ -34,6 +35,7 @@ class CreateProductsTable extends Migration
             name VARCHAR(50) UNIQUE,
             products_count INT UNSIGNED NOT NULL DEFAULT 0,
             position INT UNSIGNED NOT NULL DEFAULT 0,
+            slug VARCHAR(130) UNIQUE,
 
             INDEX products_count_idx(products_count),
             INDEX position_idx(position)
@@ -47,6 +49,7 @@ class CreateProductsTable extends Migration
             name VARCHAR(50) UNIQUE,
             products_count INT UNSIGNED NOT NULL DEFAULT 0,
             position INT UNSIGNED NOT NULL DEFAULT 0,
+            slug VARCHAR(130) UNIQUE,
 
             INDEX products_count_idx(products_count),
             INDEX position_idx(position)

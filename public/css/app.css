@@ -258,7 +258,7 @@ h1 {
   padding: 20px 20px 10px 20px;
 }
 
-.categories {
+.categories__list {
   background-color: white;
   padding: 20px 0;
   -webkit-user-select: none;
@@ -266,7 +266,7 @@ h1 {
   -ms-user-select: none;
 }
 
-.category__item {
+.category_item {
   padding: 20px 5px;
   text-align: left;
   font-size: 17px;
@@ -282,21 +282,35 @@ h1 {
   background-color: white;
 }
 
-.category__item__stub_icon {
-  width: 20px;
-  margin: 0 15px 0 0;
-}
-
-.category__item__name {
-  text-align: left;
+.category_item__name {
   -webkit-box-flex: 10;
       -ms-flex-positive: 10;
           flex-grow: 10;
 }
 
-.category__item__products_count {
-  color: #9f9f9f;
+.category_item__name__link {
+  text-align: left;
+  font-size: 17px;
+  color: #322d2d;
+  font-weight: 400;
+  border: none;
+}
+
+.category_item__name__link:hover {
+  border-bottom: 1px solid rgba(50, 45, 45, 0.4);
+}
+
+.category_item__products_count__link {
+  font-size: 17px;
+  color: #1976d2;
+  font-weight: 100;
   margin: 0 10px;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+.category_item__products_count__link:hover {
+  background-color: #e5eff5;
 }
 
 .draggableCategory {

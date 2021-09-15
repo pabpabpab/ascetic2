@@ -2,7 +2,7 @@ export default {
 
     moveProductByDragAndDrop: {
         root: true,
-        handler ({ dispatch, commit, getters, state, rootState }, {currentIndex, newIndex, vector}) {
+        handler ({ dispatch, commit, state, rootState }, {currentIndex, newIndex, vector}) {
 
             const currentPageIndex = rootState.pagination.currentPage.products;
             const products = rootState.pagination.customized.products[currentPageIndex];
@@ -20,25 +20,22 @@ export default {
                 entity: 'products'
             }, { root: true });
 
-
             // dispatch('showWaitingScreen', null, { root: true });
 
             dispatch (
                 'postJson',
                 {
-                    url: getters.moveProductUrl + operatedId,
+                    url: state.url['moveProduct'] + operatedId,
                     data: { targetId, vector },
                 },
                 { root: true }
             )
                 .then((data) => {
                     if (data.moveSuccess === true) {
-                        //dispatch('loadProducts', 'active'); // получить обновленный список с сервера
                         const txt = 'Сделано.';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.8}, { root: true });
-                        //закрытие заглушки в loadProducts // dispatch('hideWaitingScreen', null, { root: true });
                     } else {
-                        dispatch('loadProducts', 'active'); // отобразить обратно
+                        dispatch('loadProducts'); // отобразить обратно
                         const txt = 'Неудачная попытка перемещения.';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }

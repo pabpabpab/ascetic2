@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductSaveRequest;
+use App\Models\Category;
+use App\Models\Color;
+use App\Models\Material;
 use App\Models\Product;
 use App\Services\PhotoManager\PhotoAppender;
 use App\Services\PhotoManager\PhotoMover;
@@ -25,6 +28,28 @@ class ProductController extends Controller
     {
         $products = $service->getAll($whichProducts);
         return response()->json($products);
+    }
+
+    public function getByCategory(Category $category): JsonResponse
+    {
+        // $category определена в роуте как {category:slug}
+        $products = $category->products; // подцепить товары в модель
+        return response()->json($category);
+
+    }
+
+    public function getByMaterial(Material $material): JsonResponse
+    {
+        // $material определена в роуте как {material:slug}
+        $products = $material->products; // подцепить товары в модель
+        return response()->json($material);
+    }
+
+    public function getByColor(Color $color): JsonResponse
+    {
+        // $color определена в роуте как {color:slug}
+        $products = $color->products; // подцепить товары в модель
+        return response()->json($color);
     }
 
 

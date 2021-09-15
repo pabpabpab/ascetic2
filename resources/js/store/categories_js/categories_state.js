@@ -42,7 +42,6 @@ export default {
         colors: '/api/admin/color/move/',
     },
 
-    //categories: [],
 
 
     categories: {
@@ -56,35 +55,3 @@ export default {
     singleCategoryFromServer: null,
 };
 
-
-/*
-export default {
-    //categoriesCountUrl: '/api/admin/categories/count',
-
-    categoriesCountUrl: {
-        categories: '/api/admin/categories/count',
-        materials: '/api/admin/materials/count',
-        colors: '/api/admin/colors/count',
-    },
-
-
-    categoriesUrl: '/api/admin/categories/',
-    singleCategoryUrl: '/api/admin/category/',
-    saveCategoryUrl: '/api/admin/category/save/',
-    deleteCategoryUrl: '/api/admin/category/delete/',
-    changePositionUrl: '/api/admin/category/change-position/',
-
-
-    materialsCountUrl: '/api/admin/materials/count',
-    materialsUrl: '/api/admin/materials/',
-    singleMaterialUrl: '/api/admin/material/',
-    saveMaterialUrl: '/api/admin/material/save/',
-    deleteMaterialUrl: '/api/admin/material/delete/',
-    MaterialChangePositionUrl: '/api/admin/material/change-position/',
-
-
-    categories: [],
-    categoriesCountFromServer: -1,
-    singleCategoryFromServer: null,
-};
- */

@@ -3,14 +3,14 @@
     padding: 20px 20px 10px 20px
 
 
-.categories
+.categories__list
     background-color: rgb(255, 255, 255)
     padding: 20px 0
     -webkit-user-select: none
     -moz-user-select: none
     -ms-user-select: none
 
-.category__item
+.category_item
     padding: 20px 5px
     text-align: left
     +font(17px, rgb(50, 45, 45), 400)
@@ -18,15 +18,24 @@
     justify-content: space-between
     border-top: 1px solid rgb(206, 217, 240)
     background-color: rgb(255, 255, 255)
-    &__stub_icon
-        width: 20px
-        margin: 0 15px 0 0
     &__name
-        text-align: left
         flex-grow: 10
-    &__products_count
-        color: #9f9f9f
-        margin: 0 10px
+
+.category_item__name__link
+    text-align: left
+    +font(17px, rgb(50, 45, 45), 400)
+    border: none
+    &:hover
+        border-bottom: 1px solid rgba(50, 45, 45, 0.4)
+
+.category_item__products_count__link
+    +font(17px, rgb(25, 118, 210), 100)
+    margin: 0 10px
+    padding: 0 10px
+    border-radius: 5px
+    &:hover
+        background-color: rgb(229, 239, 245)
+
 
 .draggableCategory
     position: absolute
@@ -37,9 +46,6 @@
     box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
     // pointer-events: none
 
-//.underDraggableCategory
-//    border-bottom: 1px solid rgb(206, 217, 240)
-//    margin-bottom: 150px
 
 .category__button_add
     +font(15px, #fff, 400)
@@ -70,7 +76,6 @@
 .context_menu__icon__category
     +font(17px, rgb(25, 118, 210), 700)
     padding: 0 10px
-    // height: 22px
     font-weight: bold
     cursor: pointer
     margin: 0 15px 0 0

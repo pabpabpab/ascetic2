@@ -2,14 +2,13 @@ import thatRouter from "../../router";
 
 export default {
 
-
-    showProductPhotoManager({ dispatch, commit, getters, state }, product) {
+    showProductPhotoManager({ dispatch, commit, state }, product) {
         commit('setSingleProductFromServer', null);
         dispatch('closeContextMenu', null, { root: true });
         dispatch('showWaitingScreen', null, { root: true });
         document.body.style.cssText='overflow:hidden;';
         dispatch('loadSingleProduct', product.id).then(() => {
-            const product = getters.singleProductFromServer;
+            const product = state.singleProductFromServer;
             if (product) {
                 dispatch('hideWaitingScreen', null, { root: true });
                 commit('setEnabledFadingCss', false);
@@ -27,11 +26,11 @@ export default {
     },
 
 
-    deletePhoto({ dispatch, commit, getters, state }, {productId, photoName}) {
+    deletePhoto({ dispatch, commit, state }, {productId, photoName}) {
         dispatch('closeContextMenu', null, { root: true });
         dispatch('showWaitingScreen', null, { root: true });
 
-        const url = getters.deleteProductPhotoUrl + productId + '/' + photoName;
+        const url = state.url['deleteProductPhoto'] + productId + '/' + photoName;
 
         dispatch('deleteJson', url, { root: true })
             .then((data) => {
@@ -39,6 +38,13 @@ export default {
                 if (data.deleteSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
                     commit('updateProductsBySingleProduct');
+
+                    dispatch('updatePhotosetOfItemInPaginated', {
+                        entity: 'products',
+                        itemId: productId,
+                        photoSet: data.photoSet,
+                    }, { root: true });
+
                     dispatch('hideWaitingScreen', null, { root: true });
                     const txt = `Фото удалено.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.5}, { root: true });
@@ -51,10 +57,10 @@ export default {
     },
 
 
-    rotatePhoto({ dispatch, commit, getters, state }, {productId, photoName, angle}) {
+    rotatePhoto({ dispatch, commit, state }, {productId, photoName, angle}) {
         dispatch('closeContextMenu', null, { root: true });
         dispatch('showWaitingScreen', null, { root: true });
-        const url = getters.rotateProductPhotoUrl + productId + '/' + photoName+ '/' + angle;
+        const url = state.url['rotateProductPhoto'] + productId + '/' + photoName+ '/' + angle;
 
         dispatch('getJson', url, { root: true })
             .then((data) => {
@@ -62,6 +68,13 @@ export default {
                 if (data.rotateSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
                     commit('updateProductsBySingleProduct');
+
+                    dispatch('updatePhotosetOfItemInPaginated', {
+                        entity: 'products',
+                        itemId: productId,
+                        photoSet: data.photoSet,
+                    }, { root: true });
+
                     dispatch('hideWaitingScreen', null, { root: true });
                     const txt = `Сделано.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.7}, { root: true });
@@ -74,10 +87,10 @@ export default {
     },
 
 
-    movePhoto({ dispatch, commit, getters }, {productId, photoName, to}) {
+    movePhoto({ dispatch, commit, state }, {productId, photoName, to}) {
         dispatch('closeContextMenu', null, { root: true });
         dispatch('showWaitingScreen', null, { root: true });
-        const url = getters.moveProductPhotoUrl + productId + '/' + photoName+ '/' + to;
+        const url = state.url['moveProductPhoto'] + productId + '/' + photoName+ '/' + to;
 
         dispatch('getJson', url, { root: true })
             .then((data) => {
@@ -85,6 +98,15 @@ export default {
                 if (data.moveSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
                     commit('updateProductsBySingleProduct');
+
+
+                    dispatch('updatePhotosetOfItemInPaginated', {
+                        entity: 'products',
+                        itemId: productId,
+                        photoSet: data.photoSet,
+                    }, { root: true });
+
+
                     dispatch('hideWaitingScreen', null, { root: true });
                     const txt = `Сделано.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.5}, { root: true });
@@ -97,8 +119,60 @@ export default {
     },
 
 
-    addPhotos({ dispatch, commit, getters }, { productId, photos }) {
-        const addPhotoUrl = getters.addProductPhotoUrl + productId;
+
+
+
+    movePhotoByDragAndDrop: {
+        root: true,
+        handler ({ dispatch, commit, state }, {currentIndex, newIndex, vector}) {
+            const productId = state.singleProductFromServer.product.id;
+            const photoSet = JSON.parse(state.singleProductFromServer.product.photo_set)
+            const operatedPhotoName = photoSet[currentIndex];
+            const targetPhotoName = photoSet[newIndex];
+
+            commit('movePhoto', {currentIndex, newIndex, vector});
+            dispatch('showWaitingScreen', null, { root: true });
+
+            dispatch (
+                'postJson',
+                {
+                    url: state.url['moveByDragAndDropPhoto'] + productId,
+                    data: { operatedPhotoName, targetPhotoName, vector },
+                },
+                { root: true }
+            )
+                .then((data) => {
+                    if (data.moveSuccess === true) {
+                        commit('setSingleProductPhoto', data.photoSet);
+                        commit('updateProductsBySingleProduct');
+
+                        dispatch('updatePhotosetOfItemInPaginated', {
+                            entity: 'products',
+                            itemId: productId,
+                            photoSet: data.photoSet,
+                        }, { root: true });
+
+                        dispatch('hideWaitingScreen', null, { root: true });
+                        const txt = `Сделано.`;
+                        dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.5}, { root: true });
+                    } else {
+                        dispatch('hideWaitingScreen', null, { root: true });
+                        const txt = data.customExceptionMessage ?? 'Неудачная попытка перемещения.';
+                        dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
+                    }
+                });
+        }
+    },
+
+
+
+
+
+
+
+
+    addPhotos({ dispatch, commit, state }, { productId, photos }) {
+        const addPhotoUrl = state.url['addProductPhoto'] + productId;
 
         const productPhotos = {};
 
@@ -135,46 +209,5 @@ export default {
 
 
 
-    movePhotoByDragAndDrop: {
-        root: true,
-        handler ({ dispatch, commit, getters, state }, {currentIndex, newIndex, vector}) {
-            const productId = state.singleProductFromServer.product.id;
-            const photoSet = JSON.parse(state.singleProductFromServer.product.photo_set)
-            const operatedPhotoName = photoSet[currentIndex];
-            const targetPhotoName = photoSet[newIndex];
-
-            commit('movePhoto', {currentIndex, newIndex, vector});
-            dispatch('showWaitingScreen', null, { root: true });
-
-            dispatch (
-                'postJson',
-                {
-                    url: getters.moveByDragAndDropPhotoUrl + productId,
-                    data: { operatedPhotoName, targetPhotoName, vector },
-                },
-                { root: true }
-            )
-                .then((data) => {
-                    if (data.moveSuccess === true) {
-                        commit('setSingleProductPhoto', data.photoSet);
-                        commit('updateProductsBySingleProduct');
-
-                        dispatch('updatePhotosetOfItemInPaginated', {
-                            entity: 'products',
-                            itemId: productId,
-                            photoSet: data.photoSet,
-                        }, { root: true });
-
-                        dispatch('hideWaitingScreen', null, { root: true });
-                        const txt = `Сделано.`;
-                        dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.5}, { root: true });
-                    } else {
-                        dispatch('hideWaitingScreen', null, { root: true });
-                        const txt = data.customExceptionMessage ?? 'Неудачная попытка перемещения.';
-                        dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
-                    }
-                });
-        }
-    },
 
 }

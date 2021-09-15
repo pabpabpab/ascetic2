@@ -77,6 +77,9 @@ Route::group([
     // список товаров
     Route::get('/products/{whichProducts?}', 'ProductController@getAll')
         ->where('whichProducts', 'active|trashed');
+    Route::get('/products/by/category/{category:slug}', 'ProductController@getByCategory');
+    Route::get('/products/by/material/{material:slug}', 'ProductController@getByMaterial');
+    Route::get('/products/by/color/{color:slug}', 'ProductController@getByColor');
     Route::get('/products/count', 'ProductController@getCount');
 
     // один товар

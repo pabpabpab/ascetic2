@@ -12,7 +12,7 @@ export default {
     // ===============================разбить по страницам================================
     divideIntoPages: {
         root: true,
-        handler ({dispatch, commit, getters, state}, {entity, customQuantityPerPage}) {
+        handler ({dispatch, commit, getters}, {entity, customQuantityPerPage}) {
             //document.body.style.cssText='overflow: scroll;';
 
             if (customQuantityPerPage > 0) {
@@ -72,7 +72,7 @@ export default {
     },
 
     // ==========================пагинация: какую страницу items показать=======================
-    showPage({ dispatch, commit, state, getters }, { entity, page }) {
+    showPage({ dispatch, commit, getters }, { entity, page }) {
         const customizedLength = getters.customizedLength(entity);
         let index;
         if (page < 0) {
@@ -95,7 +95,7 @@ export default {
     },
 
     // ========================сбросить css ссылок пагинации==============================
-    resetPaginationLinkCss({ state, getters, commit }, entity) {
+    resetPaginationLinkCss({ commit, getters }, entity) {
         const cssArrLength = getters.paginationLinkCssArrLength(entity);
         // очистить css ссылок пагинации
         commit('clearPaginationLinkCssArr', entity);
@@ -107,7 +107,7 @@ export default {
     },
 
     // ========================сформировать активный кадр ссылок пагинации========================
-    makePaginationLinksShot({ commit, state, getters, rootState }, entity) {
+    makePaginationLinksShot({ commit, getters }, entity) {
         const customizedLength = getters.customizedLength(entity);
         const currentPageNumber = getters.currentPageNumber(entity);
         const minimumPages = getters.minimumPagesForComplexPagination(entity);

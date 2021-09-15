@@ -19316,19 +19316,19 @@ var routes = [{
   path: '/admin',
   name: 'Main',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
   }
 }, {
   path: '/admin/users',
   name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/user/:id',
   name: 'SingleUser',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/Users/SingleUser.vue */ "./resources/js/components/Admin/Users/SingleUser.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/Users/SingleUser.vue */ "./resources/js/components/Admin/Users/SingleUser.vue"));
   }
 },
 /*
@@ -19348,25 +19348,31 @@ var routes = [{
   path: '/admin/products/add',
   name: 'SaveProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/products/edit/:id',
   name: 'EditProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/products/:which',
   name: 'Products',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+  }
+}, {
+  path: '/admin/products/by/:categoryEntity/:slug',
+  name: 'ProductsByCategory',
+  component: function component() {
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
   }
 },
 /*
@@ -19507,14 +19513,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // eslint-disable-next-line no-unused-vars
   loadSingleCategory: function loadSingleCategory(_ref, _ref2) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, getters, entity, categoryId, singleCategoryUrl;
+      var dispatch, commit, state, entity, categoryId, singleCategoryUrl;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters;
+              dispatch = _ref.dispatch, commit = _ref.commit, state = _ref.state;
               entity = _ref2.entity, categoryId = _ref2.categoryId;
-              singleCategoryUrl = getters.singleCategoryUrl(entity) + categoryId;
+              singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
               dispatch('getJson', singleCategoryUrl, {
                 root: true
               }).then(function (data) {
@@ -19531,13 +19537,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   getCategoriesCount: function getCategoriesCount(_ref3, entity) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var dispatch, commit, getters, url;
+      var dispatch, commit, state, url;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              dispatch = _ref3.dispatch, commit = _ref3.commit, getters = _ref3.getters;
-              url = getters.categoriesCountUrl(entity);
+              dispatch = _ref3.dispatch, commit = _ref3.commit, state = _ref3.state;
+              url = state.categoriesCountUrl[entity];
               dispatch('getJson', url, {
                 root: true
               }).then(function (data) {
@@ -19554,13 +19560,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   loadCategories: function loadCategories(_ref4, entity) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var dispatch, commit, getters, url;
+      var dispatch, commit, state, url;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              dispatch = _ref4.dispatch, commit = _ref4.commit, getters = _ref4.getters;
-              url = getters.categoriesUrl(entity);
+              dispatch = _ref4.dispatch, commit = _ref4.commit, state = _ref4.state;
+              url = state.categoriesUrl[entity];
               dispatch('getJson', url, {
                 root: true
               }).then(function (data) {
@@ -19700,7 +19706,6 @@ __webpack_require__.r(__webpack_exports__);
   changePosition: function changePosition(_ref, _ref2) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
-        getters = _ref.getters,
         state = _ref.state;
     var entity = _ref2.entity,
         categoryId = _ref2.categoryId,
@@ -19711,7 +19716,7 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('showWaitingScreen', null, {
       root: true
     });
-    var changePositionUrl = getters.changePositionUrl(entity) + categoryId;
+    var changePositionUrl = state.changePositionUrl[entity] + categoryId;
     dispatch('postJson', {
       url: changePositionUrl,
       data: {
@@ -19760,15 +19765,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   deleteCategory: function deleteCategory(_ref, _ref2) {
     var dispatch = _ref.dispatch,
-        commit = _ref.commit,
-        getters = _ref.getters,
         state = _ref.state;
     var entity = _ref2.entity,
         categoryId = _ref2.categoryId;
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
-    dispatch('deleteJson', getters.deleteCategoryUrl(entity) + categoryId, {
+    dispatch('deleteJson', state.deleteCategoryUrl[entity] + categoryId, {
       root: true
     }).then(function (data) {
       dispatch('cleanPopupErrors', null, {
@@ -19821,7 +19824,6 @@ __webpack_require__.r(__webpack_exports__);
     handler: function handler(_ref, _ref2) {
       var dispatch = _ref.dispatch,
           commit = _ref.commit,
-          getters = _ref.getters,
           state = _ref.state;
       var currentIndex = _ref2.currentIndex,
           newIndex = _ref2.newIndex,
@@ -19837,7 +19839,7 @@ __webpack_require__.r(__webpack_exports__);
       dispatch('showWaitingScreen', null, {
         root: true
       });
-      var moveUrl = getters.moveUrl(entity) + operatedCategoryId;
+      var moveUrl = state.moveUrl[entity] + operatedCategoryId;
       dispatch('postJson', {
         url: moveUrl,
         data: {
@@ -19888,14 +19890,13 @@ __webpack_require__.r(__webpack_exports__);
   preDeleteCategory: function preDeleteCategory(_ref, _ref2) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
-        getters = _ref.getters,
         state = _ref.state;
     var entity = _ref2.entity,
         categoryId = _ref2.categoryId;
     dispatch('closeContextMenu', null, {
       root: true
     });
-    var singleCategoryUrl = getters.singleCategoryUrl(entity) + categoryId;
+    var singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
     dispatch('getJson', singleCategoryUrl, {
       root: true
     }).then(function (data) {
@@ -19951,12 +19952,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   saveCategory: function saveCategory(_ref, _ref2) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, getters, entity, category, categoryId, saveCategoryUrl;
+      var dispatch, commit, state, entity, category, categoryId, saveCategoryUrl;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters;
+              dispatch = _ref.dispatch, commit = _ref.commit, state = _ref.state;
               entity = _ref2.entity, category = _ref2.category;
               categoryId = category.id;
               _context.next = 5;
@@ -19978,7 +19979,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context.abrupt("return");
 
             case 9:
-              saveCategoryUrl = categoryId > 0 ? getters.saveCategoryUrl(entity) + categoryId : getters.saveCategoryUrl(entity);
+              saveCategoryUrl = categoryId > 0 ? state.saveCategoryUrl[entity] + categoryId : state.saveCategoryUrl[entity];
               dispatch('postJson', {
                 url: saveCategoryUrl,
                 data: category
@@ -20059,41 +20060,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  categoriesCountUrl: function categoriesCountUrl(state) {
-    return function (entity) {
-      return state.categoriesCountUrl[entity];
-    };
-  },
-  categoriesUrl: function categoriesUrl(state) {
-    return function (entity) {
-      return state.categoriesUrl[entity];
-    };
-  },
-  singleCategoryUrl: function singleCategoryUrl(state) {
-    return function (entity) {
-      return state.singleCategoryUrl[entity];
-    };
-  },
-  saveCategoryUrl: function saveCategoryUrl(state) {
-    return function (entity) {
-      return state.saveCategoryUrl[entity];
-    };
-  },
-  deleteCategoryUrl: function deleteCategoryUrl(state) {
-    return function (entity) {
-      return state.deleteCategoryUrl[entity];
-    };
-  },
-  changePositionUrl: function changePositionUrl(state) {
-    return function (entity) {
-      return state.changePositionUrl[entity];
-    };
-  },
-  moveUrl: function moveUrl(state) {
-    return function (entity) {
-      return state.moveUrl[entity];
-    };
-  },
   categories: function categories(state) {
     return _objectSpread({}, state.categories);
   },
@@ -20207,7 +20173,6 @@ __webpack_require__.r(__webpack_exports__);
     materials: '/api/admin/material/move/',
     colors: '/api/admin/color/move/'
   },
-  //categories: [],
   categories: {
     categories: [],
     materials: [],
@@ -20216,37 +20181,6 @@ __webpack_require__.r(__webpack_exports__);
   categoriesCountFromServer: -1,
   singleCategoryFromServer: null
 });
-/*
-export default {
-    //categoriesCountUrl: '/api/admin/categories/count',
-
-    categoriesCountUrl: {
-        categories: '/api/admin/categories/count',
-        materials: '/api/admin/materials/count',
-        colors: '/api/admin/colors/count',
-    },
-
-
-    categoriesUrl: '/api/admin/categories/',
-    singleCategoryUrl: '/api/admin/category/',
-    saveCategoryUrl: '/api/admin/category/save/',
-    deleteCategoryUrl: '/api/admin/category/delete/',
-    changePositionUrl: '/api/admin/category/change-position/',
-
-
-    materialsCountUrl: '/api/admin/materials/count',
-    materialsUrl: '/api/admin/materials/',
-    singleMaterialUrl: '/api/admin/material/',
-    saveMaterialUrl: '/api/admin/material/save/',
-    deleteMaterialUrl: '/api/admin/material/delete/',
-    MaterialChangePositionUrl: '/api/admin/material/change-position/',
-
-
-    categories: [],
-    categoriesCountFromServer: -1,
-    singleCategoryFromServer: null,
-};
- */
 
 /***/ }),
 
@@ -21497,7 +21431,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _waitingScreen__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./waitingScreen */ "./resources/js/store/waitingScreen.js");
 /* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
 /* harmony import */ var _contextMenu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./contextMenu */ "./resources/js/store/contextMenu.js");
-/* harmony import */ var _seoManager__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./seoManager */ "./resources/js/store/seoManager.js");
+/* harmony import */ var _seoManager__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./seoManager */ "./resources/js/store/seoManager.js");
 /* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
 /* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
 /* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
@@ -21563,7 +21497,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     waitingScreen: _waitingScreen__WEBPACK_IMPORTED_MODULE_14__["default"],
     confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__["default"],
     contextMenu: _contextMenu__WEBPACK_IMPORTED_MODULE_16__["default"],
-    seoManager: _seoManager__WEBPACK_IMPORTED_MODULE_21__["default"],
+    seoManager: _seoManager__WEBPACK_IMPORTED_MODULE_17__["default"],
     dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_18__["default"],
     dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_19__["default"],
     dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_20__["default"]
@@ -21781,8 +21715,7 @@ __webpack_require__.r(__webpack_exports__);
     handler: function handler(_ref3, _ref4) {
       var dispatch = _ref3.dispatch,
           commit = _ref3.commit,
-          getters = _ref3.getters,
-          state = _ref3.state;
+          getters = _ref3.getters;
       var entity = _ref4.entity,
           customQuantityPerPage = _ref4.customQuantityPerPage;
 
@@ -21855,7 +21788,6 @@ __webpack_require__.r(__webpack_exports__);
   showPage: function showPage(_ref5, _ref6) {
     var dispatch = _ref5.dispatch,
         commit = _ref5.commit,
-        state = _ref5.state,
         getters = _ref5.getters;
     var entity = _ref6.entity,
         page = _ref6.page;
@@ -21889,9 +21821,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   // ========================сбросить css ссылок пагинации==============================
   resetPaginationLinkCss: function resetPaginationLinkCss(_ref7, entity) {
-    var state = _ref7.state,
-        getters = _ref7.getters,
-        commit = _ref7.commit;
+    var commit = _ref7.commit,
+        getters = _ref7.getters;
     var cssArrLength = getters.paginationLinkCssArrLength(entity); // очистить css ссылок пагинации
 
     commit('clearPaginationLinkCssArr', entity); // заполнить неактивным css
@@ -21908,9 +21839,7 @@ __webpack_require__.r(__webpack_exports__);
   // ========================сформировать активный кадр ссылок пагинации========================
   makePaginationLinksShot: function makePaginationLinksShot(_ref8, entity) {
     var commit = _ref8.commit,
-        state = _ref8.state,
-        getters = _ref8.getters,
-        rootState = _ref8.rootState;
+        getters = _ref8.getters;
     var customizedLength = getters.customizedLength(entity);
     var currentPageNumber = getters.currentPageNumber(entity);
     var minimumPages = getters.minimumPagesForComplexPagination(entity);
@@ -22636,10 +22565,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   loadSingleProduct: function loadSingleProduct(_ref, productId) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
-        getters = _ref.getters,
         state = _ref.state;
-    var singleProductUrl = getters.singleProductUrl + productId;
-    dispatch('getJson', singleProductUrl, {
+    var url = state.url['singleProduct'] + productId;
+    dispatch('getJson', url, {
       root: true
     }).then(function (data) {
       // console.log(data);
@@ -22651,13 +22579,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   getProductsCount: function getProductsCount(_ref2) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, getters, url;
+      var dispatch, commit, state, url;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref2.dispatch, commit = _ref2.commit, getters = _ref2.getters;
-              url = getters.productsCountUrl;
+              dispatch = _ref2.dispatch, commit = _ref2.commit, state = _ref2.state;
+              url = state.url['productsCount'];
               dispatch('getJson', url, {
                 root: true
               }).then(function (data) {
@@ -22672,25 +22600,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  loadProducts: function loadProducts(_ref3) {
-    var _arguments = arguments;
+  loadProducts: function loadProducts(_ref3, route) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var dispatch, commit, getters, whichProducts, url;
+      var dispatch, commit, state, params, url;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              dispatch = _ref3.dispatch, commit = _ref3.commit, getters = _ref3.getters;
-              whichProducts = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : 'active';
-              url = getters.productsUrl + whichProducts;
-              dispatch('getJson', url, {
+              dispatch = _ref3.dispatch, commit = _ref3.commit, state = _ref3.state;
+
+              // console.log(route);
+              if (!route) {
+                route = {
+                  name: 'Products',
+                  params: {
+                    which: 'active'
+                  }
+                };
+              }
+
+              params = route.params;
+              url = {
+                Products: state.url['products'] + params.which,
+                ProductsByCategory: state.url['productsByCategory'] + params.categoryEntity + '/' + params.slug
+              };
+              dispatch('getJson', url[route.name], {
                 root: true
               }).then(function (data) {
                 // console.log(data);
-                commit('setProducts', data);
+                var products = {
+                  Products: data,
+                  ProductsByCategory: data.products
+                };
+                commit('setListHeader', {
+                  route: route,
+                  data: data
+                });
+                commit('setProducts', products[route.name]);
                 dispatch('setFiltered', {
                   entity: 'products',
-                  data: data
+                  data: products[route.name]
                 }, {
                   root: true
                 }).then(function () {
@@ -22708,7 +22657,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
               });
 
-            case 4:
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -22720,7 +22669,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   typeinValidation: function typeinValidation(_ref4, product) {
     var dispatch = _ref4.dispatch,
         commit = _ref4.commit,
-        getters = _ref4.getters,
         rootGetters = _ref4.rootGetters;
     dispatch('cleanPopupErrors', null, {
       root: true
@@ -22772,13 +22720,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // фронт-валидация, pop-up и type-in сообщения
   _frontValidation: function _frontValidation(_ref6, product) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var dispatch, commit, getters, _productValidation2, popupErrors, typeinErrors;
+      var dispatch, commit, _productValidation2, popupErrors, typeinErrors;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              dispatch = _ref6.dispatch, commit = _ref6.commit, getters = _ref6.getters;
+              dispatch = _ref6.dispatch, commit = _ref6.commit;
               _productValidation2 = Object(_functions_productValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(product), popupErrors = _productValidation2.popupErrors, typeinErrors = _productValidation2.typeinErrors;
 
               if (!popupErrors) {
@@ -22828,12 +22776,11 @@ __webpack_require__.r(__webpack_exports__);
   deleteProduct: function deleteProduct(_ref, productId) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
-        getters = _ref.getters,
         state = _ref.state;
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
-    dispatch('deleteJson', getters.deleteProductUrl + productId, {
+    dispatch('deleteJson', state.url['deleteProduct'] + productId, {
       root: true
     }).then(function (data) {
       dispatch('cleanPopupErrors', null, {
@@ -22845,8 +22792,7 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
         return;
-      } // console.log(data);
-
+      }
 
       if (data.deleteSuccess === true) {
         dispatch('loadProducts');
@@ -22871,16 +22817,22 @@ __webpack_require__.r(__webpack_exports__);
   restoreProduct: function restoreProduct(_ref2, productId) {
     var dispatch = _ref2.dispatch,
         commit = _ref2.commit,
-        getters = _ref2.getters;
+        state = _ref2.state;
     dispatch('closeContextMenu', null, {
       root: true
     });
-    dispatch('getJson', getters.restoreProductUrl + productId, {
+    dispatch('getJson', state.url['restoreProduct'] + productId, {
       root: true
     }).then(function (data) {
       // console.log(data);
       if (data.restoreSuccess === true) {
-        dispatch('loadProducts', 'trashed');
+        var routeOfTrashedProducts = {
+          name: 'Products',
+          params: {
+            which: 'trashed'
+          }
+        };
+        dispatch('loadProducts', routeOfTrashedProducts);
         var txt = "\u0422\u043E\u0432\u0430\u0440 \xAB".concat(data.product.name, "\xBB \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D.");
         dispatch('showAbsoluteFlashMessage', {
           text: txt,
@@ -22902,17 +22854,22 @@ __webpack_require__.r(__webpack_exports__);
   forceDeleteProduct: function forceDeleteProduct(_ref3, productId) {
     var dispatch = _ref3.dispatch,
         commit = _ref3.commit,
-        getters = _ref3.getters,
         state = _ref3.state;
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
-    dispatch('deleteJson', getters.forceDeleteProductUrl + productId, {
+    dispatch('deleteJson', state.url['forceDeleteProduct'] + productId, {
       root: true
     }).then(function (data) {
       // console.log(data);
       if (data.deleteSuccess === true) {
-        dispatch('loadProducts', 'trashed');
+        var routeOfTrashedProducts = {
+          name: 'Products',
+          params: {
+            which: 'trashed'
+          }
+        };
+        dispatch('loadProducts', routeOfTrashedProducts);
         var txt = "\u0422\u043E\u0432\u0430\u0440 \xAB".concat(data.productName, "\xBB \u0443\u0434\u0430\u043B\u0435\u043D \u0431\u0435\u0437\u0432\u043E\u0437\u0432\u0440\u0430\u0442\u043D\u043E.");
         dispatch('showAbsoluteFlashMessage', {
           text: txt,
@@ -22953,7 +22910,6 @@ __webpack_require__.r(__webpack_exports__);
     handler: function handler(_ref, _ref2) {
       var dispatch = _ref.dispatch,
           commit = _ref.commit,
-          getters = _ref.getters,
           state = _ref.state,
           rootState = _ref.rootState;
       var currentIndex = _ref2.currentIndex,
@@ -22978,7 +22934,7 @@ __webpack_require__.r(__webpack_exports__);
       }); // dispatch('showWaitingScreen', null, { root: true });
 
       dispatch('postJson', {
-        url: getters.moveProductUrl + operatedId,
+        url: state.url['moveProduct'] + operatedId,
         data: {
           targetId: targetId,
           vector: vector
@@ -22987,16 +22943,15 @@ __webpack_require__.r(__webpack_exports__);
         root: true
       }).then(function (data) {
         if (data.moveSuccess === true) {
-          //dispatch('loadProducts', 'active'); // получить обновленный список с сервера
           var txt = 'Сделано.';
           dispatch('showAbsoluteFlashMessage', {
             text: txt,
             sec: 0.8
           }, {
             root: true
-          }); //закрытие заглушки в loadProducts // dispatch('hideWaitingScreen', null, { root: true });
+          });
         } else {
-          dispatch('loadProducts', 'active'); // отобразить обратно
+          dispatch('loadProducts'); // отобразить обратно
 
           var _txt = 'Неудачная попытка перемещения.';
           dispatch('showAbsoluteFlashMessage', {
@@ -23028,7 +22983,6 @@ __webpack_require__.r(__webpack_exports__);
   showProductPhotoManager: function showProductPhotoManager(_ref, product) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
-        getters = _ref.getters,
         state = _ref.state;
     commit('setSingleProductFromServer', null);
     dispatch('closeContextMenu', null, {
@@ -23039,7 +22993,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     document.body.style.cssText = 'overflow:hidden;';
     dispatch('loadSingleProduct', product.id).then(function () {
-      var product = getters.singleProductFromServer;
+      var product = state.singleProductFromServer;
 
       if (product) {
         dispatch('hideWaitingScreen', null, {
@@ -23061,7 +23015,6 @@ __webpack_require__.r(__webpack_exports__);
   deletePhoto: function deletePhoto(_ref3, _ref4) {
     var dispatch = _ref3.dispatch,
         commit = _ref3.commit,
-        getters = _ref3.getters,
         state = _ref3.state;
     var productId = _ref4.productId,
         photoName = _ref4.photoName;
@@ -23071,7 +23024,7 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('showWaitingScreen', null, {
       root: true
     });
-    var url = getters.deleteProductPhotoUrl + productId + '/' + photoName;
+    var url = state.url['deleteProductPhoto'] + productId + '/' + photoName;
     dispatch('deleteJson', url, {
       root: true
     }).then(function (data) {
@@ -23079,6 +23032,13 @@ __webpack_require__.r(__webpack_exports__);
       if (data.deleteSuccess === true) {
         commit('setSingleProductPhoto', data.photoSet);
         commit('updateProductsBySingleProduct');
+        dispatch('updatePhotosetOfItemInPaginated', {
+          entity: 'products',
+          itemId: productId,
+          photoSet: data.photoSet
+        }, {
+          root: true
+        });
         dispatch('hideWaitingScreen', null, {
           root: true
         });
@@ -23110,7 +23070,6 @@ __webpack_require__.r(__webpack_exports__);
   rotatePhoto: function rotatePhoto(_ref5, _ref6) {
     var dispatch = _ref5.dispatch,
         commit = _ref5.commit,
-        getters = _ref5.getters,
         state = _ref5.state;
     var productId = _ref6.productId,
         photoName = _ref6.photoName,
@@ -23121,7 +23080,7 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('showWaitingScreen', null, {
       root: true
     });
-    var url = getters.rotateProductPhotoUrl + productId + '/' + photoName + '/' + angle;
+    var url = state.url['rotateProductPhoto'] + productId + '/' + photoName + '/' + angle;
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
@@ -23129,6 +23088,13 @@ __webpack_require__.r(__webpack_exports__);
       if (data.rotateSuccess === true) {
         commit('setSingleProductPhoto', data.photoSet);
         commit('updateProductsBySingleProduct');
+        dispatch('updatePhotosetOfItemInPaginated', {
+          entity: 'products',
+          itemId: productId,
+          photoSet: data.photoSet
+        }, {
+          root: true
+        });
         dispatch('hideWaitingScreen', null, {
           root: true
         });
@@ -23160,7 +23126,7 @@ __webpack_require__.r(__webpack_exports__);
   movePhoto: function movePhoto(_ref7, _ref8) {
     var dispatch = _ref7.dispatch,
         commit = _ref7.commit,
-        getters = _ref7.getters;
+        state = _ref7.state;
     var productId = _ref8.productId,
         photoName = _ref8.photoName,
         to = _ref8.to;
@@ -23170,7 +23136,7 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('showWaitingScreen', null, {
       root: true
     });
-    var url = getters.moveProductPhotoUrl + productId + '/' + photoName + '/' + to;
+    var url = state.url['moveProductPhoto'] + productId + '/' + photoName + '/' + to;
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
@@ -23178,6 +23144,13 @@ __webpack_require__.r(__webpack_exports__);
       if (data.moveSuccess === true) {
         commit('setSingleProductPhoto', data.photoSet);
         commit('updateProductsBySingleProduct');
+        dispatch('updatePhotosetOfItemInPaginated', {
+          entity: 'products',
+          itemId: productId,
+          photoSet: data.photoSet
+        }, {
+          root: true
+        });
         dispatch('hideWaitingScreen', null, {
           root: true
         });
@@ -23206,13 +23179,83 @@ __webpack_require__.r(__webpack_exports__);
       }
     });
   },
-  addPhotos: function addPhotos(_ref9, _ref10) {
-    var dispatch = _ref9.dispatch,
-        commit = _ref9.commit,
-        getters = _ref9.getters;
-    var productId = _ref10.productId,
-        photos = _ref10.photos;
-    var addPhotoUrl = getters.addProductPhotoUrl + productId;
+  movePhotoByDragAndDrop: {
+    root: true,
+    handler: function handler(_ref9, _ref10) {
+      var dispatch = _ref9.dispatch,
+          commit = _ref9.commit,
+          state = _ref9.state;
+      var currentIndex = _ref10.currentIndex,
+          newIndex = _ref10.newIndex,
+          vector = _ref10.vector;
+      var productId = state.singleProductFromServer.product.id;
+      var photoSet = JSON.parse(state.singleProductFromServer.product.photo_set);
+      var operatedPhotoName = photoSet[currentIndex];
+      var targetPhotoName = photoSet[newIndex];
+      commit('movePhoto', {
+        currentIndex: currentIndex,
+        newIndex: newIndex,
+        vector: vector
+      });
+      dispatch('showWaitingScreen', null, {
+        root: true
+      });
+      dispatch('postJson', {
+        url: state.url['moveByDragAndDropPhoto'] + productId,
+        data: {
+          operatedPhotoName: operatedPhotoName,
+          targetPhotoName: targetPhotoName,
+          vector: vector
+        }
+      }, {
+        root: true
+      }).then(function (data) {
+        if (data.moveSuccess === true) {
+          commit('setSingleProductPhoto', data.photoSet);
+          commit('updateProductsBySingleProduct');
+          dispatch('updatePhotosetOfItemInPaginated', {
+            entity: 'products',
+            itemId: productId,
+            photoSet: data.photoSet
+          }, {
+            root: true
+          });
+          dispatch('hideWaitingScreen', null, {
+            root: true
+          });
+          var txt = "\u0421\u0434\u0435\u043B\u0430\u043D\u043E.";
+          dispatch('showAbsoluteFlashMessage', {
+            text: txt,
+            sec: 0.5
+          }, {
+            root: true
+          });
+        } else {
+          var _data$customException4;
+
+          dispatch('hideWaitingScreen', null, {
+            root: true
+          });
+
+          var _txt4 = (_data$customException4 = data.customExceptionMessage) !== null && _data$customException4 !== void 0 ? _data$customException4 : 'Неудачная попытка перемещения.';
+
+          dispatch('showAbsoluteFlashMessage', {
+            text: _txt4,
+            sec: 2
+          }, {
+            root: true
+          });
+        }
+      });
+    }
+  },
+  addPhotos: function addPhotos(_ref11, _ref12) {
+    var dispatch = _ref11.dispatch,
+        commit = _ref11.commit,
+        state = _ref11.state;
+    var productId = _ref12.productId,
+        photos = _ref12.photos;
+    var addPhotoUrl = state.url['addProductPhoto'] + productId;
     var productPhotos = {}; // добавить фото в объект продукта
 
     for (var i = 0; i < photos.length; i++) {
@@ -23243,93 +23286,22 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       } else {
-        var _data$customException4;
+        var _data$customException5;
 
         dispatch('hideWaitingScreen', null, {
           root: true
         });
 
-        var _txt4 = (_data$customException4 = data.customExceptionMessage) !== null && _data$customException4 !== void 0 ? _data$customException4 : 'неудачная попытка сохранения';
+        var _txt5 = (_data$customException5 = data.customExceptionMessage) !== null && _data$customException5 !== void 0 ? _data$customException5 : 'неудачная попытка сохранения';
 
         dispatch('showAbsoluteFlashMessage', {
-          text: _txt4,
+          text: _txt5,
           sec: 2
         }, {
           root: true
         });
       }
     });
-  },
-  movePhotoByDragAndDrop: {
-    root: true,
-    handler: function handler(_ref11, _ref12) {
-      var dispatch = _ref11.dispatch,
-          commit = _ref11.commit,
-          getters = _ref11.getters,
-          state = _ref11.state;
-      var currentIndex = _ref12.currentIndex,
-          newIndex = _ref12.newIndex,
-          vector = _ref12.vector;
-      var productId = state.singleProductFromServer.product.id;
-      var photoSet = JSON.parse(state.singleProductFromServer.product.photo_set);
-      var operatedPhotoName = photoSet[currentIndex];
-      var targetPhotoName = photoSet[newIndex];
-      commit('movePhoto', {
-        currentIndex: currentIndex,
-        newIndex: newIndex,
-        vector: vector
-      });
-      dispatch('showWaitingScreen', null, {
-        root: true
-      });
-      dispatch('postJson', {
-        url: getters.moveByDragAndDropPhotoUrl + productId,
-        data: {
-          operatedPhotoName: operatedPhotoName,
-          targetPhotoName: targetPhotoName,
-          vector: vector
-        }
-      }, {
-        root: true
-      }).then(function (data) {
-        if (data.moveSuccess === true) {
-          commit('setSingleProductPhoto', data.photoSet);
-          commit('updateProductsBySingleProduct');
-          dispatch('updatePhotosetOfItemInPaginated', {
-            entity: 'products',
-            itemId: productId,
-            photoSet: data.photoSet
-          }, {
-            root: true
-          });
-          dispatch('hideWaitingScreen', null, {
-            root: true
-          });
-          var txt = "\u0421\u0434\u0435\u043B\u0430\u043D\u043E.";
-          dispatch('showAbsoluteFlashMessage', {
-            text: txt,
-            sec: 0.5
-          }, {
-            root: true
-          });
-        } else {
-          var _data$customException5;
-
-          dispatch('hideWaitingScreen', null, {
-            root: true
-          });
-
-          var _txt5 = (_data$customException5 = data.customExceptionMessage) !== null && _data$customException5 !== void 0 ? _data$customException5 : 'Неудачная попытка перемещения.';
-
-          dispatch('showAbsoluteFlashMessage', {
-            text: _txt5,
-            sec: 2
-          }, {
-            root: true
-          });
-        }
-      });
-    }
   }
 });
 
@@ -23404,12 +23376,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   saveProduct: function saveProduct(_ref, _ref2) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, getters, state, localProduct, photos, product, productId, saveProductUrl, i;
+      var dispatch, commit, state, localProduct, photos, product, productId, saveProductUrl, i;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters, state = _ref.state;
+              dispatch = _ref.dispatch, commit = _ref.commit, state = _ref.state;
               localProduct = _ref2.localProduct, photos = _ref2.photos;
               product = _objectSpread({}, localProduct);
               product.price = product.price.replace(/\s/g, ''); //console.log(localProduct);
@@ -23432,7 +23404,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context.abrupt("return");
 
             case 11:
-              saveProductUrl = productId > 0 ? getters.saveProductUrl + productId : getters.saveProductUrl; // добавить фото в объект продукта
+              saveProductUrl = productId > 0 ? state.url['saveProduct'] + productId : state.url['saveProduct']; // добавить фото в объект продукта
 
               for (i = 0; i < photos.length; i++) {
                 product["photos[".concat(i, "]")] = photos[i];
@@ -23444,8 +23416,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               });
               dispatch('postMultipart', {
                 url: saveProductUrl,
-                data: product //data: {textObject: product, photos: photos},
-
+                data: product
               }, {
                 root: true
               }).then(function (data) {
@@ -23526,47 +23497,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  productsCountUrl: function productsCountUrl(state) {
-    return state.productsCountUrl;
-  },
-  productsUrl: function productsUrl(state) {
-    return state.productsUrl;
-  },
-  singleProductUrl: function singleProductUrl(state) {
-    return state.singleProductUrl;
-  },
-  saveProductUrl: function saveProductUrl(state) {
-    return state.saveProductUrl;
-  },
-  deleteProductUrl: function deleteProductUrl(state) {
-    return state.deleteProductUrl;
-  },
-  restoreProductUrl: function restoreProductUrl(state) {
-    return state.restoreProductUrl;
-  },
-  forceDeleteProductUrl: function forceDeleteProductUrl(state) {
-    return state.forceDeleteProductUrl;
-  },
-  moveProductUrl: function moveProductUrl(state) {
-    return state.moveProductUrl;
-  },
-  deleteProductPhotoUrl: function deleteProductPhotoUrl(state) {
-    return state.deleteProductPhotoUrl;
-  },
-  rotateProductPhotoUrl: function rotateProductPhotoUrl(state) {
-    return state.rotateProductPhotoUrl;
-  },
-  moveProductPhotoUrl: function moveProductPhotoUrl(state) {
-    return state.moveProductPhotoUrl;
-  },
-  moveByDragAndDropPhotoUrl: function moveByDragAndDropPhotoUrl(state) {
-    return state.moveByDragAndDropPhotoUrl;
-  },
-  addProductPhotoUrl: function addProductPhotoUrl(state) {
-    return state.addProductPhotoUrl;
-  },
   products: function products(state) {
     return state.products;
+  },
+  listHeader: function listHeader(state) {
+    return state.listHeader;
   },
   productsCountFromServer: function productsCountFromServer(state) {
     return state.productsCountFromServer;
@@ -23619,6 +23554,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     state.products.splice(0, state.products.length);
     state.products = _toConsumableArray(data);
   },
+  setListHeader: function setListHeader(state, _ref) {
+    var route = _ref.route,
+        data = _ref.data;
+    var paramName = {
+      Products: 'which',
+      ProductsByCategory: 'categoryEntity'
+    };
+    var header = {
+      Products: {
+        active: 'Список товаров',
+        trashed: 'Удаленные товары'
+      },
+      ProductsByCategory: {
+        category: data.name,
+        material: "\u0422\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u0430 \xAB".concat(data.name, "\xBB"),
+        color: "\u0422\u043E\u0432\u0430\u0440\u044B \u0446\u0432\u0435\u0442\u0430 \xAB".concat(data.name, "\xBB")
+      }
+    };
+    state.listHeader = header[route.name][route.params[paramName[route.name]]];
+  },
   setProductsCountFromServer: function setProductsCountFromServer(state, number) {
     state.productsCountFromServer = number;
   },
@@ -23638,9 +23593,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     state.products.splice(index, 1, product);
   },
   // ---------------------при drag and drop --------------------------
-  moveProductInProductsById: function moveProductInProductsById(state, _ref) {
-    var operatedId = _ref.operatedId,
-        targetId = _ref.targetId;
+  moveProductInProductsById: function moveProductInProductsById(state, _ref2) {
+    var operatedId = _ref2.operatedId,
+        targetId = _ref2.targetId;
     var products = state.products; // найти индексы элементов по id
 
     var currentIndex = products.findIndex(function (item) {
@@ -23661,10 +23616,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     state.products = _toConsumableArray(products);
   },
   // ---------------------при drag and drop --------------------------
-  movePhoto: function movePhoto(state, _ref2) {
-    var currentIndex = _ref2.currentIndex,
-        newIndex = _ref2.newIndex,
-        vector = _ref2.vector;
+  movePhoto: function movePhoto(state, _ref3) {
+    var currentIndex = _ref3.currentIndex,
+        newIndex = _ref3.newIndex,
+        vector = _ref3.vector;
     var singleProduct = state.singleProductFromServer;
     var photoSet = JSON.parse(singleProduct.product.photo_set); // вырвать из массива и получить наш элемент, который двигаем
 
@@ -23697,23 +23652,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  productsCountUrl: '/api/admin/products/count',
-  productsUrl: '/api/admin/products/',
-  singleProductUrl: '/api/admin/product/',
-  saveProductUrl: '/api/admin/product/save/',
-  deleteProductUrl: '/api/admin/product/delete/',
-  forceDeleteProductUrl: '/api/admin/product/delete/force/',
-  restoreProductUrl: '/api/admin/product/restore/',
-  moveProductUrl: '/api/admin/product/move/',
-  deleteProductPhotoUrl: '/api/admin/product/photo/delete/',
-  rotateProductPhotoUrl: '/api/admin/product/photo/rotate/',
-  moveProductPhotoUrl: '/api/admin/product/photo/move/',
-  moveByDragAndDropPhotoUrl: '/api/admin/product/photo/moveByDragAndDrop/',
-  addProductPhotoUrl: '/api/admin/product/photo/add/',
+  url: {
+    productsCount: '/api/admin/products/count',
+    products: '/api/admin/products/',
+    productsByCategory: '/api/admin/products/by/',
+    singleProduct: '/api/admin/product/',
+    saveProduct: '/api/admin/product/save/',
+    deleteProduct: '/api/admin/product/delete/',
+    forceDeleteProduct: '/api/admin/product/delete/force/',
+    restoreProduct: '/api/admin/product/restore/',
+    moveProduct: '/api/admin/product/move/',
+    deleteProductPhoto: '/api/admin/product/photo/delete/',
+    rotateProductPhoto: '/api/admin/product/photo/rotate/',
+    moveProductPhoto: '/api/admin/product/photo/move/',
+    moveByDragAndDropPhoto: '/api/admin/product/photo/moveByDragAndDrop/',
+    addProductPhoto: '/api/admin/product/photo/add/'
+  },
   products: [],
+  listHeader: '',
   productsCountFromServer: 0,
   singleProductFromServer: {},
-  // productPhotosUrl: '/api/admin/product/photos/',
   showProductPhotoManager: false,
   enabledFadingCss: false
 });

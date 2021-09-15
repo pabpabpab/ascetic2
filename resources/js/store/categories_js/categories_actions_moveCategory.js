@@ -2,14 +2,14 @@ export default {
 
     moveCategory: {
         root: true,
-        handler ({ dispatch, commit, getters, state }, {currentIndex, newIndex, entity}) {
+        handler ({ dispatch, commit, state }, {currentIndex, newIndex, entity}) {
             // именно в такой последовательности
             const operatedCategoryId = state.categories[entity][currentIndex]['id'];
             commit('moveCategory', {currentIndex, newIndex, entity});
             const closestTopCategoryId = newIndex === 0 ? 0 : state.categories[entity][newIndex-1]['id'];
 
             dispatch('showWaitingScreen', null, { root: true });
-            const moveUrl = getters.moveUrl(entity) + operatedCategoryId;
+            const moveUrl = state.moveUrl[entity] + operatedCategoryId;
 
             dispatch (
                 'postJson',

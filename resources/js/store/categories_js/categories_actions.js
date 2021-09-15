@@ -2,8 +2,8 @@ import categoryValidation from './functions/categoryValidation';
 
 export default {
     // eslint-disable-next-line no-unused-vars
-    async loadSingleCategory({dispatch, commit, getters}, { entity, categoryId }) {
-        const singleCategoryUrl = getters.singleCategoryUrl(entity) + categoryId;
+    async loadSingleCategory({dispatch, commit, state}, { entity, categoryId }) {
+        const singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
         dispatch('getJson', singleCategoryUrl, { root: true })
             .then((data) => {
                 commit('setSingleCategoryFromServer', data);
@@ -11,16 +11,16 @@ export default {
     },
 
 
-    async getCategoriesCount({ dispatch, commit, getters }, entity) {
-        const url = getters.categoriesCountUrl(entity);
+    async getCategoriesCount({ dispatch, commit, state }, entity) {
+        const url = state.categoriesCountUrl[entity];
         dispatch('getJson', url, { root: true }).then((data) => {
             commit('setCategoriesCountFromServer', data);
         });
     },
 
 
-   async loadCategories({ dispatch, commit, getters }, entity) {
-        const url = getters.categoriesUrl(entity);
+   async loadCategories({ dispatch, commit, state }, entity) {
+        const url = state.categoriesUrl[entity];
         dispatch('getJson', url, { root: true }).then((data) => {
             commit('setCategories', { entity, data });
             dispatch('hideWaitingScreen', null, { root: true });

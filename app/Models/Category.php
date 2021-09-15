@@ -13,6 +13,7 @@ class Category extends Model
 
     protected $fillable = [
         'name',
+        'slug',
     ];
 
     public $timestamps = false;
@@ -21,9 +22,11 @@ class Category extends Model
         'products_count' => 0,
     ];
 
+
+
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class)->orderBy('position', 'desc');
     }
 
 

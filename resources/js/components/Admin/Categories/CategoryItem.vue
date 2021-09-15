@@ -1,10 +1,11 @@
 <template>
-    <div ref="cat" class="category__item"
+    <div ref="cat" class="category_item"
          :class="draggableItemClass"
          :style="{
                 'top': topByIndex(index),
             }"
          @mousedown="myDragStart({index: index, event: $event})">
+
         <span
             @mouseover="showContextMenu({
                 event: $event,
@@ -19,13 +20,29 @@
             &#8942;
         </span>
 
-        <span class="category__item__name">
-            {{category.name}}
-        </span>
+        <div class="category_item__name">
+            <router-link
+                :to="{
+                name: 'ProductsByCategory',
+                params: {
+                    categoryEntity: singularEntityName,
+                    slug: category.slug,
+                }
+            }" class="category_item__name__link">
+                {{ category.name }}
+            </router-link>
+        </div>
 
-        <span class="category__item__products_count">
+        <router-link
+            :to="{
+                name: 'ProductsByCategory',
+                params: {
+                    categoryEntity: singularEntityName,
+                    slug: category.slug,
+                }
+            }" class="category_item__products_count__link">
             {{category.products_count}}
-        </span>
+        </router-link>
     </div>
 </template>
 
@@ -67,6 +84,14 @@ export default {
             'isDragging',
             'topByIndex',
         ]),
+        singularEntityName() {
+            const singularEntityName = {
+                categories: 'category',
+                materials: 'material',
+                colors: 'color',
+            };
+            return singularEntityName[this.$route.params.entity];
+        },
         lastListIndex() {
             return this.categories[this.$route.params.entity].length - 1;
         },

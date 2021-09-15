@@ -34,3 +34,5 @@ class AddIdToPhotoTable extends Migration
 // php artisan make:migration add_id_to_photo_table
 
 
+
+
