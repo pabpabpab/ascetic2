@@ -2123,14 +2123,14 @@ var render = function() {
             _c(
               "router-link",
               {
-                staticClass: "navBar__link_complex",
+                staticClass: "navBar__link_with_arrow",
                 class: _vm.productsLinkClass,
                 attrs: { to: { name: "Products", params: { which: "active" } } }
               },
               [
                 _vm._v("\n                    Товары\n\n                    "),
                 _c("div", { staticClass: "navBar__link__arrow" }, [
-                  _c("div", { staticClass: "navBar__drop_menu" }, [
+                  _c("div", { staticClass: "navBar__drop_menu show_block" }, [
                     _c("ul", { staticClass: "navBar__drop_menu__ul" }, [
                       _c(
                         "li",
@@ -19412,13 +19412,15 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
-}, {
-  path: '/admin/products/edit/:id',
-  name: 'EditProduct',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
-  }
-}, {
+},
+/*
+{
+    path: '/admin/products/edit/:id',
+    name: 'EditProduct',
+    component: () => import('../components/Admin/SaveProductPage.vue'),
+},
+*/
+{
   path: '/admin/products/:which',
   name: 'Products',
   component: function component() {
@@ -22003,6 +22005,23 @@ __webpack_require__.r(__webpack_exports__);
         photoSet: photoSet
       });
     }
+  },
+  //==================================update item in paginated====================================
+  updateItemInPaginated: {
+    root: true,
+    handler: function handler(_ref13, _ref14) {
+      var commit = _ref13.commit;
+      var entity = _ref14.entity,
+          item = _ref14.item;
+      commit('updateItemInFiltered', {
+        entity: entity,
+        item: item
+      });
+      commit('updateItemInCustomized', {
+        entity: entity,
+        item: item
+      });
+    }
   }
 });
 
@@ -22269,7 +22288,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     state.customized = _objectSpread({}, customized);
   },
-  //===================update photoSet of item in filtered==================
+  //===================update item or photoSet of item in filtered==================
   updatePhotosetOfItemInFiltered: function updatePhotosetOfItemInFiltered(state, _ref11) {
     var entity = _ref11.entity,
         itemId = _ref11.itemId,
@@ -22281,11 +22300,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     filtered[itemIndex].photo_set = photoSet;
     state.filtered[entity] = _toConsumableArray(filtered);
   },
-  //===================update photoSet of item in customized==================
-  updatePhotosetOfItemInCustomized: function updatePhotosetOfItemInCustomized(state, _ref12) {
+  updateItemInFiltered: function updateItemInFiltered(state, _ref12) {
     var entity = _ref12.entity,
-        itemId = _ref12.itemId,
-        photoSet = _ref12.photoSet;
+        item = _ref12.item;
+    var filtered = state.filtered[entity];
+    var itemIndex = filtered.findIndex(function (el) {
+      return el.id === item.id;
+    });
+    filtered[itemIndex] = item;
+    state.filtered[entity] = _toConsumableArray(filtered);
+  },
+  //===================update item or photoSet of item in customized==================
+  updatePhotosetOfItemInCustomized: function updatePhotosetOfItemInCustomized(state, _ref13) {
+    var entity = _ref13.entity,
+        itemId = _ref13.itemId,
+        photoSet = _ref13.photoSet;
     var customized = state.customized;
     var currentPageIndex = state.currentPage[entity]; // взять items той страницы где обновляется элемент
 
@@ -22296,6 +22325,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }); // обновить элемент
 
     pageItems[itemIndex].photo_set = photoSet; // обновить локальный customized
+
+    customized[entity][currentPageIndex] = _toConsumableArray(pageItems); // обновить весь customized в state
+
+    state.customized = _objectSpread({}, customized);
+  },
+  updateItemInCustomized: function updateItemInCustomized(state, _ref14) {
+    var entity = _ref14.entity,
+        item = _ref14.item;
+    var customized = state.customized;
+    var currentPageIndex = state.currentPage[entity]; // взять items той страницы где обновляется элемент
+
+    var pageItems = customized[entity][currentPageIndex]; // его индекс
+
+    var itemIndex = pageItems.findIndex(function (el) {
+      return el.id === item.id;
+    }); // обновить элемент
+
+    pageItems[itemIndex] = item; // обновить локальный customized
 
     customized[entity][currentPageIndex] = _toConsumableArray(pageItems); // обновить весь customized в state
 
@@ -22464,7 +22511,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./products_js/products_actions_preDeleteProduct */ "./resources/js/store/products_js/products_actions_preDeleteProduct.js");
 /* harmony import */ var _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./products_js/products_actions_deleteAndRestoreProduct */ "./resources/js/store/products_js/products_actions_deleteAndRestoreProduct.js");
 /* harmony import */ var _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./products_js/products_actions_moveProduct */ "./resources/js/store/products_js/products_actions_moveProduct.js");
-/* harmony import */ var _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products_js/products_actions_photoManagment */ "./resources/js/store/products_js/products_actions_photoManagment.js");
+/* harmony import */ var _products_js_products_actions_editManager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products_js/products_actions_editManager */ "./resources/js/store/products_js/products_actions_editManager.js");
+/* harmony import */ var _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./products_js/products_actions_photoManagment */ "./resources/js/store/products_js/products_actions_photoManagment.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -22480,12 +22528,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: _products_js_products_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _products_js_products_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _products_js_products_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_7__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_8__["default"])
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_7__["default"]), _products_js_products_actions_editManager__WEBPACK_IMPORTED_MODULE_8__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_9__["default"])
 });
 
 /***/ }),
@@ -22952,6 +23001,50 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/products_js/products_actions_editManager.js":
+/*!************************************************************************!*\
+  !*** ./resources/js/store/products_js/products_actions_editManager.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  showProductEditManager: function showProductEditManager(_ref, productId) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        getters = _ref.getters,
+        state = _ref.state;
+    //console.log(data);
+    dispatch('closeContextMenu', null, {
+      root: true
+    });
+    dispatch('showWaitingScreen', null, {
+      root: true
+    });
+    document.body.style.cssText = 'overflow:hidden;';
+    commit('setSingleProductFromServer', {});
+    dispatch('loadSingleProduct', productId).then(function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
+      commit('setEnabledFadingCss', false);
+      commit('setShowProductEditManager', true);
+    });
+  },
+  closeProductEditManager: function closeProductEditManager(_ref2) {
+    var commit = _ref2.commit;
+    document.body.style.cssText = 'overflow:auto;';
+    commit('setEnabledFadingCss', true);
+    setTimeout(function () {
+      commit('setShowProductEditManager', false);
+    }, 500);
   }
 });
 
@@ -23438,34 +23531,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   saveProduct: function saveProduct(_ref, _ref2) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, state, localProduct, photos, product, productId, saveProductUrl, i;
+      var dispatch, commit, state, localProduct, photos, action, product, productId, saveProductUrl, i;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               dispatch = _ref.dispatch, commit = _ref.commit, state = _ref.state;
               localProduct = _ref2.localProduct, photos = _ref2.photos;
+              action = localProduct.id ? 'edit' : 'create';
               product = _objectSpread({}, localProduct);
               product.price = product.price.replace(/\s/g, ''); //console.log(localProduct);
               //console.log(photos);
 
               productId = product.id;
-              _context.next = 7;
+              _context.next = 8;
               return dispatch('cleanValidationErrors');
 
-            case 7:
-              _context.next = 9;
+            case 8:
+              _context.next = 10;
               return dispatch('_frontValidation', product);
 
-            case 9:
+            case 10:
               if (_context.sent) {
-                _context.next = 11;
+                _context.next = 12;
                 break;
               }
 
               return _context.abrupt("return");
 
-            case 11:
+            case 12:
               saveProductUrl = productId > 0 ? state.url['saveProduct'] + productId : state.url['saveProduct']; // добавить фото в объект продукта
 
               for (i = 0; i < photos.length; i++) {
@@ -23498,11 +23592,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }); //commit('setTypeinErrors', data.backValidatorErrors, { root: true });
 
                   return;
-                } // console.log(data);
+                } //console.log(data);
 
 
                 if (data.saveSuccess === true) {
-                  //commit('setSingleProductFromServer', data.product);
                   commit('disableTypeinValidation', null, {
                     root: true
                   });
@@ -23513,12 +23606,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }, {
                     root: true
                   });
-                  _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
-                    name: 'Products',
-                    params: {
-                      which: 'active'
-                    }
-                  });
+
+                  if (action === 'edit') {
+                    commit('setSingleProductFromServer', data);
+                    commit('updateProductsBySingleProduct');
+                    dispatch('updateItemInPaginated', {
+                      entity: 'products',
+                      item: data.product
+                    }, {
+                      root: true
+                    });
+                    dispatch('hideWaitingScreen', null, {
+                      root: true
+                    });
+                  } else {
+                    _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
+                      name: 'Products',
+                      params: {
+                        which: 'active'
+                      }
+                    });
+                  }
                 } else {
                   var _data$customException;
 
@@ -23537,7 +23645,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
               });
 
-            case 15:
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -23570,6 +23678,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   singleProductFromServer: function singleProductFromServer(state) {
     return state.singleProductFromServer;
+  },
+  showProductEditManager: function showProductEditManager(state) {
+    return state.showProductEditManager;
   },
   showProductPhotoManager: function showProductPhotoManager(state) {
     return state.showProductPhotoManager;
@@ -23697,6 +23808,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     state.singleProductFromServer = _objectSpread({}, singleProduct);
   },
   // ------------------------------------------------------------------
+  setShowProductEditManager: function setShowProductEditManager(state, value) {
+    state.showProductEditManager = value;
+  },
   setShowProductPhotoManager: function setShowProductPhotoManager(state, value) {
     state.showProductPhotoManager = value;
   }
@@ -23734,6 +23848,7 @@ __webpack_require__.r(__webpack_exports__);
   listHeader: '',
   productsCountFromServer: 0,
   singleProductFromServer: {},
+  showProductEditManager: false,
   showProductPhotoManager: false,
   enabledFadingCss: false
 });
@@ -23778,16 +23893,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     enabledFadingCss: false
   },
   getters: {
-    seoUrl: function seoUrl(state) {
-      return function (entity) {
-        return state.seoUrl[entity];
-      };
-    },
-    saveSeoUrl: function saveSeoUrl(state) {
-      return function (entity) {
-        return state.saveSeoUrl[entity];
-      };
-    },
+    //seoUrl: (state) => (entity) => state.seoUrl[entity],
+    //saveSeoUrl: (state) => (entity) => state.saveSeoUrl[entity],
     seoData: function seoData(state) {
       return function (entity) {
         if (!entity) {
@@ -23852,8 +23959,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       dispatch('showWaitingScreen', null, {
         root: true
-      });
-      document.body.style.cssText = 'overflow:hidden;';
+      }); // document.body.style.cssText='overflow:hidden;';
+
       commit('clearSeoData', entity);
       dispatch('loadSeoData', {
         entity: entity,
@@ -23869,7 +23976,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loadSeoData: function loadSeoData(_ref5, _ref6) {
       var dispatch = _ref5.dispatch,
           commit = _ref5.commit,
-          getters = _ref5.getters,
           state = _ref5.state;
       var entity = _ref6.entity,
           data = _ref6.data;
@@ -23878,7 +23984,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         category: data.id,
         photo: data.productId + '/' + data.photoName
       };
-      var seoUrl = getters.seoUrl(entity) + urlParams[entity];
+      var seoUrl = state.seoUrl[entity] + urlParams[entity];
       dispatch('getJson', seoUrl, {
         root: true
       }).then(function (data) {
@@ -23892,7 +23998,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     saveSeoData: function saveSeoData(_ref7, _ref8) {
       var dispatch = _ref7.dispatch,
           commit = _ref7.commit,
-          getters = _ref7.getters,
           state = _ref7.state;
       var entity = _ref8.entity,
           data = _ref8.data;
@@ -23945,7 +24050,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     closeSeoManager: function closeSeoManager(_ref9) {
       var commit = _ref9.commit;
-      document.body.style.cssText = 'overflow:auto;';
+      // document.body.style.cssText='overflow:auto;';
       commit('setEnabledFadingCss', true);
       setTimeout(function () {
         commit('setShowSeoManager', false);

@@ -25,8 +25,8 @@ export default {
         enabledFadingCss: false,
     },
     getters: {
-        seoUrl: (state) => (entity) => state.seoUrl[entity],
-        saveSeoUrl: (state) => (entity) => state.saveSeoUrl[entity],
+        //seoUrl: (state) => (entity) => state.seoUrl[entity],
+        //saveSeoUrl: (state) => (entity) => state.saveSeoUrl[entity],
 
         seoData: (state) => (entity) => {
             if (!entity) {
@@ -71,7 +71,7 @@ export default {
             //console.log(data);
             dispatch('closeContextMenu', null, { root: true });
             dispatch('showWaitingScreen', null, { root: true });
-            document.body.style.cssText='overflow:hidden;';
+            // document.body.style.cssText='overflow:hidden;';
             commit('clearSeoData', entity);
             dispatch('loadSeoData', {entity, data}).then(() => {
                 dispatch('hideWaitingScreen', null, {root: true});
@@ -81,14 +81,14 @@ export default {
         },
 
 
-        loadSeoData({dispatch, commit, getters, state},  {entity, data}) {
+        loadSeoData({dispatch, commit, state},  {entity, data}) {
             const urlParams = {
                 product: data.id,
                 category: data.id,
                 photo: data.productId + '/' + data.photoName
             }
 
-            const seoUrl = getters.seoUrl(entity) + urlParams[entity];
+            const seoUrl = state.seoUrl[entity] + urlParams[entity];
 
             dispatch('getJson', seoUrl, { root: true })
                 .then((data) => {
@@ -98,7 +98,7 @@ export default {
         },
 
 
-        saveSeoData({ dispatch, commit, getters, state }, { entity, data }) {
+        saveSeoData({ dispatch, commit, state }, { entity, data }) {
             //console.log(data);
 
             const urlParams = {
@@ -135,7 +135,7 @@ export default {
 
 
         closeSeoManager({ commit }) {
-            document.body.style.cssText='overflow:auto;';
+            // document.body.style.cssText='overflow:auto;';
             commit('setEnabledFadingCss', true);
             setTimeout(() => {
                 commit('setShowSeoManager', false);

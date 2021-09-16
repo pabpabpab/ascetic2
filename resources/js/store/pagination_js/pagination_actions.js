@@ -180,6 +180,15 @@ export default {
         }
     },
 
+    //==================================update item in paginated====================================
+    updateItemInPaginated: {
+        root: true,
+        handler ({ commit }, { entity, item }) {
+            commit('updateItemInFiltered', { entity, item });
+            commit('updateItemInCustomized', { entity, item });
+        }
+    },
+
 };
 
 

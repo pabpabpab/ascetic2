@@ -17,6 +17,7 @@
                 v-if="showProductsContextMenu">
             </products-context-menu>
 
+            <product-edit-manager v-if="showProductEditManager"></product-edit-manager>
             <product-photo-manager v-if="showProductPhotoManager"></product-photo-manager>
             <seo-manager entity="product" v-if="showSeoManager && !showProductPhotoManager"></seo-manager>
         </div>
@@ -30,6 +31,7 @@ import Pagination from "./../Blocks/Pagination";
 import ProductsContextMenu from "../ContextMenu/ProductsContextMenu";
 import ProductPhotoManager from "./ProductPhotoManager";
 import SeoManager from "./../Blocks/SeoManager";
+import ProductEditManager from "./ProductEditManager";
 import {mapGetters} from "vuex";
 
 export default {
@@ -41,9 +43,11 @@ export default {
         ProductsContextMenu,
         ProductPhotoManager,
         SeoManager,
+        ProductEditManager,
     },
     computed: {
         ...mapGetters('products', [
+            'showProductEditManager',
             'showProductPhotoManager',
         ]),
         ...mapGetters('seoManager', [

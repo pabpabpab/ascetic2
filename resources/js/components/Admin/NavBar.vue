@@ -10,12 +10,12 @@
                 <li class="navBar__li">
                     <router-link
                         :to="{ name: 'Products', params: { which: 'active' } }"
-                        class="navBar__link_complex"
+                        class="navBar__link_with_arrow"
                         :class="productsLinkClass">
                         Товары
 
                         <div class="navBar__link__arrow">
-                            <div class="navBar__drop_menu">
+                            <div class="navBar__drop_menu show_block">
                                 <ul class="navBar__drop_menu__ul">
                                     <li class="navBar__drop_menu__li">
                                         <router-link :to="{ name: 'Products', params: { which: 'trashed' } }"

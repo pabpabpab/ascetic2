@@ -2,12 +2,9 @@
     <div class="show_block">
 
 
-        <h1 v-if="action==='edit'">Редактировать товар «{{localProduct.name}}»</h1>
-        <h1 v-else>Добавить товар</h1>
+        <h1 v-if="action==='create'">Добавить товар</h1>
 
         <div class="content_block content_block__product_form">
-
-
 
 
             <div class="input_text__container mt20">
@@ -141,7 +138,7 @@
                 class="mt30">
             </files-input>
 
-            <button class="button__save_product mauto mt30"
+            <button v-if="action==='create'" class="button__save_product mauto mt30"
                 @click.stop="saveProduct({localProduct, photos})">
                 Сохранить
             </button>
@@ -160,6 +157,7 @@ import getFormattedPrice from './functions/getFormattedPrice';
 export default {
     name: "ProductForm",
     components: {FilesInput},
+    props: ['action', 'saveCmd'],
     data() {
         return {
             localProduct: {
@@ -172,18 +170,7 @@ export default {
                 color_ids: [],
             },
             photos: [],
-            action: 'create',
         };
-    },
-
-    methods: {
-        ...mapActions('products', [
-            'saveProduct',
-            'typeinValidation'
-        ]),
-        fitTextareaHeight(event) {
-            _fitTextareaHeight(event);
-        },
     },
 
     computed: {
@@ -202,25 +189,58 @@ export default {
         },
     },
 
+
+    methods: {
+        ...mapActions('products', [
+            'saveProduct',
+            'typeinValidation'
+        ]),
+        fitTextareaHeight(event) {
+            _fitTextareaHeight(event);
+        },
+        setLocalProduct(product) {
+            const parameters = JSON.parse(product.parameters);
+            this.localProduct = {
+                id: product.id,
+                category_id: product.category_id,
+                name: product.name,
+                price: parameters.price,
+                description: product.description.description,
+                material_ids: parameters.materials.map((item) => item.id),
+                color_ids: parameters.colors.map((item) => item.id),
+            }
+        },
+    },
+
     watch:{
         localPrice(value) {
             this.localProduct.price = getFormattedPrice(value);
         },
+        /*
+        localProduct(value) {
+            if (this.action === 'create') {
+                return;
+            }
+            //console.log(value);
+            this.$emit('changing-local-product', value);
+        },*/
         singleProductFromServer(val) {
             if (!val) {
                 return;
             }
-            // console.log(val);
-            const parameters = JSON.parse(val.product.parameters);
-            this.localProduct = {
-                id: val.product.id,
-                category_id: val.product.category_id,
-                name: val.product.name,
-                price: parameters.price,
-                description: val.description.description,
-                material_ids: parameters.materials.map((item) => item.id),
-                color_ids: parameters.colors.map((item) => item.id),
+            this.setLocalProduct(val.product);
+
+
+            //console.log(val);
+        },
+        saveCmd(val) {
+            if (!val) {
+                return;
             }
+            this.$store.dispatch('products/saveProduct', {
+                localProduct: this.localProduct,
+                photos: this.photos
+            });
         },
     },
 
@@ -228,10 +248,6 @@ export default {
         this.$store.dispatch('categories/loadCategories', 'categories');
         this.$store.dispatch('categories/loadCategories', 'materials');
         this.$store.dispatch('categories/loadCategories', 'colors');
-        if (this.$route.params.id) {
-            this.action = 'edit';
-            this.$store.dispatch('products/loadSingleProduct', this.$route.params.id);
-        }
     },
 }
 </script>

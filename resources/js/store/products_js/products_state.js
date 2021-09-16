@@ -24,6 +24,7 @@ export default {
     productsCountFromServer: 0,
     singleProductFromServer: {},
 
+    showProductEditManager: false,
     showProductPhotoManager: false,
     enabledFadingCss: false,
 };

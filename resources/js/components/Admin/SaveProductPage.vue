@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="display-none">{{ checkCategoriesCount() }}</div>
-        <product-form></product-form>
+        <product-form action="create"></product-form>
     </div>
 </template>
 

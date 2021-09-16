@@ -2,8 +2,8 @@ import thatRouter from "../../router";
 
 export default {
 
-
     async saveProduct({ dispatch, commit, state }, { localProduct, photos }) {
+        const action = localProduct.id ? 'edit' : 'create';
         const product = {...localProduct};
         product.price = product.price.replace(/\s/g, '');
         //console.log(localProduct);
@@ -19,7 +19,6 @@ export default {
         const saveProductUrl = productId > 0
             ? state.url['saveProduct'] + productId
             : state.url['saveProduct'];
-
 
         // добавить фото в объект продукта
         for (let i = 0; i < photos.length; i++ ) {
@@ -49,10 +48,9 @@ export default {
                     return;
                 }
 
-                // console.log(data);
+                //console.log(data);
 
                 if (data.saveSuccess === true) {
-                    //commit('setSingleProductFromServer', data.product);
                     commit('disableTypeinValidation', null, { root: true });
 
                     const txt = productId > 0
@@ -60,7 +58,17 @@ export default {
                         : `Добавлен товар «${data.product.name}»`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
 
-                    thatRouter.push({ name: 'Products', params: {which: 'active'}});
+                    if (action === 'edit') {
+                        commit('setSingleProductFromServer', data);
+                        commit('updateProductsBySingleProduct');
+                        dispatch('updateItemInPaginated', {
+                            entity: 'products',
+                            item: data.product,
+                        }, { root: true });
+                        dispatch('hideWaitingScreen', null, { root: true });
+                    } else {
+                        thatRouter.push({ name: 'Products', params: {which: 'active'}});
+                    }
                 } else {
                     dispatch('hideWaitingScreen', null, { root: true });
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';

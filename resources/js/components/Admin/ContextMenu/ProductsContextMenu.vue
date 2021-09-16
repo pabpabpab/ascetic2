@@ -17,7 +17,7 @@
             </template>
             <template v-else>
                 <li class="context_menu__li context_menu__li_black"
-                    @click="editProduct(product.id)">
+                    @click="showProductEditManager(product.id)">
                     Редактировать
                 </li>
                 <li class="context_menu__li context_menu__li_black"
@@ -64,14 +64,16 @@ export default {
         ...mapActions('products', [
             'preDeleteProduct',
             'restoreProduct',
+            'showProductEditManager',
             'showProductPhotoManager',
         ]),
         ...mapActions('seoManager', [
             'showSeoManager',
         ]),
+        /*
         editProduct(id) {
             this.$router.push({ name: 'EditProduct', params: { id: id } });
-        },
+        },*/
     },
 
 }

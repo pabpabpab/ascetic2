@@ -93,6 +93,9 @@ export default {
     },
 
     // ------------------------------------------------------------------
+    setShowProductEditManager: (state, value) => {
+        state.showProductEditManager = value;
+    },
     setShowProductPhotoManager: (state, value) => {
         state.showProductPhotoManager = value;
     },

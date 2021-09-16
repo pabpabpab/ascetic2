@@ -35,13 +35,13 @@ const routes = [
         name: 'SaveProduct',
         component: () => import('../components/Admin/SaveProductPage.vue'),
     },
-
+    /*
     {
         path: '/admin/products/edit/:id',
         name: 'EditProduct',
         component: () => import('../components/Admin/SaveProductPage.vue'),
     },
-
+    */
     {
         path: '/admin/products/:which',
         name: 'Products',

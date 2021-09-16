@@ -5,6 +5,7 @@ export default {
     productsCountFromServer: (state) => state.productsCountFromServer,
     singleProductFromServer: (state) => state.singleProductFromServer,
 
+    showProductEditManager: (state) => state.showProductEditManager,
     showProductPhotoManager: (state) => state.showProductPhotoManager,
     enabledFadingCss: (state) => state.enabledFadingCss,
 

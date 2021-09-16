@@ -122,7 +122,7 @@ export default {
         state.customized = { ...customized };
     },
 
-    //===================update photoSet of item in filtered==================
+    //===================update item or photoSet of item in filtered==================
     updatePhotosetOfItemInFiltered: (state, { entity, itemId, photoSet }) => {
         const filtered = state.filtered[entity];
         const itemIndex = filtered.findIndex(item => item.id === itemId);
@@ -130,7 +130,14 @@ export default {
         state.filtered[entity] = [ ...filtered ];
     },
 
-    //===================update photoSet of item in customized==================
+    updateItemInFiltered: (state, { entity, item }) => {
+        const filtered = state.filtered[entity];
+        const itemIndex = filtered.findIndex(el => el.id === item.id);
+        filtered[itemIndex] = item;
+        state.filtered[entity] = [ ...filtered ];
+    },
+
+    //===================update item or photoSet of item in customized==================
     updatePhotosetOfItemInCustomized: (state, { entity, itemId, photoSet }) => {
         const customized = state.customized;
         const currentPageIndex = state.currentPage[entity];
@@ -147,4 +154,22 @@ export default {
         // обновить весь customized в state
         state.customized = { ...customized };
     },
+
+    updateItemInCustomized: (state, { entity, item }) => {
+        const customized = state.customized;
+        const currentPageIndex = state.currentPage[entity];
+
+        // взять items той страницы где обновляется элемент
+        const pageItems = customized[entity][currentPageIndex];
+        // его индекс
+        const itemIndex = pageItems.findIndex(el => el.id === item.id);
+        // обновить элемент
+        pageItems[itemIndex] = item;
+
+        // обновить локальный customized
+        customized[entity][currentPageIndex] = [ ...pageItems ];
+        // обновить весь customized в state
+        state.customized = { ...customized };
+    },
+
 };
