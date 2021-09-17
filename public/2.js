@@ -196,10 +196,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductsContextMenu",
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'enabledFadingCss', 'product'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'enabledFadingCss', 'product'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['seoData'])), {}, {
     contextMenuClass: function contextMenuClass() {
       return {
         'context_menu__wrapper context_menu__wrapper_black': true,
@@ -209,6 +210,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     isTrashedProduct: function isTrashedProduct() {
       return Boolean(this.product.deleted_at);
+    },
+    hasSeoData: function hasSeoData() {
+      var _this = this;
+
+      var index = this.seoData.findIndex(function (item) {
+        return item.product_id === _this.product.id;
+      });
+
+      if (index === -1) {
+        return false;
+      }
+
+      return Boolean(this.seoData[index].page_title) || Boolean(this.seoData[index].page_description);
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['preDeleteProduct', 'restoreProduct', 'showProductEditManager', 'showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('seoManager', ['showSeoManager']))
@@ -546,15 +560,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer', 'enabledFadingCss'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer', 'enabledFadingCss'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {
     editScreenClass: function editScreenClass() {
       return {
         'edit_manager__screen': true,
         'show_block': !this.enabledFadingCss,
         'hide_block': this.enabledFadingCss
       };
-    }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {
+    },
     noData: function noData() {
       var _this$singleProductFr;
 
@@ -581,23 +594,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return '';
       }
 
-      return "".concat(this.folderName, "/").concat(this.fileNamePrefix).concat(this.photoName);
-    },
-    photoName: function photoName() {
-      return JSON.parse(this.singleProductFromServer.product.photo_set)[0];
-    },
-    folderName: function folderName() {
-      return "/storage/".concat(this.imgFolderPrefix).concat(this.photoSizeIndex);
-    },
-    fileNamePrefix: function fileNamePrefix() {
-      return "".concat(this.singleProductFromServer.product.id, "s").concat(this.photoSizeIndex, "-");
+      var folderName = "/storage/".concat(this.imgFolderPrefix).concat(this.photoSizeIndex);
+      var fileNamePrefix = "".concat(this.singleProductFromServer.product.id, "s").concat(this.photoSizeIndex, "-");
+      var photoName = JSON.parse(this.singleProductFromServer.product.photo_set)[0];
+      return "".concat(folderName, "/").concat(fileNamePrefix).concat(photoName);
     },
     imgClass: function imgClass() {
       return "photo__size".concat(this.photoSizeIndex);
     }
   }),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['closeProductEditManager' //'saveProduct',
-  ])), {}, {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['closeProductEditManager'])), {}, {
     fitTextareaHeight: function fitTextareaHeight(event) {
       Object(_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_1__["default"])(event);
     },
@@ -1346,7 +1352,19 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n                SEO для товара\n            ")]
+                [
+                  _vm.hasSeoData
+                    ? _c(
+                        "span",
+                        {
+                          staticClass: "has_data_green",
+                          attrs: { title: "уже есть данные" }
+                        },
+                        [_vm._v("✔")]
+                      )
+                    : _vm._e(),
+                  _vm._v("\n                SEO для товара\n            ")
+                ]
               ),
               _vm._v(" "),
               _c(

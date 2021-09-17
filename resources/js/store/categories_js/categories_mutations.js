@@ -3,6 +3,9 @@ export default {
         state.categories[entity].splice(0, state.categories.length);
         state.categories[entity] = [ ...data ];
     },
+    setSeoData: (state, data) => {
+        state.seoData = [ ...data ];
+    },
     setCategoriesCountFromServer: (state, number) => {
         state.categoriesCountFromServer = number;
     },

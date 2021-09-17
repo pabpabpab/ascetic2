@@ -216,22 +216,11 @@ export default {
         localPrice(value) {
             this.localProduct.price = getFormattedPrice(value);
         },
-        /*
-        localProduct(value) {
-            if (this.action === 'create') {
-                return;
-            }
-            //console.log(value);
-            this.$emit('changing-local-product', value);
-        },*/
         singleProductFromServer(val) {
             if (!val) {
                 return;
             }
             this.setLocalProduct(val.product);
-
-
-            //console.log(val);
         },
         saveCmd(val) {
             if (!val) {

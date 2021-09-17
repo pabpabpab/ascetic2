@@ -1,6 +1,7 @@
 export default {
 
     products: (state) => state.products,
+    seoData: (state) => state.seoData,
     listHeader: (state) => state.listHeader,
     productsCountFromServer: (state) => state.productsCountFromServer,
     singleProductFromServer: (state) => state.singleProductFromServer,

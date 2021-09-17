@@ -10,7 +10,6 @@ export default {
             });
     },
 
-
     async getCategoriesCount({ dispatch, commit, state }, entity) {
         const url = state.categoriesCountUrl[entity];
         dispatch('getJson', url, { root: true }).then((data) => {
@@ -18,11 +17,19 @@ export default {
         });
     },
 
-
    async loadCategories({ dispatch, commit, state }, entity) {
         const url = state.categoriesUrl[entity];
         dispatch('getJson', url, { root: true }).then((data) => {
-            commit('setCategories', { entity, data });
+            const categoriesBook = {
+                categories: data?.categories,
+                materials: data,
+                colors: data,
+            }
+            const categories = categoriesBook[entity];
+            commit('setCategories', { entity: entity, data: categories });
+            if (entity === 'categories') {
+                commit('setSeoData', data.seo);
+            }
             dispatch('hideWaitingScreen', null, { root: true });
         });
    },

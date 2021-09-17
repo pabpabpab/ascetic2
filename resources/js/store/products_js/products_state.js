@@ -20,6 +20,7 @@ export default {
     },
 
     products: [],
+    seoData: [],
     listHeader: '',
     productsCountFromServer: 0,
     singleProductFromServer: {},

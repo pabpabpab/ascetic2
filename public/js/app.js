@@ -19634,10 +19634,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               dispatch('getJson', url, {
                 root: true
               }).then(function (data) {
+                var categoriesBook = {
+                  categories: data === null || data === void 0 ? void 0 : data.categories,
+                  materials: data,
+                  colors: data
+                };
+                var categories = categoriesBook[entity];
                 commit('setCategories', {
                   entity: entity,
-                  data: data
+                  data: categories
                 });
+
+                if (entity === 'categories') {
+                  commit('setSeoData', data.seo);
+                }
+
                 dispatch('hideWaitingScreen', null, {
                   root: true
                 });
@@ -20132,6 +20143,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   singleCategoryFromServer: function singleCategoryFromServer(state) {
     return state.singleCategoryFromServer;
+  },
+  seoData: function seoData(state) {
+    return state.seoData;
   }
 });
 
@@ -20170,6 +20184,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         data = _ref.data;
     state.categories[entity].splice(0, state.categories.length);
     state.categories[entity] = _toConsumableArray(data);
+  },
+  setSeoData: function setSeoData(state, data) {
+    state.seoData = _toConsumableArray(data);
   },
   setCategoriesCountFromServer: function setCategoriesCountFromServer(state, number) {
     state.categoriesCountFromServer = number;
@@ -20242,6 +20259,7 @@ __webpack_require__.r(__webpack_exports__);
     materials: [],
     colors: []
   },
+  seoData: [],
   categoriesCountFromServer: -1,
   singleCategoryFromServer: null
 });
@@ -22672,7 +22690,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // eslint-disable-next-line no-unused-vars
   loadSingleProduct: function loadSingleProduct(_ref, productId) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
@@ -22738,19 +22755,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               dispatch('getJson', url[route.name], {
                 root: true
               }).then(function (data) {
-                // console.log(data);
-                var products = {
-                  Products: data,
-                  ProductsByCategory: data.products
+                var _data$category;
+
+                //console.log(data);
+                var productsBook = {
+                  Products: data === null || data === void 0 ? void 0 : data.products,
+                  ProductsByCategory: data === null || data === void 0 ? void 0 : (_data$category = data.category) === null || _data$category === void 0 ? void 0 : _data$category.products
                 };
+                var products = productsBook[route.name];
                 commit('setListHeader', {
                   route: route,
                   data: data
                 });
-                commit('setProducts', products[route.name]);
+                commit('setProducts', products);
+                commit('setSeoData', data.seo);
                 dispatch('setFiltered', {
                   entity: 'products',
-                  data: products[route.name]
+                  data: products
                 }, {
                   root: true
                 }).then(function () {
@@ -22776,7 +22797,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee2);
     }))();
   },
-  // фронт-валидация при вводе (type-in)
+  // фронт-валидация при вводе (type-in валидация)
   typeinValidation: function typeinValidation(_ref4, product) {
     var dispatch = _ref4.dispatch,
         commit = _ref4.commit,
@@ -22828,7 +22849,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee3);
     }))();
   },
-  // фронт-валидация, pop-up и type-in сообщения
+  // фронт-валидация, pop-up и type-in сообщения об ошибках
   _frontValidation: function _frontValidation(_ref6, product) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var dispatch, commit, _productValidation2, popupErrors, typeinErrors;
@@ -23670,6 +23691,9 @@ __webpack_require__.r(__webpack_exports__);
   products: function products(state) {
     return state.products;
   },
+  seoData: function seoData(state) {
+    return state.seoData;
+  },
   listHeader: function listHeader(state) {
     return state.listHeader;
   },
@@ -23724,10 +23748,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     state.enabledFadingCss = value;
   },
   setProducts: function setProducts(state, data) {
-    state.products.splice(0, state.products.length);
+    //state.products.splice(0, state.products.length);
     state.products = _toConsumableArray(data);
   },
+  setSeoData: function setSeoData(state, data) {
+    state.seoData = _toConsumableArray(data);
+  },
   setListHeader: function setListHeader(state, _ref) {
+    var _data$category, _data$category2, _data$category3;
+
     var route = _ref.route,
         data = _ref.data;
     var paramName = {
@@ -23740,9 +23769,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         trashed: 'Удаленные товары'
       },
       ProductsByCategory: {
-        category: data.name,
-        material: "\u0422\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u0430 \xAB".concat(data.name, "\xBB"),
-        color: "\u0422\u043E\u0432\u0430\u0440\u044B \u0446\u0432\u0435\u0442\u0430 \xAB".concat(data.name, "\xBB")
+        category: data === null || data === void 0 ? void 0 : (_data$category = data.category) === null || _data$category === void 0 ? void 0 : _data$category.name,
+        material: "\u0422\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u0430 \xAB".concat(data === null || data === void 0 ? void 0 : (_data$category2 = data.category) === null || _data$category2 === void 0 ? void 0 : _data$category2.name, "\xBB"),
+        color: "\u0422\u043E\u0432\u0430\u0440\u044B \u0446\u0432\u0435\u0442\u0430 \xAB".concat(data === null || data === void 0 ? void 0 : (_data$category3 = data.category) === null || _data$category3 === void 0 ? void 0 : _data$category3.name, "\xBB")
       }
     };
     state.listHeader = header[route.name][route.params[paramName[route.name]]];
@@ -23845,6 +23874,7 @@ __webpack_require__.r(__webpack_exports__);
     addProductPhoto: '/api/admin/product/photo/add/'
   },
   products: [],
+  seoData: [],
   listHeader: '',
   productsCountFromServer: 0,
   singleProductFromServer: {},
@@ -23864,6 +23894,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -23928,7 +23970,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       seoData[entity] = {};
       state.seoData = _objectSpread({}, seoData);
     },
-    updateOnlySeoData: function updateOnlySeoData(state, _ref2) {
+    updateSeoData: function updateSeoData(state, _ref2) {
       var entity = _ref2.entity,
           data = _ref2.data;
 
@@ -23936,23 +23978,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var seoData = _objectSpread({}, state.seoData);
 
       seoData[entity].seo = _objectSpread({}, data);
-      state.seoData = _objectSpread({}, seoData); //console.log(state.seoData);
+      state.seoData = _objectSpread({}, seoData);
     },
     setShowSeoManager: function setShowSeoManager(state, value) {
       state.showSeoManager = value;
     },
     setEnabledFadingCss: function setEnabledFadingCss(state, value) {
       state.enabledFadingCss = value;
+    },
+    pushItemIntoModuleSeoData: function pushItemIntoModuleSeoData(state, _ref3) {
+      var rootState = _ref3.rootState,
+          entity = _ref3.entity,
+          data = _ref3.data;
+      //console.log(data);
+      var item = {
+        page_title: data.pageTitle,
+        page_description: data.pageDescription,
+        alt_text: data.imgAlt
+      };
+      item[entity + '_id'] = data.entityId;
+      var moduleNameBook = {
+        product: 'products',
+        photo: 'products',
+        category: 'categories'
+      };
+      var moduleName = moduleNameBook[entity];
+      var arr = rootState[moduleName]['seoData'];
+      arr.push(item);
+      rootState[moduleName]['seoData'] = _toConsumableArray(arr);
     }
   },
   actions: {
-    showSeoManager: function showSeoManager(_ref3, _ref4) {
-      var dispatch = _ref3.dispatch,
-          commit = _ref3.commit,
-          getters = _ref3.getters,
-          state = _ref3.state;
-      var entity = _ref4.entity,
-          data = _ref4.data;
+    showSeoManager: function showSeoManager(_ref4, _ref5) {
+      var dispatch = _ref4.dispatch,
+          commit = _ref4.commit,
+          getters = _ref4.getters,
+          state = _ref4.state;
+      var entity = _ref5.entity,
+          data = _ref5.data;
       //console.log(data);
       dispatch('closeContextMenu', null, {
         root: true
@@ -23973,12 +24036,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         commit('setShowSeoManager', true);
       });
     },
-    loadSeoData: function loadSeoData(_ref5, _ref6) {
-      var dispatch = _ref5.dispatch,
-          commit = _ref5.commit,
-          state = _ref5.state;
-      var entity = _ref6.entity,
-          data = _ref6.data;
+    loadSeoData: function loadSeoData(_ref6, _ref7) {
+      var dispatch = _ref6.dispatch,
+          commit = _ref6.commit,
+          state = _ref6.state;
+      var entity = _ref7.entity,
+          data = _ref7.data;
       var urlParams = {
         product: data.id,
         category: data.id,
@@ -23995,13 +24058,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
     },
-    saveSeoData: function saveSeoData(_ref7, _ref8) {
-      var dispatch = _ref7.dispatch,
-          commit = _ref7.commit,
-          state = _ref7.state;
-      var entity = _ref8.entity,
-          data = _ref8.data;
+    saveSeoData: function saveSeoData(_ref8, _ref9) {
+      var dispatch = _ref8.dispatch,
+          commit = _ref8.commit,
+          state = _ref8.state,
+          rootState = _ref8.rootState;
+      var entity = _ref9.entity,
+          data = _ref9.data;
+      //console.log(entity);
       //console.log(data);
+      var frontItem = data;
       var urlParams = {
         product: data.entityId,
         category: data.entityId,
@@ -24023,7 +24089,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
 
         if (data.saveSuccess === true) {
-          commit('updateOnlySeoData', {
+          commit('pushItemIntoModuleSeoData', {
+            rootState: rootState,
+            entity: entity,
+            data: frontItem
+          });
+          commit('updateSeoData', {
             entity: entity,
             data: data.seo
           });
@@ -24048,8 +24119,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     },
-    closeSeoManager: function closeSeoManager(_ref9) {
-      var commit = _ref9.commit;
+    closeSeoManager: function closeSeoManager(_ref10) {
+      var commit = _ref10.commit;
       // document.body.style.cssText='overflow:auto;';
       commit('setEnabledFadingCss', true);
       setTimeout(function () {

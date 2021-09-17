@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryDeleteRequest;
 use App\Http\Requests\Admin\CategorySaveRequest;
 use App\Models\Category;
+use App\Models\CategorySEOText;
 use App\Services\Category\CategoryService;
 use App\Services\Category\SeoService;
 use Illuminate\Http\JsonResponse;
@@ -20,7 +21,10 @@ class CategoryController extends Controller
     public function getAll(CategoryService $categoryService): JsonResponse
     {
         $categories = $categoryService->getAll($this->modelClassName);
-        return response()->json($categories);
+        return response()->json([
+            'categories' => $categories,
+            'seo' => CategorySEOText::query()->get()
+        ]);
     }
 
     public function getCount(): JsonResponse

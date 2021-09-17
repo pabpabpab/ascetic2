@@ -223,21 +223,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     localPrice: function localPrice(value) {
       this.localProduct.price = Object(_functions_getFormattedPrice__WEBPACK_IMPORTED_MODULE_3__["default"])(value);
     },
-
-    /*
-    localProduct(value) {
-        if (this.action === 'create') {
-            return;
-        }
-        //console.log(value);
-        this.$emit('changing-local-product', value);
-    },*/
     singleProductFromServer: function singleProductFromServer(val) {
       if (!val) {
         return;
       }
 
-      this.setLocalProduct(val.product); //console.log(val);
+      this.setLocalProduct(val.product);
     },
     saveCmd: function saveCmd(val) {
       if (!val) {

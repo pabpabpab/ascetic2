@@ -1677,6 +1677,19 @@ h1 {
   padding: 0;
 }
 
+.context_menu__li_header {
+  display: block;
+  margin: 0;
+  padding: 10px;
+  list-style-type: none;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 400;
+  text-align: left;
+  background-color: #505050;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.3);
+}
+
 .context_menu__li {
   display: block;
   margin: 0;
@@ -1697,6 +1710,49 @@ h1 {
   font-weight: 400;
 }
 
+.context_menu__li__multiple {
+  margin: 0;
+  padding: 3px 8px;
+  font-size: 16px;
+  color: #464646;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(150, 150, 150, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.context_menu__li__multiple__item {
+  display: block;
+  margin: 0;
+  padding: 7px 17px;
+  font-size: 16px;
+  color: #464646;
+  font-weight: 400;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.context_menu__li__multiple__item:hover {
+  background-color: #cfd9e0;
+  font-size: 16px;
+  color: black;
+  font-weight: 400;
+}
+
+.context_menu__li_header_black {
+  font-size: 16px;
+  color: #a0cefd;
+  font-weight: 400;
+  background-color: rgba(100, 100, 100, 0.9);
+}
+
 .context_menu__li_black {
   font-size: 16px;
   color: #e8e8e8;
@@ -1706,26 +1762,6 @@ h1 {
 .context_menu__li_black:hover {
   background-color: rgba(100, 100, 100, 0.9);
   color: #fff;
-}
-
-.context_menu__li_header {
-  display: block;
-  margin: 0;
-  padding: 10px;
-  list-style-type: none;
-  font-size: 16px;
-  color: #fff;
-  font-weight: 400;
-  text-align: left;
-  background-color: #505050;
-  border-bottom: 1px solid rgba(150, 150, 150, 0.3);
-}
-
-.context_menu__li_header_black {
-  font-size: 16px;
-  color: #a0cefd;
-  font-weight: 400;
-  background-color: rgba(100, 100, 100, 0.9);
 }
 
 .context_menu__li__multiple_black {
@@ -1760,6 +1796,20 @@ h1 {
 .context_menu__li__multiple__item_black:hover {
   background-color: rgba(100, 100, 100, 0.9);
   color: #fff;
+}
+
+.has_data_green {
+  font-size: 14px;
+  color: #00ff00;
+  font-weight: 400;
+  margin-right: 5px;
+}
+
+.has_data_blue {
+  font-size: 14px;
+  color: #003cff;
+  font-weight: 400;
+  margin-right: 5px;
 }
 
 .photo_manager__screen {

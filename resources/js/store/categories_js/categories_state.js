@@ -50,6 +50,7 @@ export default {
         colors: [],
     },
 
+    seoData: [],
 
     categoriesCountFromServer: -1,
     singleCategoryFromServer: null,

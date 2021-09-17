@@ -4,8 +4,12 @@ export default {
     },
 
     setProducts: (state, data) => {
-        state.products.splice(0, state.products.length);
+        //state.products.splice(0, state.products.length);
         state.products = [ ...data ];
+    },
+
+    setSeoData: (state, data) => {
+        state.seoData = [ ...data ];
     },
 
     setListHeader: (state, { route, data }) => {
@@ -20,9 +24,9 @@ export default {
                 trashed: 'Удаленные товары',
             },
             ProductsByCategory: {
-                category: data.name,
-                material: `Товары из материала «${data.name}»`,
-                color: `Товары цвета «${data.name}»`,
+                category: data?.category?.name,
+                material: `Товары из материала «${data?.category?.name}»`,
+                color: `Товары цвета «${data?.category?.name}»`,
             }
         }
 

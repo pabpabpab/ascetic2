@@ -26,6 +26,7 @@
                 </li>
                 <li class="context_menu__li context_menu__li_black"
                     @click="showSeoManager({entity: 'product', data: {id: product.id}})" >
+                    <span v-if="hasSeoData" title="уже есть данные" class='has_data_green'>&#10004;</span>
                     SEO для товара
                 </li>
                 <li class="context_menu__li context_menu__li_black" style="border: 0;"
@@ -49,6 +50,9 @@ export default {
             'enabledFadingCss',
             'product',
         ]),
+        ...mapGetters('products', [
+            'seoData',
+        ]),
         contextMenuClass() {
             return {
                 'context_menu__wrapper context_menu__wrapper_black': true,
@@ -59,6 +63,13 @@ export default {
         isTrashedProduct() {
             return Boolean(this.product.deleted_at);
         },
+        hasSeoData() {
+            const index = this.seoData.findIndex(item => item.product_id === this.product.id);
+            if (index === -1) {
+                return false;
+            }
+            return Boolean(this.seoData[index].page_title) || Boolean(this.seoData[index].page_description);
+        }
     },
     methods: {
         ...mapActions('products', [

@@ -2,7 +2,6 @@ import productValidation from './functions/productValidation';
 import thatRouter from "../../router";
 
 export default {
-    // eslint-disable-next-line no-unused-vars
     loadSingleProduct({dispatch, commit, state}, productId) {
         const url = state.url['singleProduct'] + productId;
         dispatch('getJson', url, { root: true })
@@ -39,14 +38,17 @@ export default {
         };
 
         dispatch('getJson', url[route.name], { root: true }).then((data) => {
-            // console.log(data);
-            const products = {
-                Products: data,
-                ProductsByCategory: data.products
+            //console.log(data);
+            const productsBook = {
+                Products: data?.products,
+                ProductsByCategory: data?.category?.products
             }
-            commit('setListHeader', { route, data });
-            commit('setProducts', products[route.name]);
-            dispatch('setFiltered', { entity: 'products', data: products[route.name] }, { root: true }).then(() => {
+            const products = productsBook[route.name];
+
+            commit('setListHeader', { route: route, data: data });
+            commit('setProducts', products);
+            commit('setSeoData', data.seo);
+            dispatch('setFiltered', { entity: 'products', data: products }, { root: true }).then(() => {
                 // ниже передаю параметр quantityPerPage = 0 для совместимости,
                 // так как данный action может вызываться из других компонентов с параметром quantityPerPage
                 dispatch('divideIntoPages',  {
@@ -59,7 +61,7 @@ export default {
     },
 
 
-    // фронт-валидация при вводе (type-in)
+    // фронт-валидация при вводе (type-in валидация)
     typeinValidation({ dispatch, commit, rootGetters }, product) {
         dispatch('cleanPopupErrors', null, { root: true });
         if (!rootGetters.typeinValidationRequired) {
@@ -78,7 +80,7 @@ export default {
     },
 
 
-    // фронт-валидация, pop-up и type-in сообщения
+    // фронт-валидация, pop-up и type-in сообщения об ошибках
     async _frontValidation({ dispatch, commit }, product) {
         const { popupErrors, typeinErrors } = productValidation(product);
         if (popupErrors) {

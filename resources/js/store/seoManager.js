@@ -51,12 +51,11 @@ export default {
             seoData[entity] = {};
             state.seoData = { ...seoData };
         },
-        updateOnlySeoData: (state, {entity, data}) => {
+        updateSeoData: (state, {entity, data}) => {
             //console.log(data);
             const seoData = { ...state.seoData };
             seoData[entity].seo = { ...data };
             state.seoData = { ...seoData };
-            //console.log(state.seoData);
         },
         setShowSeoManager: (state, value) => {
             state.showSeoManager = value;
@@ -64,7 +63,32 @@ export default {
         setEnabledFadingCss: (state, value) => {
             state.enabledFadingCss = value;
         },
-    },
+
+
+        pushItemIntoModuleSeoData: (state, {rootState, entity, data}) => {
+            //console.log(data);
+            const item = {
+                page_title: data.pageTitle,
+                page_description: data.pageDescription,
+                alt_text: data.imgAlt,
+            }
+            item[entity + '_id'] = data.entityId;
+
+            const moduleNameBook = {
+                product: 'products',
+                photo: 'products',
+                category: 'categories'
+            }
+            const moduleName = moduleNameBook[entity];
+
+            const arr = rootState[moduleName]['seoData'];
+            arr.push(item);
+            rootState[moduleName]['seoData'] = [ ...arr ];
+        },
+
+
+
+},
     actions: {
 
         showSeoManager({ dispatch, commit, getters, state }, {entity, data}) {
@@ -98,8 +122,11 @@ export default {
         },
 
 
-        saveSeoData({ dispatch, commit, state }, { entity, data }) {
+        saveSeoData({ dispatch, commit, state, rootState }, { entity, data }) {
+            //console.log(entity);
             //console.log(data);
+
+            const frontItem = data;
 
             const urlParams = {
                 product: data.entityId,
@@ -123,7 +150,14 @@ export default {
                     //console.log(data);
                     dispatch('hideWaitingScreen', null, { root: true });
                     if (data.saveSuccess === true) {
-                        commit('updateOnlySeoData', {entity: entity, data: data.seo});
+
+                        commit('pushItemIntoModuleSeoData', {
+                            rootState: rootState,
+                            entity: entity,
+                            data: frontItem,
+                        });
+
+                        commit('updateSeoData', {entity: entity, data: data.seo});
                         const txt = `Сохранено.`;
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1}, { root: true });
                     } else {

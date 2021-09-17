@@ -52,6 +52,9 @@ export default {
             'singleProductFromServer',
             'enabledFadingCss',
         ]),
+        ...mapGetters([
+            'imgFolderPrefix',
+        ]),
 
         editScreenClass() {
             return {
@@ -61,12 +64,7 @@ export default {
             };
         },
 
-        ...mapGetters([
-            'imgFolderPrefix',
-        ]),
-
         noData() {
-
             const product = this.singleProductFromServer?.product;
 
             if (!product) {
@@ -88,42 +86,26 @@ export default {
             return `Товар «${productName}» ${productPrice} ₽`;
         },
 
-
-
-
-
-
-
-
         photoSrc() {
             if (this.noData) {
                 return '';
             }
-            return `${this.folderName}/${this.fileNamePrefix}${this.photoName}`;
+
+            const folderName = `/storage/${this.imgFolderPrefix}${this.photoSizeIndex}`;
+            const fileNamePrefix = `${this.singleProductFromServer.product.id}s${this.photoSizeIndex}-`;
+            const photoName = JSON.parse(this.singleProductFromServer.product.photo_set)[0];
+
+            return `${folderName}/${fileNamePrefix}${photoName}`;
         },
-        photoName() {
-            return JSON.parse(this.singleProductFromServer.product.photo_set)[0];
-        },
-        folderName() {
-            return `/storage/${this.imgFolderPrefix}${this.photoSizeIndex}`;
-        },
-        fileNamePrefix() {
-            return  `${this.singleProductFromServer.product.id}s${this.photoSizeIndex}-`;
-        },
+
         imgClass() {
             return `photo__size${this.photoSizeIndex}`;
         },
-
-
-
-
-
 
     },
     methods: {
         ...mapActions('products', [
             'closeProductEditManager',
-            //'saveProduct',
         ]),
         fitTextareaHeight(event) {
             _fitTextareaHeight(event);

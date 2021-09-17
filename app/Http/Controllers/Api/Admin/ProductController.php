@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\Material;
 use App\Models\Product;
+use App\Models\ProductSEOText;
 use App\Services\PhotoManager\PhotoAppender;
 use App\Services\PhotoManager\PhotoMover;
 use App\Services\PhotoManager\PhotoMoverByDragAndDrop;
@@ -27,14 +28,21 @@ class ProductController extends Controller
     public function getAll(ListService $service, $whichProducts): JsonResponse
     {
         $products = $service->getAll($whichProducts);
-        return response()->json($products);
+        //return response()->json($products);
+        return response()->json([
+            'products' => $products,
+            'seo' => ProductSEOText::query()->get()
+        ]);
     }
 
     public function getByCategory(Category $category): JsonResponse
     {
         // $category определена в роуте как {category:slug}
         $products = $category->products; // подцепить товары в модель
-        return response()->json($category);
+        return response()->json([
+            'category' => $category,
+            'seo' => ProductSEOText::query()->get()
+        ]);
 
     }
 
@@ -42,14 +50,20 @@ class ProductController extends Controller
     {
         // $material определена в роуте как {material:slug}
         $products = $material->products; // подцепить товары в модель
-        return response()->json($material);
+        return response()->json([
+            'category' => $material,
+            'seo' => ProductSEOText::query()->get()
+        ]);
     }
 
     public function getByColor(Color $color): JsonResponse
     {
         // $color определена в роуте как {color:slug}
         $products = $color->products; // подцепить товары в модель
-        return response()->json($color);
+        return response()->json([
+            'category' => $color,
+            'seo' => ProductSEOText::query()->get()
+        ]);
     }
 
 

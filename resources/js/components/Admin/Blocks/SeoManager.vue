@@ -175,22 +175,20 @@ export default {
             if (this.noData) {
                 return '';
             }
-            return `${this.folderName}/${this.fileNamePrefix}${this.photoName}`;
-        },
-        photoName() {
-            const photoName = {
+
+            const folderName = `/storage/${this.imgFolderPrefix}${this.photoSizeIndex}`;
+            const fileNamePrefix = `${this.serverData.product.id}s${this.photoSizeIndex}-`;
+
+            const photoNameBook = {
                 category: ``,
                 product: JSON.parse(this.serverData.product.photo_set)[0],
                 photo: this.localData.photoName,
             };
-            return photoName[this.entity];
+            const photoName = photoNameBook[this.entity];
+
+            return `${folderName}/${fileNamePrefix}${photoName}`;
         },
-        folderName() {
-            return `/storage/${this.imgFolderPrefix}${this.photoSizeIndex}`;
-        },
-        fileNamePrefix() {
-            return  `${this.serverData.product.id}s${this.photoSizeIndex}-`;
-        },
+
         imgClass() {
             return `photo__size${this.photoSizeIndex}`;
         },
@@ -210,8 +208,6 @@ export default {
                 return;
             }
             this.serverData = { ...val };
-
-            // console.log(val);
 
             const entityId = {
                 category: val.category?.id,

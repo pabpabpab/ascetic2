@@ -171,21 +171,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return '';
       }
 
-      return "".concat(this.folderName, "/").concat(this.fileNamePrefix).concat(this.photoName);
-    },
-    photoName: function photoName() {
-      var photoName = {
+      var folderName = "/storage/".concat(this.imgFolderPrefix).concat(this.photoSizeIndex);
+      var fileNamePrefix = "".concat(this.serverData.product.id, "s").concat(this.photoSizeIndex, "-");
+      var photoNameBook = {
         category: "",
         product: JSON.parse(this.serverData.product.photo_set)[0],
         photo: this.localData.photoName
       };
-      return photoName[this.entity];
-    },
-    folderName: function folderName() {
-      return "/storage/".concat(this.imgFolderPrefix).concat(this.photoSizeIndex);
-    },
-    fileNamePrefix: function fileNamePrefix() {
-      return "".concat(this.serverData.product.id, "s").concat(this.photoSizeIndex, "-");
+      var photoName = photoNameBook[this.entity];
+      return "".concat(folderName, "/").concat(fileNamePrefix).concat(photoName);
     },
     imgClass: function imgClass() {
       return "photo__size".concat(this.photoSizeIndex);
@@ -204,8 +198,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      this.serverData = _objectSpread({}, val); // console.log(val);
-
+      this.serverData = _objectSpread({}, val);
       var entityId = {
         category: (_val$category = val.category) === null || _val$category === void 0 ? void 0 : _val$category.id,
         product: (_val$product = val.product) === null || _val$product === void 0 ? void 0 : _val$product.id,
