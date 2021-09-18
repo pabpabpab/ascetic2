@@ -44,14 +44,13 @@ export default {
             const seoData = { ...state.seoData };
             seoData[entity] = { ...data };
             state.seoData = { ...seoData };
-            //console.log(state.seoData);
         },
         clearSeoData: (state, entity) => {
             const seoData = { ...state.seoData };
             seoData[entity] = {};
             state.seoData = { ...seoData };
         },
-        updateSeoData: (state, {entity, data}) => {
+        updateLocalSeoData: (state, {entity, data}) => {
             //console.log(data);
             const seoData = { ...state.seoData };
             seoData[entity].seo = { ...data };
@@ -65,14 +64,15 @@ export default {
         },
 
 
-        pushItemIntoModuleSeoData: (state, {rootState, entity, data}) => {
+        addItemIntoModuleSeoData: (state, {rootState, entity, data}) => {
             //console.log(data);
             const item = {
-                page_title: data.pageTitle,
-                page_description: data.pageDescription,
-                alt_text: data.imgAlt,
+                page_title: data?.pageTitle,
+                page_description: data?.pageDescription,
+                alt_text: data?.imgAlt,
+                filename: data?.photoName,
             }
-            item[entity + '_id'] = data.entityId;
+            item[entity + '_id'] = data?.entityId;
 
             const moduleNameBook = {
                 product: 'products',
@@ -81,9 +81,18 @@ export default {
             }
             const moduleName = moduleNameBook[entity];
 
-            const arr = rootState[moduleName]['seoData'];
+
+            const seoStoreNameBook = {
+                product: 'seoData',
+                photo: 'photoSeoData',
+                category: 'seoData'
+            }
+            const seoStoreName = seoStoreNameBook[entity];
+
+
+            const arr = rootState[moduleName][seoStoreName];
             arr.push(item);
-            rootState[moduleName]['seoData'] = [ ...arr ];
+            rootState[moduleName][seoStoreName] = [ ...arr ];
         },
 
 
@@ -123,8 +132,8 @@ export default {
 
 
         saveSeoData({ dispatch, commit, state, rootState }, { entity, data }) {
-            //console.log(entity);
-            //console.log(data);
+            // console.log(entity);
+            // console.log(data);
 
             const frontItem = data;
 
@@ -151,13 +160,13 @@ export default {
                     dispatch('hideWaitingScreen', null, { root: true });
                     if (data.saveSuccess === true) {
 
-                        commit('pushItemIntoModuleSeoData', {
+                        commit('addItemIntoModuleSeoData', {
                             rootState: rootState,
                             entity: entity,
                             data: frontItem,
                         });
 
-                        commit('updateSeoData', {entity: entity, data: data.seo});
+                        commit('updateLocalSeoData', {entity: entity, data: data.seo});
                         const txt = `Сохранено.`;
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1}, { root: true });
                     } else {

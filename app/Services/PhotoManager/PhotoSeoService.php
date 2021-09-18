@@ -8,6 +8,7 @@ use App\Models\Photo;
 use App\Models\PhotoSEOText;
 use App\Services\ExceptionService;
 use App\Services\TextTrait;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -90,10 +91,6 @@ class PhotoSeoService
     }
 
 
-
-
-
-
     public function getPhotoSeoModel($product, $photoName): Model
     {
         $photoRecord = DB::table('photo')
@@ -108,4 +105,15 @@ class PhotoSeoService
 
         return $seoModel;
     }
+
+    // get seo фоток при открытии photoManager
+    public function getProductPhotoSeoList($productId): \Illuminate\Support\Collection
+    {
+        return DB::table('photo')
+            ->join('photo_seo_texts', 'photo.id', '=', 'photo_seo_texts.photo_id')
+            ->where('photo.product_id', '=', $productId)
+            ->select('filename', 'alt_text', 'page_title', 'page_description')
+            ->get();
+    }
+
 }

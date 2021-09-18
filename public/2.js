@@ -70,16 +70,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PhotosContextMenu",
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'enabledFadingCss', 'productId', 'photoName', 'currentListIndex', 'lastListIndex'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'enabledFadingCss', 'productId', 'photoName', 'currentListIndex', 'lastListIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['photoSeoData'])), {}, {
     contextMenuClass: function contextMenuClass() {
       return {
         'context_menu__wrapper context_menu__wrapper_black': true,
         'show_block': !this.enabledFadingCss,
         'hide_block': this.enabledFadingCss
       };
+    },
+    hasSeoData: function hasSeoData() {
+      var _this = this;
+
+      var item = this.photoSeoData.find(function (item) {
+        return item.filename === _this.photoName;
+      });
+
+      if (!item) {
+        return false;
+      }
+
+      return Boolean(item.alt_text) || Boolean(item.page_title) || Boolean(item.page_description);
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['deletePhoto', 'rotatePhoto', 'movePhoto'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('seoManager', ['showSeoManager']))
@@ -214,15 +228,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     hasSeoData: function hasSeoData() {
       var _this = this;
 
-      var index = this.seoData.findIndex(function (item) {
+      var item = this.seoData.find(function (item) {
         return item.product_id === _this.product.id;
       });
 
-      if (index === -1) {
+      if (!item) {
         return false;
       }
 
-      return Boolean(this.seoData[index].page_title) || Boolean(this.seoData[index].page_description);
+      return Boolean(item.page_title) || Boolean(item.page_description);
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['preDeleteProduct', 'restoreProduct', 'showProductEditManager', 'showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('seoManager', ['showSeoManager']))
@@ -549,7 +563,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "EditManager",
   components: {
     ProductForm: function ProductForm() {
-      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
+      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
     }
   },
   data: function data() {
@@ -1225,7 +1239,19 @@ var render = function() {
             }
           }
         },
-        [_vm._v("\n            SEO для фото\n        ")]
+        [
+          _vm.hasSeoData
+            ? _c(
+                "span",
+                {
+                  staticClass: "has_data_green",
+                  attrs: { title: "уже есть данные" }
+                },
+                [_vm._v("✔")]
+              )
+            : _vm._e(),
+          _vm._v("\n            SEO для фото\n        ")
+        ]
       ),
       _vm._v(" "),
       _c(

@@ -88,4 +88,11 @@ class Product extends Model
         );
     }
 
+    // Has Many Through
+    /*
+    public function photoSeoTexts()
+    {
+        return $this->hasManyThrough(PhotoSEOText::class, Photo::class);
+    }
+   */
 }

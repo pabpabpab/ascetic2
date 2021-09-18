@@ -19384,13 +19384,13 @@ var routes = [{
   path: '/admin/users',
   name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/user/:id',
   name: 'SingleUser',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/Users/SingleUser.vue */ "./resources/js/components/Admin/Users/SingleUser.vue"));
+    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/Users/SingleUser.vue */ "./resources/js/components/Admin/Users/SingleUser.vue"));
   }
 },
 /*
@@ -19410,7 +19410,7 @@ var routes = [{
   path: '/admin/products/add',
   name: 'SaveProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 },
 /*
@@ -22680,14 +22680,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _functions_productValidation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/productValidation */ "./resources/js/store/products_js/functions/productValidation.js");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../router */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-
+ // import thatRouter from "../../router";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   loadSingleProduct: function loadSingleProduct(_ref, productId) {
@@ -22698,8 +22697,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
-      // console.log(data);
+      //console.log(data);
       commit('setSingleProductFromServer', data);
+      commit('setPhotoSeoData', data.photoSeo);
       dispatch('hideWaitingScreen', null, {
         root: true
       });
@@ -23271,6 +23271,8 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           root: true
         });
+        commit('setPhotoSeoData', data.photoSeo); //обновить photoSeoData, т.к. меняется filename
+
         dispatch('hideWaitingScreen', null, {
           root: true
         });
@@ -23694,6 +23696,9 @@ __webpack_require__.r(__webpack_exports__);
   seoData: function seoData(state) {
     return state.seoData;
   },
+  photoSeoData: function photoSeoData(state) {
+    return state.photoSeoData;
+  },
   listHeader: function listHeader(state) {
     return state.listHeader;
   },
@@ -23751,8 +23756,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     //state.products.splice(0, state.products.length);
     state.products = _toConsumableArray(data);
   },
+  // при открытии списка продуктов
   setSeoData: function setSeoData(state, data) {
     state.seoData = _toConsumableArray(data);
+  },
+  // при открытии photoManager
+  setPhotoSeoData: function setPhotoSeoData(state, data) {
+    state.photoSeoData = _toConsumableArray(data);
   },
   setListHeader: function setListHeader(state, _ref) {
     var _data$category, _data$category2, _data$category3;
@@ -23875,6 +23885,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   products: [],
   seoData: [],
+  // заполняется при открытии списка продуктов
+  photoSeoData: [],
+  // заполняется при открытии photoManager
   listHeader: '',
   productsCountFromServer: 0,
   singleProductFromServer: {},
@@ -23962,7 +23975,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var seoData = _objectSpread({}, state.seoData);
 
       seoData[entity] = _objectSpread({}, data);
-      state.seoData = _objectSpread({}, seoData); //console.log(state.seoData);
+      state.seoData = _objectSpread({}, seoData);
     },
     clearSeoData: function clearSeoData(state, entity) {
       var seoData = _objectSpread({}, state.seoData);
@@ -23970,7 +23983,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       seoData[entity] = {};
       state.seoData = _objectSpread({}, seoData);
     },
-    updateSeoData: function updateSeoData(state, _ref2) {
+    updateLocalSeoData: function updateLocalSeoData(state, _ref2) {
       var entity = _ref2.entity,
           data = _ref2.data;
 
@@ -23986,26 +23999,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setEnabledFadingCss: function setEnabledFadingCss(state, value) {
       state.enabledFadingCss = value;
     },
-    pushItemIntoModuleSeoData: function pushItemIntoModuleSeoData(state, _ref3) {
+    addItemIntoModuleSeoData: function addItemIntoModuleSeoData(state, _ref3) {
       var rootState = _ref3.rootState,
           entity = _ref3.entity,
           data = _ref3.data;
       //console.log(data);
       var item = {
-        page_title: data.pageTitle,
-        page_description: data.pageDescription,
-        alt_text: data.imgAlt
+        page_title: data === null || data === void 0 ? void 0 : data.pageTitle,
+        page_description: data === null || data === void 0 ? void 0 : data.pageDescription,
+        alt_text: data === null || data === void 0 ? void 0 : data.imgAlt,
+        filename: data === null || data === void 0 ? void 0 : data.photoName
       };
-      item[entity + '_id'] = data.entityId;
+      item[entity + '_id'] = data === null || data === void 0 ? void 0 : data.entityId;
       var moduleNameBook = {
         product: 'products',
         photo: 'products',
         category: 'categories'
       };
       var moduleName = moduleNameBook[entity];
-      var arr = rootState[moduleName]['seoData'];
+      var seoStoreNameBook = {
+        product: 'seoData',
+        photo: 'photoSeoData',
+        category: 'seoData'
+      };
+      var seoStoreName = seoStoreNameBook[entity];
+      var arr = rootState[moduleName][seoStoreName];
       arr.push(item);
-      rootState[moduleName]['seoData'] = _toConsumableArray(arr);
+      rootState[moduleName][seoStoreName] = _toConsumableArray(arr);
     }
   },
   actions: {
@@ -24065,8 +24085,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           rootState = _ref8.rootState;
       var entity = _ref9.entity,
           data = _ref9.data;
-      //console.log(entity);
-      //console.log(data);
+      // console.log(entity);
+      // console.log(data);
       var frontItem = data;
       var urlParams = {
         product: data.entityId,
@@ -24089,12 +24109,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
 
         if (data.saveSuccess === true) {
-          commit('pushItemIntoModuleSeoData', {
+          commit('addItemIntoModuleSeoData', {
             rootState: rootState,
             entity: entity,
             data: frontItem
           });
-          commit('updateSeoData', {
+          commit('updateLocalSeoData', {
             entity: entity,
             data: data.seo
           });

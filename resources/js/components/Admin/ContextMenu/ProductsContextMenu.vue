@@ -64,11 +64,11 @@ export default {
             return Boolean(this.product.deleted_at);
         },
         hasSeoData() {
-            const index = this.seoData.findIndex(item => item.product_id === this.product.id);
-            if (index === -1) {
+            const item = this.seoData.find(item => item.product_id === this.product.id);
+            if (!item) {
                 return false;
             }
-            return Boolean(this.seoData[index].page_title) || Boolean(this.seoData[index].page_description);
+            return Boolean(item.page_title) || Boolean(item.page_description);
         }
     },
     methods: {

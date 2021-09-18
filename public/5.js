@@ -662,15 +662,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     hasSeoData: function hasSeoData() {
       var _this = this;
 
-      var index = this.seoData.findIndex(function (item) {
+      var item = this.seoData.find(function (item) {
         return item.category_id === _this.category.id;
       });
 
-      if (index === -1) {
+      if (!item) {
         return false;
       }
 
-      return Boolean(this.seoData[index].page_title) || Boolean(this.seoData[index].page_description);
+      return Boolean(item.page_title) || Boolean(item.page_description);
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('categories', ['preDeleteCategory', 'changePosition'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('seoManager', ['showSeoManager']))

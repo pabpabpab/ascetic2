@@ -22,6 +22,7 @@ use App\Services\Product\SaveService;
 use App\Services\Product\SeoService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -66,7 +67,6 @@ class ProductController extends Controller
         ]);
     }
 
-
     public function getCount(): JsonResponse
     {
         return response()->json(
@@ -74,12 +74,13 @@ class ProductController extends Controller
         );
     }
 
-
-    public function getOne(Product $product): JsonResponse
+    public function getOne(PhotoSeoService $service, Product $product): JsonResponse
     {
         return response()->json([
             'product' => $product,
-            'description' => $product->description
+            'description' => $product->description,
+            'photoSeo' => $service->getProductPhotoSeoList($product->id),
+            // get seo фоток при открытии photoManager
         ]);
     }
 

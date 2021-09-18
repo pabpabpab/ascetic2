@@ -72,11 +72,11 @@ export default {
             };
         },
         hasSeoData() {
-            const index = this.seoData.findIndex(item => item.category_id === this.category.id);
-            if (index === -1) {
+            const item = this.seoData.find(item => item.category_id === this.category.id);
+            if (!item) {
                 return false;
             }
-            return Boolean(this.seoData[index].page_title) || Boolean(this.seoData[index].page_description);
+            return Boolean(item.page_title) || Boolean(item.page_description);
         }
     },
     methods: {

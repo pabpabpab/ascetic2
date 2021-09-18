@@ -35,7 +35,6 @@ class PhotoRotator
             if ((bool) $updated) {
                 $this->_syncPhotoNamesAndAltsInProduct($product);
                 //$product->refresh();
-
                 $this->_deletePhotoFromDisk($product->id, $photoName);
             }
 
@@ -43,7 +42,9 @@ class PhotoRotator
 
             return [
                 'rotateSuccess' => (bool) $updated,
-                'photoSet' => $product->photo_set
+                'photoSet' => $product->photo_set,
+                'photoSeo' => (new PhotoSeoService())->getProductPhotoSeoList($product->id),
+                // прихватить seo фото товара, чтобы обновить photoSeoData на фронте, т.к. меняется filename
             ];
         }
         catch (\Exception $e) {

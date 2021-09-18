@@ -20,7 +20,8 @@ export default {
     },
 
     products: [],
-    seoData: [],
+    seoData: [], // заполняется при открытии списка продуктов
+    photoSeoData: [], // заполняется при открытии photoManager
     listHeader: '',
     productsCountFromServer: 0,
     singleProductFromServer: {},

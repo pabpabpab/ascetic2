@@ -8,8 +8,14 @@ export default {
         state.products = [ ...data ];
     },
 
+    // при открытии списка продуктов
     setSeoData: (state, data) => {
         state.seoData = [ ...data ];
+    },
+
+    // при открытии photoManager
+    setPhotoSeoData: (state, data) => {
+        state.photoSeoData = [ ...data ];
     },
 
     setListHeader: (state, { route, data }) => {

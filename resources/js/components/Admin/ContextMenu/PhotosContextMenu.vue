@@ -41,6 +41,7 @@
 
             <li class="context_menu__li context_menu__li_black"
                 @click="showSeoManager({entity: 'photo', data: {productId, photoName}})" >
+                <span v-if="hasSeoData" title="уже есть данные" class='has_data_green'>&#10004;</span>
                 SEO для фото
             </li>
 
@@ -65,12 +66,22 @@ export default {
             'currentListIndex',
             'lastListIndex',
         ]),
+        ...mapGetters('products', [
+            'photoSeoData',
+        ]),
         contextMenuClass() {
             return {
                 'context_menu__wrapper context_menu__wrapper_black': true,
                 'show_block': !this.enabledFadingCss,
                 'hide_block': this.enabledFadingCss,
             };
+        },
+        hasSeoData() {
+            const item = this.photoSeoData.find(item => item.filename === this.photoName);
+            if (!item) {
+                return false;
+            }
+            return Boolean(item.alt_text) || Boolean(item.page_title) || Boolean(item.page_description);
         }
     },
     methods: {

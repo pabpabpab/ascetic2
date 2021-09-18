@@ -68,13 +68,12 @@ export default {
                 if (data.rotateSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
                     commit('updateProductsBySingleProduct');
-
                     dispatch('updatePhotosetOfItemInPaginated', {
                         entity: 'products',
                         itemId: productId,
                         photoSet: data.photoSet,
                     }, { root: true });
-
+                    commit('setPhotoSeoData', data.photoSeo); //обновить photoSeoData, т.к. меняется filename
                     dispatch('hideWaitingScreen', null, { root: true });
                     const txt = `Сделано.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.7}, { root: true });
