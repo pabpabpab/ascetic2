@@ -10,6 +10,7 @@ export default {
         product: {},
         productId: 0,
         photoName: '',
+        user: {},
     },
     getters: {
         enabledFadingCss: (state) => state.enabledFadingCss,
@@ -17,12 +18,14 @@ export default {
         showCategoriesContextMenu: (state) => state.target === 'Categories',
         showProductsContextMenu: (state) => state.target === 'Products',
         showPhotosContextMenu: (state) => state.target === 'Photos',
+        showUsersContextMenu: (state) => state.target === 'Users',
         currentListIndex: (state) => state.currentListIndex,
         lastListIndex: (state) => state.lastListIndex,
         category: (state) => state.category,
         product: (state) => state.product,
         productId: (state) => state.productId,
         photoName: (state) => state.photoName,
+        user: (state) => state.user,
     },
     mutations: {
 
@@ -82,6 +85,25 @@ export default {
             state.coordinates = { ...x, ...y };
         },
 
+        setCoordinatesForUsersContext: (state, event) => {
+            const icon = event.target.getBoundingClientRect();
+
+            const x = {
+                left: (icon.x + 25) + 'px'
+            }
+
+            // проверка на расстояние от точки клика до нижнего края
+            const y = window.innerHeight - event.clientY < 300
+                ? {
+                    bottom: (window.innerHeight - event.pageY) + 'px'
+                }
+                : {
+                    top: icon.y + window.pageYOffset + 21 + 'px'
+                };
+
+            state.coordinates = { ...x, ...y };
+        },
+
         setTarget: (state, target) => {
             state.target = target;
         },
@@ -110,6 +132,11 @@ export default {
             state.photoName = photoName;
             state.currentListIndex = currentListIndex;
             state.lastListIndex = lastListIndex;
+        },
+
+        setUsersContextData: (state, data) => {
+            const { user } = data;
+            state.user = user;
         },
 
     },

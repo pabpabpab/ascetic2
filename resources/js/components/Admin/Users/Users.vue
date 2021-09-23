@@ -1,27 +1,26 @@
 <template>
-    <div :class="containerClass">
+    <div class="users__list">
         <user-item
             v-for="item of items"
             :key="item.id" :user="item">
         </user-item>
+
+        <users-context-menu v-if="showUsersContextMenu"></users-context-menu>
+        <user-edit-manager v-if="showUserEditManager"></user-edit-manager>
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-// import UserItem from '@/components/Admin/Users/UserItem.vue';
 
 export default {
     name: 'Users',
-    // props: ['moduleName'],
     components: {
-        UserItem: () => import('./UserItem.vue')
+        UserItem: () => import('./UserItem.vue'),
+        UserEditManager: () => import('./UserEditManager.vue'),
+        UsersContextMenu: () => import('./../ContextMenu/UsersContextMenu.vue'),
     },
-    data() {
-        return {
-            containerClass: 'container',
-        };
-    },
+
     computed: {
         ...mapGetters('pagination', [
             'currentPageIndex',
@@ -30,9 +29,18 @@ export default {
         items() {
             return this.customized('users')[this.currentPageIndex('users')];
         },
+        ...mapGetters('contextMenu', [
+            'showUsersContextMenu',
+        ]),
+        ...mapGetters('users', [
+            'showUserEditManager',
+        ]),
     },
+
     mounted() {
-        this.$store.dispatch('users/loadUsers');
+        if (!this.$route.params.withoutReload) {
+            this.$store.dispatch('users/loadUsers');
+        }
     },
 };
 </script>

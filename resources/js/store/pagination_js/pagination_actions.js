@@ -71,16 +71,26 @@ export default {
         },
     },
 
-    // ==========================пагинация: какую страницу items показать=======================
-    showPage({ dispatch, commit, getters }, { entity, page }) {
+    // ==========================пагинация программная: какую страницу items показать=======================
+    /*
+    showLastPage: {
+        root: true,
+        handler({ dispatch, getters }, entity) {
+            const customizedLength = getters.customizedLength(entity);
+            const pageIndex = customizedLength - 1;
+            dispatch('showPageByClick', { entity, pageIndex });
+        }
+    },*/
+    // ==========================пагинация по клику: какую страницу items показать=======================
+    showPageByClick({ dispatch, commit, getters }, { entity, pageIndex }) {
         const customizedLength = getters.customizedLength(entity);
         let index;
-        if (page < 0) {
+        if (pageIndex < 0) {
             index = 0;
-        } else if (page >= customizedLength) {
+        } else if (pageIndex >= customizedLength) {
             index = customizedLength - 1;
         } else {
-            index = page;
+            index = pageIndex;
         }
 
         // установить указатель страницы на требуюмую

@@ -8,6 +8,13 @@ export default {
         state.products = [ ...data ];
     },
 
+    addProductToProductsByFirst: (state, product) => {
+        const products = state.products;
+        products.splice(0, 0, product);
+        state.products = [ ...products ];
+    },
+
+
     // при открытии списка продуктов
     setSeoData: (state, data) => {
         state.seoData = [ ...data ];
@@ -57,6 +64,9 @@ export default {
     updateProductsBySingleProduct: (state) => {
         const product = state.singleProductFromServer.product;
         const index = state.products.findIndex(item => item.id === product.id);
+        if (index === -1) {
+            return;
+        }
         state.products.splice(index, 1, product);
     },
 

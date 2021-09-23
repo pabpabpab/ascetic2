@@ -165,11 +165,6 @@ export default {
 
 
 
-
-
-
-
-
     addPhotos({ dispatch, commit, state }, { productId, photos }) {
         const addPhotoUrl = state.url['addProductPhoto'] + productId;
 
@@ -205,8 +200,5 @@ export default {
                 }
             });
     },
-
-
-
 
 }

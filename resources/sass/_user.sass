@@ -1,16 +1,35 @@
-.user__item
-    min-width: 250px
-    width: 300px
-    margin: 0 auto
-    padding: 5px
+.content_block__users
+    padding: 20px 20px 10px 20px
+    max-width: 98%
+    width: 700px
+
+.users__list
+    background-color: rgb(255, 255, 255)
+    padding: 20px 0
+
+.user_item
+    padding: 20px 5px
     text-align: left
-    font-size: 17px
+    +font(17px, rgb(50, 45, 45), 400)
+    display: flex
+    justify-content: space-between
+    border-top: 1px solid rgb(206, 217, 240)
+    background-color: rgb(255, 255, 255)
 
-.user__nameLink
-    text-decoration: none
-    color: #0000d0
-
-.user__message
-    height: 20px
+.user_item__content
+    flex-grow: 10
 
 
+.context_menu_icon__user
+    +font(17px, rgb(25, 118, 210), 700)
+    padding: 0 10px
+    font-weight: bold
+    cursor: pointer
+    margin: 0 15px 0 0
+    border-radius: 5px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &:hover
+        background-color: rgb(229, 239, 245)

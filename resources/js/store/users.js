@@ -1,15 +1,15 @@
 import state from './users_js/users_state';
 import getters from './users_js/users_getters';
 import mutations from './users_js/users_mutations';
-import actions from './users_js/users_actions';
+import a1 from "./users_js/users_actions";
+import a2 from "./users_js/users_actions_saveUser";
+import a3 from "./users_js/users_actions_deleteUser";
+import a4 from "./users_js/users_actions_editManager";
 
-// import nested_pagination from './nested_pagination';
-
-/* eslint no-shadow: ["error", { "allow": ["state", "getters", "mutations", "actions"] }] */
 export default {
     namespaced: true,
     state,
     getters,
     mutations,
-    actions,
+    actions: { ...a1, ...a2, ...a3, ...a4 },
 };

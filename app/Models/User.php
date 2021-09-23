@@ -13,8 +13,9 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'role',
         'email',
-        'password',
+        'email_verified_at',
     ];
 
     protected $hidden = [
@@ -26,43 +27,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-/*
-    protected $attributes = [
-        'social_id' => null,
-        'social_network' => null,
-    ];
-*/
-
-
-    public function getAll()
-    {
-        return static::query()
-            ->orderBy('id', 'asc')
-            ->get();
-    }
-
-    public function getMore($lastId)
-    {
-        return static::where('id', '>', $lastId)
-            ->orderBy('id', 'asc')
-            ->get();
-    }
-
-
-    public function updateRole(string $role): array {
-        $this->role = $role;
-        return [
-            'success' => $this->save(),
-            'user' => $this
-        ];
-    }
-
     public function _hasRole($role): bool
     {
         return $this->role == $role;
     }
 
-
+    // используется в контроллерах по auth user
     public function getUserName()
     {
         return $this->name;
@@ -70,13 +40,12 @@ class User extends Authenticatable
 
 
     /*
-        public function updateRole(int $id, string $role): array {
-            $model = User::find($id);
-            $model->role = $role;
-            return [
-                'success' => $model->save(),
-                'user' => $model
-            ];
-        }
+
+    public function getMore($lastId)
+    {
+        return static::where('id', '>', $lastId)
+            ->orderBy('id', 'asc')
+            ->get();
+    }
     */
 }

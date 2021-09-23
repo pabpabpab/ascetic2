@@ -1,8 +1,10 @@
 export default {
-    usersCountUrl: (state) => state.usersCountUrl,
-    usersUrl: (state) => state.usersUrl,
-    quantityPerPage: (state) => state.quantityPerPage,
-    //
+
+    users: (state) => state.users,
     usersCount: (state) => state.usersCount,
-    showLazyUsers: (state) => state.usersCount > 1000,
+    singleUserFromServer: (state) => state.singleUserFromServer,
+    //showLazyUsers: (state) => state.usersCount > 1000,
+
+    showUserEditManager: (state) => state.showUserEditManager,
+    enabledFadingCss: (state) => state.enabledFadingCss,
 };

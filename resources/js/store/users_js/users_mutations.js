@@ -1,30 +1,42 @@
 export default {
-    // ===========================usersCount======================
     setUsersCount: (state, count) => {
         state.usersCount = count;
     },
-    // ===========================users======================
+    setSingleUserFromServer: (state, user) => {
+        state.singleUserFromServer = { ...user };
+    },
     setUsers: (state, data) => {
-        state.users.splice(0, state.users.length);
-        for (let i = 0; i < data.length; i += 1) {
-            state.users.push(data[i]);
-        }
+        state.users = [ ...data ];
     },
-    // ==========================filtered=======================
-    /*
-    setFilteredUsers: (state, data) => {
-        state.filtered.splice(0, state.filtered.length);
-        for (let i = 0; i < data.length; i += 1) {
-            state.filtered.push(data[i]);
-        }
-        // console.log(state.filtered);
+    addUserToUsersByFirst: (state, user) => {
+        const users = state.users;
+        users.splice(0, 0, user);
+        state.users = [ ...users ];
     },
-*/
     /*
-    clearFilteredUsers: (state) => {
-        state.filtered.splice(0, state.filtered.length);
+    addUserToUsers: (state, user) => {
+        //console.log(user);
+        const users = state.users.concat(user);
+        state.users = [ ...users ];
     },
    */
+    updateUsersBySingleUser: (state) => {
+        const user = state.singleUserFromServer;
+        const index = state.users.findIndex(item => item.id === user.id);
+        if (index === -1) {
+            return;
+        }
+        state.users.splice(index, 1, user);
+    },
 
 
+
+
+
+    setShowUserEditManager: (state, value) => {
+        state.showUserEditManager = value;
+    },
+    setEnabledFadingCss: (state, value) => {
+        state.enabledFadingCss = value;
+    },
 };

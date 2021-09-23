@@ -1,21 +1,17 @@
 export default {
-    /* eslint object-curly-newline: ["error", {
-     "ObjectExpression": "always",
-     "ObjectPattern": "never"
-     }]
-  */
-    // ============================посчитать юзеров на сервере============================
-    getUsersCount({ dispatch, commit, getters, state }) {
-        const url = getters.usersCountUrl;
+
+    getUsersCount({ dispatch, commit, state }) {
+        const url = state.url['usersCount'];
         dispatch('getJson', url, { root: true }).then((data) => {
             //console.log(data);
             commit('setUsersCount', data);
         });
     },
-    // ============================загрузка всех юзеров с сервера============================
-    loadUsers({ dispatch, commit, getters, state }) {
-        const url = getters.usersUrl;
+
+    loadUsers({ dispatch, commit, state }) {
+        const url = state.url['users'];
         dispatch('getJson', url, { root: true }).then((data) => {
+            //console.log(data);
             commit('setUsers', data);
             dispatch('setFiltered', { entity: 'users', data: data }, { root: true }).then(() => {
                 // ниже передаю параметр quantityPerPage = 0 для совместимости,
@@ -28,4 +24,12 @@ export default {
             });
         });
     },
+
+    loadSingleUser({ dispatch, commit, state }, userId) {
+        const url = state.url['singleUser'] + userId;
+        dispatch('getJson', url, {root: true}).then((data) => {
+            commit('setSingleUserFromServer', data);
+        });
+    },
+
 };

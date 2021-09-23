@@ -1,23 +1,18 @@
 export default {
-    usersCountUrl: '/api/admin/users/count',
-    usersUrl: '/api/admin/users',
-    usersCount: 6,
+
+    url: {
+        usersCount: '/api/admin/users/count',
+        users: '/api/admin/users',
+
+        singleUser: '/api/admin/user/',
+        saveUser: '/api/admin/user/save/',
+        deleteUser: '/api/admin/user/delete/',
+    },
+
+    usersCount: -1,
     users: [],
+    singleUserFromServer: {},
 
-
-    /*
-    // ПАГИНАЦИЯ
-    // если страниц меньше, показывать все
-    minimumPagesForComplexPagination: 9,
-    // установка пользователем в выпадающем списке кол-ва товаров на страницу
-    quantityPerPage: 6,
-    // для выхода из View all обратно в пагинацию
-    copyOfQuantityPerPage: 6,
-    // css ссылки на активную страницу
-    activePaginationLinkCss: 'pagination_link active_pagination_link',
-    // css ссылки на неактивную страницу
-    inactivePaginationLinkCss: 'pagination_link',
-    // половина длины активного кадра ссылок пагинации
-    half_length_of_pagination_shot: 1,
-*/
+    showUserEditManager: false,
+    enabledFadingCss: false,
 };

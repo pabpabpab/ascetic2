@@ -33,7 +33,6 @@ class SaveService
             // СОХРАНИТЬ ОСНОВНЫЕ ДАННЫЕ
             $product->fill($request->input());
             $product->position = $product->id > 0 ? $product->position : $this->_calcNewAddedPosition();
-            //$product->position = 23;
             $product->save(); // теперь у $product есть id
 
             // ВСТАВКА ДАННЫХ В СВЯЗАННЫЕ ТАБЛИЦЫ

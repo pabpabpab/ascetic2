@@ -234,6 +234,7 @@ export default {
     },
 
     mounted() {
+        this.$store.dispatch('resetTypeinErrors');
         this.$store.dispatch('categories/loadCategories', 'categories');
         this.$store.dispatch('categories/loadCategories', 'materials');
         this.$store.dispatch('categories/loadCategories', 'colors');

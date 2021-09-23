@@ -560,7 +560,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  //import getFormattedPrice from "./functions/getFormattedPrice";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "EditManager",
+  name: "ProductEditManager",
   components: {
     ProductForm: function ProductForm() {
       return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
@@ -1046,8 +1046,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   mounted: function mounted() {
-    //this.$store.dispatch('products/loadProducts', this.$route.params.which);
-    this.$store.dispatch('products/loadProducts', this.$route);
+    //this.$store.dispatch('products/loadProducts', this.$route);
+    if (!this.$route.params.withoutReload) {
+      this.$store.dispatch('products/loadProducts', this.$route);
+    }
   }
 });
 
@@ -1661,6 +1663,7 @@ var render = function() {
             staticClass: "edit_manager__save_button",
             on: {
               click: function($event) {
+                $event.stopPropagation()
                 return _vm.save()
               }
             }

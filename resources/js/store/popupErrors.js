@@ -27,7 +27,7 @@ export default {
             // setTimeout() чтобы сначала отработал реактивно сброс выше
             setTimeout(() => {
                 state.popupErrors = { ...errors };
-            }, 10);
+            }, 100);
         },
         cleanPopupErrors: (state) => {
             state.popupErrors = {};
@@ -38,8 +38,8 @@ export default {
         showPopupErrorsBox: {
             root: true,
             handler ({ commit }, errors) {
-                commit('setPopupErrors', errors);
                 commit('setEnabledHidingCss', false);
+                commit('setPopupErrors', errors);
             }
         },
 
@@ -48,8 +48,8 @@ export default {
             handler ({ commit }, event = null) {
                 commit('setEnabledHidingCss', true);
                 setTimeout(() => {
-                    commit('cleanPopupErrors');
-                }, 500);
+                   commit('cleanPopupErrors');
+                }, 600);
             }
         },
 

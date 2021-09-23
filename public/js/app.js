@@ -563,6 +563,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'navbar',
@@ -2228,8 +2252,39 @@ var render = function() {
         [
           _c(
             "router-link",
-            { class: _vm.usersLinkClass, attrs: { to: { name: "Users" } } },
-            [_vm._v("Пользователи")]
+            {
+              staticClass: "navBar__link_with_arrow",
+              class: _vm.usersLinkClass,
+              attrs: { to: { name: "Users" } }
+            },
+            [
+              _vm._v("\n                Пользователи\n\n                "),
+              _c("div", { staticClass: "navBar__link__arrow" }, [
+                _c("div", { staticClass: "navBar__drop_menu show_block" }, [
+                  _c("ul", { staticClass: "navBar__drop_menu__ul" }, [
+                    _c(
+                      "li",
+                      { staticClass: "navBar__drop_menu__li" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navBar__drop_menu__link",
+                            attrs: { to: { name: "SaveUser" } }
+                          },
+                          [
+                            _vm._v(
+                              "\n                                    Создать\n                                "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ])
+              ])
+            ]
           )
         ],
         1
@@ -19387,40 +19442,12 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
-  path: '/admin/user/:id',
-  name: 'SingleUser',
+  path: '/admin/user/add',
+  name: 'SaveUser',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/Users/SingleUser.vue */ "./resources/js/components/Admin/Users/SingleUser.vue"));
+    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
   }
-},
-/*
-    {
-        path: '/admin/products/category/add',
-        name: 'SaveCategory',
-        component: () => import('../components/Admin/oldSaveCategoryPage.vue'),
-    },
-
-
-    {
-        path: '/admin/products/category/edit/:id',
-        name: 'EditCategory',
-        component: () => import('../components/Admin/oldSaveCategoryPage.vue'),
-    },*/
-{
-  path: '/admin/products/add',
-  name: 'SaveProduct',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
-  }
-},
-/*
-{
-    path: '/admin/products/edit/:id',
-    name: 'EditProduct',
-    component: () => import('../components/Admin/SaveProductPage.vue'),
-},
-*/
-{
+}, {
   path: '/admin/products/:which',
   name: 'Products',
   component: function component() {
@@ -19433,26 +19460,18 @@ var routes = [{
     return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
+  path: '/admin/product/add',
+  name: 'SaveProduct',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+  }
+}, {
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
     return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
   }
-},
-/*
-    {
-        path: '/admin/products/materials',
-        name: 'Materials',
-        component: () => import('../components/Admin/CategoriesPage.vue'),
-    },
-
-    {
-        path: '/admin/products/colors',
-        name: 'Colors',
-        component: () => import('../components/Admin/CategoriesPage.vue'),
-    },
-*/
-{
+}, {
   path: '*',
   redirect: '/'
 }];
@@ -20472,7 +20491,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     category: {},
     product: {},
     productId: 0,
-    photoName: ''
+    photoName: '',
+    user: {}
   },
   getters: {
     enabledFadingCss: function enabledFadingCss(state) {
@@ -20489,6 +20509,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     showPhotosContextMenu: function showPhotosContextMenu(state) {
       return state.target === 'Photos';
+    },
+    showUsersContextMenu: function showUsersContextMenu(state) {
+      return state.target === 'Users';
     },
     currentListIndex: function currentListIndex(state) {
       return state.currentListIndex;
@@ -20507,6 +20530,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     photoName: function photoName(state) {
       return state.photoName;
+    },
+    user: function user(state) {
+      return state.user;
     }
   },
   mutations: {
@@ -20549,6 +20575,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       state.coordinates = _objectSpread(_objectSpread({}, x), y);
     },
+    setCoordinatesForUsersContext: function setCoordinatesForUsersContext(state, event) {
+      var icon = event.target.getBoundingClientRect();
+      var x = {
+        left: icon.x + 25 + 'px'
+      }; // проверка на расстояние от точки клика до нижнего края
+
+      var y = window.innerHeight - event.clientY < 300 ? {
+        bottom: window.innerHeight - event.pageY + 'px'
+      } : {
+        top: icon.y + window.pageYOffset + 21 + 'px'
+      };
+      state.coordinates = _objectSpread(_objectSpread({}, x), y);
+    },
     setTarget: function setTarget(state, target) {
       state.target = target;
     },
@@ -20578,6 +20617,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       state.photoName = photoName;
       state.currentListIndex = currentListIndex;
       state.lastListIndex = lastListIndex;
+    },
+    setUsersContextData: function setUsersContextData(state, data) {
+      var user = data.user;
+      state.user = user;
     }
   },
   actions: {
@@ -21503,28 +21546,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./http */ "./resources/js/store/http.js");
 /* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./users */ "./resources/js/store/users.js");
 /* harmony import */ var _pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pagination */ "./resources/js/store/pagination.js");
-/* harmony import */ var _lazyUsers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lazyUsers */ "./resources/js/store/lazyUsers.js");
-/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user */ "./resources/js/store/user.js");
-/* harmony import */ var _categories__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./categories */ "./resources/js/store/categories.js");
-/* harmony import */ var _products__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./products */ "./resources/js/store/products.js");
-/* harmony import */ var _typeinErrors__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./typeinErrors */ "./resources/js/store/typeinErrors.js");
-/* harmony import */ var _popupErrors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./popupErrors */ "./resources/js/store/popupErrors.js");
-/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js/store/absoluteFlashMessage.js");
-/* harmony import */ var _waitingScreen__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./waitingScreen */ "./resources/js/store/waitingScreen.js");
-/* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
-/* harmony import */ var _contextMenu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./contextMenu */ "./resources/js/store/contextMenu.js");
-/* harmony import */ var _seoManager__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./seoManager */ "./resources/js/store/seoManager.js");
-/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
-/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
-/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
+/* harmony import */ var _categories__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./categories */ "./resources/js/store/categories.js");
+/* harmony import */ var _products__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products */ "./resources/js/store/products.js");
+/* harmony import */ var _typeinErrors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./typeinErrors */ "./resources/js/store/typeinErrors.js");
+/* harmony import */ var _popupErrors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./popupErrors */ "./resources/js/store/popupErrors.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js/store/absoluteFlashMessage.js");
+/* harmony import */ var _waitingScreen__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./waitingScreen */ "./resources/js/store/waitingScreen.js");
+/* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
+/* harmony import */ var _contextMenu__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./contextMenu */ "./resources/js/store/contextMenu.js");
+/* harmony import */ var _seoManager__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./seoManager */ "./resources/js/store/seoManager.js");
+/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
+/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
+/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
 
 
 
 
 
 
-
-
+ //import lazyUsers from './lazyUsers';
 
 
 
@@ -21569,111 +21609,22 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     http: _http__WEBPACK_IMPORTED_MODULE_4__["default"],
     users: _users__WEBPACK_IMPORTED_MODULE_5__["default"],
     pagination: _pagination__WEBPACK_IMPORTED_MODULE_6__["default"],
-    lazyUsers: _lazyUsers__WEBPACK_IMPORTED_MODULE_7__["default"],
-    user: _user__WEBPACK_IMPORTED_MODULE_8__["default"],
-    categories: _categories__WEBPACK_IMPORTED_MODULE_9__["default"],
-    products: _products__WEBPACK_IMPORTED_MODULE_10__["default"],
-    typeinErrors: _typeinErrors__WEBPACK_IMPORTED_MODULE_11__["default"],
-    popupErrors: _popupErrors__WEBPACK_IMPORTED_MODULE_12__["default"],
-    absoluteFlashMessage: _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_13__["default"],
-    waitingScreen: _waitingScreen__WEBPACK_IMPORTED_MODULE_14__["default"],
-    confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_15__["default"],
-    contextMenu: _contextMenu__WEBPACK_IMPORTED_MODULE_16__["default"],
-    seoManager: _seoManager__WEBPACK_IMPORTED_MODULE_17__["default"],
-    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_18__["default"],
-    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_19__["default"],
-    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_20__["default"]
+    //lazyUsers,
+    categories: _categories__WEBPACK_IMPORTED_MODULE_7__["default"],
+    products: _products__WEBPACK_IMPORTED_MODULE_8__["default"],
+    typeinErrors: _typeinErrors__WEBPACK_IMPORTED_MODULE_9__["default"],
+    popupErrors: _popupErrors__WEBPACK_IMPORTED_MODULE_10__["default"],
+    absoluteFlashMessage: _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_11__["default"],
+    waitingScreen: _waitingScreen__WEBPACK_IMPORTED_MODULE_12__["default"],
+    confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_13__["default"],
+    contextMenu: _contextMenu__WEBPACK_IMPORTED_MODULE_14__["default"],
+    seoManager: _seoManager__WEBPACK_IMPORTED_MODULE_15__["default"],
+    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_16__["default"],
+    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_17__["default"],
+    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_18__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
-
-/***/ }),
-
-/***/ "./resources/js/store/lazyUsers.js":
-/*!*****************************************!*\
-  !*** ./resources/js/store/lazyUsers.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  namespaced: true,
-  state: {
-    lazyUsersUrl: '/api/admin/lazy-users/',
-    lazyUsers: [],
-    lastLoadedLazyUserId: 0
-  },
-  getters: {
-    lazyUsersUrl: function lazyUsersUrl(state) {
-      return state.lazyUsersUrl;
-    },
-    lazyUsers: function lazyUsers(state) {
-      return state.lazyUsers;
-    },
-    //lazyUsersLength: (state) => state.lazyUsers.length,
-    lastLoadedLazyUserId: function lastLoadedLazyUserId(state) {
-      return state.lastLoadedLazyUserId;
-    },
-    showLoadMoreButton: function showLoadMoreButton(state, getters, rootState) {
-      return rootState['users']['usersCount'] > state.lazyUsers.length;
-    }
-  },
-  mutations: {
-    setLazyUsers: function setLazyUsers(state, data) {
-      state.lazyUsers.splice(0, state.lazyUsers.length);
-      var lastUserId = 0;
-
-      for (var i = 0; i < data.length; i += 1) {
-        state.lazyUsers.push(data[i]);
-        lastUserId = data[i].id;
-      }
-
-      state.lastLoadedLazyUserId = lastUserId;
-    },
-    addToLazyUsers: function addToLazyUsers(state, data) {
-      var lastUserId = 0;
-
-      for (var i = 0; i < data.length; i += 1) {
-        state.lazyUsers.push(data[i]);
-        lastUserId = data[i].id;
-      }
-
-      state.lastLoadedLazyUserId = lastUserId;
-    }
-    /*
-    setLastLoadedLazyUserId: (state, id) => {
-        state.lastLoadedLazyUserId = id;
-    },
-    */
-
-  },
-  actions: {
-    loadLazyUsers: function loadLazyUsers(_ref) {
-      var dispatch = _ref.dispatch,
-          commit = _ref.commit,
-          getters = _ref.getters;
-      var url = getters.lazyUsersUrl + getters.lastLoadedLazyUserId;
-      dispatch('getJson', url, {
-        root: true
-      }).then(function (data) {
-        commit('setLazyUsers', data);
-      });
-    },
-    loadMoreLazyUsers: function loadMoreLazyUsers(_ref2) {
-      var dispatch = _ref2.dispatch,
-          commit = _ref2.commit,
-          getters = _ref2.getters;
-      var url = getters.lazyUsersUrl + getters.lastLoadedLazyUserId;
-      dispatch('getJson', url, {
-        root: true
-      }).then(function (data) {
-        commit('addToLazyUsers', data);
-      });
-    }
-  }
-});
 
 /***/ }),
 
@@ -21866,22 +21817,33 @@ __webpack_require__.r(__webpack_exports__);
       dispatch('makePaginationLinksShot', entity);
     }
   },
-  // ==========================пагинация: какую страницу items показать=======================
-  showPage: function showPage(_ref5, _ref6) {
+  // ==========================пагинация программная: какую страницу items показать=======================
+
+  /*
+  showLastPage: {
+      root: true,
+      handler({ dispatch, getters }, entity) {
+          const customizedLength = getters.customizedLength(entity);
+          const pageIndex = customizedLength - 1;
+          dispatch('showPageByClick', { entity, pageIndex });
+      }
+  },*/
+  // ==========================пагинация по клику: какую страницу items показать=======================
+  showPageByClick: function showPageByClick(_ref5, _ref6) {
     var dispatch = _ref5.dispatch,
         commit = _ref5.commit,
         getters = _ref5.getters;
     var entity = _ref6.entity,
-        page = _ref6.page;
+        pageIndex = _ref6.pageIndex;
     var customizedLength = getters.customizedLength(entity);
     var index;
 
-    if (page < 0) {
+    if (pageIndex < 0) {
       index = 0;
-    } else if (page >= customizedLength) {
+    } else if (pageIndex >= customizedLength) {
       index = customizedLength - 1;
     } else {
-      index = page;
+      index = pageIndex;
     } // установить указатель страницы на требуюмую
 
 
@@ -22306,7 +22268,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     state.customized = _objectSpread({}, customized);
   },
-  //===================update item or photoSet of item in filtered==================
+  //===================update photoSet of item in filtered==================
   updatePhotosetOfItemInFiltered: function updatePhotosetOfItemInFiltered(state, _ref11) {
     var entity = _ref11.entity,
         itemId = _ref11.itemId,
@@ -22318,6 +22280,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     filtered[itemIndex].photo_set = photoSet;
     state.filtered[entity] = _toConsumableArray(filtered);
   },
+  //===================update item in filtered==================
   updateItemInFiltered: function updateItemInFiltered(state, _ref12) {
     var entity = _ref12.entity,
         item = _ref12.item;
@@ -22328,7 +22291,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     filtered[itemIndex] = item;
     state.filtered[entity] = _toConsumableArray(filtered);
   },
-  //===================update item or photoSet of item in customized==================
+  //===================update photoSet of item in customized==================
   updatePhotosetOfItemInCustomized: function updatePhotosetOfItemInCustomized(state, _ref13) {
     var entity = _ref13.entity,
         itemId = _ref13.itemId,
@@ -22348,6 +22311,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     state.customized = _objectSpread({}, customized);
   },
+  //===================update item in customized==================
   updateItemInCustomized: function updateItemInCustomized(state, _ref14) {
     var entity = _ref14.entity,
         item = _ref14.item;
@@ -22474,7 +22438,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // setTimeout() чтобы сначала отработал реактивно сброс выше
       setTimeout(function () {
         state.popupErrors = _objectSpread({}, errors);
-      }, 10);
+      }, 100);
     },
     cleanPopupErrors: function cleanPopupErrors(state) {
       state.popupErrors = {};
@@ -22485,8 +22449,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true,
       handler: function handler(_ref, errors) {
         var commit = _ref.commit;
-        commit('setPopupErrors', errors);
         commit('setEnabledHidingCss', false);
+        commit('setPopupErrors', errors);
       }
     },
     closePopupErrorsBox: {
@@ -22497,7 +22461,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         commit('setEnabledHidingCss', true);
         setTimeout(function () {
           commit('cleanPopupErrors');
-        }, 500);
+        }, 600);
       }
     },
     cleanPopupErrors: {
@@ -23554,12 +23518,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   saveProduct: function saveProduct(_ref, _ref2) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, state, localProduct, photos, action, product, productId, saveProductUrl, i;
+      var dispatch, commit, getters, state, localProduct, photos, action, product, productId, saveProductUrl, i;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref.dispatch, commit = _ref.commit, state = _ref.state;
+              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters, state = _ref.state;
               localProduct = _ref2.localProduct, photos = _ref2.photos;
               action = localProduct.id ? 'edit' : 'create';
               product = _objectSpread({}, localProduct);
@@ -23600,10 +23564,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 root: true
               }).then(function (data) {
                 // validatorErrors в данных формируется в форм-реквесте если валидация failed
+                dispatch('hideWaitingScreen', null, {
+                  root: true
+                });
+
                 if (data.backValidatorErrors) {
-                  dispatch('hideWaitingScreen', null, {
-                    root: true
-                  });
+                  // dispatch('hideWaitingScreen', null, { root: true });
                   dispatch('showPopupErrorsBox', data.backValidatorErrors, {
                     root: true
                   });
@@ -23639,24 +23605,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     }, {
                       root: true
                     });
-                    dispatch('hideWaitingScreen', null, {
-                      root: true
-                    });
                   } else {
-                    _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
-                      name: 'Products',
-                      params: {
-                        which: 'active'
-                      }
-                    });
+                    commit('addProductToProductsByFirst', data.product);
+                    dispatch('setFiltered', {
+                      entity: 'products',
+                      data: getters.products
+                    }, {
+                      root: true
+                    }).then(function () {
+                      dispatch('divideIntoPages', {
+                        entity: 'products',
+                        customQuantityPerPage: 0 // этот параметр для совместимости
+
+                      }, {
+                        root: true
+                      });
+                    }).then(function () {
+                      _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
+                        name: 'Products',
+                        params: {
+                          which: 'active',
+                          withoutReload: 'yes'
+                        }
+                      });
+                    }); //thatRouter.push({ name: 'Products', params: {which: 'active'}});
                   }
                 } else {
                   var _data$customException;
 
-                  dispatch('hideWaitingScreen', null, {
-                    root: true
-                  });
-
+                  // dispatch('hideWaitingScreen', null, { root: true });
                   var _txt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
 
                   dispatch('showAbsoluteFlashMessage', {
@@ -23756,6 +23733,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     //state.products.splice(0, state.products.length);
     state.products = _toConsumableArray(data);
   },
+  addProductToProductsByFirst: function addProductToProductsByFirst(state, product) {
+    var products = state.products;
+    products.splice(0, 0, product);
+    state.products = _toConsumableArray(products);
+  },
   // при открытии списка продуктов
   setSeoData: function setSeoData(state, data) {
     state.seoData = _toConsumableArray(data);
@@ -23802,6 +23784,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var index = state.products.findIndex(function (item) {
       return item.id === product.id;
     });
+
+    if (index === -1) {
+      return;
+    }
+
     state.products.splice(index, 1, product);
   },
   // ---------------------при drag and drop --------------------------
@@ -24221,86 +24208,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     resetAlarmingInputs: function resetAlarmingInputs(state) {
       state.alarmingInputs = {};
     }
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/js/store/user.js":
-/*!************************************!*\
-  !*** ./resources/js/store/user.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  state: {
-    singleUserUrl: '/api/admin/user/',
-    userEditUrl: '/api/admin/user/edit/',
-    singleUser: {},
-    successUserMessage: '&nbsp;'
-  },
-  getters: {
-    singleUserUrl: function singleUserUrl(state) {
-      return state.singleUserUrl;
-    },
-    userEditUrl: function userEditUrl(state) {
-      return state.userEditUrl;
-    },
-    singleUser: function singleUser(state) {
-      return state.singleUser;
-    },
-    successUserMessage: function successUserMessage(state) {
-      return state.successUserMessage;
-    }
-  },
-  mutations: {
-    setSingleUser: function setSingleUser(state, user) {
-      state.singleUser = _objectSpread({}, user);
-    },
-    setSuccessUserMessage: function setSuccessUserMessage(state, txt) {
-      state.successUserMessage = txt;
-    }
   },
   actions: {
-    // eslint-disable-next-line no-unused-vars
-    loadSingleUser: function loadSingleUser(_ref, userId) {
-      var dispatch = _ref.dispatch,
-          commit = _ref.commit,
-          getters = _ref.getters,
-          state = _ref.state;
-      var singleUserUrl = getters.singleUserUrl + userId;
-      dispatch('getJson', singleUserUrl).then(function (data) {
-        commit('setSingleUser', data);
-      });
-    },
-    saveUserRole: function saveUserRole(_ref2, user) {
-      var dispatch = _ref2.dispatch,
-          commit = _ref2.commit,
-          getters = _ref2.getters,
-          state = _ref2.state;
-      dispatch('postJson', {
-        url: getters.userEditUrl + user.id,
-        data: user
-      }).then(function (data) {
-        if (data.updateSuccess === true) {
-          commit('setSingleUser', data.user);
-          var txt = 'Сохранено ' + data.user.role;
-          commit('setSuccessUserMessage', txt);
-        } else {
-          commit('setSuccessUserMessage', 'неудачная попытка сохранения');
-        }
-
-        dispatch('delayedMessageCleaning', 'setSuccessUserMessage');
-      });
+    resetTypeinErrors: function resetTypeinErrors(_ref) {
+      var commit = _ref.commit;
+      commit('resetTypeinErrors');
     }
   }
 });
@@ -24320,20 +24232,117 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_js_users_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_js/users_getters */ "./resources/js/store/users_js/users_getters.js");
 /* harmony import */ var _users_js_users_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users_js/users_mutations */ "./resources/js/store/users_js/users_mutations.js");
 /* harmony import */ var _users_js_users_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users_js/users_actions */ "./resources/js/store/users_js/users_actions.js");
+/* harmony import */ var _users_js_users_actions_saveUser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./users_js/users_actions_saveUser */ "./resources/js/store/users_js/users_actions_saveUser.js");
+/* harmony import */ var _users_js_users_actions_deleteUser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./users_js/users_actions_deleteUser */ "./resources/js/store/users_js/users_actions_deleteUser.js");
+/* harmony import */ var _users_js_users_actions_editManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./users_js/users_actions_editManager */ "./resources/js/store/users_js/users_actions_editManager.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
- // import nested_pagination from './nested_pagination';
 
-/* eslint no-shadow: ["error", { "allow": ["state", "getters", "mutations", "actions"] }] */
+
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: _users_js_users_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _users_js_users_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _users_js_users_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _users_js_users_actions__WEBPACK_IMPORTED_MODULE_3__["default"]
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _users_js_users_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _users_js_users_actions_saveUser__WEBPACK_IMPORTED_MODULE_4__["default"]), _users_js_users_actions_deleteUser__WEBPACK_IMPORTED_MODULE_5__["default"]), _users_js_users_actions_editManager__WEBPACK_IMPORTED_MODULE_6__["default"])
 });
+
+/***/ }),
+
+/***/ "./resources/js/store/users_js/functions/userValidation.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/store/users_js/functions/userValidation.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return userValidation; });
+function userValidation(user) {
+  // для длинных сообщений в pop-up блоке
+  var err = {}; // для коротких сообщений под input-полями при type-in
+
+  var err2 = {};
+
+  if (user.email.length === 0) {
+    if (!err.hasOwnProperty('email')) {
+      err.email = [];
+      err2.email = [];
+    }
+
+    err.email.push('заполните «E-mail пользователя».');
+    err2.email.push('Пожалуйста заполните E-mail');
+  }
+
+  if (!isEmailValid(user.email)) {
+    if (!err.hasOwnProperty('email')) {
+      err.email = [];
+      err2.email = [];
+    }
+
+    err.email.push('Некорректный email.');
+    err2.email.push('Некорректный email');
+  }
+
+  if (user.name.length === 0) {
+    if (!err.hasOwnProperty('name')) {
+      err.name = [];
+      err2.name = [];
+    }
+
+    err.name.push('заполните «Имя пользователя».');
+    err2.name.push('Пожалуйста заполните «Имя пользователя»');
+  }
+
+  if (!user.id) {
+    if (user.password.length === 0) {
+      if (!err.hasOwnProperty('password')) {
+        err.password = [];
+        err2.password = [];
+      }
+
+      err.password.push('заполните «Пароль для входа».');
+      err2.password.push('Пожалуйста заполните «Пароль для входа»');
+    }
+
+    if (user.password.length > 0 && user.password.length < 6) {
+      if (!err.hasOwnProperty('password')) {
+        err.password = [];
+        err2.password = [];
+      }
+
+      err.password.push('заполните «Пароль» не менее 6 символов.');
+      err2.password.push('Не менее 6 символов');
+    }
+  }
+
+  for (var key in err) {
+    if (err.hasOwnProperty(key)) return {
+      popupErrors: err,
+      typeinErrors: err2
+    };
+  }
+
+  return {
+    popupErrors: null,
+    typeinErrors: null
+  };
+}
+
+function isEmailValid(email) {
+  var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i;
+  return re.test(email);
+}
 
 /***/ }),
 
@@ -24347,18 +24356,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  /* eslint object-curly-newline: ["error", {
-   "ObjectExpression": "always",
-   "ObjectPattern": "never"
-   }]
-  */
-  // ============================посчитать юзеров на сервере============================
   getUsersCount: function getUsersCount(_ref) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
-        getters = _ref.getters,
         state = _ref.state;
-    var url = getters.usersCountUrl;
+    var url = state.url['usersCount'];
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
@@ -24366,16 +24368,15 @@ __webpack_require__.r(__webpack_exports__);
       commit('setUsersCount', data);
     });
   },
-  // ============================загрузка всех юзеров с сервера============================
   loadUsers: function loadUsers(_ref2) {
     var dispatch = _ref2.dispatch,
         commit = _ref2.commit,
-        getters = _ref2.getters,
         state = _ref2.state;
-    var url = getters.usersUrl;
+    var url = state.url['users'];
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
+      //console.log(data);
       commit('setUsers', data);
       dispatch('setFiltered', {
         entity: 'users',
@@ -24396,6 +24397,360 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     });
+  },
+  loadSingleUser: function loadSingleUser(_ref3, userId) {
+    var dispatch = _ref3.dispatch,
+        commit = _ref3.commit,
+        state = _ref3.state;
+    var url = state.url['singleUser'] + userId;
+    dispatch('getJson', url, {
+      root: true
+    }).then(function (data) {
+      commit('setSingleUserFromServer', data);
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/users_js/users_actions_deleteUser.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/store/users_js/users_actions_deleteUser.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  preDeleteUser: function preDeleteUser(_ref, user) {
+    var dispatch = _ref.dispatch;
+    dispatch('closeContextMenu', null, {
+      root: true
+    });
+    var settings = {};
+    settings.yesButtonText = 'Удалить';
+    settings.cancelButtonText = 'Отменить';
+    settings.yesPayload = user;
+    settings.cancelAction = 'closeConfirmationDialog';
+    settings.finalRedirectRoute = 'Users';
+    settings.confirmationRequestText = "\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F \xAB".concat(user.email, "\xBB?");
+    settings.yesAction = 'users/deleteUser';
+    dispatch('showConfirmationDialog', settings, {
+      root: true
+    });
+  },
+  deleteUser: function deleteUser(_ref2, user) {
+    var dispatch = _ref2.dispatch,
+        commit = _ref2.commit,
+        state = _ref2.state;
+    //console.log(user);
+    dispatch('closeConfirmationDialog', null, {
+      root: true
+    });
+    dispatch('deleteJson', state.url['deleteUser'] + user.id, {
+      root: true
+    }).then(function (data) {
+      if (data.deleteSuccess === true) {
+        dispatch('loadUsers');
+        var txt = "\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C \xAB".concat(user.email, "\xBB \u0443\u0434\u0430\u043B\u0435\u043D.");
+        dispatch('showAbsoluteFlashMessage', {
+          text: txt,
+          sec: 2
+        }, {
+          root: true
+        });
+      } else {
+        var _txt = 'неудачная попытка удаления';
+        dispatch('showAbsoluteFlashMessage', {
+          text: _txt,
+          sec: 2
+        }, {
+          root: true
+        });
+      }
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/users_js/users_actions_editManager.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/store/users_js/users_actions_editManager.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  showUserEditManager: function showUserEditManager(_ref, userId) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        getters = _ref.getters,
+        state = _ref.state;
+    //console.log(data);
+    dispatch('closeContextMenu', null, {
+      root: true
+    });
+    dispatch('showWaitingScreen', null, {
+      root: true
+    });
+    document.body.style.cssText = 'overflow:hidden;';
+    commit('setSingleUserFromServer', {});
+    dispatch('loadSingleUser', userId).then(function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
+      commit('setEnabledFadingCss', false);
+      commit('setShowUserEditManager', true);
+    });
+  },
+  closeUserEditManager: function closeUserEditManager(_ref2) {
+    var commit = _ref2.commit;
+    document.body.style.cssText = 'overflow:auto;';
+    commit('setEnabledFadingCss', true);
+    setTimeout(function () {
+      commit('setShowUserEditManager', false);
+    }, 500);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/users_js/users_actions_saveUser.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/store/users_js/users_actions_saveUser.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _functions_userValidation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/userValidation */ "./resources/js/store/users_js/functions/userValidation.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../router */ "./resources/js/router/index.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  // фронт-валидация при вводе (type-in валидация)
+  typeinValidation: function typeinValidation(_ref, user) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        rootGetters = _ref.rootGetters;
+    dispatch('cleanPopupErrors', null, {
+      root: true
+    });
+
+    if (!rootGetters.typeinValidationRequired) {
+      return;
+    }
+
+    var _userValidation = Object(_functions_userValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(user),
+        typeinErrors = _userValidation.typeinErrors;
+
+    commit('setTypeinErrors', typeinErrors, {
+      root: true
+    });
+    commit('setAlarmingInputs', typeinErrors, {
+      root: true
+    });
+  },
+  cleanValidationErrors: function cleanValidationErrors(_ref2) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var dispatch, commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              dispatch = _ref2.dispatch, commit = _ref2.commit;
+              dispatch('cleanPopupErrors', null, {
+                root: true
+              });
+              commit('resetAlarmingInputs', null, {
+                root: true
+              });
+              commit('resetTypeinErrors', null, {
+                root: true
+              });
+              commit('disableTypeinValidation', null, {
+                root: true
+              });
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  // фронт-валидация, pop-up и type-in сообщения об ошибках
+  _frontValidation: function _frontValidation(_ref3, user) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var dispatch, commit, _userValidation2, popupErrors, typeinErrors;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              dispatch = _ref3.dispatch, commit = _ref3.commit;
+              _userValidation2 = Object(_functions_userValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(user), popupErrors = _userValidation2.popupErrors, typeinErrors = _userValidation2.typeinErrors;
+
+              if (!popupErrors) {
+                _context2.next = 8;
+                break;
+              }
+
+              dispatch('showPopupErrorsBox', popupErrors, {
+                root: true
+              });
+              commit('enableTypeinValidation', null, {
+                root: true
+              });
+              commit('setAlarmingInputs', popupErrors, {
+                root: true
+              });
+              commit('setTypeinErrors', typeinErrors, {
+                root: true
+              });
+              return _context2.abrupt("return", false);
+
+            case 8:
+              return _context2.abrupt("return", true);
+
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  saveUser: function saveUser(_ref4, user) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var dispatch, commit, getters, state, action, userId, saveUserUrl;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              dispatch = _ref4.dispatch, commit = _ref4.commit, getters = _ref4.getters, state = _ref4.state;
+              action = user.id ? 'edit' : 'create'; // console.log(user);
+
+              userId = user.id;
+              _context3.next = 5;
+              return dispatch('cleanValidationErrors');
+
+            case 5:
+              _context3.next = 7;
+              return dispatch('_frontValidation', user);
+
+            case 7:
+              if (_context3.sent) {
+                _context3.next = 9;
+                break;
+              }
+
+              return _context3.abrupt("return");
+
+            case 9:
+              saveUserUrl = userId > 0 ? state.url['saveUser'] + userId : state.url['saveUser'];
+              dispatch('postJson', {
+                url: saveUserUrl,
+                data: user
+              }, {
+                root: true
+              }).then(function (data) {
+                // validatorErrors в данных формируется в форм-реквесте если валидация failed
+                if (data.backValidatorErrors) {
+                  dispatch('showPopupErrorsBox', data.backValidatorErrors, {
+                    root: true
+                  });
+                  commit('enableTypeinValidation', null, {
+                    root: true
+                  });
+                  commit('setAlarmingInputs', data.backValidatorErrors, {
+                    root: true
+                  }); //commit('setTypeinErrors', data.backValidatorErrors, { root: true });
+
+                  return;
+                } //console.log(data.user);
+
+
+                if (data.saveSuccess === true) {
+                  commit('disableTypeinValidation', null, {
+                    root: true
+                  });
+                  var txt = userId > 0 ? "\u0414\u0430\u043D\u043D\u044B\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F \xAB".concat(data.user.email, "\xBB \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u044B.") : "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C \xAB".concat(data.user.email, "\xBB");
+                  dispatch('showAbsoluteFlashMessage', {
+                    text: txt,
+                    sec: 2
+                  }, {
+                    root: true
+                  });
+
+                  if (action === 'edit') {
+                    commit('setSingleUserFromServer', data.user);
+                    commit('updateUsersBySingleUser');
+                    dispatch('updateItemInPaginated', {
+                      entity: 'users',
+                      item: data.user
+                    }, {
+                      root: true
+                    });
+                  } else {
+                    commit('addUserToUsersByFirst', data.user);
+                    dispatch('setFiltered', {
+                      entity: 'users',
+                      data: getters.users
+                    }, {
+                      root: true
+                    }).then(function () {
+                      dispatch('divideIntoPages', {
+                        entity: 'users',
+                        customQuantityPerPage: 0 // этот параметр для совместимости
+
+                      }, {
+                        root: true
+                      });
+                    }).then(function () {
+                      _router__WEBPACK_IMPORTED_MODULE_2__["default"].push({
+                        name: 'Users',
+                        params: {
+                          withoutReload: 'yes'
+                        }
+                      });
+                    });
+                  }
+                } else {
+                  var _data$customException;
+
+                  var _txt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
+
+                  dispatch('showAbsoluteFlashMessage', {
+                    text: _txt,
+                    sec: 2
+                  }, {
+                    root: true
+                  });
+                }
+              });
+
+            case 11:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
   }
 });
 
@@ -24411,21 +24766,21 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  usersCountUrl: function usersCountUrl(state) {
-    return state.usersCountUrl;
+  users: function users(state) {
+    return state.users;
   },
-  usersUrl: function usersUrl(state) {
-    return state.usersUrl;
-  },
-  quantityPerPage: function quantityPerPage(state) {
-    return state.quantityPerPage;
-  },
-  //
   usersCount: function usersCount(state) {
     return state.usersCount;
   },
-  showLazyUsers: function showLazyUsers(state) {
-    return state.usersCount > 1000;
+  singleUserFromServer: function singleUserFromServer(state) {
+    return state.singleUserFromServer;
+  },
+  //showLazyUsers: (state) => state.usersCount > 1000,
+  showUserEditManager: function showUserEditManager(state) {
+    return state.showUserEditManager;
+  },
+  enabledFadingCss: function enabledFadingCss(state) {
+    return state.enabledFadingCss;
   }
 });
 
@@ -24440,36 +24795,65 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  // ===========================usersCount======================
   setUsersCount: function setUsersCount(state, count) {
     state.usersCount = count;
   },
-  // ===========================users======================
+  setSingleUserFromServer: function setSingleUserFromServer(state, user) {
+    state.singleUserFromServer = _objectSpread({}, user);
+  },
   setUsers: function setUsers(state, data) {
-    state.users.splice(0, state.users.length);
+    state.users = _toConsumableArray(data);
+  },
+  addUserToUsersByFirst: function addUserToUsersByFirst(state, user) {
+    var users = state.users;
+    users.splice(0, 0, user);
+    state.users = _toConsumableArray(users);
+  },
 
-    for (var i = 0; i < data.length; i += 1) {
-      state.users.push(data[i]);
+  /*
+  addUserToUsers: (state, user) => {
+      //console.log(user);
+      const users = state.users.concat(user);
+      state.users = [ ...users ];
+  },
+  */
+  updateUsersBySingleUser: function updateUsersBySingleUser(state) {
+    var user = state.singleUserFromServer;
+    var index = state.users.findIndex(function (item) {
+      return item.id === user.id;
+    });
+
+    if (index === -1) {
+      return;
     }
-  } // ==========================filtered=======================
 
-  /*
-  setFilteredUsers: (state, data) => {
-      state.filtered.splice(0, state.filtered.length);
-      for (let i = 0; i < data.length; i += 1) {
-          state.filtered.push(data[i]);
-      }
-      // console.log(state.filtered);
+    state.users.splice(index, 1, user);
   },
-  */
-
-  /*
-  clearFilteredUsers: (state) => {
-      state.filtered.splice(0, state.filtered.length);
+  setShowUserEditManager: function setShowUserEditManager(state, value) {
+    state.showUserEditManager = value;
   },
-  */
-
+  setEnabledFadingCss: function setEnabledFadingCss(state, value) {
+    state.enabledFadingCss = value;
+  }
 });
 
 /***/ }),
@@ -24484,26 +24868,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  usersCountUrl: '/api/admin/users/count',
-  usersUrl: '/api/admin/users',
-  usersCount: 6,
-  users: []
-  /*
-  // ПАГИНАЦИЯ
-  // если страниц меньше, показывать все
-  minimumPagesForComplexPagination: 9,
-  // установка пользователем в выпадающем списке кол-ва товаров на страницу
-  quantityPerPage: 6,
-  // для выхода из View all обратно в пагинацию
-  copyOfQuantityPerPage: 6,
-  // css ссылки на активную страницу
-  activePaginationLinkCss: 'pagination_link active_pagination_link',
-  // css ссылки на неактивную страницу
-  inactivePaginationLinkCss: 'pagination_link',
-  // половина длины активного кадра ссылок пагинации
-  half_length_of_pagination_shot: 1,
-  */
-
+  url: {
+    usersCount: '/api/admin/users/count',
+    users: '/api/admin/users',
+    singleUser: '/api/admin/user/',
+    saveUser: '/api/admin/user/save/',
+    deleteUser: '/api/admin/user/delete/'
+  },
+  usersCount: -1,
+  users: [],
+  singleUserFromServer: {},
+  showUserEditManager: false,
+  enabledFadingCss: false
 });
 
 /***/ }),

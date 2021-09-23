@@ -114,7 +114,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       customQuantityPerPage: 0
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('pagination', ['showPage'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['divideIntoPages'])),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('pagination', ['showPageByClick'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['divideIntoPages'])),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'currentPageNumber', 'customized', 'customizedLength', 'paginationLinksShot', 'paginationLinkCssArr', 'quantityPerPage', 'wing', 'minimumPagesForComplexPagination'])), {}, {
     aLotOfPages: function aLotOfPages() {
       if (this.customizedLength(this.entity) < this.minimumPagesForComplexPagination(this.entity)) {
@@ -247,9 +247,9 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        _vm.showPage({
+                        _vm.showPageByClick({
                           entity: _vm.entity,
-                          page: _vm.currentPageIndex(_vm.entity) - 1
+                          pageIndex: _vm.currentPageIndex(_vm.entity) - 1
                         })
                       }
                     }
@@ -269,9 +269,9 @@ var render = function() {
                           on: {
                             click: function($event) {
                               $event.preventDefault()
-                              return _vm.showPage({
+                              return _vm.showPageByClick({
                                 entity: _vm.entity,
-                                page: 0
+                                pageIndex: 0
                               })
                             }
                           }
@@ -298,9 +298,9 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            return _vm.showPage({
+                            return _vm.showPageByClick({
                               entity: _vm.entity,
-                              page: item - 1
+                              pageIndex: item - 1
                             })
                           }
                         }
@@ -332,9 +332,10 @@ var render = function() {
                               on: {
                                 click: function($event) {
                                   $event.preventDefault()
-                                  _vm.showPage({
+                                  _vm.showPageByClick({
                                     entity: _vm.entity,
-                                    page: _vm.customizedLength(_vm.entity) - 1
+                                    pageIndex:
+                                      _vm.customizedLength(_vm.entity) - 1
                                   })
                                 }
                               }
@@ -361,9 +362,9 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        _vm.showPage({
+                        _vm.showPageByClick({
                           entity: _vm.entity,
-                          page: _vm.currentPageIndex(_vm.entity) + 1
+                          pageIndex: _vm.currentPageIndex(_vm.entity) + 1
                         })
                       }
                     }

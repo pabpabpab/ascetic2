@@ -41,6 +41,10 @@ class SetNewPasswordController extends Controller
                 ->with(['status' => $this->_evasiveAnswer()]);
         }
 
+        // переход по signed url из письма был совершен,
+        // значит можно еще раз пометить как email verified, если не был помечен
+        $user->markEmailAsVerified(); // добавил после
+
         // получить запись токена из таблицы, если есть
         $tokenObject = DB::table('password_resets')
             ->where('email', $user->email)

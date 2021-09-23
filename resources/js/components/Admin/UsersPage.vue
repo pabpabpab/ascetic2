@@ -1,31 +1,29 @@
 <template>
-    <DIV v-if="showLazyUsers">
-        <lazy-users></lazy-users>
-    </DIV>
-    <DIV v-else>
-        <users></users>
-        <pagination entity="users"></pagination>
-    </DIV>
+    <div class="show_block">
+        <h1>Пользователи</h1>
+        <div class="content_block content_block__users">
+            <pagination entity="users"></pagination>
+            <users></users>
+            <pagination entity="users"></pagination>
+        </div>
+    </div>
 </template>
 
 <script>
 
-import {mapGetters} from "vuex";
+//import {mapGetters} from "vuex";
 
 export default {
     name: 'UsersPage',
     components: {
         Users: () => import('./Users/Users.vue'),
         Pagination: () => import('./Blocks/Pagination.vue'),
-        LazyUsers: () => import('./Users/LazyUsers.vue'),
+        // LazyUsers: () => import('./Users/LazyUsers.vue'),
     },
-    computed: {
-        ...mapGetters('users', [
-            'showLazyUsers',
-        ]),
-    },
+    /*
     mounted() {
         this.$store.dispatch('users/getUsersCount');
     },
+    */
 };
 </script>

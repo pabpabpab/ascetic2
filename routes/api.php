@@ -39,7 +39,8 @@ Route::group([
 
     // single user
     Route::get('/user/{user}', 'UserController@getOne');
-    Route::post('/user/edit/{user}', 'UserController@update');
+    Route::delete('/user/delete/{user}', 'UserController@delete');
+    Route::post('/user/save/{user?}', 'UserController@save');
 
     // категории товаров
     Route::get('/categories', 'CategoryController@getAll');

@@ -46,4 +46,9 @@ export default {
         },
     },
 
+    actions: {
+        resetTypeinErrors({ commit }) {
+            commit('resetTypeinErrors');
+        },
+    },
 };

@@ -25,28 +25,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
- // import UserItem from '@/components/Admin/Users/UserItem.vue';
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Users',
-  // props: ['moduleName'],
   components: {
     UserItem: function UserItem() {
       return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./UserItem.vue */ "./resources/js/components/Admin/Users/UserItem.vue"));
+    },
+    UserEditManager: function UserEditManager() {
+      return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./UserEditManager.vue */ "./resources/js/components/Admin/Users/UserEditManager.vue"));
+    },
+    UsersContextMenu: function UsersContextMenu() {
+      return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./../ContextMenu/UsersContextMenu.vue */ "./resources/js/components/Admin/ContextMenu/UsersContextMenu.vue"));
     }
   },
-  data: function data() {
-    return {
-      containerClass: 'container'
-    };
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
     items: function items() {
       return this.customized('users')[this.currentPageIndex('users')];
     }
-  }),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showUsersContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['showUserEditManager'])),
   mounted: function mounted() {
-    this.$store.dispatch('users/loadUsers');
+    if (!this.$route.params.withoutReload) {
+      this.$store.dispatch('users/loadUsers');
+    }
   }
 });
 
@@ -69,11 +73,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { class: _vm.containerClass },
-    _vm._l(_vm.items, function(item) {
-      return _c("user-item", { key: item.id, attrs: { user: item } })
-    }),
-    1
+    { staticClass: "users__list" },
+    [
+      _vm._l(_vm.items, function(item) {
+        return _c("user-item", { key: item.id, attrs: { user: item } })
+      }),
+      _vm._v(" "),
+      _vm.showUsersContextMenu ? _c("users-context-menu") : _vm._e(),
+      _vm._v(" "),
+      _vm.showUserEditManager ? _c("user-edit-manager") : _vm._e()
+    ],
+    2
   )
 }
 var staticRenderFns = []

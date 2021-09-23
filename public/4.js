@@ -9,6 +9,13 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -19,15 +26,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserItem',
   props: ['user'],
-  data: function data() {
-    return {
-      oneUserClass: 'user__item'
-    };
-  }
+  computed: {
+    role: function role() {
+      var roleBook = {
+        user: '',
+        admin: '<b>Администратор</b>'
+      };
+      return roleBook[this.user.role];
+    },
+    emailVerified: function emailVerified() {
+      return Boolean(this.user.email_verified_at) ? 'Подтвержден' : 'Не подтвержден';
+    }
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu']))
 });
+/*
+
+
+        <router-link class="user__nameLink" :to="'/admin/user/' + user.id">
+            {{user.name}}
+        </router-link>
+        <i style="margin: 0 10px;">{{user.role}}</i>
+        <p>{{user.email}}</p>
+ */
 
 /***/ }),
 
@@ -46,27 +92,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { class: _vm.oneUserClass },
-    [
-      _c(
-        "router-link",
-        {
-          staticClass: "user__nameLink",
-          attrs: { to: "/admin/user/" + _vm.user.id }
-        },
-        [_vm._v("\n        " + _vm._s(_vm.user.name) + "\n    ")]
-      ),
+  return _c("div", { staticClass: "user_item" }, [
+    _c(
+      "span",
+      {
+        staticClass: "context_menu_icon__user",
+        on: {
+          mouseover: function($event) {
+            return _vm.showContextMenu({
+              event: $event,
+              target: "Users",
+              data: { user: _vm.user }
+            })
+          }
+        }
+      },
+      [_vm._v("\n        ⋮\n    ")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "user_item__content" }, [
+      _c("span", { domProps: { innerHTML: _vm._s(_vm.role) } }),
       _vm._v(" "),
-      _c("i", { staticStyle: { margin: "0 10px" } }, [
-        _vm._v(_vm._s(_vm.user.role))
+      _c("span", [
+        _vm._v("\n            " + _vm._s(_vm.user.name) + " /\n        ")
       ]),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.user.email))])
-    ],
-    1
-  )
+      _c("span", [
+        _vm._v("\n            " + _vm._s(_vm.user.email) + " /\n        ")
+      ]),
+      _vm._v(" "),
+      _c("span", [
+        _vm._v("\n            " + _vm._s(_vm.emailVerified) + "\n        ")
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

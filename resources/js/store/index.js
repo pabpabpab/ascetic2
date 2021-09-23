@@ -6,8 +6,7 @@ import csrfToken from './csrfToken';
 import http from './http';
 import users from './users';
 import pagination from './pagination';
-import lazyUsers from './lazyUsers';
-import user from './user';
+//import lazyUsers from './lazyUsers';
 import categories from './categories';
 import products from './products';
 import typeinErrors from './typeinErrors';
@@ -51,8 +50,7 @@ const store = new Vuex.Store({
         http,
         users,
         pagination,
-        lazyUsers,
-        user,
+        //lazyUsers,
         categories,
         products,
         typeinErrors,

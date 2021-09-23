@@ -10,9 +10,9 @@
 
             <td>
                 <a href="#" class="pagination_link"
-                   @click.prevent="showPage({
+                   @click.prevent="showPageByClick({
                         entity: entity,
-                        page: currentPageIndex(entity) - 1
+                        pageIndex: currentPageIndex(entity) - 1
                    })">
                     <i class="fas fa-angle-left">&larr;</i>
                 </a>
@@ -25,9 +25,9 @@
 
                 <div class="pagination_left" v-if="showFirstPageWithDots">
                     <a href="#" class="pagination_link"
-                       @click.prevent="showPage({
+                       @click.prevent="showPageByClick({
                             entity: entity,
-                            page: 0
+                            pageIndex: 0
                        })">
                         1
                     </a>
@@ -40,9 +40,9 @@
                     <a href="#"
                        v-for="item of paginationLinksShot(entity)" :key="item"
                        :class="paginationLinkCssArr(entity)[item - 1]"
-                       @click.prevent="showPage({
+                       @click.prevent="showPageByClick({
                             entity: entity,
-                            page: item - 1
+                            pageIndex: item - 1
                        })">
                         {{ item }}
                     </a>
@@ -53,9 +53,9 @@
                         ...
                     </span>
                     <a href="#" class="pagination_link"
-                       @click.prevent="showPage({
+                       @click.prevent="showPageByClick({
                             entity: entity,
-                            page: customizedLength(entity) - 1
+                            pageIndex: customizedLength(entity) - 1
                        })" v-if="showLastPageWithDots">
                         {{ customizedLength(entity) }}
                     </a>
@@ -68,9 +68,9 @@
 
             <td>
                 <a href="#" class="pagination_link"
-                   @click.prevent="showPage({
+                   @click.prevent="showPageByClick({
                         entity: entity,
-                        page: currentPageIndex(entity) + 1
+                        pageIndex: currentPageIndex(entity) + 1
                    })">
                       <i class="fas fa-angle-right"> &rarr; </i>
                 </a>
@@ -99,7 +99,7 @@ export default {
     },
     methods: {
         ...mapActions('pagination', [
-            'showPage',
+            'showPageByClick',
         ]),
         ...mapActions([
             'divideIntoPages',

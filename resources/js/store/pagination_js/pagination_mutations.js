@@ -122,7 +122,7 @@ export default {
         state.customized = { ...customized };
     },
 
-    //===================update item or photoSet of item in filtered==================
+    //===================update photoSet of item in filtered==================
     updatePhotosetOfItemInFiltered: (state, { entity, itemId, photoSet }) => {
         const filtered = state.filtered[entity];
         const itemIndex = filtered.findIndex(item => item.id === itemId);
@@ -130,6 +130,7 @@ export default {
         state.filtered[entity] = [ ...filtered ];
     },
 
+    //===================update item in filtered==================
     updateItemInFiltered: (state, { entity, item }) => {
         const filtered = state.filtered[entity];
         const itemIndex = filtered.findIndex(el => el.id === item.id);
@@ -137,7 +138,7 @@ export default {
         state.filtered[entity] = [ ...filtered ];
     },
 
-    //===================update item or photoSet of item in customized==================
+    //===================update photoSet of item in customized==================
     updatePhotosetOfItemInCustomized: (state, { entity, itemId, photoSet }) => {
         const customized = state.customized;
         const currentPageIndex = state.currentPage[entity];
@@ -155,6 +156,7 @@ export default {
         state.customized = { ...customized };
     },
 
+    //===================update item in customized==================
     updateItemInCustomized: (state, { entity, item }) => {
         const customized = state.customized;
         const currentPageIndex = state.currentPage[entity];

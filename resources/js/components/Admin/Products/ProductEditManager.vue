@@ -15,7 +15,7 @@
 
             <div class="edit_manager__button_panel">
                 <button class="edit_manager__save_button"
-                        @click="save()">
+                        @click.stop="save()">
                     Сохранить
                 </button>
             </div>
@@ -35,7 +35,7 @@ import _fitTextareaHeight from './functions/fitTextareaHeight';
 //import getFormattedPrice from "./functions/getFormattedPrice";
 
 export default {
-    name: "EditManager",
+    name: "ProductEditManager",
     components: {
         ProductForm: () => import('./ProductForm.vue'),
     },

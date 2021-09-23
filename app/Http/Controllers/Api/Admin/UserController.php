@@ -3,29 +3,23 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserSaveRequest;
 use App\Models\User;
+use App\Services\User\SaveByAdminService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function getAll(User $user): JsonResponse
+    public function getAll(): JsonResponse
     {
-        $users = $user->getAll();
-        return response()->json($users);
-    }
-
-    public function getLazyUsers(User $user, $lastId): JsonResponse
-    {
-        $users = $user->getMore($lastId)
-            ->take(30);
+        $users = User::query()->orderBy('id', 'desc')->get();
         return response()->json($users);
     }
 
     public function getCount(): JsonResponse
     {
-        $count = User::count();
-        return response()->json($count);
+        return response()->json(User::count());
     }
 
     public function getOne(User $user): JsonResponse
@@ -33,17 +27,31 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-
-    public function update(Request $request, User $user): JsonResponse
+    public function delete(User $user): JsonResponse
     {
-        $result = $user->updateRole(
-            $request->input('role')
-        );
-
+       // instance user'a в роуте как {user}
         return response()->json([
-            'updateSuccess' => $result['success'],
-            'user' => $result['user']
+            'deleteSuccess' => $user->delete()
         ]);
     }
 
+    public function save(UserSaveRequest $request, SaveByAdminService $service, User $user): JsonResponse
+    {
+        // instance user в роуте как {user?}
+        return response()->json(
+            $service->saveOne($request, $user)
+        );
+    }
+
+
+
+/*
+
+    public function getLazyUsers(User $user, $lastId): JsonResponse
+    {
+        $users = $user->getMore($lastId)
+            ->take(30);
+        return response()->json($users);
+    }
+*/
 }

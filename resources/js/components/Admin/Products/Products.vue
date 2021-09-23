@@ -65,8 +65,11 @@ export default {
         },
     },
     mounted() {
-        //this.$store.dispatch('products/loadProducts', this.$route.params.which);
-        this.$store.dispatch('products/loadProducts', this.$route);
+        //this.$store.dispatch('products/loadProducts', this.$route);
+
+        if (!this.$route.params.withoutReload) {
+            this.$store.dispatch('products/loadProducts', this.$route);
+        }
     },
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
     <nav class="navBar">
+
         <div class="navBar_left">
             <a href="http://asceticshop.ru" class="logo__link">AsceticShop.ru</a>
             <ul class="navBar__ul">
@@ -28,7 +29,6 @@
                         </div>
 
                     </router-link>
-
                 </li>
 
                 <li class="navBar__li">
@@ -42,14 +42,38 @@
                 </li>
             </ul>
         </div>
+
+
         <ul class="navBar__ul">
+
             <li class="navBar__li">
-                <router-link :to="{ name: 'Users' }" :class="usersLinkClass">Пользователи</router-link>
+                <router-link
+                    :to="{ name: 'Users' }"
+                    class="navBar__link_with_arrow"
+                    :class="usersLinkClass">
+                    Пользователи
+
+                    <div class="navBar__link__arrow">
+                        <div class="navBar__drop_menu show_block">
+                            <ul class="navBar__drop_menu__ul">
+                                <li class="navBar__drop_menu__li">
+                                    <router-link :to="{ name: 'SaveUser' }"
+                                                 class="navBar__drop_menu__link">
+                                        Создать
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </router-link>
             </li>
+
             <li class="navBar__li">
                 <router-link :to="{ name: 'Main' }" :class="mainPageLinkClass">Помощь</router-link>
             </li>
         </ul>
+
     </nav>
 </template>
 

@@ -11,56 +11,28 @@ const routes = [
         component: () => import('../components/Admin/UsersPage.vue'),
     },
     {
-        path: '/admin/user/:id',
-        name: 'SingleUser',
-        component: () => import('../components/Admin/Users/SingleUser.vue'),
-    },
-/*
-    {
-        path: '/admin/products/category/add',
-        name: 'SaveCategory',
-        component: () => import('../components/Admin/oldSaveCategoryPage.vue'),
+        path: '/admin/user/add',
+        name: 'SaveUser',
+        component: () => import('../components/Admin/SaveUserPage.vue'),
     },
 
 
-    {
-        path: '/admin/products/category/edit/:id',
-        name: 'EditCategory',
-        component: () => import('../components/Admin/oldSaveCategoryPage.vue'),
-    },*/
 
-
-    {
-        path: '/admin/products/add',
-        name: 'SaveProduct',
-        component: () => import('../components/Admin/SaveProductPage.vue'),
-    },
-    /*
-    {
-        path: '/admin/products/edit/:id',
-        name: 'EditProduct',
-        component: () => import('../components/Admin/SaveProductPage.vue'),
-    },
-    */
     {
         path: '/admin/products/:which',
         name: 'Products',
         component: () => import('../components/Admin/ProductsPage.vue'),
     },
-
-
-
-
-
-
     {
         path: '/admin/products/by/:categoryEntity/:slug',
         name: 'ProductsByCategory',
         component: () => import('../components/Admin/ProductsPage.vue'),
     },
-
-
-
+    {
+        path: '/admin/product/add',
+        name: 'SaveProduct',
+        component: () => import('../components/Admin/SaveProductPage.vue'),
+    },
 
 
 
@@ -69,19 +41,7 @@ const routes = [
         name: 'Categories',
         component: () => import('../components/Admin/CategoriesPage.vue'),
     },
-/*
-    {
-        path: '/admin/products/materials',
-        name: 'Materials',
-        component: () => import('../components/Admin/CategoriesPage.vue'),
-    },
 
-    {
-        path: '/admin/products/colors',
-        name: 'Colors',
-        component: () => import('../components/Admin/CategoriesPage.vue'),
-    },
-*/
     {
         path: '*',
         redirect: '/',
