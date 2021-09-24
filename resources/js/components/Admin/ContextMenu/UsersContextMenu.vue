@@ -5,13 +5,23 @@
                 «{{ user.email }}»
             </li>
             <li class="context_menu__li"
-                @click="showUserEditManager(user.id)">
-                Редактировать
+                @click="showUserEditManager({userId: user.id, task: 'editEmail'})">
+                E-mail / имя
+            </li>
+
+            <li class="context_menu__li"
+                @click="showUserEditManager({userId: user.id, task: 'editRole'})">
+                Права пользователя
+            </li>
+
+            <li class="context_menu__li"
+                @click="showUserEditManager({userId: user.id, task: 'editPassword'})">
+                Новый пароль
             </li>
 
             <li class="context_menu__li" style="border: 0;"
                 @click="preDeleteUser(user)">
-                Удалить
+                Удалить пользователя
             </li>
         </ul>
     </div>

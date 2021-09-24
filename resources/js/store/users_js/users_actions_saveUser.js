@@ -4,12 +4,12 @@ import thatRouter from "../../router";
 export default {
 
     // фронт-валидация при вводе (type-in валидация)
-    typeinValidation({ dispatch, commit, rootGetters }, user) {
+    typeinValidation({ dispatch, commit, getters, rootGetters }, user) {
         dispatch('cleanPopupErrors', null, { root: true });
         if (!rootGetters.typeinValidationRequired) {
             return;
         }
-        const { typeinErrors } = userValidation(user);
+        const { typeinErrors } = userValidation(user, getters.taskOfUserEditManager);
         commit('setTypeinErrors', typeinErrors, { root: true });
         commit('setAlarmingInputs', typeinErrors, { root: true });
     },
@@ -22,8 +22,8 @@ export default {
     },
 
     // фронт-валидация, pop-up и type-in сообщения об ошибках
-    async _frontValidation({ dispatch, commit }, user) {
-        const { popupErrors, typeinErrors } = userValidation(user);
+    async _frontValidation({ dispatch, commit, getters }, user) {
+        const { popupErrors, typeinErrors } = userValidation(user, getters.taskOfUserEditManager);
         if (popupErrors) {
             dispatch('showPopupErrorsBox', popupErrors, { root: true });
             commit('enableTypeinValidation', null, { root: true });
@@ -36,22 +36,24 @@ export default {
 
 
     async saveUser({ dispatch, commit, getters, state }, user) {
-        const action = user.id ? 'edit' : 'create';
         // console.log(user);
-        const userId = user.id;
-        await dispatch('cleanValidationErrors');
+        const action = user.id ? 'edit' : 'create';
+        const sendingEmail = Boolean(user.send_confirm_registration || user.send_reset_password);
 
+        await dispatch('cleanValidationErrors');
         if (!await dispatch('_frontValidation', user)) {
             return;
         }
-        const saveUserUrl = userId > 0
-            ? state.url['saveUser'] + userId
-            : state.url['saveUser'];
+        if (action === 'create') {
+            commit('setTaskOfUserEditManager', '');
+        } else {
+            user.editTask = getters.taskOfUserEditManager;
+        }
 
         dispatch(
             'postJson',
             {
-                url: saveUserUrl,
+                url: user.id > 0 ? state.url['saveUser'] + user.id : state.url['saveUser'],
                 data: user
             },
             {root: true}
@@ -70,9 +72,10 @@ export default {
 
                 if (data.saveSuccess === true) {
                     commit('disableTypeinValidation', null, { root: true });
-                    const txt = userId > 0
-                        ? `Данные пользователя «${data.user.email}» сохранены.`
+                    let txt = action === 'edit'
+                        ? `Данные пользователя «${data.user.email}» сохранены`
                         : `Добавлен пользователь «${data.user.email}»`;
+                    txt = sendingEmail ? txt + ', письмо отправлено.' : txt;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
 
                     if (action === 'edit') {
@@ -102,6 +105,7 @@ export default {
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
             });
+
     },
 
 

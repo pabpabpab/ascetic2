@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/UserEditManager.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************!*\
@@ -10,6 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _UserForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserForm */ "./resources/js/components/Admin/Users/UserForm.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -49,29 +50,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UserEditManager",
   components: {
-    UserForm: function UserForm() {
-      return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./UserForm.vue */ "./resources/js/components/Admin/Users/UserForm.vue"));
-    },
-    UserPasswordForm: function UserPasswordForm() {
-      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./UserPasswordForm.vue */ "./resources/js/components/Admin/Users/UserPasswordForm.vue"));
-    }
+    UserForm: _UserForm__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
       saveCmd: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['singleUserFromServer', 'taskOfUserEditManager', 'enabledFadingCss'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['singleUserFromServer', 'enabledFadingCss'])), {}, {
     editScreenClass: function editScreenClass() {
       return {
         'edit_manager__screen': true,
@@ -79,12 +70,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'hide_block': this.enabledFadingCss
       };
     },
-
-    /*
-            noData() {
-                return Boolean(this.singleUserFromServer);
-            },
-    */
     getHeader: function getHeader() {
       if (!this.singleUserFromServer) {
         return '';
@@ -137,15 +122,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "edit_manager__content pdt20 pdb20" },
-        [
-          _vm.taskOfUserEditManager === "editUser"
-            ? _c("user-form", {
-                attrs: { action: "edit", saveCmd: _vm.saveCmd }
-              })
-            : _vm.taskOfUserEditManager === "editUserPassword"
-            ? _c("user-password-form", { attrs: { saveCmd: _vm.saveCmd } })
-            : _vm._e()
-        ],
+        [_c("user-form", { attrs: { action: "edit", saveCmd: _vm.saveCmd } })],
         1
       ),
       _vm._v(" "),
@@ -162,8 +139,7 @@ var render = function() {
             }
           },
           [_vm._v("\n                Сохранить\n            ")]
-        ),
-        _vm._v("5\n        ")
+        )
       ]),
       _vm._v(" "),
       _c(

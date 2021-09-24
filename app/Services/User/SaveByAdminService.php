@@ -20,19 +20,11 @@ class SaveByAdminService
 
         try {
 
-            $user->fill($request->input());
-            $user->role = $request->role === 'admin' ? 'admin' : 'user';
             if (!$user->id) {
-                $user->password = Hash::make($request->password);
-            }
-            $user->save(); // теперь у $user есть id при create
-
-            if ($request->email_verified) {
-                $user->markEmailAsVerified();
+                $this->_createUser($request, $user);
             } else {
-                //$user->markEmailAsUnverified();
-                $user->email_verified_at = null;
-                $user->save();
+                $methodName = "_".$request->editTask; // editEmail / editRole / editPassword
+                $this->$methodName($request, $user);
             }
 
         } catch (\Exception $e) {
@@ -84,5 +76,45 @@ class SaveByAdminService
             'saveSuccess' => true,
             'user' => $user
         ];
+    }
+
+
+
+    protected function _createUser($request, $user)
+    {
+        $user->fill($request->input());
+        $user->role = $request->role === 'admin' ? 'admin' : 'user';
+        $user->password = Hash::make($request->password);
+        $user->save(); // теперь у $user есть id при create
+        if ($request->email_verified) {
+            $user->markEmailAsVerified();
+        }
+    }
+
+    protected function _editEmail($request, $user)
+    {
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->save();
+        if ($request->email_verified) {
+            $user->markEmailAsVerified();
+        } else {
+            $user->email_verified_at = null;
+            $user->save();
+        }
+    }
+
+    protected function _editRole($request, $user)
+    {
+        $user->role = $request->role === 'admin' ? 'admin' : 'user';
+        $user->save();
+    }
+
+    protected function _editPassword($request, $user)
+    {
+        if (!empty($request->password)) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+        }
     }
 }

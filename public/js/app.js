@@ -20542,13 +20542,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setCoordinatesForCategoriesContext: function setCoordinatesForCategoriesContext(state, event) {
       var icon = event.target.getBoundingClientRect();
       var x = {
-        left: icon.x + 25 + 'px'
+        left: icon.x + 20 + 'px'
       }; // проверка на расстояние от точки клика до нижнего края
 
       var y = window.innerHeight - event.clientY < 300 ? {
         bottom: window.innerHeight - event.pageY + 'px'
       } : {
-        top: icon.y + window.pageYOffset + 21 + 'px'
+        top: icon.y + window.pageYOffset + 10 + 'px'
       };
       state.coordinates = _objectSpread(_objectSpread({}, x), y);
     },
@@ -20578,13 +20578,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setCoordinatesForUsersContext: function setCoordinatesForUsersContext(state, event) {
       var icon = event.target.getBoundingClientRect();
       var x = {
-        left: icon.x + 25 + 'px'
+        left: icon.x + 20 + 'px'
       }; // проверка на расстояние от точки клика до нижнего края
 
       var y = window.innerHeight - event.clientY < 300 ? {
         bottom: window.innerHeight - event.pageY + 'px'
       } : {
-        top: icon.y + window.pageYOffset + 21 + 'px'
+        top: icon.y + window.pageYOffset + 10 + 'px'
       };
       state.coordinates = _objectSpread(_objectSpread({}, x), y);
     },
@@ -23569,7 +23569,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
                 if (data.backValidatorErrors) {
-                  // dispatch('hideWaitingScreen', null, { root: true });
                   dispatch('showPopupErrorsBox', data.backValidatorErrors, {
                     root: true
                   });
@@ -23633,7 +23632,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 } else {
                   var _data$customException;
 
-                  // dispatch('hideWaitingScreen', null, { root: true });
                   var _txt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
 
                   dispatch('showAbsoluteFlashMessage', {
@@ -24268,40 +24266,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return userValidation; });
-function userValidation(user) {
+function userValidation(user, editTask) {
   // для длинных сообщений в pop-up блоке
   var err = {}; // для коротких сообщений под input-полями при type-in
 
   var err2 = {};
 
-  if (user.email.length === 0) {
-    if (!err.hasOwnProperty('email')) {
-      err.email = [];
-      err2.email = [];
+  if (!user.id || editTask === 'editEmail') {
+    if (user.email.length === 0) {
+      if (!err.hasOwnProperty('email')) {
+        err.email = [];
+        err2.email = [];
+      }
+
+      err.email.push('заполните «E-mail пользователя».');
+      err2.email.push('Пожалуйста заполните E-mail');
     }
 
-    err.email.push('заполните «E-mail пользователя».');
-    err2.email.push('Пожалуйста заполните E-mail');
-  }
+    if (!isEmailValid(user.email)) {
+      if (!err.hasOwnProperty('email')) {
+        err.email = [];
+        err2.email = [];
+      }
 
-  if (!isEmailValid(user.email)) {
-    if (!err.hasOwnProperty('email')) {
-      err.email = [];
-      err2.email = [];
+      err.email.push('Некорректный email.');
+      err2.email.push('Некорректный email');
     }
 
-    err.email.push('Некорректный email.');
-    err2.email.push('Некорректный email');
-  }
+    if (user.name.length === 0) {
+      if (!err.hasOwnProperty('name')) {
+        err.name = [];
+        err2.name = [];
+      }
 
-  if (user.name.length === 0) {
-    if (!err.hasOwnProperty('name')) {
-      err.name = [];
-      err2.name = [];
+      err.name.push('заполните «Имя пользователя».');
+      err2.name.push('Пожалуйста заполните «Имя пользователя»');
     }
-
-    err.name.push('заполните «Имя пользователя».');
-    err2.name.push('Пожалуйста заполните «Имя пользователя»');
   }
 
   if (!user.id) {
@@ -24315,6 +24315,18 @@ function userValidation(user) {
       err2.password.push('Пожалуйста заполните «Пароль для входа»');
     }
 
+    if (user.password.length > 0 && user.password.length < 6) {
+      if (!err.hasOwnProperty('password')) {
+        err.password = [];
+        err2.password = [];
+      }
+
+      err.password.push('заполните «Пароль» не менее 6 символов.');
+      err2.password.push('Не менее 6 символов');
+    }
+  }
+
+  if (editTask === 'editPassword') {
     if (user.password.length > 0 && user.password.length < 6) {
       if (!err.hasOwnProperty('password')) {
         err.password = [];
@@ -24485,11 +24497,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  showUserEditManager: function showUserEditManager(_ref, userId) {
+  showUserEditManager: function showUserEditManager(_ref, _ref2) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
         getters = _ref.getters,
         state = _ref.state;
+    var userId = _ref2.userId,
+        task = _ref2.task;
     //console.log(data);
     dispatch('closeContextMenu', null, {
       root: true
@@ -24504,11 +24518,12 @@ __webpack_require__.r(__webpack_exports__);
         root: true
       });
       commit('setEnabledFadingCss', false);
+      commit('setTaskOfUserEditManager', task);
       commit('setShowUserEditManager', true);
     });
   },
-  closeUserEditManager: function closeUserEditManager(_ref2) {
-    var commit = _ref2.commit;
+  closeUserEditManager: function closeUserEditManager(_ref3) {
+    var commit = _ref3.commit;
     document.body.style.cssText = 'overflow:auto;';
     commit('setEnabledFadingCss', true);
     setTimeout(function () {
@@ -24545,6 +24560,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   typeinValidation: function typeinValidation(_ref, user) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
+        getters = _ref.getters,
         rootGetters = _ref.rootGetters;
     dispatch('cleanPopupErrors', null, {
       root: true
@@ -24554,7 +24570,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return;
     }
 
-    var _userValidation = Object(_functions_userValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(user),
+    var _userValidation = Object(_functions_userValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(user, getters.taskOfUserEditManager),
         typeinErrors = _userValidation.typeinErrors;
 
     commit('setTypeinErrors', typeinErrors, {
@@ -24596,14 +24612,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   // фронт-валидация, pop-up и type-in сообщения об ошибках
   _frontValidation: function _frontValidation(_ref3, user) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var dispatch, commit, _userValidation2, popupErrors, typeinErrors;
+      var dispatch, commit, getters, _userValidation2, popupErrors, typeinErrors;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              dispatch = _ref3.dispatch, commit = _ref3.commit;
-              _userValidation2 = Object(_functions_userValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(user), popupErrors = _userValidation2.popupErrors, typeinErrors = _userValidation2.typeinErrors;
+              dispatch = _ref3.dispatch, commit = _ref3.commit, getters = _ref3.getters;
+              _userValidation2 = Object(_functions_userValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(user, getters.taskOfUserEditManager), popupErrors = _userValidation2.popupErrors, typeinErrors = _userValidation2.typeinErrors;
 
               if (!popupErrors) {
                 _context2.next = 8;
@@ -24637,15 +24653,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   saveUser: function saveUser(_ref4, user) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var dispatch, commit, getters, state, action, userId, saveUserUrl;
+      var dispatch, commit, getters, state, action, sendingEmail;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               dispatch = _ref4.dispatch, commit = _ref4.commit, getters = _ref4.getters, state = _ref4.state;
-              action = user.id ? 'edit' : 'create'; // console.log(user);
-
-              userId = user.id;
+              // console.log(user);
+              action = user.id ? 'edit' : 'create';
+              sendingEmail = Boolean(user.send_confirm_registration || user.send_reset_password);
               _context3.next = 5;
               return dispatch('cleanValidationErrors');
 
@@ -24662,9 +24678,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context3.abrupt("return");
 
             case 9:
-              saveUserUrl = userId > 0 ? state.url['saveUser'] + userId : state.url['saveUser'];
+              if (action === 'create') {
+                commit('setTaskOfUserEditManager', '');
+              } else {
+                user.editTask = getters.taskOfUserEditManager;
+              }
+
               dispatch('postJson', {
-                url: saveUserUrl,
+                url: user.id > 0 ? state.url['saveUser'] + user.id : state.url['saveUser'],
                 data: user
               }, {
                 root: true
@@ -24689,7 +24710,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   commit('disableTypeinValidation', null, {
                     root: true
                   });
-                  var txt = userId > 0 ? "\u0414\u0430\u043D\u043D\u044B\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F \xAB".concat(data.user.email, "\xBB \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u044B.") : "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C \xAB".concat(data.user.email, "\xBB");
+                  var txt = action === 'edit' ? "\u0414\u0430\u043D\u043D\u044B\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F \xAB".concat(data.user.email, "\xBB \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u044B") : "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C \xAB".concat(data.user.email, "\xBB");
+                  txt = sendingEmail ? txt + ', письмо отправлено.' : txt;
                   dispatch('showAbsoluteFlashMessage', {
                     text: txt,
                     sec: 2
@@ -24776,6 +24798,9 @@ __webpack_require__.r(__webpack_exports__);
     return state.singleUserFromServer;
   },
   //showLazyUsers: (state) => state.usersCount > 1000,
+  taskOfUserEditManager: function taskOfUserEditManager(state) {
+    return state.taskOfUserEditManager;
+  },
   showUserEditManager: function showUserEditManager(state) {
     return state.showUserEditManager;
   },
@@ -24848,6 +24873,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     state.users.splice(index, 1, user);
   },
+  setTaskOfUserEditManager: function setTaskOfUserEditManager(state, value) {
+    state.taskOfUserEditManager = value;
+  },
   setShowUserEditManager: function setShowUserEditManager(state, value) {
     state.showUserEditManager = value;
   },
@@ -24879,6 +24907,8 @@ __webpack_require__.r(__webpack_exports__);
   users: [],
   singleUserFromServer: {},
   showUserEditManager: false,
+  taskOfUserEditManager: '',
+  // user / password
   enabledFadingCss: false
 });
 

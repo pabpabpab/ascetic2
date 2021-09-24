@@ -37,7 +37,7 @@ export default {
             const icon = event.target.getBoundingClientRect();
 
             const x = {
-                left: (icon.x + 25) + 'px'
+                left: (icon.x + 20) + 'px'
             }
 
             // проверка на расстояние от точки клика до нижнего края
@@ -46,7 +46,7 @@ export default {
                     bottom: (window.innerHeight - event.pageY) + 'px'
                 }
                 : {
-                    top: icon.y + window.pageYOffset + 21 + 'px'
+                    top: icon.y + window.pageYOffset + 10 + 'px'
                 };
 
             state.coordinates = { ...x, ...y };
@@ -89,7 +89,7 @@ export default {
             const icon = event.target.getBoundingClientRect();
 
             const x = {
-                left: (icon.x + 25) + 'px'
+                left: (icon.x + 20) + 'px'
             }
 
             // проверка на расстояние от точки клика до нижнего края
@@ -98,7 +98,7 @@ export default {
                     bottom: (window.innerHeight - event.pageY) + 'px'
                 }
                 : {
-                    top: icon.y + window.pageYOffset + 21 + 'px'
+                    top: icon.y + window.pageYOffset + 10 + 'px'
                 };
 
             state.coordinates = { ...x, ...y };

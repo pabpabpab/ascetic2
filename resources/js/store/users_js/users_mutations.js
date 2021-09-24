@@ -32,7 +32,9 @@ export default {
 
 
 
-
+    setTaskOfUserEditManager: (state, value) => {
+        state.taskOfUserEditManager = value;
+    },
     setShowUserEditManager: (state, value) => {
         state.showUserEditManager = value;
     },

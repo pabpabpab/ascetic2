@@ -8,7 +8,10 @@
             </div>
 
             <div class="edit_manager__content pdt20 pdb20">
-                <user-form action="edit" :saveCmd="saveCmd"></user-form>
+                <user-form
+                    action="edit"
+                    :saveCmd="saveCmd">
+                </user-form>
             </div>
 
 
@@ -30,11 +33,12 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
+import UserForm from "./UserForm";
 
 export default {
     name: "UserEditManager",
     components: {
-        UserForm: () => import('./UserForm.vue'),
+        UserForm,
     },
     data() {
         return {
@@ -54,11 +58,7 @@ export default {
                 'hide_block': this.enabledFadingCss,
             };
         },
-/*
-        noData() {
-            return Boolean(this.singleUserFromServer);
-        },
-*/
+
         getHeader() {
             if (!this.singleUserFromServer) {
                 return '';
@@ -89,4 +89,5 @@ export default {
     },
 
 }
+
 </script>

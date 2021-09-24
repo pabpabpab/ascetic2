@@ -35,6 +35,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UsersContextMenu",
@@ -79,11 +89,46 @@ var render = function() {
           staticClass: "context_menu__li",
           on: {
             click: function($event) {
-              return _vm.showUserEditManager(_vm.user.id)
+              return _vm.showUserEditManager({
+                userId: _vm.user.id,
+                task: "editEmail"
+              })
             }
           }
         },
-        [_vm._v("\n            Редактировать\n        ")]
+        [_vm._v("\n            E-mail / имя\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          staticClass: "context_menu__li",
+          on: {
+            click: function($event) {
+              return _vm.showUserEditManager({
+                userId: _vm.user.id,
+                task: "editRole"
+              })
+            }
+          }
+        },
+        [_vm._v("\n            Права пользователя\n        ")]
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        {
+          staticClass: "context_menu__li",
+          on: {
+            click: function($event) {
+              return _vm.showUserEditManager({
+                userId: _vm.user.id,
+                task: "editPassword"
+              })
+            }
+          }
+        },
+        [_vm._v("\n            Новый пароль\n        ")]
       ),
       _vm._v(" "),
       _c(
@@ -97,7 +142,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("\n            Удалить\n        ")]
+        [_vm._v("\n            Удалить пользователя\n        ")]
       )
     ])
   ])

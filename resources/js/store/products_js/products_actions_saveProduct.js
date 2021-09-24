@@ -43,7 +43,6 @@ export default {
                 dispatch('hideWaitingScreen', null, { root: true });
 
                 if (data.backValidatorErrors) {
-                    // dispatch('hideWaitingScreen', null, { root: true });
                     dispatch('showPopupErrorsBox', data.backValidatorErrors, { root: true });
                     commit('enableTypeinValidation', null, { root: true });
                     commit('setAlarmingInputs', data.backValidatorErrors, { root: true });
@@ -62,7 +61,6 @@ export default {
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
 
 
-
                     if (action === 'edit') {
 
                         commit('setSingleProductFromServer', data);
@@ -75,7 +73,6 @@ export default {
                     } else {
 
                         commit('addProductToProductsByFirst', data.product);
-
                         dispatch('setFiltered', {entity: 'products', data: getters.products}, {root: true})
                             .then(() => {
                                 dispatch('divideIntoPages', {
@@ -86,11 +83,9 @@ export default {
                             .then(() => {
                                 thatRouter.push({name: 'Products', params: {which: 'active', withoutReload: 'yes'}});
                             });
-                        
                         //thatRouter.push({ name: 'Products', params: {which: 'active'}});
                     }
                 } else {
-                    // dispatch('hideWaitingScreen', null, { root: true });
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }

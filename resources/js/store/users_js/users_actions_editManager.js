@@ -1,6 +1,6 @@
 export default {
 
-    showUserEditManager({ dispatch, commit, getters, state }, userId) {
+    showUserEditManager({ dispatch, commit, getters, state }, { userId, task }) {
         //console.log(data);
         dispatch('closeContextMenu', null, { root: true });
         dispatch('showWaitingScreen', null, { root: true });
@@ -9,6 +9,7 @@ export default {
         dispatch('loadSingleUser', userId).then(() => {
             dispatch('hideWaitingScreen', null, { root: true });
             commit('setEnabledFadingCss', false);
+            commit('setTaskOfUserEditManager', task);
             commit('setShowUserEditManager', true);
         });
 
