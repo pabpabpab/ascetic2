@@ -128,6 +128,10 @@ class SaveService
         $product->description()->save($productDescriptionModel);
 
 
+        // вставка categories_ids (или синхронизация) в pivot table
+        $product->categories()->sync(
+            $this->_getArrayOfIntegers($request->category_ids)
+        );
         // вставка colors_ids (или синхронизация) в pivot table
         $product->colors()->sync(
             $this->_getArrayOfIntegers($request->color_ids)
@@ -142,7 +146,7 @@ class SaveService
     // СОХРАНИТЬ ДОП. ПАРАМЕТРЫ В parameters (В ВИДЕ JSON)
     protected function _saveParametersInJson($product)
     {
-
+         /*
         // взять название категории (через relationship one-to-many (belongs to))
         $category = $product->category;
         // взять только нужную инфу о category
@@ -150,6 +154,16 @@ class SaveService
             'id' => $category->id,
             'name' => $category->name,
         ];
+        */
+
+        // взять только нужную инфу о categories (через relationship many-to-many)
+        $categories = [];
+        foreach ($product->categories as $category) {
+            $categories[] = [
+                'id' => $category->id,
+                'name' => $category->name,
+            ];
+        }
 
         // взять только нужную инфу о colors (через relationship many-to-many)
         $colors = [];
@@ -172,7 +186,7 @@ class SaveService
         // упаковать все параметры товара, кроме фото
         $product->parameters = json_encode([
             'price' => $this->_getFormattedPrice($product->price),
-            'category' => $categoryData,
+            'categories' => $categories,
             'colors' => $colors,
             'materials' => $materials,
         ]);

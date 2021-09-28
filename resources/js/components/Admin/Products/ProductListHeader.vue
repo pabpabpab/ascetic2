@@ -1,6 +1,6 @@
 <template>
     <div class="products_header mauto">
-        <h1>{{ listHeader }}</h1>
+        <h1 class="pd0 mb0">{{ listHeader }}</h1>
     </div>
 </template>
 

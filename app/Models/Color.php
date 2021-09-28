@@ -36,7 +36,7 @@ class Color extends Model
             'products_colors',
             'color_id',
             'product_id'
-        );
+        )->orderBy('position', 'desc');
     }
 
 }

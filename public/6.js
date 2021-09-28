@@ -175,98 +175,112 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "photo_preview__container",
-        class: { mt20: _vm.photos.length > 0 }
-      },
-      [
-        _vm._l(_vm.graphicSrc, function(item) {
-          return _c(
-            "div",
-            { key: item.index, staticClass: "prePhoto__wrapper" },
-            [
-              _c("img", {
-                staticClass: "prePhoto",
-                attrs: { alt: "", src: item.url }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "prePhoto__close_icon",
-                  on: {
-                    click: function($event) {
-                      return _vm.removePreFile(item.index)
+  return _c(
+    "div",
+    {
+      on: {
+        click: function($event) {
+          return _vm.$emit("closeAllCheckboxesLists")
+        }
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "photo_preview__container",
+          class: { mt20: _vm.photos.length > 0 }
+        },
+        [
+          _vm._l(_vm.graphicSrc, function(item) {
+            return _c(
+              "div",
+              { key: item.index, staticClass: "prePhoto__wrapper" },
+              [
+                _c("img", {
+                  staticClass: "prePhoto",
+                  attrs: { alt: "", src: item.url }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "prePhoto__close_icon",
+                    on: {
+                      click: function($event) {
+                        return _vm.removePreFile(item.index)
+                      }
                     }
-                  }
-                },
-                [_vm._v("\n                ✖\n            ")]
-              )
-            ]
-          )
+                  },
+                  [_vm._v("\n                ✖\n            ")]
+                )
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.nonGraphicNames, function(item) {
+            return _c(
+              "div",
+              { key: item.index, staticClass: "prePhoto__wrapper" },
+              [
+                _c("div", {
+                  staticClass: "preFile_name",
+                  domProps: { innerHTML: _vm._s(item.name) }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "prePhoto__close_icon prePhoto__close_icon_offset",
+                    on: {
+                      click: function($event) {
+                        return _vm.removePreFile(item.index)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                ✖\n            ")]
+                )
+              ]
+            )
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "input_photo__wrapper" }, [
+        _c("input", {
+          ref: "photos",
+          staticClass: "input_photo",
+          attrs: { type: "file", accept: "image/*", multiple: "" },
+          on: {
+            change: function($event) {
+              return _vm.previewFiles()
+            }
+          }
         }),
         _vm._v(" "),
-        _vm._l(_vm.nonGraphicNames, function(item) {
-          return _c(
-            "div",
-            { key: item.index, staticClass: "prePhoto__wrapper" },
-            [
-              _c("div", {
-                staticClass: "preFile_name",
-                domProps: { innerHTML: _vm._s(item.name) }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "prePhoto__close_icon prePhoto__close_icon_offset",
-                  on: {
-                    click: function($event) {
-                      return _vm.removePreFile(item.index)
-                    }
+        _vm.showPhotoButton
+          ? _c(
+              "button",
+              {
+                staticClass: "button__select_photos mauto",
+                on: {
+                  click: function($event) {
+                    return _vm.selectFiles()
                   }
-                },
-                [_vm._v("\n                ✖\n            ")]
-              )
-            ]
-          )
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "input_photo__wrapper" }, [
-      _c("input", {
-        ref: "photos",
-        staticClass: "input_photo",
-        attrs: { type: "file", accept: "image/*", multiple: "" },
-        on: {
-          change: function($event) {
-            return _vm.previewFiles()
-          }
-        }
-      }),
-      _vm._v(" "),
-      _vm.showPhotoButton
-        ? _c(
-            "button",
-            {
-              staticClass: "button__select_photos mauto",
-              on: {
-                click: function($event) {
-                  return _vm.selectFiles()
                 }
-              }
-            },
-            [_vm._v("\n            " + _vm._s(_vm.buttonHeader) + "\n        ")]
-          )
-        : _vm._e()
-    ])
-  ])
+              },
+              [
+                _vm._v(
+                  "\n            " + _vm._s(_vm.buttonHeader) + "\n        "
+                )
+              ]
+            )
+          : _vm._e()
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -6,7 +6,7 @@
             </li>
             <li class="context_menu__li"
                 @click="showUserEditManager({userId: user.id, task: 'editEmail'})">
-                E-mail / имя
+                E-mail пользователя
             </li>
 
             <li class="context_menu__li"

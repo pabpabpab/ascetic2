@@ -14,7 +14,6 @@ class Product extends Model
 
     protected $fillable = [
         'id',
-        'category_id',
         'name',
         'price',
         'position',
@@ -26,11 +25,26 @@ class Product extends Model
     ];
 
 
+
+    /**
+     * The categories that belong to the product.
+     * Many-to-many relationship for categories
+     */
+    public function categories() {
+        return $this->belongsToMany(
+            Category::class,
+            'products_categories',
+            'product_id',
+            'category_id'
+        );
+    }
+
+    /*
     // One-to-many (Inverse) / Belongs To (to access its parent Category)
     public function category() {
         return $this->belongsTo(Category::class);
     }
-
+    */
 
     // One-to-one relationship for product description
     public function description() {
@@ -64,6 +78,7 @@ class Product extends Model
             'color_id'
         );
     }
+
 
     /**
      * The materials that belong to the product.

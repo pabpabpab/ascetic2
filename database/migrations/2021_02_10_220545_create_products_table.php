@@ -64,7 +64,6 @@ class CreateProductsTable extends Migration
         DB::statement('DROP TABLE IF EXISTS products');
         DB::statement('CREATE TABLE products (
             id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            category_id BIGINT UNSIGNED NOT NULL DEFAULT 0,
 	        name VARCHAR(100),
             price DECIMAL(11, 2) NOT NULL DEFAULT 0,
             parameters JSON,
@@ -76,13 +75,10 @@ class CreateProductsTable extends Migration
             deleted_at DATETIME,
 
             INDEX position_idx(position), // добавлено потом
-            INDEX category_idx(category_id),
             INDEX price_idx(price),
             INDEX product_name_idx(name(15)),
             INDEX created_at_idx(created_at),
-            INDEX deleted_at_idx(deleted_at),
-
-            FOREIGN KEY (category_id) REFERENCES categories(id)
+            INDEX deleted_at_idx(deleted_at)
         )');
 
 
@@ -115,6 +111,18 @@ class CreateProductsTable extends Migration
 
 
         // Pivot-tables Pivot-tables Pivot-tables Pivot-tables Pivot-tables
+
+        DB::statement('DROP TABLE IF EXISTS products_categories');
+        DB::statement('CREATE TABLE products_categories (
+            id SERIAL,
+            product_id BIGINT UNSIGNED,
+            category_id BIGINT UNSIGNED,
+            INDEX product_id_idx(product_id),
+            INDEX category_id_idx(category_id),
+            FOREIGN KEY product_id_fk(product_id) REFERENCES products(id),
+            FOREIGN KEY category_id_fk(category_id) REFERENCES categories(id),
+        )');
+
 
         DB::statement('DROP TABLE IF EXISTS products_colors');
         DB::statement('CREATE TABLE products_colors (
@@ -195,9 +203,15 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('categories');
+        Schema::dropIfExists('colors');
+        Schema::dropIfExists('materials');
         Schema::dropIfExists('products');
         Schema::dropIfExists('products_descriptions');
         Schema::dropIfExists('photo');
+
+        Schema::dropIfExists('products_categories');
+        Schema::dropIfExists('products_colors');
+        Schema::dropIfExists('products_materials');
 
         Schema::dropIfExists('categories_seo_titles');
         Schema::dropIfExists('products_seo_titles');

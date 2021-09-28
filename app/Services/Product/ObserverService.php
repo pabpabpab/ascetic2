@@ -11,15 +11,15 @@ class ObserverService
 
     // функции вызываются из App\Listeners\ProductModifiedListener
 
-    // сохранить Количество товаров в категории
+
+    // сохранить Количество товаров для каждой категории
     static public function saveProductsCountForCategory(Product $product)
     {
-        // using One-to-many (Inverse) / Belongs To
-        $category = $product->category;
-        // using One-To-Many $category->products
-        $category->products_count = $category->products()->count();
-        // сохранить модель category
-        $category->save();
+        // using relationship many-to-many ($product->categories)
+        foreach ($product->categories as $category) {
+            $category->products_count = $category->products()->count();
+            $category->save();
+        }
     }
 
     // сохранить Количество товаров для каждого материала

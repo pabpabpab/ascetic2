@@ -5,10 +5,18 @@ export default function productValidation(product) {
     // для коротких сообщений под input-полями при type-in
     const err2 = {};
 
+    /*
     if (product.category_id < 1) {
         if (!err.hasOwnProperty('category_id')) {err.category_id = []; err2.category_id = [];}
         err.category_id.push('укажите категорию товара.');
         err2.category_id.push('Пожалуйста укажите категорию');
+    }
+    */
+
+    if (product.category_ids.length === 0) {
+        if (!err.hasOwnProperty('category_ids')) {err.category_ids = []; err2.category_ids = [];}
+        err.category_ids.push('укажите категорию товара.');
+        err2.category_ids.push('Укажите категорию');
     }
 
     if (product.name.length === 0) {

@@ -2,7 +2,7 @@
     <div class="content_block content_block__products">
 
         <div class="products">
-            <pagination entity="products" class="pdb20"></pagination>
+            <pagination v-if="productsLength > 1" entity="products" class="pdb10"></pagination>
 
             <product-item
                 v-for="(item, index) of items"
@@ -11,7 +11,7 @@
                 :index="index">
             </product-item>
 
-            <pagination entity="products" class="pdt20"></pagination>
+            <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
 
             <products-context-menu
                 v-if="showProductsContextMenu">
@@ -47,6 +47,7 @@ export default {
     },
     computed: {
         ...mapGetters('products', [
+            'productsLength',
             'showProductEditManager',
             'showProductPhotoManager',
         ]),

@@ -14,7 +14,7 @@
                         entity: entity,
                         pageIndex: currentPageIndex(entity) - 1
                    })">
-                    <i class="fas fa-angle-left">&larr;</i>
+                    <i class="fas fa-angle-left">&lt;</i>
                 </a>
             </td>
 
@@ -72,7 +72,7 @@
                         entity: entity,
                         pageIndex: currentPageIndex(entity) + 1
                    })">
-                      <i class="fas fa-angle-right"> &rarr; </i>
+                      <i class="fas fa-angle-right">&gt;</i>
                 </a>
             </td>
 

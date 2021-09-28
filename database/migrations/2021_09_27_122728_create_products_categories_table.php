@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsMaterialsTable extends Migration
+class CreateProductsCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreateProductsMaterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products_materials', function (Blueprint $table) {
+        Schema::create('products_categories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('material_id');
+            $table->unsignedBigInteger('category_id');
             $table->index('product_id', 'product_id_idx');
-            $table->index('material_id', 'material_id_idx');
+            $table->index('category_id', 'category_id_idx');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('material_id')->references('id')->on('materials');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
-    // php artisan make:migration create_products_materials_table --create=products_materials
-    // php artisan migrate
 
     /**
      * Reverse the migrations.
@@ -33,10 +31,9 @@ class CreateProductsMaterialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_materials');
+        Schema::dropIfExists('products_categories');
     }
 }
 
-// php artisan make:migration create_products_materials_table
 
-
+// php artisan make:migration create_products_categories_table

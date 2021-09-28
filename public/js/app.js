@@ -19433,13 +19433,13 @@ var routes = [{
   path: '/admin',
   name: 'Main',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
   }
 }, {
   path: '/admin/users',
   name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/user/add',
@@ -19463,7 +19463,7 @@ var routes = [{
   path: '/admin/product/add',
   name: 'SaveProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
@@ -22536,15 +22536,22 @@ function productValidation(product) {
   var err = {}; // для коротких сообщений под input-полями при type-in
 
   var err2 = {};
-
+  /*
   if (product.category_id < 1) {
-    if (!err.hasOwnProperty('category_id')) {
-      err.category_id = [];
-      err2.category_id = [];
+      if (!err.hasOwnProperty('category_id')) {err.category_id = []; err2.category_id = [];}
+      err.category_id.push('укажите категорию товара.');
+      err2.category_id.push('Пожалуйста укажите категорию');
+  }
+  */
+
+  if (product.category_ids.length === 0) {
+    if (!err.hasOwnProperty('category_ids')) {
+      err.category_ids = [];
+      err2.category_ids = [];
     }
 
-    err.category_id.push('укажите категорию товара.');
-    err2.category_id.push('Пожалуйста укажите категорию');
+    err.category_ids.push('укажите категорию товара.');
+    err2.category_ids.push('Укажите категорию');
   }
 
   if (product.name.length === 0) {
@@ -23667,6 +23674,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   products: function products(state) {
     return state.products;
+  },
+  productsLength: function productsLength(state) {
+    return state.products.length;
   },
   seoData: function seoData(state) {
     return state.seoData;

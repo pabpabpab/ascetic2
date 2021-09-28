@@ -563,7 +563,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "ProductEditManager",
   components: {
     ProductForm: function ProductForm() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
+      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
     }
   },
   data: function data() {
@@ -706,15 +706,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var price = (_parametersArr$price = parametersArr.price) !== null && _parametersArr$price !== void 0 ? _parametersArr$price : '';
       return price ? price + ' ₽' : '';
     },
-    getCategory: function getCategory(parameters) {
-      var _parametersArr$catego;
-
+    getCategories: function getCategories(parameters) {
       var parametersArr = JSON.parse(parameters);
-      var category = (_parametersArr$catego = parametersArr.category) !== null && _parametersArr$catego !== void 0 ? _parametersArr$catego : {
-        id: 0,
-        name: ''
-      };
-      return category.name;
+      var categoriesArr = parametersArr.categories.map(function (item) {
+        return "".concat(item.name);
+      });
+      return categoriesArr.join(', ');
+      /*
+      const category = parametersArr.category ?? {id: 0, name: ''};
+      return category.name;*/
     },
     getMaterials: function getMaterials(parameters) {
       var parametersArr = JSON.parse(parameters);
@@ -1040,7 +1040,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     SeoManager: _Blocks_SeoManager__WEBPACK_IMPORTED_MODULE_4__["default"],
     ProductEditManager: _ProductEditManager__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('products', ['showProductEditManager', 'showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('products', ['productsLength', 'showProductEditManager', 'showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_6__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
     items: function items() {
       return this.customized('products')[this.currentPageIndex('products')];
     }
@@ -1436,98 +1436,112 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass: "photo_preview__container",
-        class: { mt20: _vm.photos.length > 0 }
-      },
-      [
-        _vm._l(_vm.graphicSrc, function(item) {
-          return _c(
-            "div",
-            { key: item.index, staticClass: "prePhoto__wrapper" },
-            [
-              _c("img", {
-                staticClass: "prePhoto",
-                attrs: { alt: "", src: item.url }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "prePhoto__close_icon",
-                  on: {
-                    click: function($event) {
-                      return _vm.removePreFile(item.index)
+  return _c(
+    "div",
+    {
+      on: {
+        click: function($event) {
+          return _vm.$emit("closeAllCheckboxesLists")
+        }
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "photo_preview__container",
+          class: { mt20: _vm.photos.length > 0 }
+        },
+        [
+          _vm._l(_vm.graphicSrc, function(item) {
+            return _c(
+              "div",
+              { key: item.index, staticClass: "prePhoto__wrapper" },
+              [
+                _c("img", {
+                  staticClass: "prePhoto",
+                  attrs: { alt: "", src: item.url }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "prePhoto__close_icon",
+                    on: {
+                      click: function($event) {
+                        return _vm.removePreFile(item.index)
+                      }
                     }
-                  }
-                },
-                [_vm._v("\n                ✖\n            ")]
-              )
-            ]
-          )
+                  },
+                  [_vm._v("\n                ✖\n            ")]
+                )
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.nonGraphicNames, function(item) {
+            return _c(
+              "div",
+              { key: item.index, staticClass: "prePhoto__wrapper" },
+              [
+                _c("div", {
+                  staticClass: "preFile_name",
+                  domProps: { innerHTML: _vm._s(item.name) }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "prePhoto__close_icon prePhoto__close_icon_offset",
+                    on: {
+                      click: function($event) {
+                        return _vm.removePreFile(item.index)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                ✖\n            ")]
+                )
+              ]
+            )
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "input_photo__wrapper" }, [
+        _c("input", {
+          ref: "photos",
+          staticClass: "input_photo",
+          attrs: { type: "file", accept: "image/*", multiple: "" },
+          on: {
+            change: function($event) {
+              return _vm.previewFiles()
+            }
+          }
         }),
         _vm._v(" "),
-        _vm._l(_vm.nonGraphicNames, function(item) {
-          return _c(
-            "div",
-            { key: item.index, staticClass: "prePhoto__wrapper" },
-            [
-              _c("div", {
-                staticClass: "preFile_name",
-                domProps: { innerHTML: _vm._s(item.name) }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "prePhoto__close_icon prePhoto__close_icon_offset",
-                  on: {
-                    click: function($event) {
-                      return _vm.removePreFile(item.index)
-                    }
+        _vm.showPhotoButton
+          ? _c(
+              "button",
+              {
+                staticClass: "button__select_photos mauto",
+                on: {
+                  click: function($event) {
+                    return _vm.selectFiles()
                   }
-                },
-                [_vm._v("\n                ✖\n            ")]
-              )
-            ]
-          )
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "input_photo__wrapper" }, [
-      _c("input", {
-        ref: "photos",
-        staticClass: "input_photo",
-        attrs: { type: "file", accept: "image/*", multiple: "" },
-        on: {
-          change: function($event) {
-            return _vm.previewFiles()
-          }
-        }
-      }),
-      _vm._v(" "),
-      _vm.showPhotoButton
-        ? _c(
-            "button",
-            {
-              staticClass: "button__select_photos mauto",
-              on: {
-                click: function($event) {
-                  return _vm.selectFiles()
                 }
-              }
-            },
-            [_vm._v("\n            " + _vm._s(_vm.buttonHeader) + "\n        ")]
-          )
-        : _vm._e()
-    ])
-  ])
+              },
+              [
+                _vm._v(
+                  "\n            " + _vm._s(_vm.buttonHeader) + "\n        "
+                )
+              ]
+            )
+          : _vm._e()
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1764,7 +1778,7 @@ var render = function() {
                 "\n        / " +
                 _vm.getColors(_vm.product.parameters) +
                 "\n        / " +
-                _vm.getCategory(_vm.product.parameters)
+                _vm.getCategories(_vm.product.parameters)
             )
           }
         })
@@ -1844,7 +1858,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "products_header mauto" }, [
-    _c("h1", [_vm._v(_vm._s(_vm.listHeader))])
+    _c("h1", { staticClass: "pd0 mb0" }, [_vm._v(_vm._s(_vm.listHeader))])
   ])
 }
 var staticRenderFns = []
@@ -2028,10 +2042,12 @@ var render = function() {
       "div",
       { staticClass: "products" },
       [
-        _c("pagination", {
-          staticClass: "pdb20",
-          attrs: { entity: "products" }
-        }),
+        _vm.productsLength > 1
+          ? _c("pagination", {
+              staticClass: "pdb10",
+              attrs: { entity: "products" }
+            })
+          : _vm._e(),
         _vm._v(" "),
         _vm._l(_vm.items, function(item, index) {
           return _c("product-item", {
@@ -2040,10 +2056,12 @@ var render = function() {
           })
         }),
         _vm._v(" "),
-        _c("pagination", {
-          staticClass: "pdt20",
-          attrs: { entity: "products" }
-        }),
+        _vm.productsLength > 1
+          ? _c("pagination", {
+              staticClass: "pdt10",
+              attrs: { entity: "products" }
+            })
+          : _vm._e(),
         _vm._v(" "),
         _vm.showProductsContextMenu ? _c("products-context-menu") : _vm._e(),
         _vm._v(" "),

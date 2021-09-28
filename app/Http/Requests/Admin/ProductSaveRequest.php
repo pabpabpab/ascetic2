@@ -18,7 +18,7 @@ class ProductSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => ['required', 'gt:0'],
+            'category_ids' => ['required'],
             'name' => ['required', 'min:2', 'max:100'],
             'price' => ['required', 'numeric'],
             'description' => ['required', 'min:10'],
@@ -30,7 +30,7 @@ class ProductSaveRequest extends FormRequest
     public function attributes()
     {
         return [
-            'category_id' => '«Категория товара»',
+            'category_ids' => '«Категория товара»',
             'name' => '«Название товара»',
             'description' => '«Описание товара»',
             'price' => '«Цена»',
@@ -43,7 +43,6 @@ class ProductSaveRequest extends FormRequest
     {
         return [
             'required' => 'заполните :attribute.',
-            'gt' => 'заполните :attribute.',
             'different' => 'заполните :attribute.',
             'min' => 'поле :attribute должно быть не менее :min символов.',
             'max' => 'поле :attribute должно быть не более :max символов.',

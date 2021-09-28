@@ -3,26 +3,20 @@
     display: flex
     justify-content: center
     width: 90%
+    padding: 0
+    //border: 1px solid #f00
 
-
-.products_header__link
-    +font(17px, rgb(25, 118, 213), 400)
-    display: block
-    padding: 15px
-    background-color: #fff
-    border-radius: 5px
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
-    transition: box-shadow .3s
-    &:hover
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2)
 
 .content_block__products
-    width: 90%
-    padding: 20px 20px 10px 20px
+    width: 95%
+    padding: 0 20px 10px 20px
     box-sizing: border-box
     -webkit-user-select: none
     -moz-user-select: none
     -ms-user-select: none
+    background-color: rgba(255, 255, 255, 0)
+    box-shadow: none
+    //box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
 
 
 .products
@@ -41,12 +35,13 @@
     margin: 10px
     padding: 20px 10px
     text-align: left
-    border: 1px solid #ddd
+    background-color: #fff
+    border: 1px solid rgb(202, 221, 233)
     border-radius: 5px
-    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2)
-    transition: border .3s, box-shadow .3s
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
+    transition: box-shadow .3s // border .3s,
     &:hover
-        border: 1px solid #fff
+        //border: 1px solid #fff
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2)
         //transform: scale(1.02)
     &__name

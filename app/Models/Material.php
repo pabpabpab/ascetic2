@@ -35,6 +35,6 @@ class Material extends Model
             'products_materials',
             'material_id',
             'product_id'
-        );
+        )->orderBy('position', 'desc');
     }
 }

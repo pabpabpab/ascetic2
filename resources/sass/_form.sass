@@ -21,7 +21,7 @@
     &:-moz-placeholder
         +font(17px, #b8b0b0, 400)
         font-family: 'Source Sans Pro'
-    &:focus
+    &:focus, &:hover
        border: 1px solid rgba(80, 171, 252, 0.6)
        box-shadow: 0 0 5px rgba(96, 146, 248, 0.4)
 
@@ -160,12 +160,95 @@
     border-width: 0 3px 3px 0
     transform: rotate(45deg)
 
-// position: absolute
-// content: '\2714'
-// display: flex
-// align-items: center
-// justify-content: center
-// +font(21px,#0030ff,400)
-
 .ml_minus3
     margin-left: -3px
+
+
+
+
+.selectedCategories__wrapper
+    background-color: #fff
+    &:hover .selectedCategories
+        border: 1px solid rgba(80, 171, 252, 0.6)
+        box-shadow: 0 0 5px rgba(96, 146, 248, 0.4)
+.selectedCategories
+    padding: 0
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-wrap: nowrap
+    width: 100%
+    min-height: 45px
+    border: 1px solid #cdd1d4
+    border-radius: 5px
+.selectedCategories__items
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: flex-start
+    flex-wrap: wrap
+    padding: 4px 7px
+    width: 100%
+    min-height: 45px
+    border-right: 1px solid #cdd1d4
+    border-top-left-radius: 5px
+    border-bottom-left-radius: 5px
+.selectedCategories__arrow
+    display: flex
+    align-items: center
+    justify-content: center
+    +font(15px, rgb(180, 170, 170), 400)
+    //background-color: #eee
+    border-top-right-radius: 5px
+    border-bottom-right-radius: 5px
+    min-width: 40px
+    min-height: 45px
+    cursor: pointer
+    &:hover
+        color: #00f
+.selectedCategories__item
+    +font(15px, rgb(80, 70, 70), 400)
+    line-height: 25px
+    padding: 0 5px 0 10px
+    background-color: #f0f0f0
+    //border: 1px solid rgb(180, 170, 170)
+    border-radius: 15px
+    margin: 3px 10px 3px 0
+    display: inline-block
+    white-space: nowrap
+.selectedCategories__item__collapse_icon
+    +font(15px, rgb(80, 70, 70), 400)
+    line-height: 25px
+    padding: 5px 5px
+    cursor: pointer
+    margin-left: 5px
+    &:hover
+        color: #00f
+
+
+.relative_checkboxes_wrapper
+    position: relative
+    height: 0
+    max-height: 0
+    margin: 0
+    padding: 0
+.absolute_checkboxes_list
+    position: absolute
+    z-index: 5
+    top: 0
+    left: 0
+    width: 95%
+    height: 210px
+    overflow-y: auto
+    padding: 5px 10px 25px 15px
+    background-color: #fff
+    border-radius: 5px
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5)
+    &::-webkit-scrollbar
+        width: 15px
+        background-color: #f8f8f8
+        padding: 0 15px
+    &::-webkit-scrollbar-thumb
+        background-color: #aaa
+        border: 4px solid #f8f8f8
+        border-radius: 10px

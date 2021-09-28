@@ -37,3 +37,6 @@ class CreateProductsColorsTable extends Migration
         Schema::dropIfExists('products_colors');
     }
 }
+
+
+// php artisan make:migration create_products_colors_table

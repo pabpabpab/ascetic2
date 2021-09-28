@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @click="$emit('closeAllCheckboxesLists')">
         <div class="photo_preview__container" :class="{'mt20': photos.length > 0}">
 
             <div v-for="item of graphicSrc"

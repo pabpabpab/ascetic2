@@ -22,7 +22,7 @@
         <div>
             <p v-html="`${getMaterials(product.parameters)}
             / ${getColors(product.parameters)}
-            / ${getCategory(product.parameters)}`"></p>
+            / ${getCategories(product.parameters)}`"></p>
         </div>
         <div>
             <p v-html="getMainPhoto(product.id, product.photo_set)"></p>
@@ -62,10 +62,15 @@ export default {
             const price = parametersArr.price ?? '';
             return price ? price + ' ₽' : '';
         },
-        getCategory(parameters) {
+        getCategories(parameters) {
             const parametersArr = JSON.parse(parameters);
+            const categoriesArr = parametersArr.categories.map(function(item) {
+                return `${item.name}`;
+            });
+            return categoriesArr.join(', ');
+            /*
             const category = parametersArr.category ?? {id: 0, name: ''};
-            return category.name;
+            return category.name;*/
         },
         getMaterials(parameters) {
             const parametersArr = JSON.parse(parameters);

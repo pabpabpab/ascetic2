@@ -36,3 +36,5 @@ class CreateColorsTable extends Migration
 
 
 // php artisan make:migration create_colors_table
+
+

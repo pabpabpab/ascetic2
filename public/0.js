@@ -188,6 +188,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "QuantityPerPageOfPagination",
@@ -254,7 +256,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_c("i", { staticClass: "fas fa-angle-left" }, [_vm._v("←")])]
+                  [_c("i", { staticClass: "fas fa-angle-left" }, [_vm._v("<")])]
                 )
               ]),
               _vm._v(" "),
@@ -371,7 +373,7 @@ var render = function() {
                   },
                   [
                     _c("i", { staticClass: "fas fa-angle-right" }, [
-                      _vm._v(" → ")
+                      _vm._v(">")
                     ])
                   ]
                 )
@@ -460,7 +462,11 @@ var render = function() {
         _vm._v(" "),
         _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
         _vm._v(" "),
+        _c("option", { attrs: { value: "8" } }, [_vm._v("8")]),
+        _vm._v(" "),
         _c("option", { attrs: { value: "9" } }, [_vm._v("9")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "10" } }, [_vm._v("10")]),
         _vm._v(" "),
         _c("option", { attrs: { value: "15" } }, [_vm._v("15")]),
         _vm._v(" "),

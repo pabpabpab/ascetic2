@@ -1,6 +1,7 @@
 export default {
 
     products: (state) => state.products,
+    productsLength: (state) => state.products.length,
     seoData: (state) => state.seoData,
     photoSeoData: (state) => state.photoSeoData,
     listHeader: (state) => state.listHeader,
