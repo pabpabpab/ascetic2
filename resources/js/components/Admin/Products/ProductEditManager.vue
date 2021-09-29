@@ -32,7 +32,6 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import _fitTextareaHeight from './functions/fitTextareaHeight';
-//import getFormattedPrice from "./functions/getFormattedPrice";
 
 export default {
     name: "ProductEditManager",
@@ -42,9 +41,7 @@ export default {
     data() {
         return {
             photoSizeIndex: 2,
-            saveCmd: false
-            //localProduct: {},
-            //photos: [],
+            saveCmd: false,
         };
     },
     computed: {

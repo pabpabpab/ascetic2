@@ -557,7 +557,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
- //import getFormattedPrice from "./functions/getFormattedPrice";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductEditManager",
@@ -569,9 +568,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       photoSizeIndex: 2,
-      saveCmd: false //localProduct: {},
-      //photos: [],
-
+      saveCmd: false
     };
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer', 'enabledFadingCss'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {

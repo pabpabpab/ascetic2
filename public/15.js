@@ -1,5 +1,154 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[15],{
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "CheckboxesList",
+  // пропс value, потому что в родителе v-model
+  props: ['value', 'localProduct', 'header', 'entity', 'closeListCmd'],
+  data: function data() {
+    return {
+      checkboxesVisibility: false
+    };
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['typeinErrors'])), {}, {
+    localCategories: function localCategories() {
+      var entityBook = {
+        category: 'categories',
+        material: 'materials',
+        color: 'colors'
+      };
+      var entities = entityBook[this.entity];
+      return this.categories[entities];
+    },
+    checkboxesAreVisible: function checkboxesAreVisible() {
+      return this.checkboxesVisibility;
+    },
+    selectedCats: function selectedCats() {
+      var _this = this;
+
+      if (!this.localCategories[0]) {
+        return;
+      } // событие input, потому что в родителе v-model
+
+
+      this.$emit('input', this.localProduct[this.entity + '_ids']);
+      return this.localProduct[this.entity + '_ids'].map(function (id) {
+        return {
+          id: id,
+          name: _this.localCategories.find(function (item) {
+            return item.id === id;
+          }).name
+        };
+      }); // selected cats array
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['typeinValidation'])), {}, {
+    closeAllCheckboxesLists: function closeAllCheckboxesLists() {
+      this.$emit('closeAllCheckboxesLists');
+    },
+    changeCheckboxesVisibility: function changeCheckboxesVisibility() {
+      var _this2 = this;
+
+      var val = this.checkboxesVisibility;
+      this.closeAllCheckboxesLists();
+      setTimeout(function () {
+        _this2.checkboxesVisibility = !val;
+      }, 100);
+    },
+    deleteSelectedItem: function deleteSelectedItem(val) {
+      var product = this.localProduct;
+      var index = product[this.entity + '_ids'].findIndex(function (item) {
+        return item === val;
+      });
+      product[this.entity + '_ids'].splice(index, 1); // с позиции index удалить 1 элемент
+
+      this.localProduct = _objectSpread({}, product);
+    },
+    closeThisCheckboxes: function closeThisCheckboxes() {
+      this.checkboxesVisibility = false;
+    }
+  }),
+  watch: {
+    closeListCmd: function closeListCmd(val) {
+      if (!val) {
+        return;
+      }
+
+      this.closeThisCheckboxes();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm.vue?vue&type=script&lang=js& ***!
@@ -11,8 +160,9 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _FilesInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilesInput */ "./resources/js/components/Admin/Products/FilesInput.vue");
-/* harmony import */ var _functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/fitTextareaHeight */ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js");
-/* harmony import */ var _functions_getFormattedPrice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/getFormattedPrice */ "./resources/js/components/Admin/Products/functions/getFormattedPrice.js");
+/* harmony import */ var _CheckboxesList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CheckboxesList */ "./resources/js/components/Admin/Products/CheckboxesList.vue");
+/* harmony import */ var _functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/fitTextareaHeight */ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js");
+/* harmony import */ var _functions_getFormattedPrice__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/getFormattedPrice */ "./resources/js/components/Admin/Products/functions/getFormattedPrice.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -127,132 +277,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ProductForm",
+  name: "ProductForm2",
   components: {
-    FilesInput: _FilesInput__WEBPACK_IMPORTED_MODULE_1__["default"]
+    FilesInput: _FilesInput__WEBPACK_IMPORTED_MODULE_1__["default"],
+    CheckboxesList: _CheckboxesList__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: ['action', 'saveCmd'],
   data: function data() {
@@ -267,21 +301,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         color_ids: []
       },
       photos: [],
-      checkboxesDivVisibility: {
-        categories: false,
-        materials: false,
-        colors: false
-      }
+      closeCheckboxesListsCmd: false
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['isAlarmingInput', 'typeinErrors'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['isAlarmingInput', 'typeinErrors'])), {}, {
     localPrice: function localPrice() {
       return this.localProduct.price;
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['saveProduct', 'typeinValidation'])), {}, {
     fitTextareaHeight: function fitTextareaHeight(event) {
-      Object(_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_2__["default"])(event);
+      Object(_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_3__["default"])(event);
     },
     setLocalProduct: function setLocalProduct(product) {
       var parameters = JSON.parse(product.parameters);
@@ -301,59 +331,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         })
       };
     },
-    selectedCats: function selectedCats(prop) {
-      var propsBook = {
-        category: 'categories',
-        material: 'materials',
-        color: 'colors'
-      };
-      var property = propsBook[prop];
-      var catsBook = this.categories[property];
-
-      if (!catsBook[0]) {
-        return;
-      }
-
-      return this.localProduct[prop + '_ids'].map(function (id) {
-        var bookItem = catsBook.find(function (item) {
-          return item.id === id;
-        });
-        return {
-          id: id,
-          name: bookItem.name
-        };
-      }); // selected cats array
-    },
-    deleteSelectedItem: function deleteSelectedItem(prop, val) {
-      var product = this.localProduct;
-      var index = product[prop].findIndex(function (item) {
-        return item === val;
-      });
-      product[prop].splice(index, 1); // с позиции index удалить 1 элемент
-
-      this.localProduct = product;
-    },
-    getCheckboxesVisibility: function getCheckboxesVisibility(entity) {
-      return this.checkboxesDivVisibility[entity];
-    },
-    changeCheckboxesVisibility: function changeCheckboxesVisibility(entity) {
-      var val = this.checkboxesDivVisibility[entity];
-      this.closeAllCheckboxesLists();
-      this.checkboxesDivVisibility[entity] = !val;
-    },
     closeAllCheckboxesLists: function closeAllCheckboxesLists() {
-      var temp = _objectSpread({}, this.checkboxesDivVisibility);
+      var _this = this;
 
-      for (var key in temp) {
-        temp[key] = false;
-      }
-
-      this.checkboxesDivVisibility = _objectSpread({}, temp);
+      this.closeCheckboxesListsCmd = true;
+      setTimeout(function () {
+        _this.closeCheckboxesListsCmd = false;
+      }, 100);
     }
   }),
   watch: {
     localPrice: function localPrice(value) {
-      this.localProduct.price = Object(_functions_getFormattedPrice__WEBPACK_IMPORTED_MODULE_3__["default"])(value);
+      this.localProduct.price = Object(_functions_getFormattedPrice__WEBPACK_IMPORTED_MODULE_4__["default"])(value);
     },
     singleProductFromServer: function singleProductFromServer(val) {
       if (!val) {
@@ -381,6 +370,192 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch('categories/loadCategories', 'colors');
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=template&id=19438442&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=template&id=19438442& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "selectedCategories__wrapper" }, [
+    _c(
+      "p",
+      {
+        staticClass: "product_form__property_header",
+        on: {
+          click: function($event) {
+            return _vm.closeAllCheckboxesLists()
+          }
+        }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.header) + "\n    ")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "selectedCategories" }, [
+      _c(
+        "div",
+        {
+          staticClass: "selectedCategories__items",
+          on: {
+            click: function($event) {
+              if ($event.target !== $event.currentTarget) {
+                return null
+              }
+              return _vm.changeCheckboxesVisibility()
+            }
+          }
+        },
+        _vm._l(_vm.selectedCats, function(cat) {
+          return _c(
+            "p",
+            { key: cat.id, staticClass: "selectedCategories__item show_block" },
+            [
+              _vm._v(
+                "\n                " + _vm._s(cat.name) + "\n                "
+              ),
+              _c(
+                "span",
+                {
+                  staticClass: "selectedCategories__item__collapse_icon",
+                  on: {
+                    click: function($event) {
+                      $event.stopPropagation()
+                      return _vm.deleteSelectedItem(cat.id)
+                    }
+                  }
+                },
+                [_vm._v("\n                    ×\n                ")]
+              )
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "selectedCategories__arrow",
+          on: {
+            click: function($event) {
+              return _vm.changeCheckboxesVisibility()
+            }
+          }
+        },
+        [_vm._v("\n            ˅\n        ")]
+      )
+    ]),
+    _vm._v(" "),
+    _vm.checkboxesAreVisible
+      ? _c("div", { staticClass: "relative_checkboxes_wrapper" }, [
+          _c(
+            "div",
+            { staticClass: "absolute_checkboxes_list show_block" },
+            _vm._l(_vm.localCategories, function(cat) {
+              return _c(
+                "p",
+                { key: cat.id, staticClass: "checkbox_input__item tal" },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.localProduct[_vm.entity + "_ids"],
+                        expression: "localProduct[entity + '_ids']"
+                      }
+                    ],
+                    staticClass: "checkbox_input",
+                    attrs: { type: "checkbox", id: "cat" + cat.id },
+                    domProps: {
+                      value: cat.id,
+                      checked: Array.isArray(
+                        _vm.localProduct[_vm.entity + "_ids"]
+                      )
+                        ? _vm._i(
+                            _vm.localProduct[_vm.entity + "_ids"],
+                            cat.id
+                          ) > -1
+                        : _vm.localProduct[_vm.entity + "_ids"]
+                    },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$a = _vm.localProduct[_vm.entity + "_ids"],
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = cat.id,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.localProduct,
+                                  _vm.entity + "_ids",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.localProduct,
+                                  _vm.entity + "_ids",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.localProduct, _vm.entity + "_ids", $$c)
+                          }
+                        },
+                        function($event) {
+                          return _vm.typeinValidation(_vm.localProduct)
+                        }
+                      ]
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "checkbox_label",
+                      attrs: { for: "cat" + cat.id }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(cat.name) +
+                          "\n                "
+                      )
+                    ]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("p", {
+      staticClass: "validation_message_at_input ml_minus3",
+      domProps: { innerHTML: _vm._s(_vm.typeinErrors(_vm.entity + "_ids")) }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
 
 /***/ }),
 
@@ -465,549 +640,71 @@ var render = function() {
           })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "selectedCategories__wrapper mt30" }, [
-          _c(
-            "p",
-            {
-              staticClass: "product_form__property_header",
-              on: {
-                click: function($event) {
-                  return _vm.closeAllCheckboxesLists()
-                }
-              }
+        _c("checkboxes-list", {
+          staticClass: "mt30",
+          attrs: {
+            "close-list-cmd": _vm.closeCheckboxesListsCmd,
+            "local-product": _vm.localProduct,
+            entity: "category",
+            header: "Категория"
+          },
+          on: {
+            closeAllCheckboxesLists: function($event) {
+              return _vm.closeAllCheckboxesLists()
+            }
+          },
+          model: {
+            value: _vm.localProduct.category_ids,
+            callback: function($$v) {
+              _vm.$set(_vm.localProduct, "category_ids", $$v)
             },
-            [_vm._v("Категория")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "selectedCategories" }, [
-            _c(
-              "div",
-              {
-                staticClass: "selectedCategories__items",
-                on: {
-                  click: function($event) {
-                    if ($event.target !== $event.currentTarget) {
-                      return null
-                    }
-                    return _vm.changeCheckboxesVisibility("categories")
-                  }
-                }
-              },
-              _vm._l(_vm.selectedCats("category"), function(cat) {
-                return _c(
-                  "p",
-                  {
-                    key: cat.id,
-                    staticClass: "selectedCategories__item show_block"
-                  },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(cat.name) +
-                        "\n                        "
-                    ),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "selectedCategories__item__collapse_icon",
-                        on: {
-                          click: function($event) {
-                            $event.stopPropagation()
-                            return _vm.deleteSelectedItem(
-                              "category_ids",
-                              cat.id
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                            ×\n                        "
-                        )
-                      ]
-                    )
-                  ]
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "selectedCategories__arrow",
-                on: {
-                  click: function($event) {
-                    return _vm.changeCheckboxesVisibility("categories")
-                  }
-                }
-              },
-              [_vm._v("\n                    ˅\n                ")]
-            )
-          ]),
-          _vm._v(" "),
-          _vm.getCheckboxesVisibility("categories")
-            ? _c("div", { staticClass: "relative_checkboxes_wrapper" }, [
-                _c(
-                  "div",
-                  { staticClass: "absolute_checkboxes_list show_block" },
-                  _vm._l(_vm.categories["categories"], function(category) {
-                    return _c(
-                      "p",
-                      {
-                        key: category.id,
-                        staticClass: "checkbox_input__item tal"
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.localProduct.category_ids,
-                              expression: "localProduct.category_ids"
-                            }
-                          ],
-                          staticClass: "checkbox_input",
-                          attrs: {
-                            type: "checkbox",
-                            id: "category" + category.id
-                          },
-                          domProps: {
-                            value: category.id,
-                            checked: Array.isArray(
-                              _vm.localProduct.category_ids
-                            )
-                              ? _vm._i(
-                                  _vm.localProduct.category_ids,
-                                  category.id
-                                ) > -1
-                              : _vm.localProduct.category_ids
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$a = _vm.localProduct.category_ids,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = category.id,
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 &&
-                                      _vm.$set(
-                                        _vm.localProduct,
-                                        "category_ids",
-                                        $$a.concat([$$v])
-                                      )
-                                  } else {
-                                    $$i > -1 &&
-                                      _vm.$set(
-                                        _vm.localProduct,
-                                        "category_ids",
-                                        $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1))
-                                      )
-                                  }
-                                } else {
-                                  _vm.$set(
-                                    _vm.localProduct,
-                                    "category_ids",
-                                    $$c
-                                  )
-                                }
-                              },
-                              function($event) {
-                                return _vm.typeinValidation(_vm.localProduct)
-                              }
-                            ]
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "checkbox_label",
-                            attrs: { for: "category" + category.id }
-                          },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(category.name) +
-                                "\n                        "
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("p", {
-            staticClass: "validation_message_at_input ml_minus3",
-            domProps: { innerHTML: _vm._s(_vm.typeinErrors("category_ids")) }
-          })
-        ]),
+            expression: "localProduct.category_ids"
+          }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "selectedCategories__wrapper mt30" }, [
-          _c(
-            "p",
-            {
-              staticClass: "product_form__property_header",
-              on: {
-                click: function($event) {
-                  return _vm.closeAllCheckboxesLists()
-                }
-              }
+        _c("checkboxes-list", {
+          staticClass: "mt30",
+          attrs: {
+            "close-list-cmd": _vm.closeCheckboxesListsCmd,
+            "local-product": _vm.localProduct,
+            entity: "material",
+            header: "Материал"
+          },
+          on: {
+            closeAllCheckboxesLists: function($event) {
+              return _vm.closeAllCheckboxesLists()
+            }
+          },
+          model: {
+            value: _vm.localProduct.material_ids,
+            callback: function($$v) {
+              _vm.$set(_vm.localProduct, "material_ids", $$v)
             },
-            [_vm._v("Материал")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "selectedCategories" }, [
-            _c(
-              "div",
-              {
-                staticClass: "selectedCategories__items",
-                on: {
-                  click: function($event) {
-                    if ($event.target !== $event.currentTarget) {
-                      return null
-                    }
-                    return _vm.changeCheckboxesVisibility("materials")
-                  }
-                }
-              },
-              _vm._l(_vm.selectedCats("material"), function(cat) {
-                return _c(
-                  "p",
-                  { key: cat.id, staticClass: "selectedCategories__item" },
-                  [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(cat.name) +
-                        "\n                            "
-                    ),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "selectedCategories__item__collapse_icon",
-                        on: {
-                          click: function($event) {
-                            $event.stopPropagation()
-                            return _vm.deleteSelectedItem(
-                              "material_ids",
-                              cat.id
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                ×\n                            "
-                        )
-                      ]
-                    )
-                  ]
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "selectedCategories__arrow",
-                on: {
-                  click: function($event) {
-                    return _vm.changeCheckboxesVisibility("materials")
-                  }
-                }
-              },
-              [_vm._v("\n                        ˅\n                    ")]
-            )
-          ]),
-          _vm._v(" "),
-          _vm.getCheckboxesVisibility("materials")
-            ? _c("div", { staticClass: "relative_checkboxes_wrapper" }, [
-                _c(
-                  "div",
-                  { staticClass: "absolute_checkboxes_list show_block" },
-                  _vm._l(_vm.categories["materials"], function(material) {
-                    return _c(
-                      "p",
-                      {
-                        key: material.id,
-                        staticClass: "checkbox_input__item tal"
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.localProduct.material_ids,
-                              expression: "localProduct.material_ids"
-                            }
-                          ],
-                          staticClass: "checkbox_input",
-                          attrs: {
-                            type: "checkbox",
-                            id: "material" + material.id
-                          },
-                          domProps: {
-                            value: material.id,
-                            checked: Array.isArray(
-                              _vm.localProduct.material_ids
-                            )
-                              ? _vm._i(
-                                  _vm.localProduct.material_ids,
-                                  material.id
-                                ) > -1
-                              : _vm.localProduct.material_ids
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$a = _vm.localProduct.material_ids,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = material.id,
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 &&
-                                      _vm.$set(
-                                        _vm.localProduct,
-                                        "material_ids",
-                                        $$a.concat([$$v])
-                                      )
-                                  } else {
-                                    $$i > -1 &&
-                                      _vm.$set(
-                                        _vm.localProduct,
-                                        "material_ids",
-                                        $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1))
-                                      )
-                                  }
-                                } else {
-                                  _vm.$set(
-                                    _vm.localProduct,
-                                    "material_ids",
-                                    $$c
-                                  )
-                                }
-                              },
-                              function($event) {
-                                return _vm.typeinValidation(_vm.localProduct)
-                              }
-                            ]
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "checkbox_label",
-                            attrs: { for: "material" + material.id }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(material.name) +
-                                "\n                            "
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("p", {
-            staticClass: "validation_message_at_input ml_minus3",
-            domProps: { innerHTML: _vm._s(_vm.typeinErrors("material_ids")) }
-          })
-        ]),
+            expression: "localProduct.material_ids"
+          }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "selectedCategories__wrapper mt30" }, [
-          _c(
-            "p",
-            {
-              staticClass: "product_form__property_header",
-              on: {
-                click: function($event) {
-                  return _vm.closeAllCheckboxesLists()
-                }
-              }
+        _c("checkboxes-list", {
+          staticClass: "mt30",
+          attrs: {
+            "close-list-cmd": _vm.closeCheckboxesListsCmd,
+            "local-product": _vm.localProduct,
+            entity: "color",
+            header: "Цвет"
+          },
+          on: {
+            closeAllCheckboxesLists: function($event) {
+              return _vm.closeAllCheckboxesLists()
+            }
+          },
+          model: {
+            value: _vm.localProduct.color_ids,
+            callback: function($$v) {
+              _vm.$set(_vm.localProduct, "color_ids", $$v)
             },
-            [_vm._v("Цвет")]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "selectedCategories" }, [
-            _c(
-              "div",
-              {
-                staticClass: "selectedCategories__items",
-                on: {
-                  click: function($event) {
-                    if ($event.target !== $event.currentTarget) {
-                      return null
-                    }
-                    return _vm.changeCheckboxesVisibility("colors")
-                  }
-                }
-              },
-              _vm._l(_vm.selectedCats("color"), function(cat) {
-                return _c(
-                  "p",
-                  { key: cat.id, staticClass: "selectedCategories__item" },
-                  [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(cat.name) +
-                        "\n                            "
-                    ),
-                    _c(
-                      "span",
-                      {
-                        staticClass: "selectedCategories__item__collapse_icon",
-                        on: {
-                          click: function($event) {
-                            $event.stopPropagation()
-                            return _vm.deleteSelectedItem("color_ids", cat.id)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                ×\n                            "
-                        )
-                      ]
-                    )
-                  ]
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "selectedCategories__arrow",
-                on: {
-                  click: function($event) {
-                    return _vm.changeCheckboxesVisibility("colors")
-                  }
-                }
-              },
-              [_vm._v("\n                        ˅\n                    ")]
-            )
-          ]),
-          _vm._v(" "),
-          _vm.getCheckboxesVisibility("colors")
-            ? _c("div", { staticClass: "relative_checkboxes_wrapper" }, [
-                _c(
-                  "div",
-                  { staticClass: "absolute_checkboxes_list show_block" },
-                  _vm._l(_vm.categories["colors"], function(color) {
-                    return _c(
-                      "p",
-                      {
-                        key: color.id,
-                        staticClass: "checkbox_input__item tal"
-                      },
-                      [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.localProduct.color_ids,
-                              expression: "localProduct.color_ids"
-                            }
-                          ],
-                          staticClass: "checkbox_input",
-                          attrs: { type: "checkbox", id: "color" + color.id },
-                          domProps: {
-                            value: color.id,
-                            checked: Array.isArray(_vm.localProduct.color_ids)
-                              ? _vm._i(_vm.localProduct.color_ids, color.id) >
-                                -1
-                              : _vm.localProduct.color_ids
-                          },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$a = _vm.localProduct.color_ids,
-                                  $$el = $event.target,
-                                  $$c = $$el.checked ? true : false
-                                if (Array.isArray($$a)) {
-                                  var $$v = color.id,
-                                    $$i = _vm._i($$a, $$v)
-                                  if ($$el.checked) {
-                                    $$i < 0 &&
-                                      _vm.$set(
-                                        _vm.localProduct,
-                                        "color_ids",
-                                        $$a.concat([$$v])
-                                      )
-                                  } else {
-                                    $$i > -1 &&
-                                      _vm.$set(
-                                        _vm.localProduct,
-                                        "color_ids",
-                                        $$a
-                                          .slice(0, $$i)
-                                          .concat($$a.slice($$i + 1))
-                                      )
-                                  }
-                                } else {
-                                  _vm.$set(_vm.localProduct, "color_ids", $$c)
-                                }
-                              },
-                              function($event) {
-                                return _vm.typeinValidation(_vm.localProduct)
-                              }
-                            ]
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "label",
-                          {
-                            staticClass: "checkbox_label",
-                            attrs: { for: "color" + color.id }
-                          },
-                          [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(color.name) +
-                                "\n                            "
-                            )
-                          ]
-                        )
-                      ]
-                    )
-                  }),
-                  0
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("p", {
-            staticClass: "validation_message_at_input ml_minus3",
-            domProps: { innerHTML: _vm._s(_vm.typeinErrors("color_ids")) }
-          })
-        ]),
+            expression: "localProduct.color_ids"
+          }
+        }),
         _vm._v(" "),
         _c(
           "p",
@@ -1161,6 +858,75 @@ var render = function() {
 }
 var staticRenderFns = []
 render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/CheckboxesList.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/CheckboxesList.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CheckboxesList_vue_vue_type_template_id_19438442___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckboxesList.vue?vue&type=template&id=19438442& */ "./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=template&id=19438442&");
+/* harmony import */ var _CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckboxesList.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CheckboxesList_vue_vue_type_template_id_19438442___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckboxesList_vue_vue_type_template_id_19438442___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Admin/Products/CheckboxesList.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckboxesList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=template&id=19438442&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=template&id=19438442& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_19438442___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckboxesList.vue?vue&type=template&id=19438442& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/CheckboxesList.vue?vue&type=template&id=19438442&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_19438442___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_19438442___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
