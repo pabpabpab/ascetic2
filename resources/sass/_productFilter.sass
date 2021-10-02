@@ -1,0 +1,181 @@
+.product_filters
+    position: fixed
+    z-index: 25
+    top: 0
+    right: -370px
+    height: 100%
+    max-height: 100%
+    border-radius: 7px
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3)
+    visibility: hidden
+
+.product_filters__show
+    animation: showProductFilters .5s forwards
+@keyframes showProductFilters
+    from, to
+        right: -370px
+        visibility: hidden
+    100%
+        right: 0
+        visibility: visible
+
+.product_filters__hide
+    animation: hideProductFilters .3s forwards
+@keyframes hideProductFilters
+    from, to
+        right: 0
+        visibility: visible
+    100%
+        right: -370px
+        visibility: hidden
+
+
+
+
+.product_filters__content
+    position: relative
+    padding: 25px
+    width: 350px
+    height: 100%
+    box-sizing: border-box
+    background-color: rgb(244, 249, 252)
+    +font(18px, rgb(80, 70, 70), 400)
+    text-align: left
+    border-radius: 7px
+    overflow-y: auto
+    &::-webkit-scrollbar
+        width: 15px
+        background-color: #f8f8f8
+        padding: 0 15px
+    &::-webkit-scrollbar-thumb
+        background-color: #aaa
+        border: 4px solid #f8f8f8
+        border-radius: 10px
+
+
+.product_filters__collapse_icon
+    position: absolute
+    top: 4px
+    left: 4px
+    width: 25px
+    height: 25px
+    padding: 0 0 3px 0
+    +font(45px, rgb(78, 110, 131), 100)
+    cursor: pointer
+    border-radius: 3px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &:hover
+        background-color: rgb(176, 199, 214)
+        color: #fff
+
+
+
+.filter_price__text_input__wrapper
+    display: flex
+    align-items: center
+    justify-content: space-between
+.filter_price__text_input
+    padding: 13px 8px
+    width: 100px
+
+
+
+
+
+
+
+.filter_price__range_input__wrapper
+    position: relative
+    padding: 0
+    margin: 10px 0
+    height: 15px
+    overflow: hidden
+    background-color: #f4f9fc
+    //border: 1px solid #909090
+
+
+.filter_price__range_input__kernel
+    position: absolute
+    z-index: 30
+    left: 0
+    top: 6.7px
+    padding: 0
+    margin: 0
+    height: 4px
+    width: 100%
+    background-color: #505050
+
+.filter_price__range_input
+    position: absolute
+    z-index: 31
+    top: -7px
+    left: -2px
+    width: 100%
+    box-sizing: border-box
+    outline: none
+    -webkit-appearance: none /* Скрывает слайдер, чтобы можно было создать свой */
+
+    /* Ползунок: Специальные правила для браузеров на движках WebKit/Blink */
+    &::-webkit-slider-thumb
+        -webkit-appearance: none
+        //border-radius: 3px
+        height: 15px
+        width: 10px
+        background-color: #505050
+        cursor: pointer
+        margin-top: 5px /* значение для поля в Chrome */
+    /* Ползунок: Тоже самое для Firefox */
+    &::-moz-range-thumb
+        height: 15px
+        width: 10px
+        background: #505050
+        cursor: pointer
+    /* Ползунок: Тоже самое для IE */
+    &::-ms-thumb
+        height: 15px
+        width: 10px
+        background: #505050
+        cursor: pointer
+
+
+
+    /* Оформление полосы диапазона */
+    &::-webkit-slider-runnable-track
+        width: 100%
+        height: 2px
+        cursor: pointer
+        background: transparent
+
+    &::-moz-range-progress
+        background-color: transparent
+
+    &::-moz-range-track
+        width: 100%
+        height: 2px
+        cursor: pointer
+        background: transparent
+
+    &::-ms-track
+        width: 100%
+        height: 2px
+        cursor: pointer
+        background: transparent
+        border-color: transparent
+        color: transparent
+
+    &::-ms-fill-lower
+        background: transparent
+    &::-ms-fill-upper
+        background: transparent
+
+
+.filter_price__range_input_min
+    &::-webkit-slider-thumb
+        box-shadow:  -150px 160px 0 150px #f4f9fc, -150px 156px 0 150px #ccc
+.filter_price__range_input_max
+    &::-webkit-slider-thumb
+        box-shadow: 150px 160px 0 150px #f4f9fc, 150px 156px 0 150px #ccc
+// <сдвиг по x> <сдвиг по y> <радиус размытия> <растяжение> <цвет> / первая тень слоем выше второй

@@ -22861,6 +22861,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee4);
     }))();
+  },
+  showProductsFilters: function showProductsFilters(_ref7) {
+    var dispatch = _ref7.dispatch,
+        commit = _ref7.commit;
+    commit('setShowProductsFilters', true);
+    commit('setEnabledFiltersHidingCss', false);
+  },
+  closeProductsFilters: function closeProductsFilters(_ref8) {
+    var dispatch = _ref8.dispatch,
+        commit = _ref8.commit;
+    commit('setEnabledFiltersHidingCss', true);
+    setTimeout(function () {
+      commit('setShowProductsFilters', false);
+    }, 500);
   }
 });
 
@@ -23693,6 +23707,12 @@ __webpack_require__.r(__webpack_exports__);
   singleProductFromServer: function singleProductFromServer(state) {
     return state.singleProductFromServer;
   },
+  showProductsFilters: function showProductsFilters(state) {
+    return state.showProductsFilters;
+  },
+  enabledFiltersHidingCss: function enabledFiltersHidingCss(state) {
+    return state.enabledFiltersHidingCss;
+  },
   showProductEditManager: function showProductEditManager(state) {
     return state.showProductEditManager;
   },
@@ -23701,6 +23721,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   enabledFadingCss: function enabledFadingCss(state) {
     return state.enabledFadingCss;
+  },
+  productsMaxPrice: function productsMaxPrice(state) {
+    return state.products.reduce(function (previousValue, item) {
+      return Number(item.price) > previousValue ? Number(item.price) : previousValue;
+    }, 0);
+  },
+  productsMinPrice: function productsMinPrice(state) {
+    return state.products.reduce(function (previousValue, item) {
+      return Number(item.price) < previousValue ? Number(item.price) : previousValue;
+    }, 1000000);
   }
 });
 
@@ -23842,6 +23872,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     state.singleProductFromServer = _objectSpread({}, singleProduct);
   },
   // ------------------------------------------------------------------
+  setShowProductsFilters: function setShowProductsFilters(state, value) {
+    state.showProductsFilters = value;
+  },
+  setEnabledFiltersHidingCss: function setEnabledFiltersHidingCss(state, value) {
+    state.enabledFiltersHidingCss = value;
+  },
   setShowProductEditManager: function setShowProductEditManager(state, value) {
     state.showProductEditManager = value;
   },
@@ -23886,6 +23922,8 @@ __webpack_require__.r(__webpack_exports__);
   listHeader: '',
   productsCountFromServer: 0,
   singleProductFromServer: {},
+  showProductsFilters: false,
+  enabledFiltersHidingCss: false,
   showProductEditManager: false,
   showProductPhotoManager: false,
   enabledFadingCss: false

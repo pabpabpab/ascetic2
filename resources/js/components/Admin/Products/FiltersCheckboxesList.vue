@@ -1,11 +1,11 @@
 <template>
 
-    <div class="selectedCategories__wrapper">
+    <div class="selectedCategories__wrapper" style="width: 300px">
         <p class="product_form__property_header">
             {{ header }}
         </p>
 
-        <div @click.stop="changeCheckboxesVisibility()" class="selectedCategories">
+        <div @click.stop="changeCheckboxesVisibility()" class="selectedCategories bgWhite">
             <div class="selectedCategories__items">
                 <p @click.stop class="selectedCategories__item show_block"
                    v-for="cat of selectedCats"
@@ -17,7 +17,7 @@
                     </span>
                 </p>
             </div>
-            <div class="selectedCategories__arrow">
+            <div class="selectedCategories__arrow bgWhite">
                 &#709;
             </div>
         </div>
@@ -31,8 +31,7 @@
                            type="checkbox"
                            :id="`cat${cat.id}`"
                            :value="cat.id"
-                           @change="typeinValidation(localProduct)"
-                           v-model="localProduct[entity + '_ids']">
+                           v-model="search[entity + '_ids']">
 
                     <label class="checkbox_label"
                            :for="`cat${cat.id}`">
@@ -42,10 +41,6 @@
             </div>
         </div>
 
-        <p class="validation_message_at_input ml_minus3"
-           v-html="typeinErrors(entity + '_ids')">
-        </p>
-
     </div>
 
 </template>
@@ -54,9 +49,9 @@
 import {mapActions, mapGetters} from "vuex";
 
 export default {
-    name: "CheckboxesList",
+    name: "FiltersCheckboxesList",
     // пропс value, потому что в родителе v-model
-    props: ['value', 'localProduct', 'header', 'entity', 'closeListCmd'],
+    props: ['value', 'search', 'header', 'entity', 'closeListCmd'],
     data() {
         return {
             checkboxesVisibility: false,
@@ -65,9 +60,6 @@ export default {
     computed: {
         ...mapGetters('categories', [
             'categories',
-        ]),
-        ...mapGetters([
-            'typeinErrors',
         ]),
         localCategories() {
             const entityBook = {
@@ -87,9 +79,9 @@ export default {
             }
 
             // событие input, потому что в родителе v-model
-            this.$emit('input', this.localProduct[this.entity + '_ids']);
+            this.$emit('input', this.search[this.entity + '_ids']);
 
-            return this.localProduct[this.entity + '_ids'].map((id) => {
+            return this.search[this.entity + '_ids'].map((id) => {
                 return {
                     id: id,
                     name: this.localCategories.find(item => item.id === id).name
@@ -98,9 +90,6 @@ export default {
         },
     },
     methods: {
-        ...mapActions('products', [
-            'typeinValidation'
-        ]),
         changeCheckboxesVisibility() {
             const val = this.checkboxesVisibility;
             this.$emit('closeAllCheckboxesLists');
@@ -109,10 +98,10 @@ export default {
             }, 100);
         },
         deleteSelectedItem(val) {
-            const product = this.localProduct;
-            const index = product[this.entity + '_ids'].findIndex(item => item === val);
-            product[this.entity + '_ids'].splice(index, 1); // с позиции index удалить 1 элемент
-            //this.localProduct = { ...product };
+            const search = this.search;
+            const index = search[this.entity + '_ids'].findIndex(item => item === val);
+            search[this.entity + '_ids'].splice(index, 1); // с позиции index удалить 1 элемент
+            //this.search = { ...search };
         },
         closeThisCheckboxes() {
             this.checkboxesVisibility = false;

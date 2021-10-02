@@ -13,6 +13,8 @@
 
             <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
 
+            <products-filters></products-filters>
+
             <products-context-menu
                 v-if="showProductsContextMenu">
             </products-context-menu>
@@ -27,18 +29,21 @@
 
 <script>
 import ProductItem from "./ProductItem";
+import ProductsFilters from "./ProductsFilters";
 import Pagination from "./../Blocks/Pagination";
 import ProductsContextMenu from "../ContextMenu/ProductsContextMenu";
 import ProductPhotoManager from "./ProductPhotoManager";
 import SeoManager from "./../Blocks/SeoManager";
 import ProductEditManager from "./ProductEditManager";
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
+
 
 export default {
     name: "Products",
     props: ['whichProducts'],
     components: {
         ProductItem,
+        ProductsFilters,
         Pagination,
         ProductsContextMenu,
         ProductPhotoManager,

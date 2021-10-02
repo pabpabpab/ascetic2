@@ -111,14 +111,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['typeinValidation'])), {}, {
-    closeAllCheckboxesLists: function closeAllCheckboxesLists() {
-      this.$emit('closeAllCheckboxesLists');
-    },
     changeCheckboxesVisibility: function changeCheckboxesVisibility() {
       var _this2 = this;
 
       var val = this.checkboxesVisibility;
-      this.closeAllCheckboxesLists();
+      this.$emit('closeAllCheckboxesLists');
       setTimeout(function () {
         _this2.checkboxesVisibility = !val;
       }, 100);
@@ -129,8 +126,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return item === val;
       });
       product[this.entity + '_ids'].splice(index, 1); // с позиции index удалить 1 элемент
-
-      this.localProduct = _objectSpread({}, product);
+      //this.localProduct = { ...product };
     },
     closeThisCheckboxes: function closeThisCheckboxes() {
       this.checkboxesVisibility = false;
@@ -169,10 +165,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -389,161 +381,181 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "selectedCategories__wrapper" }, [
+    _c("p", { staticClass: "product_form__property_header" }, [
+      _vm._v("\n        " + _vm._s(_vm.header) + "\n    ")
+    ]),
+    _vm._v(" "),
     _c(
-      "p",
+      "div",
       {
-        staticClass: "product_form__property_header",
+        staticClass: "selectedCategories",
         on: {
           click: function($event) {
-            return _vm.closeAllCheckboxesLists()
+            $event.stopPropagation()
           }
         }
       },
-      [_vm._v("\n        " + _vm._s(_vm.header) + "\n    ")]
+      [
+        _c(
+          "div",
+          {
+            staticClass: "selectedCategories__items",
+            on: {
+              click: function($event) {
+                if ($event.target !== $event.currentTarget) {
+                  return null
+                }
+                return _vm.changeCheckboxesVisibility()
+              }
+            }
+          },
+          _vm._l(_vm.selectedCats, function(cat) {
+            return _c(
+              "p",
+              {
+                key: cat.id,
+                staticClass: "selectedCategories__item show_block"
+              },
+              [
+                _vm._v(
+                  "\n                " + _vm._s(cat.name) + "\n                "
+                ),
+                _c(
+                  "span",
+                  {
+                    staticClass: "selectedCategories__item__collapse_icon",
+                    on: {
+                      click: function($event) {
+                        $event.stopPropagation()
+                        return _vm.deleteSelectedItem(cat.id)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    ×\n                ")]
+                )
+              ]
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "selectedCategories__arrow",
+            on: {
+              click: function($event) {
+                return _vm.changeCheckboxesVisibility()
+              }
+            }
+          },
+          [_vm._v("\n            ˅\n        ")]
+        )
+      ]
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "selectedCategories" }, [
-      _c(
-        "div",
-        {
-          staticClass: "selectedCategories__items",
-          on: {
-            click: function($event) {
-              if ($event.target !== $event.currentTarget) {
-                return null
-              }
-              return _vm.changeCheckboxesVisibility()
-            }
-          }
-        },
-        _vm._l(_vm.selectedCats, function(cat) {
-          return _c(
-            "p",
-            { key: cat.id, staticClass: "selectedCategories__item show_block" },
-            [
-              _vm._v(
-                "\n                " + _vm._s(cat.name) + "\n                "
-              ),
-              _c(
-                "span",
-                {
-                  staticClass: "selectedCategories__item__collapse_icon",
-                  on: {
-                    click: function($event) {
-                      $event.stopPropagation()
-                      return _vm.deleteSelectedItem(cat.id)
-                    }
-                  }
-                },
-                [_vm._v("\n                    ×\n                ")]
-              )
-            ]
-          )
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "selectedCategories__arrow",
-          on: {
-            click: function($event) {
-              return _vm.changeCheckboxesVisibility()
-            }
-          }
-        },
-        [_vm._v("\n            ˅\n        ")]
-      )
-    ]),
-    _vm._v(" "),
     _vm.checkboxesAreVisible
-      ? _c("div", { staticClass: "relative_checkboxes_wrapper" }, [
-          _c(
-            "div",
-            { staticClass: "absolute_checkboxes_list show_block" },
-            _vm._l(_vm.localCategories, function(cat) {
-              return _c(
-                "p",
-                { key: cat.id, staticClass: "checkbox_input__item tal" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.localProduct[_vm.entity + "_ids"],
-                        expression: "localProduct[entity + '_ids']"
-                      }
-                    ],
-                    staticClass: "checkbox_input",
-                    attrs: { type: "checkbox", id: "cat" + cat.id },
-                    domProps: {
-                      value: cat.id,
-                      checked: Array.isArray(
-                        _vm.localProduct[_vm.entity + "_ids"]
-                      )
-                        ? _vm._i(
-                            _vm.localProduct[_vm.entity + "_ids"],
-                            cat.id
-                          ) > -1
-                        : _vm.localProduct[_vm.entity + "_ids"]
-                    },
-                    on: {
-                      change: [
-                        function($event) {
-                          var $$a = _vm.localProduct[_vm.entity + "_ids"],
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = cat.id,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(
-                                  _vm.localProduct,
-                                  _vm.entity + "_ids",
-                                  $$a.concat([$$v])
-                                )
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  _vm.localProduct,
-                                  _vm.entity + "_ids",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
-                            }
-                          } else {
-                            _vm.$set(_vm.localProduct, _vm.entity + "_ids", $$c)
-                          }
-                        },
-                        function($event) {
-                          return _vm.typeinValidation(_vm.localProduct)
+      ? _c(
+          "div",
+          {
+            staticClass: "relative_checkboxes_wrapper",
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+              }
+            }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "absolute_checkboxes_list show_block" },
+              _vm._l(_vm.localCategories, function(cat) {
+                return _c(
+                  "p",
+                  { key: cat.id, staticClass: "checkbox_input__item tal" },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.localProduct[_vm.entity + "_ids"],
+                          expression: "localProduct[entity + '_ids']"
                         }
+                      ],
+                      staticClass: "checkbox_input",
+                      attrs: { type: "checkbox", id: "cat" + cat.id },
+                      domProps: {
+                        value: cat.id,
+                        checked: Array.isArray(
+                          _vm.localProduct[_vm.entity + "_ids"]
+                        )
+                          ? _vm._i(
+                              _vm.localProduct[_vm.entity + "_ids"],
+                              cat.id
+                            ) > -1
+                          : _vm.localProduct[_vm.entity + "_ids"]
+                      },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$a = _vm.localProduct[_vm.entity + "_ids"],
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = cat.id,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.localProduct,
+                                    _vm.entity + "_ids",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.localProduct,
+                                    _vm.entity + "_ids",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.localProduct,
+                                _vm.entity + "_ids",
+                                $$c
+                              )
+                            }
+                          },
+                          function($event) {
+                            return _vm.typeinValidation(_vm.localProduct)
+                          }
+                        ]
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "checkbox_label",
+                        attrs: { for: "cat" + cat.id }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(cat.name) +
+                            "\n                "
+                        )
                       ]
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "label",
-                    {
-                      staticClass: "checkbox_label",
-                      attrs: { for: "cat" + cat.id }
-                    },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(cat.name) +
-                          "\n                "
-                      )
-                    ]
-                  )
-                ]
-              )
-            }),
-            0
-          )
-        ])
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ]
+        )
       : _vm._e(),
     _vm._v(" "),
     _c("p", {
@@ -574,287 +586,251 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "show_block" }, [
-    _vm.action === "create" ? _c("h1", [_vm._v("Добавить товар")]) : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "content_block content_block__product_form",
-        on: {
-          click: function($event) {
-            if ($event.target !== $event.currentTarget) {
-              return null
-            }
-            return _vm.closeAllCheckboxesLists()
-          }
+  return _c(
+    "div",
+    {
+      staticClass: "show_block",
+      on: {
+        click: function($event) {
+          return _vm.closeAllCheckboxesLists()
         }
-      },
-      [
-        _c(
-          "p",
-          {
-            staticClass: "product_form__property_header mt20",
-            on: {
-              click: function($event) {
-                return _vm.closeAllCheckboxesLists()
-              }
-            }
-          },
-          [_vm._v("Название товара")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "input_text__container" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.localProduct.name,
-                expression: "localProduct.name"
-              }
-            ],
-            staticClass: "input_text input_text__product_form",
-            class: { input_alarm: _vm.isAlarmingInput("name") },
-            attrs: { type: "text", maxlength: "50", placeholder: " " },
-            domProps: { value: _vm.localProduct.name },
-            on: {
-              click: function($event) {
-                return _vm.closeAllCheckboxesLists()
-              },
-              keyup: function($event) {
-                return _vm.typeinValidation(_vm.localProduct)
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.localProduct, "name", $event.target.value)
-              }
-            }
-          }),
+      }
+    },
+    [
+      _vm.action === "create" ? _c("h1", [_vm._v("Добавить товар")]) : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content_block content_block__product_form" },
+        [
+          _c("p", { staticClass: "product_form__property_header mt20" }, [
+            _vm._v("Название товара")
+          ]),
           _vm._v(" "),
-          _c("p", {
-            staticClass: "validation_message_at_input",
-            domProps: { innerHTML: _vm._s(_vm.typeinErrors("name")) }
-          })
-        ]),
-        _vm._v(" "),
-        _c("checkboxes-list", {
-          staticClass: "mt30",
-          attrs: {
-            "close-list-cmd": _vm.closeCheckboxesListsCmd,
-            "local-product": _vm.localProduct,
-            entity: "category",
-            header: "Категория"
-          },
-          on: {
-            closeAllCheckboxesLists: function($event) {
-              return _vm.closeAllCheckboxesLists()
-            }
-          },
-          model: {
-            value: _vm.localProduct.category_ids,
-            callback: function($$v) {
-              _vm.$set(_vm.localProduct, "category_ids", $$v)
-            },
-            expression: "localProduct.category_ids"
-          }
-        }),
-        _vm._v(" "),
-        _c("checkboxes-list", {
-          staticClass: "mt30",
-          attrs: {
-            "close-list-cmd": _vm.closeCheckboxesListsCmd,
-            "local-product": _vm.localProduct,
-            entity: "material",
-            header: "Материал"
-          },
-          on: {
-            closeAllCheckboxesLists: function($event) {
-              return _vm.closeAllCheckboxesLists()
-            }
-          },
-          model: {
-            value: _vm.localProduct.material_ids,
-            callback: function($$v) {
-              _vm.$set(_vm.localProduct, "material_ids", $$v)
-            },
-            expression: "localProduct.material_ids"
-          }
-        }),
-        _vm._v(" "),
-        _c("checkboxes-list", {
-          staticClass: "mt30",
-          attrs: {
-            "close-list-cmd": _vm.closeCheckboxesListsCmd,
-            "local-product": _vm.localProduct,
-            entity: "color",
-            header: "Цвет"
-          },
-          on: {
-            closeAllCheckboxesLists: function($event) {
-              return _vm.closeAllCheckboxesLists()
-            }
-          },
-          model: {
-            value: _vm.localProduct.color_ids,
-            callback: function($$v) {
-              _vm.$set(_vm.localProduct, "color_ids", $$v)
-            },
-            expression: "localProduct.color_ids"
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "product_form__property_header mt40",
-            on: {
-              click: function($event) {
-                return _vm.closeAllCheckboxesLists()
-              }
-            }
-          },
-          [_vm._v("Описание товара")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "input_text__container" }, [
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.localProduct.description,
-                expression: "localProduct.description"
-              }
-            ],
-            staticClass: "input_text input_textarea input_text__product_form",
-            class: { input_alarm: _vm.isAlarmingInput("description") },
-            attrs: { placeholder: " " },
-            domProps: { value: _vm.localProduct.description },
-            on: {
-              click: function($event) {
-                return _vm.closeAllCheckboxesLists()
-              },
-              keyup: function($event) {
-                return _vm.typeinValidation(_vm.localProduct)
-              },
-              input: [
-                function($event) {
+          _c("div", { staticClass: "input_text__container" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.localProduct.name,
+                  expression: "localProduct.name"
+                }
+              ],
+              staticClass: "input_text input_text__product_form",
+              class: { input_alarm: _vm.isAlarmingInput("name") },
+              attrs: { type: "text", maxlength: "50", placeholder: " " },
+              domProps: { value: _vm.localProduct.name },
+              on: {
+                keyup: function($event) {
+                  return _vm.typeinValidation(_vm.localProduct)
+                },
+                input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.localProduct, "description", $event.target.value)
-                },
-                function($event) {
-                  return _vm.fitTextareaHeight($event)
+                  _vm.$set(_vm.localProduct, "name", $event.target.value)
                 }
-              ]
-            }
-          }),
-          _vm._v(" "),
-          _c("p", {
-            staticClass: "validation_message_at_input",
-            domProps: { innerHTML: _vm._s(_vm.typeinErrors("description")) }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "product_form__property_header mt30",
-            on: {
-              click: function($event) {
-                return _vm.closeAllCheckboxesLists()
               }
-            }
-          },
-          [_vm._v("Цена товара")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "input_text__container" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.localProduct.price,
-                expression: "localProduct.price"
-              }
-            ],
-            staticClass: "input_text input_text__product_form",
-            class: { input_alarm: _vm.isAlarmingInput("price") },
-            attrs: { type: "text", maxlength: "21", placeholder: " " },
-            domProps: { value: _vm.localProduct.price },
-            on: {
-              click: function($event) {
-                return _vm.closeAllCheckboxesLists()
-              },
-              keyup: function($event) {
-                return _vm.typeinValidation(_vm.localProduct)
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.localProduct, "price", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { staticClass: "input_text__label" }, [
-            _vm._v("в рублях")
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "validation_message_at_input",
+              domProps: { innerHTML: _vm._s(_vm.typeinErrors("name")) }
+            })
           ]),
           _vm._v(" "),
-          _c("p", {
-            staticClass: "validation_message_at_input",
-            domProps: { innerHTML: _vm._s(_vm.typeinErrors("price")) }
-          })
-        ]),
-        _vm._v(" "),
-        _vm.action === "create"
-          ? _c("files-input", {
-              staticClass: "mt30",
-              attrs: { owner: "ProductForm" },
-              on: {
-                closeAllCheckboxesLists: function($event) {
-                  return _vm.closeAllCheckboxesLists()
-                }
-              },
-              model: {
-                value: _vm.photos,
-                callback: function($$v) {
-                  _vm.photos = $$v
-                },
-                expression: "photos"
+          _c("checkboxes-list", {
+            staticClass: "mt30",
+            attrs: {
+              "close-list-cmd": _vm.closeCheckboxesListsCmd,
+              "local-product": _vm.localProduct,
+              entity: "category",
+              header: "Категория"
+            },
+            on: {
+              closeAllCheckboxesLists: function($event) {
+                return _vm.closeAllCheckboxesLists()
               }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.action === "create"
-          ? _c(
-              "button",
-              {
-                staticClass: "button__save_product mauto mt30",
-                on: {
-                  click: function($event) {
-                    $event.stopPropagation()
-                    _vm.saveProduct({
-                      localProduct: _vm.localProduct,
-                      photos: _vm.photos
-                    })
-                    _vm.closeAllCheckboxesLists()
-                  }
-                }
+            },
+            model: {
+              value: _vm.localProduct.category_ids,
+              callback: function($$v) {
+                _vm.$set(_vm.localProduct, "category_ids", $$v)
               },
-              [_vm._v("\n            Сохранить\n        ")]
-            )
-          : _vm._e()
-      ],
-      1
-    )
-  ])
+              expression: "localProduct.category_ids"
+            }
+          }),
+          _vm._v(" "),
+          _c("checkboxes-list", {
+            staticClass: "mt30",
+            attrs: {
+              "close-list-cmd": _vm.closeCheckboxesListsCmd,
+              "local-product": _vm.localProduct,
+              entity: "material",
+              header: "Материал"
+            },
+            on: {
+              closeAllCheckboxesLists: function($event) {
+                return _vm.closeAllCheckboxesLists()
+              }
+            },
+            model: {
+              value: _vm.localProduct.material_ids,
+              callback: function($$v) {
+                _vm.$set(_vm.localProduct, "material_ids", $$v)
+              },
+              expression: "localProduct.material_ids"
+            }
+          }),
+          _vm._v(" "),
+          _c("checkboxes-list", {
+            staticClass: "mt30",
+            attrs: {
+              "close-list-cmd": _vm.closeCheckboxesListsCmd,
+              "local-product": _vm.localProduct,
+              entity: "color",
+              header: "Цвет"
+            },
+            on: {
+              closeAllCheckboxesLists: function($event) {
+                return _vm.closeAllCheckboxesLists()
+              }
+            },
+            model: {
+              value: _vm.localProduct.color_ids,
+              callback: function($$v) {
+                _vm.$set(_vm.localProduct, "color_ids", $$v)
+              },
+              expression: "localProduct.color_ids"
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "product_form__property_header mt40" }, [
+            _vm._v("Описание товара")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input_text__container" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.localProduct.description,
+                  expression: "localProduct.description"
+                }
+              ],
+              staticClass: "input_text input_textarea input_text__product_form",
+              class: { input_alarm: _vm.isAlarmingInput("description") },
+              attrs: { placeholder: " " },
+              domProps: { value: _vm.localProduct.description },
+              on: {
+                keyup: function($event) {
+                  return _vm.typeinValidation(_vm.localProduct)
+                },
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.localProduct,
+                      "description",
+                      $event.target.value
+                    )
+                  },
+                  function($event) {
+                    return _vm.fitTextareaHeight($event)
+                  }
+                ]
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "validation_message_at_input",
+              domProps: { innerHTML: _vm._s(_vm.typeinErrors("description")) }
+            })
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "product_form__property_header mt30" }, [
+            _vm._v("Цена товара")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "input_text__container" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.localProduct.price,
+                  expression: "localProduct.price"
+                }
+              ],
+              staticClass: "input_text input_text__product_form",
+              class: { input_alarm: _vm.isAlarmingInput("price") },
+              attrs: { type: "text", maxlength: "21", placeholder: " " },
+              domProps: { value: _vm.localProduct.price },
+              on: {
+                keyup: function($event) {
+                  return _vm.typeinValidation(_vm.localProduct)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.localProduct, "price", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { staticClass: "input_text__label" }, [
+              _vm._v("в рублях")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "validation_message_at_input",
+              domProps: { innerHTML: _vm._s(_vm.typeinErrors("price")) }
+            })
+          ]),
+          _vm._v(" "),
+          _vm.action === "create"
+            ? _c("files-input", {
+                staticClass: "mt30",
+                attrs: { owner: "ProductForm" },
+                model: {
+                  value: _vm.photos,
+                  callback: function($$v) {
+                    _vm.photos = $$v
+                  },
+                  expression: "photos"
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.action === "create"
+            ? _c(
+                "button",
+                {
+                  staticClass: "button__save_product mauto mt30",
+                  on: {
+                    click: function($event) {
+                      $event.stopPropagation()
+                      _vm.saveProduct({
+                        localProduct: _vm.localProduct,
+                        photos: _vm.photos
+                      })
+                      _vm.closeAllCheckboxesLists()
+                    }
+                  }
+                },
+                [_vm._v("\n            Сохранить\n        ")]
+              )
+            : _vm._e()
+        ],
+        1
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -28,7 +28,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "SaveProductPage",
   components: {
     ProductForm: function ProductForm() {
-      return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./Products/ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(3), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./Products/ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categoriesCountFromServer'])),

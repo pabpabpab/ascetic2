@@ -1,22 +1,37 @@
 
 .products_header
-    display: flex
-    justify-content: center
-    width: 90%
+    position: relative
+    display: inline-block
+    margin: 0 auto
+    //width: 95%
     padding: 0
-    //border: 1px solid #f00
+    // border: 1px solid #f00
+
+
+.filter_icon__img
+    position: absolute
+    width: 17px
+    top: 10px
+    left: -55px
+    cursor: pointer
+    border-radius: 3px
+    //box-shadow: 0 0 5px rgb(0, 0, 0, 0.1)
+    &:hover
+        box-shadow: 0 0 7px rgb(0, 0, 0, 0.2)
+
 
 
 .content_block__products
     width: 95%
-    padding: 0 20px 10px 20px
+    padding: 0 0 10px 0
     box-sizing: border-box
     -webkit-user-select: none
     -moz-user-select: none
     -ms-user-select: none
     background-color: rgba(255, 255, 255, 0)
     box-shadow: none
-    //box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
+    // box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
+
 
 
 .products

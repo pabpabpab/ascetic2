@@ -113,6 +113,12 @@ export default {
     },
 
     // ------------------------------------------------------------------
+    setShowProductsFilters: (state, value) => {
+        state.showProductsFilters = value;
+    },
+    setEnabledFiltersHidingCss: (state, value) => {
+        state.enabledFiltersHidingCss = value;
+    },
     setShowProductEditManager: (state, value) => {
         state.showProductEditManager = value;
     },

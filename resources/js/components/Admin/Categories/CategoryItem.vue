@@ -48,7 +48,6 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-import categoriesDragAndDropMethods from "./someMethods/categoriesDragAndDropMethods";
 /*
 import arrow_up_icon from "./../../../../assets/arrow_up_icon.jpg"
 import arrow_down_icon from "./../../../../assets/arrow_down_icon.jpg"

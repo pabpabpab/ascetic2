@@ -1,19 +1,18 @@
 <template>
-    <div class="show_block">
+    <div @click="closeAllCheckboxesLists()" class="show_block">
 
 
         <h1 v-if="action==='create'">Добавить товар</h1>
 
-        <div @click.self="closeAllCheckboxesLists()" class="content_block content_block__product_form">
+        <div class="content_block content_block__product_form">
 
 
-            <p @click="closeAllCheckboxesLists()" class="product_form__property_header mt20">Название товара</p>
+            <p class="product_form__property_header mt20">Название товара</p>
             <div class="input_text__container">
                 <input class="input_text input_text__product_form"
                        :class="{ 'input_alarm': isAlarmingInput('name') }"
                        type="text" maxlength="50"
                        placeholder=" "
-                       @click="closeAllCheckboxesLists()"
                        @keyup="typeinValidation(localProduct)"
                        v-model="localProduct.name">
 
@@ -53,12 +52,11 @@
             </checkboxes-list>
 
 
-            <p @click="closeAllCheckboxesLists()" class="product_form__property_header mt40">Описание товара</p>
+            <p class="product_form__property_header mt40">Описание товара</p>
             <div class="input_text__container">
                 <textarea class="input_text input_textarea input_text__product_form"
                           :class="{ 'input_alarm': isAlarmingInput('description') }"
                           placeholder=" "
-                          @click="closeAllCheckboxesLists()"
                           @keyup="typeinValidation(localProduct);"
                           @input="fitTextareaHeight($event);"
                           v-model="localProduct.description">
@@ -70,13 +68,12 @@
             </div>
 
 
-            <p @click="closeAllCheckboxesLists()" class="product_form__property_header mt30">Цена товара</p>
+            <p class="product_form__property_header mt30">Цена товара</p>
             <div class="input_text__container">
                 <input class="input_text input_text__product_form"
                        :class="{ 'input_alarm': isAlarmingInput('price') }"
                        type="text" maxlength="21"
                        placeholder=" "
-                       @click="closeAllCheckboxesLists()"
                        @keyup="typeinValidation(localProduct)"
                        v-model="localProduct.price">
 
@@ -89,7 +86,6 @@
 
 
             <files-input
-                @closeAllCheckboxesLists="closeAllCheckboxesLists()"
                 v-if="action==='create'"
                 v-model="photos"
                 owner="ProductForm"
@@ -144,7 +140,6 @@ export default {
         localPrice() {
             return this.localProduct.price;
         },
-
     },
 
 

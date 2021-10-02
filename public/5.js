@@ -270,7 +270,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _someMethods_categoriesDragAndDropMethods__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./someMethods/categoriesDragAndDropMethods */ "./resources/js/components/Admin/Categories/someMethods/categoriesDragAndDropMethods.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -325,7 +324,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
 
 /*
 import arrow_up_icon from "./../../../../assets/arrow_up_icon.jpg"
@@ -1629,54 +1627,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CategoryItemEditForm_vue_vue_type_template_id_33194937___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/Admin/Categories/someMethods/categoriesDragAndDropMethods.js":
-/*!**********************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Categories/someMethods/categoriesDragAndDropMethods.js ***!
-  \**********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  myDrag: function myDrag(index, event) {
-    this.draggableIndex = index;
-    console.log(this.draggableIndex); //this.moveAt(event);
-  },
-  myMove: function myMove(event) {
-    console.log(this.draggableIndex);
-
-    if (this.draggableIndex !== -1) {
-      console.log('uuu');
-      this.dragTop = event.pageY - 12;
-    }
-  },
-  moveAt: function moveAt(event) {
-    if (this.draggableIndex !== -1) {
-      this.dragTop = event.pageY - 12;
-    }
-  },
-  myDragStop: function myDragStop() {
-    this.draggableIndex = -1;
-    this.dragTop = 0;
-    console.log('zzz');
-  },
-  isDragging: function isDragging(index) {
-    return this.draggableIndex === index;
-  },
-  positionOfIndex: function positionOfIndex(index) {
-    return this.isDragging(index) ? 'absolute' : 'relative';
-  },
-  leftOfIndex: function leftOfIndex(index) {
-    return this.isDragging(index) ? this.dragLeft + 'px' : 0;
-  },
-  topOfIndex: function topOfIndex(index) {
-    return this.isDragging(index) ? this.dragTop + 'px' : 0;
-  }
-});
 
 /***/ }),
 
