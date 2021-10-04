@@ -12,6 +12,7 @@ import products from './products';
 import typeinErrors from './typeinErrors';
 import popupErrors from './popupErrors';
 import absoluteFlashMessage from './absoluteFlashMessage';
+import absoluteFlashFiltersMessage from './absoluteFlashFiltersMessage';
 import waitingScreen from './waitingScreen';
 import confirmationDialog from './confirmationDialog';
 import contextMenu from './contextMenu';
@@ -56,6 +57,7 @@ const store = new Vuex.Store({
         typeinErrors,
         popupErrors,
         absoluteFlashMessage,
+        absoluteFlashFiltersMessage,
         waitingScreen,
         confirmationDialog,
         contextMenu,

@@ -2,10 +2,10 @@
     <div @click.stop v-if="showProductsFilters" :class="filtersClass">
         <div @click="closeAllCheckboxesLists()" class="product_filters__content">
 
-
             <p class="product_form__property_header mt30 mb20">
                 Цена, руб.
             </p>
+
             <div class="filter_price__text_input__wrapper">
                 <input class="input_text filter_price__text_input"
                        type="text" maxlength="6"
@@ -61,6 +61,12 @@
                 class="mt30">
             </filters-checkboxes-list>
 
+            <button class="button__save_product mauto mt30"
+                    @click="closeProductsFilters()">
+                Готово
+            </button>
+
+
             <div class='product_filters__collapse_icon'
                  @click.stop="closeProductsFilters()">
                 &#215;
@@ -80,12 +86,13 @@ export default {
     data() {
         return {
             search: {
-                minPrice: 0,
+                minPrice: 1000000,
                 maxPrice: 0,
                 category_ids: [],
                 material_ids: [],
                 color_ids: [],
             },
+            searchHasNotBeenChanged: true,
             closeCheckboxesListsCmd: false,
         };
     },
@@ -95,6 +102,7 @@ export default {
             'enabledFiltersHidingCss',
             'productsMaxPrice',
             'productsMinPrice',
+            'searchTotalParameters',
         ]),
         ...mapGetters('categories', [
             'categories',
@@ -114,6 +122,30 @@ export default {
         localMaxPrice() {
             return this.search.maxPrice;
         },
+
+        localSearchObject() {
+            return { ...this.search };
+        },
+
+        emptySearch() {
+            if (this.search.minPrice > this.productsMinPrice) {
+                return false;
+            }
+            if (this.search.maxPrice < this.productsMaxPrice) {
+                return false;
+            }
+            if (this.search.category_ids.length > 0) {
+                return false;
+            }
+            if (this.search.material_ids.length > 0) {
+                return false;
+            }
+            if (this.search.color_ids.length > 0) {
+                return false;
+            }
+            return true;
+        },
+
     },
     methods: {
         ...mapActions('products',[
@@ -128,6 +160,22 @@ export default {
     },
     watch: {
 
+        localSearchObject() {
+            if (!this.showProductsFilters) {
+                return;
+            }
+            if (this.emptySearch && this.searchHasNotBeenChanged) {
+               return;
+            }
+            this.searchHasNotBeenChanged = false;
+            this.$store.dispatch('products/setSearchObject', this.search);
+            this.$store.dispatch('products/makeSearch', this.search);
+        },
+
+        searchTotalParameters(val) {
+            this.search = { ...val };
+        },
+
         productsMinPrice(val) {
             this.search.minPrice = Number(val);
         },
@@ -136,23 +184,18 @@ export default {
         },
 
         localMinPrice(val) {
-            if (!val) {
-                return;
-            }
             const minPrice = Number(this.search.minPrice);
             const maxPrice = Number(this.search.maxPrice);
             if (minPrice >= maxPrice) {
                 this.search.minPrice = maxPrice - 500;
             }
+
             const productsMinPrice = Number(this.productsMinPrice);
             if (minPrice < productsMinPrice) {
                 this.search.minPrice = productsMinPrice;
             }
         },
         localMaxPrice(val) {
-            if (!val) {
-                return;
-            }
             const minPrice = Number(this.search.minPrice);
             const maxPrice = Number(this.search.maxPrice);
             if (maxPrice <= minPrice) {
@@ -163,7 +206,6 @@ export default {
                 this.search.maxPrice = productsMaxPrice;
             }
         },
-
     },
     mounted() {
         setTimeout(() => {

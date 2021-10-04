@@ -4,6 +4,8 @@
         <div class="products">
             <pagination v-if="productsLength > 1" entity="products" class="pdb10"></pagination>
 
+            <search-total-parameters></search-total-parameters>
+
             <product-item
                 v-for="(item, index) of items"
                 :key="item.id"
@@ -13,7 +15,9 @@
 
             <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
 
-            <products-filters></products-filters>
+            <products-filters
+                v-if="$route.params.which === 'active'">
+            </products-filters>
 
             <products-context-menu
                 v-if="showProductsContextMenu">
@@ -30,6 +34,7 @@
 <script>
 import ProductItem from "./ProductItem";
 import ProductsFilters from "./ProductsFilters";
+import SearchTotalParameters from "./SearchTotalParameters";
 import Pagination from "./../Blocks/Pagination";
 import ProductsContextMenu from "../ContextMenu/ProductsContextMenu";
 import ProductPhotoManager from "./ProductPhotoManager";
@@ -44,6 +49,7 @@ export default {
     components: {
         ProductItem,
         ProductsFilters,
+        SearchTotalParameters,
         Pagination,
         ProductsContextMenu,
         ProductPhotoManager,
@@ -71,11 +77,12 @@ export default {
         },
     },
     mounted() {
-        //this.$store.dispatch('products/loadProducts', this.$route);
-
         if (!this.$route.params.withoutReload) {
             this.$store.dispatch('products/loadProducts', this.$route);
+            this.$store.dispatch('products/resetSearchObject');
         }
+
+        this.$store.dispatch('products/setShowProductsFilters', false);
     },
 }
 </script>

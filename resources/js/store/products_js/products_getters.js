@@ -22,4 +22,7 @@ export default {
     productsMinPrice: (state) => state.products.reduce(
         (previousValue, item) => Number(item.price) < previousValue ? Number(item.price) : previousValue
     ,1000000),
+
+    stateSearchObject: (state) => {return {...state.search};},
+    searchTotalParameters: (state) => {return {...state.searchTotalParameters};},
 };

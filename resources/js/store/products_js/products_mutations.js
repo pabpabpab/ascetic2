@@ -71,6 +71,16 @@ export default {
     },
 
 
+    // при выборе пунктов в фильтре
+    setSearchObject: (state, data) => {
+        state.search = { ...data };
+    },
+    // итоговые параметры поиска в верху списка товаров
+    setSearchTotalParameters: (state, data) => {
+        state.searchTotalParameters = { ...data };
+    },
+
+
     // ---------------------при drag and drop --------------------------
     moveProductInProductsById: (state, {operatedId, targetId}) => {
         const products = state.products;

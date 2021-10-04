@@ -26,6 +26,30 @@ export default {
     productsCountFromServer: 0,
     singleProductFromServer: {},
 
+    search: {
+        minPrice: 0,
+        maxPrice: 0,
+        category_ids: [],
+        material_ids: [],
+        color_ids: [],
+    },
+
+    initialSearch: {
+        minPrice: 0,
+        maxPrice: 0,
+        category_ids: [],
+        material_ids: [],
+        color_ids: [],
+    },
+
+    searchTotalParameters: {
+        minPrice: 0,
+        maxPrice: 0,
+        category_ids: [],
+        material_ids: [],
+        color_ids: [],
+    },
+
     showProductsFilters: false,
     enabledFiltersHidingCss: false,
 

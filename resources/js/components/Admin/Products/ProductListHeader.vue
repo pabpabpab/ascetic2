@@ -1,44 +1,25 @@
 <template>
     <div class="products_header">
-        <img v-if="$route.params.which !== 'trashed'"
-             @click.stop="showOrCloseProductsFilters()"
-            :src="filter_icon5"
-            alt=""
+        <filters-icon v-if="$route.params.which === 'active'"
             class="filter_icon__img">
+        </filters-icon>
         <h1 class="pd0 mb0 mauto"> {{ listHeader }}</h1>
     </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-
-//import filter_icon from "./../../../../assets/filter_icon.png"
-import filter_icon5 from "./../../../../assets/filter_icon5.png"
-//import filter_icon3 from "./../../../../assets/filter_icon3.png"
+import FiltersIcon from "./FiltersIcon";
 
 export default {
     name: "ProductListHeader",
-    data() {
-        return {
-            //filter_icon: filter_icon,
-            filter_icon5: filter_icon5,
-            //filter_icon3: filter_icon3,
-        };
+    components: {
+        FiltersIcon,
     },
     computed: {
         ...mapGetters('products', [
             'listHeader',
-            'showProductsFilters'
         ]),
-    },
-    methods: {
-        showOrCloseProductsFilters() {
-            if (this.showProductsFilters) {
-                this.$store.dispatch('products/closeProductsFilters');
-            } else {
-                this.$store.dispatch('products/showProductsFilters');
-            }
-        },
     },
 }
 </script>

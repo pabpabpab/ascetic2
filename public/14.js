@@ -28,7 +28,7 @@ __webpack_require__.r(__webpack_exports__);
       return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./Users/Users.vue */ "./resources/js/components/Admin/Users/Users.vue"));
     },
     Pagination: function Pagination() {
-      return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./Blocks/Pagination.vue */ "./resources/js/components/Admin/Blocks/Pagination.vue"));
+      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./Blocks/Pagination.vue */ "./resources/js/components/Admin/Blocks/Pagination.vue"));
     } // LazyUsers: () => import('./Users/LazyUsers.vue'),
 
   }

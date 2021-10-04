@@ -95,17 +95,4 @@ export default {
     },
 
 
-
-    showProductsFilters({dispatch, commit}) {
-        commit('setShowProductsFilters', true);
-        commit('setEnabledFiltersHidingCss', false);
-    },
-
-    closeProductsFilters({dispatch, commit}) {
-        commit('setEnabledFiltersHidingCss', true);
-        setTimeout(() => {
-            commit('setShowProductsFilters', false);
-        }, 500);
-    },
-
 };

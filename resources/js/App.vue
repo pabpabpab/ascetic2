@@ -8,6 +8,7 @@
         <absolute-flash-message v-if="showAbsoluteFlashMessage"></absolute-flash-message>
         <confirmation-dialog-box v-if="showConfirmationRequest"></confirmation-dialog-box>
         <waiting-screen v-if="showWaitingScreen"></waiting-screen>
+        <absolute-flash-filters-message v-if="showAbsoluteFlashFiltersMessage"></absolute-flash-filters-message>
     </div>
 </template>
 
@@ -19,6 +20,7 @@ import PopupErrors from "./components/Admin/Blocks/PopupErrors";
 import AbsoluteFlashMessage from "./components/Admin/Blocks/AbsoluteFlashMessage";
 import ConfirmationDialogBox from "./components/Admin/Blocks/ConfirmationDialogBox";
 import WaitingScreen from "./components/Admin/Blocks/WaitingScreen";
+import AbsoluteFlashFiltersMessage from "./components/Admin/Blocks/AbsoluteFlashFiltersMessage";
 
 export default {
     name: 'app',
@@ -28,6 +30,7 @@ export default {
         PopupErrors,
         ConfirmationDialogBox,
         WaitingScreen,
+        AbsoluteFlashFiltersMessage,
     },
     computed: {
         ...mapGetters('popupErrors', [
@@ -41,6 +44,9 @@ export default {
         ]),
         ...mapGetters('confirmationDialog', [
             'showConfirmationRequest',
+        ]),
+        ...mapGetters('absoluteFlashFiltersMessage', [
+            'showAbsoluteFlashFiltersMessage',
         ]),
     },
     methods: {
