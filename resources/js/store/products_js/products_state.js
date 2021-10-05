@@ -50,6 +50,8 @@ export default {
         color_ids: [],
     },
 
+    sortingMode: 'position', // вида 'position' / 'priceUp' / 'timeDown'
+
     showProductsFilters: false,
     enabledFiltersHidingCss: false,
 

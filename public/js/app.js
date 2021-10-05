@@ -22681,6 +22681,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_js_products_actions_editManager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products_js/products_actions_editManager */ "./resources/js/store/products_js/products_actions_editManager.js");
 /* harmony import */ var _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./products_js/products_actions_photoManagment */ "./resources/js/store/products_js/products_actions_photoManagment.js");
 /* harmony import */ var _products_js_products_actions_search__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./products_js/products_actions_search */ "./resources/js/store/products_js/products_actions_search.js");
+/* harmony import */ var _products_js_products_actions_sort__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./products_js/products_actions_sort */ "./resources/js/store/products_js/products_actions_sort.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -22698,12 +22699,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: _products_js_products_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _products_js_products_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _products_js_products_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_7__["default"]), _products_js_products_actions_editManager__WEBPACK_IMPORTED_MODULE_8__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_9__["default"]), _products_js_products_actions_search__WEBPACK_IMPORTED_MODULE_10__["default"])
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_7__["default"]), _products_js_products_actions_editManager__WEBPACK_IMPORTED_MODULE_8__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_9__["default"]), _products_js_products_actions_search__WEBPACK_IMPORTED_MODULE_10__["default"]), _products_js_products_actions_sort__WEBPACK_IMPORTED_MODULE_11__["default"])
 });
 
 /***/ }),
@@ -22918,6 +22920,42 @@ function productValidation(product) {
     popupErrors: null,
     typeinErrors: null
   };
+}
+
+/***/ }),
+
+/***/ "./resources/js/store/products_js/functions/sortByPosition.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/store/products_js/functions/sortByPosition.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return sortByPosition; });
+function sortByPosition(items) {
+  return items.sort(function (prev, next) {
+    return next.position - prev.position;
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/store/products_js/functions/sortByPriceUp.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/store/products_js/functions/sortByPriceUp.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return sortByPriceUp; });
+function sortByPriceUp(items) {
+  return items.sort(function (prev, next) {
+    return prev.price - next.price;
+  });
 }
 
 /***/ }),
@@ -24008,7 +24046,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   makeSearch: function makeSearch(_ref7, searchObject) {
     var dispatch = _ref7.dispatch,
-        commit = _ref7.commit,
         getters = _ref7.getters,
         state = _ref7.state;
 
@@ -24028,11 +24065,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       filtered = Object(_functions_colorFilterCore__WEBPACK_IMPORTED_MODULE_3__["default"])(filtered, searchObject);
     }
 
-    dispatch('setFiltered', {
-      entity: 'products',
+    dispatch('doSort', {
+      mode: state.sortingMode,
       data: filtered
-    }, {
-      root: true
+    }).then(function (data) {
+      filtered = _toConsumableArray(data);
+      dispatch('setFiltered', {
+        entity: 'products',
+        data: filtered
+      }, {
+        root: true
+      });
     }).then(function () {
       dispatch('divideIntoPages', {
         entity: 'products',
@@ -24048,6 +24091,73 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         root: true
       });
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/products_js/products_actions_sort.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/store/products_js/products_actions_sort.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _functions_sortByPosition__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/sortByPosition */ "./resources/js/store/products_js/functions/sortByPosition.js");
+/* harmony import */ var _functions_sortByPriceUp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/sortByPriceUp */ "./resources/js/store/products_js/functions/sortByPriceUp.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  setSortingMode: function setSortingMode(_ref, mode) {
+    var commit = _ref.commit;
+    commit('setSortingMode', mode);
+  },
+  doSort: function doSort(_ref2, _ref3) {
+    var dispatch = _ref2.dispatch,
+        rootState = _ref2.rootState;
+    var mode = _ref3.mode,
+        data = _ref3.data;
+    var filtered = data.length > 0 ? data : _toConsumableArray(rootState.pagination.filtered.products);
+    var func = {
+      position: _functions_sortByPosition__WEBPACK_IMPORTED_MODULE_0__["default"],
+      priceUp: _functions_sortByPriceUp__WEBPACK_IMPORTED_MODULE_1__["default"]
+    };
+    filtered = func[mode](filtered);
+    dispatch('setFiltered', {
+      entity: 'products',
+      data: filtered
+    }, {
+      root: true
+    }).then(function () {
+      dispatch('divideIntoPages', {
+        entity: 'products',
+        customQuantityPerPage: 0
+      }, {
+        root: true
+      });
+      var txt = "\u041E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E.";
+      dispatch('showAbsoluteFlashMessage', {
+        text: txt,
+        sec: 0.7
+      }, {
+        root: true
+      });
+    });
+    return filtered;
   }
 });
 
@@ -24120,6 +24230,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   searchTotalParameters: function searchTotalParameters(state) {
     return _objectSpread({}, state.searchTotalParameters);
+  },
+  sortingMode: function sortingMode(state) {
+    return state.sortingMode;
   }
 });
 
@@ -24225,6 +24338,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   // итоговые параметры поиска в верху списка товаров
   setSearchTotalParameters: function setSearchTotalParameters(state, data) {
     state.searchTotalParameters = _objectSpread({}, data);
+  },
+  // режим сортировки
+  setSortingMode: function setSortingMode(state, mode) {
+    state.sortingMode = mode;
   },
   // ---------------------при drag and drop --------------------------
   moveProductInProductsById: function moveProductInProductsById(state, _ref2) {
@@ -24340,6 +24457,8 @@ __webpack_require__.r(__webpack_exports__);
     material_ids: [],
     color_ids: []
   },
+  sortingMode: 'position',
+  // вида 'position' / 'priceUp' / 'timeDown'
   showProductsFilters: false,
   enabledFiltersHidingCss: false,
   showProductEditManager: false,

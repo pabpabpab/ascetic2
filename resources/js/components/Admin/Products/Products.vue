@@ -4,6 +4,8 @@
         <div class="products">
             <pagination v-if="productsLength > 1" entity="products" class="pdb10"></pagination>
 
+            <sorting-modes></sorting-modes>
+
             <search-total-parameters></search-total-parameters>
 
             <product-item
@@ -32,6 +34,7 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 import ProductItem from "./ProductItem";
 import ProductsFilters from "./ProductsFilters";
 import SearchTotalParameters from "./SearchTotalParameters";
@@ -40,7 +43,7 @@ import ProductsContextMenu from "../ContextMenu/ProductsContextMenu";
 import ProductPhotoManager from "./ProductPhotoManager";
 import SeoManager from "./../Blocks/SeoManager";
 import ProductEditManager from "./ProductEditManager";
-import {mapActions, mapGetters} from "vuex";
+import SortingModes from "./SortingModes";
 
 
 export default {
@@ -48,6 +51,7 @@ export default {
     props: ['whichProducts'],
     components: {
         ProductItem,
+        SortingModes,
         ProductsFilters,
         SearchTotalParameters,
         Pagination,

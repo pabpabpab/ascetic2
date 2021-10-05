@@ -79,6 +79,10 @@ export default {
     setSearchTotalParameters: (state, data) => {
         state.searchTotalParameters = { ...data };
     },
+    // режим сортировки
+    setSortingMode: (state, mode) => {
+        state.sortingMode = mode;
+    },
 
 
     // ---------------------при drag and drop --------------------------

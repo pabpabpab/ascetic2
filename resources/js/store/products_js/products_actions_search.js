@@ -35,7 +35,7 @@ export default {
         commit('setSearchObject', state.initialSearch);
     },
 
-    makeSearch({dispatch, commit, getters, state}, searchObject) {
+    makeSearch({dispatch, getters, state}, searchObject) {
         let filtered = [ ...getters.products ];
         filtered = priceFilterCore(filtered, searchObject);
 
@@ -49,7 +49,10 @@ export default {
             filtered = colorFilterCore(filtered, searchObject);
         }
 
-        dispatch('setFiltered', { entity: 'products', data: filtered }, { root: true }).then(() => {
+        dispatch('doSort', {mode: state.sortingMode, data: filtered}).then((data) => {
+            filtered = [ ...data ];
+            dispatch('setFiltered', { entity: 'products', data: filtered }, { root: true });
+        }).then(() => {
             dispatch('divideIntoPages',  {
                 entity: 'products',
                 customQuantityPerPage: 0

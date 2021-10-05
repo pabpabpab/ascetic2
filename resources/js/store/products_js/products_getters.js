@@ -25,4 +25,6 @@ export default {
 
     stateSearchObject: (state) => {return {...state.search};},
     searchTotalParameters: (state) => {return {...state.searchTotalParameters};},
+
+    sortingMode: (state) => state.sortingMode,
 };
