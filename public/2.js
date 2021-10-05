@@ -1784,6 +1784,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1793,6 +1797,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ProductListHeader: _Products_ProductListHeader__WEBPACK_IMPORTED_MODULE_1__["default"],
     Products: _Products_Products__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('products', ['sortingMode'])), {}, {
+    defaultSorting: function defaultSorting() {
+      return this.sortingMode === 'position';
+    }
+  }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('dragAndDropByXY', ['myDragMove', 'myDragStop'])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('products', ['closeProductsFilters']))
 });
 
@@ -2961,7 +2970,7 @@ var render = function() {
       [
         _vm.productsLength > 1
           ? _c("pagination", {
-              staticClass: "pdb10",
+              staticClass: "pdb0",
               attrs: { entity: "products" }
             })
           : _vm._e(),
@@ -3484,29 +3493,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "show_block",
-      on: {
-        click: function($event) {
-          return _vm.closeProductsFilters()
+  return _vm.defaultSorting
+    ? _c(
+        "div",
+        {
+          staticClass: "show_block",
+          on: {
+            click: function($event) {
+              return _vm.closeProductsFilters()
+            },
+            mousemove: function($event) {
+              return _vm.myDragMove({ event: $event, entity: "Product" })
+            },
+            mouseup: function($event) {
+              return _vm.myDragStop({
+                event: $event,
+                clickedIndex: -1,
+                entity: "Product"
+              })
+            }
+          }
         },
-        mousemove: function($event) {
-          return _vm.myDragMove({ event: $event, entity: "Product" })
+        [_c("product-list-header"), _vm._v(" "), _c("products")],
+        1
+      )
+    : _c(
+        "div",
+        {
+          staticClass: "show_block",
+          on: {
+            click: function($event) {
+              return _vm.closeProductsFilters()
+            }
+          }
         },
-        mouseup: function($event) {
-          return _vm.myDragStop({
-            event: $event,
-            clickedIndex: -1,
-            entity: "Product"
-          })
-        }
-      }
-    },
-    [_c("product-list-header"), _vm._v(" "), _c("products")],
-    1
-  )
+        [_c("product-list-header"), _vm._v(" "), _c("products")],
+        1
+      )
 }
 var staticRenderFns = []
 render._withStripped = true

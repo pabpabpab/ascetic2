@@ -7,7 +7,6 @@ export default {
         commit('setSortingMode', mode);
     },
 
-
     doSort({dispatch, rootState}, {mode, data}) {
         let filtered = data.length > 0 ? data : [ ...rootState.pagination.filtered.products ];
 

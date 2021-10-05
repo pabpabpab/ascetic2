@@ -1344,7 +1344,7 @@ h1 {
 
 .products_sorting_modes {
   width: 100%;
-  padding: 0 0 10px 10px;
+  padding: 0 0 5px 10px;
   text-align: left;
   font-size: 15px;
   color: #504646;
@@ -1632,7 +1632,7 @@ h1 {
 
 .products_filters_top_total_parameters {
   width: 100%;
-  padding: 0 0 10px 10px;
+  padding: 0 0 5px 10px;
   text-align: left;
 }
 
@@ -1647,6 +1647,7 @@ h1 {
 
 .pagination_nav {
   width: 100%;
+  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1656,6 +1657,7 @@ h1 {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  height: 20px;
 }
 
 .quantity_per_page__wrapper {
@@ -1669,8 +1671,7 @@ h1 {
       -ms-flex-pack: end;
           justify-content: flex-end;
   width: 300px;
-  padding: 10px;
-  height: 30px;
+  padding: 0;
 }
 
 .quantity_per_page__label {
@@ -1703,7 +1704,6 @@ h1 {
 .pagination_table {
   padding: 0;
   margin: 0;
-  height: 20px;
 }
 
 .pagination_width_outer {
@@ -2947,6 +2947,10 @@ h1 {
 
 .pdt10 {
   padding-top: 10px;
+}
+
+.pdb0 {
+  padding-bottom: 0;
 }
 
 .pdb10 {

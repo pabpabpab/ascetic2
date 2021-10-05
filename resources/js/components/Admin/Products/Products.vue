@@ -2,7 +2,7 @@
     <div class="content_block content_block__products">
 
         <div class="products">
-            <pagination v-if="productsLength > 1" entity="products" class="pdb10"></pagination>
+            <pagination v-if="productsLength > 1" entity="products" class="pdb0"></pagination>
 
             <sorting-modes></sorting-modes>
 

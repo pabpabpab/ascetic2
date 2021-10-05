@@ -61,5 +61,4 @@ export default {
             dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 1}, { root: true });
         });
     },
-
 }
