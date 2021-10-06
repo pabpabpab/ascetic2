@@ -13,6 +13,8 @@ export default {
     users: [],
     singleUserFromServer: {},
 
+    showUserSearchInput: false,
+
     showUserEditManager: false,
     taskOfUserEditManager: '', // user / password
     enabledFadingCss: false,

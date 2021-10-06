@@ -13,13 +13,7 @@ export default {
         users.splice(0, 0, user);
         state.users = [ ...users ];
     },
-    /*
-    addUserToUsers: (state, user) => {
-        //console.log(user);
-        const users = state.users.concat(user);
-        state.users = [ ...users ];
-    },
-   */
+
     updateUsersBySingleUser: (state) => {
         const user = state.singleUserFromServer;
         const index = state.users.findIndex(item => item.id === user.id);
@@ -30,14 +24,17 @@ export default {
     },
 
 
-
-
     setTaskOfUserEditManager: (state, value) => {
         state.taskOfUserEditManager = value;
     },
     setShowUserEditManager: (state, value) => {
         state.showUserEditManager = value;
     },
+
+    setShowUserSearchInput: (state, value) => {
+        state.showUserSearchInput = value;
+    },
+
     setEnabledFadingCss: (state, value) => {
         state.enabledFadingCss = value;
     },

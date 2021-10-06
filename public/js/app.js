@@ -24083,7 +24083,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }, {
         root: true
       });
-      var txt = "\u041D\u0430\u0439\u0434\u0435\u043D\u043E \u0438 \u043F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(filtered.length, ".");
+      var txt = "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(filtered.length, ".");
       dispatch('showAbsoluteFlashFiltersMessage', {
         text: txt,
         sec: 1
@@ -24818,6 +24818,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_js_users_actions_saveUser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./users_js/users_actions_saveUser */ "./resources/js/store/users_js/users_actions_saveUser.js");
 /* harmony import */ var _users_js_users_actions_deleteUser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./users_js/users_actions_deleteUser */ "./resources/js/store/users_js/users_actions_deleteUser.js");
 /* harmony import */ var _users_js_users_actions_editManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./users_js/users_actions_editManager */ "./resources/js/store/users_js/users_actions_editManager.js");
+/* harmony import */ var _users_js_users_actions_search__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./users_js/users_actions_search */ "./resources/js/store/users_js/users_actions_search.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -24831,12 +24832,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: _users_js_users_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _users_js_users_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _users_js_users_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _users_js_users_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _users_js_users_actions_saveUser__WEBPACK_IMPORTED_MODULE_4__["default"]), _users_js_users_actions_deleteUser__WEBPACK_IMPORTED_MODULE_5__["default"]), _users_js_users_actions_editManager__WEBPACK_IMPORTED_MODULE_6__["default"])
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _users_js_users_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _users_js_users_actions_saveUser__WEBPACK_IMPORTED_MODULE_4__["default"]), _users_js_users_actions_deleteUser__WEBPACK_IMPORTED_MODULE_5__["default"]), _users_js_users_actions_editManager__WEBPACK_IMPORTED_MODULE_6__["default"]), _users_js_users_actions_search__WEBPACK_IMPORTED_MODULE_7__["default"])
 });
 
 /***/ }),
@@ -25363,6 +25365,80 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./resources/js/store/users_js/users_actions_search.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/store/users_js/users_actions_search.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _products_js_functions_priceFilterCore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../products_js/functions/priceFilterCore */ "./resources/js/store/products_js/functions/priceFilterCore.js");
+/* harmony import */ var _products_js_functions_categoryFilterCore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products_js/functions/categoryFilterCore */ "./resources/js/store/products_js/functions/categoryFilterCore.js");
+/* harmony import */ var _products_js_functions_materialFilterCore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../products_js/functions/materialFilterCore */ "./resources/js/store/products_js/functions/materialFilterCore.js");
+/* harmony import */ var _products_js_functions_colorFilterCore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../products_js/functions/colorFilterCore */ "./resources/js/store/products_js/functions/colorFilterCore.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  showUserSearchInput: function showUserSearchInput(_ref) {
+    var commit = _ref.commit;
+    commit('setShowUserSearchInput', true);
+  },
+  closeUserSearchInput: function closeUserSearchInput(_ref2) {
+    var commit = _ref2.commit;
+    commit('setShowUserSearchInput', false);
+  },
+  doSearch: function doSearch(_ref3, searchString) {
+    var dispatch = _ref3.dispatch,
+        getters = _ref3.getters,
+        state = _ref3.state;
+
+    var users = _toConsumableArray(getters.users);
+
+    var regexp = new RegExp(searchString.trim(), 'i');
+    var filtered = users.filter(function (item) {
+      return regexp.test(item.email);
+    });
+    dispatch('setFiltered', {
+      entity: 'users',
+      data: filtered
+    }, {
+      root: true
+    }).then(function () {
+      dispatch('divideIntoPages', {
+        entity: 'users',
+        customQuantityPerPage: 0
+      }, {
+        root: true
+      });
+      var txt = "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(filtered.length, ".");
+      dispatch('showAbsoluteFlashMessage', {
+        text: txt,
+        sec: 0.5
+      }, {
+        root: true
+      });
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/store/users_js/users_getters.js":
 /*!******************************************************!*\
   !*** ./resources/js/store/users_js/users_getters.js ***!
@@ -25388,6 +25464,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   showUserEditManager: function showUserEditManager(state) {
     return state.showUserEditManager;
+  },
+  getShowUserSearchInput: function getShowUserSearchInput(state) {
+    return state.showUserSearchInput;
   },
   enabledFadingCss: function enabledFadingCss(state) {
     return state.enabledFadingCss;
@@ -25438,14 +25517,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     users.splice(0, 0, user);
     state.users = _toConsumableArray(users);
   },
-
-  /*
-  addUserToUsers: (state, user) => {
-      //console.log(user);
-      const users = state.users.concat(user);
-      state.users = [ ...users ];
-  },
-  */
   updateUsersBySingleUser: function updateUsersBySingleUser(state) {
     var user = state.singleUserFromServer;
     var index = state.users.findIndex(function (item) {
@@ -25463,6 +25534,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   setShowUserEditManager: function setShowUserEditManager(state, value) {
     state.showUserEditManager = value;
+  },
+  setShowUserSearchInput: function setShowUserSearchInput(state, value) {
+    state.showUserSearchInput = value;
   },
   setEnabledFadingCss: function setEnabledFadingCss(state, value) {
     state.enabledFadingCss = value;
@@ -25491,6 +25565,7 @@ __webpack_require__.r(__webpack_exports__);
   usersCount: -1,
   users: [],
   singleUserFromServer: {},
+  showUserSearchInput: false,
   showUserEditManager: false,
   taskOfUserEditManager: '',
   // user / password

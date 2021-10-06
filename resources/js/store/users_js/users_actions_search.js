@@ -1,0 +1,31 @@
+import priceFilterCore from "../products_js/functions/priceFilterCore";
+import categoryFilterCore from "../products_js/functions/categoryFilterCore";
+import materialFilterCore from "../products_js/functions/materialFilterCore";
+import colorFilterCore from "../products_js/functions/colorFilterCore";
+
+export default {
+
+    showUserSearchInput({commit}) {
+        commit('setShowUserSearchInput', true);
+    },
+
+    closeUserSearchInput({commit}) {
+        commit('setShowUserSearchInput', false);
+    },
+
+    doSearch({dispatch, getters, state}, searchString) {
+        const users = [ ...getters.users ];
+
+        const regexp = new RegExp(searchString.trim(), 'i');
+        const filtered = users.filter((item) => regexp.test(item.email));
+
+        dispatch('setFiltered', { entity: 'users', data: filtered }, { root: true }).then(() => {
+            dispatch('divideIntoPages',  {
+                entity: 'users',
+                customQuantityPerPage: 0
+            }, { root: true });
+            const txt = `Показано ${filtered.length}.`
+            dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.5}, { root: true });
+        });
+    },
+}

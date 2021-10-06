@@ -57,7 +57,7 @@ export default {
                 entity: 'products',
                 customQuantityPerPage: 0
             }, { root: true });
-            const txt = `Найдено и показано ${filtered.length}.`
+            const txt = `Показано ${filtered.length}.`
             dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 1}, { root: true });
         });
     },

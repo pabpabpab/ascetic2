@@ -7,5 +7,8 @@ export default {
 
     taskOfUserEditManager: (state) => state.taskOfUserEditManager,
     showUserEditManager: (state) => state.showUserEditManager,
+
+    getShowUserSearchInput: (state) => state.showUserSearchInput,
+
     enabledFadingCss: (state) => state.enabledFadingCss,
 };
