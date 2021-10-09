@@ -1,5 +1,5 @@
 <template>
-    <div @click.stop v-if="showProductsFilters" :class="filtersClass">
+    <div @click.stop class="product_filters">
         <div @click="closeAllCheckboxesLists()" class="product_filters__content">
 
             <p class="product_form__property_header mt30 mb20">
@@ -99,7 +99,6 @@ export default {
     computed: {
         ...mapGetters('products', [
             'showProductsFilters',
-            'enabledFiltersHidingCss',
             'productsMaxPrice',
             'productsMinPrice',
             'searchTotalParameters',
@@ -107,14 +106,6 @@ export default {
         ...mapGetters('categories', [
             'categories',
         ]),
-
-        filtersClass() {
-            return {
-                'product_filters': true,
-                'product_filters__show': !this.enabledFiltersHidingCss,
-                'product_filters__hide': this.enabledFiltersHidingCss
-            };
-        },
 
         localMinPrice() {
             return this.search.minPrice;

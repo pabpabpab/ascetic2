@@ -53,9 +53,6 @@ export default {
     sortingMode: 'position', // вида 'position' / 'priceUp' / 'timeDown'
 
     showProductsFilters: false,
-    enabledFiltersHidingCss: false,
-
     showProductEditManager: false,
     showProductPhotoManager: false,
-    enabledFadingCss: false,
 };

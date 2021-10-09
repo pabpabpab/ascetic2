@@ -9,11 +9,9 @@ export default {
     singleProductFromServer: (state) => state.singleProductFromServer,
 
     showProductsFilters: (state) => state.showProductsFilters,
-    enabledFiltersHidingCss: (state) => state.enabledFiltersHidingCss,
 
     showProductEditManager: (state) => state.showProductEditManager,
     showProductPhotoManager: (state) => state.showProductPhotoManager,
-    enabledFadingCss: (state) => state.enabledFadingCss,
 
 
     productsMaxPrice: (state) => state.products.reduce(

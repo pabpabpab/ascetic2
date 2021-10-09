@@ -7,7 +7,7 @@ export default {
         commit('setSortingMode', mode);
     },
 
-    doSort({dispatch, rootState}, {mode, data}) {
+    doSort({dispatch, rootState}, {mode, data, initiator}) {
         let filtered = data.length > 0 ? data : [ ...rootState.pagination.filtered.products ];
 
         const func = {
@@ -22,8 +22,11 @@ export default {
                 entity: 'products',
                 customQuantityPerPage: 0
             }, { root: true });
-            const txt = `Отсортировано.`
-            dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.7}, { root: true });
+
+            if (initiator !== 'search') {
+                const txt = `Отсортировано.`
+                dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.7}, { root: true });
+            }
         });
 
         return filtered;

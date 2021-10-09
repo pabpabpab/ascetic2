@@ -1,17 +1,17 @@
 <template>
-    <div :class="dialogBoxClass">
+    <div class="confirmation_dialog__wrapper">
         <div class="confirmation_dialog__content">
-            <div>{{text}}</div>
+            <div>{{ text }}</div>
             <div class="confirmation_dialog__buttons_div">
                 <button v-if="yesButtonText"
-                    @click="callYesAction()"
-                    class="confirmation_button">
-                    {{yesButtonText}}
+                        @click="callYesAction()"
+                        class="confirmation_button">
+                    {{ yesButtonText }}
                 </button>
                 <button
                     @click="closeConfirmationDialog()"
                     class="confirmation_button">
-                    {{cancelButtonText}}
+                    {{ cancelButtonText }}
                 </button>
             </div>
         </div>
@@ -20,8 +20,6 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-// import edit_icon from "../../../../assets/edit_icon.jpg";
-// import delete_icon from "../../../../assets/delete_icon.png";
 
 export default {
     name: "ConfirmationDialogBox",
@@ -33,7 +31,6 @@ export default {
 
     computed: {
         ...mapGetters('confirmationDialog', [
-            'enabledFadingCss',
             'text',
             'yesButtonText',
             'cancelButtonText',
@@ -42,13 +39,6 @@ export default {
             'yesPayload',
             'finalRedirectRoute',
         ]),
-        dialogBoxClass() {
-            return {
-                'confirmation_dialog__wrapper': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        },
     },
 
     methods: {

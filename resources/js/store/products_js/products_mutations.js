@@ -1,7 +1,4 @@
 export default {
-    setEnabledFadingCss: (state, value) => {
-        state.enabledFadingCss = value;
-    },
 
     setProducts: (state, data) => {
         //state.products.splice(0, state.products.length);
@@ -129,9 +126,6 @@ export default {
     // ------------------------------------------------------------------
     setShowProductsFilters: (state, value) => {
         state.showProductsFilters = value;
-    },
-    setEnabledFiltersHidingCss: (state, value) => {
-        state.enabledFiltersHidingCss = value;
     },
     setShowProductEditManager: (state, value) => {
         state.showProductEditManager = value;

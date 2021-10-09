@@ -11,7 +11,6 @@ export default {
             const product = state.singleProductFromServer;
             if (product) {
                 dispatch('hideWaitingScreen', null, { root: true });
-                commit('setEnabledFadingCss', false);
                 commit('setShowProductPhotoManager', true);
             }
         });
@@ -19,10 +18,7 @@ export default {
 
     closeProductPhotoManager({ commit }) {
         document.body.style.cssText='overflow:auto;';
-        commit('setEnabledFadingCss', true);
-        setTimeout(() => {
-            commit('setShowProductPhotoManager', false);
-        }, 500);
+        commit('setShowProductPhotoManager', false);
     },
 
 

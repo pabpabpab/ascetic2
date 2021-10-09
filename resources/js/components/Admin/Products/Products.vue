@@ -17,17 +17,24 @@
 
             <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
 
-            <products-filters
-                v-if="$route.params.which === 'active'">
-            </products-filters>
+            <transition name="product_filters">
+                <products-filters v-show="$route.params.which === 'active' && showProductsFilters"></products-filters>
+            </transition>
 
-            <products-context-menu
-                v-if="showProductsContextMenu">
-            </products-context-menu>
+            <transition name="fade">
+                <products-context-menu v-if="showProductsContextMenu"></products-context-menu>
+            </transition>
 
-            <product-edit-manager v-if="showProductEditManager"></product-edit-manager>
-            <product-photo-manager v-if="showProductPhotoManager"></product-photo-manager>
-            <seo-manager entity="product" v-if="showSeoManager && !showProductPhotoManager"></seo-manager>
+
+            <transition name="fade">
+                <product-edit-manager v-if="showProductEditManager"></product-edit-manager>
+            </transition>
+            <transition name="fade">
+                <product-photo-manager v-if="showProductPhotoManager"></product-photo-manager>
+            </transition>
+            <transition name="fade">
+                <seo-manager entity="product" v-if="showSeoManager && !showProductPhotoManager"></seo-manager>
+            </transition>
         </div>
 
     </div>
@@ -63,6 +70,7 @@ export default {
     computed: {
         ...mapGetters('products', [
             'productsLength',
+            'showProductsFilters',
             'showProductEditManager',
             'showProductPhotoManager',
         ]),

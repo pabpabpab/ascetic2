@@ -62,14 +62,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       saveCmd: false
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['singleUserFromServer', 'enabledFadingCss'])), {}, {
-    editScreenClass: function editScreenClass() {
-      return {
-        'edit_manager__screen': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['singleUserFromServer'])), {}, {
     getHeader: function getHeader() {
       if (!this.singleUserFromServer) {
         return '';
@@ -113,7 +106,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.editScreenClass }, [
+  return _c("div", { staticClass: "edit_manager__screen" }, [
     _c("div", { staticClass: "edit_manager__content_wrapper" }, [
       _c("div", { staticClass: "edit_manager__header" }, [
         _c("h1", [_vm._v(_vm._s(_vm.getHeader))])

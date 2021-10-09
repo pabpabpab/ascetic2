@@ -8,7 +8,6 @@ export default {
         commit('setSingleProductFromServer', {});
         dispatch('loadSingleProduct', productId).then(() => {
             dispatch('hideWaitingScreen', null, { root: true });
-            commit('setEnabledFadingCss', false);
             commit('setShowProductEditManager', true);
         });
 
@@ -16,9 +15,6 @@ export default {
 
     closeProductEditManager({ commit }) {
         document.body.style.cssText='overflow:auto;';
-        commit('setEnabledFadingCss', true);
-        setTimeout(() => {
-            commit('setShowProductEditManager', false);
-        }, 500);
+        commit('setShowProductEditManager', false);
     },
 }

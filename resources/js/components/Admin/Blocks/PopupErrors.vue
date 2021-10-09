@@ -1,5 +1,5 @@
 <template>
-    <div :class="popupClass">
+    <div class="popup_right">
         <div class="popup_right__content">
             Пожалуйста:<br>
             <p v-for="error of popupErrors" class="popup_right__item">
@@ -26,16 +26,7 @@ export default {
     computed: {
         ...mapGetters('popupErrors', [
             'popupErrors',
-            'enabledHidingCss'
         ]),
-
-        popupClass() {
-            return {
-                'popup_right': true,
-                'popup_right__show': !this.enabledHidingCss,
-                'popup_right__hide': this.enabledHidingCss
-            };
-        },
     },
 }
 </script>

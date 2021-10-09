@@ -1,5 +1,5 @@
 <template>
-    <div :class="contextMenuClass" :style="coordinates">
+    <div class="context_menu__wrapper context_menu__wrapper_black" :style="coordinates">
         <ul class="context_menu__ul">
             <li class="context_menu__li_header context_menu__li_header_black">
                 «{{ product.name }}»
@@ -47,19 +47,11 @@ export default {
     computed: {
         ...mapGetters('contextMenu', [
             'coordinates',
-            'enabledFadingCss',
             'product',
         ]),
         ...mapGetters('products', [
             'seoData',
         ]),
-        contextMenuClass() {
-            return {
-                'context_menu__wrapper context_menu__wrapper_black': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        },
         isTrashedProduct() {
             return Boolean(this.product.deleted_at);
         },

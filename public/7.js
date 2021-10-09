@@ -48,15 +48,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UsersContextMenu",
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'user', 'enabledFadingCss'])), {}, {
-    contextMenuClass: function contextMenuClass() {
-      return {
-        'context_menu__wrapper': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    }
-  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'user'])),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('users', ['preDeleteUser', 'showUserEditManager']))
 });
 
@@ -77,75 +69,79 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.contextMenuClass, style: _vm.coordinates }, [
-    _c("ul", { staticClass: "context_menu__ul" }, [
-      _c("li", { staticClass: "context_menu__li_header" }, [
-        _vm._v("\n            «" + _vm._s(_vm.user.email) + "»\n        ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "context_menu__li",
-          on: {
-            click: function($event) {
-              return _vm.showUserEditManager({
-                userId: _vm.user.id,
-                task: "editEmail"
-              })
+  return _c(
+    "div",
+    { staticClass: "context_menu__wrapper", style: _vm.coordinates },
+    [
+      _c("ul", { staticClass: "context_menu__ul" }, [
+        _c("li", { staticClass: "context_menu__li_header" }, [
+          _vm._v("\n            «" + _vm._s(_vm.user.email) + "»\n        ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li",
+            on: {
+              click: function($event) {
+                return _vm.showUserEditManager({
+                  userId: _vm.user.id,
+                  task: "editEmail"
+                })
+              }
             }
-          }
-        },
-        [_vm._v("\n            E-mail пользователя\n        ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "context_menu__li",
-          on: {
-            click: function($event) {
-              return _vm.showUserEditManager({
-                userId: _vm.user.id,
-                task: "editRole"
-              })
+          },
+          [_vm._v("\n            E-mail пользователя\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li",
+            on: {
+              click: function($event) {
+                return _vm.showUserEditManager({
+                  userId: _vm.user.id,
+                  task: "editRole"
+                })
+              }
             }
-          }
-        },
-        [_vm._v("\n            Права пользователя\n        ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "context_menu__li",
-          on: {
-            click: function($event) {
-              return _vm.showUserEditManager({
-                userId: _vm.user.id,
-                task: "editPassword"
-              })
+          },
+          [_vm._v("\n            Права пользователя\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li",
+            on: {
+              click: function($event) {
+                return _vm.showUserEditManager({
+                  userId: _vm.user.id,
+                  task: "editPassword"
+                })
+              }
             }
-          }
-        },
-        [_vm._v("\n            Новый пароль\n        ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "context_menu__li",
-          staticStyle: { border: "0" },
-          on: {
-            click: function($event) {
-              return _vm.preDeleteUser(_vm.user)
+          },
+          [_vm._v("\n            Новый пароль\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li",
+            staticStyle: { border: "0" },
+            on: {
+              click: function($event) {
+                return _vm.preDeleteUser(_vm.user)
+              }
             }
-          }
-        },
-        [_vm._v("\n            Удалить пользователя\n        ")]
-      )
-    ])
-  ])
+          },
+          [_vm._v("\n            Удалить пользователя\n        ")]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

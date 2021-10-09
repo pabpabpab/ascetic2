@@ -1,14 +1,18 @@
 .popup_right
     position: fixed
-    //position: absolute
     z-index: 25
     top: 30px
     right: -570px
     border-radius: 7px
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3)
 
-.popup_right__show
+
+.popup_right-enter-active
     animation: showRightPopup 20s
+
+.popup_right-leave-active
+    animation: hideRightPopup .3s
+
 @keyframes showRightPopup
     from, to
         right: -570px
@@ -17,13 +21,12 @@
     100%
         right: -570px
 
-.popup_right__hide
-    animation: hideRightPopup .3s
 @keyframes hideRightPopup
     from, to
         right: 10px
     100%
         right: -570px
+
 
 
 

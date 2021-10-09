@@ -28,6 +28,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Users',
@@ -79,9 +84,19 @@ var render = function() {
         return _c("user-item", { key: item.id, attrs: { user: item } })
       }),
       _vm._v(" "),
-      _vm.showUsersContextMenu ? _c("users-context-menu") : _vm._e(),
+      _c(
+        "transition",
+        { attrs: { name: "fade" } },
+        [_vm.showUsersContextMenu ? _c("users-context-menu") : _vm._e()],
+        1
+      ),
       _vm._v(" "),
-      _vm.showUserEditManager ? _c("user-edit-manager") : _vm._e()
+      _c(
+        "transition",
+        { attrs: { name: "fade" } },
+        [_vm.showUserEditManager ? _c("user-edit-manager") : _vm._e()],
+        1
+      )
     ],
     2
   )

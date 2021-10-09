@@ -9,13 +9,17 @@
             @change-item-component="changeItemComponent">
         </component>
 
-        <categories-context-menu
-            v-if="showCategoriesContextMenu"
-            :entity="$route.params.entity"
-            @change-item-component="changeItemComponent">
-        </categories-context-menu>
+        <transition name="fade">
+            <categories-context-menu
+                v-if="showCategoriesContextMenu"
+                :entity="$route.params.entity"
+                @change-item-component="changeItemComponent">
+            </categories-context-menu>
+        </transition>
 
-        <seo-manager entity="category" v-if="showSeoManager && $route.params.entity === 'categories'"></seo-manager>
+        <transition name="fade">
+            <seo-manager entity="category" v-if="showSeoManager && $route.params.entity === 'categories'"></seo-manager>
+        </transition>
     </div>
 </template>
 

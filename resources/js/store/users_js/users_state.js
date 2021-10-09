@@ -17,5 +17,4 @@ export default {
 
     showUserEditManager: false,
     taskOfUserEditManager: '', // user / password
-    enabledFadingCss: false,
 };

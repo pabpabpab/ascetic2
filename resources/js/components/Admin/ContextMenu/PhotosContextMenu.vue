@@ -1,5 +1,5 @@
 <template>
-    <div :class="contextMenuClass" :style="coordinates">
+    <div class="context_menu__wrapper context_menu__wrapper_black" :style="coordinates">
         <ul class="context_menu__ul">
 
             <li  class="context_menu__li__multiple_black">
@@ -60,7 +60,6 @@ export default {
     computed: {
         ...mapGetters('contextMenu', [
             'coordinates',
-            'enabledFadingCss',
             'productId',
             'photoName',
             'currentListIndex',
@@ -69,13 +68,6 @@ export default {
         ...mapGetters('products', [
             'photoSeoData',
         ]),
-        contextMenuClass() {
-            return {
-                'context_menu__wrapper context_menu__wrapper_black': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        },
         hasSeoData() {
             const item = this.photoSeoData.find(item => item.filename === this.photoName);
             if (!item) {
@@ -95,67 +87,4 @@ export default {
         ]),
     },
 }
-
-
-
-
-
-
-
-
-
-
-/*
-<template>
-    <div :class="contextMenuClass" :style="coordinates">
-        <ul class="context_menu__ul">
-            <li class="context_menu__li_header">
-                «{{ product.name }}»
-            </li>
-            <li @click="editProduct(product.id)" class="context_menu__li">
-                Редактировать
-            </li>
-            <li @click="showProductPhotoManager(product)" class="context_menu__li">
-                Фото добавить / удалить
-            </li>
-            <li class="context_menu__li" style="border: 0;"
-                @click="preDeleteProduct(product.id)">
-                Удалить товар
-            </li>
-        </ul>
-    </div>
-</template>
-
-<script>
-import {mapActions, mapGetters} from "vuex";
-
-export default {
-    name: "ProductsContextMenu",
-    computed: {
-        ...mapGetters('contextMenu', [
-            'coordinates',
-            'enabledFadingCss',
-            'product',
-        ]),
-        contextMenuClass() {
-            return {
-                'context_menu__wrapper': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        }
-    },
-    methods: {
-        ...mapActions('products', [
-            'preDeleteProduct',
-            'showProductPhotoManager',
-        ]),
-        editProduct(id) {
-            this.$router.push({ name: 'EditProduct', params: { id: id } });
-        },
-    },
-
-}
-
- */
 </script>

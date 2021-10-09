@@ -89,14 +89,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['enabledFadingCss', 'seoData'])), {}, {
-    seoScreenClass: function seoScreenClass() {
-      return {
-        'seo_manager__screen': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['seoData'])), {}, {
     contentWrapperClass: function contentWrapperClass() {
       return this.entity === 'photo' ? 'seo_manager__content_wrapper seo_manager__content_wrapper__from_photo_manager' : 'seo_manager__content_wrapper';
     }
@@ -230,7 +223,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.seoScreenClass }, [
+  return _c("div", { staticClass: "seo_manager__screen" }, [
     _c("div", { class: _vm.contentWrapperClass }, [
       _c(
         "div",

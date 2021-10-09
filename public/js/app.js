@@ -249,6 +249,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import './styles/appx.scss'
 
 
@@ -394,8 +405,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
- // import edit_icon from "../../../../assets/edit_icon.jpg";
-// import delete_icon from "../../../../assets/delete_icon.png";
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ConfirmationDialogBox",
@@ -404,15 +413,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _finalRedirectRoute: ''
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('confirmationDialog', ['enabledFadingCss', 'text', 'yesButtonText', 'cancelButtonText', 'yesAction', 'cancelAction', 'yesPayload', 'finalRedirectRoute'])), {}, {
-    dialogBoxClass: function dialogBoxClass() {
-      return {
-        'confirmation_dialog__wrapper': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    }
-  }),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('confirmationDialog', ['text', 'yesButtonText', 'cancelButtonText', 'yesAction', 'cancelAction', 'yesPayload', 'finalRedirectRoute'])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeConfirmationDialog'])), {}, {
     callYesAction: function callYesAction() {
       this.$store.dispatch(this.yesAction, this.yesPayload);
@@ -471,15 +472,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PopupErrors",
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closePopupErrorsBox'])),
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('popupErrors', ['popupErrors', 'enabledHidingCss'])), {}, {
-    popupClass: function popupClass() {
-      return {
-        'popup_right': true,
-        'popup_right__show': !this.enabledHidingCss,
-        'popup_right__hide': this.enabledHidingCss
-      };
-    }
-  })
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('popupErrors', ['popupErrors']))
 });
 
 /***/ }),
@@ -496,12 +489,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_spinner_gif__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../../assets/spinner.gif */ "./resources/assets/spinner.gif");
 /* harmony import */ var _assets_spinner_gif__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_spinner_gif__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -518,16 +505,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       spinner_icon: _assets_spinner_gif__WEBPACK_IMPORTED_MODULE_0___default.a
     };
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('waitingScreen', ['enabledFadingCss'])), {}, {
-    waitingScreenClass: function waitingScreenClass() {
-      return {
-        'waiting_screen': true,
-        'show_transparent_block': !this.enabledFadingCss,
-        'hide_transparent_block': this.enabledFadingCss
-      };
-    }
-  })
+  }
 });
 
 /***/ }),
@@ -1935,13 +1913,30 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.showPopupErrors ? _c("popup-errors") : _vm._e(),
+      _c(
+        "transition",
+        { attrs: { name: "popup_right" } },
+        [_vm.showPopupErrors ? _c("popup-errors") : _vm._e()],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { name: "fade" } },
+        [
+          _vm.showConfirmationRequest ? _c("confirmation-dialog-box") : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "transition",
+        { attrs: { name: "transparent-fade" } },
+        [_vm.showWaitingScreen ? _c("waiting-screen") : _vm._e()],
+        1
+      ),
       _vm._v(" "),
       _vm.showAbsoluteFlashMessage ? _c("absolute-flash-message") : _vm._e(),
-      _vm._v(" "),
-      _vm.showConfirmationRequest ? _c("confirmation-dialog-box") : _vm._e(),
-      _vm._v(" "),
-      _vm.showWaitingScreen ? _c("waiting-screen") : _vm._e(),
       _vm._v(" "),
       _vm.showAbsoluteFlashFiltersMessage
         ? _c("absolute-flash-filters-message")
@@ -2026,7 +2021,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.dialogBoxClass }, [
+  return _c("div", { staticClass: "confirmation_dialog__wrapper" }, [
     _c("div", { staticClass: "confirmation_dialog__content" }, [
       _c("div", [_vm._v(_vm._s(_vm.text))]),
       _vm._v(" "),
@@ -2096,7 +2091,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.popupClass }, [
+  return _c("div", { staticClass: "popup_right" }, [
     _c(
       "div",
       { staticClass: "popup_right__content" },
@@ -2150,7 +2145,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.waitingScreenClass }, [
+  return _c("div", { staticClass: "waiting_screen" }, [
     _c("img", {
       staticClass: "waiting_screen__spinner_icon",
       attrs: { src: _vm.spinner_icon, alt: "Spinner" }
@@ -20556,7 +20551,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    enabledFadingCss: false,
     text: '',
     yesButtonText: '',
     cancelButtonText: '',
@@ -20568,9 +20562,6 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   getters: {
-    enabledFadingCss: function enabledFadingCss(state) {
-      return state.enabledFadingCss;
-    },
     showConfirmationRequest: function showConfirmationRequest(state) {
       return state.text.length > 0;
     },
@@ -20597,9 +20588,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mutations: {
-    setEnabledFadingCss: function setEnabledFadingCss(state, val) {
-      state.enabledFadingCss = val;
-    },
     setConfirmationDialog: function setConfirmationDialog(state, settings) {
       // setTimeout() чтобы сначала отработал реактивно сброс выше
       // который может иметься
@@ -20629,17 +20617,13 @@ __webpack_require__.r(__webpack_exports__);
       handler: function handler(_ref, settings) {
         var commit = _ref.commit;
         commit('setConfirmationDialog', settings);
-        commit('setEnabledFadingCss', false);
       }
     },
     closeConfirmationDialog: {
       root: true,
       handler: function handler(_ref2) {
         var commit = _ref2.commit;
-        commit('setEnabledFadingCss', true);
-        setTimeout(function () {
-          commit('resetConfirmationDialog');
-        }, 500);
+        commit('resetConfirmationDialog');
       }
     }
   }
@@ -20665,7 +20649,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    enabledFadingCss: false,
     target: '',
     coordinates: {},
     currentListIndex: 0,
@@ -20677,9 +20660,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     user: {}
   },
   getters: {
-    enabledFadingCss: function enabledFadingCss(state) {
-      return state.enabledFadingCss;
-    },
     coordinates: function coordinates(state) {
       return state.coordinates;
     },
@@ -20718,9 +20698,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mutations: {
-    setEnabledFadingCss: function setEnabledFadingCss(state, val) {
-      state.enabledFadingCss = val;
-    },
     setCoordinatesForCategoriesContext: function setCoordinatesForCategoriesContext(state, event) {
       var icon = event.target.getBoundingClientRect();
       var x = {
@@ -20773,10 +20750,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     setTarget: function setTarget(state, target) {
       state.target = target;
     },
-    resetTargetWithDelay: function resetTargetWithDelay(state) {
-      setTimeout(function () {
-        state.target = '';
-      }, 500);
+    resetTarget: function resetTarget(state) {
+      state.target = '';
     },
     setCategoriesContextData: function setCategoriesContextData(state, data) {
       var category = data.category,
@@ -20826,7 +20801,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dispatch('setTarget', target).then(function () {
         commit("setCoordinatesFor".concat(target, "Context"), event);
         commit("set".concat(target, "ContextData"), data);
-        commit('setEnabledFadingCss', false);
       });
     },
     setTarget: function setTarget(_ref3, target) {
@@ -20853,8 +20827,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      commit('setEnabledFadingCss', true);
-      commit('resetTargetWithDelay');
+      commit('resetTarget');
     },
     // Регистрация глобального действия в модуле с собственным пространством имён
     // для вызова из других модулей с namespaced: true
@@ -20862,8 +20835,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true,
       handler: function handler(_ref5) {
         var commit = _ref5.commit;
-        commit('setEnabledFadingCss', true);
-        commit('resetTargetWithDelay');
+        commit('resetTarget');
       }
     }
   }
@@ -22592,14 +22564,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    enabledHidingCss: false,
     popupErrors: {} // ключ - имя input'а, значение - массив ошибок
 
   },
   getters: {
-    enabledHidingCss: function enabledHidingCss(state) {
-      return state.enabledHidingCss;
-    },
     popupErrors: function popupErrors(state) {
       return state.popupErrors;
     },
@@ -22616,9 +22584,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   mutations: {
-    setEnabledHidingCss: function setEnabledHidingCss(state, val) {
-      state.enabledHidingCss = val;
-    },
     setPopupErrors: function setPopupErrors(state, errors) {
       // setTimeout() чтобы сначала отработал реактивно сброс выше
       setTimeout(function () {
@@ -22634,7 +22599,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       root: true,
       handler: function handler(_ref, errors) {
         var commit = _ref.commit;
-        commit('setEnabledHidingCss', false);
         commit('setPopupErrors', errors);
       }
     },
@@ -22643,10 +22607,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       handler: function handler(_ref2) {
         var commit = _ref2.commit;
         var event = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-        commit('setEnabledHidingCss', true);
-        setTimeout(function () {
-          commit('cleanPopupErrors');
-        }, 600);
+        commit('cleanPopupErrors');
       }
     },
     cleanPopupErrors: {
@@ -23347,17 +23308,13 @@ __webpack_require__.r(__webpack_exports__);
       dispatch('hideWaitingScreen', null, {
         root: true
       });
-      commit('setEnabledFadingCss', false);
       commit('setShowProductEditManager', true);
     });
   },
   closeProductEditManager: function closeProductEditManager(_ref2) {
     var commit = _ref2.commit;
     document.body.style.cssText = 'overflow:auto;';
-    commit('setEnabledFadingCss', true);
-    setTimeout(function () {
-      commit('setShowProductEditManager', false);
-    }, 500);
+    commit('setShowProductEditManager', false);
   }
 });
 
@@ -23467,7 +23424,6 @@ __webpack_require__.r(__webpack_exports__);
         dispatch('hideWaitingScreen', null, {
           root: true
         });
-        commit('setEnabledFadingCss', false);
         commit('setShowProductPhotoManager', true);
       }
     });
@@ -23475,10 +23431,7 @@ __webpack_require__.r(__webpack_exports__);
   closeProductPhotoManager: function closeProductPhotoManager(_ref2) {
     var commit = _ref2.commit;
     document.body.style.cssText = 'overflow:auto;';
-    commit('setEnabledFadingCss', true);
-    setTimeout(function () {
-      commit('setShowProductPhotoManager', false);
-    }, 500);
+    commit('setShowProductPhotoManager', false);
   },
   deletePhoto: function deletePhoto(_ref3, _ref4) {
     var dispatch = _ref3.dispatch,
@@ -24016,15 +23969,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   showProductsFilters: function showProductsFilters(_ref) {
     var commit = _ref.commit;
     commit('setShowProductsFilters', true);
-    commit('setEnabledFiltersHidingCss', false);
     document.body.style.cssText = 'overflow-y:scroll;';
   },
   closeProductsFilters: function closeProductsFilters(_ref2) {
     var commit = _ref2.commit;
-    commit('setEnabledFiltersHidingCss', true);
-    setTimeout(function () {
-      commit('setShowProductsFilters', false);
-    }, 500);
+    commit('setShowProductsFilters', false);
     document.body.style.cssText = 'overflow-y:auto;';
   },
   setShowProductsFilters: function setShowProductsFilters(_ref3, value) {
@@ -24067,7 +24016,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     dispatch('doSort', {
       mode: state.sortingMode,
-      data: filtered
+      data: filtered,
+      initiator: 'search'
     }).then(function (data) {
       filtered = _toConsumableArray(data);
       dispatch('setFiltered', {
@@ -24130,7 +24080,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var dispatch = _ref2.dispatch,
         rootState = _ref2.rootState;
     var mode = _ref3.mode,
-        data = _ref3.data;
+        data = _ref3.data,
+        initiator = _ref3.initiator;
     var filtered = data.length > 0 ? data : _toConsumableArray(rootState.pagination.filtered.products);
     var func = {
       position: _functions_sortByPosition__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -24149,13 +24100,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }, {
         root: true
       });
-      var txt = "\u041E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E.";
-      dispatch('showAbsoluteFlashMessage', {
-        text: txt,
-        sec: 0.7
-      }, {
-        root: true
-      });
+
+      if (initiator !== 'search') {
+        var txt = "\u041E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E.";
+        dispatch('showAbsoluteFlashMessage', {
+          text: txt,
+          sec: 0.7
+        }, {
+          root: true
+        });
+      }
     });
     return filtered;
   }
@@ -24203,17 +24157,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   showProductsFilters: function showProductsFilters(state) {
     return state.showProductsFilters;
   },
-  enabledFiltersHidingCss: function enabledFiltersHidingCss(state) {
-    return state.enabledFiltersHidingCss;
-  },
   showProductEditManager: function showProductEditManager(state) {
     return state.showProductEditManager;
   },
   showProductPhotoManager: function showProductPhotoManager(state) {
     return state.showProductPhotoManager;
-  },
-  enabledFadingCss: function enabledFadingCss(state) {
-    return state.enabledFadingCss;
   },
   productsMaxPrice: function productsMaxPrice(state) {
     return state.products.reduce(function (previousValue, item) {
@@ -24266,9 +24214,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  setEnabledFadingCss: function setEnabledFadingCss(state, value) {
-    state.enabledFadingCss = value;
-  },
   setProducts: function setProducts(state, data) {
     //state.products.splice(0, state.products.length);
     state.products = _toConsumableArray(data);
@@ -24389,9 +24334,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   setShowProductsFilters: function setShowProductsFilters(state, value) {
     state.showProductsFilters = value;
   },
-  setEnabledFiltersHidingCss: function setEnabledFiltersHidingCss(state, value) {
-    state.enabledFiltersHidingCss = value;
-  },
   setShowProductEditManager: function setShowProductEditManager(state, value) {
     state.showProductEditManager = value;
   },
@@ -24460,10 +24402,8 @@ __webpack_require__.r(__webpack_exports__);
   sortingMode: 'position',
   // вида 'position' / 'priceUp' / 'timeDown'
   showProductsFilters: false,
-  enabledFiltersHidingCss: false,
   showProductEditManager: false,
-  showProductPhotoManager: false,
-  enabledFadingCss: false
+  showProductPhotoManager: false
 });
 
 /***/ }),
@@ -24514,8 +24454,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       product: {},
       photo: {}
     },
-    showSeoManager: false,
-    enabledFadingCss: false
+    showSeoManager: false
   },
   getters: {
     //seoUrl: (state) => (entity) => state.seoUrl[entity],
@@ -24531,9 +24470,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     showSeoManager: function showSeoManager(state) {
       return state.showSeoManager;
-    },
-    enabledFadingCss: function enabledFadingCss(state) {
-      return state.enabledFadingCss;
     }
   },
   mutations: {
@@ -24565,9 +24501,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     setShowSeoManager: function setShowSeoManager(state, value) {
       state.showSeoManager = value;
-    },
-    setEnabledFadingCss: function setEnabledFadingCss(state, value) {
-      state.enabledFadingCss = value;
     },
     addItemIntoModuleSeoData: function addItemIntoModuleSeoData(state, _ref3) {
       var rootState = _ref3.rootState,
@@ -24622,7 +24555,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         dispatch('hideWaitingScreen', null, {
           root: true
         });
-        commit('setEnabledFadingCss', false);
         commit('setShowSeoManager', true);
       });
     },
@@ -24712,10 +24644,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     closeSeoManager: function closeSeoManager(_ref10) {
       var commit = _ref10.commit;
       // document.body.style.cssText='overflow:auto;';
-      commit('setEnabledFadingCss', true);
-      setTimeout(function () {
-        commit('setShowSeoManager', false);
-      }, 500);
+      commit('setShowSeoManager', false);
     }
   }
 });
@@ -25104,7 +25033,6 @@ __webpack_require__.r(__webpack_exports__);
       dispatch('hideWaitingScreen', null, {
         root: true
       });
-      commit('setEnabledFadingCss', false);
       commit('setTaskOfUserEditManager', task);
       commit('setShowUserEditManager', true);
     });
@@ -25112,10 +25040,7 @@ __webpack_require__.r(__webpack_exports__);
   closeUserEditManager: function closeUserEditManager(_ref3) {
     var commit = _ref3.commit;
     document.body.style.cssText = 'overflow:auto;';
-    commit('setEnabledFadingCss', true);
-    setTimeout(function () {
-      commit('setShowUserEditManager', false);
-    }, 500);
+    commit('setShowUserEditManager', false);
   }
 });
 
@@ -25374,10 +25299,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _products_js_functions_priceFilterCore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../products_js/functions/priceFilterCore */ "./resources/js/store/products_js/functions/priceFilterCore.js");
-/* harmony import */ var _products_js_functions_categoryFilterCore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products_js/functions/categoryFilterCore */ "./resources/js/store/products_js/functions/categoryFilterCore.js");
-/* harmony import */ var _products_js_functions_materialFilterCore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../products_js/functions/materialFilterCore */ "./resources/js/store/products_js/functions/materialFilterCore.js");
-/* harmony import */ var _products_js_functions_colorFilterCore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../products_js/functions/colorFilterCore */ "./resources/js/store/products_js/functions/colorFilterCore.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -25389,10 +25310,6 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-
-
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   showUserSearchInput: function showUserSearchInput(_ref) {
@@ -25467,9 +25384,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   getShowUserSearchInput: function getShowUserSearchInput(state) {
     return state.showUserSearchInput;
-  },
-  enabledFadingCss: function enabledFadingCss(state) {
-    return state.enabledFadingCss;
   }
 });
 
@@ -25537,9 +25451,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   setShowUserSearchInput: function setShowUserSearchInput(state, value) {
     state.showUserSearchInput = value;
-  },
-  setEnabledFadingCss: function setEnabledFadingCss(state, value) {
-    state.enabledFadingCss = value;
   }
 });
 
@@ -25567,9 +25478,8 @@ __webpack_require__.r(__webpack_exports__);
   singleUserFromServer: {},
   showUserSearchInput: false,
   showUserEditManager: false,
-  taskOfUserEditManager: '',
-  // user / password
-  enabledFadingCss: false
+  taskOfUserEditManager: '' // user / password
+
 });
 
 /***/ }),
@@ -25586,23 +25496,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: {
-    showWaitingScreen: false,
-    enabledFadingCss: false
+    showWaitingScreen: false
   },
   getters: {
     showWaitingScreen: function showWaitingScreen(state) {
       return state.showWaitingScreen;
-    },
-    enabledFadingCss: function enabledFadingCss(state) {
-      return state.enabledFadingCss;
     }
   },
   mutations: {
     setShowWaitingScreen: function setShowWaitingScreen(state, val) {
       state.showWaitingScreen = val;
-    },
-    setEnabledFadingCss: function setEnabledFadingCss(state, val) {
-      state.enabledFadingCss = val;
     }
   },
   actions: {
@@ -25611,17 +25514,13 @@ __webpack_require__.r(__webpack_exports__);
       handler: function handler(_ref) {
         var commit = _ref.commit;
         commit('setShowWaitingScreen', true);
-        commit('setEnabledFadingCss', false);
       }
     },
     hideWaitingScreen: {
       root: true,
       handler: function handler(_ref2) {
         var commit = _ref2.commit;
-        commit('setEnabledFadingCss', true);
-        setTimeout(function () {
-          commit('setShowWaitingScreen', false);
-        }, 1000);
+        commit('setShowWaitingScreen', false);
       }
     }
   }

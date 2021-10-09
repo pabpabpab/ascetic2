@@ -1,12 +1,9 @@
 export default {
     namespaced: true,
     state: {
-        enabledHidingCss: false,
         popupErrors: {}, // ключ - имя input'а, значение - массив ошибок
     },
     getters: {
-        enabledHidingCss: (state) => state.enabledHidingCss,
-
         popupErrors: (state) => state.popupErrors,
 
         showPopupErrors: (state) => {
@@ -20,9 +17,6 @@ export default {
         },
     },
     mutations: {
-        setEnabledHidingCss: (state, val) => {
-            state.enabledHidingCss = val;
-        },
         setPopupErrors: (state, errors) => {
             // setTimeout() чтобы сначала отработал реактивно сброс выше
             setTimeout(() => {
@@ -38,18 +32,14 @@ export default {
         showPopupErrorsBox: {
             root: true,
             handler ({ commit }, errors) {
-                commit('setEnabledHidingCss', false);
-                commit('setPopupErrors', errors);
+               commit('setPopupErrors', errors);
             }
         },
 
         closePopupErrorsBox: {
             root: true,
             handler ({ commit }, event = null) {
-                commit('setEnabledHidingCss', true);
-                setTimeout(() => {
-                   commit('cleanPopupErrors');
-                }, 600);
+                commit('cleanPopupErrors');
             }
         },
 

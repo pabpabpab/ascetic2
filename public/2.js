@@ -74,14 +74,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PhotosContextMenu",
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'enabledFadingCss', 'productId', 'photoName', 'currentListIndex', 'lastListIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['photoSeoData'])), {}, {
-    contextMenuClass: function contextMenuClass() {
-      return {
-        'context_menu__wrapper context_menu__wrapper_black': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'productId', 'photoName', 'currentListIndex', 'lastListIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['photoSeoData'])), {}, {
     hasSeoData: function hasSeoData() {
       var _this = this;
 
@@ -98,59 +91,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['deletePhoto', 'rotatePhoto', 'movePhoto'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('seoManager', ['showSeoManager']))
 });
-/*
-<template>
-    <div :class="contextMenuClass" :style="coordinates">
-        <ul class="context_menu__ul">
-            <li class="context_menu__li_header">
-                «{{ product.name }}»
-            </li>
-            <li @click="editProduct(product.id)" class="context_menu__li">
-                Редактировать
-            </li>
-            <li @click="showProductPhotoManager(product)" class="context_menu__li">
-                Фото добавить / удалить
-            </li>
-            <li class="context_menu__li" style="border: 0;"
-                @click="preDeleteProduct(product.id)">
-                Удалить товар
-            </li>
-        </ul>
-    </div>
-</template>
-
-<script>
-import {mapActions, mapGetters} from "vuex";
-
-export default {
-    name: "ProductsContextMenu",
-    computed: {
-        ...mapGetters('contextMenu', [
-            'coordinates',
-            'enabledFadingCss',
-            'product',
-        ]),
-        contextMenuClass() {
-            return {
-                'context_menu__wrapper': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        }
-    },
-    methods: {
-        ...mapActions('products', [
-            'preDeleteProduct',
-            'showProductPhotoManager',
-        ]),
-        editProduct(id) {
-            this.$router.push({ name: 'EditProduct', params: { id: id } });
-        },
-    },
-
-}
-
- */
 
 /***/ }),
 
@@ -214,14 +154,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductsContextMenu",
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'enabledFadingCss', 'product'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['seoData'])), {}, {
-    contextMenuClass: function contextMenuClass() {
-      return {
-        'context_menu__wrapper context_menu__wrapper_black': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'product'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['seoData'])), {}, {
     isTrashedProduct: function isTrashedProduct() {
       return Boolean(this.product.deleted_at);
     },
@@ -758,14 +691,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       saveCmd: false
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer', 'enabledFadingCss'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {
-    editScreenClass: function editScreenClass() {
-      return {
-        'edit_manager__screen': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {
     noData: function noData() {
       var _this$singleProductFr;
 
@@ -1084,6 +1010,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1109,14 +1039,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       resetFilesInputKey: 0
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('products', ['enabledFadingCss', 'singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('contextMenu', ['showPhotosContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('seoManager', ['showSeoManager'])), {}, {
-    photoScreenClass: function photoScreenClass() {
-      return {
-        'photo_manager__screen': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('contextMenu', ['showPhotosContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('seoManager', ['showSeoManager'])), {}, {
     showButtonsPanel: function showButtonsPanel() {
       return this.photos.length > 0;
     }
@@ -1225,6 +1148,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1249,7 +1179,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     SeoManager: _Blocks_SeoManager__WEBPACK_IMPORTED_MODULE_7__["default"],
     ProductEditManager: _ProductEditManager__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['productsLength', 'showProductEditManager', 'showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['productsLength', 'showProductsFilters', 'showProductEditManager', 'showProductPhotoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
     items: function items() {
       return this.customized('products')[this.currentPageIndex('products')];
     }
@@ -1380,14 +1310,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       closeCheckboxesListsCmd: false
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductsFilters', 'enabledFiltersHidingCss', 'productsMaxPrice', 'productsMinPrice', 'searchTotalParameters'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), {}, {
-    filtersClass: function filtersClass() {
-      return {
-        'product_filters': true,
-        'product_filters__show': !this.enabledFiltersHidingCss,
-        'product_filters__hide': this.enabledFiltersHidingCss
-      };
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductsFilters', 'productsMaxPrice', 'productsMinPrice', 'searchTotalParameters'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), {}, {
     localMinPrice: function localMinPrice() {
       return this.search.minPrice;
     },
@@ -1749,7 +1672,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('products/setSortingMode', mode);
       this.$store.dispatch('products/doSort', {
         mode: mode,
-        data: []
+        data: [],
+        initiator: ''
       }); // data для совместимости
     }
   }
@@ -1822,169 +1746,176 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.contextMenuClass, style: _vm.coordinates }, [
-    _c("ul", { staticClass: "context_menu__ul" }, [
-      _c("li", { staticClass: "context_menu__li__multiple_black" }, [
-        _c(
-          "span",
-          {
-            staticClass: "context_menu__li__multiple__item_black",
-            on: {
-              click: function($event) {
-                return _vm.rotatePhoto({
-                  productId: _vm.productId,
-                  photoName: _vm.photoName,
-                  angle: 270
-                })
-              }
-            }
-          },
-          [_vm._v("\n                    ↻ 90°\n                ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "context_menu__li__multiple__item_black",
-            on: {
-              click: function($event) {
-                return _vm.rotatePhoto({
-                  productId: _vm.productId,
-                  photoName: _vm.photoName,
-                  angle: 180
-                })
-              }
-            }
-          },
-          [_vm._v("\n                    180°\n                ")]
-        ),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "context_menu__li__multiple__item_black",
-            on: {
-              click: function($event) {
-                return _vm.rotatePhoto({
-                  productId: _vm.productId,
-                  photoName: _vm.photoName,
-                  angle: 90
-                })
-              }
-            }
-          },
-          [_vm._v("\n                    90°↺\n                ")]
-        )
-      ]),
-      _vm._v(" "),
-      _vm.currentListIndex > 0
-        ? _c(
-            "li",
+  return _c(
+    "div",
+    {
+      staticClass: "context_menu__wrapper context_menu__wrapper_black",
+      style: _vm.coordinates
+    },
+    [
+      _c("ul", { staticClass: "context_menu__ul" }, [
+        _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+          _c(
+            "span",
             {
-              staticClass: "context_menu__li context_menu__li_black",
+              staticClass: "context_menu__li__multiple__item_black",
               on: {
                 click: function($event) {
-                  return _vm.movePhoto({
+                  return _vm.rotatePhoto({
                     productId: _vm.productId,
                     photoName: _vm.photoName,
-                    to: "first"
+                    angle: 270
                   })
                 }
               }
             },
-            [_vm._v("\n            Сделать главным\n        ")]
+            [_vm._v("\n                    ↻ 90°\n                ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "context_menu__li__multiple__item_black",
+              on: {
+                click: function($event) {
+                  return _vm.rotatePhoto({
+                    productId: _vm.productId,
+                    photoName: _vm.photoName,
+                    angle: 180
+                  })
+                }
+              }
+            },
+            [_vm._v("\n                    180°\n                ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "context_menu__li__multiple__item_black",
+              on: {
+                click: function($event) {
+                  return _vm.rotatePhoto({
+                    productId: _vm.productId,
+                    photoName: _vm.photoName,
+                    angle: 90
+                  })
+                }
+              }
+            },
+            [_vm._v("\n                    90°↺\n                ")]
           )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("li", { staticClass: "context_menu__li__multiple_black" }, [
-        _vm._v("\n            Сдвинуть\n            "),
+        ]),
+        _vm._v(" "),
         _vm.currentListIndex > 0
           ? _c(
-              "span",
+              "li",
               {
-                staticClass: "context_menu__li__multiple__item_black",
-                attrs: { title: "влево (вверх)" },
+                staticClass: "context_menu__li context_menu__li_black",
                 on: {
                   click: function($event) {
                     return _vm.movePhoto({
                       productId: _vm.productId,
                       photoName: _vm.photoName,
-                      to: "up"
+                      to: "first"
                     })
                   }
                 }
               },
-              [_vm._v("\n                ← ↑\n            ")]
+              [_vm._v("\n            Сделать главным\n        ")]
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm.currentListIndex < _vm.lastListIndex
-          ? _c(
-              "span",
-              {
-                staticClass: "context_menu__li__multiple__item_black",
-                attrs: { title: "вправо (вниз)" },
-                on: {
-                  click: function($event) {
-                    return _vm.movePhoto({
-                      productId: _vm.productId,
-                      photoName: _vm.photoName,
-                      to: "down"
-                    })
-                  }
-                }
-              },
-              [_vm._v("\n                ↓ →\n            ")]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "context_menu__li context_menu__li_black",
-          on: {
-            click: function($event) {
-              return _vm.showSeoManager({
-                entity: "photo",
-                data: { productId: _vm.productId, photoName: _vm.photoName }
-              })
-            }
-          }
-        },
-        [
-          _vm.hasSeoData
+        _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+          _vm._v("\n            Сдвинуть\n            "),
+          _vm.currentListIndex > 0
             ? _c(
                 "span",
                 {
-                  staticClass: "has_data_green",
-                  attrs: { title: "уже есть данные" }
+                  staticClass: "context_menu__li__multiple__item_black",
+                  attrs: { title: "влево (вверх)" },
+                  on: {
+                    click: function($event) {
+                      return _vm.movePhoto({
+                        productId: _vm.productId,
+                        photoName: _vm.photoName,
+                        to: "up"
+                      })
+                    }
+                  }
                 },
-                [_vm._v("✔")]
+                [_vm._v("\n                ← ↑\n            ")]
               )
             : _vm._e(),
-          _vm._v("\n            SEO для фото\n        ")
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "context_menu__li context_menu__li_black",
-          staticStyle: { border: "0" },
-          on: {
-            click: function($event) {
-              return _vm.deletePhoto({
-                productId: _vm.productId,
-                photoName: _vm.photoName
-              })
+          _vm._v(" "),
+          _vm.currentListIndex < _vm.lastListIndex
+            ? _c(
+                "span",
+                {
+                  staticClass: "context_menu__li__multiple__item_black",
+                  attrs: { title: "вправо (вниз)" },
+                  on: {
+                    click: function($event) {
+                      return _vm.movePhoto({
+                        productId: _vm.productId,
+                        photoName: _vm.photoName,
+                        to: "down"
+                      })
+                    }
+                  }
+                },
+                [_vm._v("\n                ↓ →\n            ")]
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li context_menu__li_black",
+            on: {
+              click: function($event) {
+                return _vm.showSeoManager({
+                  entity: "photo",
+                  data: { productId: _vm.productId, photoName: _vm.photoName }
+                })
+              }
             }
-          }
-        },
-        [_vm._v("\n            Удалить фото\n        ")]
-      )
-    ])
-  ])
+          },
+          [
+            _vm.hasSeoData
+              ? _c(
+                  "span",
+                  {
+                    staticClass: "has_data_green",
+                    attrs: { title: "уже есть данные" }
+                  },
+                  [_vm._v("✔")]
+                )
+              : _vm._e(),
+            _vm._v("\n            SEO для фото\n        ")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li context_menu__li_black",
+            staticStyle: { border: "0" },
+            on: {
+              click: function($event) {
+                return _vm.deletePhoto({
+                  productId: _vm.productId,
+                  photoName: _vm.photoName
+                })
+              }
+            }
+          },
+          [_vm._v("\n            Удалить фото\n        ")]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2008,122 +1939,138 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.contextMenuClass, style: _vm.coordinates }, [
-    _c(
-      "ul",
-      { staticClass: "context_menu__ul" },
-      [
-        _c(
-          "li",
-          {
-            staticClass: "context_menu__li_header context_menu__li_header_black"
-          },
-          [_vm._v("\n            «" + _vm._s(_vm.product.name) + "»\n        ")]
-        ),
-        _vm._v(" "),
-        _vm.isTrashedProduct
-          ? [
-              _c(
-                "li",
-                {
-                  staticClass: "context_menu__li context_menu__li_black",
-                  staticStyle: { border: "0" },
-                  on: {
-                    click: function($event) {
-                      return _vm.restoreProduct(_vm.product.id)
-                    }
-                  }
-                },
-                [_vm._v("\n                Восстановить товар\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "context_menu__li context_menu__li_black",
-                  staticStyle: { border: "0" },
-                  on: {
-                    click: function($event) {
-                      return _vm.preDeleteProduct(_vm.product)
-                    }
-                  }
-                },
-                [_vm._v("\n                Удалить безвозвратно\n            ")]
+  return _c(
+    "div",
+    {
+      staticClass: "context_menu__wrapper context_menu__wrapper_black",
+      style: _vm.coordinates
+    },
+    [
+      _c(
+        "ul",
+        { staticClass: "context_menu__ul" },
+        [
+          _c(
+            "li",
+            {
+              staticClass:
+                "context_menu__li_header context_menu__li_header_black"
+            },
+            [
+              _vm._v(
+                "\n            «" + _vm._s(_vm.product.name) + "»\n        "
               )
             ]
-          : [
-              _c(
-                "li",
-                {
-                  staticClass: "context_menu__li context_menu__li_black",
-                  on: {
-                    click: function($event) {
-                      return _vm.showProductEditManager(_vm.product.id)
+          ),
+          _vm._v(" "),
+          _vm.isTrashedProduct
+            ? [
+                _c(
+                  "li",
+                  {
+                    staticClass: "context_menu__li context_menu__li_black",
+                    staticStyle: { border: "0" },
+                    on: {
+                      click: function($event) {
+                        return _vm.restoreProduct(_vm.product.id)
+                      }
                     }
-                  }
-                },
-                [_vm._v("\n                Редактировать\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "context_menu__li context_menu__li_black",
-                  on: {
-                    click: function($event) {
-                      return _vm.showProductPhotoManager(_vm.product)
+                  },
+                  [_vm._v("\n                Восстановить товар\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "context_menu__li context_menu__li_black",
+                    staticStyle: { border: "0" },
+                    on: {
+                      click: function($event) {
+                        return _vm.preDeleteProduct(_vm.product)
+                      }
                     }
-                  }
-                },
-                [_vm._v("\n                Фото-менеджер\n            ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "context_menu__li context_menu__li_black",
-                  on: {
-                    click: function($event) {
-                      return _vm.showSeoManager({
-                        entity: "product",
-                        data: { id: _vm.product.id }
-                      })
+                  },
+                  [
+                    _vm._v(
+                      "\n                Удалить безвозвратно\n            "
+                    )
+                  ]
+                )
+              ]
+            : [
+                _c(
+                  "li",
+                  {
+                    staticClass: "context_menu__li context_menu__li_black",
+                    on: {
+                      click: function($event) {
+                        return _vm.showProductEditManager(_vm.product.id)
+                      }
                     }
-                  }
-                },
-                [
-                  _vm.hasSeoData
-                    ? _c(
-                        "span",
-                        {
-                          staticClass: "has_data_green",
-                          attrs: { title: "уже есть данные" }
-                        },
-                        [_vm._v("✔")]
-                      )
-                    : _vm._e(),
-                  _vm._v("\n                SEO для товара\n            ")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "context_menu__li context_menu__li_black",
-                  staticStyle: { border: "0" },
-                  on: {
-                    click: function($event) {
-                      return _vm.preDeleteProduct(_vm.product)
+                  },
+                  [_vm._v("\n                Редактировать\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "context_menu__li context_menu__li_black",
+                    on: {
+                      click: function($event) {
+                        return _vm.showProductPhotoManager(_vm.product)
+                      }
                     }
-                  }
-                },
-                [_vm._v("\n                Удалить товар\n            ")]
-              )
-            ]
-      ],
-      2
-    )
-  ])
+                  },
+                  [_vm._v("\n                Фото-менеджер\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "context_menu__li context_menu__li_black",
+                    on: {
+                      click: function($event) {
+                        return _vm.showSeoManager({
+                          entity: "product",
+                          data: { id: _vm.product.id }
+                        })
+                      }
+                    }
+                  },
+                  [
+                    _vm.hasSeoData
+                      ? _c(
+                          "span",
+                          {
+                            staticClass: "has_data_green",
+                            attrs: { title: "уже есть данные" }
+                          },
+                          [_vm._v("✔")]
+                        )
+                      : _vm._e(),
+                    _vm._v("\n                SEO для товара\n            ")
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "context_menu__li context_menu__li_black",
+                    staticStyle: { border: "0" },
+                    on: {
+                      click: function($event) {
+                        return _vm.preDeleteProduct(_vm.product)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Удалить товар\n            ")]
+                )
+              ]
+        ],
+        2
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2562,7 +2509,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.editScreenClass }, [
+  return _c("div", { staticClass: "edit_manager__screen" }, [
     _c("div", { staticClass: "edit_manager__content_wrapper" }, [
       _c("div", { staticClass: "edit_manager__header" }, [
         _c("img", {
@@ -2812,7 +2759,7 @@ var render = function() {
   return _c(
     "div",
     {
-      class: _vm.photoScreenClass,
+      staticClass: "photo_manager__screen",
       on: {
         mousemove: function($event) {
           $event.stopPropagation()
@@ -2877,11 +2824,27 @@ var render = function() {
                 })
               }),
               _vm._v(" "),
-              _vm.showPhotosContextMenu ? _c("photos-context-menu") : _vm._e(),
+              _c(
+                "transition",
+                { attrs: { name: "fade" } },
+                [
+                  _vm.showPhotosContextMenu
+                    ? _c("photos-context-menu")
+                    : _vm._e()
+                ],
+                1
+              ),
               _vm._v(" "),
-              _vm.showSeoManager
-                ? _c("seo-manager", { attrs: { entity: "photo" } })
-                : _vm._e()
+              _c(
+                "transition",
+                { attrs: { name: "fade" } },
+                [
+                  _vm.showSeoManager
+                    ? _c("seo-manager", { attrs: { entity: "photo" } })
+                    : _vm._e()
+                ],
+                1
+              )
             ],
             2
           )
@@ -2993,19 +2956,62 @@ var render = function() {
             })
           : _vm._e(),
         _vm._v(" "),
-        _vm.$route.params.which === "active"
-          ? _c("products-filters")
-          : _vm._e(),
+        _c(
+          "transition",
+          { attrs: { name: "product_filters" } },
+          [
+            _c("products-filters", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value:
+                    _vm.$route.params.which === "active" &&
+                    _vm.showProductsFilters,
+                  expression:
+                    "$route.params.which === 'active' && showProductsFilters"
+                }
+              ]
+            })
+          ],
+          1
+        ),
         _vm._v(" "),
-        _vm.showProductsContextMenu ? _c("products-context-menu") : _vm._e(),
+        _c(
+          "transition",
+          { attrs: { name: "fade" } },
+          [
+            _vm.showProductsContextMenu ? _c("products-context-menu") : _vm._e()
+          ],
+          1
+        ),
         _vm._v(" "),
-        _vm.showProductEditManager ? _c("product-edit-manager") : _vm._e(),
+        _c(
+          "transition",
+          { attrs: { name: "fade" } },
+          [_vm.showProductEditManager ? _c("product-edit-manager") : _vm._e()],
+          1
+        ),
         _vm._v(" "),
-        _vm.showProductPhotoManager ? _c("product-photo-manager") : _vm._e(),
+        _c(
+          "transition",
+          { attrs: { name: "fade" } },
+          [
+            _vm.showProductPhotoManager ? _c("product-photo-manager") : _vm._e()
+          ],
+          1
+        ),
         _vm._v(" "),
-        _vm.showSeoManager && !_vm.showProductPhotoManager
-          ? _c("seo-manager", { attrs: { entity: "product" } })
-          : _vm._e()
+        _c(
+          "transition",
+          { attrs: { name: "fade" } },
+          [
+            _vm.showSeoManager && !_vm.showProductPhotoManager
+              ? _c("seo-manager", { attrs: { entity: "product" } })
+              : _vm._e()
+          ],
+          1
+        )
       ],
       2
     )
@@ -3033,246 +3039,232 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.showProductsFilters
-    ? _c(
+  return _c(
+    "div",
+    {
+      staticClass: "product_filters",
+      on: {
+        click: function($event) {
+          $event.stopPropagation()
+        }
+      }
+    },
+    [
+      _c(
         "div",
         {
-          class: _vm.filtersClass,
+          staticClass: "product_filters__content",
           on: {
             click: function($event) {
-              $event.stopPropagation()
+              return _vm.closeAllCheckboxesLists()
             }
           }
         },
         [
+          _c("p", { staticClass: "product_form__property_header mt30 mb20" }, [
+            _vm._v("\n            Цена, руб.\n        ")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter_price__text_input__wrapper" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search.minPrice,
+                  expression: "search.minPrice"
+                }
+              ],
+              staticClass: "input_text filter_price__text_input",
+              attrs: { type: "text", maxlength: "6" },
+              domProps: { value: _vm.search.minPrice },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.search, "minPrice", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search.maxPrice,
+                  expression: "search.maxPrice"
+                }
+              ],
+              staticClass: "input_text filter_price__text_input",
+              attrs: { type: "text", maxlength: "6" },
+              domProps: { value: _vm.search.maxPrice },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.search, "maxPrice", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "filter_price__range_input__wrapper" }, [
+            _c("div", { staticClass: "filter_price__range_input__kernel" }, [
+              _vm._v(" ")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search.minPrice,
+                  expression: "search.minPrice"
+                }
+              ],
+              staticClass:
+                "filter_price__range_input filter_price__range_input_min",
+              attrs: {
+                type: "range",
+                min: _vm.productsMinPrice,
+                step: "100",
+                max: _vm.productsMaxPrice
+              },
+              domProps: { value: _vm.search.minPrice },
+              on: {
+                __r: function($event) {
+                  return _vm.$set(_vm.search, "minPrice", $event.target.value)
+                }
+              }
+            }),
+            _c("br"),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search.maxPrice,
+                  expression: "search.maxPrice"
+                }
+              ],
+              staticClass:
+                "filter_price__range_input filter_price__range_input_max",
+              attrs: {
+                type: "range",
+                min: _vm.productsMinPrice,
+                step: "100",
+                max: _vm.productsMaxPrice
+              },
+              domProps: { value: _vm.search.maxPrice },
+              on: {
+                __r: function($event) {
+                  return _vm.$set(_vm.search, "maxPrice", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("filters-checkboxes-list", {
+            staticClass: "mt30",
+            attrs: {
+              "close-list-cmd": _vm.closeCheckboxesListsCmd,
+              search: _vm.search,
+              entity: "category",
+              header: "Категория"
+            },
+            on: {
+              closeAllCheckboxesLists: function($event) {
+                return _vm.closeAllCheckboxesLists()
+              }
+            },
+            model: {
+              value: _vm.search.category_ids,
+              callback: function($$v) {
+                _vm.$set(_vm.search, "category_ids", $$v)
+              },
+              expression: "search.category_ids"
+            }
+          }),
+          _vm._v(" "),
+          _c("filters-checkboxes-list", {
+            staticClass: "mt30",
+            attrs: {
+              "close-list-cmd": _vm.closeCheckboxesListsCmd,
+              search: _vm.search,
+              entity: "material",
+              header: "Материал"
+            },
+            on: {
+              closeAllCheckboxesLists: function($event) {
+                return _vm.closeAllCheckboxesLists()
+              }
+            },
+            model: {
+              value: _vm.search.material_ids,
+              callback: function($$v) {
+                _vm.$set(_vm.search, "material_ids", $$v)
+              },
+              expression: "search.material_ids"
+            }
+          }),
+          _vm._v(" "),
+          _c("filters-checkboxes-list", {
+            staticClass: "mt30",
+            attrs: {
+              "close-list-cmd": _vm.closeCheckboxesListsCmd,
+              search: _vm.search,
+              entity: "color",
+              header: "Цвет"
+            },
+            on: {
+              closeAllCheckboxesLists: function($event) {
+                return _vm.closeAllCheckboxesLists()
+              }
+            },
+            model: {
+              value: _vm.search.color_ids,
+              callback: function($$v) {
+                _vm.$set(_vm.search, "color_ids", $$v)
+              },
+              expression: "search.color_ids"
+            }
+          }),
+          _vm._v(" "),
           _c(
-            "div",
+            "button",
             {
-              staticClass: "product_filters__content",
+              staticClass: "button__save_product mauto mt30",
               on: {
                 click: function($event) {
-                  return _vm.closeAllCheckboxesLists()
+                  return _vm.closeProductsFilters()
                 }
               }
             },
-            [
-              _c(
-                "p",
-                { staticClass: "product_form__property_header mt30 mb20" },
-                [_vm._v("\n            Цена, руб.\n        ")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "filter_price__text_input__wrapper" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.search.minPrice,
-                      expression: "search.minPrice"
-                    }
-                  ],
-                  staticClass: "input_text filter_price__text_input",
-                  attrs: { type: "text", maxlength: "6" },
-                  domProps: { value: _vm.search.minPrice },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.search, "minPrice", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.search.maxPrice,
-                      expression: "search.maxPrice"
-                    }
-                  ],
-                  staticClass: "input_text filter_price__text_input",
-                  attrs: { type: "text", maxlength: "6" },
-                  domProps: { value: _vm.search.maxPrice },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.search, "maxPrice", $event.target.value)
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "filter_price__range_input__wrapper" }, [
-                _c(
-                  "div",
-                  { staticClass: "filter_price__range_input__kernel" },
-                  [_vm._v(" ")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.search.minPrice,
-                      expression: "search.minPrice"
-                    }
-                  ],
-                  staticClass:
-                    "filter_price__range_input filter_price__range_input_min",
-                  attrs: {
-                    type: "range",
-                    min: _vm.productsMinPrice,
-                    step: "100",
-                    max: _vm.productsMaxPrice
-                  },
-                  domProps: { value: _vm.search.minPrice },
-                  on: {
-                    __r: function($event) {
-                      return _vm.$set(
-                        _vm.search,
-                        "minPrice",
-                        $event.target.value
-                      )
-                    }
-                  }
-                }),
-                _c("br"),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.search.maxPrice,
-                      expression: "search.maxPrice"
-                    }
-                  ],
-                  staticClass:
-                    "filter_price__range_input filter_price__range_input_max",
-                  attrs: {
-                    type: "range",
-                    min: _vm.productsMinPrice,
-                    step: "100",
-                    max: _vm.productsMaxPrice
-                  },
-                  domProps: { value: _vm.search.maxPrice },
-                  on: {
-                    __r: function($event) {
-                      return _vm.$set(
-                        _vm.search,
-                        "maxPrice",
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("filters-checkboxes-list", {
-                staticClass: "mt30",
-                attrs: {
-                  "close-list-cmd": _vm.closeCheckboxesListsCmd,
-                  search: _vm.search,
-                  entity: "category",
-                  header: "Категория"
-                },
-                on: {
-                  closeAllCheckboxesLists: function($event) {
-                    return _vm.closeAllCheckboxesLists()
-                  }
-                },
-                model: {
-                  value: _vm.search.category_ids,
-                  callback: function($$v) {
-                    _vm.$set(_vm.search, "category_ids", $$v)
-                  },
-                  expression: "search.category_ids"
+            [_vm._v("\n            Готово\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "product_filters__collapse_icon",
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  return _vm.closeProductsFilters()
                 }
-              }),
-              _vm._v(" "),
-              _c("filters-checkboxes-list", {
-                staticClass: "mt30",
-                attrs: {
-                  "close-list-cmd": _vm.closeCheckboxesListsCmd,
-                  search: _vm.search,
-                  entity: "material",
-                  header: "Материал"
-                },
-                on: {
-                  closeAllCheckboxesLists: function($event) {
-                    return _vm.closeAllCheckboxesLists()
-                  }
-                },
-                model: {
-                  value: _vm.search.material_ids,
-                  callback: function($$v) {
-                    _vm.$set(_vm.search, "material_ids", $$v)
-                  },
-                  expression: "search.material_ids"
-                }
-              }),
-              _vm._v(" "),
-              _c("filters-checkboxes-list", {
-                staticClass: "mt30",
-                attrs: {
-                  "close-list-cmd": _vm.closeCheckboxesListsCmd,
-                  search: _vm.search,
-                  entity: "color",
-                  header: "Цвет"
-                },
-                on: {
-                  closeAllCheckboxesLists: function($event) {
-                    return _vm.closeAllCheckboxesLists()
-                  }
-                },
-                model: {
-                  value: _vm.search.color_ids,
-                  callback: function($$v) {
-                    _vm.$set(_vm.search, "color_ids", $$v)
-                  },
-                  expression: "search.color_ids"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "button__save_product mauto mt30",
-                  on: {
-                    click: function($event) {
-                      return _vm.closeProductsFilters()
-                    }
-                  }
-                },
-                [_vm._v("\n            Готово\n        ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "product_filters__collapse_icon",
-                  on: {
-                    click: function($event) {
-                      $event.stopPropagation()
-                      return _vm.closeProductsFilters()
-                    }
-                  }
-                },
-                [_vm._v("\n            ×\n        ")]
-              )
-            ],
-            1
+              }
+            },
+            [_vm._v("\n            ×\n        ")]
           )
-        ]
+        ],
+        1
       )
-    : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

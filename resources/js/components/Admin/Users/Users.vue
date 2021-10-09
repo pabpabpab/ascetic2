@@ -5,8 +5,13 @@
             :key="item.id" :user="item">
         </user-item>
 
-        <users-context-menu v-if="showUsersContextMenu"></users-context-menu>
-        <user-edit-manager v-if="showUserEditManager"></user-edit-manager>
+        <transition name="fade">
+            <users-context-menu v-if="showUsersContextMenu"></users-context-menu>
+        </transition>
+
+        <transition name="fade">
+            <user-edit-manager v-if="showUserEditManager"></user-edit-manager>
+        </transition>
     </div>
 </template>
 

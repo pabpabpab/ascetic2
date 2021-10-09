@@ -7,15 +7,11 @@ export default {
 
     showProductsFilters({commit}) {
         commit('setShowProductsFilters', true);
-        commit('setEnabledFiltersHidingCss', false);
         document.body.style.cssText='overflow-y:scroll;';
     },
 
     closeProductsFilters({commit}) {
-        commit('setEnabledFiltersHidingCss', true);
-        setTimeout(() => {
-            commit('setShowProductsFilters', false);
-        }, 500);
+        commit('setShowProductsFilters', false);
         document.body.style.cssText='overflow-y:auto;';
     },
 
@@ -49,7 +45,7 @@ export default {
             filtered = colorFilterCore(filtered, searchObject);
         }
 
-        dispatch('doSort', {mode: state.sortingMode, data: filtered}).then((data) => {
+        dispatch('doSort', {mode: state.sortingMode, data: filtered, initiator: 'search'}).then((data) => {
             filtered = [ ...data ];
             dispatch('setFiltered', { entity: 'products', data: filtered }, { root: true });
         }).then(() => {

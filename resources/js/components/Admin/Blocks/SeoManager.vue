@@ -1,5 +1,5 @@
 <template>
-    <div :class="seoScreenClass">
+    <div class="seo_manager__screen">
 
         <div :class="contentWrapperClass">
 
@@ -76,17 +76,8 @@ export default {
     },
     computed: {
         ...mapGetters('seoManager', [
-            'enabledFadingCss',
             'seoData',
         ]),
-
-        seoScreenClass() {
-            return {
-                'seo_manager__screen': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        },
 
         contentWrapperClass() {
             return this.entity === 'photo'

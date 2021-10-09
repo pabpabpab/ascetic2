@@ -1,7 +1,6 @@
 export default {
     namespaced: true,
     state: {
-        enabledFadingCss: false,
         text: '',
         yesButtonText: '',
         cancelButtonText: '',
@@ -11,7 +10,6 @@ export default {
         finalRedirectRoute: '', // роут после yesAction
     },
     getters: {
-        enabledFadingCss: (state) => state.enabledFadingCss,
         showConfirmationRequest: (state) => state.text.length > 0,
         text: (state) => state.text,
         yesButtonText: (state) => state.yesButtonText,
@@ -22,10 +20,6 @@ export default {
         finalRedirectRoute: (state) => state.finalRedirectRoute,
     },
     mutations: {
-
-        setEnabledFadingCss: (state, val) => {
-            state.enabledFadingCss = val;
-        },
 
         setConfirmationDialog: (state, settings) => {
             // setTimeout() чтобы сначала отработал реактивно сброс выше
@@ -57,17 +51,13 @@ export default {
             root: true,
             handler ({ commit }, settings) {
                 commit('setConfirmationDialog', settings);
-                commit('setEnabledFadingCss', false);
             }
         },
 
         closeConfirmationDialog: {
             root: true,
             handler ({ commit }) {
-                commit('setEnabledFadingCss', true);
-                setTimeout(() => {
-                    commit('resetConfirmationDialog');
-                }, 500);
+                commit('resetConfirmationDialog');
             }
         },
 

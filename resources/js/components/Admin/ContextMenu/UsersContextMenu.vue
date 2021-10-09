@@ -1,5 +1,5 @@
 <template>
-    <div :class="contextMenuClass" :style="coordinates">
+    <div class="context_menu__wrapper" :style="coordinates">
         <ul class="context_menu__ul">
             <li class="context_menu__li_header">
                 «{{ user.email }}»
@@ -36,15 +36,7 @@ export default {
         ...mapGetters('contextMenu', [
             'coordinates',
             'user',
-            'enabledFadingCss'
         ]),
-        contextMenuClass() {
-            return {
-                'context_menu__wrapper': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        },
     },
     methods: {
         ...mapActions('users', [

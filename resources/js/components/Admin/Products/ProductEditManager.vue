@@ -1,5 +1,5 @@
 <template>
-    <div :class="editScreenClass">
+    <div class="edit_manager__screen">
 
         <div class="edit_manager__content_wrapper">
 
@@ -47,19 +47,10 @@ export default {
     computed: {
         ...mapGetters('products', [
             'singleProductFromServer',
-            'enabledFadingCss',
         ]),
         ...mapGetters([
             'imgFolderPrefix',
         ]),
-
-        editScreenClass() {
-            return {
-                'edit_manager__screen': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        },
 
         noData() {
             const product = this.singleProductFromServer?.product;

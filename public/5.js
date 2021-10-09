@@ -92,6 +92,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -649,14 +653,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CategoriesContextMenu",
   props: ['entity'],
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'currentListIndex', 'lastListIndex', 'category', 'enabledFadingCss'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['seoData'])), {}, {
-    contextMenuClass: function contextMenuClass() {
-      return {
-        'context_menu__wrapper': true,
-        'show_block': !this.enabledFadingCss,
-        'hide_block': this.enabledFadingCss
-      };
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['coordinates', 'currentListIndex', 'lastListIndex', 'category'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['seoData'])), {}, {
     hasSeoData: function hasSeoData() {
       var _this = this;
 
@@ -742,16 +739,30 @@ var render = function() {
         })
       }),
       _vm._v(" "),
-      _vm.showCategoriesContextMenu
-        ? _c("categories-context-menu", {
-            attrs: { entity: _vm.$route.params.entity },
-            on: { "change-item-component": _vm.changeItemComponent }
-          })
-        : _vm._e(),
+      _c(
+        "transition",
+        { attrs: { name: "fade" } },
+        [
+          _vm.showCategoriesContextMenu
+            ? _c("categories-context-menu", {
+                attrs: { entity: _vm.$route.params.entity },
+                on: { "change-item-component": _vm.changeItemComponent }
+              })
+            : _vm._e()
+        ],
+        1
+      ),
       _vm._v(" "),
-      _vm.showSeoManager && _vm.$route.params.entity === "categories"
-        ? _c("seo-manager", { attrs: { entity: "category" } })
-        : _vm._e()
+      _c(
+        "transition",
+        { attrs: { name: "fade" } },
+        [
+          _vm.showSeoManager && _vm.$route.params.entity === "categories"
+            ? _c("seo-manager", { attrs: { entity: "category" } })
+            : _vm._e()
+        ],
+        1
+      )
     ],
     2
   )
@@ -1167,116 +1178,120 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.contextMenuClass, style: _vm.coordinates }, [
-    _c("ul", { staticClass: "context_menu__ul" }, [
-      _c("li", { staticClass: "context_menu__li_header" }, [
-        _vm._v("\n            «" + _vm._s(_vm.category.name) + "»\n        ")
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "context_menu__li__multiple" }, [
-        _vm._v("\n            Сдвинуть\n            "),
-        _vm.currentListIndex > 0
+  return _c(
+    "div",
+    { staticClass: "context_menu__wrapper", style: _vm.coordinates },
+    [
+      _c("ul", { staticClass: "context_menu__ul" }, [
+        _c("li", { staticClass: "context_menu__li_header" }, [
+          _vm._v("\n            «" + _vm._s(_vm.category.name) + "»\n        ")
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "context_menu__li__multiple" }, [
+          _vm._v("\n            Сдвинуть\n            "),
+          _vm.currentListIndex > 0
+            ? _c(
+                "span",
+                {
+                  staticClass: "context_menu__li__multiple__item",
+                  attrs: { title: "вверх" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changePosition({
+                        entity: _vm.$route.params.entity,
+                        categoryId: _vm.category.id,
+                        direction: "up"
+                      })
+                    }
+                  }
+                },
+                [_vm._v("\n                 ↑\n            ")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentListIndex < _vm.lastListIndex
+            ? _c(
+                "span",
+                {
+                  staticClass: "context_menu__li__multiple__item",
+                  attrs: { title: "вниз" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changePosition({
+                        entity: _vm.$route.params.entity,
+                        categoryId: _vm.category.id,
+                        direction: "down"
+                      })
+                    }
+                  }
+                },
+                [_vm._v("\n                ↓\n            ")]
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li",
+            on: {
+              click: function($event) {
+                return _vm.$emit("change-item-component", _vm.category.id)
+              }
+            }
+          },
+          [_vm._v("\n            Редактировать\n        ")]
+        ),
+        _vm._v(" "),
+        _vm.entity === "categories"
           ? _c(
-              "span",
+              "li",
               {
-                staticClass: "context_menu__li__multiple__item",
-                attrs: { title: "вверх" },
+                staticClass: "context_menu__li",
                 on: {
                   click: function($event) {
-                    return _vm.changePosition({
-                      entity: _vm.$route.params.entity,
-                      categoryId: _vm.category.id,
-                      direction: "up"
+                    return _vm.showSeoManager({
+                      entity: "category",
+                      data: { id: _vm.category.id }
                     })
                   }
                 }
               },
-              [_vm._v("\n                 ↑\n            ")]
+              [
+                _vm.hasSeoData
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "has_data_blue",
+                        attrs: { title: "уже есть данные" }
+                      },
+                      [_vm._v("✔")]
+                    )
+                  : _vm._e(),
+                _vm._v("\n            SEO\n        ")
+              ]
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm.currentListIndex < _vm.lastListIndex
-          ? _c(
-              "span",
-              {
-                staticClass: "context_menu__li__multiple__item",
-                attrs: { title: "вниз" },
-                on: {
-                  click: function($event) {
-                    return _vm.changePosition({
-                      entity: _vm.$route.params.entity,
-                      categoryId: _vm.category.id,
-                      direction: "down"
-                    })
-                  }
-                }
-              },
-              [_vm._v("\n                ↓\n            ")]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "context_menu__li",
-          on: {
-            click: function($event) {
-              return _vm.$emit("change-item-component", _vm.category.id)
-            }
-          }
-        },
-        [_vm._v("\n            Редактировать\n        ")]
-      ),
-      _vm._v(" "),
-      _vm.entity === "categories"
-        ? _c(
-            "li",
-            {
-              staticClass: "context_menu__li",
-              on: {
-                click: function($event) {
-                  return _vm.showSeoManager({
-                    entity: "category",
-                    data: { id: _vm.category.id }
-                  })
-                }
+        _c(
+          "li",
+          {
+            staticClass: "context_menu__li",
+            staticStyle: { border: "0" },
+            on: {
+              click: function($event) {
+                return _vm.preDeleteCategory({
+                  entity: _vm.$route.params.entity,
+                  categoryId: _vm.category.id
+                })
               }
-            },
-            [
-              _vm.hasSeoData
-                ? _c(
-                    "span",
-                    {
-                      staticClass: "has_data_blue",
-                      attrs: { title: "уже есть данные" }
-                    },
-                    [_vm._v("✔")]
-                  )
-                : _vm._e(),
-              _vm._v("\n            SEO\n        ")
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "li",
-        {
-          staticClass: "context_menu__li",
-          staticStyle: { border: "0" },
-          on: {
-            click: function($event) {
-              return _vm.preDeleteCategory({
-                entity: _vm.$route.params.entity,
-                categoryId: _vm.category.id
-              })
             }
-          }
-        },
-        [_vm._v("\n            Удалить\n        ")]
-      )
-    ])
-  ])
+          },
+          [_vm._v("\n            Удалить\n        ")]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

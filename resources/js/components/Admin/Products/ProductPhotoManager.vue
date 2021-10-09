@@ -1,5 +1,5 @@
 <template>
-    <div :class="photoScreenClass"
+    <div class="photo_manager__screen"
          @mousemove.stop="myDragMove({event: $event, entity: 'Product'})"
          @mouseup.stop="myDragStop({ event: $event, clickedIndex: -1, entity: 'Photo' })">
 
@@ -24,11 +24,15 @@
                         :photoIndex="photoIndex">
                     </photo-manager-item>
 
-                    <photos-context-menu
-                        v-if="showPhotosContextMenu">
-                    </photos-context-menu>
 
-                    <seo-manager entity="photo" v-if="showSeoManager"></seo-manager>
+                    <transition name="fade">
+                        <photos-context-menu v-if="showPhotosContextMenu"></photos-context-menu>
+                    </transition>
+
+
+                    <transition name="fade">
+                        <seo-manager entity="photo" v-if="showSeoManager"></seo-manager>
+                    </transition>
                 </div>
             </div>
 
@@ -86,7 +90,6 @@ export default {
     },
     computed: {
         ...mapGetters('products', [
-            'enabledFadingCss',
             'singleProductFromServer'
         ]),
         ...mapGetters([
@@ -98,17 +101,9 @@ export default {
         ...mapGetters('seoManager', [
             'showSeoManager',
         ]),
-        photoScreenClass() {
-            return {
-                'photo_manager__screen': true,
-                'show_block': !this.enabledFadingCss,
-                'hide_block': this.enabledFadingCss,
-            };
-        },
         showButtonsPanel() {
             return this.photos.length > 0;
         },
-
     },
     methods: {
         ...mapActions('products', [

@@ -1,7 +1,6 @@
 export default {
     namespaced: true,
     state: {
-        enabledFadingCss: false,
         target: '',
         coordinates: {},
         currentListIndex: 0,
@@ -13,7 +12,6 @@ export default {
         user: {},
     },
     getters: {
-        enabledFadingCss: (state) => state.enabledFadingCss,
         coordinates: (state) => state.coordinates,
         showCategoriesContextMenu: (state) => state.target === 'Categories',
         showProductsContextMenu: (state) => state.target === 'Products',
@@ -28,10 +26,6 @@ export default {
         user: (state) => state.user,
     },
     mutations: {
-
-        setEnabledFadingCss: (state, val) => {
-            state.enabledFadingCss = val;
-        },
 
         setCoordinatesForCategoriesContext: (state, event) => {
             const icon = event.target.getBoundingClientRect();
@@ -108,10 +102,8 @@ export default {
             state.target = target;
         },
 
-        resetTargetWithDelay: (state) => {
-            setTimeout(() => {
-                state.target = '';
-            }, 500);
+        resetTarget: (state) => {
+            state.target = '';
         },
 
         setCategoriesContextData: (state, data) => {
@@ -152,7 +144,6 @@ export default {
             dispatch('setTarget', target).then(() => {
                 commit(`setCoordinatesFor${target}Context`, event);
                 commit(`set${target}ContextData`, data);
-                commit('setEnabledFadingCss', false);
             });
         },
 
@@ -175,8 +166,7 @@ export default {
                 return;
             }
 
-            commit('setEnabledFadingCss', true);
-            commit('resetTargetWithDelay');
+            commit('resetTarget');
         },
 
         // Регистрация глобального действия в модуле с собственным пространством имён
@@ -184,8 +174,7 @@ export default {
         closeContextMenu: {
             root: true,
             handler ({ commit }) {
-                commit('setEnabledFadingCss', true);
-                commit('resetTargetWithDelay');
+                commit('resetTarget');
             }
         },
     },

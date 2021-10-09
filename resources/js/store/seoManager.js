@@ -22,7 +22,6 @@ export default {
         },
 
         showSeoManager: false,
-        enabledFadingCss: false,
     },
     getters: {
         //seoUrl: (state) => (entity) => state.seoUrl[entity],
@@ -36,7 +35,6 @@ export default {
         },
 
         showSeoManager: (state) => state.showSeoManager,
-        enabledFadingCss: (state) => state.enabledFadingCss,
     },
     mutations: {
         setServerData: (state, {entity, data}) => {
@@ -59,10 +57,6 @@ export default {
         setShowSeoManager: (state, value) => {
             state.showSeoManager = value;
         },
-        setEnabledFadingCss: (state, value) => {
-            state.enabledFadingCss = value;
-        },
-
 
         addItemIntoModuleSeoData: (state, {rootState, entity, data}) => {
             //console.log(data);
@@ -108,7 +102,6 @@ export default {
             commit('clearSeoData', entity);
             dispatch('loadSeoData', {entity, data}).then(() => {
                 dispatch('hideWaitingScreen', null, {root: true});
-                commit('setEnabledFadingCss', false);
                 commit('setShowSeoManager', true);
             });
         },
@@ -179,10 +172,7 @@ export default {
 
         closeSeoManager({ commit }) {
             // document.body.style.cssText='overflow:auto;';
-            commit('setEnabledFadingCss', true);
-            setTimeout(() => {
-                commit('setShowSeoManager', false);
-            }, 500);
+            commit('setShowSeoManager', false);
         },
 
     },

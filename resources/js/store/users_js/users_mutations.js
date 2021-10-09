@@ -35,7 +35,4 @@ export default {
         state.showUserSearchInput = value;
     },
 
-    setEnabledFadingCss: (state, value) => {
-        state.enabledFadingCss = value;
-    },
 };

@@ -9,6 +9,4 @@ export default {
     showUserEditManager: (state) => state.showUserEditManager,
 
     getShowUserSearchInput: (state) => state.showUserSearchInput,
-
-    enabledFadingCss: (state) => state.enabledFadingCss,
 };

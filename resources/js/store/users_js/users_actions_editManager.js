@@ -8,7 +8,6 @@ export default {
         commit('setSingleUserFromServer', {});
         dispatch('loadSingleUser', userId).then(() => {
             dispatch('hideWaitingScreen', null, { root: true });
-            commit('setEnabledFadingCss', false);
             commit('setTaskOfUserEditManager', task);
             commit('setShowUserEditManager', true);
         });
@@ -17,9 +16,6 @@ export default {
 
     closeUserEditManager({ commit }) {
         document.body.style.cssText='overflow:auto;';
-        commit('setEnabledFadingCss', true);
-        setTimeout(() => {
-            commit('setShowUserEditManager', false);
-        }, 500);
+        commit('setShowUserEditManager', false);
     },
 }

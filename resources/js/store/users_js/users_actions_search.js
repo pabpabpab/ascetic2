@@ -1,8 +1,3 @@
-import priceFilterCore from "../products_js/functions/priceFilterCore";
-import categoryFilterCore from "../products_js/functions/categoryFilterCore";
-import materialFilterCore from "../products_js/functions/materialFilterCore";
-import colorFilterCore from "../products_js/functions/colorFilterCore";
-
 export default {
 
     showUserSearchInput({commit}) {

@@ -1,13 +1,24 @@
 <template>
     <div id="app" class="app" @click="closeAllByClickOnAppTag($event);">
         <nav-bar></nav-bar>
+
         <div class="content_wrapper">
             <router-view :key="$route.path"></router-view>
         </div>
-        <popup-errors v-if="showPopupErrors"></popup-errors>
+
+        <transition name="popup_right">
+            <popup-errors v-if="showPopupErrors"></popup-errors>
+        </transition>
+
+        <transition name="fade">
+            <confirmation-dialog-box v-if="showConfirmationRequest"></confirmation-dialog-box>
+        </transition>
+
+        <transition name="transparent-fade">
+            <waiting-screen v-if="showWaitingScreen"></waiting-screen>
+        </transition>
+
         <absolute-flash-message v-if="showAbsoluteFlashMessage"></absolute-flash-message>
-        <confirmation-dialog-box v-if="showConfirmationRequest"></confirmation-dialog-box>
-        <waiting-screen v-if="showWaitingScreen"></waiting-screen>
         <absolute-flash-filters-message v-if="showAbsoluteFlashFiltersMessage"></absolute-flash-filters-message>
     </div>
 </template>
