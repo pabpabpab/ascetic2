@@ -1,6 +1,5 @@
 <template>
-
-    <div class="selectedCategories__wrapper" style="width: 300px">
+    <div class="selectedCategories__wrapper product_filters__selectedCategories__wrapper">
         <p class="product_form__property_header">
             {{ header }}
         </p>
@@ -17,7 +16,9 @@
                     </span>
                 </p>
             </div>
-            <div class="selectedCategories__arrow bgWhite">
+            <div
+                class="selectedCategories__arrow"
+                :class="{selectedCategories__arrow_up: checkboxesAreVisible}">
                 &#709;
             </div>
         </div>
@@ -26,7 +27,7 @@
         <div @click.stop class="relative_checkboxes_wrapper" v-if="checkboxesAreVisible">
             <div class="absolute_checkboxes_list show_block">
 
-                <p v-for="cat of localCategories" :key="cat.id" class="checkbox_input__item tal">
+                <p v-for="cat of localCategories" :key="cat.id" class="checkbox_input__item product_filters__checkbox_input__item tal">
                     <input class="checkbox_input"
                            type="checkbox"
                            :id="`cat${cat.id}`"

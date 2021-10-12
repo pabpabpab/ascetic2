@@ -38,6 +38,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SearchUserPanel",
@@ -125,65 +127,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "search_user_panel show_block" }, [
-    _c(
-      "button",
-      {
-        staticClass: "search_user_panel__button",
-        on: {
-          click: function($event) {
-            return _vm.showUserSearchInput()
+  return _c(
+    "div",
+    { staticClass: "search_user_panel show_block" },
+    [
+      _c(
+        "button",
+        {
+          staticClass: "search_user_panel__button",
+          on: {
+            click: function($event) {
+              return _vm.showUserSearchInput()
+            }
           }
-        }
-      },
-      [_vm._v("\n        Поиск по email\n    ")]
-    ),
-    _vm._v(" "),
-    _vm.getShowUserSearchInput
-      ? _c("div", { staticClass: "search_user_panel__input_div" }, [
-          _c("div", { staticClass: "input_text__container" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.searchString,
-                  expression: "searchString"
-                }
-              ],
-              staticClass: "search_user_panel__input_text",
-              attrs: { type: "text", placeholder: " " },
-              domProps: { value: _vm.searchString },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+        },
+        [_vm._v("\n        Поиск по email\n    ")]
+      ),
+      _vm._v(" "),
+      _c("transition", { attrs: { name: "fade" } }, [
+        _vm.getShowUserSearchInput
+          ? _c("div", { staticClass: "search_user_panel__input_div" }, [
+              _c("div", { staticClass: "input_text__container" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.searchString,
+                      expression: "searchString"
+                    }
+                  ],
+                  staticClass: "search_user_panel__input_text",
+                  attrs: { type: "text", placeholder: " " },
+                  domProps: { value: _vm.searchString },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.searchString = $event.target.value
+                    }
                   }
-                  _vm.searchString = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("label", { staticClass: "input_text__label" }, [
-              _vm._v("Введите Email пользователя")
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "search_user_panel__collapse_icon",
-                on: {
-                  click: function($event) {
-                    return _vm.closeUserSearchPanel()
-                  }
-                }
-              },
-              [_vm._v("\n                ×\n            ")]
-            )
-          ])
-        ])
-      : _vm._e()
-  ])
+                }),
+                _vm._v(" "),
+                _c("label", { staticClass: "input_text__label" }, [
+                  _vm._v("Введите Email пользователя")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "search_user_panel__collapse_icon",
+                    on: {
+                      click: function($event) {
+                        return _vm.closeUserSearchPanel()
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    ×\n                ")]
+                )
+              ])
+            ])
+          : _vm._e()
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

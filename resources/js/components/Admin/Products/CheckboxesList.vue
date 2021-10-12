@@ -17,7 +17,9 @@
                     </span>
                 </p>
             </div>
-            <div class="selectedCategories__arrow">
+            <div
+                class="selectedCategories__arrow"
+                :class="{selectedCategories__arrow_up: checkboxesAreVisible}">
                 &#709;
             </div>
         </div>

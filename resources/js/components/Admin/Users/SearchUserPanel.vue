@@ -4,19 +4,21 @@
             Поиск по email
         </button>
 
-        <div v-if="getShowUserSearchInput" class="search_user_panel__input_div">
-            <div class="input_text__container">
-                <input class="search_user_panel__input_text"
-                       type="text"
-                       placeholder=" "
-                       v-model="searchString">
-                <label class="input_text__label">Введите Email пользователя</label>
-                <div class="search_user_panel__collapse_icon"
-                     @click="closeUserSearchPanel()">
-                    &#215;
+        <transition name="fade">
+            <div v-if="getShowUserSearchInput" class="search_user_panel__input_div">
+                <div class="input_text__container">
+                    <input class="search_user_panel__input_text"
+                           type="text"
+                           placeholder=" "
+                           v-model="searchString">
+                    <label class="input_text__label">Введите Email пользователя</label>
+                    <div class="search_user_panel__collapse_icon"
+                         @click="closeUserSearchPanel()">
+                        &#215;
+                    </div>
                 </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 

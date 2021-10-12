@@ -9,6 +9,30 @@
     justify-content: center
     align-items: center
     background-color: #000
+    opacity: 0.6
     &__spinner_icon
         width: 100px
 
+
+
+.transparent_block-enter-active
+    animation: showTransparentBlock .3s
+
+.transparent_block-leave-active
+    animation: hideTransparentBlock .3s
+
+@keyframes showTransparentBlock
+    from, to
+        opacity: 0
+        visibility: hidden
+    100%
+        opacity: 0.6
+        visibility: visible
+
+@keyframes hideTransparentBlock
+    from, to
+        opacity: 0.6
+        visibility: visible
+    100%
+        opacity: 0
+        visibility: hidden

@@ -24,26 +24,3 @@
 
 
 
-.show_transparent_block
-    visibility: visible
-    opacity: 0.6
-    animation: showTransparentBlock .3s
-@keyframes showTransparentBlock
-    from, to
-        opacity: 0
-        visibility: hidden
-    100%
-        opacity: 0.6
-        visibility: visible
-
-.hide_transparent_block
-    visibility: hidden
-    opacity: 0
-    animation: hideTransparentBlock .3s
-@keyframes hideTransparentBlock
-    from, to
-        opacity: 0.6
-        visibility: visible
-    100%
-        opacity: 0
-        visibility: hidden

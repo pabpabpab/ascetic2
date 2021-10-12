@@ -11,11 +11,11 @@
                 <li class="navBar__li">
                     <router-link
                         :to="{ name: 'Products', params: { which: 'active' } }"
-                        class="navBar__link_with_arrow"
+                        class="navBar__link_with_trigram"
                         :class="productsLinkClass">
                         Товары
 
-                        <div class="navBar__link__arrow">
+                        <div class="navBar__link__trigram">
                             <div class="navBar__drop_menu show_block">
                                 <ul class="navBar__drop_menu__ul">
                                     <li class="navBar__drop_menu__li">
@@ -32,13 +32,40 @@
                 </li>
 
                 <li class="navBar__li">
-                    <router-link :to="{ name: 'Categories', params: { entity: 'categories' } }" :class="categoriesLinkClass">Категории</router-link>
-                </li>
-                <li class="navBar__li">
-                    <router-link :to="{ name: 'Categories', params: { entity: 'materials' } }" :class="materialsLinkClass">Материалы</router-link>
-                </li>
-                <li class="navBar__li">
-                    <router-link :to="{ name: 'Categories', params: { entity: 'colors' } }" :class="colorsLinkClass">Цвета</router-link>
+                    <router-link
+                        :to="{ name: 'Categories', params: { entity: 'categories' } }"
+                        class="navBar__link_with_trigram"
+                        :class="categoriesLinkClass">Категории
+
+                        <div class="navBar__link__trigram">
+                            <div class="navBar__drop_menu show_block">
+                                <ul class="navBar__drop_menu__ul">
+                                    <li class="navBar__drop_menu__li">
+                                        <router-link
+                                            :to="{ name: 'Categories', params: { entity: 'categories' } }"
+                                            class="navBar__drop_menu__link tal">
+                                            Категории
+                                        </router-link>
+                                    </li>
+                                    <li class="navBar__drop_menu__li tal">
+                                        <router-link
+                                            :to="{ name: 'Categories', params: { entity: 'materials' } }"
+                                            class="navBar__drop_menu__link">
+                                            Материалы
+                                        </router-link>
+                                    </li>
+                                    <li class="navBar__drop_menu__li">
+                                        <router-link
+                                            :to="{ name: 'Categories', params: { entity: 'colors' } }"
+                                            class="navBar__drop_menu__link tal">
+                                            Цвета
+                                        </router-link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </router-link>
                 </li>
             </ul>
         </div>
@@ -49,11 +76,11 @@
             <li class="navBar__li">
                 <router-link
                     :to="{ name: 'Users' }"
-                    class="navBar__link_with_arrow"
+                    class="navBar__link_with_trigram"
                     :class="usersLinkClass">
                     Пользователи
 
-                    <div class="navBar__link__arrow">
+                    <div class="navBar__link__trigram">
                         <div class="navBar__drop_menu show_block">
                             <ul class="navBar__drop_menu__ul">
                                 <li class="navBar__drop_menu__li">
@@ -96,11 +123,13 @@ export default {
             }
         },
         categoriesLinkClass() {
+            const cats = ['categories', 'materials', 'colors'];
             return {
                 'navBar__link': true,
-                'navBar__link_active': this.$route.params.entity === 'categories',
+                'navBar__link_active': cats.includes(this.$route.params.entity),
             }
         },
+        /*
         materialsLinkClass() {
             return {
                 'navBar__link': true,
@@ -113,6 +142,8 @@ export default {
                 'navBar__link_active': this.$route.params.entity === 'colors',
             }
         },
+
+         */
         usersLinkClass() {
             return {
                 'navBar__link': true,

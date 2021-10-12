@@ -68,6 +68,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CheckboxesList",
@@ -435,9 +437,14 @@ var render = function() {
           0
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "selectedCategories__arrow" }, [
-          _vm._v("\n            ˅\n        ")
-        ])
+        _c(
+          "div",
+          {
+            staticClass: "selectedCategories__arrow",
+            class: { selectedCategories__arrow_up: _vm.checkboxesAreVisible }
+          },
+          [_vm._v("\n            ˅\n        ")]
+        )
       ]
     ),
     _vm._v(" "),

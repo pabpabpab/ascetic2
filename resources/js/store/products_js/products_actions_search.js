@@ -54,7 +54,7 @@ export default {
                 customQuantityPerPage: 0
             }, { root: true });
             const txt = `Показано ${filtered.length}.`
-            dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 1}, { root: true });
+            dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 0.5}, { root: true });
         });
     },
 }

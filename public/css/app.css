@@ -103,68 +103,6 @@ h1 {
   }
 }
 
-.show_transparent_block {
-  visibility: visible;
-  opacity: 0.6;
-  -webkit-animation: showTransparentBlock 0.3s;
-          animation: showTransparentBlock 0.3s;
-}
-
-@-webkit-keyframes showTransparentBlock {
-  from, to {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  100% {
-    opacity: 0.6;
-    visibility: visible;
-  }
-}
-
-@keyframes showTransparentBlock {
-  from, to {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  100% {
-    opacity: 0.6;
-    visibility: visible;
-  }
-}
-
-.hide_transparent_block {
-  visibility: hidden;
-  opacity: 0;
-  -webkit-animation: hideTransparentBlock 0.3s;
-          animation: hideTransparentBlock 0.3s;
-}
-
-@-webkit-keyframes hideTransparentBlock {
-  from, to {
-    opacity: 0.6;
-    visibility: visible;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes hideTransparentBlock {
-  from, to {
-    opacity: 0.6;
-    visibility: visible;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
 .fade-enter-active,
 .fade-leave-active {
   -webkit-transition: opacity 0.3s;
@@ -173,18 +111,6 @@ h1 {
 
 .fade-enter,
 .fade-leave-to {
-  opacity: 0;
-}
-
-.transparent-fade-enter-active,
-.transparent-fade-leave-active {
-  opacity: 0.6;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-}
-
-.transparent-fade-enter,
-.transparent-fade-leave-to {
   opacity: 0;
 }
 
@@ -249,14 +175,14 @@ h1 {
   border-bottom: 3px solid #1976d2;
 }
 
-.navBar__link__arrow {
+.navBar__link__trigram {
   position: relative;
   display: inline;
   padding: 2px 10px 10px 8px;
   margin-left: 2px;
 }
 
-.navBar__link__arrow::after {
+.navBar__link__trigram::after {
   content: "\2630";
   font-size: 13px;
   color: #1976d5;
@@ -320,7 +246,7 @@ h1 {
   color: #1976d5;
 }
 
-.navBar__link__arrow:hover .navBar__drop_menu {
+.navBar__link__trigram:hover .navBar__drop_menu {
   display: block;
 }
 
@@ -421,8 +347,8 @@ h1 {
 }
 
 .search_user_panel__button:hover {
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.14);
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.14);
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
 .search_user_panel__input_div {
@@ -981,10 +907,20 @@ h1 {
   min-width: 40px;
   min-height: 45px;
   cursor: pointer;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
 }
 
 .selectedCategories__arrow:hover {
   color: #00f;
+}
+
+.selectedCategories__arrow_up {
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  background-color: transparent;
 }
 
 .selectedCategories__item {
@@ -1027,10 +963,12 @@ h1 {
   z-index: 5;
   top: 0;
   left: 0;
-  width: 95%;
+  width: 99%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: 210px;
   overflow-y: auto;
-  padding: 5px 10px 25px 15px;
+  padding: 0 10px 25px 15px;
   background-color: #fff;
   border-radius: 5px;
   -webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
@@ -1333,6 +1271,8 @@ h1 {
   border-radius: 8px;
   font-size: 13px;
   color: #fff;
+  font-weight: 400;
+  line-height: 17px;
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1430,16 +1370,15 @@ h1 {
       flex-wrap: wrap;
 }
 
-.product__item {
+.product_item {
   position: relative;
   display: block;
   min-width: 250px;
   width: 250px;
   margin: 10px;
-  padding: 20px 10px;
+  padding: 0 0 20px 0;
   text-align: left;
   background-color: #fff;
-  border: 1px solid #cadde9;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
@@ -1449,26 +1388,116 @@ h1 {
   transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
 }
 
-.product__item:hover {
-  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+.product_item:hover {
+  -webkit-box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.product__item__name {
+.product_item:hover .product_item__bottom_info__absolute {
+  opacity: 1;
+  visibility: visible;
+}
+
+.product_item__name {
   font-size: 17px;
-  color: #504b4b;
+  color: #2d2323;
   font-weight: 400;
   text-align: left;
+  padding: 10px 10px 2px 10px;
   -webkit-box-flex: 10;
       -ms-flex-positive: 10;
           flex-grow: 10;
 }
 
-.product__item__price {
+.product_item__price {
   font-size: 17px;
-  color: #9f9f9f;
+  color: #807878;
   font-weight: 400;
-  margin: 0 10px;
+  padding: 0 10px 2px 10px;
+}
+
+.product_item__small_photos {
+  padding: 7px 10px 0 10px;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.product_item__photo_indicator {
+  padding: 0;
+  margin: -10px 0 0 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.product_item__photo_indicator_item {
+  width: 5px;
+  height: 3px;
+  border-radius: 3px;
+  margin: 0 2px;
+}
+
+.product_item__photo_indicator_inactive {
+  background-color: #cbd5e0;
+}
+
+.product_item__photo_indicator_active {
+  background-color: #003cff;
+}
+
+.product_item__bottom_info__relative_wrapper {
+  position: relative;
+  height: 0;
+}
+
+.product_item__bottom_info__absolute {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  width: 100%;
+  margin: 0;
+  padding: 20px 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 17px;
+  color: #504b4b;
+  font-weight: 400;
+  -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.3);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.product_item__bottom_info__text {
+  margin: 0;
+  padding: 3px 0;
 }
 
 .draggableProduct {
@@ -1482,11 +1511,12 @@ h1 {
 
 .context_menu__icon__product {
   position: absolute;
-  top: 5px;
-  right: 2px;
+  top: -7px;
+  right: -7px;
   font-size: 17px;
-  color: #1976d2;
+  color: #fff;
   font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 0 10px;
   cursor: pointer;
   border-radius: 5px;
@@ -1506,7 +1536,8 @@ h1 {
 }
 
 .context_menu__icon__product:hover {
-  background-color: #e5eff5;
+  background-color: black;
+  color: #fff;
 }
 
 .products_sorting_modes {
@@ -1674,6 +1705,14 @@ h1 {
   color: #fff;
 }
 
+.product_filters__selectedCategories__wrapper {
+  width: 300px;
+}
+
+.product_filters__checkbox_input__item {
+  height: 25px;
+}
+
 .filter_price__text_input__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1803,7 +1842,7 @@ h1 {
 }
 
 .photo__size1 {
-  height: 50px;
+  height: 30px;
   margin: 0 5px 0 0;
 }
 
@@ -2268,10 +2307,69 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   background-color: #000;
+  opacity: 0.6;
 }
 
 .waiting_screen__spinner_icon {
   width: 100px;
+}
+
+.transparent_block-enter-active {
+  -webkit-animation: showTransparentBlock 0.3s;
+          animation: showTransparentBlock 0.3s;
+}
+
+.transparent_block-leave-active {
+  -webkit-animation: hideTransparentBlock 0.3s;
+          animation: hideTransparentBlock 0.3s;
+}
+
+@-webkit-keyframes showTransparentBlock {
+  from, to {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 0.6;
+    visibility: visible;
+  }
+}
+
+@keyframes showTransparentBlock {
+  from, to {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 0.6;
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes hideTransparentBlock {
+  from, to {
+    opacity: 0.6;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hideTransparentBlock {
+  from, to {
+    opacity: 0.6;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .confirmation_dialog__wrapper {

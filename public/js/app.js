@@ -260,6 +260,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 // import './styles/appx.scss'
 
 
@@ -599,6 +601,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'navbar',
@@ -616,23 +645,27 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     categoriesLinkClass: function categoriesLinkClass() {
+      var cats = ['categories', 'materials', 'colors'];
       return {
         'navBar__link': true,
-        'navBar__link_active': this.$route.params.entity === 'categories'
+        'navBar__link_active': cats.includes(this.$route.params.entity)
       };
     },
-    materialsLinkClass: function materialsLinkClass() {
-      return {
-        'navBar__link': true,
-        'navBar__link_active': this.$route.params.entity === 'materials'
-      };
+
+    /*
+    materialsLinkClass() {
+        return {
+            'navBar__link': true,
+            'navBar__link_active': this.$route.params.entity === 'materials',
+        }
     },
-    colorsLinkClass: function colorsLinkClass() {
-      return {
-        'navBar__link': true,
-        'navBar__link_active': this.$route.params.entity === 'colors'
-      };
+    colorsLinkClass() {
+        return {
+            'navBar__link': true,
+            'navBar__link_active': this.$route.params.entity === 'colors',
+        }
     },
+      */
     usersLinkClass: function usersLinkClass() {
       return {
         'navBar__link': true,
@@ -1931,7 +1964,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "transition",
-        { attrs: { name: "transparent-fade" } },
+        { attrs: { name: "transparent_block" } },
         [_vm.showWaitingScreen ? _c("waiting-screen") : _vm._e()],
         1
       ),
@@ -2206,13 +2239,13 @@ var render = function() {
             _c(
               "router-link",
               {
-                staticClass: "navBar__link_with_arrow",
+                staticClass: "navBar__link_with_trigram",
                 class: _vm.productsLinkClass,
                 attrs: { to: { name: "Products", params: { which: "active" } } }
               },
               [
                 _vm._v("\n                    Товары\n\n                    "),
-                _c("div", { staticClass: "navBar__link__arrow" }, [
+                _c("div", { staticClass: "navBar__link__trigram" }, [
                   _c("div", { staticClass: "navBar__drop_menu show_block" }, [
                     _c("ul", { staticClass: "navBar__drop_menu__ul" }, [
                       _c(
@@ -2255,48 +2288,95 @@ var render = function() {
             _c(
               "router-link",
               {
+                staticClass: "navBar__link_with_trigram",
                 class: _vm.categoriesLinkClass,
                 attrs: {
                   to: { name: "Categories", params: { entity: "categories" } }
                 }
               },
-              [_vm._v("Категории")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "navBar__li" },
-          [
-            _c(
-              "router-link",
-              {
-                class: _vm.materialsLinkClass,
-                attrs: {
-                  to: { name: "Categories", params: { entity: "materials" } }
-                }
-              },
-              [_vm._v("Материалы")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "navBar__li" },
-          [
-            _c(
-              "router-link",
-              {
-                class: _vm.colorsLinkClass,
-                attrs: {
-                  to: { name: "Categories", params: { entity: "colors" } }
-                }
-              },
-              [_vm._v("Цвета")]
+              [
+                _vm._v("Категории\n\n                    "),
+                _c("div", { staticClass: "navBar__link__trigram" }, [
+                  _c("div", { staticClass: "navBar__drop_menu show_block" }, [
+                    _c("ul", { staticClass: "navBar__drop_menu__ul" }, [
+                      _c(
+                        "li",
+                        { staticClass: "navBar__drop_menu__li" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "navBar__drop_menu__link tal",
+                              attrs: {
+                                to: {
+                                  name: "Categories",
+                                  params: { entity: "categories" }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        Категории\n                                    "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "navBar__drop_menu__li tal" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "navBar__drop_menu__link",
+                              attrs: {
+                                to: {
+                                  name: "Categories",
+                                  params: { entity: "materials" }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        Материалы\n                                    "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "navBar__drop_menu__li" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "navBar__drop_menu__link tal",
+                              attrs: {
+                                to: {
+                                  name: "Categories",
+                                  params: { entity: "colors" }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                        Цвета\n                                    "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ])
+              ]
             )
           ],
           1
@@ -2312,13 +2392,13 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "navBar__link_with_arrow",
+              staticClass: "navBar__link_with_trigram",
               class: _vm.usersLinkClass,
               attrs: { to: { name: "Users" } }
             },
             [
               _vm._v("\n                Пользователи\n\n                "),
-              _c("div", { staticClass: "navBar__link__arrow" }, [
+              _c("div", { staticClass: "navBar__link__trigram" }, [
                 _c("div", { staticClass: "navBar__drop_menu show_block" }, [
                   _c("ul", { staticClass: "navBar__drop_menu__ul" }, [
                     _c(
@@ -20640,6 +20720,154 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _contextMenu_js_contextMenu_state__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contextMenu_js/contextMenu_state */ "./resources/js/store/contextMenu_js/contextMenu_state.js");
+/* harmony import */ var _contextMenu_js_contextMenu_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contextMenu_js/contextMenu_getters */ "./resources/js/store/contextMenu_js/contextMenu_getters.js");
+/* harmony import */ var _contextMenu_js_contextMenu_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./contextMenu_js/contextMenu_mutations */ "./resources/js/store/contextMenu_js/contextMenu_mutations.js");
+/* harmony import */ var _contextMenu_js_contextMenu_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contextMenu_js/contextMenu_actions */ "./resources/js/store/contextMenu_js/contextMenu_actions.js");
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: _contextMenu_js_contextMenu_state__WEBPACK_IMPORTED_MODULE_0__["default"],
+  getters: _contextMenu_js_contextMenu_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
+  mutations: _contextMenu_js_contextMenu_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
+  actions: _contextMenu_js_contextMenu_actions__WEBPACK_IMPORTED_MODULE_3__["default"]
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/contextMenu_js/contextMenu_actions.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/store/contextMenu_js/contextMenu_actions.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  showContextMenu: function showContextMenu(_ref, _ref2) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        getters = _ref.getters,
+        rootState = _ref.rootState;
+    var event = _ref2.event,
+        target = _ref2.target,
+        data = _ref2.data;
+
+    if (rootState['dragAndDropByXY']['isDragging']) {
+      return;
+    }
+
+    if (rootState['dragAndDropByY']['isDragging']) {
+      return;
+    }
+
+    dispatch('setTarget', target).then(function () {
+      commit("setCoordinatesFor".concat(target, "Context"), event);
+      commit("set".concat(target, "ContextData"), data);
+    });
+  },
+  setTarget: function setTarget(_ref3, target) {
+    var commit = _ref3.commit;
+    commit('setTarget', target);
+  },
+  closeContextMenuByClick: function closeContextMenuByClick(_ref4, event) {
+    var commit = _ref4.commit;
+
+    // console.log(event);
+    if (!event) {
+      return;
+    }
+
+    if (event.target.className === 'context_menu__icon') {
+      return;
+    }
+
+    if (!event.target.parentNode) {
+      return;
+    }
+
+    if (event.target.parentNode.className === 'context_menu__ul') {
+      return;
+    }
+
+    commit('resetTarget');
+  },
+  // Регистрация глобального действия в модуле с собственным пространством имён
+  // для вызова из других модулей с namespaced: true
+  closeContextMenu: {
+    root: true,
+    handler: function handler(_ref5) {
+      var commit = _ref5.commit;
+      commit('resetTarget');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/contextMenu_js/contextMenu_getters.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/store/contextMenu_js/contextMenu_getters.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  coordinates: function coordinates(state) {
+    return state.coordinates;
+  },
+  showCategoriesContextMenu: function showCategoriesContextMenu(state) {
+    return state.target === 'Categories';
+  },
+  showProductsContextMenu: function showProductsContextMenu(state) {
+    return state.target === 'Products';
+  },
+  showPhotosContextMenu: function showPhotosContextMenu(state) {
+    return state.target === 'Photos';
+  },
+  showUsersContextMenu: function showUsersContextMenu(state) {
+    return state.target === 'Users';
+  },
+  currentListIndex: function currentListIndex(state) {
+    return state.currentListIndex;
+  },
+  lastListIndex: function lastListIndex(state) {
+    return state.lastListIndex;
+  },
+  category: function category(state) {
+    return state.category;
+  },
+  product: function product(state) {
+    return state.product;
+  },
+  productId: function productId(state) {
+    return state.productId;
+  },
+  photoName: function photoName(state) {
+    return state.photoName;
+  },
+  user: function user(state) {
+    return state.user;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/contextMenu_js/contextMenu_mutations.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/store/contextMenu_js/contextMenu_mutations.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -20647,198 +20875,110 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  namespaced: true,
-  state: {
-    target: '',
-    coordinates: {},
-    currentListIndex: 0,
-    lastListIndex: 0,
-    category: {},
-    product: {},
-    productId: 0,
-    photoName: '',
-    user: {}
+  setCoordinatesForCategoriesContext: function setCoordinatesForCategoriesContext(state, event) {
+    var icon = event.target.getBoundingClientRect();
+    var x = {
+      left: icon.x + 20 + 'px'
+    }; // проверка на расстояние от точки клика до нижнего края
+
+    var y = window.innerHeight - event.clientY < 300 ? {
+      bottom: window.innerHeight - event.pageY + 'px'
+    } : {
+      top: icon.y + window.pageYOffset + 10 + 'px'
+    };
+    state.coordinates = _objectSpread(_objectSpread({}, x), y);
   },
-  getters: {
-    coordinates: function coordinates(state) {
-      return state.coordinates;
-    },
-    showCategoriesContextMenu: function showCategoriesContextMenu(state) {
-      return state.target === 'Categories';
-    },
-    showProductsContextMenu: function showProductsContextMenu(state) {
-      return state.target === 'Products';
-    },
-    showPhotosContextMenu: function showPhotosContextMenu(state) {
-      return state.target === 'Photos';
-    },
-    showUsersContextMenu: function showUsersContextMenu(state) {
-      return state.target === 'Users';
-    },
-    currentListIndex: function currentListIndex(state) {
-      return state.currentListIndex;
-    },
-    lastListIndex: function lastListIndex(state) {
-      return state.lastListIndex;
-    },
-    category: function category(state) {
-      return state.category;
-    },
-    product: function product(state) {
-      return state.product;
-    },
-    productId: function productId(state) {
-      return state.productId;
-    },
-    photoName: function photoName(state) {
-      return state.photoName;
-    },
-    user: function user(state) {
-      return state.user;
-    }
+  setCoordinatesForProductsContext: function setCoordinatesForProductsContext(state, event) {
+    var icon = event.target.getBoundingClientRect();
+    var xOffset = -185;
+    var x = {
+      left: icon.x + xOffset + 'px'
+    };
+    var y = {
+      top: icon.y + window.pageYOffset + 4 + 'px'
+    };
+    state.coordinates = _objectSpread(_objectSpread({}, x), y);
   },
-  mutations: {
-    setCoordinatesForCategoriesContext: function setCoordinatesForCategoriesContext(state, event) {
-      var icon = event.target.getBoundingClientRect();
-      var x = {
-        left: icon.x + 20 + 'px'
-      }; // проверка на расстояние от точки клика до нижнего края
-
-      var y = window.innerHeight - event.clientY < 300 ? {
-        bottom: window.innerHeight - event.pageY + 'px'
-      } : {
-        top: icon.y + window.pageYOffset + 10 + 'px'
-      };
-      state.coordinates = _objectSpread(_objectSpread({}, x), y);
-    },
-    setCoordinatesForProductsContext: function setCoordinatesForProductsContext(state, event) {
-      var icon = event.target.getBoundingClientRect();
-      var xOffset = -185;
-      var x = {
-        left: icon.x + xOffset + 'px'
-      };
-      var y = {
-        top: icon.y + window.pageYOffset + 4 + 'px'
-      };
-      state.coordinates = _objectSpread(_objectSpread({}, x), y);
-    },
-    setCoordinatesForPhotosContext: function setCoordinatesForPhotosContext(state, event) {
-      var icon = event.target.getBoundingClientRect();
-      var xOffset = -162;
-      var yOffset = -2;
-      var x = {
-        left: icon.x + xOffset + 'px'
-      };
-      var y = {
-        top: icon.y + yOffset + 'px'
-      };
-      state.coordinates = _objectSpread(_objectSpread({}, x), y);
-    },
-    setCoordinatesForUsersContext: function setCoordinatesForUsersContext(state, event) {
-      var icon = event.target.getBoundingClientRect();
-      var x = {
-        left: icon.x + 20 + 'px'
-      }; // проверка на расстояние от точки клика до нижнего края
-
-      var y = window.innerHeight - event.clientY < 300 ? {
-        bottom: window.innerHeight - event.pageY + 'px'
-      } : {
-        top: icon.y + window.pageYOffset + 10 + 'px'
-      };
-      state.coordinates = _objectSpread(_objectSpread({}, x), y);
-    },
-    setTarget: function setTarget(state, target) {
-      state.target = target;
-    },
-    resetTarget: function resetTarget(state) {
-      state.target = '';
-    },
-    setCategoriesContextData: function setCategoriesContextData(state, data) {
-      var category = data.category,
-          currentListIndex = data.currentListIndex,
-          lastListIndex = data.lastListIndex;
-      state.category = category;
-      state.currentListIndex = currentListIndex;
-      state.lastListIndex = lastListIndex;
-    },
-    setProductsContextData: function setProductsContextData(state, data) {
-      var product = data.product;
-      state.product = product;
-    },
-    setPhotosContextData: function setPhotosContextData(state, data) {
-      var productId = data.productId,
-          photoName = data.photoName,
-          currentListIndex = data.currentListIndex,
-          lastListIndex = data.lastListIndex;
-      state.productId = productId;
-      state.photoName = photoName;
-      state.currentListIndex = currentListIndex;
-      state.lastListIndex = lastListIndex;
-    },
-    setUsersContextData: function setUsersContextData(state, data) {
-      var user = data.user;
-      state.user = user;
-    }
+  setCoordinatesForPhotosContext: function setCoordinatesForPhotosContext(state, event) {
+    var icon = event.target.getBoundingClientRect();
+    var xOffset = -162;
+    var yOffset = -2;
+    var x = {
+      left: icon.x + xOffset + 'px'
+    };
+    var y = {
+      top: icon.y + yOffset + 'px'
+    };
+    state.coordinates = _objectSpread(_objectSpread({}, x), y);
   },
-  actions: {
-    showContextMenu: function showContextMenu(_ref, _ref2) {
-      var dispatch = _ref.dispatch,
-          commit = _ref.commit,
-          getters = _ref.getters,
-          rootState = _ref.rootState;
-      var event = _ref2.event,
-          target = _ref2.target,
-          data = _ref2.data;
+  setCoordinatesForUsersContext: function setCoordinatesForUsersContext(state, event) {
+    var icon = event.target.getBoundingClientRect();
+    var x = {
+      left: icon.x + 20 + 'px'
+    }; // проверка на расстояние от точки клика до нижнего края
 
-      if (rootState['dragAndDropByXY']['isDragging']) {
-        return;
-      }
-
-      if (rootState['dragAndDropByY']['isDragging']) {
-        return;
-      }
-
-      dispatch('setTarget', target).then(function () {
-        commit("setCoordinatesFor".concat(target, "Context"), event);
-        commit("set".concat(target, "ContextData"), data);
-      });
-    },
-    setTarget: function setTarget(_ref3, target) {
-      var commit = _ref3.commit;
-      commit('setTarget', target);
-    },
-    closeContextMenuByClick: function closeContextMenuByClick(_ref4, event) {
-      var commit = _ref4.commit;
-
-      // console.log(event);
-      if (!event) {
-        return;
-      }
-
-      if (event.target.className === 'context_menu__icon') {
-        return;
-      }
-
-      if (!event.target.parentNode) {
-        return;
-      }
-
-      if (event.target.parentNode.className === 'context_menu__ul') {
-        return;
-      }
-
-      commit('resetTarget');
-    },
-    // Регистрация глобального действия в модуле с собственным пространством имён
-    // для вызова из других модулей с namespaced: true
-    closeContextMenu: {
-      root: true,
-      handler: function handler(_ref5) {
-        var commit = _ref5.commit;
-        commit('resetTarget');
-      }
-    }
+    var y = window.innerHeight - event.clientY < 300 ? {
+      bottom: window.innerHeight - event.pageY + 'px'
+    } : {
+      top: icon.y + window.pageYOffset + 10 + 'px'
+    };
+    state.coordinates = _objectSpread(_objectSpread({}, x), y);
+  },
+  setTarget: function setTarget(state, target) {
+    state.target = target;
+  },
+  resetTarget: function resetTarget(state) {
+    state.target = '';
+  },
+  setCategoriesContextData: function setCategoriesContextData(state, data) {
+    var category = data.category,
+        currentListIndex = data.currentListIndex,
+        lastListIndex = data.lastListIndex;
+    state.category = category;
+    state.currentListIndex = currentListIndex;
+    state.lastListIndex = lastListIndex;
+  },
+  setProductsContextData: function setProductsContextData(state, data) {
+    var product = data.product;
+    state.product = product;
+  },
+  setPhotosContextData: function setPhotosContextData(state, data) {
+    var productId = data.productId,
+        photoName = data.photoName,
+        currentListIndex = data.currentListIndex,
+        lastListIndex = data.lastListIndex;
+    state.productId = productId;
+    state.photoName = photoName;
+    state.currentListIndex = currentListIndex;
+    state.lastListIndex = lastListIndex;
+  },
+  setUsersContextData: function setUsersContextData(state, data) {
+    var user = data.user;
+    state.user = user;
   }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/contextMenu_js/contextMenu_state.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/store/contextMenu_js/contextMenu_state.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  target: '',
+  coordinates: {},
+  currentListIndex: 0,
+  lastListIndex: 0,
+  category: {},
+  product: {},
+  productId: 0,
+  photoName: '',
+  user: {}
 });
 
 /***/ }),
@@ -23698,6 +23838,13 @@ __webpack_require__.r(__webpack_exports__);
       if (data.addSuccess === true) {
         commit('setSingleProductPhoto', data.photoSet);
         commit('updateProductsBySingleProduct');
+        dispatch('updatePhotosetOfItemInPaginated', {
+          entity: 'products',
+          itemId: productId,
+          photoSet: data.photoSet
+        }, {
+          root: true
+        });
         dispatch('hideWaitingScreen', null, {
           root: true
         });
@@ -24036,7 +24183,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var txt = "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(filtered.length, ".");
       dispatch('showAbsoluteFlashFiltersMessage', {
         text: txt,
-        sec: 1
+        sec: 0.5
       }, {
         root: true
       });

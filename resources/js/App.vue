@@ -2,9 +2,11 @@
     <div id="app" class="app" @click="closeAllByClickOnAppTag($event);">
         <nav-bar></nav-bar>
 
+
         <div class="content_wrapper">
             <router-view :key="$route.path"></router-view>
         </div>
+
 
         <transition name="popup_right">
             <popup-errors v-if="showPopupErrors"></popup-errors>
@@ -14,7 +16,7 @@
             <confirmation-dialog-box v-if="showConfirmationRequest"></confirmation-dialog-box>
         </transition>
 
-        <transition name="transparent-fade">
+        <transition name="transparent_block">
             <waiting-screen v-if="showWaitingScreen"></waiting-screen>
         </transition>
 

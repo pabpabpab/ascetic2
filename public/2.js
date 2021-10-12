@@ -400,6 +400,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FiltersCheckboxesList",
@@ -804,69 +805,125 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ProductItem",
+  name: "ProductItem2",
   props: ['product', 'index'],
-  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('dragAndDropByXY', ['myDragStart', 'myDragStop'])), {}, {
-    getPrice: function getPrice(parameters) {
+  data: function data() {
+    return {
+      indexOfMainPhoto: 0
+    };
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductPhotoManager'])), {}, {
+    getMainPhoto: function getMainPhoto() {
+      var photoInfoArr = JSON.parse(this.product.photo_set);
+      if (!photoInfoArr) return;
+      var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
+      var fileNamePrefix = "".concat(this.product.id, "s3-");
+      var imgClass = "photo__size3";
+      var mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
+      return "<img alt=\"\"\n                    src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(mainPhotoName, "\"\n                    class=\"").concat(imgClass, "\" />");
+    },
+    getPrice: function getPrice() {
       var _parametersArr$price;
 
-      var parametersArr = JSON.parse(parameters);
+      var parametersArr = JSON.parse(this.product.parameters);
       var price = (_parametersArr$price = parametersArr.price) !== null && _parametersArr$price !== void 0 ? _parametersArr$price : '';
       return price ? price + ' ₽' : '';
     },
-    getCategories: function getCategories(parameters) {
-      var parametersArr = JSON.parse(parameters);
+    getPhotos: function getPhotos() {
+      var photoInfoArr = JSON.parse(this.product.photo_set);
+      if (!photoInfoArr) return;
+      var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
+      var fileNamePrefix = "".concat(this.product.id, "s3-");
+      var photoArr = photoInfoArr.map(function (timeName, index) {
+        return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size1\" />");
+      });
+      return photoArr.join('');
+    },
+    getCategories: function getCategories() {
+      var parametersArr = JSON.parse(this.product.parameters);
       var categoriesArr = parametersArr.categories.map(function (item) {
         return "".concat(item.name);
       });
       return categoriesArr.join(', ');
-      /*
-      const category = parametersArr.category ?? {id: 0, name: ''};
-      return category.name;*/
     },
-    getMaterials: function getMaterials(parameters) {
-      var parametersArr = JSON.parse(parameters);
+    getMaterials: function getMaterials() {
+      var parametersArr = JSON.parse(this.product.parameters);
       var materialsArr = parametersArr.materials.map(function (item) {
         return "".concat(item.name);
       });
       return materialsArr.join(', ');
     },
-    getColors: function getColors(parameters) {
-      var parametersArr = JSON.parse(parameters);
+    getColors: function getColors() {
+      var parametersArr = JSON.parse(this.product.parameters);
       var colorsArr = parametersArr.colors.map(function (item) {
         return "".concat(item.name);
       });
       return colorsArr.join(', ');
     },
-    getMainPhoto: function getMainPhoto(productId, photoInfo) {
-      var sizeIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 3;
-      var photoInfoArr = JSON.parse(photoInfo);
-      if (!photoInfoArr) return;
-      var folderName = "/storage/".concat(this.imgFolderPrefix).concat(sizeIndex);
-      var fileNamePrefix = "".concat(productId, "s").concat(sizeIndex, "-");
-      var imgClass = "photo__size".concat(sizeIndex);
-      var mainPhotoTimeName = photoInfoArr[0];
-      return "<img alt=\"\"\n                    src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(mainPhotoTimeName, "\"\n                    class=\"").concat(imgClass, "\" />");
+    numberOfPhotos: function numberOfPhotos() {
+      var photoInfoArr = JSON.parse(this.product.photo_set);
+
+      if (!photoInfoArr) {
+        return 0;
+      }
+
+      return photoInfoArr.length;
     },
-    getPhotos: function getPhotos(productId, photoInfo, sizeIndex) {
-      var photoInfoArr = JSON.parse(photoInfo);
-      if (!photoInfoArr) return;
-      var folderName = "/storage/".concat(this.imgFolderPrefix).concat(sizeIndex);
-      var fileNamePrefix = "".concat(productId, "s").concat(sizeIndex, "-");
-      var imgClass = "photo__size".concat(sizeIndex);
-      var photoArr = photoInfoArr.map(function (timeName) {
-        return "<img alt=\"\" src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"").concat(imgClass, "\" />");
-      });
-      return photoArr.join('');
-    }
-  }),
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductPhotoManager'])), {}, {
+    xPerPhoto: function xPerPhoto() {
+      if (this.numberOfPhotos < 2) {
+        return 0;
+      }
+
+      return 250 / this.numberOfPhotos; // 250px ширина фото
+    },
     draggableProductItemClass: function draggableProductItemClass() {
       return {
         'draggableProduct': this.isDragging(this.index) && this.entity === 'Product'
       };
+    }
+  }),
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('dragAndDropByXY', ['myDragStart', 'myDragStop'])), {}, {
+    changeMainPhoto: function changeMainPhoto(event) {
+      if (this.xPerPhoto === 0) {
+        return;
+      }
+
+      var xy = this.$refs.mainPhotoDiv.getBoundingClientRect();
+      var xWay = event.x - xy.x;
+
+      if (xWay < 0) {
+        return;
+      }
+
+      this.indexOfMainPhoto = Math.ceil(xWay / this.xPerPhoto) - 1;
+    },
+    changeMainPhotoBySmallPhoto: function changeMainPhotoBySmallPhoto(event) {
+      if (event.target.className === 'photo__size1') {
+        this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
+      }
+    },
+    setFirstMainPhoto: function setFirstMainPhoto() {
+      this.indexOfMainPhoto = 0;
     }
   }),
   mounted: function mounted() {
@@ -2212,8 +2269,8 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "selectedCategories__wrapper",
-      staticStyle: { width: "300px" }
+      staticClass:
+        "selectedCategories__wrapper product_filters__selectedCategories__wrapper"
     },
     [
       _c("p", { staticClass: "product_form__property_header" }, [
@@ -2272,9 +2329,14 @@ var render = function() {
             0
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "selectedCategories__arrow bgWhite" }, [
-            _vm._v("\n            ˅\n        ")
-          ])
+          _c(
+            "div",
+            {
+              staticClass: "selectedCategories__arrow",
+              class: { selectedCategories__arrow_up: _vm.checkboxesAreVisible }
+            },
+            [_vm._v("\n            ˅\n        ")]
+          )
         ]
       ),
       _vm._v(" "),
@@ -2296,7 +2358,11 @@ var render = function() {
                 _vm._l(_vm.localCategories, function(cat) {
                   return _c(
                     "p",
-                    { key: cat.id, staticClass: "checkbox_input__item tal" },
+                    {
+                      key: cat.id,
+                      staticClass:
+                        "checkbox_input__item product_filters__checkbox_input__item tal"
+                    },
                     [
                       _c("input", {
                         directives: [
@@ -2589,7 +2655,7 @@ var render = function() {
     "div",
     {
       ref: "product",
-      staticClass: "product__item",
+      staticClass: "product_item",
       class: _vm.draggableProductItemClass,
       style: {
         left: _vm.entity === "Product" ? _vm.leftByIndex(_vm.index) : 0,
@@ -2614,74 +2680,12 @@ var render = function() {
       }
     },
     [
-      _c("div", [
-        _c("span", { staticClass: "product__item__name" }, [
-          _vm._v("\n            " + _vm._s(_vm.product.id) + "\n        ")
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "product__item__name" }, [
-          _vm._v("\n            " + _vm._s(_vm.product.name) + "\n        ")
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "product__item__price" }, [
-          _vm._v(
-            "\n            " +
-              _vm._s(_vm.getPrice(_vm.product.parameters)) +
-              "\n        "
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("p", {
-          domProps: {
-            innerHTML: _vm._s(
-              _vm.getMaterials(_vm.product.parameters) +
-                "\n        / " +
-                _vm.getColors(_vm.product.parameters) +
-                "\n        / " +
-                _vm.getCategories(_vm.product.parameters)
-            )
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("p", {
-          domProps: {
-            innerHTML: _vm._s(
-              _vm.getMainPhoto(_vm.product.id, _vm.product.photo_set)
-            )
-          }
-        }),
-        _vm._v(" "),
-        _c("p", {
-          domProps: {
-            innerHTML: _vm._s(
-              _vm.getPhotos(_vm.product.id, _vm.product.photo_set, 1)
-            )
-          }
-        })
-      ]),
-      _vm._v(" "),
       _c(
         "span",
         {
           staticClass: "context_menu__icon__product",
           on: {
             mouseover: function($event) {
-              if (
-                !$event.type.indexOf("key") &&
-                _vm._k(
-                  $event.keyCode,
-                  "click",
-                  undefined,
-                  $event.key,
-                  undefined
-                )
-              ) {
-                return null
-              }
               return _vm.showContextMenu({
                 event: $event,
                 target: "Products",
@@ -2693,6 +2697,84 @@ var render = function() {
           }
         },
         [_vm._v("\n        ⋮\n    ")]
+      ),
+      _vm._v(" "),
+      _c("div", {
+        ref: "mainPhotoDiv",
+        domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
+        on: {
+          mousemove: function($event) {
+            return _vm.changeMainPhoto($event)
+          },
+          mouseout: function($event) {
+            return _vm.setFirstMainPhoto()
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "product_item__photo_indicator" },
+        _vm._l(_vm.numberOfPhotos, function(n) {
+          return _c("span", {
+            key: n,
+            staticClass: "product_item__photo_indicator_item",
+            class: {
+              product_item__photo_indicator_inactive:
+                _vm.indexOfMainPhoto + 1 !== n,
+              product_item__photo_indicator_active:
+                _vm.indexOfMainPhoto + 1 === n
+            }
+          })
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "product_item__name" }, [
+        _vm._v("\n        " + _vm._s(_vm.product.name) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "product_item__price" }, [
+        _vm._v("\n        " + _vm._s(_vm.getPrice) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _c("div", {
+        staticClass: "product_item__small_photos",
+        domProps: { innerHTML: _vm._s(_vm.getPhotos) },
+        on: {
+          mouseover: function($event) {
+            return _vm.changeMainPhotoBySmallPhoto($event)
+          },
+          mouseout: function($event) {
+            return _vm.setFirstMainPhoto()
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "product_item__bottom_info__relative_wrapper" },
+        [
+          _c("div", { staticClass: "product_item__bottom_info__absolute" }, [
+            _c("p", {
+              staticClass: "product_item__bottom_info__text",
+              attrs: { title: "Категория" },
+              domProps: { innerHTML: _vm._s(_vm.getCategories) }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "product_item__bottom_info__text",
+              attrs: { title: "Материал" },
+              domProps: { innerHTML: _vm._s(_vm.getMaterials) }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "product_item__bottom_info__text",
+              attrs: { title: "Цвет" },
+              domProps: { innerHTML: _vm._s(_vm.getColors) }
+            })
+          ])
+        ]
       )
     ]
   )

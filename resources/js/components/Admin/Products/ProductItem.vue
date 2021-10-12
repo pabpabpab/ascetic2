@@ -1,6 +1,6 @@
 <template>
     <div ref="product"
-         class="product__item"
+         class="product_item"
          :class="draggableProductItemClass"
          :style="{
             'left': entity === 'Product' ? leftByIndex(index) : 0,
@@ -8,29 +8,10 @@
          }"
          @mousedown="myDragStart({index: index, event: $event, entity: 'Product'})"
          @mouseup.stop="myDragStop({ event: $event, clickedIndex: index, entity: 'Product' })">
-         <div>
-            <span class="product__item__name">
-                {{ product.id }}
-            </span>
-            <span class="product__item__name">
-                {{ product.name }}
-            </span>
-            <span class="product__item__price">
-                {{ getPrice(product.parameters) }}
-            </span>
-        </div>
-        <div>
-            <p v-html="`${getMaterials(product.parameters)}
-            / ${getColors(product.parameters)}
-            / ${getCategories(product.parameters)}`"></p>
-        </div>
-        <div>
-            <p v-html="getMainPhoto(product.id, product.photo_set)"></p>
-            <p v-html="getPhotos(product.id, product.photo_set, 1)"></p>
-        </div>
+
 
         <span class="context_menu__icon__product"
-            @mouseover.click="showContextMenu({
+              @mouseover="showContextMenu({
                 event: $event,
                 target: 'Products',
                 data: {
@@ -39,6 +20,43 @@
             })">
             &#8942;
         </span>
+
+        <div ref="mainPhotoDiv"
+             @mousemove="changeMainPhoto($event)"
+             @mouseout="setFirstMainPhoto()"
+             v-html="getMainPhoto">
+        </div>
+
+        <div class="product_item__photo_indicator">
+            <span v-for="n in numberOfPhotos" :key="n"
+                  class="product_item__photo_indicator_item"
+                  :class="{
+                     product_item__photo_indicator_inactive: indexOfMainPhoto + 1 !== n,
+                     product_item__photo_indicator_active: indexOfMainPhoto + 1 === n,
+                  }">
+            </span>
+        </div>
+
+        <div class="product_item__name">
+            {{ product.name }}
+        </div>
+        <div class="product_item__price">
+            {{ getPrice }}
+        </div>
+        <div @mouseover="changeMainPhotoBySmallPhoto($event)" @mouseout="setFirstMainPhoto()"
+             class="product_item__small_photos"
+             v-html="getPhotos">
+        </div>
+
+
+        <div class="product_item__bottom_info__relative_wrapper">
+            <div class="product_item__bottom_info__absolute">
+                <p title="Категория" v-html="getCategories" class="product_item__bottom_info__text"></p>
+                <p title="Материал" v-html="getMaterials" class="product_item__bottom_info__text"></p>
+                <p title="Цвет" v-html="getColors" class="product_item__bottom_info__text"></p>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -46,80 +64,14 @@
 import {mapActions, mapGetters} from "vuex";
 
 export default {
-    name: "ProductItem",
+    name: "ProductItem2",
     props: ['product', 'index'],
-    methods: {
-        ...mapActions('contextMenu', [
-            'showContextMenu',
-        ]),
-        ...mapActions('dragAndDropByXY', [
-            'myDragStart',
-            'myDragStop',
-        ]),
-
-        getPrice(parameters) {
-            const parametersArr = JSON.parse(parameters);
-            const price = parametersArr.price ?? '';
-            return price ? price + ' ₽' : '';
-        },
-        getCategories(parameters) {
-            const parametersArr = JSON.parse(parameters);
-            const categoriesArr = parametersArr.categories.map(function(item) {
-                return `${item.name}`;
-            });
-            return categoriesArr.join(', ');
-            /*
-            const category = parametersArr.category ?? {id: 0, name: ''};
-            return category.name;*/
-        },
-        getMaterials(parameters) {
-            const parametersArr = JSON.parse(parameters);
-            const materialsArr = parametersArr.materials.map(function(item) {
-                return `${item.name}`;
-            });
-            return materialsArr.join(', ');
-        },
-        getColors(parameters) {
-            const parametersArr = JSON.parse(parameters);
-            const colorsArr = parametersArr.colors.map(function(item) {
-                return `${item.name}`;
-            });
-            return colorsArr.join(', ');
-        },
-
-        getMainPhoto(productId, photoInfo, sizeIndex = 3) {
-            const photoInfoArr = JSON.parse(photoInfo);
-            if (!photoInfoArr)
-                return;
-            const folderName = `/storage/${this.imgFolderPrefix}${sizeIndex}`;
-            const fileNamePrefix = `${productId}s${sizeIndex}-`;
-            const imgClass = `photo__size${sizeIndex}`;
-
-            const mainPhotoTimeName = photoInfoArr[0];
-
-            return `<img alt=""
-                    src="${folderName}/${fileNamePrefix}${mainPhotoTimeName}"
-                    class="${imgClass}" />`;
-        },
-
-
-        getPhotos(productId, photoInfo, sizeIndex) {
-            const photoInfoArr = JSON.parse(photoInfo);
-            if (!photoInfoArr)
-                return;
-            const folderName = `/storage/${this.imgFolderPrefix}${sizeIndex}`;
-            const fileNamePrefix = `${productId}s${sizeIndex}-`;
-            const imgClass = `photo__size${sizeIndex}`;
-
-            const photoArr = photoInfoArr.map(function(timeName) {
-                return `<img alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="${imgClass}" />`;
-            });
-            return photoArr.join('');
-        },
-
-
-
+    data() {
+        return {
+            indexOfMainPhoto: 0,
+        }
     },
+
     computed: {
         ...mapGetters([
             'imgFolderPrefix',
@@ -133,12 +85,123 @@ export default {
         ...mapGetters('products', [
             'showProductPhotoManager',
         ]),
+        getMainPhoto() {
+            const photoInfoArr = JSON.parse(this.product.photo_set);
+            if (!photoInfoArr)
+                return;
+            const folderName = `/storage/${this.imgFolderPrefix}3`;
+            const fileNamePrefix = `${this.product.id}s3-`;
+            const imgClass = `photo__size3`;
+
+            const mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
+
+            return `<img alt=""
+                    src="${folderName}/${fileNamePrefix}${mainPhotoName}"
+                    class="${imgClass}" />`;
+        },
+
+        getPrice() {
+            const parametersArr = JSON.parse(this.product.parameters);
+            const price = parametersArr.price ?? '';
+            return price ? price + ' ₽' : '';
+        },
+
+        getPhotos() {
+            const photoInfoArr = JSON.parse(this.product.photo_set);
+            if (!photoInfoArr)
+                return;
+            const folderName = `/storage/${this.imgFolderPrefix}3`;
+            const fileNamePrefix = `${this.product.id}s3-`;
+
+            const photoArr = photoInfoArr.map(function(timeName, index) {
+                return `<img data-photoindex="${index}" alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo__size1" />`;
+            });
+            return photoArr.join('');
+        },
+
+
+
+        getCategories() {
+            const parametersArr = JSON.parse(this.product.parameters);
+            const categoriesArr = parametersArr.categories.map(function(item) {
+                return `${item.name}`;
+            });
+            return categoriesArr.join(', ');
+        },
+        getMaterials() {
+            const parametersArr = JSON.parse(this.product.parameters);
+            const materialsArr = parametersArr.materials.map(function(item) {
+                return `${item.name}`;
+            });
+            return materialsArr.join(', ');
+        },
+        getColors() {
+            const parametersArr = JSON.parse(this.product.parameters);
+            const colorsArr = parametersArr.colors.map(function(item) {
+                return `${item.name}`;
+            });
+            return colorsArr.join(', ');
+        },
+
+
+        numberOfPhotos() {
+            const photoInfoArr = JSON.parse(this.product.photo_set);
+            if (!photoInfoArr) {
+                return 0;
+            }
+            return photoInfoArr.length;
+        },
+
+        xPerPhoto() {
+            if (this.numberOfPhotos < 2) {
+                return 0;
+            }
+            return 250/this.numberOfPhotos; // 250px ширина фото
+        },
+
         draggableProductItemClass() {
             return {
                 'draggableProduct': this.isDragging(this.index) && this.entity === 'Product',
             };
         },
     },
+
+
+    methods: {
+        ...mapActions('contextMenu', [
+            'showContextMenu',
+        ]),
+        ...mapActions('dragAndDropByXY', [
+            'myDragStart',
+            'myDragStop',
+        ]),
+
+        changeMainPhoto(event) {
+            if (this.xPerPhoto === 0) {
+                return;
+            }
+            const xy = this.$refs.mainPhotoDiv.getBoundingClientRect();
+            const xWay = event.x-xy.x;
+
+            if (xWay < 0) {
+                return;
+            }
+
+            this.indexOfMainPhoto = Math.ceil(xWay/this.xPerPhoto) - 1;
+        },
+
+        changeMainPhotoBySmallPhoto(event) {
+            if (event.target.className === 'photo__size1') {
+                this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
+            }
+        },
+
+        setFirstMainPhoto() {
+            this.indexOfMainPhoto = 0;
+        },
+
+    },
+
 
     mounted() {
         this.$store.dispatch('dragAndDropByXY/resetCoordinates', {cycleNumber: this.index, entity: 'Product'}).then(

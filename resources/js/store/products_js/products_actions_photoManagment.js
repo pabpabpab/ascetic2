@@ -185,7 +185,16 @@ export default {
                 // console.log(data);
                 if (data.addSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
+
                     commit('updateProductsBySingleProduct');
+
+                    dispatch('updatePhotosetOfItemInPaginated', {
+                        entity: 'products',
+                        itemId: productId,
+                        photoSet: data.photoSet,
+                    }, { root: true });
+
+
                     dispatch('hideWaitingScreen', null, { root: true });
                     const txt = `Добавлено.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
