@@ -1,4 +1,4 @@
-<template>
+1<template>
     <div @click="closeAllCheckboxesLists()" class="show_block">
 
 

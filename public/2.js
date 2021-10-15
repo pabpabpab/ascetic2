@@ -696,6 +696,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     noData: function noData() {
       var _this$singleProductFr;
 
+      // js-оператор ?.
       var product = (_this$singleProductFr = this.singleProductFromServer) === null || _this$singleProductFr === void 0 ? void 0 : _this$singleProductFr.product;
 
       if (!product) {
@@ -707,8 +708,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getHeader: function getHeader() {
       if (this.noData) {
         return '';
-      } // js-оператор ?.
-
+      }
 
       var productName = this.singleProductFromServer.product.name;
       var productPrice = this.singleProductFromServer.product.price;
@@ -755,6 +755,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _someComputed_computedForProductItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./someComputed/computedForProductItem */ "./resources/js/components/Admin/Products/someComputed/computedForProductItem.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -823,63 +824,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ProductItem2",
+  name: "ProductItem",
   props: ['product', 'index'],
   data: function data() {
     return {
       indexOfMainPhoto: 0
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductPhotoManager'])), {}, {
-    getMainPhoto: function getMainPhoto() {
-      var photoInfoArr = JSON.parse(this.product.photo_set);
-      if (!photoInfoArr) return;
-      var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
-      var fileNamePrefix = "".concat(this.product.id, "s3-");
-      var imgClass = "photo__size3";
-      var mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
-      return "<img alt=\"\"\n                    src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(mainPhotoName, "\"\n                    class=\"").concat(imgClass, "\" />");
-    },
-    getPrice: function getPrice() {
-      var _parametersArr$price;
-
-      var parametersArr = JSON.parse(this.product.parameters);
-      var price = (_parametersArr$price = parametersArr.price) !== null && _parametersArr$price !== void 0 ? _parametersArr$price : '';
-      return price ? price + ' ₽' : '';
-    },
-    getPhotos: function getPhotos() {
-      var photoInfoArr = JSON.parse(this.product.photo_set);
-      if (!photoInfoArr) return;
-      var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
-      var fileNamePrefix = "".concat(this.product.id, "s3-");
-      var photoArr = photoInfoArr.map(function (timeName, index) {
-        return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size1\" />");
-      });
-      return photoArr.join('');
-    },
-    getCategories: function getCategories() {
-      var parametersArr = JSON.parse(this.product.parameters);
-      var categoriesArr = parametersArr.categories.map(function (item) {
-        return "".concat(item.name);
-      });
-      return categoriesArr.join(', ');
-    },
-    getMaterials: function getMaterials() {
-      var parametersArr = JSON.parse(this.product.parameters);
-      var materialsArr = parametersArr.materials.map(function (item) {
-        return "".concat(item.name);
-      });
-      return materialsArr.join(', ');
-    },
-    getColors: function getColors() {
-      var parametersArr = JSON.parse(this.product.parameters);
-      var colorsArr = parametersArr.colors.map(function (item) {
-        return "".concat(item.name);
-      });
-      return colorsArr.join(', ');
-    },
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductPhotoManager'])), _someComputed_computedForProductItem__WEBPACK_IMPORTED_MODULE_1__["default"]), {}, {
     numberOfPhotos: function numberOfPhotos() {
       var photoInfoArr = JSON.parse(this.product.photo_set);
 
@@ -2699,18 +2660,28 @@ var render = function() {
         [_vm._v("\n        ⋮\n    ")]
       ),
       _vm._v(" "),
-      _c("div", {
-        ref: "mainPhotoDiv",
-        domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
-        on: {
-          mousemove: function($event) {
-            return _vm.changeMainPhoto($event)
-          },
-          mouseout: function($event) {
-            return _vm.setFirstMainPhoto()
+      _c(
+        "router-link",
+        {
+          attrs: {
+            to: { name: "SingleProduct", params: { id: _vm.product.id } }
           }
-        }
-      }),
+        },
+        [
+          _c("div", {
+            ref: "mainPhotoDiv",
+            domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
+            on: {
+              mousemove: function($event) {
+                return _vm.changeMainPhoto($event)
+              },
+              mouseout: function($event) {
+                return _vm.setFirstMainPhoto()
+              }
+            }
+          })
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -2776,7 +2747,8 @@ var render = function() {
           ])
         ]
       )
-    ]
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -4586,6 +4558,67 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SortingModes_vue_vue_type_template_id_a117c508___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/someComputed/computedForProductItem.js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/someComputed/computedForProductItem.js ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  getMainPhoto: function getMainPhoto() {
+    var photoInfoArr = JSON.parse(this.product.photo_set);
+    if (!photoInfoArr) return;
+    var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
+    var fileNamePrefix = "".concat(this.product.id, "s3-");
+    var imgClass = "photo__size3";
+    var mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
+    return "<img alt=\"\"\n                    src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(mainPhotoName, "\"\n                    class=\"").concat(imgClass, "\" />");
+  },
+  getPrice: function getPrice() {
+    var _parametersArr$price;
+
+    var parametersArr = JSON.parse(this.product.parameters);
+    var price = (_parametersArr$price = parametersArr.price) !== null && _parametersArr$price !== void 0 ? _parametersArr$price : '';
+    return price ? price + ' ₽' : '';
+  },
+  getPhotos: function getPhotos() {
+    var photoInfoArr = JSON.parse(this.product.photo_set);
+    if (!photoInfoArr) return;
+    var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
+    var fileNamePrefix = "".concat(this.product.id, "s3-");
+    var photoArr = photoInfoArr.map(function (timeName, index) {
+      return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size1\" />");
+    });
+    return photoArr.join('');
+  },
+  getCategories: function getCategories() {
+    var parametersArr = JSON.parse(this.product.parameters);
+    var categoriesArr = parametersArr.categories.map(function (item) {
+      return "".concat(item.name);
+    });
+    return categoriesArr.join(', ');
+  },
+  getMaterials: function getMaterials() {
+    var parametersArr = JSON.parse(this.product.parameters);
+    var materialsArr = parametersArr.materials.map(function (item) {
+      return "".concat(item.name);
+    });
+    return materialsArr.join(', ');
+  },
+  getColors: function getColors() {
+    var parametersArr = JSON.parse(this.product.parameters);
+    var colorsArr = parametersArr.colors.map(function (item) {
+      return "".concat(item.name);
+    });
+    return colorsArr.join(', ');
+  }
+});
 
 /***/ }),
 

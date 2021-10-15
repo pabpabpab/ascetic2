@@ -18,6 +18,14 @@ const routes = [
 
 
 
+
+    {
+        path: '/admin/products/categories/:entity',
+        name: 'Categories',
+        component: () => import('../components/Admin/CategoriesPage.vue'),
+    },
+
+
     {
         path: '/admin/products/:which',
         name: 'Products',
@@ -37,10 +45,13 @@ const routes = [
 
 
     {
-        path: '/admin/products/categories/:entity',
-        name: 'Categories',
-        component: () => import('../components/Admin/CategoriesPage.vue'),
+        path: '/admin/products/one/:id',
+        name: 'SingleProduct',
+        component: () => import('../components/Admin/SingleProductPage.vue'),
     },
+
+
+
 
     {
         path: '*',

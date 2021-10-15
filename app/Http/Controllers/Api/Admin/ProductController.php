@@ -79,6 +79,7 @@ class ProductController extends Controller
         return response()->json([
             'product' => $product,
             'description' => $product->description,
+            'seo' => $product->seoText,
             'photoSeo' => $service->getProductPhotoSeoList($product->id),
             // get seo фоток при открытии photoManager
         ]);

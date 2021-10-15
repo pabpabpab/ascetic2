@@ -21,11 +21,17 @@
             &#8942;
         </span>
 
-        <div ref="mainPhotoDiv"
-             @mousemove="changeMainPhoto($event)"
-             @mouseout="setFirstMainPhoto()"
-             v-html="getMainPhoto">
-        </div>
+
+        <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }">
+            <div ref="mainPhotoDiv"
+                 @mousemove="changeMainPhoto($event)"
+                 @mouseout="setFirstMainPhoto()"
+                 v-html="getMainPhoto">
+            </div>
+        </router-link>
+
+
+
 
         <div class="product_item__photo_indicator">
             <span v-for="n in numberOfPhotos" :key="n"
@@ -62,9 +68,10 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
+import computedForProductItem from './someComputed/computedForProductItem';
 
 export default {
-    name: "ProductItem2",
+    name: "ProductItem",
     props: ['product', 'index'],
     data() {
         return {
@@ -85,64 +92,8 @@ export default {
         ...mapGetters('products', [
             'showProductPhotoManager',
         ]),
-        getMainPhoto() {
-            const photoInfoArr = JSON.parse(this.product.photo_set);
-            if (!photoInfoArr)
-                return;
-            const folderName = `/storage/${this.imgFolderPrefix}3`;
-            const fileNamePrefix = `${this.product.id}s3-`;
-            const imgClass = `photo__size3`;
 
-            const mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
-
-            return `<img alt=""
-                    src="${folderName}/${fileNamePrefix}${mainPhotoName}"
-                    class="${imgClass}" />`;
-        },
-
-        getPrice() {
-            const parametersArr = JSON.parse(this.product.parameters);
-            const price = parametersArr.price ?? '';
-            return price ? price + ' ₽' : '';
-        },
-
-        getPhotos() {
-            const photoInfoArr = JSON.parse(this.product.photo_set);
-            if (!photoInfoArr)
-                return;
-            const folderName = `/storage/${this.imgFolderPrefix}3`;
-            const fileNamePrefix = `${this.product.id}s3-`;
-
-            const photoArr = photoInfoArr.map(function(timeName, index) {
-                return `<img data-photoindex="${index}" alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo__size1" />`;
-            });
-            return photoArr.join('');
-        },
-
-
-
-        getCategories() {
-            const parametersArr = JSON.parse(this.product.parameters);
-            const categoriesArr = parametersArr.categories.map(function(item) {
-                return `${item.name}`;
-            });
-            return categoriesArr.join(', ');
-        },
-        getMaterials() {
-            const parametersArr = JSON.parse(this.product.parameters);
-            const materialsArr = parametersArr.materials.map(function(item) {
-                return `${item.name}`;
-            });
-            return materialsArr.join(', ');
-        },
-        getColors() {
-            const parametersArr = JSON.parse(this.product.parameters);
-            const colorsArr = parametersArr.colors.map(function(item) {
-                return `${item.name}`;
-            });
-            return colorsArr.join(', ');
-        },
-
+        ...computedForProductItem,
 
         numberOfPhotos() {
             const photoInfoArr = JSON.parse(this.product.photo_set);

@@ -53,6 +53,7 @@ export default {
         ]),
 
         noData() {
+            // js-оператор ?.
             const product = this.singleProductFromServer?.product;
 
             if (!product) {
@@ -67,7 +68,6 @@ export default {
                 return '';
             }
 
-            // js-оператор ?.
             const productName = this.singleProductFromServer.product.name;
             const productPrice = this.singleProductFromServer.product.price;
 

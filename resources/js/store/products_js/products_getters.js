@@ -1,6 +1,7 @@
 export default {
 
     products: (state) => state.products,
+    // productItem: (state) => (id) => state.products.find(item => item.id === id),
     productsLength: (state) => state.products.length,
     seoData: (state) => state.seoData,
     photoSeoData: (state) => state.photoSeoData,

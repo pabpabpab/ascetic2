@@ -19641,43 +19641,49 @@ var routes = [{
   path: '/admin',
   name: 'Main',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
   }
 }, {
   path: '/admin/users',
   name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/user/add',
   name: 'SaveUser',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
-  }
-}, {
-  path: '/admin/products/:which',
-  name: 'Products',
-  component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
-  }
-}, {
-  path: '/admin/products/by/:categoryEntity/:slug',
-  name: 'ProductsByCategory',
-  component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(15), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
-  }
-}, {
-  path: '/admin/product/add',
-  name: 'SaveProduct',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
     return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+  }
+}, {
+  path: '/admin/products/:which',
+  name: 'Products',
+  component: function component() {
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+  }
+}, {
+  path: '/admin/products/by/:categoryEntity/:slug',
+  name: 'ProductsByCategory',
+  component: function component() {
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+  }
+}, {
+  path: '/admin/product/add',
+  name: 'SaveProduct',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+  }
+}, {
+  path: '/admin/products/one/:id',
+  name: 'SingleProduct',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
   }
 }, {
   path: '*',
@@ -24283,6 +24289,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   products: function products(state) {
     return state.products;
   },
+  // productItem: (state) => (id) => state.products.find(item => item.id === id),
   productsLength: function productsLength(state) {
     return state.products.length;
   },
