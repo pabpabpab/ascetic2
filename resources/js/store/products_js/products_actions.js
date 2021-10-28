@@ -6,7 +6,7 @@ export default {
         const url = state.url['singleProduct'] + productId;
         dispatch('getJson', url, { root: true })
             .then((data) => {
-                //console.log(data);
+                console.log(data);
                 commit('setSingleProductFromServer', data);
                 commit('setPhotoSeoData', data.photoSeo);
                 dispatch('hideWaitingScreen', null, { root: true });

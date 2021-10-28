@@ -161,6 +161,7 @@ class SaveService
         foreach ($product->categories as $category) {
             $categories[] = [
                 'id' => $category->id,
+                'slug' => $category->slug,
                 'name' => $category->name,
             ];
         }
@@ -170,6 +171,7 @@ class SaveService
         foreach ($product->colors as $color) {
             $colors[] = [
                 'id' => $color->id,
+                'slug' => $color->slug,
                 'name' => $color->name,
             ];
         }
@@ -179,6 +181,7 @@ class SaveService
         foreach ($product->materials as $material) {
             $materials[] = [
                 'id' => $material->id,
+                'slug' => $material->slug,
                 'name' => $material->name,
             ];
         }

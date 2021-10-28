@@ -19641,7 +19641,7 @@ var routes = [{
   path: '/admin',
   name: 'Main',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
+    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
   }
 }, {
   path: '/admin/users',
@@ -19653,7 +19653,7 @@ var routes = [{
   path: '/admin/user/add',
   name: 'SaveUser',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
+    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
@@ -19677,13 +19677,13 @@ var routes = [{
   path: '/admin/product/add',
   name: 'SaveProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/products/one/:id',
   name: 'SingleProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
   }
 }, {
   path: '*',
@@ -23096,7 +23096,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
-      //console.log(data);
+      console.log(data);
       commit('setSingleProductFromServer', data);
       commit('setPhotoSeoData', data.photoSeo);
       dispatch('hideWaitingScreen', null, {

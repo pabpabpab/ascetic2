@@ -1849,6 +1849,7 @@ h1 {
 .photo__size2 {
   width: 100px;
   margin: 0 0 10px 0;
+  cursor: pointer;
 }
 
 .photo__size3 {
@@ -1856,18 +1857,23 @@ h1 {
 }
 
 .photo__size4 {
-  width: 500px;
+  width: 700px;
 }
 
-.content_block__single_product {
+.photo__size5 {
+  width: 1600px;
+}
+
+.single_product__content_block {
   min-width: 95%;
   width: 95%;
-  min-height: 95%;
-  height: 100%;
-  padding: 20px;
+  min-height: 78vh;
+  padding: 30px 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
-.single_product__first_block {
+.single_product__first_wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1880,7 +1886,7 @@ h1 {
           flex-direction: row;
 }
 
-.single_product__first_block__small_photos {
+.single_product__small_photos {
   max-width: 105px;
   height: 100%;
   display: -webkit-box;
@@ -1890,21 +1896,55 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-right: 20px;
 }
 
-.single_product__first_block__big_photo_wrapper {
-  width: 500px;
-  padding: 0 0 0 20px;
+.single_product__big_photo_wrapper {
+  width: 700px;
+  padding: 0;
+  overflow: hidden;
 }
 
-.single_product__first_block__top_characteristics {
-  -webkit-box-flex: 10;
-      -ms-flex-positive: 10;
-          flex-grow: 10;
-  padding: 0 0 0 20px;
+.single_product__top_characteristics {
+  padding: 0 0 0 35px;
   font-size: 17px;
   color: #504b4b;
   font-weight: 400;
+}
+
+.single_product__h1 {
+  font-size: 25px;
+  color: #504b4b;
+  font-weight: 700;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
+  text-align: left;
+  margin: 0;
+}
+
+.single_product__price {
+  padding: 10px 0;
+  font-size: 22px;
+  color: #504b4b;
+  font-weight: 400;
+  text-align: left;
+}
+
+.single_product__categories {
+  margin: 0;
+  padding: 1px 0;
+  font-size: 17px;
+  color: #504b4b;
+  font-weight: 400;
+  text-align: left;
+}
+
+.single_product__description {
+  padding: 20px 0 10px 0;
+  font-size: 17px;
+  color: #504b4b;
+  font-weight: 400;
+  text-align: justify;
 }
 
 .pagination_nav {
@@ -3252,6 +3292,10 @@ h1 {
 
 .pd0 {
   padding: 0;
+}
+
+.m0 {
+  margin: 0;
 }
 
 .mb0 {

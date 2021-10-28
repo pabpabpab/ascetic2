@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
       return Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./Users/SearchUserPanel.vue */ "./resources/js/components/Admin/Users/SearchUserPanel.vue"));
     },
     Users: function Users() {
-      return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./Users/Users.vue */ "./resources/js/components/Admin/Users/Users.vue"));
+      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./Users/Users.vue */ "./resources/js/components/Admin/Users/Users.vue"));
     },
     Pagination: function Pagination() {
       return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./Blocks/Pagination.vue */ "./resources/js/components/Admin/Blocks/Pagination.vue"));

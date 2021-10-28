@@ -1,26 +1,51 @@
-.content_block__single_product
+.single_product__content_block
     min-width: 95%
     width: 95%
-    min-height: 95%
-    height: 100%
-    padding: 20px
+    min-height: 78vh
+    //height: 100%
+    padding: 30px 20px
+    border-top-left-radius: 20px
+    border-top-right-radius: 20px
 
-.single_product__first_block
+
+.single_product__first_wrapper
     display: flex
     justify-content: flex-start
     flex-direction: row
-    &__small_photos
-        max-width: 105px
-        height: 100%
-        display: flex
-        flex-direction: column
-        //border: 1px solid #888
-    &__big_photo_wrapper
-        width: 500px
-        padding: 0 0 0 20px
-        //border: 1px solid #888
-    &__top_characteristics
-        flex-grow: 10
-        padding: 0 0 0 20px
-        +font(17px, rgb(80, 75, 75), 400)
-        //border: 1px solid #888
+
+.single_product__small_photos
+    max-width: 105px
+    height: 100%
+    display: flex
+    flex-direction: column
+    margin-right: 20px
+    //border: 1px solid #888
+.single_product__big_photo_wrapper
+    width: 700px
+    // height: 450px
+    padding: 0
+    overflow: hidden
+    //border: 1px solid #888
+.single_product__top_characteristics
+    padding: 0 0 0 35px
+    +font(17px, rgb(80, 75, 75), 400)
+    //border: 1px solid #888
+.single_product__h1
+    +font(25px, rgb(80, 75, 75), 700)
+    font-family: 'Oswald', sans-serif
+    letter-spacing: 1px
+    text-align: left
+    margin: 0
+.single_product__price
+    padding: 10px 0
+    +font(22px, rgb(80, 75, 75), 400)
+    text-align: left
+.single_product__categories
+    margin: 0
+    padding: 1px 0
+    +font(17px, rgb(80, 75, 75), 400)
+    text-align: left
+.single_product__description
+    padding: 20px 0 10px 0
+    +font(17px, rgb(80, 75, 75), 400)
+    text-align: justify
