@@ -1,35 +1,104 @@
 .single_product__content_block
     min-width: 95%
     width: 95%
-    min-height: 78vh
-    //height: 100%
-    padding: 30px 20px
-    border-top-left-radius: 20px
-    border-top-right-radius: 20px
-
+    padding: 0
+    margin: 0 auto
 
 .single_product__first_wrapper
     display: flex
     justify-content: flex-start
     flex-direction: row
 
+.single_product__all_photo_wrapper
+    position: fixed
+    display: flex
+    justify-content: flex-start
+    flex-direction: row
+    padding: 30px 20px
+    background-color: #fff
+    box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
+    border-radius: 20px
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+
+
+$big_photo_height: 450px
+$small_photo_width: 100px
+
+.single_product__small_photos__wrapper
+    position: relative
+    max-width: $small_photo_width
+    margin-right: 20px
+    height: $big_photo_height
+
+
+.single_product__small_photos__scroll_button
+    position: absolute
+    left: 0
+    background-color: rgba(255, 255, 255, 0.7)
+    //border: 1px solid #333
+    width: $small_photo_width
+    height: 30px
+    cursor: pointer
+    transition: background .3s
+    &:hover
+        background-color: rgba(255, 255, 255, 0.8)
+.single_product__small_photos__scroll_button_top
+    top: 0
+.single_product__small_photos__scroll_button_bottom
+    bottom: -2px
+
+.single_product__small_photos__scroll_button_top__content
+    position: relative
+    &::before
+        position: absolute
+        content: ''
+        left: 43px
+        top: 10px
+        width: 15px
+        height: 15px
+        border: solid #808088
+        border-width: 3px 3px 0 0
+        transform: rotate(-45deg)
+.single_product__small_photos__scroll_button_bottom__content
+    position: relative
+    &::before
+        position: absolute
+        content: ''
+        left: 43px
+        top: 0
+        width: 15px
+        height: 15px
+        border: solid #808088
+        border-width: 0 3px 3px 0
+        transform: rotate(45deg)
+
+
 .single_product__small_photos
-    max-width: 105px
-    height: 100%
     display: flex
     flex-direction: column
-    margin-right: 20px
     //border: 1px solid #888
+    height: $big_photo_height
+    overflow: hidden
+    scroll-behavior: smooth
+
 .single_product__big_photo_wrapper
     width: 700px
-    // height: 450px
+    height: $big_photo_height
     padding: 0
     overflow: hidden
-    //border: 1px solid #888
+
+
+
 .single_product__top_characteristics
-    padding: 0 0 0 35px
+    flex-grow: 10
     +font(17px, rgb(80, 75, 75), 400)
-    //border: 1px solid #888
+    margin-left: 885px
+    padding: 30px 30px
+    background-color: #fff
+    box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
+    border-radius: 20px
 .single_product__h1
     +font(25px, rgb(80, 75, 75), 700)
     font-family: 'Oswald', sans-serif
@@ -45,6 +114,12 @@
     padding: 1px 0
     +font(17px, rgb(80, 75, 75), 400)
     text-align: left
+.single_product__category_item__link
+    text-align: left
+    +font(17px, rgb(50, 45, 45), 400)
+    border: none
+    &:hover
+        border-bottom: 1px solid rgba(50, 45, 45, 0.4)
 .single_product__description
     padding: 20px 0 10px 0
     +font(17px, rgb(80, 75, 75), 400)

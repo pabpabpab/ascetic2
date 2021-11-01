@@ -8,7 +8,7 @@
                     categoryEntity: entityName,
                     slug: category.slug,
                 }
-            }" class="category_item__name__link">
+            }" class="single_product__category_item__link">
             {{ category.name }}
         </router-link>
     </span>

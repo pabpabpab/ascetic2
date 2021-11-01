@@ -1,12 +1,12 @@
 import productValidation from './functions/productValidation';
-// import thatRouter from "../../router";
+import thatRouter from "../../router";
 
 export default {
     loadSingleProduct({dispatch, commit, state}, productId) {
         const url = state.url['singleProduct'] + productId;
         dispatch('getJson', url, { root: true })
             .then((data) => {
-                console.log(data);
+                //console.log(data);
                 commit('setSingleProductFromServer', data);
                 commit('setPhotoSeoData', data.photoSeo);
                 dispatch('hideWaitingScreen', null, { root: true });
@@ -24,6 +24,14 @@ export default {
 
     async loadProducts({ dispatch, commit, state }, route) {
         // console.log(route);
+
+        if (thatRouter.currentRoute.params.which === 'trashed') {
+            route = {
+                name: 'Products',
+                params: {which: 'trashed'}
+            };
+        }
+
         if (!route) {
             route = {
                 name: 'Products',

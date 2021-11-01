@@ -37,6 +37,20 @@ export default {
     },
 
 
+
+    getPhotoCount() {
+        if (this.noData) {
+            return 0;
+        }
+        const product = this.singleProductFromServer.product;
+        const photoInfoArr = JSON.parse(product.photo_set);
+        if (!photoInfoArr) {
+            return 0;
+        }
+        return photoInfoArr.length;
+    },
+
+
     getPhotos() {
         if (this.noData) {
             return '';
@@ -88,47 +102,10 @@ export default {
         return parametersArr.colors;
     },
 
-    /*
-    getCategories() {
-        if (this.noData) {
-            return '';
-        }
-        const parametersArr = JSON.parse(this.singleProductFromServer.product.parameters);
-        //console.log(parametersArr.categories);
-        const categoriesArr = parametersArr.categories.map(function(item) {
-            return `${item.id} ${item.name}`;
-        });
-        return categoriesArr.join(', ');
-    },
-
-    getMaterials() {
-        if (this.noData) {
-            return '';
-        }
-        const parametersArr = JSON.parse(this.singleProductFromServer.product.parameters);
-        const materialsArr = parametersArr.materials.map(function(item) {
-            return `${item.id} ${item.name}`;
-        });
-        return materialsArr.join(', ');
-    },
-
-    getColors() {
-        if (this.noData) {
-            return '';
-        }
-        const parametersArr = JSON.parse(this.singleProductFromServer.product.parameters);
-        const colorsArr = parametersArr.colors.map(function(item) {
-            return `${item.id} ${item.name}`;
-        });
-        return colorsArr.join(', ');
-    },
-    */
-
-
     getDescription() {
         if (this.noData) {
             return '';
         }
-        return this.singleProductFromServer.description.description;
+        return this.singleProductFromServer.product.description.description;
     },
 }

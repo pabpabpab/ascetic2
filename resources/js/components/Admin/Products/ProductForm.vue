@@ -110,7 +110,7 @@ import _fitTextareaHeight from './functions/fitTextareaHeight';
 import getFormattedPrice from './functions/getFormattedPrice';
 
 export default {
-    name: "ProductForm2",
+    name: "ProductForm",
     components: {FilesInput, CheckboxesList},
     props: ['action', 'saveCmd'],
     data() {

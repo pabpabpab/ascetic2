@@ -19647,7 +19647,7 @@ var routes = [{
   path: '/admin/users',
   name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/user/add',
@@ -19659,19 +19659,19 @@ var routes = [{
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
   }
 }, {
   path: '/admin/products/:which',
   name: 'Products',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(1), __webpack_require__.e(0), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/by/:categoryEntity/:slug',
   name: 'ProductsByCategory',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(1), __webpack_require__.e(0), __webpack_require__.e(16)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/product/add',
@@ -19683,7 +19683,7 @@ var routes = [{
   path: '/admin/products/one/:id',
   name: 'SingleProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(1), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
   }
 }, {
   path: '*',
@@ -22576,7 +22576,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var entity = _ref11.entity,
         itemId = _ref11.itemId,
         photoSet = _ref11.photoSet;
-    var filtered = state.filtered[entity];
+    var filtered = state.filtered[entity]; // заплатка, когда нет customized
+
+    if (filtered.length === 0) {
+      return;
+    }
+
     var itemIndex = filtered.findIndex(function (item) {
       return item.id === itemId;
     });
@@ -22602,7 +22607,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var customized = state.customized;
     var currentPageIndex = state.currentPage[entity]; // взять items той страницы где обновляется элемент
 
-    var pageItems = customized[entity][currentPageIndex]; // его индекс
+    var pageItems = customized[entity][currentPageIndex]; // заплатка, когда нет customized
+
+    if (!pageItems) {
+      return;
+    } // его индекс
+
 
     var itemIndex = pageItems.findIndex(function (item) {
       return item.id === itemId;
@@ -22621,7 +22631,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var customized = state.customized;
     var currentPageIndex = state.currentPage[entity]; // взять items той страницы где обновляется элемент
 
-    var pageItems = customized[entity][currentPageIndex]; // его индекс
+    var pageItems = customized[entity][currentPageIndex]; // заплатка, когда нет customized
+
+    if (!pageItems) {
+      return;
+    } // его индекс
+
 
     var itemIndex = pageItems.findIndex(function (el) {
       return el.id === item.id;
@@ -23079,13 +23094,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _functions_productValidation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/productValidation */ "./resources/js/store/products_js/functions/productValidation.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../router */ "./resources/js/router/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
- // import thatRouter from "../../router";
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   loadSingleProduct: function loadSingleProduct(_ref, productId) {
@@ -23096,7 +23112,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
-      console.log(data);
+      //console.log(data);
       commit('setSingleProductFromServer', data);
       commit('setPhotoSeoData', data.photoSeo);
       dispatch('hideWaitingScreen', null, {
@@ -23137,6 +23153,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               dispatch = _ref3.dispatch, commit = _ref3.commit, state = _ref3.state;
 
               // console.log(route);
+              if (_router__WEBPACK_IMPORTED_MODULE_2__["default"].currentRoute.params.which === 'trashed') {
+                route = {
+                  name: 'Products',
+                  params: {
+                    which: 'trashed'
+                  }
+                };
+              }
+
               if (!route) {
                 route = {
                   name: 'Products',
@@ -23188,7 +23213,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
               });
 
-            case 5:
+            case 6:
             case "end":
               return _context2.stop();
           }
@@ -23303,6 +23328,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../router */ "./resources/js/router/index.js");
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   deleteProduct: function deleteProduct(_ref, productId) {
     var dispatch = _ref.dispatch,
@@ -23326,7 +23353,17 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (data.deleteSuccess === true) {
-        dispatch('loadProducts');
+        if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name === 'SingleProduct') {
+          _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+            name: 'Products',
+            params: {
+              which: 'trashed'
+            }
+          });
+        } else {
+          dispatch('loadProducts');
+        }
+
         var txt = "\u0422\u043E\u0432\u0430\u0440 \xAB".concat(data.product.name, "\xBB \u0443\u0434\u0430\u043B\u0435\u043D.");
         dispatch('showAbsoluteFlashMessage', {
           text: txt,

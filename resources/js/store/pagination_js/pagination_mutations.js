@@ -125,6 +125,12 @@ export default {
     //===================update photoSet of item in filtered==================
     updatePhotosetOfItemInFiltered: (state, { entity, itemId, photoSet }) => {
         const filtered = state.filtered[entity];
+
+        // заплатка, когда нет customized
+        if (filtered.length === 0) {
+            return;
+        }
+
         const itemIndex = filtered.findIndex(item => item.id === itemId);
         filtered[itemIndex].photo_set = photoSet;
         state.filtered[entity] = [ ...filtered ];
@@ -145,6 +151,12 @@ export default {
 
         // взять items той страницы где обновляется элемент
         const pageItems = customized[entity][currentPageIndex];
+
+        // заплатка, когда нет customized
+        if (!pageItems) {
+            return;
+        }
+
         // его индекс
         const itemIndex = pageItems.findIndex(item => item.id === itemId);
         // обновить элемент
@@ -158,11 +170,18 @@ export default {
 
     //===================update item in customized==================
     updateItemInCustomized: (state, { entity, item }) => {
+
         const customized = state.customized;
         const currentPageIndex = state.currentPage[entity];
 
         // взять items той страницы где обновляется элемент
         const pageItems = customized[entity][currentPageIndex];
+
+        // заплатка, когда нет customized
+        if (!pageItems) {
+            return;
+        }
+
         // его индекс
         const itemIndex = pageItems.findIndex(el => el.id === item.id);
         // обновить элемент

@@ -96,7 +96,7 @@ var render = function() {
     _c(
       "span",
       {
-        staticClass: "context_menu_icon__user",
+        staticClass: "context_menu__icon__user",
         on: {
           mouseover: function($event) {
             return _vm.showContextMenu({

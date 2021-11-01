@@ -1,3 +1,5 @@
+import thatRouter from "../../router";
+
 export default {
 
     deleteProduct({ dispatch, commit, state }, productId) {
@@ -12,9 +14,16 @@ export default {
                 }
 
                 if (data.deleteSuccess === true) {
-                    dispatch('loadProducts');
+
+                    if (thatRouter.currentRoute.name === 'SingleProduct') {
+                        thatRouter.push({ name: 'Products', params: {which: 'trashed'}});
+                    } else {
+                        dispatch('loadProducts');
+                    }
+
                     const txt = `Товар «${data.product.name}» удален.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1.2}, { root: true });
+
                 } else {
                     const txt = 'неудачная попытка удаления';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });

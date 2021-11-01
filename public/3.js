@@ -277,7 +277,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ProductForm2",
+  name: "ProductForm",
   components: {
     FilesInput: _FilesInput__WEBPACK_IMPORTED_MODULE_1__["default"],
     CheckboxesList: _CheckboxesList__WEBPACK_IMPORTED_MODULE_2__["default"]
