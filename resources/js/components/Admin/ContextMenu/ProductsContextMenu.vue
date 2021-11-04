@@ -51,17 +51,34 @@ export default {
         ]),
         ...mapGetters('products', [
             'seoData',
+            'singleProductFromServer',
         ]),
         isTrashedProduct() {
             return Boolean(this.product.deleted_at);
         },
         hasSeoData() {
+            return this.hasSeoData1 || this.hasSeoData2;
+        },
+        hasSeoData1() {
             const item = this.seoData.find(item => item.product_id === this.product.id);
             if (!item) {
                 return false;
             }
             return Boolean(item.page_title) || Boolean(item.page_description);
-        }
+        },
+        hasSeoData2() {
+            if (this.$route.name !== 'SingleProduct') {
+                return false;
+            }
+            const singleProductSeo = this.singleProductFromServer.product.seo_text;
+            if (!singleProductSeo) {
+                return false;
+            }
+            if (singleProductSeo.product_id !== this.product.id) {
+                return false;
+            }
+            return Boolean(singleProductSeo.page_title) || Boolean(singleProductSeo.page_description);
+        },
     },
     methods: {
         ...mapActions('products', [

@@ -98,7 +98,6 @@ export default {
             //console.log(data);
             dispatch('closeContextMenu', null, { root: true });
             dispatch('showWaitingScreen', null, { root: true });
-            // document.body.style.cssText='overflow:hidden;';
             commit('clearSeoData', entity);
             dispatch('loadSeoData', {entity, data}).then(() => {
                 dispatch('hideWaitingScreen', null, {root: true});
@@ -171,7 +170,6 @@ export default {
 
 
         closeSeoManager({ commit }) {
-            // document.body.style.cssText='overflow:auto;';
             commit('setShowSeoManager', false);
         },
 

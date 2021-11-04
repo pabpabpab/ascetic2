@@ -21,17 +21,29 @@
             &#8942;
         </span>
 
+        <a v-if="$route.params.which !== 'trashed'"
+            @click.prevent="showProductQuickViewManager(product.id)"
+            href='#'
+            class="product_item__quick_view_link">
+            Быстрый просмотр
+        </a>
 
-        <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }">
+        <template v-if="$route.params.which !== 'trashed'">
+            <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }">
+                <div ref="mainPhotoDiv"
+                     @mousemove="changeMainPhoto($event)"
+                     @mouseout="setFirstMainPhoto()"
+                     v-html="getMainPhoto">
+                </div>
+            </router-link>
+        </template>
+        <template v-else>
             <div ref="mainPhotoDiv"
-                 @mousemove="changeMainPhoto($event)"
-                 @mouseout="setFirstMainPhoto()"
-                 v-html="getMainPhoto">
+                @mousemove="changeMainPhoto($event)"
+                @mouseout="setFirstMainPhoto()"
+                v-html="getMainPhoto">
             </div>
-        </router-link>
-
-
-
+        </template>
 
         <div class="product_item__photo_indicator">
             <span v-for="n in numberOfPhotos" :key="n"
@@ -43,10 +55,13 @@
             </span>
         </div>
 
-        <div class="product_item__name">
-            {{ product.name }}
+        <div class="product_item__name" :style="{ cursor: cursorType }">
+            <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }"
+                class="product_item__name__link">
+                {{ product.name }}
+            </router-link>
         </div>
-        <div class="product_item__price">
+        <div class="product_item__price" :style="{ cursor: cursorType }">
             {{ getPrice }}
         </div>
         <div @mouseover="changeMainPhotoBySmallPhoto($event)" @mouseout="setFirstMainPhoto()"
@@ -91,6 +106,7 @@ export default {
         ]),
         ...mapGetters('products', [
             'showProductPhotoManager',
+            'sortingMode',
         ]),
 
         ...computedForProductItem,
@@ -115,6 +131,14 @@ export default {
                 'draggableProduct': this.isDragging(this.index) && this.entity === 'Product',
             };
         },
+
+        defaultSorting() {
+            return this.sortingMode === 'position';
+        },
+
+        cursorType() {
+            return this.defaultSorting ? 'move' : 'default';
+        },
     },
 
 
@@ -125,6 +149,9 @@ export default {
         ...mapActions('dragAndDropByXY', [
             'myDragStart',
             'myDragStop',
+        ]),
+        ...mapActions('products', [
+            'showProductQuickViewManager',
         ]),
 
         changeMainPhoto(event) {

@@ -133,5 +133,8 @@ export default {
     setShowProductPhotoManager: (state, value) => {
         state.showProductPhotoManager = value;
     },
+    setShowProductQuickViewManager: (state, value) => {
+        state.showProductQuickViewManager = value;
+    },
 
 };

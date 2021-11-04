@@ -36,8 +36,6 @@ export default {
                     class="${cssClass}" />`;
     },
 
-
-
     getPhotoCount() {
         if (this.noData) {
             return 0;

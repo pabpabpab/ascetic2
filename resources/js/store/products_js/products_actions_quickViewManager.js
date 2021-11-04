@@ -1,17 +1,16 @@
 export default {
 
-    showProductEditManager({ dispatch, commit }, productId) {
-        dispatch('closeContextMenu', null, { root: true });
+    showProductQuickViewManager({ dispatch, commit }, productId) {
         dispatch('showWaitingScreen', null, { root: true });
         commit('setSingleProductFromServer', {});
         dispatch('loadSingleProduct', productId).then(() => {
             dispatch('hideWaitingScreen', null, { root: true });
-            commit('setShowProductEditManager', true);
+            commit('setShowProductQuickViewManager', true);
         });
 
     },
 
-    closeProductEditManager({ commit }) {
-        commit('setShowProductEditManager', false);
+    closeProductQuickViewManager({ commit }) {
+        commit('setShowProductQuickViewManager', false);
     },
 }

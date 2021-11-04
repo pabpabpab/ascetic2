@@ -1,10 +1,10 @@
-.single_product__content_block
+.single_product_page__content_wrapper
     min-width: 95%
     width: 95%
     padding: 0
     margin: 0 auto
 
-.single_product__first_wrapper
+.single_product__content
     display: flex
     justify-content: flex-start
     flex-direction: row
@@ -22,7 +22,7 @@
     -moz-user-select: none
     -ms-user-select: none
 
-
+$big_photo_width: 700px
 $big_photo_height: 450px
 $small_photo_width: 100px
 
@@ -37,7 +37,6 @@ $small_photo_width: 100px
     position: absolute
     left: 0
     background-color: rgba(255, 255, 255, 0.7)
-    //border: 1px solid #333
     width: $small_photo_width
     height: 30px
     cursor: pointer
@@ -58,7 +57,7 @@ $small_photo_width: 100px
         top: 10px
         width: 15px
         height: 15px
-        border: solid #808088
+        border: solid #707078
         border-width: 3px 3px 0 0
         transform: rotate(-45deg)
 .single_product__small_photos__scroll_button_bottom__content
@@ -70,7 +69,7 @@ $small_photo_width: 100px
         top: 0
         width: 15px
         height: 15px
-        border: solid #808088
+        border: solid #707078
         border-width: 0 3px 3px 0
         transform: rotate(45deg)
 
@@ -78,13 +77,12 @@ $small_photo_width: 100px
 .single_product__small_photos
     display: flex
     flex-direction: column
-    //border: 1px solid #888
     height: $big_photo_height
     overflow: hidden
-    scroll-behavior: smooth
+    //scroll-behavior: smooth
 
 .single_product__big_photo_wrapper
-    width: 700px
+    width: $big_photo_width
     height: $big_photo_height
     padding: 0
     overflow: hidden
@@ -94,7 +92,7 @@ $small_photo_width: 100px
 .single_product__top_characteristics
     flex-grow: 10
     +font(17px, rgb(80, 75, 75), 400)
-    margin-left: 885px
+    margin-left: $big_photo_width + 185px
     padding: 30px 30px
     background-color: #fff
     box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)

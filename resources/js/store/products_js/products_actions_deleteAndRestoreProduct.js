@@ -23,6 +23,7 @@ export default {
 
                     const txt = `Товар «${data.product.name}» удален.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1.2}, { root: true });
+                    commit('setShowProductQuickViewManager', false);
 
                 } else {
                     const txt = 'неудачная попытка удаления';

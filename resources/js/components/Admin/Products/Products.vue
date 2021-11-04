@@ -35,6 +35,11 @@
             <transition name="fade">
                 <seo-manager entity="product" v-if="showSeoManager && !showProductPhotoManager"></seo-manager>
             </transition>
+
+            <transition name="fade">
+                <product-quick-view-manager v-if="showProductQuickViewManager"></product-quick-view-manager>
+            </transition>
+
         </div>
 
     </div>
@@ -51,7 +56,7 @@ import ProductPhotoManager from "./ProductPhotoManager";
 import SeoManager from "./../Blocks/SeoManager";
 import ProductEditManager from "./ProductEditManager";
 import SortingModes from "./SortingModes";
-
+import ProductQuickViewManager from "./ProductQuickViewManager";
 
 export default {
     name: "Products",
@@ -66,6 +71,7 @@ export default {
         ProductPhotoManager,
         SeoManager,
         ProductEditManager,
+        ProductQuickViewManager,
     },
     computed: {
         ...mapGetters('products', [
@@ -73,6 +79,7 @@ export default {
             'showProductsFilters',
             'showProductEditManager',
             'showProductPhotoManager',
+            'showProductQuickViewManager',
         ]),
         ...mapGetters('seoManager', [
             'showSeoManager',

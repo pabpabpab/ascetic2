@@ -13,6 +13,7 @@ export default {
 
     showProductEditManager: (state) => state.showProductEditManager,
     showProductPhotoManager: (state) => state.showProductPhotoManager,
+    showProductQuickViewManager: (state) => state.showProductQuickViewManager,
 
 
     productsMaxPrice: (state) => state.products.reduce(

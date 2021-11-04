@@ -22802,8 +22802,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./products_js/products_actions_moveProduct */ "./resources/js/store/products_js/products_actions_moveProduct.js");
 /* harmony import */ var _products_js_products_actions_editManager__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./products_js/products_actions_editManager */ "./resources/js/store/products_js/products_actions_editManager.js");
 /* harmony import */ var _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./products_js/products_actions_photoManagment */ "./resources/js/store/products_js/products_actions_photoManagment.js");
-/* harmony import */ var _products_js_products_actions_search__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./products_js/products_actions_search */ "./resources/js/store/products_js/products_actions_search.js");
-/* harmony import */ var _products_js_products_actions_sort__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./products_js/products_actions_sort */ "./resources/js/store/products_js/products_actions_sort.js");
+/* harmony import */ var _products_js_products_actions_quickViewManager__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./products_js/products_actions_quickViewManager */ "./resources/js/store/products_js/products_actions_quickViewManager.js");
+/* harmony import */ var _products_js_products_actions_search__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./products_js/products_actions_search */ "./resources/js/store/products_js/products_actions_search.js");
+/* harmony import */ var _products_js_products_actions_sort__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./products_js/products_actions_sort */ "./resources/js/store/products_js/products_actions_sort.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -22822,12 +22823,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   namespaced: true,
   state: _products_js_products_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _products_js_products_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _products_js_products_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_7__["default"]), _products_js_products_actions_editManager__WEBPACK_IMPORTED_MODULE_8__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_9__["default"]), _products_js_products_actions_search__WEBPACK_IMPORTED_MODULE_10__["default"]), _products_js_products_actions_sort__WEBPACK_IMPORTED_MODULE_11__["default"])
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _products_js_products_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _products_js_products_actions_saveProduct__WEBPACK_IMPORTED_MODULE_4__["default"]), _products_js_products_actions_preDeleteProduct__WEBPACK_IMPORTED_MODULE_5__["default"]), _products_js_products_actions_deleteAndRestoreProduct__WEBPACK_IMPORTED_MODULE_6__["default"]), _products_js_products_actions_moveProduct__WEBPACK_IMPORTED_MODULE_7__["default"]), _products_js_products_actions_editManager__WEBPACK_IMPORTED_MODULE_8__["default"]), _products_js_products_actions_photoManagment__WEBPACK_IMPORTED_MODULE_9__["default"]), _products_js_products_actions_quickViewManager__WEBPACK_IMPORTED_MODULE_10__["default"]), _products_js_products_actions_search__WEBPACK_IMPORTED_MODULE_11__["default"]), _products_js_products_actions_sort__WEBPACK_IMPORTED_MODULE_12__["default"])
 });
 
 /***/ }),
@@ -23151,8 +23153,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context2.prev = _context2.next) {
             case 0:
               dispatch = _ref3.dispatch, commit = _ref3.commit, state = _ref3.state;
-
               // console.log(route);
+              commit('setShowProductQuickViewManager', false);
+
               if (_router__WEBPACK_IMPORTED_MODULE_2__["default"].currentRoute.params.which === 'trashed') {
                 route = {
                   name: 'Products',
@@ -23213,7 +23216,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
               });
 
-            case 6:
+            case 7:
             case "end":
               return _context2.stop();
           }
@@ -23371,6 +23374,7 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           root: true
         });
+        commit('setShowProductQuickViewManager', false);
       } else {
         var _txt = 'неудачная попытка удаления';
         dispatch('showAbsoluteFlashMessage', {
@@ -23475,17 +23479,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   showProductEditManager: function showProductEditManager(_ref, productId) {
     var dispatch = _ref.dispatch,
-        commit = _ref.commit,
-        getters = _ref.getters,
-        state = _ref.state;
-    //console.log(data);
+        commit = _ref.commit;
     dispatch('closeContextMenu', null, {
       root: true
     });
     dispatch('showWaitingScreen', null, {
       root: true
     });
-    document.body.style.cssText = 'overflow:hidden;';
     commit('setSingleProductFromServer', {});
     dispatch('loadSingleProduct', productId).then(function () {
       dispatch('hideWaitingScreen', null, {
@@ -23496,7 +23496,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   closeProductEditManager: function closeProductEditManager(_ref2) {
     var commit = _ref2.commit;
-    document.body.style.cssText = 'overflow:auto;';
     commit('setShowProductEditManager', false);
   }
 });
@@ -23599,7 +23598,6 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('showWaitingScreen', null, {
       root: true
     });
-    document.body.style.cssText = 'overflow:hidden;';
     dispatch('loadSingleProduct', product.id).then(function () {
       var product = state.singleProductFromServer;
 
@@ -23613,7 +23611,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   closeProductPhotoManager: function closeProductPhotoManager(_ref2) {
     var commit = _ref2.commit;
-    document.body.style.cssText = 'overflow:auto;';
     commit('setShowProductPhotoManager', false);
   },
   deletePhoto: function deletePhoto(_ref3, _ref4) {
@@ -23956,6 +23953,38 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('showConfirmationDialog', settings, {
       root: true
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/products_js/products_actions_quickViewManager.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/store/products_js/products_actions_quickViewManager.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  showProductQuickViewManager: function showProductQuickViewManager(_ref, productId) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit;
+    dispatch('showWaitingScreen', null, {
+      root: true
+    });
+    commit('setSingleProductFromServer', {});
+    dispatch('loadSingleProduct', productId).then(function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
+      commit('setShowProductQuickViewManager', true);
+    });
+  },
+  closeProductQuickViewManager: function closeProductQuickViewManager(_ref2) {
+    var commit = _ref2.commit;
+    commit('setShowProductQuickViewManager', false);
   }
 });
 
@@ -24354,6 +24383,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   showProductPhotoManager: function showProductPhotoManager(state) {
     return state.showProductPhotoManager;
   },
+  showProductQuickViewManager: function showProductQuickViewManager(state) {
+    return state.showProductQuickViewManager;
+  },
   productsMaxPrice: function productsMaxPrice(state) {
     return state.products.reduce(function (previousValue, item) {
       return Number(item.price) > previousValue ? Number(item.price) : previousValue;
@@ -24530,6 +24562,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   setShowProductPhotoManager: function setShowProductPhotoManager(state, value) {
     state.showProductPhotoManager = value;
+  },
+  setShowProductQuickViewManager: function setShowProductQuickViewManager(state, value) {
+    state.showProductQuickViewManager = value;
   }
 });
 
@@ -24594,7 +24629,8 @@ __webpack_require__.r(__webpack_exports__);
   // вида 'position' / 'priceUp' / 'timeDown'
   showProductsFilters: false,
   showProductEditManager: false,
-  showProductPhotoManager: false
+  showProductPhotoManager: false,
+  showProductQuickViewManager: false
 });
 
 /***/ }),
@@ -24736,8 +24772,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
       dispatch('showWaitingScreen', null, {
         root: true
-      }); // document.body.style.cssText='overflow:hidden;';
-
+      });
       commit('clearSeoData', entity);
       dispatch('loadSeoData', {
         entity: entity,
@@ -24834,7 +24869,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     closeSeoManager: function closeSeoManager(_ref10) {
       var commit = _ref10.commit;
-      // document.body.style.cssText='overflow:auto;';
       commit('setShowSeoManager', false);
     }
   }

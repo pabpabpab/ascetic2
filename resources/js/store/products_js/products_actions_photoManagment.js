@@ -6,7 +6,6 @@ export default {
         commit('setSingleProductFromServer', null);
         dispatch('closeContextMenu', null, { root: true });
         dispatch('showWaitingScreen', null, { root: true });
-        document.body.style.cssText='overflow:hidden;';
         dispatch('loadSingleProduct', product.id).then(() => {
             const product = state.singleProductFromServer;
             if (product) {
@@ -17,7 +16,6 @@ export default {
     },
 
     closeProductPhotoManager({ commit }) {
-        document.body.style.cssText='overflow:auto;';
         commit('setShowProductPhotoManager', false);
     },
 

@@ -24,6 +24,7 @@ export default {
 
     async loadProducts({ dispatch, commit, state }, route) {
         // console.log(route);
+        commit('setShowProductQuickViewManager', false);
 
         if (thatRouter.currentRoute.params.which === 'trashed') {
             route = {

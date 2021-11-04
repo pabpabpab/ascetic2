@@ -55,4 +55,5 @@ export default {
     showProductsFilters: false,
     showProductEditManager: false,
     showProductPhotoManager: false,
+    showProductQuickViewManager: false,
 };

@@ -1,0 +1,56 @@
+.quick_view_manager__screen
+    position: fixed
+    z-index: 10
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: rgba(0, 0, 0, 0.5)
+
+.quick_view_manager__content_wrapper
+    position: relative
+    width: 95%
+    height: 95%
+    box-sizing: border-box
+    margin: auto
+    padding: 20px 43px 20px 3px
+    background-color: #fff
+    border-top-left-radius: 20px
+    border-bottom-left-radius: 20px
+    border-bottom-right-radius: 20px
+.quick_view_manager__content
+    width: 100%
+    height: 100%
+    box-sizing: border-box
+    padding: 0 10px 0 0
+    background-color: #fff
+    overflow-y: auto
+    &::-webkit-scrollbar
+        width: 15px
+        background-color: #fff
+        padding: 0 10px
+    &::-webkit-scrollbar-thumb
+        background-color: #aaa
+        border: 4px solid #fff
+        border-radius: 10px
+
+.quick_view_manager__collapse_icon
+    position: absolute
+    top: 5px
+    right: 5px
+    width: 35px
+    height: 35px
+    padding: 0 0 3px 0
+    +font(65px, rgb(78, 110, 131), 100)
+    cursor: pointer
+    border-radius: 3px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &:hover
+        background-color: rgb(80, 80, 80)
+        color: #fff
