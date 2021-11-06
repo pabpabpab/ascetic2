@@ -2,7 +2,7 @@ import thatRouter from "../../router";
 
 export default {
 
-    deleteProduct({ dispatch, commit, state }, productId) {
+    deleteProduct({ dispatch, commit, getters, state }, productId) {
         dispatch('closeConfirmationDialog', null, { root: true });
         dispatch('deleteJson', state.url['deleteProduct'] + productId, { root: true })
             .then((data) => {
@@ -15,10 +15,17 @@ export default {
 
                 if (data.deleteSuccess === true) {
 
+                    commit('deleteItemFromProducts', productId);
+                    dispatch('setFiltered', {entity: 'products', data: getters.products}, {root: true})
+                        .then(() => {
+                            dispatch('divideIntoPages', {
+                                entity: 'products',
+                                customQuantityPerPage: 0 // этот параметр для совместимости
+                            }, {root: true});
+                        })
+
                     if (thatRouter.currentRoute.name === 'SingleProduct') {
                         thatRouter.push({ name: 'Products', params: {which: 'trashed'}});
-                    } else {
-                        dispatch('loadProducts');
                     }
 
                     const txt = `Товар «${data.product.name}» удален.`;

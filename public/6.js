@@ -159,23 +159,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
       return labelText[this.entity];
     },
-    photoSrc: function photoSrc() {
+    getHeaderPhoto: function getHeaderPhoto() {
+      var _this$localData$photo;
+
       if (this.noData) {
+        return '';
+      }
+
+      var photoNameBook = {
+        category: '',
+        product: JSON.parse(this.serverData.product.photo_set) ? JSON.parse(this.serverData.product.photo_set)[0] : '',
+        photo: (_this$localData$photo = this.localData.photoName) !== null && _this$localData$photo !== void 0 ? _this$localData$photo : ''
+      };
+      var photoName = photoNameBook[this.entity];
+
+      if (!photoName) {
         return '';
       }
 
       var folderName = "/storage/".concat(this.imgFolderPrefix).concat(this.photoSizeIndex);
       var fileNamePrefix = "".concat(this.serverData.product.id, "s").concat(this.photoSizeIndex, "-");
-      var photoNameBook = {
-        category: "",
-        product: JSON.parse(this.serverData.product.photo_set)[0],
-        photo: this.localData.photoName
-      };
-      var photoName = photoNameBook[this.entity];
-      return "".concat(folderName, "/").concat(fileNamePrefix).concat(photoName);
-    },
-    imgClass: function imgClass() {
-      return "photo__size".concat(this.photoSizeIndex);
+      return "<img alt=\"\"\n                        src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(photoName, "\"\n                        class=\"photo__size").concat(this.photoSizeIndex, " seo_manager__header__photo\" />");
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('seoManager', ['closeSeoManager', 'saveSeoData'])), {}, {
@@ -233,11 +237,7 @@ var render = function() {
         },
         [
           _vm.entity !== "category"
-            ? _c("img", {
-                staticClass: "seo_manager__header__photo",
-                class: _vm.imgClass,
-                attrs: { alt: "", src: _vm.photoSrc }
-              })
+            ? _c("p", { domProps: { innerHTML: _vm._s(_vm.getHeaderPhoto) } })
             : _vm._e(),
           _vm._v(" "),
           _c("h1", [_vm._v(_vm._s(_vm.getHeader))])

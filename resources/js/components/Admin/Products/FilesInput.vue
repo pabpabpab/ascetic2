@@ -73,6 +73,20 @@ export default {
                 return;
             }
             this.photos = [...this.$refs.photos.files];
+            if (this.photos.length > 5) {
+                const settings = {};
+                settings.confirmationRequestText = `Выбрано файлов больше чем 5,
+                это может сильно замедлить загрузку фото. Рекомендуется загружать не более чем по 5 фото.
+                Следущие фото можно будет добавить после.`;
+                settings.yesButtonText = '';
+                settings.cancelButtonText = 'Ок';
+                settings.yesAction = '';
+                settings.cancelAction = 'closeConfirmationDialog';
+                settings.yesPayload = {};
+                settings.finalRedirectRoute = '';
+                this.$store.dispatch('showConfirmationDialog', settings);
+            }
+
         },
         removePreFile(index) {
             this.photos.splice(index, 1);

@@ -47,7 +47,6 @@
     padding: 0 0 20px 0
     text-align: left
     background-color: #fff
-    //border: 1px solid rgb(202, 221, 233)
     border-radius: 5px
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
     transition: box-shadow .3s // border .3s,
@@ -58,6 +57,21 @@
         visibility: visible
     &:hover .product_item__quick_view_link
         opacity: 1
+    &__no_photo
+        +font(20px, rgb(196, 218, 239), 300)
+        font-family: 'Oswald', sans-serif
+        letter-spacing: 1px
+        background-color: rgb(247, 251, 255)
+        box-sizing: border-box
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 100%
+        height: 187px
+        border-bottom: 1px solid rgba(233, 241, 249)
+        transition: color .3s
+        &:hover
+            color: rgb(247, 251, 255)
     &__name
         +font(17px, rgb(45, 35, 35), 400)
         text-align: left

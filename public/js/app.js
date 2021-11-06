@@ -23337,6 +23337,7 @@ __webpack_require__.r(__webpack_exports__);
   deleteProduct: function deleteProduct(_ref, productId) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
+        getters = _ref.getters,
         state = _ref.state;
     dispatch('closeConfirmationDialog', null, {
       root: true
@@ -23356,6 +23357,22 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (data.deleteSuccess === true) {
+        commit('deleteItemFromProducts', productId);
+        dispatch('setFiltered', {
+          entity: 'products',
+          data: getters.products
+        }, {
+          root: true
+        }).then(function () {
+          dispatch('divideIntoPages', {
+            entity: 'products',
+            customQuantityPerPage: 0 // этот параметр для совместимости
+
+          }, {
+            root: true
+          });
+        });
+
         if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name === 'SingleProduct') {
           _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
             name: 'Products',
@@ -23363,8 +23380,6 @@ __webpack_require__.r(__webpack_exports__);
               which: 'trashed'
             }
           });
-        } else {
-          dispatch('loadProducts');
         }
 
         var txt = "\u0422\u043E\u0432\u0430\u0440 \xAB".concat(data.product.name, "\xBB \u0443\u0434\u0430\u043B\u0435\u043D.");
@@ -24444,6 +24459,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   addProductToProductsByFirst: function addProductToProductsByFirst(state, product) {
     var products = state.products;
     products.splice(0, 0, product);
+    state.products = _toConsumableArray(products);
+  },
+  deleteItemFromProducts: function deleteItemFromProducts(state, productId) {
+    if (state.products.length === 0) {
+      return;
+    }
+
+    var products = state.products;
+    var index = products.findIndex(function (item) {
+      return item.id === productId;
+    });
+
+    if (index === -1) {
+      return;
+    }
+
+    products.splice(index, 1);
     state.products = _toConsumableArray(products);
   },
   // при открытии списка продуктов

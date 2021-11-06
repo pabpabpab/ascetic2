@@ -1,9 +1,14 @@
 export default  {
 
     getMainPhoto() {
+        if (!this.product.photo_set) {
+            return '';
+        }
         const photoInfoArr = JSON.parse(this.product.photo_set);
-        if (!photoInfoArr)
-            return;
+        if (!photoInfoArr) {
+            return '';
+        }
+
         const folderName = `/storage/${this.imgFolderPrefix}3`;
         const fileNamePrefix = `${this.product.id}s3-`;
         const imgClass = `photo__size3`;
@@ -15,16 +20,17 @@ export default  {
                     class="${imgClass}" />`;
     },
 
-    getPrice() {
-        const parametersArr = JSON.parse(this.product.parameters);
-        const price = parametersArr.price ?? '';
-        return price ? price + ' ₽' : '';
-    },
 
     getPhotos() {
+        if (!this.product.photo_set) {
+            return '';
+        }
+
         const photoInfoArr = JSON.parse(this.product.photo_set);
-        if (!photoInfoArr)
-            return;
+        if (!photoInfoArr) {
+            return '';
+        }
+
         const folderName = `/storage/${this.imgFolderPrefix}3`;
         const fileNamePrefix = `${this.product.id}s3-`;
 
@@ -34,6 +40,13 @@ export default  {
         return photoArr.join('');
     },
 
+
+
+    getPrice() {
+        const parametersArr = JSON.parse(this.product.parameters);
+        const price = parametersArr.price ?? '';
+        return price ? price + ' ₽' : '';
+    },
 
     getCategories() {
         const parametersArr = JSON.parse(this.product.parameters);

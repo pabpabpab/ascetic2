@@ -23,12 +23,12 @@ export default {
         }
         const product = this.singleProductFromServer.product;
         const photoInfoArr = JSON.parse(product.photo_set);
-        if (!photoInfoArr)
-            return;
+        if (!photoInfoArr) {
+            return '';
+        }
         const folderName = `/storage/${this.imgFolderPrefix}5`;
         const fileNamePrefix = `${product.id}s5-`;
         const cssClass = `photo__size${this.mainPhotoSizeIndex}`;
-
         const mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
 
         return `<img alt=""
@@ -36,7 +36,7 @@ export default {
                     class="${cssClass}" />`;
     },
 
-    getPhotoCount() {
+    numberOfPhotos() {
         if (this.noData) {
             return 0;
         }
@@ -55,8 +55,9 @@ export default {
         }
         const product = this.singleProductFromServer.product;
         const photoInfoArr = JSON.parse(product.photo_set);
-        if (!photoInfoArr)
-            return;
+        if (!photoInfoArr) {
+            return '';
+        }
         const folderName = `/storage/${this.imgFolderPrefix}2`;
         const fileNamePrefix = `${product.id}s2-`;
 

@@ -1,11 +1,11 @@
 <template>
     <div class="single_product__content">
 
-        <div class="single_product__all_photo_wrapper">
+        <div v-if="numberOfPhotos > 0" class="single_product__all_photo_wrapper">
             <div class="single_product__small_photos__wrapper">
 
-                <div v-show="notScrolledAllTheWayToTheTop() && getPhotoCount > 5"
-                     @click="scrollSmallPhoto(400, 'down')"
+                <div v-show="notScrolledAllTheWayToTheTop() && numberOfPhotos > 5"
+                     @click="scrollSmallPhoto(200, 'down')"
                      class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top">
                         <div class="single_product__small_photos__scroll_button_top__content">
                         </div>
@@ -17,8 +17,8 @@
                      v-html="getPhotos">
                 </div>
 
-                <div v-if="getPhotoCount > 5 && (notScrolledAllTheWayToTheBottom() || indexOfMainPhoto === 0)"
-                     @click="scrollSmallPhoto(400, 'up')"
+                <div v-if="numberOfPhotos > 5 && (notScrolledAllTheWayToTheBottom() || indexOfMainPhoto === 0)"
+                     @click="scrollSmallPhoto(200, 'up')"
                      class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom">
                         <div class="single_product__small_photos__scroll_button_bottom__content">
                         </div>
@@ -33,7 +33,8 @@
             </div>
         </div>
 
-        <div class="single_product__top_characteristics">
+        <div class="single_product__top_characteristics"
+             :class="{ single_product__top_characteristics__margin_left: numberOfPhotos > 0 }">
             <h1 class="single_product__h1">
                 {{ getHeader }}
             </h1>
@@ -153,7 +154,6 @@ export default {
 
         scrollSmallPhoto(distance, direction) {
             const iterationTime = Math.round(400/distance); // время в милисекундах на 1px, 1000(400) - одна секунды
-            //console.log(iterationTime);
             const coveredDistance = 0; // пройденное расстояние
             this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction)
         },

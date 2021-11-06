@@ -18,8 +18,22 @@
     justify-content: space-between
     border-top: 1px solid rgb(206, 217, 240)
     background-color: rgb(255, 255, 255)
+    cursor: move
+    //transition: background-color .2s
+    &:hover
+        background-color: rgba(237, 246, 255, 0.6)
     &__name
         flex-grow: 10
+
+.draggableCategory
+    position: absolute
+    z-index: 300
+    min-width: 450px
+    border: 0
+    //background-color: rgba(244, 249, 252, 0.7)
+    box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
+    // pointer-events: none
+
 
 .category_item__name__link
     text-align: left
@@ -35,16 +49,6 @@
     border-radius: 5px
     &:hover
         background-color: rgb(229, 239, 245)
-
-
-.draggableCategory
-    position: absolute
-    z-index: 300
-    min-width: 450px
-    border: 0
-    background-color: rgba(244, 249, 252, 0.7)
-    box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
-    // pointer-events: none
 
 
 .category__button_add

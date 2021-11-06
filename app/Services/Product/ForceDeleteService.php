@@ -27,7 +27,10 @@ class ForceDeleteService
 
         $productName = $product->name;
 
+        // $photoNameArr для удаления файлов фото
+        [$photoNameArr, $photoAltArr] = $this->_getPhotoNamesAndAltsAsArrays($product);
 
+        /*
         try {
             [$photoNameArr, $photoAltArr] = $this->_getPhotoNamesAndAltsAsArrays($product);
             foreach ($photoNameArr as $photoName) {
@@ -41,7 +44,7 @@ class ForceDeleteService
                 'DeletePhotoException occurs.'
             );
         }
-
+        */
 
         DB::beginTransaction();
 
@@ -63,6 +66,10 @@ class ForceDeleteService
                 ->where('product_id', $productId)
                 ->delete();
 
+            DB::table('products_categories')
+                ->where('product_id', $productId)
+                ->delete();
+
             DB::table('products_materials')
                 ->where('product_id', $productId)
                 ->delete();
@@ -73,6 +80,9 @@ class ForceDeleteService
 
             if ($product->forceDelete()) {
                 DB::commit();
+                foreach ($photoNameArr as $photoName) {
+                    $this->_deletePhotoFromDisk($productId, $photoName);
+                }
                 return [
                     'deleteSuccess' => true,
                     'productName' => $productName

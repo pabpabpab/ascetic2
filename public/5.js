@@ -343,15 +343,6 @@ import delete_icon from "./../../../../assets/delete_icon.png"
   /*
   data() {
       return {
-          draggableIndex: -1,
-          //dragLeft: 0,
-          dragTop: 0,
-      };
-  },*/
-
-  /*
-  data() {
-      return {
           edit_icon: edit_icon,
           delete_icon: delete_icon,
           arrow_up_icon: arrow_up_icon,

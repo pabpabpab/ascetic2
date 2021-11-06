@@ -26,7 +26,7 @@
                 name: 'ProductsByCategory',
                 params: {
                     categoryEntity: singularEntityName,
-                    slug: category.slug,
+                    slug: category.slug
                 }
             }" class="category_item__name__link">
                 {{ category.name }}
@@ -38,7 +38,7 @@
                 name: 'ProductsByCategory',
                 params: {
                     categoryEntity: singularEntityName,
-                    slug: category.slug,
+                    slug: category.slug
                 }
             }" class="category_item__products_count__link">
             {{category.products_count}}
@@ -60,21 +60,13 @@ export default {
     /*
     data() {
         return {
-            draggableIndex: -1,
-            //dragLeft: 0,
-            dragTop: 0,
-        };
-    },*/
-    /*
-    data() {
-        return {
             edit_icon: edit_icon,
             delete_icon: delete_icon,
             arrow_up_icon: arrow_up_icon,
             arrow_down_icon: arrow_down_icon,
         };
     },
-*/
+    */
     computed: {
         ...mapGetters('categories', [
             'categories',

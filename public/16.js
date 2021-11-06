@@ -288,6 +288,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -300,6 +313,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductPhotoManager', 'sortingMode'])), _someComputed_computedForProductItem__WEBPACK_IMPORTED_MODULE_1__["default"]), {}, {
     numberOfPhotos: function numberOfPhotos() {
+      if (!this.product.photo_set) {
+        return 0;
+      }
+
       var photoInfoArr = JSON.parse(this.product.photo_set);
 
       if (!photoInfoArr) {
@@ -324,11 +341,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.sortingMode === 'position';
     },
     cursorType: function cursorType() {
-      return this.defaultSorting ? 'move' : 'default';
+      return this.defaultSorting && this.$route.params.which !== 'trashed' ? 'move' : 'default';
     }
   }),
   methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('dragAndDropByXY', ['myDragStart', 'myDragStop'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['showProductQuickViewManager'])), {}, {
     changeMainPhoto: function changeMainPhoto(event) {
+      if (this.numberOfPhotos < 2) {
+        return;
+      }
+
       if (this.xPerPhoto === 0) {
         return;
       }
@@ -343,6 +364,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.indexOfMainPhoto = Math.ceil(xWay / this.xPerPhoto) - 1;
     },
     changeMainPhotoBySmallPhoto: function changeMainPhotoBySmallPhoto(event) {
+      if (this.numberOfPhotos < 2) {
+        return;
+      }
+
       if (event.target.className === 'photo__size1') {
         this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
       }
@@ -1426,84 +1451,110 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.$route.params.which !== "trashed"
+      _vm.numberOfPhotos > 0
         ? [
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: { name: "SingleProduct", params: { id: _vm.product.id } }
-                }
-              },
-              [
-                _c("div", {
-                  ref: "mainPhotoDiv",
-                  domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
-                  on: {
-                    mousemove: function($event) {
-                      return _vm.changeMainPhoto($event)
+            _vm.$route.params.which !== "trashed"
+              ? [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          name: "SingleProduct",
+                          params: { id: _vm.product.id }
+                        }
+                      }
                     },
-                    mouseout: function($event) {
-                      return _vm.setFirstMainPhoto()
+                    [
+                      _c("div", {
+                        ref: "mainPhotoDiv",
+                        domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
+                        on: {
+                          mousemove: function($event) {
+                            return _vm.changeMainPhoto($event)
+                          },
+                          mouseout: function($event) {
+                            return _vm.setFirstMainPhoto()
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ]
+              : [
+                  _c("div", {
+                    ref: "mainPhotoDiv",
+                    domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
+                    on: {
+                      mousemove: function($event) {
+                        return _vm.changeMainPhoto($event)
+                      },
+                      mouseout: function($event) {
+                        return _vm.setFirstMainPhoto()
+                      }
                     }
-                  }
-                })
-              ]
-            )
+                  })
+                ]
           ]
         : [
-            _c("div", {
-              ref: "mainPhotoDiv",
-              domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
-              on: {
-                mousemove: function($event) {
-                  return _vm.changeMainPhoto($event)
-                },
-                mouseout: function($event) {
-                  return _vm.setFirstMainPhoto()
-                }
-              }
-            })
+            _c(
+              "div",
+              { ref: "mainPhotoDiv", staticClass: "product_item__no_photo" },
+              [_vm._v("\n            НЕТ ФОТО\n        ")]
+            )
           ],
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "product_item__photo_indicator" },
-        _vm._l(_vm.numberOfPhotos, function(n) {
-          return _c("span", {
-            key: n,
-            staticClass: "product_item__photo_indicator_item",
-            class: {
-              product_item__photo_indicator_inactive:
-                _vm.indexOfMainPhoto + 1 !== n,
-              product_item__photo_indicator_active:
-                _vm.indexOfMainPhoto + 1 === n
-            }
-          })
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "product_item__name",
-          style: { cursor: _vm.cursorType }
-        },
-        [
-          _c(
-            "router-link",
-            {
-              staticClass: "product_item__name__link",
-              attrs: {
-                to: { name: "SingleProduct", params: { id: _vm.product.id } }
-              }
-            },
-            [_vm._v("\n            " + _vm._s(_vm.product.name) + "\n        ")]
+      _vm.numberOfPhotos > 1
+        ? _c(
+            "div",
+            { staticClass: "product_item__photo_indicator" },
+            _vm._l(_vm.numberOfPhotos, function(n) {
+              return _c("span", {
+                key: n,
+                staticClass: "product_item__photo_indicator_item",
+                class: {
+                  product_item__photo_indicator_inactive:
+                    _vm.indexOfMainPhoto + 1 !== n,
+                  product_item__photo_indicator_active:
+                    _vm.indexOfMainPhoto + 1 === n
+                }
+              })
+            }),
+            0
           )
-        ],
-        1
-      ),
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.$route.params.which !== "trashed"
+        ? _c(
+            "div",
+            {
+              staticClass: "product_item__name",
+              style: { cursor: _vm.cursorType }
+            },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "product_item__name__link",
+                  attrs: {
+                    to: {
+                      name: "SingleProduct",
+                      params: { id: _vm.product.id }
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n            " + _vm._s(_vm.product.name) + "\n        "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        : _c("div", { staticClass: "product_item__name" }, [
+            _vm._v("\n        " + _vm._s(_vm.product.name) + "\n    ")
+          ]),
       _vm._v(" "),
       _c(
         "div",
@@ -2919,13 +2970,39 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   getMainPhoto: function getMainPhoto() {
+    if (!this.product.photo_set) {
+      return '';
+    }
+
     var photoInfoArr = JSON.parse(this.product.photo_set);
-    if (!photoInfoArr) return;
+
+    if (!photoInfoArr) {
+      return '';
+    }
+
     var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
     var fileNamePrefix = "".concat(this.product.id, "s3-");
     var imgClass = "photo__size3";
     var mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
     return "<img alt=\"\"\n                    src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(mainPhotoName, "\"\n                    class=\"").concat(imgClass, "\" />");
+  },
+  getPhotos: function getPhotos() {
+    if (!this.product.photo_set) {
+      return '';
+    }
+
+    var photoInfoArr = JSON.parse(this.product.photo_set);
+
+    if (!photoInfoArr) {
+      return '';
+    }
+
+    var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
+    var fileNamePrefix = "".concat(this.product.id, "s3-");
+    var photoArr = photoInfoArr.map(function (timeName, index) {
+      return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size1\" />");
+    });
+    return photoArr.join('');
   },
   getPrice: function getPrice() {
     var _parametersArr$price;
@@ -2933,16 +3010,6 @@ __webpack_require__.r(__webpack_exports__);
     var parametersArr = JSON.parse(this.product.parameters);
     var price = (_parametersArr$price = parametersArr.price) !== null && _parametersArr$price !== void 0 ? _parametersArr$price : '';
     return price ? price + ' ₽' : '';
-  },
-  getPhotos: function getPhotos() {
-    var photoInfoArr = JSON.parse(this.product.photo_set);
-    if (!photoInfoArr) return;
-    var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
-    var fileNamePrefix = "".concat(this.product.id, "s3-");
-    var photoArr = photoInfoArr.map(function (timeName, index) {
-      return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size1\" />");
-    });
-    return photoArr.join('');
   },
   getCategories: function getCategories() {
     var parametersArr = JSON.parse(this.product.parameters);

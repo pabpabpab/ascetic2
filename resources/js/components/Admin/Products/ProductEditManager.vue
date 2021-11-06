@@ -4,14 +4,13 @@
         <div class="edit_manager__content_wrapper">
 
             <div class="edit_manager__header">
-                <img  alt="" :src="photoSrc" :class="imgClass" class="edit_manager__header__photo"/>
+                <p v-html="getHeaderPhoto"></p>
                 <h1>{{ getHeader }}</h1>
             </div>
 
             <div class="edit_manager__content pdt20 pdb20">
                 <product-form action="edit" :saveCmd="saveCmd"></product-form>
             </div>
-
 
             <div class="edit_manager__button_panel">
                 <button class="edit_manager__save_button"
@@ -74,20 +73,26 @@ export default {
             return `Товар «${productName}» ${productPrice} ₽`;
         },
 
-        photoSrc() {
+        getHeaderPhoto() {
             if (this.noData) {
                 return '';
             }
+            if (!this.singleProductFromServer.product.photo_set) {
+                return '';
+            }
 
+            const photoInfoArr = JSON.parse(this.singleProductFromServer.product.photo_set);
+            if (!photoInfoArr) {
+                return '';
+            }
+
+            const photoName = photoInfoArr[0];
             const folderName = `/storage/${this.imgFolderPrefix}${this.photoSizeIndex}`;
             const fileNamePrefix = `${this.singleProductFromServer.product.id}s${this.photoSizeIndex}-`;
-            const photoName = JSON.parse(this.singleProductFromServer.product.photo_set)[0];
 
-            return `${folderName}/${fileNamePrefix}${photoName}`;
-        },
-
-        imgClass() {
-            return `photo__size${this.photoSizeIndex}`;
+            return `<img alt=""
+                        src="${folderName}/${fileNamePrefix}${photoName}"
+                        class="photo__size${this.photoSizeIndex} edit_manager__header__photo" />`;
         },
 
     },

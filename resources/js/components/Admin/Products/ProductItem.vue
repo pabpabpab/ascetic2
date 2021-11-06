@@ -28,24 +28,31 @@
             Быстрый просмотр
         </a>
 
-        <template v-if="$route.params.which !== 'trashed'">
-            <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }">
+        <template v-if="numberOfPhotos > 0">
+            <template v-if="$route.params.which !== 'trashed'">
+                <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }">
+                    <div ref="mainPhotoDiv"
+                         @mousemove="changeMainPhoto($event)"
+                         @mouseout="setFirstMainPhoto()"
+                         v-html="getMainPhoto">
+                    </div>
+                </router-link>
+            </template>
+            <template v-else>
                 <div ref="mainPhotoDiv"
                      @mousemove="changeMainPhoto($event)"
                      @mouseout="setFirstMainPhoto()"
                      v-html="getMainPhoto">
                 </div>
-            </router-link>
+            </template>
         </template>
         <template v-else>
-            <div ref="mainPhotoDiv"
-                @mousemove="changeMainPhoto($event)"
-                @mouseout="setFirstMainPhoto()"
-                v-html="getMainPhoto">
+            <div ref="mainPhotoDiv" class="product_item__no_photo">
+                НЕТ ФОТО
             </div>
         </template>
 
-        <div class="product_item__photo_indicator">
+        <div v-if="numberOfPhotos > 1" class="product_item__photo_indicator">
             <span v-for="n in numberOfPhotos" :key="n"
                   class="product_item__photo_indicator_item"
                   :class="{
@@ -55,15 +62,21 @@
             </span>
         </div>
 
-        <div class="product_item__name" :style="{ cursor: cursorType }">
+        <div v-if="$route.params.which !== 'trashed'"
+            class="product_item__name" :style="{ cursor: cursorType }">
             <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }"
                 class="product_item__name__link">
                 {{ product.name }}
             </router-link>
         </div>
+        <div v-else class="product_item__name">
+            {{ product.name }}
+        </div>
+
         <div class="product_item__price" :style="{ cursor: cursorType }">
             {{ getPrice }}
         </div>
+
         <div @mouseover="changeMainPhotoBySmallPhoto($event)" @mouseout="setFirstMainPhoto()"
              class="product_item__small_photos"
              v-html="getPhotos">
@@ -112,6 +125,9 @@ export default {
         ...computedForProductItem,
 
         numberOfPhotos() {
+            if (!this.product.photo_set) {
+                return 0;
+            }
             const photoInfoArr = JSON.parse(this.product.photo_set);
             if (!photoInfoArr) {
                 return 0;
@@ -137,7 +153,7 @@ export default {
         },
 
         cursorType() {
-            return this.defaultSorting ? 'move' : 'default';
+            return this.defaultSorting && this.$route.params.which !== 'trashed'? 'move' : 'default';
         },
     },
 
@@ -155,6 +171,9 @@ export default {
         ]),
 
         changeMainPhoto(event) {
+            if (this.numberOfPhotos < 2) {
+                return;
+            }
             if (this.xPerPhoto === 0) {
                 return;
             }
@@ -169,6 +188,9 @@ export default {
         },
 
         changeMainPhotoBySmallPhoto(event) {
+            if (this.numberOfPhotos < 2) {
+                return;
+            }
             if (event.target.className === 'photo__size1') {
                 this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
             }

@@ -11,6 +11,19 @@ export default {
         state.products = [ ...products ];
     },
 
+    deleteItemFromProducts: (state, productId) => {
+        if (state.products.length === 0) {
+            return;
+        }
+        const products = state.products;
+        let index = products.findIndex(item => item.id === productId);
+        if (index === -1) {
+            return;
+        }
+        products.splice(index, 1);
+        state.products = [ ...products ];
+    },
+
 
     // при открытии списка продуктов
     setSeoData: (state, data) => {

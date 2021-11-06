@@ -4,7 +4,7 @@
         <div :class="contentWrapperClass">
 
             <div :title="getHeaderHint" class="seo_manager__header">
-                <img v-if="entity !== 'category'" alt="" :src="photoSrc" :class="imgClass" class="seo_manager__header__photo"/>
+                <p v-if="entity !== 'category'" v-html="getHeaderPhoto"></p>
                 <h1>{{ getHeader }}</h1>
             </div>
 
@@ -162,27 +162,30 @@ export default {
             return labelText[this.entity];
         },
 
-        photoSrc() {
+        getHeaderPhoto() {
             if (this.noData) {
+                return '';
+            }
+
+            const photoNameBook = {
+                category: '',
+                product: JSON.parse(this.serverData.product.photo_set) ? JSON.parse(this.serverData.product.photo_set)[0] : '',
+                photo: this.localData.photoName ?? '',
+            };
+            const photoName = photoNameBook[this.entity];
+
+            if (!photoName) {
                 return '';
             }
 
             const folderName = `/storage/${this.imgFolderPrefix}${this.photoSizeIndex}`;
             const fileNamePrefix = `${this.serverData.product.id}s${this.photoSizeIndex}-`;
 
-            const photoNameBook = {
-                category: ``,
-                product: JSON.parse(this.serverData.product.photo_set)[0],
-                photo: this.localData.photoName,
-            };
-            const photoName = photoNameBook[this.entity];
-
-            return `${folderName}/${fileNamePrefix}${photoName}`;
+            return `<img alt=""
+                        src="${folderName}/${fileNamePrefix}${photoName}"
+                        class="photo__size${this.photoSizeIndex} seo_manager__header__photo" />`;
         },
 
-        imgClass() {
-            return `photo__size${this.photoSizeIndex}`;
-        },
     },
     methods: {
         ...mapActions('seoManager', [
