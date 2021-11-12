@@ -3,26 +3,31 @@ export default {
     filtered: {
         users: [],
         products: [],
+        trashedProducts: [],
     },
     // items из filtered, разбитые по страницам // массив массивов (страниц)
     customized: {
         users: [],
         products: [],
+        trashedProducts: [],
     },
     // текущая страница в пагинаторе
     currentPage: {
         users: 0,
         products: 0,
+        trashedProducts: 0,
     },
     // активный кадр ссылок пагинации // [1, 2, 3, 4, 5, 6]
     paginationLinksShot: {
         users: [],
         products: [],
+        trashedProducts: [],
     },
     // массив стилей для линков активного кадра ссылок // ['', '', '']
     paginationLinkCssArr: {
         users: [],
         products: [],
+        trashedProducts: [],
     },
 
 
@@ -31,12 +36,14 @@ export default {
     quantityPerPage: {
         users: 6,
         products: 3,
+        trashedProducts: 3,
     },
 
     // если страниц меньше, показывать все
     minimumPagesForComplexPagination: {
         users: 9,
         products: 9,
+        trashedProducts: 9,
     },
 
     // css ссылки на активную страницу

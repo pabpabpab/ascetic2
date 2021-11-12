@@ -17,12 +17,12 @@ export default {
     },
     computed: {
         ...mapGetters('products', [
-            'showProductsFilters'
+            'visibility'
         ]),
     },
     methods: {
         showOrCloseProductsFilters() {
-            if (this.showProductsFilters) {
+            if (this.visibility('productsFilters')) {
                 this.$store.dispatch('products/closeProductsFilters');
             } else {
                 this.$store.dispatch('products/showProductsFilters');

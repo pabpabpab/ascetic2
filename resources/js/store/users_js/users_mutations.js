@@ -23,16 +23,27 @@ export default {
         state.users.splice(index, 1, user);
     },
 
+    deleteItemFromUsers: (state, userId) => {
+        if (state.users.length === 0) {
+            return;
+        }
+        const users = state.users;
+        let index = users.findIndex(item => item.id === userId);
+        if (index === -1) {
+            return;
+        }
+        users.splice(index, 1);
+        state.users = [ ...users ];
+    },
 
     setTaskOfUserEditManager: (state, value) => {
         state.taskOfUserEditManager = value;
     },
-    setShowUserEditManager: (state, value) => {
-        state.showUserEditManager = value;
-    },
 
-    setShowUserSearchInput: (state, value) => {
-        state.showUserSearchInput = value;
+    setVisibility: (state, { componentName, value }) => {
+        const visibility = state.visibility;
+        visibility[componentName] = value;
+        state.visibility = visibility;
     },
 
 };

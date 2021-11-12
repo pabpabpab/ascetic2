@@ -1,5 +1,12 @@
 export default  {
 
+    xPerPhoto() {
+        if (this.numberOfPhotos < 2) {
+            return 0;
+        }
+        return 250/this.numberOfPhotos; // 250px ширина фото
+    },
+
     getMainPhoto() {
         if (!this.product.photo_set) {
             return '';
@@ -40,7 +47,16 @@ export default  {
         return photoArr.join('');
     },
 
-
+    numberOfPhotos() {
+        if (!this.product.photo_set) {
+            return 0;
+        }
+        const photoInfoArr = JSON.parse(this.product.photo_set);
+        if (!photoInfoArr) {
+            return 0;
+        }
+        return photoInfoArr.length;
+    },
 
     getPrice() {
         const parametersArr = JSON.parse(this.product.parameters);

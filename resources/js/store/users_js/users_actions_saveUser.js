@@ -36,7 +36,6 @@ export default {
 
 
     async saveUser({ dispatch, commit, getters, state }, user) {
-        // console.log(user);
         const action = user.id ? 'edit' : 'create';
         const sendingEmail = Boolean(user.send_confirm_registration || user.send_reset_password);
 
@@ -68,8 +67,6 @@ export default {
                     return;
                 }
 
-                //console.log(data.user);
-
                 if (data.saveSuccess === true) {
                     commit('disableTypeinValidation', null, { root: true });
                     let txt = action === 'edit'
@@ -98,7 +95,6 @@ export default {
                             .then(() => {
                                 thatRouter.push({name: 'Users', params: {withoutReload: 'yes'}});
                             });
-
                     }
                 } else {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';

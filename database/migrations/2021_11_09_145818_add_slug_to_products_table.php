@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSlugToCategoriesTable extends Migration
+class AddSlugToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class AddSlugToCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('slug', 130)->nullable();
-            $table->unique('slug');
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('slug', 150)->nullable()->after('photo_alt_set');
         });
     }
+
+
 
     /**
      * Reverse the migrations.
@@ -26,14 +27,11 @@ class AddSlugToCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            //$table->dropIndex(['slug']);
-            $table->dropUnique(['slug']);
+        Schema::table('products', function (Blueprint $table) {
             $table->dropColumn(['slug']);
         });
     }
 }
 
-// php artisan make:migration add_slug_to_categories_table
-
-
+// php artisan make:migration add_slug_to_products_table
+// php artisan migrate

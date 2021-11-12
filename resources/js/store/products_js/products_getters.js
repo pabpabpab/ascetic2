@@ -1,20 +1,41 @@
 export default {
 
     products: (state) => state.products,
-    // productItem: (state) => (id) => state.products.find(item => item.id === id),
     productsLength: (state) => state.products.length,
+
+    allProducts: (state) => (categoryId = 0) => state.products,
+
+    getProductsByCategory: (state) => (categoryId) => {
+        return state.products.filter((item) => {
+            const parametersArr = JSON.parse(item.parameters);
+            const category_ids = parametersArr.categories.map((el) => el.id);
+            return category_ids.includes(categoryId);
+        });
+    },
+    getProductsByMaterial: (state) => (materialId) => {
+        return state.products.filter((item) => {
+            const parametersArr = JSON.parse(item.parameters);
+            const material_ids = parametersArr.materials.map((el) => el.id);
+            return material_ids.includes(materialId);
+        });
+    },
+    getProductsByColor: (state) => (colorId) => {
+        return state.products.filter((item) => {
+            const parametersArr = JSON.parse(item.parameters);
+            const color_ids = parametersArr.colors.map((el) => el.id);
+            return color_ids.includes(colorId);
+        });
+    },
+
+    trashedProducts: (state) => state.trashedProducts,
+    trashedProductsLength: (state) => state.trashedProducts.length,
+
+
     seoData: (state) => state.seoData,
     photoSeoData: (state) => state.photoSeoData,
     listHeader: (state) => state.listHeader,
     productsCountFromServer: (state) => state.productsCountFromServer,
     singleProductFromServer: (state) => state.singleProductFromServer,
-
-    showProductsFilters: (state) => state.showProductsFilters,
-
-    showProductEditManager: (state) => state.showProductEditManager,
-    showProductPhotoManager: (state) => state.showProductPhotoManager,
-    showProductQuickViewManager: (state) => state.showProductQuickViewManager,
-
 
     productsMaxPrice: (state) => state.products.reduce(
         (previousValue, item) => Number(item.price) > previousValue ? Number(item.price) : previousValue
@@ -27,4 +48,7 @@ export default {
     searchTotalParameters: (state) => {return {...state.searchTotalParameters};},
 
     sortingMode: (state) => state.sortingMode,
+
+    visibility: (state) => (componentName) => state.visibility[componentName],
+    needReload: (state) => (entity) => state.needReload[entity],
 };

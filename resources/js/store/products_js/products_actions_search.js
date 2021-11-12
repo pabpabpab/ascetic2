@@ -6,17 +6,17 @@ import colorFilterCore from './functions/colorFilterCore';
 export default {
 
     showProductsFilters({commit}) {
-        commit('setShowProductsFilters', true);
+        commit('setVisibility', { componentName: 'productsFilters', value: true });
         document.body.style.cssText='overflow-y:scroll;';
     },
 
     closeProductsFilters({commit}) {
-        commit('setShowProductsFilters', false);
+        commit('setVisibility', { componentName: 'productsFilters', value: false });
         document.body.style.cssText='overflow-y:auto;';
     },
 
-    setShowProductsFilters({commit}, value) {
-        commit('setShowProductsFilters', value);
+    setProductsFiltersVisibility({commit}, value) {
+        commit('setVisibility', { componentName: 'productsFilters', value: value });
     },
 
     setSearchObject({commit}, data) {
@@ -45,16 +45,14 @@ export default {
             filtered = colorFilterCore(filtered, searchObject);
         }
 
-        dispatch('doSort', {mode: state.sortingMode, data: filtered, initiator: 'search'}).then((data) => {
-            filtered = [ ...data ];
-            dispatch('setFiltered', { entity: 'products', data: filtered }, { root: true });
-        }).then(() => {
-            dispatch('divideIntoPages',  {
-                entity: 'products',
-                customQuantityPerPage: 0
-            }, { root: true });
-            const txt = `Показано ${filtered.length}.`
-            dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 0.5}, { root: true });
-        });
+        dispatch('doSort', {mode: state.sortingMode, data: filtered, initiator: 'search'})
+            .then((data) => {
+                filtered = [ ...data ];
+                dispatch('paginateProducts', filtered);
+            })
+            .then(() => {
+                const txt = `Показано ${filtered.length}.`
+                dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 0.5}, { root: true });
+            });
     },
 }

@@ -1,13 +1,44 @@
 import thatRouter from "../../router";
+import productValidation from "./functions/productValidation";
 
 export default {
+
+    // фронт-валидация при вводе (type-in валидация)
+    typeinValidation({ dispatch, commit, rootGetters }, product) {
+        dispatch('cleanPopupErrors', null, { root: true });
+        if (!rootGetters.typeinValidationRequired) {
+            return;
+        }
+        const { typeinErrors } = productValidation(product);
+        commit('setTypeinErrors', typeinErrors, { root: true });
+        commit('setAlarmingInputs', typeinErrors, { root: true });
+    },
+
+    async cleanValidationErrors({dispatch, commit}) {
+        dispatch('cleanPopupErrors', null, { root: true });
+        commit('resetAlarmingInputs', null, { root: true });
+        commit('resetTypeinErrors', null, { root: true });
+        commit('disableTypeinValidation', null, { root: true });
+    },
+
+    // фронт-валидация, pop-up и type-in сообщения об ошибках
+    async _frontValidation({ dispatch, commit }, product) {
+        const { popupErrors, typeinErrors } = productValidation(product);
+        if (popupErrors) {
+            dispatch('showPopupErrorsBox', popupErrors, { root: true });
+            commit('enableTypeinValidation', null, { root: true });
+            commit('setAlarmingInputs', popupErrors, { root: true });
+            commit('setTypeinErrors', typeinErrors, { root: true });
+            return false;
+        }
+        return true;
+    },
+
 
     async saveProduct({ dispatch, commit, getters, state }, { localProduct, photos }) {
         const action = localProduct.id ? 'edit' : 'create';
         const product = {...localProduct};
         product.price = product.price.replace(/\s/g, '');
-        //console.log(localProduct);
-        //console.log(photos);
 
         const productId = product.id;
         await dispatch('cleanValidationErrors');
@@ -24,8 +55,6 @@ export default {
         for (let i = 0; i < photos.length; i++ ) {
             product[`photos[${i}]`] = photos[i];
         }
-
-        // console.log(product);
 
         dispatch('showWaitingScreen', null, { root: true });
 
@@ -50,8 +79,6 @@ export default {
                     return;
                 }
 
-                //console.log(data);
-
                 if (data.saveSuccess === true) {
                     commit('disableTypeinValidation', null, { root: true });
 
@@ -73,17 +100,11 @@ export default {
                     } else {
 
                         commit('addProductToProductsByFirst', data.product);
-                        dispatch('setFiltered', {entity: 'products', data: getters.products}, {root: true})
+                        dispatch('paginateProducts', getters.products)
                             .then(() => {
-                                dispatch('divideIntoPages', {
-                                    entity: 'products',
-                                    customQuantityPerPage: 0 // этот параметр для совместимости
-                                }, {root: true});
-                            })
-                            .then(() => {
-                                thatRouter.push({name: 'Products', params: {which: 'active', withoutReload: 'yes'}});
+                                thatRouter.push({ name: 'Products' });
                             });
-                        //thatRouter.push({ name: 'Products', params: {which: 'active'}});
+
                     }
                 } else {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';

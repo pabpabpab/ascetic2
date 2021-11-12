@@ -10,13 +10,13 @@ export default {
             const product = state.singleProductFromServer;
             if (product) {
                 dispatch('hideWaitingScreen', null, { root: true });
-                commit('setShowProductPhotoManager', true);
+                commit('setVisibility', { componentName: 'productPhotoManager', value: true });
             }
         });
     },
 
     closeProductPhotoManager({ commit }) {
-        commit('setShowProductPhotoManager', false);
+        commit('setVisibility', { componentName: 'productPhotoManager', value: false });
     },
 
 
@@ -28,7 +28,6 @@ export default {
 
         dispatch('deleteJson', url, { root: true })
             .then((data) => {
-                // console.log(data);
                 if (data.deleteSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
                     commit('updateProductsBySingleProduct');
@@ -58,7 +57,6 @@ export default {
 
         dispatch('getJson', url, { root: true })
             .then((data) => {
-                // console.log(data);
                 if (data.rotateSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
                     commit('updateProductsBySingleProduct');
@@ -87,7 +85,6 @@ export default {
 
         dispatch('getJson', url, { root: true })
             .then((data) => {
-                // console.log(data);
                 if (data.moveSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
                     commit('updateProductsBySingleProduct');
@@ -180,7 +177,6 @@ export default {
             { root: true }
         )
             .then((data) => {
-                // console.log(data);
                 if (data.addSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
 

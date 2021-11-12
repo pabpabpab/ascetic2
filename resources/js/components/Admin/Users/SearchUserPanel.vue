@@ -5,7 +5,7 @@
         </button>
 
         <transition name="fade">
-            <div v-if="getShowUserSearchInput" class="search_user_panel__input_div">
+            <div v-if="visibility('userSearchInput')" class="search_user_panel__input_div">
                 <div class="input_text__container">
                     <input class="search_user_panel__input_text"
                            type="text"
@@ -34,7 +34,7 @@ export default {
     },
     computed: {
         ...mapGetters('users', [
-            'getShowUserSearchInput',
+            'visibility',
         ]),
     },
     methods: {

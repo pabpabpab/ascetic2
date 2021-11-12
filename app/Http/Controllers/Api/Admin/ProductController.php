@@ -29,40 +29,41 @@ class ProductController extends Controller
     public function getAll(ListService $service, $whichProducts): JsonResponse
     {
         $products = $service->getAll($whichProducts);
-        //return response()->json($products);
         return response()->json([
             'products' => $products,
             'seo' => ProductSEOText::query()->get()
         ]);
     }
 
-    public function getByCategory(Category $category): JsonResponse
+    public function getByCategory(ListService $service, Category $category): JsonResponse
     {
         // $category определена в роуте как {category:slug}
-        $products = $category->products; // подцепить товары в модель
+        //$products = $category->products;
         return response()->json([
             'category' => $category,
+            'products' => $service->getAll('active'), // все товары
             'seo' => ProductSEOText::query()->get()
         ]);
-
     }
 
-    public function getByMaterial(Material $material): JsonResponse
+    public function getByMaterial(ListService $service, Material $material): JsonResponse
     {
         // $material определена в роуте как {material:slug}
-        $products = $material->products; // подцепить товары в модель
+        //$products = $material->products;
         return response()->json([
             'category' => $material,
+            'products' => $service->getAll('active'), // все товары
             'seo' => ProductSEOText::query()->get()
         ]);
     }
 
-    public function getByColor(Color $color): JsonResponse
+    public function getByColor(ListService $service, Color $color): JsonResponse
     {
         // $color определена в роуте как {color:slug}
-        $products = $color->products; // подцепить товары в модель
+        //$products = $color->products;
         return response()->json([
             'category' => $color,
+            'products' => $service->getAll('active'), // все товары
             'seo' => ProductSEOText::query()->get()
         ]);
     }

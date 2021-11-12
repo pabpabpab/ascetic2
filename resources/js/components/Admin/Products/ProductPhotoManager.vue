@@ -134,7 +134,6 @@ export default {
             if (!val) {
                 return;
             }
-            // console.log(val);
             const parameters = JSON.parse(val.product.parameters);
             this.product = {
                 id: val.product.id,

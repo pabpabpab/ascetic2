@@ -7,13 +7,13 @@
             <products-context-menu v-if="showProductsContextMenu"></products-context-menu>
         </transition>
         <transition name="fade">
-            <product-edit-manager v-if="showProductEditManager"></product-edit-manager>
+            <product-edit-manager v-if="visibility('productEditManager')"></product-edit-manager>
         </transition>
         <transition name="fade">
-            <product-photo-manager v-if="showProductPhotoManager"></product-photo-manager>
+            <product-photo-manager v-if="visibility('productPhotoManager')"></product-photo-manager>
         </transition>
         <transition name="fade">
-            <seo-manager entity="product" v-if="showSeoManager && !showProductPhotoManager"></seo-manager>
+            <seo-manager entity="product" v-if="showSeoManager && !visibility('productPhotoManager')"></seo-manager>
         </transition>
     </div>
 </template>
@@ -39,8 +39,7 @@ export default {
 
     computed: {
         ...mapGetters('products', [
-            'showProductEditManager',
-            'showProductPhotoManager',
+            'visibility',
         ]),
         ...mapGetters([
             'imgFolderPrefix',

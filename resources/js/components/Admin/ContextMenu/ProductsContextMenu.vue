@@ -90,10 +90,6 @@ export default {
         ...mapActions('seoManager', [
             'showSeoManager',
         ]),
-        /*
-        editProduct(id) {
-            this.$router.push({ name: 'EditProduct', params: { id: id } });
-        },*/
     },
 
 }

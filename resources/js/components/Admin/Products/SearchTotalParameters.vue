@@ -65,7 +65,7 @@ export default {
             'stateSearchObject',
             'productsMaxPrice',
             'productsMinPrice',
-            'showProductsFilters',
+            'visibility',
         ]),
         ...mapGetters('categories', [
             'categories',

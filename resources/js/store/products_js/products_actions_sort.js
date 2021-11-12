@@ -17,17 +17,13 @@ export default {
 
         filtered = func[mode](filtered);
 
-        dispatch('setFiltered', { entity: 'products', data: filtered }, { root: true }).then(() => {
-            dispatch('divideIntoPages',  {
-                entity: 'products',
-                customQuantityPerPage: 0
-            }, { root: true });
-
-            if (initiator !== 'search') {
-                const txt = `Отсортировано.`
-                dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.7}, { root: true });
-            }
-        });
+        dispatch('paginateProducts', filtered)
+            .then(() => {
+                if (initiator !== 'search') {
+                    const txt = `Отсортировано.`
+                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.7}, { root: true });
+                }
+            });
 
         return filtered;
     },

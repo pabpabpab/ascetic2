@@ -14,13 +14,21 @@ export default {
     },
 
 
-    deleteUser({ dispatch, commit, state }, user) {
-        //console.log(user);
+    deleteUser({ dispatch, commit, getters, state }, user) {
         dispatch('closeConfirmationDialog', null, { root: true });
         dispatch('deleteJson', state.url['deleteUser'] + user.id, { root: true })
             .then((data) => {
                 if (data.deleteSuccess === true) {
-                    dispatch('loadUsers');
+
+                    commit('deleteItemFromUsers', user.id);
+                    dispatch('setFiltered', {entity: 'users', data: getters.users}, {root: true})
+                        .then(() => {
+                            dispatch('divideIntoPages', {
+                                entity: 'users',
+                                customQuantityPerPage: 0 // этот параметр для совместимости
+                            }, {root: true});
+                        });
+
                     const txt = `Пользователь «${user.email}» удален.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 } else {

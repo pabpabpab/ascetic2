@@ -6,12 +6,12 @@ export default {
         commit('setSingleProductFromServer', {});
         dispatch('loadSingleProduct', productId).then(() => {
             dispatch('hideWaitingScreen', null, { root: true });
-            commit('setShowProductEditManager', true);
+            commit('setVisibility', { componentName: 'productEditManager', value: true });
         });
 
     },
 
     closeProductEditManager({ commit }) {
-        commit('setShowProductEditManager', false);
+        commit('setVisibility', { componentName: 'productEditManager', value: false });
     },
 }

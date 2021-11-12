@@ -62,7 +62,6 @@ export default {
         const customized = state.customized;
         customized[entity][pageCounter].push(item);
         state.customized = customized;
-        //console.log(customized);
     },
     pushNewPageIntoCustomized: (state, entity) => {
         const customized = state.customized;

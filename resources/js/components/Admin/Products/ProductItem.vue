@@ -3,8 +3,8 @@
          class="product_item"
          :class="draggableProductItemClass"
          :style="{
-            'left': entity === 'Product' ? leftByIndex(index) : 0,
-            'top': entity === 'Product' ? topByIndex(index) : 0,
+            'left': draggedEntity === 'Product' ? leftByIndex(index) : 0,
+            'top': draggedEntity === 'Product' ? topByIndex(index) : 0,
          }"
          @mousedown="myDragStart({index: index, event: $event, entity: 'Product'})"
          @mouseup.stop="myDragStop({ event: $event, clickedIndex: index, entity: 'Product' })">
@@ -21,30 +21,20 @@
             &#8942;
         </span>
 
-        <a v-if="$route.params.which !== 'trashed'"
-            @click.prevent="showProductQuickViewManager(product.id)"
+        <a @click.prevent="showProductQuickViewManager(product.id)"
             href='#'
             class="product_item__quick_view_link">
             Быстрый просмотр
         </a>
 
         <template v-if="numberOfPhotos > 0">
-            <template v-if="$route.params.which !== 'trashed'">
-                <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }">
-                    <div ref="mainPhotoDiv"
-                         @mousemove="changeMainPhoto($event)"
-                         @mouseout="setFirstMainPhoto()"
-                         v-html="getMainPhoto">
-                    </div>
-                </router-link>
-            </template>
-            <template v-else>
+            <router-link :to="{ name: 'SingleProduct', params: {  slug: product.slug, id: product.id } }">
                 <div ref="mainPhotoDiv"
                      @mousemove="changeMainPhoto($event)"
                      @mouseout="setFirstMainPhoto()"
                      v-html="getMainPhoto">
                 </div>
-            </template>
+            </router-link>
         </template>
         <template v-else>
             <div ref="mainPhotoDiv" class="product_item__no_photo">
@@ -62,15 +52,11 @@
             </span>
         </div>
 
-        <div v-if="$route.params.which !== 'trashed'"
-            class="product_item__name" :style="{ cursor: cursorType }">
-            <router-link :to="{ name: 'SingleProduct', params: { id: product.id } }"
+        <div class="product_item__name" :style="{ cursor: cursorType }">
+            <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }"
                 class="product_item__name__link">
                 {{ product.name }}
             </router-link>
-        </div>
-        <div v-else class="product_item__name">
-            {{ product.name }}
         </div>
 
         <div class="product_item__price" :style="{ cursor: cursorType }">
@@ -97,6 +83,7 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import computedForProductItem from './someComputed/computedForProductItem';
+import changeMainPhotoOfItemInList from './functions/changeMainPhotoOfItemInList';
 
 export default {
     name: "ProductItem",
@@ -118,33 +105,18 @@ export default {
             'topByIndex',
         ]),
         ...mapGetters('products', [
-            'showProductPhotoManager',
             'sortingMode',
         ]),
 
         ...computedForProductItem,
 
-        numberOfPhotos() {
-            if (!this.product.photo_set) {
-                return 0;
-            }
-            const photoInfoArr = JSON.parse(this.product.photo_set);
-            if (!photoInfoArr) {
-                return 0;
-            }
-            return photoInfoArr.length;
-        },
-
-        xPerPhoto() {
-            if (this.numberOfPhotos < 2) {
-                return 0;
-            }
-            return 250/this.numberOfPhotos; // 250px ширина фото
+        draggedEntity() {
+            return this.entity;
         },
 
         draggableProductItemClass() {
             return {
-                'draggableProduct': this.isDragging(this.index) && this.entity === 'Product',
+                'draggableProduct': this.isDragging(this.index) && this.draggedEntity === 'Product',
             };
         },
 
@@ -153,7 +125,7 @@ export default {
         },
 
         cursorType() {
-            return this.defaultSorting && this.$route.params.which !== 'trashed'? 'move' : 'default';
+            return this.defaultSorting ? 'move' : 'default';
         },
     },
 
@@ -170,47 +142,17 @@ export default {
             'showProductQuickViewManager',
         ]),
 
-        changeMainPhoto(event) {
-            if (this.numberOfPhotos < 2) {
-                return;
-            }
-            if (this.xPerPhoto === 0) {
-                return;
-            }
-            const xy = this.$refs.mainPhotoDiv.getBoundingClientRect();
-            const xWay = event.x-xy.x;
-
-            if (xWay < 0) {
-                return;
-            }
-
-            this.indexOfMainPhoto = Math.ceil(xWay/this.xPerPhoto) - 1;
-        },
-
-        changeMainPhotoBySmallPhoto(event) {
-            if (this.numberOfPhotos < 2) {
-                return;
-            }
-            if (event.target.className === 'photo__size1') {
-                this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
-            }
-        },
-
-        setFirstMainPhoto() {
-            this.indexOfMainPhoto = 0;
-        },
-
+        ...changeMainPhotoOfItemInList,
     },
 
 
     mounted() {
-        this.$store.dispatch('dragAndDropByXY/resetCoordinates', {cycleNumber: this.index, entity: 'Product'}).then(
-            () => {
+        this.$store.dispatch('dragAndDropByXY/resetCoordinates', {cycleNumber: this.index, entity: 'Product'})
+            .then(() => {
                 const xy = this.$refs.product.getBoundingClientRect();
                 this.$store.commit('dragAndDropByXY/addXIntoXCoordinates', {x: xy.x, entity: 'Product'});
                 this.$store.commit('dragAndDropByXY/addYIntoYCoordinates', {y: xy.y, entity: 'Product'});
-            }
-        );
+            });
     },
 
 }

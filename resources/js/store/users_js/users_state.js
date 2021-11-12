@@ -13,8 +13,10 @@ export default {
     users: [],
     singleUserFromServer: {},
 
-    showUserSearchInput: false,
-
-    showUserEditManager: false,
     taskOfUserEditManager: '', // user / password
+
+    visibility: {
+        userSearchInput: false,
+        userEditManager: false,
+    },
 };

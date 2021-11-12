@@ -420,7 +420,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       sizeIndex: 3
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), {}, {
     photoSrc: function photoSrc() {
       return "".concat(this.folderName, "/").concat(this.fileNamePrefix).concat(this.photoName);
     },
@@ -436,15 +436,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     lastPhotoListIndex: function lastPhotoListIndex() {
       return this.length - 1;
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropInAbsDiv', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['showProductPhotoManager'])), {}, {
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropInAbsDiv', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), {}, {
+    draggedEntity: function draggedEntity() {
+      return this.entity;
+    },
     draggablePhotoItemClass: function draggablePhotoItemClass() {
       return {
-        'draggablePhoto': this.isDragging(this.photoIndex) && this.entity === 'Photo'
+        'draggablePhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo'
       };
     },
     underDraggablePhotoItemClass: function underDraggablePhotoItemClass() {
       return {
-        'underDraggablePhoto': !this.isDragging(this.photoIndex) && this.entity === 'Photo'
+        'underDraggablePhoto': !this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo'
       };
     }
   }),
@@ -526,7 +529,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "ProductEditManager",
   components: {
     ProductForm: function ProductForm() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
+      return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
     }
   },
   data: function data() {
@@ -729,8 +732,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     singleProductFromServer: function singleProductFromServer(val) {
       if (!val) {
         return;
-      } // console.log(val);
-
+      }
 
       var parameters = JSON.parse(val.product.parameters);
       this.product = {
@@ -764,6 +766,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Products_SingleProductCategoryItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Products/SingleProductCategoryItem */ "./resources/js/components/Admin/Products/SingleProductCategoryItem.vue");
 /* harmony import */ var _Products_someComputed_computedForSingleProduct__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../Products/someComputed/computedForSingleProduct */ "./resources/js/components/Admin/Products/someComputed/computedForSingleProduct.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/scrollSmallPhotos */ "./resources/js/components/Admin/Products/functions/scrollSmallPhotos.js");
+/* harmony import */ var _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/viewLargePhoto */ "./resources/js/components/Admin/Products/functions/viewLargePhoto.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -868,6 +872,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SingleProduct",
   props: ['from'],
@@ -886,86 +892,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.from === 'quickViewManager' ? 'absolute' : 'fixed';
     }
   }),
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('contextMenu', ['showContextMenu'])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('contextMenu', ['showContextMenu'])), _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__["default"]), _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__["default"]), {}, {
     changeMainPhotoBySmallPhoto: function changeMainPhotoBySmallPhoto(event) {
       if (event.target.className === 'photo__size2') {
         this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
       }
-    },
-    notScrolledAllTheWayToTheTop: function notScrolledAllTheWayToTheTop() {
-      var _this$$refs;
-
-      if (!(this !== null && this !== void 0 && (_this$$refs = this.$refs) !== null && _this$$refs !== void 0 && _this$$refs.smallPhotoDiv)) {
-        return false;
-      }
-
-      return this.$refs.smallPhotoDiv.scrollTop > 5;
-    },
-    notScrolledAllTheWayToTheBottom: function notScrolledAllTheWayToTheBottom() {
-      var _this$$refs2;
-
-      if (!(this !== null && this !== void 0 && (_this$$refs2 = this.$refs) !== null && _this$$refs2 !== void 0 && _this$$refs2.smallPhotoDiv)) {
-        return false;
-      }
-
-      var scrollTop = this.$refs.smallPhotoDiv.scrollTop;
-      var clientHeight = this.$refs.smallPhotoDiv.clientHeight;
-      var scrollHeight = this.$refs.smallPhotoDiv.scrollHeight;
-      return scrollHeight - (scrollTop + clientHeight) > 10;
-    },
-    scrollSmallPhoto: function scrollSmallPhoto(distance, direction) {
-      var iterationTime = Math.round(400 / distance); // время в милисекундах на 1px, 1000(400) - одна секунды
-
-      var coveredDistance = 0; // пройденное расстояние
-
-      this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction);
-    },
-    _scrollSmallPhoto: function _scrollSmallPhoto(iterationTime, distance, coveredDistance, direction) {
-      var _this = this;
-
-      //console.log(coveredDistance);
-      if (coveredDistance > distance) {
-        return;
-      }
-
-      var step = 1; // 1px
-
-      if (direction === 'down') {
-        this.$refs.smallPhotoDiv.scrollTop -= step;
-      } else {
-        this.$refs.smallPhotoDiv.scrollTop += step;
-      }
-
-      coveredDistance += step;
-      setTimeout(function () {
-        _this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction);
-      }, iterationTime);
-    },
-    startViewLargePhoto: function startViewLargePhoto() {
-      if (!this.$refs.mainPhotoDiv) {
-        return;
-      }
-
-      var wrapper = this.$refs.mainPhotoDiv.getBoundingClientRect(); //this.$refs.mainPhotoDiv.style.height = (wrapper.bottom - wrapper.top) + 'px';
-
-      this.mainPhotoRatio = 1600 / (wrapper.right - wrapper.left); // 1600px ширина фото под лупой
-      //console.log(wrapper);
-
-      this.mainPhotoSizeIndex = 5;
-    },
-    viewLargePhoto: function viewLargePhoto(event) {
-      if (!this.$refs.mainPhotoDiv) {
-        return;
-      }
-
-      var photo = this.$refs.mainPhotoDiv.getBoundingClientRect();
-      var xWay = event.x - photo.left;
-      var yWay = event.y - photo.top;
-      this.$refs.mainPhotoDiv.scrollLeft = xWay * this.mainPhotoRatio / 1.6;
-      this.$refs.mainPhotoDiv.scrollTop = yWay * this.mainPhotoRatio / 1.6; // 1.6 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
-    },
-    showInitialPhoto: function showInitialPhoto() {
-      this.mainPhotoSizeIndex = 4;
     }
   }),
   mounted: function mounted() {
@@ -2604,6 +2535,107 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SingleProductCategoryItem_vue_vue_type_template_id_389f5b18___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/functions/scrollSmallPhotos.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/functions/scrollSmallPhotos.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  notScrolledAllTheWayToTheTop: function notScrolledAllTheWayToTheTop() {
+    var _this$$refs;
+
+    if (!(this !== null && this !== void 0 && (_this$$refs = this.$refs) !== null && _this$$refs !== void 0 && _this$$refs.smallPhotoDiv)) {
+      return false;
+    }
+
+    return this.$refs.smallPhotoDiv.scrollTop > 5;
+  },
+  notScrolledAllTheWayToTheBottom: function notScrolledAllTheWayToTheBottom() {
+    var _this$$refs2;
+
+    if (!(this !== null && this !== void 0 && (_this$$refs2 = this.$refs) !== null && _this$$refs2 !== void 0 && _this$$refs2.smallPhotoDiv)) {
+      return false;
+    }
+
+    var scrollTop = this.$refs.smallPhotoDiv.scrollTop;
+    var clientHeight = this.$refs.smallPhotoDiv.clientHeight;
+    var scrollHeight = this.$refs.smallPhotoDiv.scrollHeight;
+    return scrollHeight - (scrollTop + clientHeight) > 10;
+  },
+  scrollSmallPhoto: function scrollSmallPhoto(distance, direction) {
+    var iterationTime = Math.round(400 / distance); // время в милисекундах на 1px, 1000(400) - одна секунды
+
+    var coveredDistance = 0; // пройденное расстояние
+
+    this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction);
+  },
+  _scrollSmallPhoto: function _scrollSmallPhoto(iterationTime, distance, coveredDistance, direction) {
+    var _this = this;
+
+    if (coveredDistance > distance) {
+      return;
+    }
+
+    var step = 1; // 1px
+
+    if (direction === 'down') {
+      this.$refs.smallPhotoDiv.scrollTop -= step;
+    } else {
+      this.$refs.smallPhotoDiv.scrollTop += step;
+    }
+
+    coveredDistance += step;
+    setTimeout(function () {
+      _this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction);
+    }, iterationTime);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/functions/viewLargePhoto.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/functions/viewLargePhoto.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  startViewLargePhoto: function startViewLargePhoto() {
+    if (!this.$refs.mainPhotoDiv) {
+      return;
+    }
+
+    var wrapper = this.$refs.mainPhotoDiv.getBoundingClientRect(); //this.$refs.mainPhotoDiv.style.height = (wrapper.bottom - wrapper.top) + 'px';
+
+    this.mainPhotoRatio = 1600 / (wrapper.right - wrapper.left); // 1600px ширина фото под лупой
+
+    this.mainPhotoSizeIndex = 5;
+  },
+  viewLargePhoto: function viewLargePhoto(event) {
+    if (!this.$refs.mainPhotoDiv) {
+      return;
+    }
+
+    var photo = this.$refs.mainPhotoDiv.getBoundingClientRect();
+    var xWay = event.x - photo.left;
+    var yWay = event.y - photo.top;
+    this.$refs.mainPhotoDiv.scrollLeft = xWay * this.mainPhotoRatio / 1.6;
+    this.$refs.mainPhotoDiv.scrollTop = yWay * this.mainPhotoRatio / 1.6; // 1.6 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
+  },
+  showInitialPhoto: function showInitialPhoto() {
+    this.mainPhotoSizeIndex = 4;
+  }
+});
 
 /***/ }),
 

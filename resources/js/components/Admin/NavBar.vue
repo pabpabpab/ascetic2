@@ -10,7 +10,7 @@
 
                 <li class="navBar__li">
                     <router-link
-                        :to="{ name: 'Products', params: { which: 'active' } }"
+                        :to="{ name: 'Products' }"
                         class="navBar__link_with_trigram"
                         :class="productsLinkClass">
                         Товары
@@ -19,8 +19,9 @@
                             <div class="navBar__drop_menu show_block">
                                 <ul class="navBar__drop_menu__ul">
                                     <li class="navBar__drop_menu__li">
-                                        <router-link :to="{ name: 'Products', params: { which: 'trashed' } }"
-                                                     class="navBar__drop_menu__link">
+                                        <router-link
+                                            :to="{ name: 'TrashedProducts' }"
+                                            class="navBar__drop_menu__link">
                                             Удаленные
                                         </router-link>
                                     </li>
@@ -119,7 +120,7 @@ export default {
         productsLinkClass() {
             return {
                 'navBar__link': true,
-                'navBar__link_active': this.$route.name === 'Products' && this.$route.params.which === 'active',
+                'navBar__link_active': this.$route.name === 'Products',
             }
         },
         categoriesLinkClass() {

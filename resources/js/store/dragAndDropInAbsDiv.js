@@ -127,7 +127,6 @@ export default {
         },
 
         myDragMove({ dispatch, commit, getters, state }, {event, entity}) {
-            //console.log(event);
             if (getters.currentIndex === -1) {
                 return;
             }
@@ -160,8 +159,6 @@ export default {
         },
 
         moveItem({ dispatch, commit, getters, state }, { currentIndex, newIndex, entity }) {
-            //console.log('currentIndex - ' + currentIndex);
-            //console.log('newIndex - ' + newIndex);
             if (newIndex === -1) {
                 return;
             }

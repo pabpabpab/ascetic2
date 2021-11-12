@@ -1,5 +1,3 @@
-// import thatRouter from "../router";
-
 export default {
     namespaced: true,
     state: {
@@ -24,9 +22,6 @@ export default {
         showSeoManager: false,
     },
     getters: {
-        //seoUrl: (state) => (entity) => state.seoUrl[entity],
-        //saveSeoUrl: (state) => (entity) => state.saveSeoUrl[entity],
-
         seoData: (state) => (entity) => {
             if (!entity) {
                 return state.seoData;
@@ -38,7 +33,6 @@ export default {
     },
     mutations: {
         setServerData: (state, {entity, data}) => {
-            //console.log(data);
             const seoData = { ...state.seoData };
             seoData[entity] = { ...data };
             state.seoData = { ...seoData };
@@ -49,7 +43,6 @@ export default {
             state.seoData = { ...seoData };
         },
         updateLocalSeoData: (state, {entity, data}) => {
-            //console.log(data);
             const seoData = { ...state.seoData };
             seoData[entity].seo = { ...data };
             state.seoData = { ...seoData };
@@ -59,7 +52,6 @@ export default {
         },
 
         addItemIntoModuleSeoData: (state, {rootState, entity, data}) => {
-            //console.log(data);
             const item = {
                 page_title: data?.pageTitle,
                 page_description: data?.pageDescription,
@@ -95,7 +87,6 @@ export default {
     actions: {
 
         showSeoManager({ dispatch, commit, getters, state }, {entity, data}) {
-            //console.log(data);
             dispatch('closeContextMenu', null, { root: true });
             dispatch('showWaitingScreen', null, { root: true });
             commit('clearSeoData', entity);
@@ -117,16 +108,12 @@ export default {
 
             dispatch('getJson', seoUrl, { root: true })
                 .then((data) => {
-                    //console.log(data);
                     commit('setServerData', {entity, data});
                 });
         },
 
 
         saveSeoData({ dispatch, commit, state, rootState }, { entity, data }) {
-            // console.log(entity);
-            // console.log(data);
-
             const frontItem = data;
 
             const urlParams = {
@@ -148,7 +135,6 @@ export default {
                 {root: true}
             )
                 .then((data) => {
-                    //console.log(data);
                     dispatch('hideWaitingScreen', null, { root: true });
                     if (data.saveSuccess === true) {
 

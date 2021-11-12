@@ -48,7 +48,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       searchString: ''
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['getShowUserSearchInput'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['visibility'])),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('users', ['showUserSearchInput', 'closeUserSearchInput'])), {}, {
     closeUserSearchPanel: function closeUserSearchPanel() {
       this.searchString = '';
@@ -95,7 +95,7 @@ __webpack_require__.r(__webpack_exports__);
       return Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./Users/SearchUserPanel.vue */ "./resources/js/components/Admin/Users/SearchUserPanel.vue"));
     },
     Users: function Users() {
-      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./Users/Users.vue */ "./resources/js/components/Admin/Users/Users.vue"));
+      return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./Users/Users.vue */ "./resources/js/components/Admin/Users/Users.vue"));
     },
     Pagination: function Pagination() {
       return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./Blocks/Pagination.vue */ "./resources/js/components/Admin/Blocks/Pagination.vue"));
@@ -145,7 +145,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("transition", { attrs: { name: "fade" } }, [
-        _vm.getShowUserSearchInput
+        _vm.visibility("userSearchInput")
           ? _c("div", { staticClass: "search_user_panel__input_div" }, [
               _c("div", { staticClass: "input_text__container" }, [
                 _c("input", {

@@ -13,6 +13,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class SaveService
 {
@@ -33,6 +34,7 @@ class SaveService
             // СОХРАНИТЬ ОСНОВНЫЕ ДАННЫЕ
             $product->fill($request->input());
             $product->position = $product->id > 0 ? $product->position : $this->_calcNewAddedPosition();
+            $product->slug = Str::slug($product->name, '_');
             $product->save(); // теперь у $product есть id
 
             // ВСТАВКА ДАННЫХ В СВЯЗАННЫЕ ТАБЛИЦЫ
@@ -50,13 +52,13 @@ class SaveService
         }
 
 
-        // ЕСЛИ НЕТ ФОТО, ТО КОММИТ И ВЫХОДИМ
+        // ЕСЛИ НЕТ ФОТО, ТО КОММИТ И ВЫХОД
         if (empty($request->file('photos'))) {
             // Если всё хорошо - фиксируем
             DB::commit();
             // подсчет кол-ва продуктов для категорий (конечные действия в ProductModifiedListener)
             event(new ProductModifiedEvent($product));
-            // выходим
+            // выход
             return [
                 'saveSuccess' => true,
                 'product' => $product

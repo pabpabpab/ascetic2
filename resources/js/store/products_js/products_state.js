@@ -2,7 +2,8 @@ export default {
 
     url: {
         productsCount: '/api/admin/products/count',
-        products: '/api/admin/products/',
+        products: '/api/admin/products/active',
+        trashedProducts: '/api/admin/products/trashed',
         productsByCategory: '/api/admin/products/by/',
         singleProduct: '/api/admin/product/',
         saveProduct: '/api/admin/product/save/',
@@ -20,11 +21,18 @@ export default {
     },
 
     products: [],
+    trashedProducts: [],
     seoData: [], // заполняется при открытии списка продуктов
     photoSeoData: [], // заполняется при открытии photoManager
     listHeader: '',
     productsCountFromServer: 0,
     singleProductFromServer: {},
+
+    needReload: {
+        products: false,
+        trashedProducts: false,
+    },
+
 
     search: {
         minPrice: 0,
@@ -52,8 +60,10 @@ export default {
 
     sortingMode: 'position', // вида 'position' / 'priceUp' / 'timeDown'
 
-    showProductsFilters: false,
-    showProductEditManager: false,
-    showProductPhotoManager: false,
-    showProductQuickViewManager: false,
+    visibility: {
+        productsFilters: false,
+        productEditManager: false,
+        productPhotoManager: false,
+        productQuickViewManager: false,
+    },
 };

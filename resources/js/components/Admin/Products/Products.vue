@@ -18,7 +18,7 @@
             <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
 
             <transition name="product_filters">
-                <products-filters v-show="$route.params.which === 'active' && showProductsFilters"></products-filters>
+                <products-filters v-show="$route.name === 'Products' && visibility('productsFilters')"></products-filters>
             </transition>
 
             <transition name="fade">
@@ -27,17 +27,17 @@
 
 
             <transition name="fade">
-                <product-edit-manager v-if="showProductEditManager"></product-edit-manager>
+                <product-edit-manager v-if="visibility('productEditManager')"></product-edit-manager>
             </transition>
             <transition name="fade">
-                <product-photo-manager v-if="showProductPhotoManager"></product-photo-manager>
+                <product-photo-manager v-if="visibility('productPhotoManager')"></product-photo-manager>
             </transition>
             <transition name="fade">
-                <seo-manager entity="product" v-if="showSeoManager && !showProductPhotoManager"></seo-manager>
+                <seo-manager entity="product" v-if="showSeoManager && !visibility('productPhotoManager')"></seo-manager>
             </transition>
 
             <transition name="fade">
-                <product-quick-view-manager v-if="showProductQuickViewManager"></product-quick-view-manager>
+                <product-quick-view-manager v-if="visibility('productQuickViewManager')"></product-quick-view-manager>
             </transition>
 
         </div>
@@ -76,10 +76,7 @@ export default {
     computed: {
         ...mapGetters('products', [
             'productsLength',
-            'showProductsFilters',
-            'showProductEditManager',
-            'showProductPhotoManager',
-            'showProductQuickViewManager',
+            'visibility',
         ]),
         ...mapGetters('seoManager', [
             'showSeoManager',
@@ -96,12 +93,8 @@ export default {
         },
     },
     mounted() {
-        if (!this.$route.params.withoutReload) {
-            this.$store.dispatch('products/loadProducts', this.$route);
-            this.$store.dispatch('products/resetSearchObject');
-        }
-
-        this.$store.dispatch('products/setShowProductsFilters', false);
+        this.$store.dispatch('products/setProductsFiltersVisibility', false);
+        this.$store.dispatch('products/showProducts', this.$route);
     },
 }
 </script>

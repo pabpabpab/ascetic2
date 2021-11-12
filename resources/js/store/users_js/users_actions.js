@@ -3,7 +3,6 @@ export default {
     getUsersCount({ dispatch, commit, state }) {
         const url = state.url['usersCount'];
         dispatch('getJson', url, { root: true }).then((data) => {
-            //console.log(data);
             commit('setUsersCount', data);
         });
     },
@@ -11,7 +10,6 @@ export default {
     loadUsers({ dispatch, commit, state }) {
         const url = state.url['users'];
         dispatch('getJson', url, { root: true }).then((data) => {
-            //console.log(data);
             commit('setUsers', data);
             dispatch('setFiltered', { entity: 'users', data: data }, { root: true }).then(() => {
                 // ниже передаю параметр quantityPerPage = 0 для совместимости,

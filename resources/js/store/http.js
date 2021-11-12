@@ -1,16 +1,7 @@
 export default {
-  state: {
-    httpError: null,
-  },
-  getters: {
-    httpError: (state) => state.httpError,
-  },
-  mutations: {
-    setHttpError: (state, error) => {
-      state.httpError = error;
-    },
-  },
+
   actions: {
+
     async getJson(context, url) {
       return fetch(url)
          .then((result) => {
@@ -18,7 +9,7 @@ export default {
              return result.json();
          })
          .catch((error) => {
-             context.commit('setHttpError', error);
+             context.dispatch('showHttpError', error);
          });
         // fetch(url,{method: 'GET', headers: {'X-CSRF-Token': context.getters.csrfToken}})
     },
@@ -35,7 +26,7 @@ export default {
         body: JSON.stringify(data),
       }).then((result) => result.json())
         .catch((error) => {
-            context.commit('setHttpError', error);
+            context.dispatch('showHttpError', error);
         });
     },
 
@@ -57,9 +48,9 @@ export default {
               },
               body: formData,
           }).then((result) => result.json())
-              .catch((error) => {
-                  context.commit('setHttpError', error);
-              });
+            .catch((error) => {
+                context.dispatch('showHttpError', error);
+            });
     },
 
     putJson(context, payload) {
@@ -67,28 +58,41 @@ export default {
       return fetch(url, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': context.getters.csrfToken,
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': context.getters.csrfToken,
         },
         body: JSON.stringify(data),
       }).then((result) => result.json())
         .catch((error) => {
-          context.commit('setHttpError', error);
+            context.dispatch('showHttpError', error);
         });
     },
 
     deleteJson(context, url) {
-      return fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'X-CSRF-Token': context.getters.csrfToken,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
+        return fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-Token': context.getters.csrfToken,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
       }).then((result) => result.json())
         .catch((error) => {
-          context.commit('setHttpError', error);
+            context.dispatch('showHttpError', error);
         });
+    },
+
+    showHttpError({dispatch}, error) {
+        dispatch('hideWaitingScreen', null);
+        const settings = {};
+        settings.confirmationRequestText = error;
+        settings.yesButtonText = '';
+        settings.cancelButtonText = 'Закрыть';
+        settings.yesAction = '';
+        settings.cancelAction = 'closeConfirmationDialog';
+        settings.yesPayload = {};
+        settings.finalRedirectRoute = '';
+        dispatch('showConfirmationDialog', settings);
     },
   },
 };

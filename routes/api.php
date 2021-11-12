@@ -85,6 +85,7 @@ Route::group([
 
     // один товар
     Route::get('/product/{product}', 'ProductController@getOne');
+    Route::get('/product/{slug}-{product}', 'ProductController@getOne');
     Route::post('/product/save/{product?}', 'ProductController@save');
     Route::delete('/product/delete/{product}', 'ProductController@delete');
     Route::get('/product/restore/{id}', 'ProductController@restore')

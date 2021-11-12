@@ -60,17 +60,19 @@ export default {
             'leftByIndex',
             'topByIndex',
         ]),
-        ...mapGetters('products', [
-            'showProductPhotoManager',
-        ]),
+
+        draggedEntity() {
+            return this.entity;
+        },
+
         draggablePhotoItemClass() {
             return {
-                'draggablePhoto': this.isDragging(this.photoIndex) && this.entity === 'Photo',
+                'draggablePhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo',
             };
         },
         underDraggablePhotoItemClass() {
             return {
-                'underDraggablePhoto': !this.isDragging(this.photoIndex) && this.entity === 'Photo',
+                'underDraggablePhoto': !this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo',
             };
         },
     },
@@ -85,13 +87,12 @@ export default {
     },
 
     mounted() {
-        this.$store.dispatch('dragAndDropInAbsDiv/resetCoordinates', {cycleNumber: this.photoIndex, entity: 'Photo'}).then(
-            () => {
+        this.$store.dispatch('dragAndDropInAbsDiv/resetCoordinates', {cycleNumber: this.photoIndex, entity: 'Photo'})
+            .then(() => {
                 const xy = this.$refs.photo.getBoundingClientRect();
                 this.$store.commit('dragAndDropInAbsDiv/addXIntoXCoordinates', {x: xy.x, entity: 'Photo'});
                 this.$store.commit('dragAndDropInAbsDiv/addYIntoYCoordinates', {y: xy.y, entity: 'Photo'});
-            }
-        );
+            });
     },
 }
 

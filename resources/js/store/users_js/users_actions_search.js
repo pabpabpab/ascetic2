@@ -1,11 +1,11 @@
 export default {
 
     showUserSearchInput({commit}) {
-        commit('setShowUserSearchInput', true);
+        commit('setVisibility', { componentName: 'userSearchInput', value: true });
     },
 
     closeUserSearchInput({commit}) {
-        commit('setShowUserSearchInput', false);
+        commit('setVisibility', { componentName: 'userSearchInput', value: false });
     },
 
     doSearch({dispatch, getters, state}, searchString) {

@@ -27,8 +27,6 @@ export default {
                     return;
                 }
 
-                // console.log(data);
-
                 if (data.saveSuccess === true) {
                     commit('setSingleCategoryFromServer', data.category);
                     dispatch('loadCategories', entity); // получить обновленный список с сервера

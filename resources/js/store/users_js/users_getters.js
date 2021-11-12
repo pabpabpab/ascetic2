@@ -1,12 +1,11 @@
 export default {
 
     users: (state) => state.users,
+    usersLength: (state) => state.users.length,
     usersCount: (state) => state.usersCount,
     singleUserFromServer: (state) => state.singleUserFromServer,
-    //showLazyUsers: (state) => state.usersCount > 1000,
 
     taskOfUserEditManager: (state) => state.taskOfUserEditManager,
-    showUserEditManager: (state) => state.showUserEditManager,
 
-    getShowUserSearchInput: (state) => state.showUserSearchInput,
+    visibility: (state) => (componentName) => state.visibility[componentName],
 };

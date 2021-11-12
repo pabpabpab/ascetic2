@@ -18,7 +18,6 @@ export default {
     },
 
     closeContextMenuByClick({ commit }, event) {
-        // console.log(event);
         if (!event) {
             return;
         }

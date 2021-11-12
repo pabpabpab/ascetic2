@@ -8,7 +8,6 @@ export default {
     getters: {
         lazyUsersUrl: (state) => state.lazyUsersUrl,
         lazyUsers: (state) => state.lazyUsers,
-        //lazyUsersLength: (state) => state.lazyUsers.length,
         lastLoadedLazyUserId: (state) => state.lastLoadedLazyUserId,
         showLoadMoreButton: (state, getters, rootState) => rootState['users']['usersCount'] > state.lazyUsers.length,
     },
@@ -30,11 +29,6 @@ export default {
             }
             state.lastLoadedLazyUserId = lastUserId;
         },
-        /*
-        setLastLoadedLazyUserId: (state, id) => {
-            state.lastLoadedLazyUserId = id;
-        },
-        */
     },
     actions: {
         loadLazyUsers({ dispatch, commit, getters }) {

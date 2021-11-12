@@ -5,12 +5,12 @@ export default {
         commit('setSingleProductFromServer', {});
         dispatch('loadSingleProduct', productId).then(() => {
             dispatch('hideWaitingScreen', null, { root: true });
-            commit('setShowProductQuickViewManager', true);
+            commit('setVisibility', { componentName: 'productQuickViewManager', value: true });
         });
 
     },
 
     closeProductQuickViewManager({ commit }) {
-        commit('setShowProductQuickViewManager', false);
+        commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
     },
 }

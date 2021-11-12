@@ -97,6 +97,8 @@
 import SingleProductCategoryItem from "./../Products/SingleProductCategoryItem";
 import computedForSingleProduct from './../Products/someComputed/computedForSingleProduct';
 import {mapActions, mapGetters} from "vuex";
+import scrollSmallPhotos from "./functions/scrollSmallPhotos";
+import viewLargePhoto from "./functions/viewLargePhoto";
 
 export default {
     name: "SingleProduct",
@@ -130,74 +132,13 @@ export default {
             'showContextMenu',
         ]),
 
+        ...scrollSmallPhotos,
+        ...viewLargePhoto,
+
         changeMainPhotoBySmallPhoto(event) {
             if (event.target.className === 'photo__size2') {
                 this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
             }
-        },
-
-        notScrolledAllTheWayToTheTop() {
-            if (!this?.$refs?.smallPhotoDiv) {
-                return false;
-            }
-            return this.$refs.smallPhotoDiv.scrollTop > 5;
-        },
-        notScrolledAllTheWayToTheBottom() {
-            if (!this?.$refs?.smallPhotoDiv) {
-                return false;
-            }
-            const scrollTop = this.$refs.smallPhotoDiv.scrollTop;
-            const clientHeight = this.$refs.smallPhotoDiv.clientHeight;
-            const scrollHeight = this.$refs.smallPhotoDiv.scrollHeight;
-            return scrollHeight - (scrollTop + clientHeight) > 10;
-        },
-
-        scrollSmallPhoto(distance, direction) {
-            const iterationTime = Math.round(400/distance); // время в милисекундах на 1px, 1000(400) - одна секунды
-            const coveredDistance = 0; // пройденное расстояние
-            this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction)
-        },
-        _scrollSmallPhoto(iterationTime, distance, coveredDistance, direction) {
-            //console.log(coveredDistance);
-            if (coveredDistance > distance) {
-                return;
-            }
-            const step = 1; // 1px
-            if (direction === 'down') {
-                this.$refs.smallPhotoDiv.scrollTop -= step;
-            } else {
-                this.$refs.smallPhotoDiv.scrollTop += step;
-            }
-            coveredDistance += step;
-            setTimeout(() => {
-                this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction);
-            }, iterationTime);
-        },
-
-        startViewLargePhoto() {
-            if (!this.$refs.mainPhotoDiv) {
-                return;
-            }
-            const wrapper = this.$refs.mainPhotoDiv.getBoundingClientRect();
-            //this.$refs.mainPhotoDiv.style.height = (wrapper.bottom - wrapper.top) + 'px';
-            this.mainPhotoRatio = 1600/(wrapper.right - wrapper.left); // 1600px ширина фото под лупой
-            //console.log(wrapper);
-            this.mainPhotoSizeIndex = 5;
-        },
-        viewLargePhoto(event) {
-            if (!this.$refs.mainPhotoDiv) {
-                return;
-            }
-            const photo = this.$refs.mainPhotoDiv.getBoundingClientRect();
-            const xWay = event.x-photo.left;
-            const yWay = event.y-photo.top;
-
-            this.$refs.mainPhotoDiv.scrollLeft = xWay * this.mainPhotoRatio/1.6;
-            this.$refs.mainPhotoDiv.scrollTop = yWay * this.mainPhotoRatio/1.6;
-            // 1.6 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
-        },
-        showInitialPhoto() {
-            this.mainPhotoSizeIndex = 4;
         },
     },
     mounted() {

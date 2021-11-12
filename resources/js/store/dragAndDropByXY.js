@@ -119,8 +119,6 @@ export default {
             if (router.currentRoute.params.which === 'trashed') {
                 return;
             }
-            //console.log('index - ' + index);
-            //console.log(event);
             commit('setEntity', entity);
             commit('setCurrentIndex', index);
             commit('setStartX', event.pageX);
@@ -154,9 +152,6 @@ export default {
             const newIndex = clickedIndex > -1
                 ? clickedIndex
                 : getters.getIndexByXY({ x: event.pageX, y: event.pageY, entity: entity });
-
-            //console.log('currentIndex - ' + currentIndex);
-            //console.log('newIndex - ' + newIndex);
 
             dispatch('moveItem', { currentIndex, newIndex, entity });
             commit('myDragStop');

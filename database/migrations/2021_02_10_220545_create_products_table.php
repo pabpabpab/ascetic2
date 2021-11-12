@@ -69,6 +69,7 @@ class CreateProductsTable extends Migration
             parameters JSON,
             photo_set JSON,
             photo_alt_set JSON, // добавлено потом (alt-тексты для фото)
+            slug VARCHAR(150),
             position BIGINT UNSIGNED NOT NULL DEFAULT 0, // добавлено потом (для выстраивания списка товаров)
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

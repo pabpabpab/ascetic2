@@ -1,7 +1,6 @@
 <template>
     <div class="products_header">
-        <filters-icon v-if="$route.params.which === 'active'"
-            class="filter_icon__img">
+        <filters-icon v-if="$route.name === 'Products'" class="filter_icon__img">
         </filters-icon>
         <h1 class="pd0 mb0 mauto"> {{ listHeader }}</h1>
     </div>

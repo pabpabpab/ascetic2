@@ -20,8 +20,6 @@ export default {
                 entity: 'products'
             }, { root: true });
 
-            // dispatch('showWaitingScreen', null, { root: true });
-
             dispatch (
                 'postJson',
                 {
@@ -35,7 +33,8 @@ export default {
                         const txt = 'Сделано.';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.8}, { root: true });
                     } else {
-                        dispatch('loadProducts'); // отобразить обратно
+                        commit('setNeedReload', { entity: 'products', value: true });
+                        dispatch('showProducts');
                         const txt = 'Неудачная попытка перемещения.';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }

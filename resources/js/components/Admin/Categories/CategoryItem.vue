@@ -26,7 +26,9 @@
                 name: 'ProductsByCategory',
                 params: {
                     categoryEntity: singularEntityName,
-                    slug: category.slug
+                    slug: category.slug,
+                    categoryId: category.id,
+                    categoryName: category.name,
                 }
             }" class="category_item__name__link">
                 {{ category.name }}
@@ -48,12 +50,7 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-/*
-import arrow_up_icon from "./../../../../assets/arrow_up_icon.jpg"
-import arrow_down_icon from "./../../../../assets/arrow_down_icon.jpg"
-import edit_icon from "./../../../../assets/edit_icon.jpg"
-import delete_icon from "./../../../../assets/delete_icon.png"
-*/
+// import edit_icon from "./../../../../assets/edit_icon.jpg"
 export default {
     name: "CategoryItem",
     props: ['category', 'index'],
@@ -61,9 +58,6 @@ export default {
     data() {
         return {
             edit_icon: edit_icon,
-            delete_icon: delete_icon,
-            arrow_up_icon: arrow_up_icon,
-            arrow_down_icon: arrow_down_icon,
         };
     },
     */
@@ -89,7 +83,6 @@ export default {
         draggableItemClass() {
             return {
                 'draggableCategory': this.isDragging(this.index),
-                //'underDraggableCategory': this.underDraggable(this.index) && !this.isDragging(this.index),
             };
         },
 
@@ -104,12 +97,11 @@ export default {
     },
 
     mounted() {
-        this.$store.dispatch('dragAndDropByY/resetYCoordinates', this.index).then(
-            () => {
+        this.$store.dispatch('dragAndDropByY/resetYCoordinates', this.index)
+            .then(() => {
                 const y = this.$refs.cat.getBoundingClientRect().y;
                 this.$store.commit('dragAndDropByY/addYIntoYCoordinates', y);
-            }
-        );
+            });
     },
 }
 

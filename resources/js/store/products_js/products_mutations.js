@@ -1,8 +1,11 @@
 export default {
 
     setProducts: (state, data) => {
-        //state.products.splice(0, state.products.length);
         state.products = [ ...data ];
+    },
+
+    setTrashedProducts: (state, data) => {
+        state.trashedProducts = [ ...data ];
     },
 
     addProductToProductsByFirst: (state, product) => {
@@ -35,25 +38,21 @@ export default {
         state.photoSeoData = [ ...data ];
     },
 
-    setListHeader: (state, { route, data }) => {
-        const paramName = {
-            Products: 'which',
-            ProductsByCategory: 'categoryEntity'
-        }
-
-        const header = {
+    setListHeader: (state, route) => {
+        const headerBook = {
             Products: {
-                active: 'Список товаров',
-                trashed: 'Удаленные товары',
+                all: 'Список товаров'
+            },
+            TrashedProducts: {
+                all: 'Удаленные товары'
             },
             ProductsByCategory: {
-                category: data?.category?.name,
-                material: `Товары из материала «${data?.category?.name}»`,
-                color: `Товары цвета «${data?.category?.name}»`,
+                category: route.params?.categoryName,
+                material: `Товары из материала «${route.params?.categoryName}»`,
+                color: `Товары цвета «${route.params?.categoryName}»`,
             }
         }
-
-        state.listHeader = header[route.name][route.params[paramName[route.name]]];
+        state.listHeader = headerBook[route.name][route.params?.categoryEntity ?? 'all'];
     },
 
     setProductsCountFromServer: (state, number) => {
@@ -137,17 +136,15 @@ export default {
     },
 
     // ------------------------------------------------------------------
-    setShowProductsFilters: (state, value) => {
-        state.showProductsFilters = value;
+    setVisibility: (state, { componentName, value }) => {
+        const visibility = state.visibility;
+        visibility[componentName] = value;
+        state.visibility = visibility;
     },
-    setShowProductEditManager: (state, value) => {
-        state.showProductEditManager = value;
+    //-------------------------------------------------------------------
+    setNeedReload: (state, { entity, value }) => {
+        const needReload = state.needReload;
+        needReload[entity] = value;
+        state.needReload = needReload;
     },
-    setShowProductPhotoManager: (state, value) => {
-        state.showProductPhotoManager = value;
-    },
-    setShowProductQuickViewManager: (state, value) => {
-        state.showProductQuickViewManager = value;
-    },
-
 };

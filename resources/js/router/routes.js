@@ -5,18 +5,17 @@ const routes = [
         name: 'Main',
         component: () => import('../components/Admin/MainPage.vue'),
     },
-    {
-        path: '/admin/users',
-        name: 'Users',
-        component: () => import('../components/Admin/UsersPage.vue'),
-    },
+
     {
         path: '/admin/user/add',
         name: 'SaveUser',
         component: () => import('../components/Admin/SaveUserPage.vue'),
     },
-
-
+    {
+        path: '/admin/users',
+        name: 'Users',
+        component: () => import('../components/Admin/UsersPage.vue'),
+    },
 
 
     {
@@ -27,7 +26,17 @@ const routes = [
 
 
     {
-        path: '/admin/products/:which',
+        path: '/admin/product/add',
+        name: 'SaveProduct',
+        component: () => import('../components/Admin/SaveProductPage.vue'),
+    },
+    {
+        path: '/admin/product/:slug-:id',
+        name: 'SingleProduct',
+        component: () => import('../components/Admin/SingleProductPage.vue'),
+    },
+    {
+        path: '/admin/products/active',
         name: 'Products',
         component: () => import('../components/Admin/ProductsPage.vue'),
     },
@@ -37,20 +46,10 @@ const routes = [
         component: () => import('../components/Admin/ProductsPage.vue'),
     },
     {
-        path: '/admin/product/add',
-        name: 'SaveProduct',
-        component: () => import('../components/Admin/SaveProductPage.vue'),
+        path: '/admin/products/trashed',
+        name: 'TrashedProducts',
+        component: () => import('../components/Admin/TrashedProductsPage.vue'),
     },
-
-
-
-    {
-        path: '/admin/products/one/:id',
-        name: 'SingleProduct',
-        component: () => import('../components/Admin/SingleProductPage.vue'),
-    },
-
-
 
 
     {

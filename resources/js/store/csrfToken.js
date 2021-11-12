@@ -22,7 +22,6 @@ export default {
             setInterval(() => {
                 dispatch('getJson', url).then((data) => {
                     commit('setCsrfToken', data);
-                    // console.log(data);
                 });
             }, seconds*1000);
         },

@@ -98,10 +98,10 @@ export default {
     },
     computed: {
         ...mapGetters('products', [
-            'showProductsFilters',
             'productsMaxPrice',
             'productsMinPrice',
             'searchTotalParameters',
+            'visibility',
         ]),
         ...mapGetters('categories', [
             'categories',
@@ -152,7 +152,7 @@ export default {
     watch: {
 
         localSearchObject() {
-            if (!this.showProductsFilters) {
+            if (!this.visibility('productsFilters')) {
                 return;
             }
             if (this.emptySearch && this.searchHasNotBeenChanged) {

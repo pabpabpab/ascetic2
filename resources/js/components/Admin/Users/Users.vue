@@ -10,7 +10,7 @@
         </transition>
 
         <transition name="fade">
-            <user-edit-manager v-if="showUserEditManager"></user-edit-manager>
+            <user-edit-manager v-if="visibility('userEditManager')"></user-edit-manager>
         </transition>
     </div>
 </template>
@@ -38,12 +38,19 @@ export default {
             'showUsersContextMenu',
         ]),
         ...mapGetters('users', [
-            'showUserEditManager',
+            'usersLength',
+            'visibility',
         ]),
     },
 
     mounted() {
+        /*
         if (!this.$route.params.withoutReload) {
+            this.$store.dispatch('users/loadUsers');
+        }
+        */
+
+        if (this.usersLength < 2 || this.$route.params.withReload) {
             this.$store.dispatch('users/loadUsers');
         }
     },
