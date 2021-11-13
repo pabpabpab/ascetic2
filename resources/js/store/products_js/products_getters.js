@@ -30,7 +30,6 @@ export default {
     trashedProducts: (state) => state.trashedProducts,
     trashedProductsLength: (state) => state.trashedProducts.length,
 
-
     seoData: (state) => state.seoData,
     photoSeoData: (state) => state.photoSeoData,
     listHeader: (state) => state.listHeader,
@@ -51,4 +50,6 @@ export default {
 
     visibility: (state) => (componentName) => state.visibility[componentName],
     needReload: (state) => (entity) => state.needReload[entity],
+
+    previousRouteName: (state) => state.previousRouteName,
 };

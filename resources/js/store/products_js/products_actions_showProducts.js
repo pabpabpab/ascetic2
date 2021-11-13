@@ -1,13 +1,21 @@
+// отмечено звездочкой (*) функционал для "показать прежнюю paginated страницу"
 export default {
-    showProducts({dispatch, commit, getters}, route) {
+    async showProducts({dispatch, commit, getters, rootGetters}, route) {
         commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
 
         if (getters.productsLength > 1 && !getters.needReload('products')) {
             commit('setListHeader', route);
+
+            if (!await dispatch('_needNewPagination', route)) { // *
+                return;
+            }
+
             dispatch('getFilteredProductsByRoute', route)
                 .then((data) => {
                     dispatch('paginateProducts', data);
                 });
+
+            commit('setPreviousRouteName', route.name); // *
             return;
         }
 
@@ -30,6 +38,7 @@ export default {
                 commit('setProducts', data.products);
                 commit('setSeoData', data.seo);
                 commit('setNeedReload', { entity: 'products', value: false });
+                commit('setPreviousRouteName', ''); // *
 
                 if (route.name === 'ProductsByCategory') {
                     route.params.categoryId = data.category.id;
@@ -66,5 +75,21 @@ export default {
                 }, { root: true });
             });
     },
+
+
+    async _needNewPagination({getters, rootGetters}, route) { // *
+        if (route.name !== 'Products') {
+            return true;
+        }
+        if (getters.previousRouteName !== 'Products') {
+            return true;
+        }
+        const currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
+        if (currentPageIndex === -1) {
+            return true;
+        }
+        return false;
+    },
+
 }
 

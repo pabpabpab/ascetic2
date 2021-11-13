@@ -83,17 +83,10 @@ export default {
                             item: data.user,
                         }, { root: true });
                     } else {
-
                         commit('addUserToUsersByFirst', data.user);
-                        dispatch('setFiltered', {entity: 'users', data: getters.users}, {root: true})
+                        dispatch('paginateUsers', getters.users)
                             .then(() => {
-                                dispatch('divideIntoPages', {
-                                    entity: 'users',
-                                    customQuantityPerPage: 0 // этот параметр для совместимости
-                                }, {root: true});
-                            })
-                            .then(() => {
-                                thatRouter.push({name: 'Users', params: {withoutReload: 'yes'}});
+                                thatRouter.push({name: 'Users'});
                             });
                     }
                 } else {

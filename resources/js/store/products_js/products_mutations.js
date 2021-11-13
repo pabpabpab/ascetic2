@@ -141,10 +141,14 @@ export default {
         visibility[componentName] = value;
         state.visibility = visibility;
     },
-    //-------------------------------------------------------------------
+    // -------------------------------------------------------------------
     setNeedReload: (state, { entity, value }) => {
         const needReload = state.needReload;
         needReload[entity] = value;
         state.needReload = needReload;
+    },
+    // ------------------------------------------------------------------
+    setPreviousRouteName: (state, value) => {
+        state.previousRouteName = value;
     },
 };

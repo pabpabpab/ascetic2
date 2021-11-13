@@ -27,6 +27,7 @@ export default {
     listHeader: '',
     productsCountFromServer: 0,
     singleProductFromServer: {},
+    previousRouteName: '',
 
     needReload: {
         products: false,

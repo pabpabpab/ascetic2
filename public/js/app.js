@@ -19637,55 +19637,55 @@ var routes = [{
   path: '/admin',
   name: 'Main',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
+    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
   }
 }, {
   path: '/admin/user/add',
   name: 'SaveUser',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
+    return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
   }
 }, {
   path: '/admin/users',
   name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(17), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
   }
 }, {
   path: '/admin/product/add',
   name: 'SaveProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/product/:slug-:id',
   name: 'SingleProduct',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(17), __webpack_require__.e(1), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
   }
 }, {
   path: '/admin/products/active',
   name: 'Products',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17), __webpack_require__.e(1), __webpack_require__.e(3), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/by/:categoryEntity/:slug',
   name: 'ProductsByCategory',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(17), __webpack_require__.e(1), __webpack_require__.e(3), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/trashed',
   name: 'TrashedProducts',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
   }
 }, {
   path: '*',
@@ -22110,23 +22110,25 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   // ==========================пагинация программная: какую страницу items показать=======================
-
-  /*
-  showLastPage: {
-      root: true,
-      handler({ dispatch, getters }, entity) {
-          const customizedLength = getters.customizedLength(entity);
-          const pageIndex = customizedLength - 1;
-          dispatch('showPageByClick', { entity, pageIndex });
-      }
-  },*/
+  showPage: {
+    root: true,
+    handler: function handler(_ref5, _ref6) {
+      var dispatch = _ref5.dispatch;
+      var entity = _ref6.entity,
+          pageIndex = _ref6.pageIndex;
+      dispatch('showPageByClick', {
+        entity: entity,
+        pageIndex: pageIndex
+      });
+    }
+  },
   // ==========================пагинация по клику: какую страницу items показать=======================
-  showPageByClick: function showPageByClick(_ref5, _ref6) {
-    var dispatch = _ref5.dispatch,
-        commit = _ref5.commit,
-        getters = _ref5.getters;
-    var entity = _ref6.entity,
-        pageIndex = _ref6.pageIndex;
+  showPageByClick: function showPageByClick(_ref7, _ref8) {
+    var dispatch = _ref7.dispatch,
+        commit = _ref7.commit,
+        getters = _ref7.getters;
+    var entity = _ref8.entity,
+        pageIndex = _ref8.pageIndex;
     var customizedLength = getters.customizedLength(entity);
     var index;
 
@@ -22156,9 +22158,9 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('makePaginationLinksShot', entity);
   },
   // ========================сбросить css ссылок пагинации==============================
-  resetPaginationLinkCss: function resetPaginationLinkCss(_ref7, entity) {
-    var commit = _ref7.commit,
-        getters = _ref7.getters;
+  resetPaginationLinkCss: function resetPaginationLinkCss(_ref9, entity) {
+    var commit = _ref9.commit,
+        getters = _ref9.getters;
     var cssArrLength = getters.paginationLinkCssArrLength(entity); // очистить css ссылок пагинации
 
     commit('clearPaginationLinkCssArr', entity); // заполнить неактивным css
@@ -22173,9 +22175,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   // ========================сформировать активный кадр ссылок пагинации========================
-  makePaginationLinksShot: function makePaginationLinksShot(_ref8, entity) {
-    var commit = _ref8.commit,
-        getters = _ref8.getters;
+  makePaginationLinksShot: function makePaginationLinksShot(_ref10, entity) {
+    var commit = _ref10.commit,
+        getters = _ref10.getters;
     var customizedLength = getters.customizedLength(entity);
     var currentPageNumber = getters.currentPageNumber(entity);
     var minimumPages = getters.minimumPagesForComplexPagination(entity);
@@ -22239,13 +22241,13 @@ __webpack_require__.r(__webpack_exports__);
   //============================move item by drag and drop==============================
   moveItemInPaginated: {
     root: true,
-    handler: function handler(_ref9, _ref10) {
-      var commit = _ref9.commit;
-      var currentIndexInPage = _ref10.currentIndexInPage,
-          newIndexInPage = _ref10.newIndexInPage,
-          operatedId = _ref10.operatedId,
-          targetId = _ref10.targetId,
-          entity = _ref10.entity;
+    handler: function handler(_ref11, _ref12) {
+      var commit = _ref11.commit;
+      var currentIndexInPage = _ref12.currentIndexInPage,
+          newIndexInPage = _ref12.newIndexInPage,
+          operatedId = _ref12.operatedId,
+          targetId = _ref12.targetId,
+          entity = _ref12.entity;
       commit('moveItemInFiltered', {
         operatedId: operatedId,
         targetId: targetId,
@@ -22261,11 +22263,11 @@ __webpack_require__.r(__webpack_exports__);
   //============================update photoSet of item in paginated==============================
   updatePhotosetOfItemInPaginated: {
     root: true,
-    handler: function handler(_ref11, _ref12) {
-      var commit = _ref11.commit;
-      var entity = _ref12.entity,
-          itemId = _ref12.itemId,
-          photoSet = _ref12.photoSet;
+    handler: function handler(_ref13, _ref14) {
+      var commit = _ref13.commit;
+      var entity = _ref14.entity,
+          itemId = _ref14.itemId,
+          photoSet = _ref14.photoSet;
       commit('updatePhotosetOfItemInFiltered', {
         entity: entity,
         itemId: itemId,
@@ -22281,10 +22283,10 @@ __webpack_require__.r(__webpack_exports__);
   //==================================update item in paginated====================================
   updateItemInPaginated: {
     root: true,
-    handler: function handler(_ref13, _ref14) {
-      var commit = _ref13.commit;
-      var entity = _ref14.entity,
-          item = _ref14.item;
+    handler: function handler(_ref15, _ref16) {
+      var commit = _ref15.commit;
+      var entity = _ref16.entity,
+          item = _ref16.item;
       commit('updateItemInFiltered', {
         entity: entity,
         item: item
@@ -22665,9 +22667,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   // текущая страница в пагинаторе
   currentPage: {
-    users: 0,
-    products: 0,
-    trashedProducts: 0
+    users: -1,
+    products: -1,
+    trashedProducts: -1
   },
   // активный кадр ссылок пагинации // [1, 2, 3, 4, 5, 6]
   paginationLinksShot: {
@@ -23160,7 +23162,8 @@ __webpack_require__.r(__webpack_exports__);
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
         getters = _ref.getters,
-        state = _ref.state;
+        state = _ref.state,
+        rootGetters = _ref.rootGetters;
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
@@ -23179,8 +23182,16 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (data.deleteSuccess === true) {
+        var currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
         commit('deleteItemFromProducts', productId);
-        dispatch('paginateProducts', getters.products);
+        dispatch('paginateProducts', getters.products).then(function () {
+          dispatch('showPage', {
+            entity: 'products',
+            pageIndex: currentPageIndex
+          }, {
+            root: true
+          });
+        });
         commit('setNeedReload', {
           entity: 'trashedProducts',
           value: true
@@ -24189,6 +24200,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -24201,25 +24214,62 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+// отмечено звездочкой (*) функционал для "показать прежнюю paginated страницу"
 /* harmony default export */ __webpack_exports__["default"] = ({
   showProducts: function showProducts(_ref, route) {
-    var dispatch = _ref.dispatch,
-        commit = _ref.commit,
-        getters = _ref.getters;
-    commit('setVisibility', {
-      componentName: 'productQuickViewManager',
-      value: false
-    });
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var dispatch, commit, getters, rootGetters;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters, rootGetters = _ref.rootGetters;
+              commit('setVisibility', {
+                componentName: 'productQuickViewManager',
+                value: false
+              });
 
-    if (getters.productsLength > 1 && !getters.needReload('products')) {
-      commit('setListHeader', route);
-      dispatch('getFilteredProductsByRoute', route).then(function (data) {
-        dispatch('paginateProducts', data);
-      });
-      return;
-    }
+              if (!(getters.productsLength > 1 && !getters.needReload('products'))) {
+                _context.next = 11;
+                break;
+              }
 
-    dispatch('loadProducts', route);
+              commit('setListHeader', route);
+              _context.next = 6;
+              return dispatch('_needNewPagination', route);
+
+            case 6:
+              if (_context.sent) {
+                _context.next = 8;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 8:
+              dispatch('getFilteredProductsByRoute', route).then(function (data) {
+                dispatch('paginateProducts', data);
+              });
+              commit('setPreviousRouteName', route.name); // *
+
+              return _context.abrupt("return");
+
+            case 11:
+              dispatch('loadProducts', route);
+
+            case 12:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   loadProducts: function loadProducts(_ref2) {
     var dispatch = _ref2.dispatch,
@@ -24246,6 +24296,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         entity: 'products',
         value: false
       });
+      commit('setPreviousRouteName', ''); // *
 
       if (route.name === 'ProductsByCategory') {
         route.params.categoryId = data.category.id;
@@ -24291,6 +24342,51 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         root: true
       });
     });
+  },
+  _needNewPagination: function _needNewPagination(_ref5, route) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var getters, rootGetters, currentPageIndex;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              getters = _ref5.getters, rootGetters = _ref5.rootGetters;
+
+              if (!(route.name !== 'Products')) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return", true);
+
+            case 3:
+              if (!(getters.previousRouteName !== 'Products')) {
+                _context2.next = 5;
+                break;
+              }
+
+              return _context2.abrupt("return", true);
+
+            case 5:
+              currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
+
+              if (!(currentPageIndex === -1)) {
+                _context2.next = 8;
+                break;
+              }
+
+              return _context2.abrupt("return", true);
+
+            case 8:
+              return _context2.abrupt("return", false);
+
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
   }
 });
 
@@ -24309,7 +24405,8 @@ __webpack_require__.r(__webpack_exports__);
   showTrashedProducts: function showTrashedProducts(_ref) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
-        getters = _ref.getters;
+        getters = _ref.getters,
+        rootGetters = _ref.rootGetters;
     commit('setVisibility', {
       componentName: 'productQuickViewManager',
       value: false
@@ -24318,8 +24415,13 @@ __webpack_require__.r(__webpack_exports__);
       name: 'TrashedProducts'
     });
 
-    if (getters.trashedProductsLength > 1 && !getters.needReload('trashedProducts')) {
-      dispatch('paginateTrashedProducts', getters.trashedProducts);
+    if (getters.trashedProductsLength > 0 && !getters.needReload('trashedProducts')) {
+      var currentPageIndex = rootGetters['pagination/currentPageIndex']('trashedProducts');
+
+      if (currentPageIndex === -1) {
+        dispatch('paginateTrashedProducts', getters.trashedProducts);
+      }
+
       return;
     }
 
@@ -24537,6 +24639,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return function (entity) {
       return state.needReload[entity];
     };
+  },
+  previousRouteName: function previousRouteName(state) {
+    return state.previousRouteName;
   }
 });
 
@@ -24709,13 +24814,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     visibility[componentName] = value;
     state.visibility = visibility;
   },
-  //-------------------------------------------------------------------
+  // -------------------------------------------------------------------
   setNeedReload: function setNeedReload(state, _ref4) {
     var entity = _ref4.entity,
         value = _ref4.value;
     var needReload = state.needReload;
     needReload[entity] = value;
     state.needReload = needReload;
+  },
+  // ------------------------------------------------------------------
+  setPreviousRouteName: function setPreviousRouteName(state, value) {
+    state.previousRouteName = value;
   }
 });
 
@@ -24757,6 +24866,7 @@ __webpack_require__.r(__webpack_exports__);
   listHeader: '',
   productsCountFromServer: 0,
   singleProductFromServer: {},
+  previousRouteName: '',
   needReload: {
     products: false,
     trashedProducts: false
@@ -25257,55 +25367,77 @@ function isEmailValid(email) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  getUsersCount: function getUsersCount(_ref) {
+  showUsers: function showUsers(_ref) {
     var dispatch = _ref.dispatch,
-        commit = _ref.commit,
-        state = _ref.state;
-    var url = state.url['usersCount'];
-    dispatch('getJson', url, {
-      root: true
-    }).then(function (data) {
-      commit('setUsersCount', data);
-    });
+        getters = _ref.getters,
+        rootGetters = _ref.rootGetters;
+
+    if (getters.usersLength > 0) {
+      var currentPageIndex = rootGetters['pagination/currentPageIndex']('users');
+
+      if (currentPageIndex === -1) {
+        dispatch('paginateUsers', getters.users);
+      }
+
+      return;
+    }
+
+    dispatch('loadUsers');
   },
   loadUsers: function loadUsers(_ref2) {
     var dispatch = _ref2.dispatch,
         commit = _ref2.commit,
         state = _ref2.state;
-    var url = state.url['users'];
-    dispatch('getJson', url, {
+    dispatch('showWaitingScreen', null, {
+      root: true
+    });
+    dispatch('getJson', state.url['users'], {
       root: true
     }).then(function (data) {
       commit('setUsers', data);
-      dispatch('setFiltered', {
-        entity: 'users',
-        data: data
-      }, {
+      dispatch('paginateUsers', data);
+    })["finally"](function () {
+      dispatch('hideWaitingScreen', null, {
         root: true
-      }).then(function () {
-        // ниже передаю параметр quantityPerPage = 0 для совместимости,
-        // так как данный action может вызываться из других компонентов с параметром quantityPerPage
-        dispatch('divideIntoPages', {
-          entity: 'users',
-          customQuantityPerPage: 0
-        }, {
-          root: true
-        });
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
       });
     });
   },
-  loadSingleUser: function loadSingleUser(_ref3, userId) {
-    var dispatch = _ref3.dispatch,
-        commit = _ref3.commit,
-        state = _ref3.state;
+  paginateUsers: function paginateUsers(_ref3, data) {
+    var dispatch = _ref3.dispatch;
+    dispatch('setFiltered', {
+      entity: 'users',
+      data: data
+    }, {
+      root: true
+    }).then(function () {
+      dispatch('divideIntoPages', {
+        entity: 'users',
+        customQuantityPerPage: 0
+      }, {
+        root: true
+      });
+    });
+  },
+  loadSingleUser: function loadSingleUser(_ref4, userId) {
+    var dispatch = _ref4.dispatch,
+        commit = _ref4.commit,
+        state = _ref4.state;
     var url = state.url['singleUser'] + userId;
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
       commit('setSingleUserFromServer', data);
+    });
+  },
+  getUsersCount: function getUsersCount(_ref5) {
+    var dispatch = _ref5.dispatch,
+        commit = _ref5.commit,
+        state = _ref5.state;
+    var url = state.url['usersCount'];
+    dispatch('getJson', url, {
+      root: true
+    }).then(function (data) {
+      commit('setUsersCount', data);
     });
   }
 });
@@ -25343,7 +25475,8 @@ __webpack_require__.r(__webpack_exports__);
     var dispatch = _ref2.dispatch,
         commit = _ref2.commit,
         getters = _ref2.getters,
-        state = _ref2.state;
+        state = _ref2.state,
+        rootGetters = _ref2.rootGetters;
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
@@ -25351,17 +25484,12 @@ __webpack_require__.r(__webpack_exports__);
       root: true
     }).then(function (data) {
       if (data.deleteSuccess === true) {
+        var currentPageIndex = rootGetters['pagination/currentPageIndex']('users');
         commit('deleteItemFromUsers', user.id);
-        dispatch('setFiltered', {
-          entity: 'users',
-          data: getters.users
-        }, {
-          root: true
-        }).then(function () {
-          dispatch('divideIntoPages', {
+        dispatch('paginateUsers', getters.users).then(function () {
+          dispatch('showPage', {
             entity: 'users',
-            customQuantityPerPage: 0 // этот параметр для совместимости
-
+            pageIndex: currentPageIndex
           }, {
             root: true
           });
@@ -25630,25 +25758,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     });
                   } else {
                     commit('addUserToUsersByFirst', data.user);
-                    dispatch('setFiltered', {
-                      entity: 'users',
-                      data: getters.users
-                    }, {
-                      root: true
-                    }).then(function () {
-                      dispatch('divideIntoPages', {
-                        entity: 'users',
-                        customQuantityPerPage: 0 // этот параметр для совместимости
-
-                      }, {
-                        root: true
-                      });
-                    }).then(function () {
+                    dispatch('paginateUsers', getters.users).then(function () {
                       _router__WEBPACK_IMPORTED_MODULE_2__["default"].push({
-                        name: 'Users',
-                        params: {
-                          withoutReload: 'yes'
-                        }
+                        name: 'Users'
                       });
                     });
                   }
@@ -25725,18 +25837,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var filtered = users.filter(function (item) {
       return regexp.test(item.email);
     });
-    dispatch('setFiltered', {
-      entity: 'users',
-      data: filtered
-    }, {
-      root: true
-    }).then(function () {
-      dispatch('divideIntoPages', {
-        entity: 'users',
-        customQuantityPerPage: 0
-      }, {
-        root: true
-      });
+    dispatch('paginateUsers', filtered).then(function () {
       var txt = "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(filtered.length, ".");
       dispatch('showAbsoluteFlashMessage', {
         text: txt,

@@ -13,9 +13,9 @@ export default {
     },
     // текущая страница в пагинаторе
     currentPage: {
-        users: 0,
-        products: 0,
-        trashedProducts: 0,
+        users: -1,
+        products: -1,
+        trashedProducts: -1,
     },
     // активный кадр ссылок пагинации // [1, 2, 3, 4, 5, 6]
     paginationLinksShot: {

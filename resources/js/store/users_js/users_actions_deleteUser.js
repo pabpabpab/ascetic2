@@ -14,19 +14,17 @@ export default {
     },
 
 
-    deleteUser({ dispatch, commit, getters, state }, user) {
+    deleteUser({ dispatch, commit, getters, state, rootGetters }, user) {
         dispatch('closeConfirmationDialog', null, { root: true });
         dispatch('deleteJson', state.url['deleteUser'] + user.id, { root: true })
             .then((data) => {
                 if (data.deleteSuccess === true) {
 
+                    const currentPageIndex = rootGetters['pagination/currentPageIndex']('users');
                     commit('deleteItemFromUsers', user.id);
-                    dispatch('setFiltered', {entity: 'users', data: getters.users}, {root: true})
+                    dispatch('paginateUsers', getters.users)
                         .then(() => {
-                            dispatch('divideIntoPages', {
-                                entity: 'users',
-                                customQuantityPerPage: 0 // этот параметр для совместимости
-                            }, {root: true});
+                            dispatch('showPage', { entity: 'users', pageIndex: currentPageIndex }, { root: true });
                         });
 
                     const txt = `Пользователь «${user.email}» удален.`;

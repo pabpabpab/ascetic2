@@ -44,15 +44,7 @@ export default {
     },
 
     mounted() {
-        /*
-        if (!this.$route.params.withoutReload) {
-            this.$store.dispatch('users/loadUsers');
-        }
-        */
-
-        if (this.usersLength < 2 || this.$route.params.withReload) {
-            this.$store.dispatch('users/loadUsers');
-        }
+        this.$store.dispatch('users/showUsers');
     },
 };
 </script>

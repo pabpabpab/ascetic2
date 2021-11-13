@@ -2,7 +2,7 @@ import thatRouter from "../../router";
 
 export default {
 
-    deleteProduct({ dispatch, commit, getters, state }, productId) {
+    deleteProduct({ dispatch, commit, getters, state, rootGetters }, productId) {
         dispatch('closeConfirmationDialog', null, { root: true });
         dispatch('deleteJson', state.url['deleteProduct'] + productId, { root: true })
             .then((data) => {
@@ -15,8 +15,12 @@ export default {
 
                 if (data.deleteSuccess === true) {
 
+                    const currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
                     commit('deleteItemFromProducts', productId);
-                    dispatch('paginateProducts', getters.products);
+                    dispatch('paginateProducts', getters.products)
+                        .then(() => {
+                            dispatch('showPage', { entity: 'products', pageIndex: currentPageIndex }, { root: true });
+                        });
                     commit('setNeedReload', { entity: 'trashedProducts', value: true });
 
                     if (thatRouter.currentRoute.name === 'SingleProduct') {

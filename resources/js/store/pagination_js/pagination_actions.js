@@ -72,15 +72,12 @@ export default {
     },
 
     // ==========================пагинация программная: какую страницу items показать=======================
-    /*
-    showLastPage: {
+    showPage: {
         root: true,
-        handler({ dispatch, getters }, entity) {
-            const customizedLength = getters.customizedLength(entity);
-            const pageIndex = customizedLength - 1;
+        handler({ dispatch }, { entity, pageIndex }) {
             dispatch('showPageByClick', { entity, pageIndex });
         }
-    },*/
+    },
     // ==========================пагинация по клику: какую страницу items показать=======================
     showPageByClick({ dispatch, commit, getters }, { entity, pageIndex }) {
         const customizedLength = getters.customizedLength(entity);

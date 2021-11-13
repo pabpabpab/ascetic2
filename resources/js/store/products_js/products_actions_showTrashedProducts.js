@@ -1,13 +1,17 @@
 export default {
 
-    showTrashedProducts({dispatch, commit, getters}) {
+    showTrashedProducts({dispatch, commit, getters, rootGetters}) {
         commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
         commit('setListHeader', {name: 'TrashedProducts'});
 
-        if (getters.trashedProductsLength > 1 && !getters.needReload('trashedProducts')) {
-            dispatch('paginateTrashedProducts', getters.trashedProducts);
+        if (getters.trashedProductsLength > 0 && !getters.needReload('trashedProducts')) {
+            const currentPageIndex = rootGetters['pagination/currentPageIndex']('trashedProducts');
+            if (currentPageIndex === -1) {
+                dispatch('paginateTrashedProducts', getters.trashedProducts);
+            }
             return;
         }
+
         dispatch('loadTrashedProducts');
     },
 
