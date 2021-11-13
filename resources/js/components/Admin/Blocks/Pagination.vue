@@ -9,12 +9,11 @@
 
 
             <td>
-                <a href="#" class="pagination_link"
+                <a href="#" class="pagination_link pagination_link__arrow_left"
                    @click.prevent="showPageByClick({
                         entity: entity,
                         pageIndex: currentPageIndex(entity) - 1
                    })">
-                    <i class="fas fa-angle-left">&lt;</i>
                 </a>
             </td>
 
@@ -67,12 +66,11 @@
 
 
             <td>
-                <a href="#" class="pagination_link"
+                <a href="#" class="pagination_link pagination_link__arrow_right"
                    @click.prevent="showPageByClick({
                         entity: entity,
                         pageIndex: currentPageIndex(entity) + 1
                    })">
-                      <i class="fas fa-angle-right">&gt;</i>
                 </a>
             </td>
 

@@ -1,7 +1,5 @@
 export default {
 
-
-
     showUsers({dispatch, getters, rootGetters}) {
         if (getters.usersLength > 0) {
             const currentPageIndex = rootGetters['pagination/currentPageIndex']('users');
@@ -13,7 +11,6 @@ export default {
 
         dispatch('loadUsers');
     },
-
 
     loadUsers({ dispatch, commit, state }) {
         dispatch('showWaitingScreen', null, { root: true });
@@ -50,6 +47,5 @@ export default {
             commit('setUsersCount', data);
         });
     },
-
 
 };

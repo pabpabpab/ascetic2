@@ -99,8 +99,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -241,23 +239,19 @@ var render = function() {
         ? _c("table", { class: _vm.containerClass }, [
             _c("tr", [
               _c("td", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "pagination_link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.showPageByClick({
-                          entity: _vm.entity,
-                          pageIndex: _vm.currentPageIndex(_vm.entity) - 1
-                        })
-                      }
+                _c("a", {
+                  staticClass: "pagination_link pagination_link__arrow_left",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.showPageByClick({
+                        entity: _vm.entity,
+                        pageIndex: _vm.currentPageIndex(_vm.entity) - 1
+                      })
                     }
-                  },
-                  [_c("i", { staticClass: "fas fa-angle-left" }, [_vm._v("<")])]
-                )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("td", { class: _vm.innerContainerClass }, [
@@ -356,27 +350,19 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "pagination_link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.showPageByClick({
-                          entity: _vm.entity,
-                          pageIndex: _vm.currentPageIndex(_vm.entity) + 1
-                        })
-                      }
+                _c("a", {
+                  staticClass: "pagination_link pagination_link__arrow_right",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.showPageByClick({
+                        entity: _vm.entity,
+                        pageIndex: _vm.currentPageIndex(_vm.entity) + 1
+                      })
                     }
-                  },
-                  [
-                    _c("i", { staticClass: "fas fa-angle-right" }, [
-                      _vm._v(">")
-                    ])
-                  ]
-                )
+                  }
+                })
               ])
             ])
           ])

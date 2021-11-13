@@ -2209,7 +2209,7 @@ h1 {
   width: 42px;
   font-size: 17px;
   color: #888080;
-  font-weight: 300;
+  font-weight: 400;
   background-color: #fff;
   border: 1px solid #cadde9;
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
@@ -2228,6 +2228,70 @@ h1 {
   color: #fff;
   background-color: #a8a0a0;
   border: 1px solid #cadde9;
+}
+
+.pagination_link__arrow_left {
+  position: relative;
+}
+
+.pagination_link__arrow_left::before {
+  position: absolute;
+  content: "";
+  left: 18px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  border: solid #888080;
+  border-width: 0 0 2px 2px;
+  border-radius: 1px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.pagination_link__arrow_left:hover::before {
+  position: absolute;
+  content: "";
+  left: 18px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 0 2px 2px;
+  border-radius: 1px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.pagination_link__arrow_right {
+  position: relative;
+}
+
+.pagination_link__arrow_right::before {
+  position: absolute;
+  content: "";
+  left: 12px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  border: solid #888080;
+  border-width: 2px 2px 0 0;
+  border-radius: 1px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.pagination_link__arrow_right:hover::before {
+  position: absolute;
+  content: "";
+  left: 12px;
+  top: 10px;
+  width: 9px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 2px 2px 0 0;
+  border-radius: 1px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 .viewAll {

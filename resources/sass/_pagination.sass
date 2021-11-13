@@ -50,7 +50,6 @@
     align-items: center
     justify-content: space-between
     flex-wrap: nowrap
-    //width: 500px
     color: #000
     //border: 1px solid #0f0
 .pagination_width_inner
@@ -99,7 +98,7 @@
     margin: 1px
     height: 30px
     width: 42px
-    +font(17px, #888080, 300)
+    +font(17px, #888080, 400)
     //border: 1px solid #d8d0d0
     background-color: #fff //#f8f6f6
     border: 1px solid rgb(202, 221, 233)
@@ -114,6 +113,59 @@
     color: #fff
     background-color: #a8a0a0
     border: 1px solid rgb(202, 221, 233)
+
+
+.pagination_link__arrow_left
+    position: relative
+    &::before
+        position: absolute
+        content: ''
+        left: 18px
+        top: 10px
+        width: 9px
+        height: 9px
+        border: solid #888080
+        border-width: 0 0 2px 2px
+        border-radius: 1px
+        transform: rotate(45deg)
+    &:hover::before
+        position: absolute
+        content: ''
+        left: 18px
+        top: 10px
+        width: 9px
+        height: 9px
+        border: solid #fff
+        border-width: 0 0 2px 2px
+        border-radius: 1px
+        transform: rotate(45deg)
+
+.pagination_link__arrow_right
+    position: relative
+    &::before
+        position: absolute
+        content: ''
+        left: 12px
+        top: 10px
+        width: 9px
+        height: 9px
+        border: solid #888080
+        border-width: 2px 2px 0 0
+        border-radius: 1px
+        transform: rotate(45deg)
+    &:hover::before
+        position: absolute
+        content: ''
+        left: 12px
+        top: 10px
+        width: 9px
+        height: 9px
+        border: solid #fff
+        border-width: 2px 2px 0 0
+        border-radius: 1px
+        transform: rotate(45deg)
+
+
 
 
 .viewAll
