@@ -1,19 +1,18 @@
 <template>
     <div class="products_header">
-        <filters-icon v-if="$route.name === 'Products'" class="filter_icon__img">
-        </filters-icon>
+        <reload-icon></reload-icon>
         <h1 class="pd0 mb0 mauto"> {{ listHeader }}</h1>
     </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-import FiltersIcon from "./FiltersIcon";
+import ReloadIcon from "./../Blocks/ReloadIcon";
 
 export default {
     name: "ProductListHeader",
     components: {
-        FiltersIcon,
+        ReloadIcon,
     },
     computed: {
         ...mapGetters('products', [

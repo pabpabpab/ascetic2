@@ -1,5 +1,10 @@
 export default {
 
+    showTrashedProductsWithReload({dispatch, commit}, route = {name: 'TrashedProducts'}) {
+        commit('setNeedReload', { entity: 'trashedProducts', value: true });
+        dispatch('showTrashedProducts', route);
+    },
+
     showTrashedProducts({dispatch, commit, getters, rootGetters}) {
         commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
         commit('setListHeader', {name: 'TrashedProducts'});

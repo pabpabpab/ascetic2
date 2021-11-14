@@ -1,0 +1,33 @@
+.reload_icon
+    position: absolute
+    height: 35px
+    width: 35px
+    border-radius: 35px
+    top: 2px
+    left: -55px
+    cursor: pointer
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &:hover
+        box-shadow: 0 0 3px 7px rgba(0, 0, 0, 0.01)
+
+.reload_icon__content
+    position: relative
+    +font(22px, rgb(170, 160, 160), 700)
+    &:hover::after
+        content: attr(data-title)
+        position: absolute
+        left: 22px
+        top: 32px
+        z-index: 30
+        width: 210px
+        +font(16px, #787070, 300)
+        text-align: left
+        background-color: rgb(244, 249, 252)
+        padding: 15px
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.5)
+        border-top-right-radius: 8px
+        border-bottom-right-radius: 8px
+        border-bottom-left-radius: 8px

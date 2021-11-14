@@ -1,5 +1,11 @@
 // отмечено звездочкой (*) функционал для "показать прежнюю paginated страницу"
 export default {
+
+    showProductsWithReload({dispatch, commit}, route = {name: 'Products'}) {
+        commit('setNeedReload', { entity: 'products', value: true });
+        dispatch('showProducts', route);
+    },
+
     async showProducts({dispatch, commit, getters, rootGetters}, route) {
         commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
 

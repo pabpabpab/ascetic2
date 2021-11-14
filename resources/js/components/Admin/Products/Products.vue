@@ -20,6 +20,7 @@
             <transition name="product_filters">
                 <products-filters v-show="$route.name === 'Products' && visibility('productsFilters')"></products-filters>
             </transition>
+            <filters-icon v-if="$route.name === 'Products'"></filters-icon>
 
             <transition name="fade">
                 <products-context-menu v-if="showProductsContextMenu"></products-context-menu>
@@ -57,6 +58,7 @@ import SeoManager from "./../Blocks/SeoManager";
 import ProductEditManager from "./ProductEditManager";
 import SortingModes from "./SortingModes";
 import ProductQuickViewManager from "./ProductQuickViewManager";
+import FiltersIcon from "./FiltersIcon";
 
 export default {
     name: "Products",
@@ -72,6 +74,7 @@ export default {
         SeoManager,
         ProductEditManager,
         ProductQuickViewManager,
+        FiltersIcon,
     },
     computed: {
         ...mapGetters('products', [

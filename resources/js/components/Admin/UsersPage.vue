@@ -1,6 +1,9 @@
 <template>
     <div class="show_block">
-        <h1>Пользователи</h1>
+        <div class="users_header">
+            <reload-icon></reload-icon>
+            <h1 class="pd0 mb0 mauto">Пользователи</h1>
+        </div>
         <div class="content_block content_block__users">
             <search-user-panel></search-user-panel>
             <pagination entity="users" class="pdb10"></pagination>
@@ -11,7 +14,7 @@
 </template>
 
 <script>
-import SearchUserPanel from "./Users/SearchUserPanel";
+import ReloadIcon from "./Blocks/ReloadIcon";
 
 export default {
     name: 'UsersPage',
@@ -19,7 +22,7 @@ export default {
         SearchUserPanel: () => import('./Users/SearchUserPanel.vue'),
         Users: () => import('./Users/Users.vue'),
         Pagination: () => import('./Blocks/Pagination.vue'),
-        // LazyUsers: () => import('./Users/LazyUsers.vue'),
+        ReloadIcon: () => import('./Blocks/ReloadIcon.vue'),
     },
     /*
     mounted() {

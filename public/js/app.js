@@ -24222,14 +24222,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // отмечено звездочкой (*) функционал для "показать прежнюю paginated страницу"
 /* harmony default export */ __webpack_exports__["default"] = ({
-  showProducts: function showProducts(_ref, route) {
+  showProductsWithReload: function showProductsWithReload(_ref) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit;
+    var route = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      name: 'Products'
+    };
+    commit('setNeedReload', {
+      entity: 'products',
+      value: true
+    });
+    dispatch('showProducts', route);
+  },
+  showProducts: function showProducts(_ref2, route) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var dispatch, commit, getters, rootGetters;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref.dispatch, commit = _ref.commit, getters = _ref.getters, rootGetters = _ref.rootGetters;
+              dispatch = _ref2.dispatch, commit = _ref2.commit, getters = _ref2.getters, rootGetters = _ref2.rootGetters;
               commit('setVisibility', {
                 componentName: 'productQuickViewManager',
                 value: false
@@ -24271,10 +24283,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  loadProducts: function loadProducts(_ref2) {
-    var dispatch = _ref2.dispatch,
-        commit = _ref2.commit,
-        state = _ref2.state;
+  loadProducts: function loadProducts(_ref3) {
+    var dispatch = _ref3.dispatch,
+        commit = _ref3.commit,
+        state = _ref3.state;
     var route = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
       name: 'Products'
     };
@@ -24310,10 +24322,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     });
   },
-  getFilteredProductsByRoute: function getFilteredProductsByRoute(_ref3, route) {
+  getFilteredProductsByRoute: function getFilteredProductsByRoute(_ref4, route) {
     var _route$params$categor, _route$params, _route$params$categor2, _route$params2;
 
-    var getters = _ref3.getters;
+    var getters = _ref4.getters;
     var gettersBook = {
       Products: {
         all: 'allProducts'
@@ -24327,8 +24339,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var getterName = gettersBook[route.name][(_route$params$categor = (_route$params = route.params) === null || _route$params === void 0 ? void 0 : _route$params.categoryEntity) !== null && _route$params$categor !== void 0 ? _route$params$categor : 'all'];
     return _toConsumableArray(getters[getterName]((_route$params$categor2 = (_route$params2 = route.params) === null || _route$params2 === void 0 ? void 0 : _route$params2.categoryId) !== null && _route$params$categor2 !== void 0 ? _route$params$categor2 : 0));
   },
-  paginateProducts: function paginateProducts(_ref4, data) {
-    var dispatch = _ref4.dispatch;
+  paginateProducts: function paginateProducts(_ref5, data) {
+    var dispatch = _ref5.dispatch;
     dispatch('setFiltered', {
       entity: 'products',
       data: data
@@ -24343,14 +24355,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     });
   },
-  _needNewPagination: function _needNewPagination(_ref5, route) {
+  _needNewPagination: function _needNewPagination(_ref6, route) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var getters, rootGetters, currentPageIndex;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              getters = _ref5.getters, rootGetters = _ref5.rootGetters;
+              getters = _ref6.getters, rootGetters = _ref6.rootGetters;
 
               if (!(route.name !== 'Products')) {
                 _context2.next = 3;
@@ -24402,11 +24414,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  showTrashedProducts: function showTrashedProducts(_ref) {
+  showTrashedProductsWithReload: function showTrashedProductsWithReload(_ref) {
     var dispatch = _ref.dispatch,
-        commit = _ref.commit,
-        getters = _ref.getters,
-        rootGetters = _ref.rootGetters;
+        commit = _ref.commit;
+    var route = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      name: 'TrashedProducts'
+    };
+    commit('setNeedReload', {
+      entity: 'trashedProducts',
+      value: true
+    });
+    dispatch('showTrashedProducts', route);
+  },
+  showTrashedProducts: function showTrashedProducts(_ref2) {
+    var dispatch = _ref2.dispatch,
+        commit = _ref2.commit,
+        getters = _ref2.getters,
+        rootGetters = _ref2.rootGetters;
     commit('setVisibility', {
       componentName: 'productQuickViewManager',
       value: false
@@ -24427,10 +24451,10 @@ __webpack_require__.r(__webpack_exports__);
 
     dispatch('loadTrashedProducts');
   },
-  loadTrashedProducts: function loadTrashedProducts(_ref2) {
-    var dispatch = _ref2.dispatch,
-        commit = _ref2.commit,
-        state = _ref2.state;
+  loadTrashedProducts: function loadTrashedProducts(_ref3) {
+    var dispatch = _ref3.dispatch,
+        commit = _ref3.commit,
+        state = _ref3.state;
     dispatch('showWaitingScreen', null, {
       root: true
     });
@@ -24450,8 +24474,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  paginateTrashedProducts: function paginateTrashedProducts(_ref3, data) {
-    var dispatch = _ref3.dispatch;
+  paginateTrashedProducts: function paginateTrashedProducts(_ref4, data) {
+    var dispatch = _ref4.dispatch;
     dispatch('setFiltered', {
       entity: 'trashedProducts',
       data: data
@@ -25367,10 +25391,19 @@ function isEmailValid(email) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  showUsers: function showUsers(_ref) {
+  showUsersWithReload: function showUsersWithReload(_ref) {
     var dispatch = _ref.dispatch,
-        getters = _ref.getters,
-        rootGetters = _ref.rootGetters;
+        commit = _ref.commit;
+    var route = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      name: 'Users'
+    };
+    commit('setUsers', []);
+    dispatch('showUsers', route);
+  },
+  showUsers: function showUsers(_ref2) {
+    var dispatch = _ref2.dispatch,
+        getters = _ref2.getters,
+        rootGetters = _ref2.rootGetters;
 
     if (getters.usersLength > 0) {
       var currentPageIndex = rootGetters['pagination/currentPageIndex']('users');
@@ -25384,10 +25417,10 @@ __webpack_require__.r(__webpack_exports__);
 
     dispatch('loadUsers');
   },
-  loadUsers: function loadUsers(_ref2) {
-    var dispatch = _ref2.dispatch,
-        commit = _ref2.commit,
-        state = _ref2.state;
+  loadUsers: function loadUsers(_ref3) {
+    var dispatch = _ref3.dispatch,
+        commit = _ref3.commit,
+        state = _ref3.state;
     dispatch('showWaitingScreen', null, {
       root: true
     });
@@ -25402,8 +25435,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  paginateUsers: function paginateUsers(_ref3, data) {
-    var dispatch = _ref3.dispatch;
+  paginateUsers: function paginateUsers(_ref4, data) {
+    var dispatch = _ref4.dispatch;
     dispatch('setFiltered', {
       entity: 'users',
       data: data
@@ -25418,10 +25451,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
   },
-  loadSingleUser: function loadSingleUser(_ref4, userId) {
-    var dispatch = _ref4.dispatch,
-        commit = _ref4.commit,
-        state = _ref4.state;
+  loadSingleUser: function loadSingleUser(_ref5, userId) {
+    var dispatch = _ref5.dispatch,
+        commit = _ref5.commit,
+        state = _ref5.state;
     var url = state.url['singleUser'] + userId;
     dispatch('getJson', url, {
       root: true
@@ -25429,10 +25462,10 @@ __webpack_require__.r(__webpack_exports__);
       commit('setSingleUserFromServer', data);
     });
   },
-  getUsersCount: function getUsersCount(_ref5) {
-    var dispatch = _ref5.dispatch,
-        commit = _ref5.commit,
-        state = _ref5.state;
+  getUsersCount: function getUsersCount(_ref6) {
+    var dispatch = _ref6.dispatch,
+        commit = _ref6.commit,
+        state = _ref6.state;
     var url = state.url['usersCount'];
     dispatch('getJson', url, {
       root: true

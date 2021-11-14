@@ -1,5 +1,10 @@
 export default {
 
+    showUsersWithReload({dispatch, commit}, route = {name: 'Users'}) {
+        commit('setUsers', []);
+        dispatch('showUsers', route);
+    },
+
     showUsers({dispatch, getters, rootGetters}) {
         if (getters.usersLength > 0) {
             const currentPageIndex = rootGetters['pagination/currentPageIndex']('users');
