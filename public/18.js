@@ -51,7 +51,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     items: function items() {
       return this.customized('users')[this.currentPageIndex('users')];
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showUsersContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['usersLength', 'visibility'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('users', ['usersLength', 'visibility'])),
   mounted: function mounted() {
     this.$store.dispatch('users/showUsers');
   }
@@ -85,7 +85,7 @@ var render = function() {
       _c(
         "transition",
         { attrs: { name: "fade" } },
-        [_vm.showUsersContextMenu ? _c("users-context-menu") : _vm._e()],
+        [_vm.showContextMenu("Users") ? _c("users-context-menu") : _vm._e()],
         1
       ),
       _vm._v(" "),

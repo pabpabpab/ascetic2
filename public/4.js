@@ -494,7 +494,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ProductQuickViewManager: _ProductQuickViewManager__WEBPACK_IMPORTED_MODULE_10__["default"],
     FiltersIcon: _FiltersIcon__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['productsLength', 'visibility'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['productsLength', 'visibility'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
     items: function items() {
       return this.customized('products')[this.currentPageIndex('products')];
     }
@@ -1640,7 +1640,9 @@ var render = function() {
           "transition",
           { attrs: { name: "fade" } },
           [
-            _vm.showProductsContextMenu ? _c("products-context-menu") : _vm._e()
+            _vm.showContextMenu("Products")
+              ? _c("products-context-menu")
+              : _vm._e()
           ],
           1
         ),

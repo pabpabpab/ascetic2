@@ -254,7 +254,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Pagination: _Blocks_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
     ProductsContextMenu: _ContextMenu_ProductsContextMenu__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['trashedProductsLength'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showProductsContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['trashedProductsLength'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['currentPageIndex', 'customized'])), {}, {
     items: function items() {
       return this.customized('trashedProducts')[this.currentPageIndex('trashedProducts')];
     }
@@ -634,7 +634,9 @@ var render = function() {
           "transition",
           { attrs: { name: "fade" } },
           [
-            _vm.showProductsContextMenu ? _c("products-context-menu") : _vm._e()
+            _vm.showContextMenu("Products")
+              ? _c("products-context-menu")
+              : _vm._e()
           ],
           1
         )

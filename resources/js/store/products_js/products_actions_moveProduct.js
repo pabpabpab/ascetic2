@@ -21,13 +21,13 @@ export default {
             }, { root: true });
 
             dispatch (
-                'postJson',
-                {
-                    url: state.url['moveProduct'] + operatedId,
-                    data: { targetId, vector },
-                },
-                { root: true }
-            )
+                    'postJson',
+                    {
+                        url: state.url['moveProduct'] + operatedId,
+                        data: { targetId, vector },
+                    },
+                    { root: true }
+                )
                 .then((data) => {
                     if (data.moveSuccess === true) {
                         const txt = 'Сделано.';

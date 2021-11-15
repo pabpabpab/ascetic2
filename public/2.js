@@ -706,7 +706,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       resetFilesInputKey: 0
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('contextMenu', ['showPhotosContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('seoManager', ['showSeoManager'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('seoManager', ['showSeoManager'])), {}, {
     showButtonsPanel: function showButtonsPanel() {
       return this.photos.length > 0;
     }
@@ -1037,48 +1037,50 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _c("li", { staticClass: "context_menu__li__multiple_black" }, [
-          _vm._v("\n            Сдвинуть\n            "),
-          _vm.currentListIndex > 0
-            ? _c(
-                "span",
-                {
-                  staticClass: "context_menu__li__multiple__item_black",
-                  attrs: { title: "влево (вверх)" },
-                  on: {
-                    click: function($event) {
-                      return _vm.movePhoto({
-                        productId: _vm.productId,
-                        photoName: _vm.photoName,
-                        to: "up"
-                      })
-                    }
-                  }
-                },
-                [_vm._v("\n                ← ↑\n            ")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentListIndex < _vm.lastListIndex
-            ? _c(
-                "span",
-                {
-                  staticClass: "context_menu__li__multiple__item_black",
-                  attrs: { title: "вправо (вниз)" },
-                  on: {
-                    click: function($event) {
-                      return _vm.movePhoto({
-                        productId: _vm.productId,
-                        photoName: _vm.photoName,
-                        to: "down"
-                      })
-                    }
-                  }
-                },
-                [_vm._v("\n                ↓ →\n            ")]
-              )
-            : _vm._e()
-        ]),
+        _vm.lastListIndex !== 0
+          ? _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+              _vm._v("\n            Сдвинуть\n            "),
+              _vm.currentListIndex > 0
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "context_menu__li__multiple__item_black",
+                      attrs: { title: "влево (вверх)" },
+                      on: {
+                        click: function($event) {
+                          return _vm.movePhoto({
+                            productId: _vm.productId,
+                            photoName: _vm.photoName,
+                            to: "up"
+                          })
+                        }
+                      }
+                    },
+                    [_vm._v("\n                ← ↑\n            ")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.currentListIndex < _vm.lastListIndex
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "context_menu__li__multiple__item_black",
+                      attrs: { title: "вправо (вниз)" },
+                      on: {
+                        click: function($event) {
+                          return _vm.movePhoto({
+                            productId: _vm.productId,
+                            photoName: _vm.photoName,
+                            to: "down"
+                          })
+                        }
+                      }
+                    },
+                    [_vm._v("\n                ↓ →\n            ")]
+                  )
+                : _vm._e()
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "li",
@@ -1646,7 +1648,7 @@ var render = function() {
                 "transition",
                 { attrs: { name: "fade" } },
                 [
-                  _vm.showPhotosContextMenu
+                  _vm.showContextMenu("Photos")
                     ? _c("photos-context-menu")
                     : _vm._e()
                 ],

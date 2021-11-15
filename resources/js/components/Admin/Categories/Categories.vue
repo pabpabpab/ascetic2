@@ -11,7 +11,7 @@
 
         <transition name="fade">
             <categories-context-menu
-                v-if="showCategoriesContextMenu"
+                v-if="showContextMenu('Categories')"
                 :entity="$route.params.entity"
                 @change-item-component="changeItemComponent">
             </categories-context-menu>
@@ -65,7 +65,7 @@ export default {
             'showSeoManager',
         ]),
         ...mapGetters('contextMenu', [
-            'showCategoriesContextMenu',
+            'showContextMenu',
         ]),
     },
 

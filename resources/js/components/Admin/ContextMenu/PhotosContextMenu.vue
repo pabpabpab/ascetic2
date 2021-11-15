@@ -23,7 +23,7 @@
                 Сделать главным
             </li>
 
-            <li class="context_menu__li__multiple_black">
+            <li v-if="lastListIndex !== 0" class="context_menu__li__multiple_black">
                 Сдвинуть
                 <span v-if="currentListIndex > 0"
                       title="влево (вверх)"

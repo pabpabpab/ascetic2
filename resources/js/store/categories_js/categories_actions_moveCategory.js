@@ -12,24 +12,26 @@ export default {
             const moveUrl = state.moveUrl[entity] + operatedCategoryId;
 
             dispatch (
-                'postJson',
-                {
-                    url: moveUrl,
-                    data: { closestTopCategoryId, entity },
-                },
-                { root: true }
-            )
+                    'postJson',
+                    {
+                        url: moveUrl,
+                        data: { closestTopCategoryId, entity },
+                    },
+                    { root: true }
+                )
                 .then((data) => {
                     if (data.moveSuccess === true) {
                         dispatch('loadCategories', entity); // получить обновленный список с сервера
                         const txt = 'Сделано.';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.8}, { root: true });
-                        //закрытие заглушки в loadCategories // dispatch('hideWaitingScreen', null, { root: true });
                     } else {
                         dispatch('loadCategories', entity); // отобразить обратно
                         const txt = 'Неудачная попытка перемещения.';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }
+                })
+                .finally(() => {
+                    dispatch('hideWaitingScreen', null, { root: true });
                 });
         }
     },

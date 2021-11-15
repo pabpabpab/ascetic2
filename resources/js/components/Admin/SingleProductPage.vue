@@ -4,7 +4,7 @@
         <single-product from="singleProductPage"></single-product>
 
         <transition name="fade">
-            <products-context-menu v-if="showProductsContextMenu"></products-context-menu>
+            <products-context-menu v-if="showContextMenu('Products')"></products-context-menu>
         </transition>
         <transition name="fade">
             <product-edit-manager v-if="visibility('productEditManager')"></product-edit-manager>
@@ -45,7 +45,7 @@ export default {
             'imgFolderPrefix',
         ]),
         ...mapGetters('contextMenu', [
-            'showProductsContextMenu',
+            'showContextMenu',
         ]),
         ...mapGetters('seoManager', [
             'showSeoManager',

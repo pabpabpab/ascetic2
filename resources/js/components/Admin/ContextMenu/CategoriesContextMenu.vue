@@ -4,7 +4,7 @@
             <li class="context_menu__li_header">
                 «{{ category.name }}»
             </li>
-            <li class="context_menu__li__multiple">
+            <li v-if="lastListIndex !== 0" class="context_menu__li__multiple">
                 Сдвинуть
                 <span v-if="currentListIndex > 0"
                       title="вверх"

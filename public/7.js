@@ -122,7 +122,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeContextMenu'])), _someMethods_categoriesItemsMethods__WEBPACK_IMPORTED_MODULE_4__["default"]),
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showCategoriesContextMenu'])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showContextMenu'])),
   watch: {
     categories: function categories(newCategories, oldCategories) {
       var categories = _toConsumableArray(newCategories[this.$route.params.entity]);
@@ -726,7 +726,7 @@ var render = function() {
         "transition",
         { attrs: { name: "fade" } },
         [
-          _vm.showCategoriesContextMenu
+          _vm.showContextMenu("Categories")
             ? _c("categories-context-menu", {
                 attrs: { entity: _vm.$route.params.entity },
                 on: { "change-item-component": _vm.changeItemComponent }
@@ -1172,48 +1172,50 @@ var render = function() {
           _vm._v("\n            «" + _vm._s(_vm.category.name) + "»\n        ")
         ]),
         _vm._v(" "),
-        _c("li", { staticClass: "context_menu__li__multiple" }, [
-          _vm._v("\n            Сдвинуть\n            "),
-          _vm.currentListIndex > 0
-            ? _c(
-                "span",
-                {
-                  staticClass: "context_menu__li__multiple__item",
-                  attrs: { title: "вверх" },
-                  on: {
-                    click: function($event) {
-                      return _vm.changePosition({
-                        entity: _vm.$route.params.entity,
-                        categoryId: _vm.category.id,
-                        direction: "up"
-                      })
-                    }
-                  }
-                },
-                [_vm._v("\n                 ↑\n            ")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentListIndex < _vm.lastListIndex
-            ? _c(
-                "span",
-                {
-                  staticClass: "context_menu__li__multiple__item",
-                  attrs: { title: "вниз" },
-                  on: {
-                    click: function($event) {
-                      return _vm.changePosition({
-                        entity: _vm.$route.params.entity,
-                        categoryId: _vm.category.id,
-                        direction: "down"
-                      })
-                    }
-                  }
-                },
-                [_vm._v("\n                ↓\n            ")]
-              )
-            : _vm._e()
-        ]),
+        _vm.lastListIndex !== 0
+          ? _c("li", { staticClass: "context_menu__li__multiple" }, [
+              _vm._v("\n            Сдвинуть\n            "),
+              _vm.currentListIndex > 0
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "context_menu__li__multiple__item",
+                      attrs: { title: "вверх" },
+                      on: {
+                        click: function($event) {
+                          return _vm.changePosition({
+                            entity: _vm.$route.params.entity,
+                            categoryId: _vm.category.id,
+                            direction: "up"
+                          })
+                        }
+                      }
+                    },
+                    [_vm._v("\n                 ↑\n            ")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.currentListIndex < _vm.lastListIndex
+                ? _c(
+                    "span",
+                    {
+                      staticClass: "context_menu__li__multiple__item",
+                      attrs: { title: "вниз" },
+                      on: {
+                        click: function($event) {
+                          return _vm.changePosition({
+                            entity: _vm.$route.params.entity,
+                            categoryId: _vm.category.id,
+                            direction: "down"
+                          })
+                        }
+                      }
+                    },
+                    [_vm._v("\n                ↓\n            ")]
+                  )
+                : _vm._e()
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "li",

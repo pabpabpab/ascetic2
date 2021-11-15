@@ -15,7 +15,7 @@
             <pagination v-if="trashedProductsLength > 1" entity="trashedProducts" class="pdt10"></pagination>
 
             <transition name="fade">
-                <products-context-menu v-if="showProductsContextMenu"></products-context-menu>
+                <products-context-menu v-if="showContextMenu('Products')"></products-context-menu>
             </transition>
 
         </div>
@@ -40,7 +40,7 @@ export default {
             'trashedProductsLength',
         ]),
         ...mapGetters('contextMenu', [
-            'showProductsContextMenu',
+            'showContextMenu',
         ]),
         ...mapGetters('pagination', [
             'currentPageIndex',

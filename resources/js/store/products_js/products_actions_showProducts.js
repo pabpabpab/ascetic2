@@ -6,10 +6,10 @@ export default {
         dispatch('showProducts', route);
     },
 
-    async showProducts({dispatch, commit, getters}, route) {
+    async showProducts({dispatch, commit, getters}, route = {name: 'Products'}) {
         commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
 
-        if (getters.productsLength === 0 || getters.needReload('products')) {
+        if (getters.productsLength < 2 || getters.needReload('products')) {
             dispatch('loadProducts', route)
                 .then(({products, route}) => {
                     commit('setNeedReload', { entity: 'products', value: false });

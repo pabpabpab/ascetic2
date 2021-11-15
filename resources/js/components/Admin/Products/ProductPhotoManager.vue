@@ -26,7 +26,7 @@
 
 
                     <transition name="fade">
-                        <photos-context-menu v-if="showPhotosContextMenu"></photos-context-menu>
+                        <photos-context-menu v-if="showContextMenu('Photos')"></photos-context-menu>
                     </transition>
 
 
@@ -96,7 +96,7 @@ export default {
             'imgFolderPrefix',
         ]),
         ...mapGetters('contextMenu', [
-            'showPhotosContextMenu',
+            'showContextMenu',
         ]),
         ...mapGetters('seoManager', [
             'showSeoManager',

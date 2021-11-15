@@ -34,7 +34,6 @@ export default {
         return true;
     },
 
-
     async saveUser({ dispatch, commit, getters, state }, user) {
         const action = user.id ? 'edit' : 'create';
         const sendingEmail = Boolean(user.send_confirm_registration || user.send_reset_password);
@@ -50,13 +49,13 @@ export default {
         }
 
         dispatch(
-            'postJson',
-            {
-                url: user.id > 0 ? state.url['saveUser'] + user.id : state.url['saveUser'],
-                data: user
-            },
-            {root: true}
-        )
+                'postJson',
+                {
+                    url: user.id > 0 ? state.url['saveUser'] + user.id : state.url['saveUser'],
+                    data: user
+                },
+                {root: true}
+            )
             .then((data) => {
                 // validatorErrors в данных формируется в форм-реквесте если валидация failed
                 if (data.backValidatorErrors) {
@@ -94,7 +93,6 @@ export default {
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
             });
-
     },
 
 

@@ -6,7 +6,7 @@
         </user-item>
 
         <transition name="fade">
-            <users-context-menu v-if="showUsersContextMenu"></users-context-menu>
+            <users-context-menu v-if="showContextMenu('Users')"></users-context-menu>
         </transition>
 
         <transition name="fade">
@@ -35,7 +35,7 @@ export default {
             return this.customized('users')[this.currentPageIndex('users')];
         },
         ...mapGetters('contextMenu', [
-            'showUsersContextMenu',
+            'showContextMenu',
         ]),
         ...mapGetters('users', [
             'usersLength',

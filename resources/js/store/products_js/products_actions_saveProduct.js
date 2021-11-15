@@ -59,18 +59,15 @@ export default {
         dispatch('showWaitingScreen', null, { root: true });
 
         dispatch(
-            'postMultipart',
-            {
-                url: saveProductUrl,
-                data: product
-            },
-            { root: true }
-        )
+                'postMultipart',
+                {
+                    url: saveProductUrl,
+                    data: product
+                },
+                { root: true }
+            )
             .then((data) => {
                 // validatorErrors в данных формируется в форм-реквесте если валидация failed
-
-                dispatch('hideWaitingScreen', null, { root: true });
-
                 if (data.backValidatorErrors) {
                     dispatch('showPopupErrorsBox', data.backValidatorErrors, { root: true });
                     commit('enableTypeinValidation', null, { root: true });
@@ -89,27 +86,26 @@ export default {
 
 
                     if (action === 'edit') {
-
                         commit('setSingleProductFromServer', data);
                         commit('updateProductsBySingleProduct');
                         dispatch('updateItemInPaginated', {
                             entity: 'products',
                             item: data.product,
                         }, { root: true });
-
                     } else {
-
                         commit('addProductToProductsByFirst', data.product);
                         dispatch('paginateProducts', getters.products)
                             .then(() => {
                                 thatRouter.push({ name: 'Products' });
                             });
-
                     }
                 } else {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
+            })
+            .finally(() => {
+                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 

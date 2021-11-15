@@ -23,7 +23,7 @@
             <filters-icon v-if="$route.name === 'Products'"></filters-icon>
 
             <transition name="fade">
-                <products-context-menu v-if="showProductsContextMenu"></products-context-menu>
+                <products-context-menu v-if="showContextMenu('Products')"></products-context-menu>
             </transition>
 
 
@@ -85,7 +85,7 @@ export default {
             'showSeoManager',
         ]),
         ...mapGetters('contextMenu', [
-            'showProductsContextMenu',
+            'showContextMenu',
         ]),
         ...mapGetters('pagination', [
             'currentPageIndex',

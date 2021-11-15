@@ -80,62 +80,56 @@ export default {
             arr.push(item);
             rootState[moduleName][seoStoreName] = [ ...arr ];
         },
-
-
-
-},
+    },
     actions: {
 
         showSeoManager({ dispatch, commit, getters, state }, {entity, data}) {
             dispatch('closeContextMenu', null, { root: true });
-            dispatch('showWaitingScreen', null, { root: true });
             commit('clearSeoData', entity);
-            dispatch('loadSeoData', {entity, data}).then(() => {
-                dispatch('hideWaitingScreen', null, {root: true});
-                commit('setShowSeoManager', true);
-            });
+            dispatch('loadSeoData', {entity, data})
+                .then(() => {
+                    commit('setShowSeoManager', true);
+                });
+
         },
 
 
         loadSeoData({dispatch, commit, state},  {entity, data}) {
+            dispatch('showWaitingScreen', null, { root: true });
             const urlParams = {
                 product: data.id,
                 category: data.id,
                 photo: data.productId + '/' + data.photoName
             }
-
             const seoUrl = state.seoUrl[entity] + urlParams[entity];
-
             dispatch('getJson', seoUrl, { root: true })
                 .then((data) => {
                     commit('setServerData', {entity, data});
+                })
+                .finally(() => {
+                    dispatch('hideWaitingScreen', null, { root: true });
                 });
         },
 
 
         saveSeoData({ dispatch, commit, state, rootState }, { entity, data }) {
+            dispatch('showWaitingScreen', null, { root: true });
             const frontItem = data;
-
             const urlParams = {
                 product: data.entityId,
                 category: data.entityId,
                 photo: data.entityId + '/' + data.photoName
             }
-
             const saveSeoUrl = state.saveSeoUrl[entity] + urlParams[entity];
-
-            dispatch('showWaitingScreen', null, { root: true });
-
             dispatch(
-                'postJson',
-                {
-                    url: saveSeoUrl,
-                    data: data,
-                },
-                {root: true}
-            )
+                    'postJson',
+                    {
+                        url: saveSeoUrl,
+                        data: data,
+                    },
+                    {root: true}
+                )
                 .then((data) => {
-                    dispatch('hideWaitingScreen', null, { root: true });
                     if (data.saveSuccess === true) {
 
                         commit('addItemIntoModuleSeoData', {
@@ -151,6 +145,9 @@ export default {
                         const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }
+                })
+                .finally(() => {
+                    dispatch('hideWaitingScreen', null, { root: true });
                 });
         },
 

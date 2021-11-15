@@ -19914,6 +19914,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context3.prev = _context3.next) {
             case 0:
               dispatch = _ref4.dispatch, commit = _ref4.commit, state = _ref4.state;
+              dispatch('showWaitingScreen', null, {
+                root: true
+              });
               url = state.categoriesUrl[entity];
               dispatch('getJson', url, {
                 root: true
@@ -19932,120 +19935,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (entity === 'categories') {
                   commit('setSeoData', data.seo);
                 }
-
+              })["finally"](function () {
                 dispatch('hideWaitingScreen', null, {
                   root: true
                 });
               });
 
-            case 3:
+            case 4:
             case "end":
               return _context3.stop();
           }
         }
       }, _callee3);
-    }))();
-  },
-  // фронт-валидация при вводе (type-in)
-  typeinValidation: function typeinValidation(_ref5, _ref6) {
-    var dispatch = _ref5.dispatch,
-        commit = _ref5.commit,
-        getters = _ref5.getters,
-        rootGetters = _ref5.rootGetters;
-    var entity = _ref6.entity,
-        category = _ref6.category;
-    dispatch('cleanPopupErrors', null, {
-      root: true
-    });
-
-    if (!rootGetters.typeinValidationRequired) {
-      return;
-    }
-
-    var categories = getters.categories[entity];
-
-    var _categoryValidation = Object(_functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(category, categories),
-        typeinErrors = _categoryValidation.typeinErrors;
-
-    commit('setTypeinErrors', typeinErrors, {
-      root: true
-    });
-    commit('setAlarmingInputs', typeinErrors, {
-      root: true
-    });
-  },
-  // обнулить ошибки
-  cleanValidationErrors: function cleanValidationErrors(_ref7) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var dispatch, commit;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              dispatch = _ref7.dispatch, commit = _ref7.commit;
-              dispatch('cleanPopupErrors', null, {
-                root: true
-              });
-              commit('resetAlarmingInputs', null, {
-                root: true
-              });
-              commit('resetTypeinErrors', null, {
-                root: true
-              });
-              commit('disableTypeinValidation', null, {
-                root: true
-              });
-
-            case 5:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    }))();
-  },
-  // фронт-валидация, pop-up и type-in сообщения
-  _frontValidation: function _frontValidation(_ref8, _ref9) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-      var dispatch, commit, getters, entity, category, categories, _categoryValidation2, popupErrors, typeinErrors;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-        while (1) {
-          switch (_context5.prev = _context5.next) {
-            case 0:
-              dispatch = _ref8.dispatch, commit = _ref8.commit, getters = _ref8.getters;
-              entity = _ref9.entity, category = _ref9.category;
-              categories = getters.categories[entity];
-              _categoryValidation2 = Object(_functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(category, categories), popupErrors = _categoryValidation2.popupErrors, typeinErrors = _categoryValidation2.typeinErrors;
-
-              if (!popupErrors) {
-                _context5.next = 10;
-                break;
-              }
-
-              dispatch('showPopupErrorsBox', popupErrors, {
-                root: true
-              });
-              commit('enableTypeinValidation', null, {
-                root: true
-              });
-              commit('setAlarmingInputs', popupErrors, {
-                root: true
-              });
-              commit('setTypeinErrors', typeinErrors, {
-                root: true
-              });
-              return _context5.abrupt("return", false);
-
-            case 10:
-              return _context5.abrupt("return", true);
-
-            case 11:
-            case "end":
-              return _context5.stop();
-          }
-        }
-      }, _callee5);
     }))();
   }
 });
@@ -20093,11 +19994,8 @@ __webpack_require__.r(__webpack_exports__);
           sec: 0.8
         }, {
           root: true
-        }); //закрытие заглушки в loadCategories // dispatch('hideWaitingScreen', null, { root: true });
-      } else {
-        dispatch('hideWaitingScreen', null, {
-          root: true
         });
+      } else {
         var _txt = 'Неудачная попытка изменения позиции.';
         dispatch('showAbsoluteFlashMessage', {
           text: _txt,
@@ -20106,6 +20004,10 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
+    })["finally"](function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
     });
   }
 });
@@ -20217,7 +20119,7 @@ __webpack_require__.r(__webpack_exports__);
             sec: 0.8
           }, {
             root: true
-          }); //закрытие заглушки в loadCategories // dispatch('hideWaitingScreen', null, { root: true });
+          });
         } else {
           dispatch('loadCategories', entity); // отобразить обратно
 
@@ -20229,6 +20131,10 @@ __webpack_require__.r(__webpack_exports__);
             root: true
           });
         }
+      })["finally"](function () {
+        dispatch('hideWaitingScreen', null, {
+          root: true
+        });
       });
     }
   }
@@ -20302,40 +20208,144 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/categoryValidation */ "./resources/js/store/categories_js/functions/categoryValidation.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  saveCategory: function saveCategory(_ref, _ref2) {
+  // фронт-валидация при вводе (type-in)
+  typeinValidation: function typeinValidation(_ref, _ref2) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        getters = _ref.getters,
+        rootGetters = _ref.rootGetters;
+    var entity = _ref2.entity,
+        category = _ref2.category;
+    dispatch('cleanPopupErrors', null, {
+      root: true
+    });
+
+    if (!rootGetters.typeinValidationRequired) {
+      return;
+    }
+
+    var categories = getters.categories[entity];
+
+    var _categoryValidation = Object(_functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(category, categories),
+        typeinErrors = _categoryValidation.typeinErrors;
+
+    commit('setTypeinErrors', typeinErrors, {
+      root: true
+    });
+    commit('setAlarmingInputs', typeinErrors, {
+      root: true
+    });
+  },
+  // обнулить ошибки
+  cleanValidationErrors: function cleanValidationErrors(_ref3) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, state, entity, category, categoryId, saveCategoryUrl;
+      var dispatch, commit;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              dispatch = _ref.dispatch, commit = _ref.commit, state = _ref.state;
-              entity = _ref2.entity, category = _ref2.category;
+              dispatch = _ref3.dispatch, commit = _ref3.commit;
+              dispatch('cleanPopupErrors', null, {
+                root: true
+              });
+              commit('resetAlarmingInputs', null, {
+                root: true
+              });
+              commit('resetTypeinErrors', null, {
+                root: true
+              });
+              commit('disableTypeinValidation', null, {
+                root: true
+              });
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  // фронт-валидация, pop-up и type-in сообщения
+  _frontValidation: function _frontValidation(_ref4, _ref5) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var dispatch, commit, getters, entity, category, categories, _categoryValidation2, popupErrors, typeinErrors;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              dispatch = _ref4.dispatch, commit = _ref4.commit, getters = _ref4.getters;
+              entity = _ref5.entity, category = _ref5.category;
+              categories = getters.categories[entity];
+              _categoryValidation2 = Object(_functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__["default"])(category, categories), popupErrors = _categoryValidation2.popupErrors, typeinErrors = _categoryValidation2.typeinErrors;
+
+              if (!popupErrors) {
+                _context2.next = 10;
+                break;
+              }
+
+              dispatch('showPopupErrorsBox', popupErrors, {
+                root: true
+              });
+              commit('enableTypeinValidation', null, {
+                root: true
+              });
+              commit('setAlarmingInputs', popupErrors, {
+                root: true
+              });
+              commit('setTypeinErrors', typeinErrors, {
+                root: true
+              });
+              return _context2.abrupt("return", false);
+
+            case 10:
+              return _context2.abrupt("return", true);
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  saveCategory: function saveCategory(_ref6, _ref7) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var dispatch, commit, state, entity, category, categoryId, saveCategoryUrl;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              dispatch = _ref6.dispatch, commit = _ref6.commit, state = _ref6.state;
+              entity = _ref7.entity, category = _ref7.category;
               categoryId = category.id;
-              _context.next = 5;
+              _context3.next = 5;
               return dispatch('cleanValidationErrors');
 
             case 5:
-              _context.next = 7;
+              _context3.next = 7;
               return dispatch('_frontValidation', {
                 entity: entity,
                 category: category
               });
 
             case 7:
-              if (_context.sent) {
-                _context.next = 9;
+              if (_context3.sent) {
+                _context3.next = 9;
                 break;
               }
 
-              return _context.abrupt("return");
+              return _context3.abrupt("return");
 
             case 9:
               saveCategoryUrl = categoryId > 0 ? state.saveCategoryUrl[entity] + categoryId : state.saveCategoryUrl[entity];
@@ -20392,10 +20402,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 11:
             case "end":
-              return _context.stop();
+              return _context3.stop();
           }
         }
-      }, _callee);
+      }, _callee3);
     }))();
   }
 });
@@ -20828,17 +20838,10 @@ __webpack_require__.r(__webpack_exports__);
   coordinates: function coordinates(state) {
     return state.coordinates;
   },
-  showCategoriesContextMenu: function showCategoriesContextMenu(state) {
-    return state.target === 'Categories';
-  },
-  showProductsContextMenu: function showProductsContextMenu(state) {
-    return state.target === 'Products';
-  },
-  showPhotosContextMenu: function showPhotosContextMenu(state) {
-    return state.target === 'Photos';
-  },
-  showUsersContextMenu: function showUsersContextMenu(state) {
-    return state.target === 'Users';
+  showContextMenu: function showContextMenu(state) {
+    return function (entity) {
+      return state.target === entity;
+    };
   },
   currentListIndex: function currentListIndex(state) {
     return state.currentListIndex;
@@ -23108,12 +23111,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
         state = _ref.state;
+    dispatch('showWaitingScreen', null, {
+      root: true
+    });
     var url = state.url['singleProduct'] + productId;
     dispatch('getJson', url, {
       root: true
     }).then(function (data) {
       commit('setSingleProductFromServer', data);
       commit('setPhotoSeoData', data.photoSeo);
+    })["finally"](function () {
       dispatch('hideWaitingScreen', null, {
         root: true
       });
@@ -23320,14 +23327,8 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeContextMenu', null, {
       root: true
     });
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
     commit('setSingleProductFromServer', {});
     dispatch('loadSingleProduct', productId).then(function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
       commit('setVisibility', {
         componentName: 'productEditManager',
         value: true
@@ -23440,16 +23441,10 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeContextMenu', null, {
       root: true
     });
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
     dispatch('loadSingleProduct', product.id).then(function () {
       var product = state.singleProductFromServer;
 
       if (product) {
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
         commit('setVisibility', {
           componentName: 'productPhotoManager',
           value: true
@@ -23490,9 +23485,6 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           root: true
         });
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
         var txt = "\u0424\u043E\u0442\u043E \u0443\u0434\u0430\u043B\u0435\u043D\u043E.";
         dispatch('showAbsoluteFlashMessage', {
           text: txt,
@@ -23503,10 +23495,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         var _data$customException;
 
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
-
         var _txt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка удаления';
 
         dispatch('showAbsoluteFlashMessage', {
@@ -23516,6 +23504,10 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
+    })["finally"](function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
     });
   },
   rotatePhoto: function rotatePhoto(_ref5, _ref6) {
@@ -23547,9 +23539,6 @@ __webpack_require__.r(__webpack_exports__);
         });
         commit('setPhotoSeoData', data.photoSeo); //обновить photoSeoData, т.к. меняется filename
 
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
         var txt = "\u0421\u0434\u0435\u043B\u0430\u043D\u043E.";
         dispatch('showAbsoluteFlashMessage', {
           text: txt,
@@ -23560,10 +23549,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         var _data$customException2;
 
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
-
         var _txt2 = (_data$customException2 = data.customExceptionMessage) !== null && _data$customException2 !== void 0 ? _data$customException2 : 'неудачная попытка';
 
         dispatch('showAbsoluteFlashMessage', {
@@ -23573,6 +23558,10 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
+    })["finally"](function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
     });
   },
   movePhoto: function movePhoto(_ref7, _ref8) {
@@ -23602,9 +23591,6 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           root: true
         });
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
         var txt = "\u0421\u0434\u0435\u043B\u0430\u043D\u043E.";
         dispatch('showAbsoluteFlashMessage', {
           text: txt,
@@ -23615,10 +23601,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         var _data$customException3;
 
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
-
         var _txt3 = (_data$customException3 = data.customExceptionMessage) !== null && _data$customException3 !== void 0 ? _data$customException3 : 'неудачная попытка';
 
         dispatch('showAbsoluteFlashMessage', {
@@ -23628,6 +23610,10 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
+    })["finally"](function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
     });
   },
   movePhotoByDragAndDrop: {
@@ -23671,9 +23657,6 @@ __webpack_require__.r(__webpack_exports__);
           }, {
             root: true
           });
-          dispatch('hideWaitingScreen', null, {
-            root: true
-          });
           var txt = "\u0421\u0434\u0435\u043B\u0430\u043D\u043E.";
           dispatch('showAbsoluteFlashMessage', {
             text: txt,
@@ -23684,10 +23667,6 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           var _data$customException4;
 
-          dispatch('hideWaitingScreen', null, {
-            root: true
-          });
-
           var _txt4 = (_data$customException4 = data.customExceptionMessage) !== null && _data$customException4 !== void 0 ? _data$customException4 : 'Неудачная попытка перемещения.';
 
           dispatch('showAbsoluteFlashMessage', {
@@ -23697,6 +23676,10 @@ __webpack_require__.r(__webpack_exports__);
             root: true
           });
         }
+      })["finally"](function () {
+        dispatch('hideWaitingScreen', null, {
+          root: true
+        });
       });
     }
   },
@@ -23732,9 +23715,6 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           root: true
         });
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
         var txt = "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E.";
         dispatch('showAbsoluteFlashMessage', {
           text: txt,
@@ -23745,10 +23725,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         var _data$customException5;
 
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
-
         var _txt5 = (_data$customException5 = data.customExceptionMessage) !== null && _data$customException5 !== void 0 ? _data$customException5 : 'неудачная попытка сохранения';
 
         dispatch('showAbsoluteFlashMessage', {
@@ -23758,6 +23734,10 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
+    })["finally"](function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
     });
   }
 });
@@ -23818,14 +23798,8 @@ __webpack_require__.r(__webpack_exports__);
   showProductQuickViewManager: function showProductQuickViewManager(_ref, productId) {
     var dispatch = _ref.dispatch,
         commit = _ref.commit;
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
     commit('setSingleProductFromServer', {});
     dispatch('loadSingleProduct', productId).then(function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
       commit('setVisibility', {
         componentName: 'productQuickViewManager',
         value: true
@@ -24010,10 +23984,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 root: true
               }).then(function (data) {
                 // validatorErrors в данных формируется в форм-реквесте если валидация failed
-                dispatch('hideWaitingScreen', null, {
-                  root: true
-                });
-
                 if (data.backValidatorErrors) {
                   dispatch('showPopupErrorsBox', data.backValidatorErrors, {
                     root: true
@@ -24069,6 +24039,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     root: true
                   });
                 }
+              })["finally"](function () {
+                dispatch('hideWaitingScreen', null, {
+                  root: true
+                });
               });
 
             case 16:
@@ -24234,21 +24208,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
     dispatch('showProducts', route);
   },
-  showProducts: function showProducts(_ref2, route) {
+  showProducts: function showProducts(_ref2) {
+    var _arguments = arguments;
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, getters;
+      var dispatch, commit, getters, route;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               dispatch = _ref2.dispatch, commit = _ref2.commit, getters = _ref2.getters;
+              route = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : {
+                name: 'Products'
+              };
               commit('setVisibility', {
                 componentName: 'productQuickViewManager',
                 value: false
               });
 
-              if (!(getters.productsLength === 0 || getters.needReload('products'))) {
-                _context.next = 5;
+              if (!(getters.productsLength < 2 || getters.needReload('products'))) {
+                _context.next = 6;
                 break;
               }
 
@@ -24265,10 +24243,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               });
               return _context.abrupt("return");
 
-            case 5:
+            case 6:
               dispatch('_showLoadedProducts', route);
 
-            case 6:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -25082,17 +25060,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dispatch('closeContextMenu', null, {
         root: true
       });
-      dispatch('showWaitingScreen', null, {
-        root: true
-      });
       commit('clearSeoData', entity);
       dispatch('loadSeoData', {
         entity: entity,
         data: data
       }).then(function () {
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
         commit('setShowSeoManager', true);
       });
     },
@@ -25102,6 +25074,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           state = _ref6.state;
       var entity = _ref7.entity,
           data = _ref7.data;
+      dispatch('showWaitingScreen', null, {
+        root: true
+      });
       var urlParams = {
         product: data.id,
         category: data.id,
@@ -25115,6 +25090,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           entity: entity,
           data: data
         });
+      })["finally"](function () {
+        dispatch('hideWaitingScreen', null, {
+          root: true
+        });
       });
     },
     saveSeoData: function saveSeoData(_ref8, _ref9) {
@@ -25124,6 +25103,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           rootState = _ref8.rootState;
       var entity = _ref9.entity,
           data = _ref9.data;
+      dispatch('showWaitingScreen', null, {
+        root: true
+      });
       var frontItem = data;
       var urlParams = {
         product: data.entityId,
@@ -25131,19 +25113,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         photo: data.entityId + '/' + data.photoName
       };
       var saveSeoUrl = state.saveSeoUrl[entity] + urlParams[entity];
-      dispatch('showWaitingScreen', null, {
-        root: true
-      });
       dispatch('postJson', {
         url: saveSeoUrl,
         data: data
       }, {
         root: true
       }).then(function (data) {
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
-
         if (data.saveSuccess === true) {
           commit('addItemIntoModuleSeoData', {
             rootState: rootState,
@@ -25173,6 +25148,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             root: true
           });
         }
+      })["finally"](function () {
+        dispatch('hideWaitingScreen', null, {
+          root: true
+        });
       });
     },
     closeSeoManager: function closeSeoManager(_ref10) {
@@ -25543,13 +25522,14 @@ __webpack_require__.r(__webpack_exports__);
     document.body.style.cssText = 'overflow:hidden;';
     commit('setSingleUserFromServer', {});
     dispatch('loadSingleUser', userId).then(function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
       commit('setTaskOfUserEditManager', task);
       commit('setVisibility', {
         componentName: 'userEditManager',
         value: true
+      });
+    })["finally"](function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
       });
     });
   },
