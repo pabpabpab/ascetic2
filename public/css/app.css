@@ -1552,7 +1552,7 @@ h1 {
 .product_filters__icon {
   position: absolute;
   z-index: 3;
-  top: 170px;
+  top: 180px;
   right: 0;
   width: 25px;
   height: 25px;
@@ -1606,7 +1606,7 @@ h1 {
 }
 
 .product_filters__icon__knob__3 {
-  top: 23.5px;
+  top: 23px;
   left: 5px;
 }
 

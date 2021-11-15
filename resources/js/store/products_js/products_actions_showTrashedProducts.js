@@ -2,32 +2,35 @@ export default {
 
     showTrashedProductsWithReload({dispatch, commit}, route = {name: 'TrashedProducts'}) {
         commit('setNeedReload', { entity: 'trashedProducts', value: true });
-        dispatch('showTrashedProducts', route);
+        dispatch('showTrashedProducts');
     },
 
     showTrashedProducts({dispatch, commit, getters, rootGetters}) {
         commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
         commit('setListHeader', {name: 'TrashedProducts'});
 
-        if (getters.trashedProductsLength > 0 && !getters.needReload('trashedProducts')) {
-            const currentPageIndex = rootGetters['pagination/currentPageIndex']('trashedProducts');
-            if (currentPageIndex === -1) {
-                dispatch('paginateTrashedProducts', getters.trashedProducts);
-            }
+        if (getters.trashedProductsLength === 0 || getters.needReload('trashedProducts')) {
+            dispatch('loadTrashedProducts')
+                .then((data) => {
+                    commit('setNeedReload', { entity: 'trashedProducts', value: false });
+                    dispatch('paginateTrashedProducts', data);
+                });
             return;
         }
 
-        dispatch('loadTrashedProducts');
+        const currentPageIndex = rootGetters['pagination/currentPageIndex']('trashedProducts');
+        if (currentPageIndex === -1) {
+            dispatch('paginateTrashedProducts', getters.trashedProducts);
+        }
     },
 
     loadTrashedProducts({ dispatch, commit, state }) {
         dispatch('showWaitingScreen', null, { root: true });
-        dispatch('getJson', state.url['trashedProducts'], { root: true })
+        return dispatch('getJson', state.url['trashedProducts'], { root: true })
             .then((data) => {
                 const products = data.products;
                 commit('setTrashedProducts', products);
-                dispatch('paginateTrashedProducts', products);
-                commit('setNeedReload', { entity: 'trashedProducts', value: false });
+                return products;
             })
             .finally(() => {
                 dispatch('hideWaitingScreen', null, { root: true });

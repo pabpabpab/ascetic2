@@ -933,6 +933,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SingleProductCategoryItem",
   props: ['category', 'index', 'entityName']
@@ -1968,7 +1970,9 @@ var render = function() {
               name: "ProductsByCategory",
               params: {
                 categoryEntity: _vm.entityName,
-                slug: _vm.category.slug
+                slug: _vm.category.slug,
+                categoryId: _vm.category.id,
+                categoryName: _vm.category.name
               }
             }
           }

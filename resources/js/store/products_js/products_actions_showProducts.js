@@ -6,26 +6,33 @@ export default {
         dispatch('showProducts', route);
     },
 
-    async showProducts({dispatch, commit, getters, rootGetters}, route) {
+    async showProducts({dispatch, commit, getters}, route) {
         commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
 
-        if (getters.productsLength > 1 && !getters.needReload('products')) {
-            commit('setListHeader', route);
-
-            if (!await dispatch('_needNewPagination', route)) { // *
-                return;
-            }
-
-            dispatch('getFilteredProductsByRoute', route)
-                .then((data) => {
-                    dispatch('paginateProducts', data);
+        if (getters.productsLength === 0 || getters.needReload('products')) {
+            dispatch('loadProducts', route)
+                .then(({products, route}) => {
+                    commit('setNeedReload', { entity: 'products', value: false });
+                    commit('setPreviousRouteName', ''); // *
+                    dispatch('_showLoadedProducts', route);
                 });
-
-            commit('setPreviousRouteName', route.name); // *
             return;
         }
 
-        dispatch('loadProducts', route);
+        dispatch('_showLoadedProducts', route);
+    },
+
+
+    async _showLoadedProducts({dispatch, commit, getters}, route) {
+        commit('setListHeader', route);
+        if (!await dispatch('_needNewPagination', route)) { // *
+            return;
+        }
+        dispatch('getFilteredProductsByRoute', route)
+            .then((data) => {
+                dispatch('paginateProducts', data);
+            });
+        commit('setPreviousRouteName', route.name); // *
     },
 
 
@@ -39,18 +46,15 @@ export default {
             ProductsByCategory: state.url['productsByCategory'] + params?.categoryEntity + '/' + params?.slug,
         };
 
-        dispatch('getJson', url[route.name], { root: true })
+        return dispatch('getJson', url[route.name], { root: true })
             .then((data) => {
                 commit('setProducts', data.products);
                 commit('setSeoData', data.seo);
-                commit('setNeedReload', { entity: 'products', value: false });
-                commit('setPreviousRouteName', ''); // *
-
                 if (route.name === 'ProductsByCategory') {
                     route.params.categoryId = data.category.id;
                     route.params.categoryName = data.category.name;
                 }
-                dispatch('showProducts', route);
+                return {products: data.products, route: route};
             })
             .finally(() => {
                 dispatch('hideWaitingScreen', null, { root: true });
@@ -82,7 +86,6 @@ export default {
             });
     },
 
-
     async _needNewPagination({getters, rootGetters}, route) { // *
         if (route.name !== 'Products') {
             return true;
@@ -96,6 +99,4 @@ export default {
         }
         return false;
     },
-
 }
-

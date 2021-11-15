@@ -7,6 +7,8 @@
                 params: {
                     categoryEntity: entityName,
                     slug: category.slug,
+                    categoryId: category.id,
+                    categoryName: category.name,
                 }
             }" class="single_product__category_item__link">
             {{ category.name }}
