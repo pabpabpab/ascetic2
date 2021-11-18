@@ -10,12 +10,13 @@ export default {
             });
     },
 
+    /*
     getCategoriesCount({ dispatch, commit, state }, entity) {
         const url = state.categoriesCountUrl[entity];
         dispatch('getJsonWithWaitingScreen', url, { root: true }).then((data) => {
             commit('setCategoriesCountFromServer', data);
         });
     },
-
+    */
 };
 

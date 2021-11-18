@@ -27,6 +27,7 @@ export default {
                 if (entity === 'categories') {
                     commit('setSeoData', data.seo);
                 }
+                commit('setCategoriesCount', { entity: entity, val: categories.length });
             });
     },
 }

@@ -54,6 +54,21 @@ export default {
             }
         },
 
+        showInformationDialog: {
+            root: true,
+            handler ({ commit }, text) {
+                const settings = {};
+                settings.confirmationRequestText = text;
+                settings.yesButtonText = '';
+                settings.cancelButtonText = 'Ок';
+                settings.yesAction = '';
+                settings.cancelAction = 'closeConfirmationDialog';
+                settings.yesPayload = {};
+                settings.finalRedirectRoute = '';
+                commit('setConfirmationDialog', settings);
+            }
+        },
+
         closeConfirmationDialog: {
             root: true,
             handler ({ commit }) {

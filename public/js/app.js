@@ -19865,18 +19865,16 @@ __webpack_require__.r(__webpack_exports__);
     }).then(function (data) {
       commit('setSingleCategoryFromServer', data);
     });
-  },
-  getCategoriesCount: function getCategoriesCount(_ref3, entity) {
-    var dispatch = _ref3.dispatch,
-        commit = _ref3.commit,
-        state = _ref3.state;
-    var url = state.categoriesCountUrl[entity];
-    dispatch('getJsonWithWaitingScreen', url, {
-      root: true
-    }).then(function (data) {
-      commit('setCategoriesCountFromServer', data);
-    });
   }
+  /*
+  getCategoriesCount({ dispatch, commit, state }, entity) {
+      const url = state.categoriesCountUrl[entity];
+      dispatch('getJsonWithWaitingScreen', url, { root: true }).then((data) => {
+          commit('setCategoriesCountFromServer', data);
+      });
+  },
+  */
+
 });
 
 /***/ }),
@@ -20423,6 +20421,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       if (entity === 'categories') {
         commit('setSeoData', data.seo);
       }
+
+      commit('setCategoriesCount', {
+        entity: entity,
+        val: categories.length
+      });
     });
   }
 });
@@ -20448,8 +20451,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   categories: function categories(state) {
     return _objectSpread({}, state.categories);
   },
-  categoriesCountFromServer: function categoriesCountFromServer(state) {
-    return state.categoriesCountFromServer;
+  categoriesCount: function categoriesCount(state) {
+    return state.categoriesCount;
   },
   singleCategoryFromServer: function singleCategoryFromServer(state) {
     return state.singleCategoryFromServer;
@@ -20495,19 +20498,25 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     state.categories[entity].splice(0, state.categories.length);
     state.categories[entity] = _toConsumableArray(data);
   },
+  setCategoriesCount: function setCategoriesCount(state, _ref2) {
+    var entity = _ref2.entity,
+        val = _ref2.val;
+
+    var categoriesCount = _objectSpread({}, state.categoriesCount);
+
+    categoriesCount[entity] = val;
+    state.categoriesCount = _objectSpread({}, categoriesCount);
+  },
   setSeoData: function setSeoData(state, data) {
     state.seoData = _toConsumableArray(data);
-  },
-  setCategoriesCountFromServer: function setCategoriesCountFromServer(state, number) {
-    state.categoriesCountFromServer = number;
   },
   setSingleCategoryFromServer: function setSingleCategoryFromServer(state, category) {
     state.singleCategoryFromServer = _objectSpread({}, category);
   },
-  moveCategory: function moveCategory(state, _ref2) {
-    var currentIndex = _ref2.currentIndex,
-        newIndex = _ref2.newIndex,
-        entity = _ref2.entity;
+  moveCategory: function moveCategory(state, _ref3) {
+    var currentIndex = _ref3.currentIndex,
+        newIndex = _ref3.newIndex,
+        entity = _ref3.entity;
     var categories = state.categories[entity]; // вырвать из массива и получить наш элемент, который двигаем
 
     var operatedItem = categories.splice(currentIndex, 1)[0]; // вставить наш элемент на новое место
@@ -20569,8 +20578,12 @@ __webpack_require__.r(__webpack_exports__);
     materials: [],
     colors: []
   },
+  categoriesCount: {
+    categories: -1,
+    materials: -1,
+    colors: -1
+  },
   seoData: [],
-  categoriesCountFromServer: -1,
   singleCategoryFromServer: null
 });
 
@@ -20733,10 +20746,25 @@ __webpack_require__.r(__webpack_exports__);
         commit('setConfirmationDialog', settings);
       }
     },
+    showInformationDialog: {
+      root: true,
+      handler: function handler(_ref2, text) {
+        var commit = _ref2.commit;
+        var settings = {};
+        settings.confirmationRequestText = text;
+        settings.yesButtonText = '';
+        settings.cancelButtonText = 'Ок';
+        settings.yesAction = '';
+        settings.cancelAction = 'closeConfirmationDialog';
+        settings.yesPayload = {};
+        settings.finalRedirectRoute = '';
+        commit('setConfirmationDialog', settings);
+      }
+    },
     closeConfirmationDialog: {
       root: true,
-      handler: function handler(_ref2) {
-        var commit = _ref2.commit;
+      handler: function handler(_ref3) {
+        var commit = _ref3.commit;
         commit('resetConfirmationDialog');
       }
     }

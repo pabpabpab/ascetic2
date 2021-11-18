@@ -3,11 +3,13 @@ export default {
         state.categories[entity].splice(0, state.categories.length);
         state.categories[entity] = [ ...data ];
     },
+    setCategoriesCount: (state, { entity, val }) => {
+        const categoriesCount = { ...state.categoriesCount };
+        categoriesCount[entity] = val;
+        state.categoriesCount = { ...categoriesCount };
+    },
     setSeoData: (state, data) => {
         state.seoData = [ ...data ];
-    },
-    setCategoriesCountFromServer: (state, number) => {
-        state.categoriesCountFromServer = number;
     },
     setSingleCategoryFromServer: (state, category) => {
         state.singleCategoryFromServer = { ...category };

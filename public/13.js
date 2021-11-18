@@ -22,7 +22,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SaveProductPage",
@@ -31,18 +30,49 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./Products/ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categoriesCountFromServer'])),
-  methods: {
-    checkCategoriesCount: function checkCategoriesCount() {
-      if (this.categoriesCountFromServer === 0) {
-        this.$router.push({
-          name: 'Categories'
-        });
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories', 'categoriesCount'])), {}, {
+    catsCount: function catsCount() {
+      return this.categoriesCount['categories'];
+    },
+    materialsCount: function materialsCount() {
+      return this.categoriesCount['materials'];
+    },
+    colorsCount: function colorsCount() {
+      return this.categoriesCount['colors'];
+    }
+  }),
+  watch: {
+    colorsCount: function colorsCount(value) {
+      if (value === 0) {
+        var text = 'Не созданы цвета товаров, ' + 'сначала добавьте цвета товаров по ссылке «Категории / Цвета» в меню.';
+        this.$store.dispatch('showInformationDialog', text);
+      }
+    },
+    materialsCount: function materialsCount(value) {
+      if (value === 0) {
+        var text = 'Не созданы материалы товаров, ' + 'сначала добавьте материалы товаров по ссылке «Категории / Материалы» в меню.';
+        this.$store.dispatch('showInformationDialog', text);
+      }
+    },
+    catsCount: function catsCount(value) {
+      if (value === 0) {
+        var text = 'Не созданы категории товаров, ' + 'сначала добавьте категории товаров по ссылке «Категории» в меню.';
+        this.$store.dispatch('showInformationDialog', text);
       }
     }
   },
   mounted: function mounted() {
-    this.$store.dispatch('categories/getCategoriesCount'); //this.$store.dispatch('updateCSRF', 5);
+    if (this.categories['categories'].length === 0) {
+      this.$store.dispatch('categories/loadCategories', 'categories');
+    }
+
+    if (this.categories['materials'].length === 0) {
+      this.$store.dispatch('categories/loadCategories', 'materials');
+    }
+
+    if (this.categories['colors'].length === 0) {
+      this.$store.dispatch('categories/loadCategories', 'colors');
+    }
   }
 });
 
@@ -63,17 +93,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("div", { staticClass: "display-none" }, [
-        _vm._v(_vm._s(_vm.checkCategoriesCount()))
-      ]),
-      _vm._v(" "),
-      _c("product-form", { attrs: { action: "create" } })
-    ],
-    1
-  )
+  return _c("div", [_c("product-form", { attrs: { action: "create" } })], 1)
 }
 var staticRenderFns = []
 render._withStripped = true

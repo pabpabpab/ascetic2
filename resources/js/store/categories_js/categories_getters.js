@@ -1,6 +1,6 @@
 export default {
     categories: (state) => {return {...state.categories};},
-    categoriesCountFromServer: (state) => state.categoriesCountFromServer,
+    categoriesCount: (state) => state.categoriesCount,
     singleCategoryFromServer: (state) => state.singleCategoryFromServer,
     seoData: (state) => state.seoData,
 };

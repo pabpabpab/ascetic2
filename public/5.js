@@ -359,9 +359,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     this.$store.dispatch('resetTypeinErrors');
-    this.$store.dispatch('categories/loadCategories', 'categories');
-    this.$store.dispatch('categories/loadCategories', 'materials');
-    this.$store.dispatch('categories/loadCategories', 'colors');
   }
 });
 
