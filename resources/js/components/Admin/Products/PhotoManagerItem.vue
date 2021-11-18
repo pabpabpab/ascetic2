@@ -1,6 +1,6 @@
 <template>
     <div ref="photo" class="photo_manager__item"
-         :class="[draggablePhotoItemClass, underDraggablePhotoItemClass]"
+         :class="[draggablePhotoItemClass, underDraggablePhotoItemClass, notDraggablePhotoItemClass]"
          :style="{
             'left': leftByIndex(photoIndex),
             'top': topByIndex(photoIndex),
@@ -67,7 +67,12 @@ export default {
 
         draggablePhotoItemClass() {
             return {
-                'draggablePhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo',
+                'draggablePhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo' && this.length > 1,
+            };
+        },
+        notDraggablePhotoItemClass() {
+            return {
+                'notDraggablePhoto': this.length < 2,
             };
         },
         underDraggablePhotoItemClass() {
@@ -87,6 +92,9 @@ export default {
     },
 
     mounted() {
+        if (this.length < 2) {
+            return;
+        }
         this.$store.dispatch('dragAndDropInAbsDiv/resetCoordinates', {cycleNumber: this.photoIndex, entity: 'Photo'})
             .then(() => {
                 const xy = this.$refs.photo.getBoundingClientRect();

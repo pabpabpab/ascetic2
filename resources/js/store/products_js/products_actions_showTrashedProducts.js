@@ -25,15 +25,11 @@ export default {
     },
 
     loadTrashedProducts({ dispatch, commit, state }) {
-        dispatch('showWaitingScreen', null, { root: true });
-        return dispatch('getJson', state.url['trashedProducts'], { root: true })
+        return dispatch('getJsonWithWaitingScreen', state.url['trashedProducts'], { root: true })
             .then((data) => {
                 const products = data.products;
                 commit('setTrashedProducts', products);
                 return products;
-            })
-            .finally(() => {
-                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 

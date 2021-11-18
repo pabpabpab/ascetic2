@@ -5,7 +5,7 @@ export default {
     },
 
     showUsers({dispatch, getters, rootGetters}) {
-        if (getters.usersLength === 0) {
+        if (getters.usersLength < 2) {
             dispatch('loadUsers')
                 .then((data) => {
                     dispatch('paginateUsers', data);
@@ -20,14 +20,10 @@ export default {
     },
 
     loadUsers({dispatch, commit, state}) {
-        dispatch('showWaitingScreen', null, {root: true});
-        return dispatch('getJson', state.url['users'], {root: true})
+        return dispatch('getJsonWithWaitingScreen', state.url['users'], {root: true})
             .then((data) => {
                 commit('setUsers', data);
                 return data;
-            })
-            .finally(() => {
-                dispatch('hideWaitingScreen', null, {root: true});
             });
     },
 

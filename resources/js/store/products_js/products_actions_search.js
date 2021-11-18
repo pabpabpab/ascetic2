@@ -28,13 +28,27 @@ export default {
     },
 
     resetSearchObject({commit, state}) {
-        commit('setSearchObject', state.initialSearch);
+        commit('resetSearchObject');
     },
 
-    makeSearch({dispatch, getters, state}, searchObject) {
+    async makeSearch({dispatch, getters, state}, searchObject) {
         let filtered = [ ...getters.products ];
-        filtered = priceFilterCore(filtered, searchObject);
+        filtered = await dispatch('getFilteredBySearch', {data: filtered, searchObject: searchObject});
+        dispatch('sortProducts', {mode: state.sortingMode, data: filtered})
+            .then((sorted) => {
+                dispatch('paginateProducts', sorted);
+            })
+            .then(() => {
+                const txt = `Показано ${filtered.length}.`
+                dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 0.5}, { root: true });
+            });
+    },
 
+    async getFilteredBySearch(context, {data, searchObject}) {
+        let filtered = [ ...data ];
+        if (searchObject.minPrice > 0 || searchObject.maxPrice > 0) {
+            filtered = priceFilterCore(filtered, searchObject);
+        }
         if (searchObject.category_ids.length > 0) {
             filtered = categoryFilterCore(filtered, searchObject);
         }
@@ -44,15 +58,6 @@ export default {
         if (searchObject.color_ids.length > 0) {
             filtered = colorFilterCore(filtered, searchObject);
         }
-
-        dispatch('doSort', {mode: state.sortingMode, data: filtered, initiator: 'search'})
-            .then((data) => {
-                filtered = [ ...data ];
-                dispatch('paginateProducts', filtered);
-            })
-            .then(() => {
-                const txt = `Показано ${filtered.length}.`
-                dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 0.5}, { root: true });
-            });
-    },
+        return [...filtered];
+    }
 }

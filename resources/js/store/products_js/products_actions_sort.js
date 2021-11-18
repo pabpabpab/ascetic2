@@ -7,25 +7,28 @@ export default {
         commit('setSortingMode', mode);
     },
 
-    doSort({dispatch, rootState}, {mode, data, initiator}) {
-        let filtered = data.length > 0 ? data : [ ...rootState.pagination.filtered.products ];
+    doSort({dispatch}, mode) {
+        dispatch('sortProducts', {mode, data: []})
+            .then((sorted) => {
+                dispatch('paginateProducts', sorted);
+            })
+            .then(() => {
+                const txt = `Отсортировано.`;
+                dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.7}, { root: true });
+            });
+    },
+
+    sortProducts({dispatch, rootGetters}, {mode, data}) {
+        const filteredProducts = [ ...rootGetters['pagination/filtered']('products') ];
+        let products = data.length > 0 ? data : filteredProducts;
 
         const func = {
             position: sortByPosition,
             priceUp: sortByPriceUp,
         }
 
-        filtered = func[mode](filtered);
-
-        dispatch('paginateProducts', filtered)
-            .then(() => {
-                if (initiator !== 'search') {
-                    const txt = `Отсортировано.`
-                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 0.7}, { root: true });
-                }
-            });
-
-        return filtered;
+        return func[mode](products);
     },
+
 
 }

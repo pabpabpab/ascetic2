@@ -3,7 +3,7 @@ export default {
     preDeleteCategory({dispatch, commit, state}, {entity, categoryId}) {
         dispatch('closeContextMenu', null, {root: true});
         const singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
-        dispatch('getJson', singleCategoryUrl, {root: true})
+        dispatch('getJsonWithWaitingScreen', singleCategoryUrl, {root: true})
             .then((data) => {
                 const settings = {};
                 if (data.products_count > 0) {

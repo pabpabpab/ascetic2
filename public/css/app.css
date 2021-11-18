@@ -447,6 +447,13 @@ h1 {
           box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
+.categories_header {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0;
+}
+
 .content_block__categories {
   padding: 20px 20px 10px 20px;
 }
@@ -1612,7 +1619,7 @@ h1 {
 
 .product_filters {
   position: fixed;
-  z-index: 25;
+  z-index: 35;
   top: 0;
   right: 0;
   height: 100%;
@@ -1874,6 +1881,33 @@ h1 {
   width: 100%;
   padding: 0 0 5px 10px;
   text-align: left;
+}
+
+.products_filters_top_total_parameters__item {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 400;
+  line-height: 25px;
+  padding: 0 5px 0 10px;
+  background-color: #a8a0a0;
+  border-radius: 15px;
+  margin: 3px 10px 3px 0;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.products_filters_top_total_parameters__item__collapse_icon {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 400;
+  line-height: 25px;
+  padding: 5px 5px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.products_filters_top_total_parameters__item__collapse_icon:hover {
+  color: #fcf081;
 }
 
 .photo__size1 {
@@ -3161,6 +3195,10 @@ h1 {
   background-color: white;
   -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.notDraggablePhoto {
+  cursor: default;
 }
 
 .underDraggablePhoto {

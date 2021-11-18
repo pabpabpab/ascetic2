@@ -822,7 +822,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "ProductsFiltersTotalParameters",
+  name: "SearchTotalParameters",
   data: function data() {
     return {
       search: {}
@@ -990,12 +990,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: {
     doSort: function doSort(mode) {
-      this.$store.dispatch('products/setSortingMode', mode);
-      this.$store.dispatch('products/doSort', {
-        mode: mode,
-        data: [],
-        initiator: ''
-      }); // data для совместимости
+      var _this = this;
+
+      this.$store.dispatch('products/setSortingMode', mode).then(function () {
+        _this.$store.dispatch('products/doSort', mode);
+      });
     }
   }
 });
@@ -1972,39 +1971,55 @@ var render = function() {
         { staticClass: "products_filters_top_total_parameters show_block" },
         [
           _vm.searchMinPrice
-            ? _c("p", { staticClass: "selectedCategories__item show_block" }, [
-                _vm._v(
-                  "\n        от " +
-                    _vm._s(_vm.stateSearchObject.minPrice) +
-                    " руб.\n        "
-                ),
-                _c(
-                  "span",
-                  {
-                    staticClass: "selectedCategories__item__collapse_icon",
-                    on: { click: _vm.clearMinPrice }
-                  },
-                  [_vm._v("\n            ×\n        ")]
-                )
-              ])
+            ? _c(
+                "p",
+                {
+                  staticClass:
+                    "products_filters_top_total_parameters__item show_block"
+                },
+                [
+                  _vm._v(
+                    "\n        от " +
+                      _vm._s(_vm.stateSearchObject.minPrice) +
+                      " руб.\n        "
+                  ),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "products_filters_top_total_parameters__item__collapse_icon",
+                      on: { click: _vm.clearMinPrice }
+                    },
+                    [_vm._v("\n            ×\n        ")]
+                  )
+                ]
+              )
             : _vm._e(),
           _vm._v(" "),
           _vm.searchMaxPrice
-            ? _c("p", { staticClass: "selectedCategories__item show_block" }, [
-                _vm._v(
-                  "\n        до " +
-                    _vm._s(_vm.stateSearchObject.maxPrice) +
-                    " руб.\n        "
-                ),
-                _c(
-                  "span",
-                  {
-                    staticClass: "selectedCategories__item__collapse_icon",
-                    on: { click: _vm.clearMaxPrice }
-                  },
-                  [_vm._v("\n            ×\n        ")]
-                )
-              ])
+            ? _c(
+                "p",
+                {
+                  staticClass:
+                    "products_filters_top_total_parameters__item show_block"
+                },
+                [
+                  _vm._v(
+                    "\n        до " +
+                      _vm._s(_vm.stateSearchObject.maxPrice) +
+                      " руб.\n        "
+                  ),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "products_filters_top_total_parameters__item__collapse_icon",
+                      on: { click: _vm.clearMaxPrice }
+                    },
+                    [_vm._v("\n            ×\n        ")]
+                  )
+                ]
+              )
             : _vm._e(),
           _vm._v(" "),
           _vm._l(_vm.selectedCategories, function(cat) {
@@ -2012,14 +2027,16 @@ var render = function() {
               "p",
               {
                 key: cat.id,
-                staticClass: "selectedCategories__item show_block"
+                staticClass:
+                  "products_filters_top_total_parameters__item show_block"
               },
               [
                 _vm._v("\n        " + _vm._s(cat.name) + "\n        "),
                 _c(
                   "span",
                   {
-                    staticClass: "selectedCategories__item__collapse_icon",
+                    staticClass:
+                      "products_filters_top_total_parameters__item__collapse_icon",
                     on: {
                       click: function($event) {
                         return _vm.deleteSelectedItem("category", cat.id)
@@ -2037,14 +2054,16 @@ var render = function() {
               "p",
               {
                 key: cat.id,
-                staticClass: "selectedCategories__item show_block"
+                staticClass:
+                  "products_filters_top_total_parameters__item show_block"
               },
               [
                 _vm._v("\n        " + _vm._s(cat.name) + "\n        "),
                 _c(
                   "span",
                   {
-                    staticClass: "selectedCategories__item__collapse_icon",
+                    staticClass:
+                      "products_filters_top_total_parameters__item__collapse_icon",
                     on: {
                       click: function($event) {
                         return _vm.deleteSelectedItem("material", cat.id)
@@ -2062,14 +2081,16 @@ var render = function() {
               "p",
               {
                 key: cat.id,
-                staticClass: "selectedCategories__item show_block"
+                staticClass:
+                  "products_filters_top_total_parameters__item show_block"
               },
               [
                 _vm._v("\n        " + _vm._s(cat.name) + "\n        "),
                 _c(
                   "span",
                   {
-                    staticClass: "selectedCategories__item__collapse_icon",
+                    staticClass:
+                      "products_filters_top_total_parameters__item__collapse_icon",
                     on: {
                       click: function($event) {
                         return _vm.deleteSelectedItem("color", cat.id)

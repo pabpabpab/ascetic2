@@ -84,7 +84,7 @@ export default {
     },
 
     mounted() {
-        this.$store.dispatch('categories/loadCategories', this.$route.params.entity);
+        this.$store.dispatch('categories/showCategories', this.$route.params.entity);
     },
 }
 

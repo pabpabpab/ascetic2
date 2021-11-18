@@ -36,8 +36,10 @@ export default {
     },
     methods: {
         doSort(mode) {
-            this.$store.dispatch('products/setSortingMode', mode);
-            this.$store.dispatch('products/doSort', {mode, data: [], initiator: ''}); // data для совместимости
+            this.$store.dispatch('products/setSortingMode', mode)
+                .then(() => {
+                    this.$store.dispatch('products/doSort', mode);
+                });
         },
     },
 }

@@ -1,5 +1,5 @@
 import userValidation from './functions/userValidation';
-import thatRouter from "../../router";
+import theRouter from "../../router";
 
 export default {
 
@@ -48,6 +48,7 @@ export default {
             user.editTask = getters.taskOfUserEditManager;
         }
 
+        dispatch('showWaitingScreen', null, { root: true });
         dispatch(
                 'postJson',
                 {
@@ -85,13 +86,16 @@ export default {
                         commit('addUserToUsersByFirst', data.user);
                         dispatch('paginateUsers', getters.users)
                             .then(() => {
-                                thatRouter.push({name: 'Users'});
+                                theRouter.push({name: 'Users'});
                             });
                     }
                 } else {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
+            })
+            .finally(() => {
+                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 

@@ -9,7 +9,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -18,7 +17,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ReloadIcon",
   computed: {
@@ -26,12 +24,13 @@ __webpack_require__.r(__webpack_exports__);
       var titleBook = {
         Products: 'товары',
         TrashedProducts: 'удаленные товары',
-        Users: 'пользователей'
+        Users: 'пользователей',
+        Categories: 'категории'
       };
       return "\u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C ".concat(titleBook[this.$route.name], " \u0441 \u0441\u0435\u0440\u0432\u0435\u0440\u0430");
     },
     showReloadIcon: function showReloadIcon() {
-      return ['Products', 'TrashedProducts', 'Users'].includes(this.$route.name);
+      return ['Products', 'TrashedProducts', 'Users', 'Categories'].includes(this.$route.name);
     }
   },
   methods: {
@@ -39,7 +38,8 @@ __webpack_require__.r(__webpack_exports__);
       var actionBook = {
         Products: 'products/showProductsWithReload',
         TrashedProducts: 'products/showTrashedProductsWithReload',
-        Users: 'users/showUsersWithReload'
+        Users: 'users/showUsersWithReload',
+        Categories: 'categories/showCategoriesWithReload'
       };
       var actionName = actionBook[this.$route.name];
 

@@ -95,25 +95,20 @@ export default {
 
 
         loadSeoData({dispatch, commit, state},  {entity, data}) {
-            dispatch('showWaitingScreen', null, { root: true });
             const urlParams = {
                 product: data.id,
                 category: data.id,
                 photo: data.productId + '/' + data.photoName
             }
             const seoUrl = state.seoUrl[entity] + urlParams[entity];
-            dispatch('getJson', seoUrl, { root: true })
+            dispatch('getJsonWithWaitingScreen', seoUrl, { root: true })
                 .then((data) => {
                     commit('setServerData', {entity, data});
-                })
-                .finally(() => {
-                    dispatch('hideWaitingScreen', null, { root: true });
                 });
         },
 
 
         saveSeoData({ dispatch, commit, state, rootState }, { entity, data }) {
-            dispatch('showWaitingScreen', null, { root: true });
             const frontItem = data;
             const urlParams = {
                 product: data.entityId,
@@ -122,7 +117,7 @@ export default {
             }
             const saveSeoUrl = state.saveSeoUrl[entity] + urlParams[entity];
             dispatch(
-                    'postJson',
+                    'postJsonWithWaitingScreen',
                     {
                         url: saveSeoUrl,
                         data: data,
@@ -145,9 +140,6 @@ export default {
                         const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }
-                })
-                .finally(() => {
-                    dispatch('hideWaitingScreen', null, { root: true });
                 });
         },
 

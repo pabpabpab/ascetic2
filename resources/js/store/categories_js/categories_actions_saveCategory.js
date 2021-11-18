@@ -46,6 +46,7 @@ export default {
             ? state.saveCategoryUrl[entity] + categoryId
             : state.saveCategoryUrl[entity];
 
+        dispatch('showWaitingScreen', null, { root: true });
         dispatch(
                 'postJson',
                 {
@@ -76,6 +77,9 @@ export default {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, {root: true});
                 }
+            })
+            .finally(() => {
+                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 }

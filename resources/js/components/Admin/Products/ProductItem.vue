@@ -129,7 +129,6 @@ export default {
         },
     },
 
-
     methods: {
         ...mapActions('contextMenu', [
             'showContextMenu',
@@ -144,7 +143,6 @@ export default {
 
         ...changeMainPhotoOfItemInList,
     },
-
 
     mounted() {
         this.$store.dispatch('dragAndDropByXY/resetCoordinates', {cycleNumber: this.index, entity: 'Product'})

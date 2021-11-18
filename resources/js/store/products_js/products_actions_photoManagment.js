@@ -1,5 +1,3 @@
-import thatRouter from "../../router";
-
 export default {
 
     showProductPhotoManager({ dispatch, commit, state }, product) {
@@ -20,9 +18,8 @@ export default {
 
     deletePhoto({ dispatch, commit, state }, {productId, photoName}) {
         dispatch('closeContextMenu', null, { root: true });
-        dispatch('showWaitingScreen', null, { root: true });
         const url = state.url['deleteProductPhoto'] + productId + '/' + photoName;
-        dispatch('deleteJson', url, { root: true })
+        dispatch('deleteJsonWithWaitingScreen', url, { root: true })
             .then((data) => {
                 if (data.deleteSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
@@ -40,18 +37,14 @@ export default {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка удаления';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
-            })
-            .finally(() => {
-                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 
 
     rotatePhoto({ dispatch, commit, state }, {productId, photoName, angle}) {
         dispatch('closeContextMenu', null, { root: true });
-        dispatch('showWaitingScreen', null, { root: true });
         const url = state.url['rotateProductPhoto'] + productId + '/' + photoName+ '/' + angle;
-        dispatch('getJson', url, { root: true })
+        dispatch('getJsonWithWaitingScreen', url, { root: true })
             .then((data) => {
                 if (data.rotateSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
@@ -68,18 +61,14 @@ export default {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
-            })
-            .finally(() => {
-                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 
 
     movePhoto({ dispatch, commit, state }, {productId, photoName, to}) {
         dispatch('closeContextMenu', null, { root: true });
-        dispatch('showWaitingScreen', null, { root: true });
         const url = state.url['moveProductPhoto'] + productId + '/' + photoName+ '/' + to;
-        dispatch('getJson', url, { root: true })
+        dispatch('getJsonWithWaitingScreen', url, { root: true })
             .then((data) => {
                 if (data.moveSuccess === true) {
                     commit('setSingleProductPhoto', data.photoSet);
@@ -97,9 +86,6 @@ export default {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
-            })
-            .finally(() => {
-                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 
@@ -113,10 +99,9 @@ export default {
             const targetPhotoName = photoSet[newIndex];
 
             commit('movePhoto', {currentIndex, newIndex, vector});
-            dispatch('showWaitingScreen', null, { root: true });
 
             dispatch (
-                    'postJson',
+                    'postJsonWithWaitingScreen',
                     {
                         url: state.url['moveByDragAndDropPhoto'] + productId,
                         data: { operatedPhotoName, targetPhotoName, vector },
@@ -140,9 +125,6 @@ export default {
                         const txt = data.customExceptionMessage ?? 'Неудачная попытка перемещения.';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }
-                })
-                .finally(() => {
-                    dispatch('hideWaitingScreen', null, { root: true });
                 });
         }
     },
@@ -158,10 +140,8 @@ export default {
             productPhotos[`photos[${i}]`] = photos[i];
         }
 
-        dispatch('showWaitingScreen', null, { root: true });
-
         dispatch(
-                'postMultipart',
+                'postMultipartWithWaitingScreen',
                 {
                     url: addPhotoUrl,
                     data: productPhotos,
@@ -186,9 +166,6 @@ export default {
                     const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
-            })
-            .finally(() => {
-                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 

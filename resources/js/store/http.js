@@ -13,6 +13,13 @@ export default {
          });
         // fetch(url,{method: 'GET', headers: {'X-CSRF-Token': context.getters.csrfToken}})
     },
+    getJsonWithWaitingScreen(context, url) {
+        context.dispatch('showWaitingScreen', null);
+        return context.dispatch('getJson', url)
+            .finally(() => {
+                context.dispatch('hideWaitingScreen', null);
+            });
+    },
 
     postJson(context, payload) {
       const { url, data } = payload;
@@ -29,6 +36,13 @@ export default {
         .catch((error) => {
             context.dispatch('showHttpError', error);
         });
+    },
+    postJsonWithWaitingScreen(context, url) {
+          context.dispatch('showWaitingScreen', null);
+          return context.dispatch('postJson', url)
+              .finally(() => {
+                  context.dispatch('hideWaitingScreen', null);
+              });
     },
 
     postMultipart(context, payload) {
@@ -54,24 +68,32 @@ export default {
                 context.dispatch('showHttpError', error);
           });
     },
+    postMultipartWithWaitingScreen(context, url) {
+        context.dispatch('showWaitingScreen', null);
+        return context.dispatch('postMultipart', url)
+            .finally(() => {
+                context.dispatch('hideWaitingScreen', null);
+            });
+    },
 
-      putJson(context, payload) {
-          const {url, data} = payload;
-          return fetch(url, {
-              method: 'PUT',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'X-CSRF-Token': context.getters.csrfToken,
-              },
-              body: JSON.stringify(data),
-          })
-          .then((result) => result.json())
-          .catch((error) => {
-                context.dispatch('showHttpError', error);
-          });
-      },
 
-      deleteJson(context, url) {
+    putJson(context, payload) {
+        const {url, data} = payload;
+        return fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': context.getters.csrfToken,
+            },
+            body: JSON.stringify(data),
+        })
+        .then((result) => result.json())
+        .catch((error) => {
+            context.dispatch('showHttpError', error);
+        });
+    },
+
+    deleteJson(context, url) {
           return fetch(url, {
               method: 'DELETE',
               headers: {
@@ -84,7 +106,14 @@ export default {
           .catch((error) => {
                 context.dispatch('showHttpError', error);
           });
-      },
+    },
+    deleteJsonWithWaitingScreen(context, url) {
+          context.dispatch('showWaitingScreen', null);
+          return context.dispatch('deleteJson', url)
+              .finally(() => {
+                  context.dispatch('hideWaitingScreen', null);
+              });
+    },
 
     showHttpError({dispatch}, error) {
         dispatch('hideWaitingScreen', null);

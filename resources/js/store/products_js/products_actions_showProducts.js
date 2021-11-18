@@ -22,22 +22,17 @@ export default {
         dispatch('_showLoadedProducts', route);
     },
 
-
     async _showLoadedProducts({dispatch, commit, getters}, route) {
         commit('setListHeader', route);
         if (!await dispatch('_needNewPagination', route)) { // *
             return;
         }
-        dispatch('getFilteredProductsByRoute', route)
-            .then((data) => {
-                dispatch('paginateProducts', data);
-            });
+        const filtered = await dispatch('getFiltered', route);
+        dispatch('sortAndPaginateProducts', filtered);
         commit('setPreviousRouteName', route.name); // *
     },
 
-
     loadProducts({ dispatch, commit, state }, route = { name: 'Products' }) {
-        dispatch('showWaitingScreen', null, { root: true });
         dispatch('resetSearchObject');
 
         const params = route.params;
@@ -46,7 +41,7 @@ export default {
             ProductsByCategory: state.url['productsByCategory'] + params?.categoryEntity + '/' + params?.slug,
         };
 
-        return dispatch('getJson', url[route.name], { root: true })
+        return dispatch('getJsonWithWaitingScreen', url[route.name], { root: true })
             .then((data) => {
                 commit('setProducts', data.products);
                 commit('setSeoData', data.seo);
@@ -55,13 +50,21 @@ export default {
                     route.params.categoryName = data.category.name;
                 }
                 return {products: data.products, route: route};
-            })
-            .finally(() => {
-                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 
-    getFilteredProductsByRoute({getters}, route) {
+    async getFiltered({dispatch, commit, getters, state}, route) {
+        const filtered = await dispatch('getFilteredProductsByRoute', route);
+        if (route.name === 'ProductsByCategory') {
+            commit('resetSearchObject');
+        }
+        return await dispatch('getFilteredBySearch', {
+            data: filtered,
+            searchObject: {...getters.stateSearchObject}
+        });
+    },
+
+    async getFilteredProductsByRoute({getters}, route) {
         const gettersBook = {
             Products: {
                 all: 'allProducts'
@@ -83,6 +86,13 @@ export default {
                     entity: 'products',
                     customQuantityPerPage: 0
                 }, { root: true });
+            });
+    },
+
+    sortAndPaginateProducts({ dispatch, getters }, data) {
+        dispatch('sortProducts', {mode: getters.sortingMode, data: data})
+            .then((sorted) => {
+                dispatch('paginateProducts', sorted);
             });
     },
 

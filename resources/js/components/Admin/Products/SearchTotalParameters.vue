@@ -1,46 +1,46 @@
 <template>
     <div v-if="notEmptyStateSearch" class="products_filters_top_total_parameters show_block">
-        <p v-if="searchMinPrice" class="selectedCategories__item show_block">
+        <p v-if="searchMinPrice" class="products_filters_top_total_parameters__item show_block">
             от {{ stateSearchObject.minPrice }} руб.
-            <span class="selectedCategories__item__collapse_icon"
+            <span class="products_filters_top_total_parameters__item__collapse_icon"
                   @click="clearMinPrice">
                 &#215;
             </span>
         </p>
 
-        <p v-if="searchMaxPrice" class="selectedCategories__item show_block">
+        <p v-if="searchMaxPrice" class="products_filters_top_total_parameters__item show_block">
             до {{ stateSearchObject.maxPrice }} руб.
-            <span class="selectedCategories__item__collapse_icon"
+            <span class="products_filters_top_total_parameters__item__collapse_icon"
                   @click="clearMaxPrice">
                 &#215;
             </span>
         </p>
 
-        <p class="selectedCategories__item show_block"
+        <p class="products_filters_top_total_parameters__item show_block"
            v-for="cat of selectedCategories"
            :key="cat.id">
             {{ cat.name }}
-            <span class="selectedCategories__item__collapse_icon"
+            <span class="products_filters_top_total_parameters__item__collapse_icon"
                 @click="deleteSelectedItem('category', cat.id)">
                 &#215;
             </span>
         </p>
 
-        <p class="selectedCategories__item show_block"
+        <p class="products_filters_top_total_parameters__item show_block"
            v-for="cat of selectedMaterials"
            :key="cat.id">
             {{ cat.name }}
-            <span class="selectedCategories__item__collapse_icon"
+            <span class="products_filters_top_total_parameters__item__collapse_icon"
                   @click="deleteSelectedItem('material', cat.id)">
                 &#215;
             </span>
         </p>
 
-        <p class="selectedCategories__item show_block"
+        <p class="products_filters_top_total_parameters__item show_block"
            v-for="cat of selectedColors"
            :key="cat.id">
             {{ cat.name }}
-            <span class="selectedCategories__item__collapse_icon"
+            <span class="products_filters_top_total_parameters__item__collapse_icon"
                   @click="deleteSelectedItem('color', cat.id)">
                 &#215;
             </span>
@@ -54,7 +54,7 @@
 import {mapGetters} from "vuex";
 
 export default {
-    name: "ProductsFiltersTotalParameters",
+    name: "SearchTotalParameters",
     data() {
         return {
             search: {},

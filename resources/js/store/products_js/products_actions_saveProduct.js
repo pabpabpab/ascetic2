@@ -1,4 +1,4 @@
-import thatRouter from "../../router";
+import theRouter from "../../router";
 import productValidation from "./functions/productValidation";
 
 export default {
@@ -93,10 +93,13 @@ export default {
                             item: data.product,
                         }, { root: true });
                     } else {
+                        commit('resetSearchObject');
+                        commit('resetSearchTotalParameters');
+                        commit('setSortingMode', 'position');
                         commit('addProductToProductsByFirst', data.product);
-                        dispatch('paginateProducts', getters.products)
+                        dispatch('sortAndPaginateProducts', getters.products)
                             .then(() => {
-                                thatRouter.push({ name: 'Products' });
+                                theRouter.push({ name: 'Products' });
                             });
                     }
                 } else {

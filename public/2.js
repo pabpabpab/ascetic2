@@ -442,7 +442,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     draggablePhotoItemClass: function draggablePhotoItemClass() {
       return {
-        'draggablePhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo'
+        'draggablePhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo' && this.length > 1
+      };
+    },
+    notDraggablePhotoItemClass: function notDraggablePhotoItemClass() {
+      return {
+        'notDraggablePhoto': this.length < 2
       };
     },
     underDraggablePhotoItemClass: function underDraggablePhotoItemClass() {
@@ -454,6 +459,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('dragAndDropInAbsDiv', ['myDragStart', 'myDragStop'])),
   mounted: function mounted() {
     var _this = this;
+
+    if (this.length < 2) {
+      return;
+    }
 
     this.$store.dispatch('dragAndDropInAbsDiv/resetCoordinates', {
       cycleNumber: this.photoIndex,
@@ -1427,7 +1436,11 @@ var render = function() {
     {
       ref: "photo",
       staticClass: "photo_manager__item",
-      class: [_vm.draggablePhotoItemClass, _vm.underDraggablePhotoItemClass],
+      class: [
+        _vm.draggablePhotoItemClass,
+        _vm.underDraggablePhotoItemClass,
+        _vm.notDraggablePhotoItemClass
+      ],
       style: {
         left: _vm.leftByIndex(_vm.photoIndex),
         top: _vm.topByIndex(_vm.photoIndex)

@@ -2,10 +2,10 @@ export default {
 
     moveProductByDragAndDrop: {
         root: true,
-        handler ({ dispatch, commit, state, rootState }, {currentIndex, newIndex, vector}) {
+        handler ({ dispatch, commit, getters, state, rootGetters }, {currentIndex, newIndex, vector}) {
 
-            const currentPageIndex = rootState.pagination.currentPage.products;
-            const products = rootState.pagination.customized.products[currentPageIndex];
+            const currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
+            const products = [...rootGetters['pagination/customized']('products')[currentPageIndex]];
 
             const operatedId = products[currentIndex]['id'];
             const targetId = products[newIndex]['id'];
@@ -21,7 +21,7 @@ export default {
             }, { root: true });
 
             dispatch (
-                    'postJson',
+                    'postJsonWithWaitingScreen',
                     {
                         url: state.url['moveProduct'] + operatedId,
                         data: { targetId, vector },

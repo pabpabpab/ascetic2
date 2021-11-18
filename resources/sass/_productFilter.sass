@@ -40,7 +40,7 @@
 
 .product_filters
     position: fixed
-    z-index: 25
+    z-index: 35
     top: 0
     right: 0 //-370px
     height: 100%
@@ -234,3 +234,21 @@
     width: 100%
     padding: 0 0 5px 10px
     text-align: left
+
+.products_filters_top_total_parameters__item
+    +font(15px, #fff, 400)
+    line-height: 25px
+    padding: 0 5px 0 10px
+    background-color: #a8a0a0
+    border-radius: 15px
+    margin: 3px 10px 3px 0
+    display: inline-block
+    white-space: nowrap
+.products_filters_top_total_parameters__item__collapse_icon
+    +font(15px, #fff, 400)
+    line-height: 25px
+    padding: 5px 5px
+    cursor: pointer
+    margin-left: 5px
+    &:hover
+        color: #fcf081

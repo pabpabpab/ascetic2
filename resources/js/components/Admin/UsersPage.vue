@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import ReloadIcon from "./Blocks/ReloadIcon";
-
 export default {
     name: 'UsersPage',
     components: {

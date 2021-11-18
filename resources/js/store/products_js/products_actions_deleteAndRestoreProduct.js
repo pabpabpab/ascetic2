@@ -1,10 +1,10 @@
-import thatRouter from "../../router";
+import theRouter from "../../router";
 
 export default {
 
     deleteProduct({ dispatch, commit, getters, state, rootGetters }, productId) {
         dispatch('closeConfirmationDialog', null, { root: true });
-        dispatch('deleteJson', state.url['deleteProduct'] + productId, { root: true })
+        dispatch('deleteJsonWithWaitingScreen', state.url['deleteProduct'] + productId, { root: true })
             .then((data) => {
                 dispatch('cleanPopupErrors', null, { root: true });
 
@@ -15,16 +15,25 @@ export default {
 
                 if (data.deleteSuccess === true) {
 
+                    commit('setNeedReload', { entity: 'trashedProducts', value: true });
+                    commit('setPreviousRouteName', theRouter.currentRoute.name);
+
                     const currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
                     commit('deleteItemFromProducts', productId);
-                    dispatch('paginateProducts', getters.products)
-                        .then(() => {
-                            dispatch('showPage', { entity: 'products', pageIndex: currentPageIndex }, { root: true });
-                        });
-                    commit('setNeedReload', { entity: 'trashedProducts', value: true });
 
-                    if (thatRouter.currentRoute.name === 'SingleProduct') {
-                        thatRouter.push({ name: 'TrashedProducts' });
+                    if (theRouter.currentRoute.name === 'SingleProduct') {
+                        theRouter.push({ name: 'TrashedProducts' });
+                    } else {
+                        dispatch('getFiltered', theRouter.currentRoute)
+                            .then((data) => {
+                                dispatch('sortProducts', {mode: getters.sortingMode, data: data})
+                                    .then((sorted) => {
+                                        dispatch('paginateProducts', sorted)
+                                            .then(() => {
+                                                dispatch('showPage', { entity: 'products', pageIndex: currentPageIndex }, { root: true });
+                                            });
+                                    });
+                            });
                     }
 
                     const txt = `Товар «${data.product.name}» удален.`;
@@ -49,7 +58,7 @@ export default {
                     dispatch('showTrashedProducts');
                     const txt = `Товар «${data.product.name}» восстановлен.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
-                    // thatRouter.push({ name: 'Products' });
+                    // theRouter.push({ name: 'Products' });
                 } else {
                     const txt = 'неудачная попытка';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
@@ -60,7 +69,7 @@ export default {
 
     forceDeleteProduct({ dispatch, commit, state }, productId) {
         dispatch('closeConfirmationDialog', null, { root: true });
-        dispatch('deleteJson', state.url['forceDeleteProduct'] + productId, { root: true })
+        dispatch('deleteJsonWithWaitingScreen', state.url['forceDeleteProduct'] + productId, { root: true })
             .then((data) => {
                 if (data.deleteSuccess === true) {
                     commit('setNeedReload', { entity: 'trashedProducts', value: true });

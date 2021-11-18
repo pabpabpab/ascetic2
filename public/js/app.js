@@ -19806,16 +19806,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _categories_js_categories_getters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./categories_js/categories_getters */ "./resources/js/store/categories_js/categories_getters.js");
 /* harmony import */ var _categories_js_categories_mutations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./categories_js/categories_mutations */ "./resources/js/store/categories_js/categories_mutations.js");
 /* harmony import */ var _categories_js_categories_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./categories_js/categories_actions */ "./resources/js/store/categories_js/categories_actions.js");
-/* harmony import */ var _categories_js_categories_actions_saveCategory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./categories_js/categories_actions_saveCategory */ "./resources/js/store/categories_js/categories_actions_saveCategory.js");
-/* harmony import */ var _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categories_js/categories_actions_preDeleteCategory */ "./resources/js/store/categories_js/categories_actions_preDeleteCategory.js");
-/* harmony import */ var _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./categories_js/categories_actions_deleteCategory */ "./resources/js/store/categories_js/categories_actions_deleteCategory.js");
-/* harmony import */ var _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./categories_js/categories_actions_changePosition */ "./resources/js/store/categories_js/categories_actions_changePosition.js");
-/* harmony import */ var _categories_js_categories_actions_moveCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./categories_js/categories_actions_moveCategory */ "./resources/js/store/categories_js/categories_actions_moveCategory.js");
+/* harmony import */ var _categories_js_categories_actions_showCategories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./categories_js/categories_actions_showCategories */ "./resources/js/store/categories_js/categories_actions_showCategories.js");
+/* harmony import */ var _categories_js_categories_actions_saveCategory__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categories_js/categories_actions_saveCategory */ "./resources/js/store/categories_js/categories_actions_saveCategory.js");
+/* harmony import */ var _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./categories_js/categories_actions_preDeleteCategory */ "./resources/js/store/categories_js/categories_actions_preDeleteCategory.js");
+/* harmony import */ var _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./categories_js/categories_actions_deleteCategory */ "./resources/js/store/categories_js/categories_actions_deleteCategory.js");
+/* harmony import */ var _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./categories_js/categories_actions_changePosition */ "./resources/js/store/categories_js/categories_actions_changePosition.js");
+/* harmony import */ var _categories_js_categories_actions_moveCategory__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./categories_js/categories_actions_moveCategory */ "./resources/js/store/categories_js/categories_actions_moveCategory.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -19833,7 +19835,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   state: _categories_js_categories_state__WEBPACK_IMPORTED_MODULE_0__["default"],
   getters: _categories_js_categories_getters__WEBPACK_IMPORTED_MODULE_1__["default"],
   mutations: _categories_js_categories_mutations__WEBPACK_IMPORTED_MODULE_2__["default"],
-  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _categories_js_categories_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _categories_js_categories_actions_saveCategory__WEBPACK_IMPORTED_MODULE_4__["default"]), _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_5__["default"]), _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_6__["default"]), _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_7__["default"]), _categories_js_categories_actions_moveCategory__WEBPACK_IMPORTED_MODULE_8__["default"])
+  actions: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, _categories_js_categories_actions__WEBPACK_IMPORTED_MODULE_3__["default"]), _categories_js_categories_actions_showCategories__WEBPACK_IMPORTED_MODULE_4__["default"]), _categories_js_categories_actions_saveCategory__WEBPACK_IMPORTED_MODULE_5__["default"]), _categories_js_categories_actions_preDeleteCategory__WEBPACK_IMPORTED_MODULE_6__["default"]), _categories_js_categories_actions_deleteCategory__WEBPACK_IMPORTED_MODULE_7__["default"]), _categories_js_categories_actions_changePosition__WEBPACK_IMPORTED_MODULE_8__["default"]), _categories_js_categories_actions_moveCategory__WEBPACK_IMPORTED_MODULE_9__["default"])
 });
 
 /***/ }),
@@ -19847,107 +19849,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _functions_categoryValidation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/categoryValidation */ "./resources/js/store/categories_js/functions/categoryValidation.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _functions_categoryValidation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/categoryValidation */ "./resources/js/store/categories_js/functions/categoryValidation.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   // eslint-disable-next-line no-unused-vars
   loadSingleCategory: function loadSingleCategory(_ref, _ref2) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var dispatch, commit, state, entity, categoryId, singleCategoryUrl;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              dispatch = _ref.dispatch, commit = _ref.commit, state = _ref.state;
-              entity = _ref2.entity, categoryId = _ref2.categoryId;
-              singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
-              dispatch('getJson', singleCategoryUrl, {
-                root: true
-              }).then(function (data) {
-                commit('setSingleCategoryFromServer', data);
-              });
-
-            case 4:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        state = _ref.state;
+    var entity = _ref2.entity,
+        categoryId = _ref2.categoryId;
+    var singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
+    dispatch('getJsonWithWaitingScreen', singleCategoryUrl, {
+      root: true
+    }).then(function (data) {
+      commit('setSingleCategoryFromServer', data);
+    });
   },
   getCategoriesCount: function getCategoriesCount(_ref3, entity) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var dispatch, commit, state, url;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              dispatch = _ref3.dispatch, commit = _ref3.commit, state = _ref3.state;
-              url = state.categoriesCountUrl[entity];
-              dispatch('getJson', url, {
-                root: true
-              }).then(function (data) {
-                commit('setCategoriesCountFromServer', data);
-              });
-
-            case 3:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
-  },
-  loadCategories: function loadCategories(_ref4, entity) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var dispatch, commit, state, url;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              dispatch = _ref4.dispatch, commit = _ref4.commit, state = _ref4.state;
-              dispatch('showWaitingScreen', null, {
-                root: true
-              });
-              url = state.categoriesUrl[entity];
-              dispatch('getJson', url, {
-                root: true
-              }).then(function (data) {
-                var categoriesBook = {
-                  categories: data === null || data === void 0 ? void 0 : data.categories,
-                  materials: data,
-                  colors: data
-                };
-                var categories = categoriesBook[entity];
-                commit('setCategories', {
-                  entity: entity,
-                  data: categories
-                });
-
-                if (entity === 'categories') {
-                  commit('setSeoData', data.seo);
-                }
-              })["finally"](function () {
-                dispatch('hideWaitingScreen', null, {
-                  root: true
-                });
-              });
-
-            case 4:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }))();
+    var dispatch = _ref3.dispatch,
+        commit = _ref3.commit,
+        state = _ref3.state;
+    var url = state.categoriesCountUrl[entity];
+    dispatch('getJsonWithWaitingScreen', url, {
+      root: true
+    }).then(function (data) {
+      commit('setCategoriesCountFromServer', data);
+    });
   }
 });
 
@@ -20032,6 +19960,9 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
+    dispatch('showWaitingScreen', null, {
+      root: true
+    });
     dispatch('deleteJson', state.deleteCategoryUrl[entity] + categoryId, {
       root: true
     }).then(function (data) {
@@ -20064,6 +19995,10 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
+    })["finally"](function () {
+      dispatch('hideWaitingScreen', null, {
+        root: true
+      });
     });
   }
 });
@@ -20162,7 +20097,7 @@ __webpack_require__.r(__webpack_exports__);
       root: true
     });
     var singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
-    dispatch('getJson', singleCategoryUrl, {
+    dispatch('getJsonWithWaitingScreen', singleCategoryUrl, {
       root: true
     }).then(function (data) {
       var settings = {};
@@ -20349,6 +20284,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 9:
               saveCategoryUrl = categoryId > 0 ? state.saveCategoryUrl[entity] + categoryId : state.saveCategoryUrl[entity];
+              dispatch('showWaitingScreen', null, {
+                root: true
+              });
               dispatch('postJson', {
                 url: saveCategoryUrl,
                 data: category
@@ -20398,15 +20336,94 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     root: true
                   });
                 }
+              })["finally"](function () {
+                dispatch('hideWaitingScreen', null, {
+                  root: true
+                });
               });
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }
         }
       }, _callee3);
     }))();
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/categories_js/categories_actions_showCategories.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/store/categories_js/categories_actions_showCategories.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  showCategoriesWithReload: function showCategoriesWithReload(_ref, route) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit;
+    var entity = route.params.entity;
+    commit('setCategories', {
+      entity: entity,
+      data: []
+    });
+    dispatch('showCategories', entity);
+  },
+  showCategories: function showCategories(_ref2, entity) {
+    var dispatch = _ref2.dispatch,
+        commit = _ref2.commit,
+        getters = _ref2.getters;
+
+    if (getters.categories[entity].length < 2) {
+      dispatch('loadCategories', entity);
+      return;
+    }
+
+    commit('setCategories', {
+      entity: entity,
+      data: _toConsumableArray(getters.categories[entity])
+    });
+  },
+  loadCategories: function loadCategories(_ref3, entity) {
+    var dispatch = _ref3.dispatch,
+        commit = _ref3.commit,
+        state = _ref3.state;
+    var url = state.categoriesUrl[entity];
+    dispatch('getJsonWithWaitingScreen', url, {
+      root: true
+    }).then(function (data) {
+      var categoriesBook = {
+        categories: data === null || data === void 0 ? void 0 : data.categories,
+        materials: data,
+        colors: data
+      };
+      var categories = categoriesBook[entity];
+      commit('setCategories', {
+        entity: entity,
+        data: categories
+      });
+
+      if (entity === 'categories') {
+        commit('setSeoData', data.seo);
+      }
+    });
   }
 });
 
@@ -21737,6 +21754,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    getJsonWithWaitingScreen: function getJsonWithWaitingScreen(context, url) {
+      context.dispatch('showWaitingScreen', null);
+      return context.dispatch('getJson', url)["finally"](function () {
+        context.dispatch('hideWaitingScreen', null);
+      });
+    },
     postJson: function postJson(context, payload) {
       var url = payload.url,
           data = payload.data;
@@ -21752,6 +21775,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return result.json();
       })["catch"](function (error) {
         context.dispatch('showHttpError', error);
+      });
+    },
+    postJsonWithWaitingScreen: function postJsonWithWaitingScreen(context, url) {
+      context.dispatch('showWaitingScreen', null);
+      return context.dispatch('postJson', url)["finally"](function () {
+        context.dispatch('hideWaitingScreen', null);
       });
     },
     postMultipart: function postMultipart(context, payload) {
@@ -21775,6 +21804,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return result.json();
       })["catch"](function (error) {
         context.dispatch('showHttpError', error);
+      });
+    },
+    postMultipartWithWaitingScreen: function postMultipartWithWaitingScreen(context, url) {
+      context.dispatch('showWaitingScreen', null);
+      return context.dispatch('postMultipart', url)["finally"](function () {
+        context.dispatch('hideWaitingScreen', null);
       });
     },
     putJson: function putJson(context, payload) {
@@ -21805,6 +21840,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return result.json();
       })["catch"](function (error) {
         context.dispatch('showHttpError', error);
+      });
+    },
+    deleteJsonWithWaitingScreen: function deleteJsonWithWaitingScreen(context, url) {
+      context.dispatch('showWaitingScreen', null);
+      return context.dispatch('deleteJson', url)["finally"](function () {
+        context.dispatch('hideWaitingScreen', null);
       });
     },
     showHttpError: function showHttpError(_ref, error) {
@@ -23111,19 +23152,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var dispatch = _ref.dispatch,
         commit = _ref.commit,
         state = _ref.state;
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
     var url = state.url['singleProduct'] + productId;
-    dispatch('getJson', url, {
+    dispatch('getJsonWithWaitingScreen', url, {
       root: true
     }).then(function (data) {
       commit('setSingleProductFromServer', data);
       commit('setPhotoSeoData', data.photoSeo);
-    })["finally"](function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
     });
   },
   getProductsCount: function getProductsCount(_ref2) {
@@ -23135,7 +23169,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               dispatch = _ref2.dispatch, commit = _ref2.commit, state = _ref2.state;
               url = state.url['productsCount'];
-              dispatch('getJson', url, {
+              dispatch('getJsonWithWaitingScreen', url, {
                 root: true
               }).then(function (data) {
                 commit('setProductsCountFromServer', data);
@@ -23174,7 +23208,7 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
-    dispatch('deleteJson', state.url['deleteProduct'] + productId, {
+    dispatch('deleteJsonWithWaitingScreen', state.url['deleteProduct'] + productId, {
       root: true
     }).then(function (data) {
       dispatch('cleanPopupErrors', null, {
@@ -23189,24 +23223,33 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (data.deleteSuccess === true) {
-        var currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
-        commit('deleteItemFromProducts', productId);
-        dispatch('paginateProducts', getters.products).then(function () {
-          dispatch('showPage', {
-            entity: 'products',
-            pageIndex: currentPageIndex
-          }, {
-            root: true
-          });
-        });
         commit('setNeedReload', {
           entity: 'trashedProducts',
           value: true
         });
+        commit('setPreviousRouteName', _router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name);
+        var currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
+        commit('deleteItemFromProducts', productId);
 
         if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name === 'SingleProduct') {
           _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
             name: 'TrashedProducts'
+          });
+        } else {
+          dispatch('getFiltered', _router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute).then(function (data) {
+            dispatch('sortProducts', {
+              mode: getters.sortingMode,
+              data: data
+            }).then(function (sorted) {
+              dispatch('paginateProducts', sorted).then(function () {
+                dispatch('showPage', {
+                  entity: 'products',
+                  pageIndex: currentPageIndex
+                }, {
+                  root: true
+                });
+              });
+            });
           });
         }
 
@@ -23258,7 +23301,7 @@ __webpack_require__.r(__webpack_exports__);
           sec: 2
         }, {
           root: true
-        }); // thatRouter.push({ name: 'Products' });
+        }); // theRouter.push({ name: 'Products' });
       } else {
         var _txt2 = 'неудачная попытка';
         dispatch('showAbsoluteFlashMessage', {
@@ -23277,7 +23320,7 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
-    dispatch('deleteJson', state.url['forceDeleteProduct'] + productId, {
+    dispatch('deleteJsonWithWaitingScreen', state.url['forceDeleteProduct'] + productId, {
       root: true
     }).then(function (data) {
       if (data.deleteSuccess === true) {
@@ -23355,19 +23398,34 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   moveProductByDragAndDrop: {
     root: true,
     handler: function handler(_ref, _ref2) {
       var dispatch = _ref.dispatch,
           commit = _ref.commit,
+          getters = _ref.getters,
           state = _ref.state,
-          rootState = _ref.rootState;
+          rootGetters = _ref.rootGetters;
       var currentIndex = _ref2.currentIndex,
           newIndex = _ref2.newIndex,
           vector = _ref2.vector;
-      var currentPageIndex = rootState.pagination.currentPage.products;
-      var products = rootState.pagination.customized.products[currentPageIndex];
+      var currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
+
+      var products = _toConsumableArray(rootGetters['pagination/customized']('products')[currentPageIndex]);
+
       var operatedId = products[currentIndex]['id'];
       var targetId = products[newIndex]['id'];
       commit('moveProductInProductsById', {
@@ -23383,7 +23441,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         root: true
       });
-      dispatch('postJson', {
+      dispatch('postJsonWithWaitingScreen', {
         url: state.url['moveProduct'] + operatedId,
         data: {
           targetId: targetId,
@@ -23430,8 +23488,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../router */ "./resources/js/router/index.js");
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   showProductPhotoManager: function showProductPhotoManager(_ref, product) {
     var dispatch = _ref.dispatch,
@@ -23468,11 +23524,8 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeContextMenu', null, {
       root: true
     });
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
     var url = state.url['deleteProductPhoto'] + productId + '/' + photoName;
-    dispatch('deleteJson', url, {
+    dispatch('deleteJsonWithWaitingScreen', url, {
       root: true
     }).then(function (data) {
       if (data.deleteSuccess === true) {
@@ -23504,10 +23557,6 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
-    })["finally"](function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
     });
   },
   rotatePhoto: function rotatePhoto(_ref5, _ref6) {
@@ -23520,11 +23569,8 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeContextMenu', null, {
       root: true
     });
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
     var url = state.url['rotateProductPhoto'] + productId + '/' + photoName + '/' + angle;
-    dispatch('getJson', url, {
+    dispatch('getJsonWithWaitingScreen', url, {
       root: true
     }).then(function (data) {
       if (data.rotateSuccess === true) {
@@ -23558,10 +23604,6 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
-    })["finally"](function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
     });
   },
   movePhoto: function movePhoto(_ref7, _ref8) {
@@ -23574,11 +23616,8 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeContextMenu', null, {
       root: true
     });
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
     var url = state.url['moveProductPhoto'] + productId + '/' + photoName + '/' + to;
-    dispatch('getJson', url, {
+    dispatch('getJsonWithWaitingScreen', url, {
       root: true
     }).then(function (data) {
       if (data.moveSuccess === true) {
@@ -23610,10 +23649,6 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
-    })["finally"](function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
     });
   },
   movePhotoByDragAndDrop: {
@@ -23634,10 +23669,7 @@ __webpack_require__.r(__webpack_exports__);
         newIndex: newIndex,
         vector: vector
       });
-      dispatch('showWaitingScreen', null, {
-        root: true
-      });
-      dispatch('postJson', {
+      dispatch('postJsonWithWaitingScreen', {
         url: state.url['moveByDragAndDropPhoto'] + productId,
         data: {
           operatedPhotoName: operatedPhotoName,
@@ -23676,10 +23708,6 @@ __webpack_require__.r(__webpack_exports__);
             root: true
           });
         }
-      })["finally"](function () {
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
       });
     }
   },
@@ -23696,10 +23724,7 @@ __webpack_require__.r(__webpack_exports__);
       productPhotos["photos[".concat(i, "]")] = photos[i];
     }
 
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
-    dispatch('postMultipart', {
+    dispatch('postMultipartWithWaitingScreen', {
       url: addPhotoUrl,
       data: productPhotos
     }, {
@@ -23734,10 +23759,6 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       }
-    })["finally"](function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
     });
   }
 });
@@ -24020,8 +24041,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       root: true
                     });
                   } else {
+                    commit('resetSearchObject');
+                    commit('resetSearchTotalParameters');
+                    commit('setSortingMode', 'position');
                     commit('addProductToProductsByFirst', data.product);
-                    dispatch('paginateProducts', getters.products).then(function () {
+                    dispatch('sortAndPaginateProducts', getters.products).then(function () {
                       _router__WEBPACK_IMPORTED_MODULE_1__["default"].push({
                         name: 'Products'
                       });
@@ -24066,10 +24090,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _functions_priceFilterCore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/priceFilterCore */ "./resources/js/store/products_js/functions/priceFilterCore.js");
-/* harmony import */ var _functions_categoryFilterCore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/categoryFilterCore */ "./resources/js/store/products_js/functions/categoryFilterCore.js");
-/* harmony import */ var _functions_materialFilterCore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/materialFilterCore */ "./resources/js/store/products_js/functions/materialFilterCore.js");
-/* harmony import */ var _functions_colorFilterCore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/colorFilterCore */ "./resources/js/store/products_js/functions/colorFilterCore.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _functions_priceFilterCore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/priceFilterCore */ "./resources/js/store/products_js/functions/priceFilterCore.js");
+/* harmony import */ var _functions_categoryFilterCore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/categoryFilterCore */ "./resources/js/store/products_js/functions/categoryFilterCore.js");
+/* harmony import */ var _functions_materialFilterCore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/materialFilterCore */ "./resources/js/store/products_js/functions/materialFilterCore.js");
+/* harmony import */ var _functions_colorFilterCore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/colorFilterCore */ "./resources/js/store/products_js/functions/colorFilterCore.js");
+
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -24081,6 +24109,10 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -24121,45 +24153,83 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   resetSearchObject: function resetSearchObject(_ref6) {
     var commit = _ref6.commit,
         state = _ref6.state;
-    commit('setSearchObject', state.initialSearch);
+    commit('resetSearchObject');
   },
   makeSearch: function makeSearch(_ref7, searchObject) {
-    var dispatch = _ref7.dispatch,
-        getters = _ref7.getters,
-        state = _ref7.state;
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var dispatch, getters, state, filtered;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              dispatch = _ref7.dispatch, getters = _ref7.getters, state = _ref7.state;
+              filtered = _toConsumableArray(getters.products);
+              _context.next = 4;
+              return dispatch('getFilteredBySearch', {
+                data: filtered,
+                searchObject: searchObject
+              });
 
-    var filtered = _toConsumableArray(getters.products);
+            case 4:
+              filtered = _context.sent;
+              dispatch('sortProducts', {
+                mode: state.sortingMode,
+                data: filtered
+              }).then(function (sorted) {
+                dispatch('paginateProducts', sorted);
+              }).then(function () {
+                var txt = "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(filtered.length, ".");
+                dispatch('showAbsoluteFlashFiltersMessage', {
+                  text: txt,
+                  sec: 0.5
+                }, {
+                  root: true
+                });
+              });
 
-    filtered = Object(_functions_priceFilterCore__WEBPACK_IMPORTED_MODULE_0__["default"])(filtered, searchObject);
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  getFilteredBySearch: function getFilteredBySearch(context, _ref8) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var data, searchObject, filtered;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              data = _ref8.data, searchObject = _ref8.searchObject;
+              filtered = _toConsumableArray(data);
 
-    if (searchObject.category_ids.length > 0) {
-      filtered = Object(_functions_categoryFilterCore__WEBPACK_IMPORTED_MODULE_1__["default"])(filtered, searchObject);
-    }
+              if (searchObject.minPrice > 0 || searchObject.maxPrice > 0) {
+                filtered = Object(_functions_priceFilterCore__WEBPACK_IMPORTED_MODULE_1__["default"])(filtered, searchObject);
+              }
 
-    if (searchObject.material_ids.length > 0) {
-      filtered = Object(_functions_materialFilterCore__WEBPACK_IMPORTED_MODULE_2__["default"])(filtered, searchObject);
-    }
+              if (searchObject.category_ids.length > 0) {
+                filtered = Object(_functions_categoryFilterCore__WEBPACK_IMPORTED_MODULE_2__["default"])(filtered, searchObject);
+              }
 
-    if (searchObject.color_ids.length > 0) {
-      filtered = Object(_functions_colorFilterCore__WEBPACK_IMPORTED_MODULE_3__["default"])(filtered, searchObject);
-    }
+              if (searchObject.material_ids.length > 0) {
+                filtered = Object(_functions_materialFilterCore__WEBPACK_IMPORTED_MODULE_3__["default"])(filtered, searchObject);
+              }
 
-    dispatch('doSort', {
-      mode: state.sortingMode,
-      data: filtered,
-      initiator: 'search'
-    }).then(function (data) {
-      filtered = _toConsumableArray(data);
-      dispatch('paginateProducts', filtered);
-    }).then(function () {
-      var txt = "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(filtered.length, ".");
-      dispatch('showAbsoluteFlashFiltersMessage', {
-        text: txt,
-        sec: 0.5
-      }, {
-        root: true
-      });
-    });
+              if (searchObject.color_ids.length > 0) {
+                filtered = Object(_functions_colorFilterCore__WEBPACK_IMPORTED_MODULE_4__["default"])(filtered, searchObject);
+              }
+
+              return _context2.abrupt("return", _toConsumableArray(filtered));
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
   }
 });
 
@@ -24187,6 +24257,12 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -24256,7 +24332,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   _showLoadedProducts: function _showLoadedProducts(_ref4, route) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var dispatch, commit, getters;
+      var dispatch, commit, getters, filtered;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -24275,12 +24351,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context2.abrupt("return");
 
             case 6:
-              dispatch('getFilteredProductsByRoute', route).then(function (data) {
-                dispatch('paginateProducts', data);
-              });
-              commit('setPreviousRouteName', route.name); // *
+              _context2.next = 8;
+              return dispatch('getFiltered', route);
 
             case 8:
+              filtered = _context2.sent;
+              dispatch('sortAndPaginateProducts', filtered);
+              commit('setPreviousRouteName', route.name); // *
+
+            case 11:
             case "end":
               return _context2.stop();
           }
@@ -24295,16 +24374,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var route = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
       name: 'Products'
     };
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
     dispatch('resetSearchObject');
     var params = route.params;
     var url = {
       Products: state.url['products'],
       ProductsByCategory: state.url['productsByCategory'] + (params === null || params === void 0 ? void 0 : params.categoryEntity) + '/' + (params === null || params === void 0 ? void 0 : params.slug)
     };
-    return dispatch('getJson', url[route.name], {
+    return dispatch('getJsonWithWaitingScreen', url[route.name], {
       root: true
     }).then(function (data) {
       commit('setProducts', data.products);
@@ -24319,31 +24395,76 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         products: data.products,
         route: route
       };
-    })["finally"](function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
     });
   },
-  getFilteredProductsByRoute: function getFilteredProductsByRoute(_ref6, route) {
-    var _route$params$categor, _route$params, _route$params$categor2, _route$params2;
+  getFiltered: function getFiltered(_ref6, route) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var dispatch, commit, getters, state, filtered;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              dispatch = _ref6.dispatch, commit = _ref6.commit, getters = _ref6.getters, state = _ref6.state;
+              _context3.next = 3;
+              return dispatch('getFilteredProductsByRoute', route);
 
-    var getters = _ref6.getters;
-    var gettersBook = {
-      Products: {
-        all: 'allProducts'
-      },
-      ProductsByCategory: {
-        category: 'getProductsByCategory',
-        material: 'getProductsByMaterial',
-        color: 'getProductsByColor'
-      }
-    };
-    var getterName = gettersBook[route.name][(_route$params$categor = (_route$params = route.params) === null || _route$params === void 0 ? void 0 : _route$params.categoryEntity) !== null && _route$params$categor !== void 0 ? _route$params$categor : 'all'];
-    return _toConsumableArray(getters[getterName]((_route$params$categor2 = (_route$params2 = route.params) === null || _route$params2 === void 0 ? void 0 : _route$params2.categoryId) !== null && _route$params$categor2 !== void 0 ? _route$params$categor2 : 0));
+            case 3:
+              filtered = _context3.sent;
+
+              if (route.name === 'ProductsByCategory') {
+                commit('resetSearchObject');
+              }
+
+              _context3.next = 7;
+              return dispatch('getFilteredBySearch', {
+                data: filtered,
+                searchObject: _objectSpread({}, getters.stateSearchObject)
+              });
+
+            case 7:
+              return _context3.abrupt("return", _context3.sent);
+
+            case 8:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
   },
-  paginateProducts: function paginateProducts(_ref7, data) {
-    var dispatch = _ref7.dispatch;
+  getFilteredProductsByRoute: function getFilteredProductsByRoute(_ref7, route) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var _route$params$categor, _route$params, _route$params$categor2, _route$params2;
+
+      var getters, gettersBook, getterName;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              getters = _ref7.getters;
+              gettersBook = {
+                Products: {
+                  all: 'allProducts'
+                },
+                ProductsByCategory: {
+                  category: 'getProductsByCategory',
+                  material: 'getProductsByMaterial',
+                  color: 'getProductsByColor'
+                }
+              };
+              getterName = gettersBook[route.name][(_route$params$categor = (_route$params = route.params) === null || _route$params === void 0 ? void 0 : _route$params.categoryEntity) !== null && _route$params$categor !== void 0 ? _route$params$categor : 'all'];
+              return _context4.abrupt("return", _toConsumableArray(getters[getterName]((_route$params$categor2 = (_route$params2 = route.params) === null || _route$params2 === void 0 ? void 0 : _route$params2.categoryId) !== null && _route$params$categor2 !== void 0 ? _route$params$categor2 : 0)));
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  },
+  paginateProducts: function paginateProducts(_ref8, data) {
+    var dispatch = _ref8.dispatch;
     dispatch('setFiltered', {
       entity: 'products',
       data: data
@@ -24358,49 +24479,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     });
   },
-  _needNewPagination: function _needNewPagination(_ref8, route) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+  sortAndPaginateProducts: function sortAndPaginateProducts(_ref9, data) {
+    var dispatch = _ref9.dispatch,
+        getters = _ref9.getters;
+    dispatch('sortProducts', {
+      mode: getters.sortingMode,
+      data: data
+    }).then(function (sorted) {
+      dispatch('paginateProducts', sorted);
+    });
+  },
+  _needNewPagination: function _needNewPagination(_ref10, route) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
       var getters, rootGetters, currentPageIndex;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
-              getters = _ref8.getters, rootGetters = _ref8.rootGetters;
+              getters = _ref10.getters, rootGetters = _ref10.rootGetters;
 
               if (!(route.name !== 'Products')) {
-                _context3.next = 3;
+                _context5.next = 3;
                 break;
               }
 
-              return _context3.abrupt("return", true);
+              return _context5.abrupt("return", true);
 
             case 3:
               if (!(getters.previousRouteName !== 'Products')) {
-                _context3.next = 5;
+                _context5.next = 5;
                 break;
               }
 
-              return _context3.abrupt("return", true);
+              return _context5.abrupt("return", true);
 
             case 5:
               currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
 
               if (!(currentPageIndex === -1)) {
-                _context3.next = 8;
+                _context5.next = 8;
                 break;
               }
 
-              return _context3.abrupt("return", true);
+              return _context5.abrupt("return", true);
 
             case 8:
-              return _context3.abrupt("return", false);
+              return _context5.abrupt("return", false);
 
             case 9:
             case "end":
-              return _context3.stop();
+              return _context5.stop();
           }
         }
-      }, _callee3);
+      }, _callee5);
     }))();
   }
 });
@@ -24463,19 +24594,12 @@ __webpack_require__.r(__webpack_exports__);
     var dispatch = _ref3.dispatch,
         commit = _ref3.commit,
         state = _ref3.state;
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
-    return dispatch('getJson', state.url['trashedProducts'], {
+    return dispatch('getJsonWithWaitingScreen', state.url['trashedProducts'], {
       root: true
     }).then(function (data) {
       var products = data.products;
       commit('setTrashedProducts', products);
       return products;
-    })["finally"](function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
     });
   },
   paginateTrashedProducts: function paginateTrashedProducts(_ref4, data) {
@@ -24528,30 +24652,37 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var commit = _ref.commit;
     commit('setSortingMode', mode);
   },
-  doSort: function doSort(_ref2, _ref3) {
-    var dispatch = _ref2.dispatch,
-        rootState = _ref2.rootState;
-    var mode = _ref3.mode,
-        data = _ref3.data,
-        initiator = _ref3.initiator;
-    var filtered = data.length > 0 ? data : _toConsumableArray(rootState.pagination.filtered.products);
+  doSort: function doSort(_ref2, mode) {
+    var dispatch = _ref2.dispatch;
+    dispatch('sortProducts', {
+      mode: mode,
+      data: []
+    }).then(function (sorted) {
+      dispatch('paginateProducts', sorted);
+    }).then(function () {
+      var txt = "\u041E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E.";
+      dispatch('showAbsoluteFlashMessage', {
+        text: txt,
+        sec: 0.7
+      }, {
+        root: true
+      });
+    });
+  },
+  sortProducts: function sortProducts(_ref3, _ref4) {
+    var dispatch = _ref3.dispatch,
+        rootGetters = _ref3.rootGetters;
+    var mode = _ref4.mode,
+        data = _ref4.data;
+
+    var filteredProducts = _toConsumableArray(rootGetters['pagination/filtered']('products'));
+
+    var products = data.length > 0 ? data : filteredProducts;
     var func = {
       position: _functions_sortByPosition__WEBPACK_IMPORTED_MODULE_0__["default"],
       priceUp: _functions_sortByPriceUp__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
-    filtered = func[mode](filtered);
-    dispatch('paginateProducts', filtered).then(function () {
-      if (initiator !== 'search') {
-        var txt = "\u041E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E.";
-        dispatch('showAbsoluteFlashMessage', {
-          text: txt,
-          sec: 0.7
-        }, {
-          root: true
-        });
-      }
-    });
-    return filtered;
+    return func[mode](products);
   }
 });
 
@@ -24784,9 +24915,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   setSearchObject: function setSearchObject(state, data) {
     state.search = _objectSpread({}, data);
   },
+  resetSearchObject: function resetSearchObject(state) {
+    state.search = _objectSpread({}, state.initialSearch);
+  },
   // итоговые параметры поиска в верху списка товаров
   setSearchTotalParameters: function setSearchTotalParameters(state, data) {
     state.searchTotalParameters = _objectSpread({}, data);
+  },
+  resetSearchTotalParameters: function resetSearchTotalParameters(state) {
+    state.searchTotalParameters = _objectSpread({}, state.initialSearch);
   },
   // режим сортировки
   setSortingMode: function setSortingMode(state, mode) {
@@ -24796,16 +24933,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   moveProductInProductsById: function moveProductInProductsById(state, _ref) {
     var operatedId = _ref.operatedId,
         targetId = _ref.targetId;
-    var products = state.products; // найти индексы элементов по id
+
+    var products = _toConsumableArray(state.products); // найти индексы элементов по id
+
 
     var currentIndex = products.findIndex(function (item) {
       return item.id === operatedId;
     });
     var newIndex = products.findIndex(function (item) {
       return item.id === targetId;
-    }); // вырвать из массива и получить наш элемент, который двигаем
+    }); // получить свойство position target-элемента
 
-    var operatedItem = products.splice(currentIndex, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
+    var targetItem = products.find(function (item) {
+      return item.id === targetId;
+    });
+    var targetPosition = targetItem.position; // вырвать из массива и получить наш элемент, который двигаем
+
+    var operatedItem = products.splice(currentIndex, 1)[0];
+    operatedItem.position = targetPosition + 1; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
 
     if (currentIndex < newIndex && newIndex !== state.products.length) {
       newIndex--;
@@ -25074,25 +25219,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           state = _ref6.state;
       var entity = _ref7.entity,
           data = _ref7.data;
-      dispatch('showWaitingScreen', null, {
-        root: true
-      });
       var urlParams = {
         product: data.id,
         category: data.id,
         photo: data.productId + '/' + data.photoName
       };
       var seoUrl = state.seoUrl[entity] + urlParams[entity];
-      dispatch('getJson', seoUrl, {
+      dispatch('getJsonWithWaitingScreen', seoUrl, {
         root: true
       }).then(function (data) {
         commit('setServerData', {
           entity: entity,
           data: data
-        });
-      })["finally"](function () {
-        dispatch('hideWaitingScreen', null, {
-          root: true
         });
       });
     },
@@ -25103,9 +25241,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           rootState = _ref8.rootState;
       var entity = _ref9.entity,
           data = _ref9.data;
-      dispatch('showWaitingScreen', null, {
-        root: true
-      });
       var frontItem = data;
       var urlParams = {
         product: data.entityId,
@@ -25113,7 +25248,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         photo: data.entityId + '/' + data.photoName
       };
       var saveSeoUrl = state.saveSeoUrl[entity] + urlParams[entity];
-      dispatch('postJson', {
+      dispatch('postJsonWithWaitingScreen', {
         url: saveSeoUrl,
         data: data
       }, {
@@ -25148,10 +25283,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             root: true
           });
         }
-      })["finally"](function () {
-        dispatch('hideWaitingScreen', null, {
-          root: true
-        });
       });
     },
     closeSeoManager: function closeSeoManager(_ref10) {
@@ -25460,7 +25591,7 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('closeConfirmationDialog', null, {
       root: true
     });
-    dispatch('deleteJson', state.url['deleteUser'] + user.id, {
+    dispatch('deleteJsonWithWaitingScreen', state.url['deleteUser'] + user.id, {
       root: true
     }).then(function (data) {
       if (data.deleteSuccess === true) {
@@ -25694,6 +25825,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 user.editTask = getters.taskOfUserEditManager;
               }
 
+              dispatch('showWaitingScreen', null, {
+                root: true
+              });
               dispatch('postJson', {
                 url: user.id > 0 ? state.url['saveUser'] + user.id : state.url['saveUser'],
                 data: user
@@ -25757,9 +25891,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     root: true
                   });
                 }
+              })["finally"](function () {
+                dispatch('hideWaitingScreen', null, {
+                  root: true
+                });
               });
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }
@@ -25856,7 +25994,7 @@ __webpack_require__.r(__webpack_exports__);
         getters = _ref2.getters,
         rootGetters = _ref2.rootGetters;
 
-    if (getters.usersLength === 0) {
+    if (getters.usersLength < 2) {
       dispatch('loadUsers').then(function (data) {
         dispatch('paginateUsers', data);
       });
@@ -25873,18 +26011,11 @@ __webpack_require__.r(__webpack_exports__);
     var dispatch = _ref3.dispatch,
         commit = _ref3.commit,
         state = _ref3.state;
-    dispatch('showWaitingScreen', null, {
-      root: true
-    });
-    return dispatch('getJson', state.url['users'], {
+    return dispatch('getJsonWithWaitingScreen', state.url['users'], {
       root: true
     }).then(function (data) {
       commit('setUsers', data);
       return data;
-    })["finally"](function () {
-      dispatch('hideWaitingScreen', null, {
-        root: true
-      });
     });
   },
   paginateUsers: function paginateUsers(_ref4, data) {

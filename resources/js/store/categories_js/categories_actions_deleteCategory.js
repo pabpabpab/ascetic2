@@ -2,6 +2,7 @@ export default {
 
     deleteCategory({ dispatch, state }, { entity, categoryId }) {
         dispatch('closeConfirmationDialog', null, { root: true });
+        dispatch('showWaitingScreen', null, { root: true });
         dispatch('deleteJson', state.deleteCategoryUrl[entity] + categoryId, { root: true })
             .then((data) => {
                 dispatch('cleanPopupErrors', null, { root: true });
@@ -19,6 +20,9 @@ export default {
                     const txt = `неудачная попытка удаления`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
+            })
+            .finally(() => {
+                dispatch('hideWaitingScreen', null, { root: true });
             });
     },
 

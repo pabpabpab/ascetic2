@@ -16,7 +16,7 @@ export default {
 
     deleteUser({ dispatch, commit, getters, state, rootGetters }, user) {
         dispatch('closeConfirmationDialog', null, { root: true });
-        dispatch('deleteJson', state.url['deleteUser'] + user.id, { root: true })
+        dispatch('deleteJsonWithWaitingScreen', state.url['deleteUser'] + user.id, { root: true })
             .then((data) => {
                 if (data.deleteSuccess === true) {
 

@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
-
 export default {
     name: "ReloadIcon",
     computed: {
@@ -17,11 +15,12 @@ export default {
                 Products: 'товары',
                 TrashedProducts: 'удаленные товары',
                 Users: 'пользователей',
+                Categories: 'категории',
             }
             return `Обновить ${titleBook[this.$route.name]} с сервера`;
         },
         showReloadIcon() {
-            return ['Products', 'TrashedProducts', 'Users'].includes(this.$route.name);
+            return ['Products', 'TrashedProducts', 'Users', 'Categories'].includes(this.$route.name);
         }
     },
     methods: {
@@ -30,6 +29,7 @@ export default {
                 Products: 'products/showProductsWithReload',
                 TrashedProducts: 'products/showTrashedProductsWithReload',
                 Users: 'users/showUsersWithReload',
+                Categories: 'categories/showCategoriesWithReload',
             }
             const actionName = actionBook[this.$route.name];
             if (actionName) {

@@ -84,9 +84,15 @@ export default {
     setSearchObject: (state, data) => {
         state.search = { ...data };
     },
+    resetSearchObject: (state) => {
+        state.search = { ...state.initialSearch };
+    },
     // итоговые параметры поиска в верху списка товаров
     setSearchTotalParameters: (state, data) => {
         state.searchTotalParameters = { ...data };
+    },
+    resetSearchTotalParameters: (state) => {
+        state.searchTotalParameters = { ...state.initialSearch };
     },
     // режим сортировки
     setSortingMode: (state, mode) => {
@@ -96,14 +102,19 @@ export default {
 
     // ---------------------при drag and drop --------------------------
     moveProductInProductsById: (state, {operatedId, targetId}) => {
-        const products = state.products;
+        const products = [...state.products];
 
         // найти индексы элементов по id
         let currentIndex = products.findIndex(item => item.id === operatedId);
         let newIndex = products.findIndex(item => item.id === targetId);
 
+        // получить свойство position target-элемента
+        const targetItem = products.find(item => item.id === targetId);
+        const targetPosition = targetItem.position;
+
         // вырвать из массива и получить наш элемент, который двигаем
         const operatedItem = products.splice(currentIndex, 1)[0];
+        operatedItem.position = targetPosition + 1;
 
         // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
         if ((currentIndex < newIndex) && (newIndex !== state.products.length)) {

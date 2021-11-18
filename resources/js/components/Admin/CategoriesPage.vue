@@ -2,7 +2,10 @@
     <div class="show_block"
          @mousemove="myDragMove($event)"
          @mouseup="myDragStop({ event: $event, entity: $route.params.entity })">
-        <h1>{{ getHeader }}</h1>
+        <div class="categories_header">
+            <reload-icon></reload-icon>
+            <h1 class="pd0 mb0 mauto">{{ getHeader }}</h1>
+        </div>
         <div class="content_block content_block__categories">
             <component
                 :is="currentAddingComponent"
@@ -20,6 +23,7 @@
 import AddCategoryButton from "./Categories/AddCategoryButton";
 import CategoryForm from "./Categories/CategoryForm";
 import Categories from "./Categories/Categories";
+import ReloadIcon from "./Blocks/ReloadIcon";
 import {mapActions} from "vuex";
 
 export default {
@@ -28,6 +32,7 @@ export default {
         AddCategoryButton,
         CategoryForm,
         Categories,
+        ReloadIcon,
     },
     data() {
         return {

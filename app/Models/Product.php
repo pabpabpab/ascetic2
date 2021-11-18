@@ -21,6 +21,7 @@ class Product extends Model
 
 
     protected $attributes = [
+        'photo_set' => '[]',
         'photo_alt_set' => '[]',
     ];
 
