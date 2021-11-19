@@ -8,7 +8,8 @@ export default {
                 const settings = {};
                 if (data.products_count > 0) {
                     settings.confirmationRequestText = `В категории «${data.name}» ${data.products_count} товаров,
-                        удалите или перенесите товары из категории, затем удалите пустую категорию.`;
+                        перенесите товары из категории, или полностью удалите эти товары (в том числе из «удаленных»),
+                        затем удалите пустую категорию.`;
                     settings.yesButtonText = '';
                     settings.cancelButtonText = 'Закрыть';
                     settings.yesAction = '';

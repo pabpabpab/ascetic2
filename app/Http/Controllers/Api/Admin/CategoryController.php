@@ -35,6 +35,9 @@ class CategoryController extends Controller
 
     public function getOne(Category $category): JsonResponse
     {
+        // обновить products_count
+        $category->products_count = $category->products()->count();
+        $category->save();
         return response()->json($category);
     }
 

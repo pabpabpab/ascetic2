@@ -17,8 +17,14 @@ export default {
                     const txt = `«${data.category.name}» удалено`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1.5}, { root: true });
                 } else {
-                    const txt = `неудачная попытка удаления`;
-                    dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
+                    //const txt = `неудачная попытка удаления`;
+                    //dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
+                    const txt2 = `Неудачная попытка удаления.
+                    Вероятно в удаленных товарах «Товары / Удаленные» есть товары этой категории.
+                    Певый вариант: Удалите эти товары безвозвратно из удаленных, после удалите категорию.
+                    Второй вариант: восстановите товары из удаленных,
+                    поменяйте в них категорию через редактирование товара, после удалите категорию.`;
+                    dispatch('showInformationDialog', txt2, { root: true });
                 }
             })
             .finally(() => {

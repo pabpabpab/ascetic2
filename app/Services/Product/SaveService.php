@@ -29,7 +29,11 @@ class SaveService
 
         try {
 
-            // $action = $product->id > 0 ? 'edit' : 'create';
+            $action = $product->id > 0 ? 'edit' : 'create';
+            if ($action === 'edit') {
+                // клон прежней версии товара, для обсчета потом категорий
+                $formerProduct = Product::with(['categories', 'materials', 'colors'])->find($product->id)->replicate();
+            }
 
             // СОХРАНИТЬ ОСНОВНЫЕ ДАННЫЕ
             $product->fill($request->input());
@@ -56,7 +60,10 @@ class SaveService
         if (empty($request->file('photos'))) {
             // Если всё хорошо - фиксируем
             DB::commit();
-            // подсчет кол-ва продуктов для категорий (конечные действия в ProductModifiedListener)
+            // подсчет кол-ва продуктов для категорий, прежней и новой версий продукта
+            if ($formerProduct) {
+                event(new ProductModifiedEvent($formerProduct));
+            }
             event(new ProductModifiedEvent($product));
             // выход
             return [
@@ -106,6 +113,7 @@ class SaveService
 
         // подсчет кол-ва продуктов для категорий (конечные действия в ProductModifiedListener)
         event(new ProductModifiedEvent($product));
+        // в этой точки нет редактирования товара, т.к. при редактировании нет фото, поэтому прежнюю версию товара не обсчитываем
 
         return [
             'saveSuccess' => true,
@@ -246,7 +254,7 @@ class SaveService
             return 1;
         }
 
-        $maxModel =Product::query()
+        $maxModel = Product::query()
             ->orderBy('position', 'desc')
             ->first();
 

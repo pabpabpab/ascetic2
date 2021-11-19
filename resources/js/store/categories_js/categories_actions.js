@@ -18,5 +18,12 @@ export default {
         });
     },
     */
+
+    setReloadAllCategoriesCommand: {
+        root: true,
+        handler ({ commit }, value) {
+            commit('setReloadAllCategoriesCommand', value);
+        }
+    },
 };
 

@@ -48,8 +48,6 @@ export default {
                 this.$store.dispatch('showInformationDialog', text);
             }
         },
-
-
     },
     mounted() {
         if (this.categories['categories'].length === 0) {

@@ -17,6 +17,7 @@ export default {
 
                     commit('setNeedReload', { entity: 'trashedProducts', value: true });
                     commit('setPreviousRouteName', theRouter.currentRoute.name);
+                    dispatch('setReloadAllCategoriesCommand', true, {root: true}); // для перезагрузки категорий потом
 
                     const currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
                     commit('deleteItemFromProducts', productId);
@@ -28,6 +29,7 @@ export default {
                             .then((data) => {
                                 dispatch('sortProducts', {mode: getters.sortingMode, data: data})
                                     .then((sorted) => {
+                                        //console.log(sorted);
                                         dispatch('paginateProducts', sorted)
                                             .then(() => {
                                                 dispatch('showPage', { entity: 'products', pageIndex: currentPageIndex }, { root: true });
@@ -55,6 +57,7 @@ export default {
                 if (data.restoreSuccess === true) {
                     commit('setNeedReload', { entity: 'trashedProducts', value: true });
                     commit('setNeedReload', { entity: 'products', value: true });
+                    dispatch('setReloadAllCategoriesCommand', true, {root: true}); // для перезагрузки категорий потом
                     dispatch('showTrashedProducts');
                     const txt = `Товар «${data.product.name}» восстановлен.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });

@@ -29,6 +29,9 @@ class MaterialController extends Controller
 
     public function getOne(Material $material): JsonResponse
     {
+        // обновить products_count
+        $material->products_count = $material->products()->count();
+        $material->save();
         return response()->json($material);
     }
 

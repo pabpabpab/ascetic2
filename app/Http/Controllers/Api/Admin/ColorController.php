@@ -28,6 +28,9 @@ class ColorController extends Controller
 
     public function getOne(Color $color): JsonResponse
     {
+        // обновить products_count
+        $color->products_count = $color->products()->count();
+        $color->save();
         return response()->json($color);
     }
 

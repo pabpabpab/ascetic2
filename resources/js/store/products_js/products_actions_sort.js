@@ -19,8 +19,10 @@ export default {
     },
 
     sortProducts({dispatch, rootGetters}, {mode, data}) {
-        const filteredProducts = [ ...rootGetters['pagination/filtered']('products') ];
-        let products = data.length > 0 ? data : filteredProducts;
+        //const filteredProducts = [ ...rootGetters['pagination/filtered']('products') ];
+        //let products = data.length > 0 ? data : filteredProducts;
+
+        const products = [ ...data ];
 
         const func = {
             position: sortByPosition,

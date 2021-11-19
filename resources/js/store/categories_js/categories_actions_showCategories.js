@@ -6,6 +6,10 @@ export default {
     },
 
     showCategories({dispatch, commit, getters}, entity) {
+        if (getters.reloadAllCategoriesCommand) {
+            commit('setReloadAllCategoriesCommand', false);
+            commit('resetAllCategories');
+        }
         if (getters.categories[entity].length < 2) {
             dispatch('loadCategories', entity);
             return;

@@ -19865,7 +19865,8 @@ __webpack_require__.r(__webpack_exports__);
     }).then(function (data) {
       commit('setSingleCategoryFromServer', data);
     });
-  }
+  },
+
   /*
   getCategoriesCount({ dispatch, commit, state }, entity) {
       const url = state.categoriesCountUrl[entity];
@@ -19874,7 +19875,13 @@ __webpack_require__.r(__webpack_exports__);
       });
   },
   */
-
+  setReloadAllCategoriesCommand: {
+    root: true,
+    handler: function handler(_ref3, value) {
+      var commit = _ref3.commit;
+      commit('setReloadAllCategoriesCommand', value);
+    }
+  }
 });
 
 /***/ }),
@@ -19985,11 +19992,10 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       } else {
-        var _txt = "\u043D\u0435\u0443\u0434\u0430\u0447\u043D\u0430\u044F \u043F\u043E\u043F\u044B\u0442\u043A\u0430 \u0443\u0434\u0430\u043B\u0435\u043D\u0438\u044F";
-        dispatch('showAbsoluteFlashMessage', {
-          text: _txt,
-          sec: 2
-        }, {
+        //const txt = `неудачная попытка удаления`;
+        //dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
+        var txt2 = "\u041D\u0435\u0443\u0434\u0430\u0447\u043D\u0430\u044F \u043F\u043E\u043F\u044B\u0442\u043A\u0430 \u0443\u0434\u0430\u043B\u0435\u043D\u0438\u044F.\n                    \u0412\u0435\u0440\u043E\u044F\u0442\u043D\u043E \u0432 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445 \u0442\u043E\u0432\u0430\u0440\u0430\u0445 \xAB\u0422\u043E\u0432\u0430\u0440\u044B / \u0423\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0435\xBB \u0435\u0441\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438.\n                    \u041F\u0435\u0432\u044B\u0439 \u0432\u0430\u0440\u0438\u0430\u043D\u0442: \u0423\u0434\u0430\u043B\u0438\u0442\u0435 \u044D\u0442\u0438 \u0442\u043E\u0432\u0430\u0440\u044B \u0431\u0435\u0437\u0432\u043E\u0437\u0432\u0440\u0430\u0442\u043D\u043E \u0438\u0437 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445, \u043F\u043E\u0441\u043B\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.\n                    \u0412\u0442\u043E\u0440\u043E\u0439 \u0432\u0430\u0440\u0438\u0430\u043D\u0442: \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445,\n                    \u043F\u043E\u043C\u0435\u043D\u044F\u0439\u0442\u0435 \u0432 \u043D\u0438\u0445 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E \u0447\u0435\u0440\u0435\u0437 \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u0442\u043E\u0432\u0430\u0440\u0430, \u043F\u043E\u0441\u043B\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.";
+        dispatch('showInformationDialog', txt2, {
           root: true
         });
       }
@@ -20101,7 +20107,7 @@ __webpack_require__.r(__webpack_exports__);
       var settings = {};
 
       if (data.products_count > 0) {
-        settings.confirmationRequestText = "\u0412 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \xAB".concat(data.name, "\xBB ").concat(data.products_count, " \u0442\u043E\u0432\u0430\u0440\u043E\u0432,\n                        \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u0438\u043B\u0438 \u043F\u0435\u0440\u0435\u043D\u0435\u0441\u0438\u0442\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438, \u0437\u0430\u0442\u0435\u043C \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043F\u0443\u0441\u0442\u0443\u044E \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.");
+        settings.confirmationRequestText = "\u0412 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \xAB".concat(data.name, "\xBB ").concat(data.products_count, " \u0442\u043E\u0432\u0430\u0440\u043E\u0432,\n                        \u043F\u0435\u0440\u0435\u043D\u0435\u0441\u0438\u0442\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438, \u0438\u043B\u0438 \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u044D\u0442\u0438 \u0442\u043E\u0432\u0430\u0440\u044B (\u0432 \u0442\u043E\u043C \u0447\u0438\u0441\u043B\u0435 \u0438\u0437 \xAB\u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445\xBB),\n                        \u0437\u0430\u0442\u0435\u043C \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043F\u0443\u0441\u0442\u0443\u044E \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.");
         settings.yesButtonText = '';
         settings.cancelButtonText = 'Закрыть';
         settings.yesAction = '';
@@ -20389,6 +20395,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         commit = _ref2.commit,
         getters = _ref2.getters;
 
+    if (getters.reloadAllCategoriesCommand) {
+      commit('setReloadAllCategoriesCommand', false);
+      commit('resetAllCategories');
+    }
+
     if (getters.categories[entity].length < 2) {
       dispatch('loadCategories', entity);
       return;
@@ -20459,6 +20470,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   seoData: function seoData(state) {
     return state.seoData;
+  },
+  reloadAllCategoriesCommand: function reloadAllCategoriesCommand(state) {
+    return state.reloadAllCategoriesCommand;
   }
 });
 
@@ -20523,6 +20537,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     categories.splice(newIndex, 0, operatedItem);
     state.categories[entity] = _toConsumableArray(categories);
+  },
+  resetAllCategories: function resetAllCategories(state) {
+    var zeroCategories = _objectSpread({}, state.zeroCategories);
+
+    state.categories = _objectSpread({}, zeroCategories);
+  },
+  setReloadAllCategoriesCommand: function setReloadAllCategoriesCommand(state, value) {
+    state.reloadAllCategoriesCommand = value;
   }
 });
 
@@ -20578,12 +20600,18 @@ __webpack_require__.r(__webpack_exports__);
     materials: [],
     colors: []
   },
+  zeroCategories: {
+    categories: [],
+    materials: [],
+    colors: []
+  },
   categoriesCount: {
     categories: -1,
     materials: -1,
     colors: -1
   },
   seoData: [],
+  reloadAllCategoriesCommand: false,
   singleCategoryFromServer: null
 });
 
@@ -23256,6 +23284,10 @@ __webpack_require__.r(__webpack_exports__);
           value: true
         });
         commit('setPreviousRouteName', _router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name);
+        dispatch('setReloadAllCategoriesCommand', true, {
+          root: true
+        }); // для перезагрузки категорий потом
+
         var currentPageIndex = rootGetters['pagination/currentPageIndex']('products');
         commit('deleteItemFromProducts', productId);
 
@@ -23269,6 +23301,7 @@ __webpack_require__.r(__webpack_exports__);
               mode: getters.sortingMode,
               data: data
             }).then(function (sorted) {
+              //console.log(sorted);
               dispatch('paginateProducts', sorted).then(function () {
                 dispatch('showPage', {
                   entity: 'products',
@@ -23322,6 +23355,10 @@ __webpack_require__.r(__webpack_exports__);
           entity: 'products',
           value: true
         });
+        dispatch('setReloadAllCategoriesCommand', true, {
+          root: true
+        }); // для перезагрузки категорий потом
+
         dispatch('showTrashedProducts');
         var txt = "\u0422\u043E\u0432\u0430\u0440 \xAB".concat(data.product.name, "\xBB \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D.");
         dispatch('showAbsoluteFlashMessage', {
@@ -24051,6 +24088,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   commit('disableTypeinValidation', null, {
                     root: true
                   });
+                  dispatch('setReloadAllCategoriesCommand', true, {
+                    root: true
+                  }); // для перезагрузки категорий потом
+
                   var txt = productId > 0 ? "\u0414\u0430\u043D\u043D\u044B\u0435 \u0442\u043E\u0432\u0430\u0440\u0430 \xAB".concat(data.product.name, "\xBB \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u044B.") : "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0442\u043E\u0432\u0430\u0440 \xAB".concat(data.product.name, "\xBB");
                   dispatch('showAbsoluteFlashMessage', {
                     text: txt,
@@ -24703,9 +24744,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var mode = _ref4.mode,
         data = _ref4.data;
 
-    var filteredProducts = _toConsumableArray(rootGetters['pagination/filtered']('products'));
+    //const filteredProducts = [ ...rootGetters['pagination/filtered']('products') ];
+    //let products = data.length > 0 ? data : filteredProducts;
+    var products = _toConsumableArray(data);
 
-    var products = data.length > 0 ? data : filteredProducts;
     var func = {
       position: _functions_sortByPosition__WEBPACK_IMPORTED_MODULE_0__["default"],
       priceUp: _functions_sortByPriceUp__WEBPACK_IMPORTED_MODULE_1__["default"]

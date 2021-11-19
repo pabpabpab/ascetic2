@@ -38,7 +38,6 @@ class ProductController extends Controller
     public function getByCategory(ListService $service, Category $category): JsonResponse
     {
         // $category определена в роуте как {category:slug}
-        //$products = $category->products;
         return response()->json([
             'category' => $category,
             'products' => $service->getAll('active'), // все товары
@@ -49,7 +48,6 @@ class ProductController extends Controller
     public function getByMaterial(ListService $service, Material $material): JsonResponse
     {
         // $material определена в роуте как {material:slug}
-        //$products = $material->products;
         return response()->json([
             'category' => $material,
             'products' => $service->getAll('active'), // все товары
@@ -60,7 +58,6 @@ class ProductController extends Controller
     public function getByColor(ListService $service, Color $color): JsonResponse
     {
         // $color определена в роуте как {color:slug}
-        //$products = $color->products;
         return response()->json([
             'category' => $color,
             'products' => $service->getAll('active'), // все товары

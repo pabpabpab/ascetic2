@@ -22,4 +22,11 @@ export default {
         categories.splice(newIndex, 0, operatedItem);
         state.categories[entity] = [ ...categories ];
     },
+    resetAllCategories: (state) => {
+        const zeroCategories = { ...state.zeroCategories };
+        state.categories = { ...zeroCategories };
+    },
+    setReloadAllCategoriesCommand: (state, value) => {
+        state.reloadAllCategoriesCommand = value;
+    },
 };

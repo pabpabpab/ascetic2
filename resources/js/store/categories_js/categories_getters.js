@@ -3,4 +3,5 @@ export default {
     categoriesCount: (state) => state.categoriesCount,
     singleCategoryFromServer: (state) => state.singleCategoryFromServer,
     seoData: (state) => state.seoData,
+    reloadAllCategoriesCommand: (state) => state.reloadAllCategoriesCommand,
 };

@@ -78,6 +78,7 @@ export default {
 
                 if (data.saveSuccess === true) {
                     commit('disableTypeinValidation', null, { root: true });
+                    dispatch('setReloadAllCategoriesCommand', true, {root: true}); // для перезагрузки категорий потом
 
                     const txt = productId > 0
                         ? `Данные товара «${data.product.name}» сохранены.`
