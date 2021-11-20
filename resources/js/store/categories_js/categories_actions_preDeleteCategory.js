@@ -7,8 +7,10 @@ export default {
             .then((data) => {
                 const settings = {};
                 if (data.products_count > 0) {
-                    settings.confirmationRequestText = `В категории «${data.name}» ${data.products_count} товаров,
-                        перенесите товары из категории, или полностью удалите эти товары (в том числе из «удаленных»),
+                    settings.confirmationRequestText = `
+                        В категории «${data.name}» ${data.products_count} товаров,
+                        перенесите товары из категории (через редактирование товара),
+                        или полностью удалите эти товары (в том числе из «удаленных»),
                         затем удалите пустую категорию.`;
                     settings.yesButtonText = '';
                     settings.cancelButtonText = 'Закрыть';

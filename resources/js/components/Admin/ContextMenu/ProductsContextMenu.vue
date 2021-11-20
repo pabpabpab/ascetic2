@@ -6,6 +6,10 @@
             </li>
 
             <template v-if="isTrashedProduct">
+                <li class="context_menu__li context_menu__li_black"
+                    @click="showProductEditManager(product.id)">
+                    Редактировать
+                </li>
                 <li class="context_menu__li context_menu__li_black" style="border: 0;"
                     @click="restoreProduct(product.id)">
                     Восстановить товар

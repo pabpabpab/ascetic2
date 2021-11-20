@@ -17,7 +17,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "SaveUserPage",
   components: {
     UserForm: function UserForm() {
-      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./Users/UserForm.vue */ "./resources/js/components/Admin/Users/UserForm.vue"));
+      return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./Users/UserForm.vue */ "./resources/js/components/Admin/Users/UserForm.vue"));
     }
   }
 });

@@ -19649,13 +19649,13 @@ var routes = [{
   path: '/admin/users',
   name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
   }
 }, {
   path: '/admin/product/add',
@@ -19667,25 +19667,25 @@ var routes = [{
   path: '/admin/product/:slug-:id',
   name: 'SingleProduct',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
   }
 }, {
   path: '/admin/products/active',
   name: 'Products',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/by/:categoryEntity/:slug',
   name: 'ProductsByCategory',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/trashed',
   name: 'TrashedProducts',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(3), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
   }
 }, {
   path: '*',
@@ -19860,10 +19860,11 @@ __webpack_require__.r(__webpack_exports__);
     var entity = _ref2.entity,
         categoryId = _ref2.categoryId;
     var singleCategoryUrl = state.singleCategoryUrl[entity] + categoryId;
-    dispatch('getJsonWithWaitingScreen', singleCategoryUrl, {
+    return dispatch('getJsonWithWaitingScreen', singleCategoryUrl, {
       root: true
     }).then(function (data) {
       commit('setSingleCategoryFromServer', data);
+      return data;
     });
   },
 
@@ -19992,15 +19993,35 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       } else {
-        //const txt = `неудачная попытка удаления`;
-        //dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
-        var txt2 = "\u041D\u0435\u0443\u0434\u0430\u0447\u043D\u0430\u044F \u043F\u043E\u043F\u044B\u0442\u043A\u0430 \u0443\u0434\u0430\u043B\u0435\u043D\u0438\u044F.\n                    \u0412\u0435\u0440\u043E\u044F\u0442\u043D\u043E \u0432 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445 \u0442\u043E\u0432\u0430\u0440\u0430\u0445 \xAB\u0422\u043E\u0432\u0430\u0440\u044B / \u0423\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0435\xBB \u0435\u0441\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438.\n                    \u041F\u0435\u0432\u044B\u0439 \u0432\u0430\u0440\u0438\u0430\u043D\u0442: \u0423\u0434\u0430\u043B\u0438\u0442\u0435 \u044D\u0442\u0438 \u0442\u043E\u0432\u0430\u0440\u044B \u0431\u0435\u0437\u0432\u043E\u0437\u0432\u0440\u0430\u0442\u043D\u043E \u0438\u0437 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445, \u043F\u043E\u0441\u043B\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.\n                    \u0412\u0442\u043E\u0440\u043E\u0439 \u0432\u0430\u0440\u0438\u0430\u043D\u0442: \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445,\n                    \u043F\u043E\u043C\u0435\u043D\u044F\u0439\u0442\u0435 \u0432 \u043D\u0438\u0445 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E \u0447\u0435\u0440\u0435\u0437 \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u0442\u043E\u0432\u0430\u0440\u0430, \u043F\u043E\u0441\u043B\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.";
-        dispatch('showInformationDialog', txt2, {
-          root: true
+        dispatch('_showFailureReason', {
+          entity: entity,
+          categoryId: categoryId
         });
       }
     })["finally"](function () {
       dispatch('hideWaitingScreen', null, {
+        root: true
+      });
+    });
+  },
+  _showFailureReason: function _showFailureReason(_ref3, _ref4) {
+    var dispatch = _ref3.dispatch,
+        state = _ref3.state;
+    var entity = _ref4.entity,
+        categoryId = _ref4.categoryId;
+    dispatch('loadSingleCategory', {
+      entity: entity,
+      categoryId: categoryId
+    }).then(function (data) {
+      var txt;
+
+      if (data.trashed_products_count > 0) {
+        txt = "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0443\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.\n                       \u041F\u0440\u0438\u0447\u0438\u043D\u0430: \u0432 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445 \u0442\u043E\u0432\u0430\u0440\u0430\u0445 (\xAB\u0422\u043E\u0432\u0430\u0440\u044B/\u0423\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0435\xBB) \u0435\u0441\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438\n                       (".concat(data.trashed_products_count, " \u0448\u0442.).\n                       \u0412\u0430\u0440\u0438\u0430\u043D\u0442\u044B: 1) \u0423\u0434\u0430\u043B\u0438\u0442\u0435 \u044D\u0442\u0438 \u0442\u043E\u0432\u0430\u0440\u044B \u0431\u0435\u0437\u0432\u043E\u0437\u0432\u0440\u0430\u0442\u043D\u043E \u0438\u0437 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445,\n                       \u043F\u043E\u0441\u043B\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E. 2) \u0418\u043B\u0438 \u043F\u043E\u043C\u0435\u043D\u044F\u0439\u0442\u0435 \u0432 \u0443\u0434\u0430\u043B\u0435\u043D\u043D\u043E\u043C \u0442\u043E\u0432\u0430\u0440\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E\n                       (\u0447\u0435\u0440\u0435\u0437 \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u0442\u043E\u0432\u0430\u0440\u0430), \u043F\u043E\u0441\u043B\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.");
+      } else {
+        txt = "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0443\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.";
+      }
+
+      dispatch('showInformationDialog', txt, {
         root: true
       });
     });
@@ -20107,7 +20128,7 @@ __webpack_require__.r(__webpack_exports__);
       var settings = {};
 
       if (data.products_count > 0) {
-        settings.confirmationRequestText = "\u0412 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \xAB".concat(data.name, "\xBB ").concat(data.products_count, " \u0442\u043E\u0432\u0430\u0440\u043E\u0432,\n                        \u043F\u0435\u0440\u0435\u043D\u0435\u0441\u0438\u0442\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438, \u0438\u043B\u0438 \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u044D\u0442\u0438 \u0442\u043E\u0432\u0430\u0440\u044B (\u0432 \u0442\u043E\u043C \u0447\u0438\u0441\u043B\u0435 \u0438\u0437 \xAB\u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445\xBB),\n                        \u0437\u0430\u0442\u0435\u043C \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043F\u0443\u0441\u0442\u0443\u044E \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.");
+        settings.confirmationRequestText = "\n                        \u0412 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \xAB".concat(data.name, "\xBB ").concat(data.products_count, " \u0442\u043E\u0432\u0430\u0440\u043E\u0432,\n                        \u043F\u0435\u0440\u0435\u043D\u0435\u0441\u0438\u0442\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0438\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 (\u0447\u0435\u0440\u0435\u0437 \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u0442\u043E\u0432\u0430\u0440\u0430),\n                        \u0438\u043B\u0438 \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u044D\u0442\u0438 \u0442\u043E\u0432\u0430\u0440\u044B (\u0432 \u0442\u043E\u043C \u0447\u0438\u0441\u043B\u0435 \u0438\u0437 \xAB\u0443\u0434\u0430\u043B\u0435\u043D\u043D\u044B\u0445\xBB),\n                        \u0437\u0430\u0442\u0435\u043C \u0443\u0434\u0430\u043B\u0438\u0442\u0435 \u043F\u0443\u0441\u0442\u0443\u044E \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E.");
         settings.yesButtonText = '';
         settings.cancelButtonText = 'Закрыть';
         settings.yesAction = '';
@@ -24102,13 +24123,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   if (action === 'edit') {
                     commit('setSingleProductFromServer', data);
-                    commit('updateProductsBySingleProduct');
-                    dispatch('updateItemInPaginated', {
-                      entity: 'products',
-                      item: data.product
-                    }, {
-                      root: true
-                    });
+                    dispatch('_updateItemInItems', data.product);
                   } else {
                     commit('resetSearchObject');
                     commit('resetSearchTotalParameters');
@@ -24145,6 +24160,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee3);
     }))();
+  },
+  _updateItemInItems: function _updateItemInItems(_ref6, product) {
+    var dispatch = _ref6.dispatch,
+        commit = _ref6.commit;
+    var entity;
+
+    if (product.deleted_at) {
+      commit('updateTrashedProductsBySingleProduct');
+      entity = 'trashedProducts';
+    } else {
+      commit('updateProductsBySingleProduct');
+      entity = 'products';
+    }
+
+    dispatch('updateItemInPaginated', {
+      entity: entity,
+      item: product
+    }, {
+      root: true
+    });
   }
 });
 
@@ -24980,6 +25015,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
 
     state.products.splice(index, 1, product);
+  },
+  updateTrashedProductsBySingleProduct: function updateTrashedProductsBySingleProduct(state) {
+    var product = state.singleProductFromServer.product;
+    var index = state.trashedProducts.findIndex(function (item) {
+      return item.id === product.id;
+    });
+
+    if (index === -1) {
+      return;
+    }
+
+    state.trashedProducts.splice(index, 1, product);
   },
   // при выборе пунктов в фильтре
   setSearchObject: function setSearchObject(state, data) {

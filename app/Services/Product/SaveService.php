@@ -30,8 +30,9 @@ class SaveService
         try {
 
             $action = $product->id > 0 ? 'edit' : 'create';
-            if ($action === 'edit') {
-                // клон прежней версии товара, для обсчета потом категорий
+            // клон прежней версии товара, для обсчета потом категорий
+            $formerProduct = null;
+            if ($action === 'edit' && !$product->trashed()) {
                 $formerProduct = Product::with(['categories', 'materials', 'colors'])->find($product->id)->replicate();
             }
 

@@ -38,6 +38,7 @@ class CategoryController extends Controller
         // обновить products_count
         $category->products_count = $category->products()->count();
         $category->save();
+        $category->trashed_products_count = $category->products()->onlyTrashed()->count();
         return response()->json($category);
     }
 
@@ -61,8 +62,8 @@ class CategoryController extends Controller
     public function delete(CategoryDeleteRequest $request, Category $category): JsonResponse
     {
         // instance категории в роуте как {category}
+        $category->seoText()->delete();
         $result = $category->delete();
-
         return response()->json([
             'deleteSuccess' => $result,
             'category' => $category

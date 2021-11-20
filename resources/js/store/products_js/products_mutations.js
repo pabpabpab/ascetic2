@@ -78,6 +78,14 @@ export default {
         }
         state.products.splice(index, 1, product);
     },
+    updateTrashedProductsBySingleProduct: (state) => {
+        const product = state.singleProductFromServer.product;
+        const index = state.trashedProducts.findIndex(item => item.id === product.id);
+        if (index === -1) {
+            return;
+        }
+        state.trashedProducts.splice(index, 1, product);
+    },
 
 
     // при выборе пунктов в фильтре

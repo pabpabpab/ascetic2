@@ -1,11 +1,11 @@
-1<template>
+<template>
     <div @click="closeAllCheckboxesLists()" class="show_block">
 
+        <check-number-of-categories></check-number-of-categories>
 
         <h1 v-if="action==='create'">Добавить товар</h1>
 
         <div class="content_block content_block__product_form">
-
 
             <p class="product_form__property_header mt20">Название товара</p>
             <div class="input_text__container">
@@ -96,22 +96,25 @@
                     @click.stop="saveProduct({localProduct, photos});closeAllCheckboxesLists();">
                 Сохранить
             </button>
-
-
         </div>
     </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex";
+import CheckNumberOfCategories from "./CheckNumberOfCategories";
 import FilesInput from "./FilesInput";
 import CheckboxesList from "./CheckboxesList";
-import _fitTextareaHeight from './functions/fitTextareaHeight';
-import getFormattedPrice from './functions/getFormattedPrice';
+import _fitTextareaHeight from './../functions/fitTextareaHeight';
+import getFormattedPrice from './../functions/getFormattedPrice';
 
 export default {
     name: "ProductForm",
-    components: {FilesInput, CheckboxesList},
+    components: {
+        CheckNumberOfCategories,
+        FilesInput,
+        CheckboxesList
+    },
     props: ['action', 'saveCmd'],
     data() {
         return {

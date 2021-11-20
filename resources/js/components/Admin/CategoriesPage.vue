@@ -1,6 +1,6 @@
 <template>
     <div class="show_block"
-         @mousemove="myDragMove($event)"
+         @mousemove="myDragMove($event);collapseAll();"
          @mouseup="myDragStop({ event: $event, entity: $route.params.entity })">
         <div class="categories_header">
             <reload-icon></reload-icon>
@@ -24,7 +24,7 @@ import AddCategoryButton from "./Categories/AddCategoryButton";
 import CategoryForm from "./Categories/CategoryForm";
 import Categories from "./Categories/Categories";
 import ReloadIcon from "./Blocks/ReloadIcon";
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "CategoriesPage",
@@ -46,6 +46,12 @@ export default {
         };
     },
     computed: {
+        ...mapGetters('dragAndDropByY', [
+            'currentIndex',
+        ]),
+        draggingOccurs() {
+            return this.currentIndex > -1;
+        },
         getHeader() {
             const entity = this.$route.params.entity;
             return this.header[entity];
@@ -69,6 +75,16 @@ export default {
         closeAddingComponent() {
             this.currentAddingComponent = 'AddCategoryButton';
             this.collapseItemsCommand = false;
+        },
+        collapseAll() {
+            if (!this.draggingOccurs) {
+                return;
+            }
+            this.closeAddingComponent();
+            this.collapseItemsCommand = false;
+            setTimeout(() => {
+                this.collapseItemsCommand = true;
+            }, 100);
         },
     },
 }

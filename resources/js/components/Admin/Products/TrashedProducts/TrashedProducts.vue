@@ -4,7 +4,6 @@
         <div class="products">
             <pagination v-if="trashedProductsLength > 1" entity="trashedProducts" class="pdb0"></pagination>
 
-
             <trashed-product-item
                 v-for="(item, index) of items"
                 :key="item.id"
@@ -18,6 +17,9 @@
                 <products-context-menu v-if="showContextMenu('Products')"></products-context-menu>
             </transition>
 
+            <transition name="fade">
+                <product-edit-manager v-if="visibility('productEditManager')"></product-edit-manager>
+            </transition>
         </div>
 
     </div>
@@ -28,16 +30,19 @@ import {mapGetters} from "vuex";
 import TrashedProductItem from "./TrashedProductItem";
 import Pagination from "../../Blocks/Pagination";
 import ProductsContextMenu from "../../ContextMenu/ProductsContextMenu";
+import ProductEditManager from "./../ProductEditManager";
 export default {
     name: "ProductsTrashed",
     components: {
         TrashedProductItem,
         Pagination,
         ProductsContextMenu,
+        ProductEditManager,
     },
     computed: {
         ...mapGetters('products', [
             'trashedProductsLength',
+            'visibility',
         ]),
         ...mapGetters('contextMenu', [
             'showContextMenu',

@@ -23,12 +23,10 @@ class Category extends Model
         'products_count' => 0,
     ];
 
-
     /**
      * The products that belong to the category.
      * Many-to-many relationship for products
      */
-
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -39,15 +37,12 @@ class Category extends Model
         )->orderBy('position', 'desc');
     }
 
-
     /*
         public function products(): HasMany
         {
             return $this->hasMany(Product::class)->orderBy('position', 'desc');
         }
     */
-
-
 
     // One-to-one relationship for category SEO text
     public function seoText() {

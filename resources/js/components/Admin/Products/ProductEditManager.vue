@@ -35,7 +35,7 @@ import _fitTextareaHeight from './functions/fitTextareaHeight';
 export default {
     name: "ProductEditManager",
     components: {
-        ProductForm: () => import('./ProductForm.vue'),
+        ProductForm: () => import('./ProductForm/ProductForm.vue'),
     },
     data() {
         return {

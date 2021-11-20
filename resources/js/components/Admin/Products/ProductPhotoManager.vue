@@ -63,7 +63,7 @@
 
 <script>
 import PhotoManagerItem from "./PhotoManagerItem";
-import FilesInput from "./FilesInput";
+import FilesInput from "./ProductForm/FilesInput";
 import PhotosContextMenu from "./../ContextMenu/PhotosContextMenu";
 import SeoManager from "./../Blocks/SeoManager";
 

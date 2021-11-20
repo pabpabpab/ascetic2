@@ -10,14 +10,6 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
 //
 //
 //
@@ -27,51 +19,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "SaveProductPage",
   components: {
     ProductForm: function ProductForm() {
-      return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./Products/ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm.vue"));
-    }
-  },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories', 'categoriesCount'])), {}, {
-    catsCount: function catsCount() {
-      return this.categoriesCount['categories'];
-    },
-    materialsCount: function materialsCount() {
-      return this.categoriesCount['materials'];
-    },
-    colorsCount: function colorsCount() {
-      return this.categoriesCount['colors'];
-    }
-  }),
-  watch: {
-    colorsCount: function colorsCount(value) {
-      if (value === 0) {
-        var text = 'Не созданы цвета товаров, ' + 'сначала добавьте цвета товаров по ссылке «Категории / Цвета» в меню.';
-        this.$store.dispatch('showInformationDialog', text);
-      }
-    },
-    materialsCount: function materialsCount(value) {
-      if (value === 0) {
-        var text = 'Не созданы материалы товаров, ' + 'сначала добавьте материалы товаров по ссылке «Категории / Материалы» в меню.';
-        this.$store.dispatch('showInformationDialog', text);
-      }
-    },
-    catsCount: function catsCount(value) {
-      if (value === 0) {
-        var text = 'Не созданы категории товаров, ' + 'сначала добавьте категории товаров по ссылке «Категории» в меню.';
-        this.$store.dispatch('showInformationDialog', text);
-      }
-    }
-  },
-  mounted: function mounted() {
-    if (this.categories['categories'].length === 0) {
-      this.$store.dispatch('categories/loadCategories', 'categories');
-    }
-
-    if (this.categories['materials'].length === 0) {
-      this.$store.dispatch('categories/loadCategories', 'materials');
-    }
-
-    if (this.categories['colors'].length === 0) {
-      this.$store.dispatch('categories/loadCategories', 'colors');
+      return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, /*! ./Products/ProductForm/ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm/ProductForm.vue"));
     }
   }
 });
@@ -93,7 +41,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("product-form", { attrs: { action: "create" } })], 1)
+  return _c("product-form", { attrs: { action: "create" } })
 }
 var staticRenderFns = []
 render._withStripped = true

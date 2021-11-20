@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -84,9 +85,9 @@ Route::group([
     Route::get('/products/count', 'ProductController@getCount');
 
     // один товар
-    Route::get('/product/{product}', 'ProductController@getOne');
-    Route::get('/product/{slug}-{product}', 'ProductController@getOne');
-    Route::post('/product/save/{product?}', 'ProductController@save');
+    Route::get('/product/{product}', 'ProductController@getOne')->name('apiProduct.one');
+    Route::get('/product/{slug}-{product}', 'ProductController@getOne')->name('product.one');
+    Route::post('/product/save/{product?}', 'ProductController@save')->name('product.save');
     Route::delete('/product/delete/{product}', 'ProductController@delete');
     Route::get('/product/restore/{id}', 'ProductController@restore')
         ->where('id', '[0-9]+');
@@ -113,6 +114,15 @@ Route::group([
     Route::post('/product/photo/seo/save/{product}/{photoName}', 'ProductController@savePhotoSeoData')
         ->where('photoName', '[0-9]+\.[a-z]+');
 
+
+    Route::bind('product', function ($id) {
+        $arr = ['apiProduct.one', 'product.save'];
+        if (in_array(Route::currentRouteName(), $arr)) {
+            return Product::withTrashed()->findOrFail($id);
+        }
+        return Product::findOrFail($id);
+
+    });
 
 });
 

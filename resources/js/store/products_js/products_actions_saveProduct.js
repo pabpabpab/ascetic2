@@ -85,14 +85,9 @@ export default {
                         : `Добавлен товар «${data.product.name}»`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
 
-
                     if (action === 'edit') {
                         commit('setSingleProductFromServer', data);
-                        commit('updateProductsBySingleProduct');
-                        dispatch('updateItemInPaginated', {
-                            entity: 'products',
-                            item: data.product,
-                        }, { root: true });
+                        dispatch('_updateItemInItems', data.product);
                     } else {
                         commit('resetSearchObject');
                         commit('resetSearchTotalParameters');
@@ -111,6 +106,21 @@ export default {
             .finally(() => {
                 dispatch('hideWaitingScreen', null, { root: true });
             });
+    },
+
+    _updateItemInItems({ dispatch, commit }, product) {
+        let entity;
+        if (product.deleted_at) {
+            commit('updateTrashedProductsBySingleProduct');
+            entity = 'trashedProducts';
+        } else {
+            commit('updateProductsBySingleProduct');
+            entity = 'products';
+        }
+        dispatch('updateItemInPaginated', {
+            entity: entity,
+            item: product,
+        }, { root: true });
     },
 
 }
