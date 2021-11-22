@@ -136,10 +136,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PhotoManagerItem",
-  props: ['photoName', 'productId', 'photoIndex', 'length'],
+  props: ['photoName', 'productId', 'photoIndex', 'numberOfPhotos'],
   data: function data() {
     return {
       sizeIndex: 3
@@ -159,25 +163,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "photo__size".concat(this.sizeIndex);
     },
     lastPhotoListIndex: function lastPhotoListIndex() {
-      return this.length - 1;
+      return this.numberOfPhotos - 1;
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropInAbsDiv', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), {}, {
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropInAbsDiv', ['entity', 'isDragging', 'leftByIndex', 'topByIndex', 'draggingOccurs'])), {}, {
     draggedEntity: function draggedEntity() {
       return this.entity;
     },
-    draggablePhotoItemClass: function draggablePhotoItemClass() {
+    draggedPhotoClass: function draggedPhotoClass() {
       return {
-        'draggablePhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo' && this.length > 1
+        'draggedPhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo' && this.numberOfPhotos > 1
       };
     },
-    notDraggablePhotoItemClass: function notDraggablePhotoItemClass() {
+    notDraggedPhotosClass: function notDraggedPhotosClass() {
       return {
-        'notDraggablePhoto': this.length < 2
+        'notDraggedPhotos': this.numberOfPhotos < 2
       };
     },
-    underDraggablePhotoItemClass: function underDraggablePhotoItemClass() {
+    beneathDraggedPhotoClass: function beneathDraggedPhotoClass() {
       return {
-        'underDraggablePhoto': !this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo'
+        'beneathDraggedPhoto': this.draggingOccurs
       };
     }
   }),
@@ -185,7 +189,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    if (this.length < 2) {
+    if (this.numberOfPhotos < 2) {
       return;
     }
 
@@ -935,9 +939,9 @@ var render = function() {
       ref: "photo",
       staticClass: "photo_manager__item",
       class: [
-        _vm.draggablePhotoItemClass,
-        _vm.underDraggablePhotoItemClass,
-        _vm.notDraggablePhotoItemClass
+        _vm.draggedPhotoClass,
+        _vm.beneathDraggedPhotoClass,
+        _vm.notDraggedPhotosClass
       ],
       style: {
         left: _vm.leftByIndex(_vm.photoIndex),
@@ -963,11 +967,13 @@ var render = function() {
       }
     },
     [
-      _c("img", {
-        class: _vm.imgClass,
-        staticStyle: { "pointer-events": "none" },
-        attrs: { alt: "", src: _vm.photoSrc }
-      }),
+      _c("div", { staticClass: "photo_manager__item__content" }, [
+        _c("img", {
+          class: _vm.imgClass,
+          staticStyle: { "pointer-events": "none" },
+          attrs: { alt: "", src: _vm.photoSrc }
+        })
+      ]),
       _vm._v(" "),
       _c(
         "span",
@@ -1192,7 +1198,7 @@ var render = function() {
                   attrs: {
                     photoName: photoName,
                     productId: _vm.product.id,
-                    length: _vm.product.photo_set.length,
+                    numberOfPhotos: _vm.product.photo_set.length,
                     photoIndex: photoIndex
                   }
                 })

@@ -21175,6 +21175,9 @@ __webpack_require__.r(__webpack_exports__);
         return state.currentIndex === index && state.isDragging;
       };
     },
+    draggingOccurs: function draggingOccurs(state) {
+      return state.currentIndex > -1 && state.isDragging;
+    },
     leftByIndex: function leftByIndex(state) {
       return function (index) {
         if (state.currentIndex !== index) {
@@ -21407,6 +21410,9 @@ __webpack_require__.r(__webpack_exports__);
         return state.currentIndex === index && state.isDragging;
       };
     },
+    draggingOccurs: function draggingOccurs(state) {
+      return state.currentIndex > -1 && state.isDragging;
+    },
     topByIndex: function topByIndex(state) {
       return function (index) {
         if (state.currentIndex !== index) {
@@ -21517,7 +21523,7 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var i = coordsArr.length; i >= 0; i--) {
         if (event.pageY > coordsArr[i]) {
-          newIndex = i + 1;
+          newIndex = i;
           break;
         }
       } // курсор мыши не был ниже никакого элемента, значит был выше всех элементов (ставим первым элементом)
@@ -21588,6 +21594,9 @@ __webpack_require__.r(__webpack_exports__);
       return function (index) {
         return state.currentIndex === index && state.isDragging;
       };
+    },
+    draggingOccurs: function draggingOccurs(state) {
+      return state.currentIndex > -1 && state.isDragging;
     },
     leftByIndex: function leftByIndex(state) {
       return function (index) {

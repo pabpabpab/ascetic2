@@ -151,6 +151,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _assets_filterIcon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../../../assets/filterIcon.svg */ "./resources/assets/filterIcon.svg");
+/* harmony import */ var _assets_filterIcon_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_filterIcon_svg__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -163,23 +165,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
- //import filter_icon5 from "./../../../../assets/filter_icon5.png"
-//<img @click.stop="showOrCloseProductsFilters()" :src="filter_icon5" alt="">
+
+ //<img :src="filterIcon" alt="" class="product_filters__icon__img">
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductListHeader",
-
-  /*
-  data() {
-      return {
-          filter_icon5: filter_icon5,
-      };
-  },*/
+  data: function data() {
+    return {
+      filterIcon: _assets_filterIcon_svg__WEBPACK_IMPORTED_MODULE_1___default.a
+    };
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['visibility'])),
   methods: {
     showOrCloseProductsFilters: function showOrCloseProductsFilters() {
@@ -191,6 +186,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }
 });
+/*
+<span class="product_filters__icon__content">
+            &#9776;
+            <span class="product_filters__icon__knob product_filters__icon__knob__1"></span>
+            <span class="product_filters__icon__knob product_filters__icon__knob__2"></span>
+            <span class="product_filters__icon__knob product_filters__icon__knob__3"></span>
+        </span>
+ */
 
 /***/ }),
 
@@ -294,6 +297,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -305,13 +311,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       indexOfMainPhoto: 0
     };
   },
-  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['entity', 'isDragging', 'leftByIndex', 'topByIndex'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['sortingMode'])), _someComputed_computedForProductItem__WEBPACK_IMPORTED_MODULE_1__["default"]), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['imgFolderPrefix'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByXY', ['entity', 'isDragging', 'leftByIndex', 'topByIndex', 'draggingOccurs'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['sortingMode'])), _someComputed_computedForProductItem__WEBPACK_IMPORTED_MODULE_1__["default"]), {}, {
     draggedEntity: function draggedEntity() {
       return this.entity;
     },
-    draggableProductItemClass: function draggableProductItemClass() {
+    draggedProductClass: function draggedProductClass() {
       return {
-        'draggableProduct': this.isDragging(this.index) && this.draggedEntity === 'Product'
+        'draggedProduct': this.isDragging(this.index) && this.draggedEntity === 'Product'
+      };
+    },
+    beneathDraggedProductClass: function beneathDraggedProductClass() {
+      return {
+        'product_item__beneath_dragged_item': this.draggingOccurs
       };
     },
     defaultSorting: function defaultSorting() {
@@ -1272,33 +1283,15 @@ var render = function() {
         }
       }
     },
-    [_vm._m(0)]
+    [
+      _c("img", {
+        staticClass: "product_filters__icon__img",
+        attrs: { src: _vm.filterIcon, alt: "" }
+      })
+    ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "product_filters__icon__content" }, [
-      _vm._v("\n        ☰\n        "),
-      _c("span", {
-        staticClass:
-          "product_filters__icon__knob product_filters__icon__knob__1"
-      }),
-      _vm._v(" "),
-      _c("span", {
-        staticClass:
-          "product_filters__icon__knob product_filters__icon__knob__2"
-      }),
-      _vm._v(" "),
-      _c("span", {
-        staticClass:
-          "product_filters__icon__knob product_filters__icon__knob__3"
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1325,7 +1318,7 @@ var render = function() {
     {
       ref: "product",
       staticClass: "product_item",
-      class: _vm.draggableProductItemClass,
+      class: [_vm.draggedProductClass, _vm.beneathDraggedProductClass],
       style: {
         left: _vm.draggedEntity === "Product" ? _vm.leftByIndex(_vm.index) : 0,
         top: _vm.draggedEntity === "Product" ? _vm.topByIndex(_vm.index) : 0
@@ -1350,168 +1343,187 @@ var render = function() {
     },
     [
       _c(
-        "span",
-        {
-          staticClass: "context_menu__icon__product",
-          on: {
-            mouseover: function($event) {
-              return _vm.showContextMenu({
-                event: $event,
-                target: "Products",
-                data: {
-                  product: _vm.product
-                }
-              })
-            }
-          }
-        },
-        [_vm._v("\n        ⋮\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "product_item__quick_view_link",
-          attrs: { href: "#" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.showProductQuickViewManager(_vm.product.id)
-            }
-          }
-        },
-        [_vm._v("\n        Быстрый просмотр\n    ")]
-      ),
-      _vm._v(" "),
-      _vm.numberOfPhotos > 0
-        ? [
-            _c(
-              "router-link",
-              {
-                attrs: {
-                  to: {
-                    name: "SingleProduct",
-                    params: { slug: _vm.product.slug, id: _vm.product.id }
-                  }
-                }
-              },
-              [
-                _c("div", {
-                  ref: "mainPhotoDiv",
-                  domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
-                  on: {
-                    mousemove: function($event) {
-                      return _vm.changeMainPhoto($event)
-                    },
-                    mouseout: function($event) {
-                      return _vm.setFirstMainPhoto()
-                    }
-                  }
-                })
-              ]
-            )
-          ]
-        : [
-            _c(
-              "div",
-              { ref: "mainPhotoDiv", staticClass: "product_item__no_photo" },
-              [_vm._v("\n            НЕТ ФОТО\n        ")]
-            )
-          ],
-      _vm._v(" "),
-      _vm.numberOfPhotos > 1
-        ? _c(
-            "div",
-            { staticClass: "product_item__photo_indicator" },
-            _vm._l(_vm.numberOfPhotos, function(n) {
-              return _c("span", {
-                key: n,
-                staticClass: "product_item__photo_indicator_item",
-                class: {
-                  product_item__photo_indicator_inactive:
-                    _vm.indexOfMainPhoto + 1 !== n,
-                  product_item__photo_indicator_active:
-                    _vm.indexOfMainPhoto + 1 === n
-                }
-              })
-            }),
-            0
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
         "div",
-        {
-          staticClass: "product_item__name",
-          style: { cursor: _vm.cursorType }
-        },
+        { staticClass: "product_item__content" },
         [
           _c(
-            "router-link",
+            "span",
             {
-              staticClass: "product_item__name__link",
-              attrs: {
-                to: {
-                  name: "SingleProduct",
-                  params: { slug: _vm.product.slug, id: _vm.product.id }
+              staticClass: "context_menu__icon__product",
+              on: {
+                mouseover: function($event) {
+                  return _vm.showContextMenu({
+                    event: $event,
+                    target: "Products",
+                    data: {
+                      product: _vm.product
+                    }
+                  })
                 }
               }
             },
-            [_vm._v("\n            " + _vm._s(_vm.product.name) + "\n        ")]
+            [_vm._v("\n            ⋮\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "product_item__quick_view_link",
+              attrs: { href: "#" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.showProductQuickViewManager(_vm.product.id)
+                }
+              }
+            },
+            [_vm._v("\n            Быстрый просмотр\n        ")]
+          ),
+          _vm._v(" "),
+          _vm.numberOfPhotos > 0
+            ? [
+                _c(
+                  "router-link",
+                  {
+                    attrs: {
+                      to: {
+                        name: "SingleProduct",
+                        params: { slug: _vm.product.slug, id: _vm.product.id }
+                      }
+                    }
+                  },
+                  [
+                    _c("div", {
+                      ref: "mainPhotoDiv",
+                      domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
+                      on: {
+                        mousemove: function($event) {
+                          return _vm.changeMainPhoto($event)
+                        },
+                        mouseout: function($event) {
+                          return _vm.setFirstMainPhoto()
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]
+            : [
+                _c(
+                  "div",
+                  {
+                    ref: "mainPhotoDiv",
+                    staticClass: "product_item__no_photo"
+                  },
+                  [_vm._v("\n                НЕТ ФОТО\n            ")]
+                )
+              ],
+          _vm._v(" "),
+          _vm.numberOfPhotos > 1
+            ? _c(
+                "div",
+                { staticClass: "product_item__photo_indicator" },
+                _vm._l(_vm.numberOfPhotos, function(n) {
+                  return _c("span", {
+                    key: n,
+                    staticClass: "product_item__photo_indicator_item",
+                    class: {
+                      product_item__photo_indicator_inactive:
+                        _vm.indexOfMainPhoto + 1 !== n,
+                      product_item__photo_indicator_active:
+                        _vm.indexOfMainPhoto + 1 === n
+                    }
+                  })
+                }),
+                0
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "product_item__name",
+              style: { cursor: _vm.cursorType }
+            },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "product_item__name__link",
+                  attrs: {
+                    to: {
+                      name: "SingleProduct",
+                      params: { slug: _vm.product.slug, id: _vm.product.id }
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.product.name) +
+                      "\n            "
+                  )
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "product_item__price",
+              style: { cursor: _vm.cursorType }
+            },
+            [_vm._v("\n            " + _vm._s(_vm.getPrice) + "\n        ")]
+          ),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "product_item__small_photos",
+            domProps: { innerHTML: _vm._s(_vm.getPhotos) },
+            on: {
+              mouseover: function($event) {
+                return _vm.changeMainPhotoBySmallPhoto($event)
+              },
+              mouseout: function($event) {
+                return _vm.setFirstMainPhoto()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "product_item__bottom_info__relative_wrapper" },
+            [
+              _c(
+                "div",
+                { staticClass: "product_item__bottom_info__absolute" },
+                [
+                  _c("p", {
+                    staticClass: "product_item__bottom_info__text",
+                    attrs: { title: "Категория" },
+                    domProps: { innerHTML: _vm._s(_vm.getCategories) }
+                  }),
+                  _vm._v(" "),
+                  _c("p", {
+                    staticClass: "product_item__bottom_info__text",
+                    attrs: { title: "Материал" },
+                    domProps: { innerHTML: _vm._s(_vm.getMaterials) }
+                  }),
+                  _vm._v(" "),
+                  _c("p", {
+                    staticClass: "product_item__bottom_info__text",
+                    attrs: { title: "Цвет" },
+                    domProps: { innerHTML: _vm._s(_vm.getColors) }
+                  })
+                ]
+              )
+            ]
           )
         ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "product_item__price",
-          style: { cursor: _vm.cursorType }
-        },
-        [_vm._v("\n        " + _vm._s(_vm.getPrice) + "\n    ")]
-      ),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "product_item__small_photos",
-        domProps: { innerHTML: _vm._s(_vm.getPhotos) },
-        on: {
-          mouseover: function($event) {
-            return _vm.changeMainPhotoBySmallPhoto($event)
-          },
-          mouseout: function($event) {
-            return _vm.setFirstMainPhoto()
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "product_item__bottom_info__relative_wrapper" },
-        [
-          _c("div", { staticClass: "product_item__bottom_info__absolute" }, [
-            _c("p", {
-              staticClass: "product_item__bottom_info__text",
-              attrs: { title: "Категория" },
-              domProps: { innerHTML: _vm._s(_vm.getCategories) }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "product_item__bottom_info__text",
-              attrs: { title: "Материал" },
-              domProps: { innerHTML: _vm._s(_vm.getMaterials) }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "product_item__bottom_info__text",
-              attrs: { title: "Цвет" },
-              domProps: { innerHTML: _vm._s(_vm.getColors) }
-            })
-          ])
-        ]
+        2
       )
-    ],
-    2
+    ]
   )
 }
 var staticRenderFns = []
@@ -2226,6 +2238,17 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./resources/assets/filterIcon.svg":
+/*!*****************************************!*\
+  !*** ./resources/assets/filterIcon.svg ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/filterIcon.svg?ffb310848291bf0e5cfe8455a7e00c6c";
 
 /***/ }),
 

@@ -1,13 +1,17 @@
 <template>
     <div ref="photo" class="photo_manager__item"
-         :class="[draggablePhotoItemClass, underDraggablePhotoItemClass, notDraggablePhotoItemClass]"
+         :class="[draggedPhotoClass, beneathDraggedPhotoClass, notDraggedPhotosClass]"
          :style="{
             'left': leftByIndex(photoIndex),
             'top': topByIndex(photoIndex),
          }"
          @mousedown.stop="myDragStart({index: photoIndex, event: $event, entity: 'Photo'})"
          @mouseup.stop="myDragStop({ event: $event, clickedIndex: photoIndex, entity: 'Photo' })">
-        <img alt="" :src="photoSrc" :class="imgClass" style="pointer-events: none"/>
+
+        <div class="photo_manager__item__content">
+            <img alt="" :src="photoSrc" :class="imgClass" style="pointer-events: none"/>
+        </div>
+
         <span class="context_menu__icon__photo_manager"
               @mouseover="showContextMenu({
                 event: $event,
@@ -28,7 +32,7 @@
 import {mapActions, mapGetters} from "vuex";
 export default {
     name: "PhotoManagerItem",
-    props: ['photoName', 'productId', 'photoIndex', 'length'],
+    props: ['photoName', 'productId', 'photoIndex', 'numberOfPhotos'],
     data() {
         return {
             sizeIndex: 3
@@ -51,7 +55,7 @@ export default {
             return `photo__size${this.sizeIndex}`;
         },
         lastPhotoListIndex() {
-            return this.length - 1;
+            return this.numberOfPhotos - 1;
         },
 
         ...mapGetters('dragAndDropInAbsDiv', [
@@ -59,25 +63,26 @@ export default {
             'isDragging',
             'leftByIndex',
             'topByIndex',
+            'draggingOccurs',
         ]),
 
         draggedEntity() {
             return this.entity;
         },
 
-        draggablePhotoItemClass() {
+        draggedPhotoClass() {
             return {
-                'draggablePhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo' && this.length > 1,
+                'draggedPhoto': this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo' && this.numberOfPhotos > 1,
             };
         },
-        notDraggablePhotoItemClass() {
+        notDraggedPhotosClass() {
             return {
-                'notDraggablePhoto': this.length < 2,
+                'notDraggedPhotos': this.numberOfPhotos < 2,
             };
         },
-        underDraggablePhotoItemClass() {
+        beneathDraggedPhotoClass() {
             return {
-                'underDraggablePhoto': !this.isDragging(this.photoIndex) && this.draggedEntity === 'Photo',
+                'beneathDraggedPhoto': this.draggingOccurs,
             };
         },
     },
@@ -92,7 +97,7 @@ export default {
     },
 
     mounted() {
-        if (this.length < 2) {
+        if (this.numberOfPhotos < 2) {
             return;
         }
         this.$store.dispatch('dragAndDropInAbsDiv/resetCoordinates', {cycleNumber: this.photoIndex, entity: 'Photo'})

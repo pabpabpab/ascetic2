@@ -20,7 +20,7 @@
                         :key="photoName"
                         :photoName="photoName"
                         :productId="product.id"
-                        :length="product.photo_set.length"
+                        :numberOfPhotos="product.photo_set.length"
                         :photoIndex="photoIndex">
                     </photo-manager-item>
 

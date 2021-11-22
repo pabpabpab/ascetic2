@@ -31,12 +31,11 @@
     min-width: 250px
     width: 250px
     margin: 10px
-    padding: 0 0 20px 0
+    padding: 0
     text-align: left
-    background-color: #fff
-    border-radius: 5px
+    background-color: rgba(255, 255, 255, 0)
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
-    transition: box-shadow .3s // border .3s,
+    transition: box-shadow .3s
     &:hover
         box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.2)
     &:hover .product_item__bottom_info__absolute
@@ -44,6 +43,20 @@
         visibility: visible
     &:hover .product_item__quick_view_link
         opacity: 1
+    &__beneath_dragged_item
+        transition: padding-left .3s
+        &:hover
+            box-shadow: none
+            padding-left: 260px
+        &:hover .product_item__quick_view_link
+            opacity: 0
+        &:hover .product_item__bottom_info__absolute
+            opacity: 0
+            visibility: hidden
+    &__content
+        background-color: #fff
+        min-height: 100%
+        box-sizing: border-box
     &__no_photo
         +font(20px, rgb(196, 218, 239), 300)
         font-family: 'Oswald', sans-serif
@@ -71,7 +84,7 @@
         +font(17px, #807878, 400)
         padding: 0 10px 2px 10px
     &__small_photos
-        padding: 7px 0 0 10px
+        padding: 7px 0 20px 10px
         margin-right: 10px
         overflow-x: hidden
         display: flex
@@ -139,7 +152,7 @@
     margin: 0
     padding: 3px 0
 
-.draggableProduct
+.draggedProduct
     position: absolute
     z-index: 300
     box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)

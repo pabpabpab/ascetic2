@@ -42,8 +42,6 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
-
-
     public function save(CategorySaveRequest $request, CategoryService $categoryService, Category $category): JsonResponse
     {
         // instance категории в роуте как {category?}

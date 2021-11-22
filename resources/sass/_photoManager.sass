@@ -58,7 +58,6 @@
 
 
 .photo_manager__content
-    //position: relative
     width: 100%
     height: 90%
     max-height: 95%
@@ -67,7 +66,6 @@
     overflow-y: auto
     background-color: #fff
     +font(17px, rgb(80, 75, 75), 400)
-    // border: 1px solid #00f
     &::-webkit-scrollbar
         width: 15px
         background-color: #f0f0f0
@@ -86,45 +84,33 @@
 
 
 .photo_manager__item
-    padding: 10px
-    margin: 10px 20px 10px 0
+    background-color: rgba(255, 255, 255, 0)
+    margin: 0
+    padding: 0
     position: relative
     cursor: move
-    //border: 1px solid #eee
+    &__content
+        padding: 10px
+        background-color: #fff
 
-.draggablePhoto
+.draggedPhoto
     position: absolute
     z-index: 300
-    background-color: rgb(255, 255, 255)
+    pointer-events: none
+.draggedPhoto .photo_manager__item__content
     box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
-    //pointer-events: none
 
-.notDraggablePhoto
-    //position: static
+.notDraggedPhotos
     cursor: default
 
-.underDraggablePhoto
-    box-shadow: none
+.beneathDraggedPhoto
+    margin: 0 10px 20px 10px
+    transition: padding-left .3s
     &:hover
-        box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
+        padding-left: 250px
+.beneathDraggedPhoto .photo_manager__item__content
+    box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
 
-
-.context_menu__icon__photo_manager
-    position: absolute
-    top: 5px
-    right: 4px
-    +font(17px, #fff, 700)
-    background-color: rgba(0, 0, 0, 0.9)
-    padding: 0 10px
-    cursor: pointer
-    border-radius: 5px
-    display: flex
-    flex-direction: column
-    justify-content: center
-    align-items: center
-    &:hover
-        background-color: rgba(0, 0, 0, 1)
-        color: #fff
 
 
 

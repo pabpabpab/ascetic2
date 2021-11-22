@@ -1,27 +1,22 @@
 <template>
     <div @click.stop="showOrCloseProductsFilters()" class="product_filters__icon">
-        <span class="product_filters__icon__content">
-            &#9776;
-            <span class="product_filters__icon__knob product_filters__icon__knob__1"></span>
-            <span class="product_filters__icon__knob product_filters__icon__knob__2"></span>
-            <span class="product_filters__icon__knob product_filters__icon__knob__3"></span>
-        </span>
+        <img :src="filterIcon" alt="" class="product_filters__icon__img">
     </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
-//import filter_icon5 from "./../../../../assets/filter_icon5.png"
-//<img @click.stop="showOrCloseProductsFilters()" :src="filter_icon5" alt="">
+import filterIcon from "./../../../../assets/filterIcon.svg"
+//<img :src="filterIcon" alt="" class="product_filters__icon__img">
 
 export default {
     name: "ProductListHeader",
-    /*
+
     data() {
         return {
-            filter_icon5: filter_icon5,
+            filterIcon: filterIcon,
         };
-    },*/
+    },
     computed: {
         ...mapGetters('products', [
             'visibility'
@@ -37,4 +32,12 @@ export default {
         },
     },
 }
+/*
+<span class="product_filters__icon__content">
+            &#9776;
+            <span class="product_filters__icon__knob product_filters__icon__knob__1"></span>
+            <span class="product_filters__icon__knob product_filters__icon__knob__2"></span>
+            <span class="product_filters__icon__knob product_filters__icon__knob__3"></span>
+        </span>
+ */
 </script>

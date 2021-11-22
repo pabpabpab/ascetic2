@@ -1,7 +1,7 @@
 <template>
     <div ref="product"
          class="product_item"
-         :class="draggableProductItemClass"
+         :class="[draggedProductClass, beneathDraggedProductClass]"
          :style="{
             'left': draggedEntity === 'Product' ? leftByIndex(index) : 0,
             'top': draggedEntity === 'Product' ? topByIndex(index) : 0,
@@ -9,40 +9,41 @@
          @mousedown="myDragStart({index: index, event: $event, entity: 'Product'})"
          @mouseup.stop="myDragStop({ event: $event, clickedIndex: index, entity: 'Product' })">
 
+        <div class="product_item__content">
 
-        <span class="context_menu__icon__product"
-              @mouseover="showContextMenu({
-                event: $event,
-                target: 'Products',
-                data: {
-                    product: product,
-                }
-            })">
-            &#8942;
-        </span>
+            <span class="context_menu__icon__product"
+                @mouseover="showContextMenu({
+                    event: $event,
+                    target: 'Products',
+                    data: {
+                        product: product,
+                    }
+                })">
+                &#8942;
+            </span>
 
-        <a @click.prevent="showProductQuickViewManager(product.id)"
-            href='#'
-            class="product_item__quick_view_link">
-            Быстрый просмотр
-        </a>
+            <a @click.prevent="showProductQuickViewManager(product.id)"
+               href='#'
+               class="product_item__quick_view_link">
+                Быстрый просмотр
+            </a>
 
-        <template v-if="numberOfPhotos > 0">
-            <router-link :to="{ name: 'SingleProduct', params: {  slug: product.slug, id: product.id } }">
-                <div ref="mainPhotoDiv"
-                     @mousemove="changeMainPhoto($event)"
-                     @mouseout="setFirstMainPhoto()"
-                     v-html="getMainPhoto">
+            <template v-if="numberOfPhotos > 0">
+                <router-link :to="{ name: 'SingleProduct', params: {  slug: product.slug, id: product.id } }">
+                    <div ref="mainPhotoDiv"
+                         @mousemove="changeMainPhoto($event)"
+                         @mouseout="setFirstMainPhoto()"
+                         v-html="getMainPhoto">
+                    </div>
+                </router-link>
+            </template>
+            <template v-else>
+                <div ref="mainPhotoDiv" class="product_item__no_photo">
+                    НЕТ ФОТО
                 </div>
-            </router-link>
-        </template>
-        <template v-else>
-            <div ref="mainPhotoDiv" class="product_item__no_photo">
-                НЕТ ФОТО
-            </div>
-        </template>
+            </template>
 
-        <div v-if="numberOfPhotos > 1" class="product_item__photo_indicator">
+            <div v-if="numberOfPhotos > 1" class="product_item__photo_indicator">
             <span v-for="n in numberOfPhotos" :key="n"
                   class="product_item__photo_indicator_item"
                   :class="{
@@ -50,31 +51,33 @@
                      product_item__photo_indicator_active: indexOfMainPhoto + 1 === n,
                   }">
             </span>
-        </div>
-
-        <div class="product_item__name" :style="{ cursor: cursorType }">
-            <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }"
-                class="product_item__name__link">
-                {{ product.name }}
-            </router-link>
-        </div>
-
-        <div class="product_item__price" :style="{ cursor: cursorType }">
-            {{ getPrice }}
-        </div>
-
-        <div @mouseover="changeMainPhotoBySmallPhoto($event)" @mouseout="setFirstMainPhoto()"
-             class="product_item__small_photos"
-             v-html="getPhotos">
-        </div>
-
-
-        <div class="product_item__bottom_info__relative_wrapper">
-            <div class="product_item__bottom_info__absolute">
-                <p title="Категория" v-html="getCategories" class="product_item__bottom_info__text"></p>
-                <p title="Материал" v-html="getMaterials" class="product_item__bottom_info__text"></p>
-                <p title="Цвет" v-html="getColors" class="product_item__bottom_info__text"></p>
             </div>
+
+            <div class="product_item__name" :style="{ cursor: cursorType }">
+                <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }"
+                             class="product_item__name__link">
+                    {{ product.name }}
+                </router-link>
+            </div>
+
+            <div class="product_item__price" :style="{ cursor: cursorType }">
+                {{ getPrice }}
+            </div>
+
+            <div @mouseover="changeMainPhotoBySmallPhoto($event)" @mouseout="setFirstMainPhoto()"
+                 class="product_item__small_photos"
+                 v-html="getPhotos">
+            </div>
+
+
+            <div class="product_item__bottom_info__relative_wrapper">
+                <div class="product_item__bottom_info__absolute">
+                    <p title="Категория" v-html="getCategories" class="product_item__bottom_info__text"></p>
+                    <p title="Материал" v-html="getMaterials" class="product_item__bottom_info__text"></p>
+                    <p title="Цвет" v-html="getColors" class="product_item__bottom_info__text"></p>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -103,6 +106,7 @@ export default {
             'isDragging',
             'leftByIndex',
             'topByIndex',
+            'draggingOccurs',
         ]),
         ...mapGetters('products', [
             'sortingMode',
@@ -114,9 +118,14 @@ export default {
             return this.entity;
         },
 
-        draggableProductItemClass() {
+        draggedProductClass() {
             return {
-                'draggableProduct': this.isDragging(this.index) && this.draggedEntity === 'Product',
+                'draggedProduct': this.isDragging(this.index) && this.draggedEntity === 'Product',
+            };
+        },
+        beneathDraggedProductClass() {
+            return {
+                'product_item__beneath_dragged_item': this.draggingOccurs,
             };
         },
 

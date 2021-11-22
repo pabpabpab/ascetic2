@@ -467,6 +467,10 @@ h1 {
 }
 
 .category_item {
+  cursor: move;
+}
+
+.category_item__content {
   padding: 20px 5px;
   text-align: left;
   font-size: 17px;
@@ -479,11 +483,9 @@ h1 {
       -ms-flex-pack: justify;
           justify-content: space-between;
   border-top: 1px solid #ced9f0;
-  background-color: white;
-  cursor: move;
 }
 
-.category_item:hover {
+.category_item__content:hover {
   background-color: rgba(237, 246, 255, 0.6);
 }
 
@@ -493,13 +495,23 @@ h1 {
           flex-grow: 10;
 }
 
-.draggableCategory {
+.beneathDraggedCategory {
+  display: block;
+}
+
+.beneathDraggedCategory:hover .category_item__content {
+  background-color: rgba(215, 228, 241, 0.6);
+}
+
+.draggedCategory {
   position: absolute;
   z-index: 300;
   min-width: 450px;
   border: 0;
+  background-color: rgba(237, 246, 255, 0.6);
   -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
 }
 
 .category_item__name__link {
@@ -1324,10 +1336,9 @@ h1 {
   min-width: 250px;
   width: 250px;
   margin: 10px;
-  padding: 0 0 20px 0;
+  padding: 0;
   text-align: left;
-  background-color: #fff;
-  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0);
   -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   -webkit-transition: -webkit-box-shadow 0.3s;
@@ -1348,6 +1359,33 @@ h1 {
 
 .product_item:hover .product_item__quick_view_link {
   opacity: 1;
+}
+
+.product_item__beneath_dragged_item {
+  -webkit-transition: padding-left 0.3s;
+  transition: padding-left 0.3s;
+}
+
+.product_item__beneath_dragged_item:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding-left: 260px;
+}
+
+.product_item__beneath_dragged_item:hover .product_item__quick_view_link {
+  opacity: 0;
+}
+
+.product_item__beneath_dragged_item:hover .product_item__bottom_info__absolute {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.product_item__content {
+  background-color: #fff;
+  min-height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .product_item__no_photo {
@@ -1405,7 +1443,7 @@ h1 {
 }
 
 .product_item__small_photos {
-  padding: 7px 0 0 10px;
+  padding: 7px 0 20px 10px;
   margin-right: 10px;
   overflow-x: hidden;
   display: -webkit-box;
@@ -1513,7 +1551,7 @@ h1 {
   padding: 3px 0;
 }
 
-.draggableProduct {
+.draggedProduct {
   position: absolute;
   z-index: 300;
   -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
@@ -1561,12 +1599,11 @@ h1 {
   z-index: 3;
   top: 180px;
   right: 0;
-  width: 25px;
-  height: 25px;
+  width: 50px;
+  height: 50px;
   background-color: #f4f9fc;
   -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
           box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-  padding: 12px;
   cursor: pointer;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -1585,36 +1622,8 @@ h1 {
           align-items: center;
 }
 
-.product_filters__icon__content {
-  position: relative;
-  font-size: 25px;
-  color: #968c8c;
-  font-weight: 700;
-}
-
-.product_filters__icon__knob {
-  position: absolute;
-  z-index: 4;
-  display: block;
-  width: 3px;
-  height: 6px;
-  border-radius: 6px;
-  background-color: #a09696;
-}
-
-.product_filters__icon__knob__1 {
-  top: 7.7px;
-  left: 5px;
-}
-
-.product_filters__icon__knob__2 {
-  top: 15.5px;
-  left: 15px;
-}
-
-.product_filters__icon__knob__3 {
-  top: 23px;
-  left: 5px;
+.product_filters__icon__img {
+  width: 35px;
 }
 
 .product_filters {
@@ -3028,6 +3037,37 @@ h1 {
   background-color: black;
 }
 
+.context_menu__icon__photo_manager {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-size: 17px;
+  color: #fff;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.context_menu__icon__photo_manager:hover {
+  background-color: black;
+  color: #fff;
+}
+
 .context_menu__icon__single_product {
   top: 100px;
   right: 0;
@@ -3183,63 +3223,46 @@ h1 {
 }
 
 .photo_manager__item {
-  padding: 10px;
-  margin: 10px 20px 10px 0;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 0;
+  padding: 0;
   position: relative;
   cursor: move;
 }
 
-.draggablePhoto {
+.photo_manager__item__content {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.draggedPhoto {
   position: absolute;
   z-index: 300;
-  background-color: white;
+  pointer-events: none;
+}
+
+.draggedPhoto .photo_manager__item__content {
   -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-.notDraggablePhoto {
+.notDraggedPhotos {
   cursor: default;
 }
 
-.underDraggablePhoto {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+.beneathDraggedPhoto {
+  margin: 0 10px 20px 10px;
+  -webkit-transition: padding-left 0.3s;
+  transition: padding-left 0.3s;
 }
 
-.underDraggablePhoto:hover {
+.beneathDraggedPhoto:hover {
+  padding-left: 250px;
+}
+
+.beneathDraggedPhoto .photo_manager__item__content {
   -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-}
-
-.context_menu__icon__photo_manager {
-  position: absolute;
-  top: 5px;
-  right: 4px;
-  font-size: 17px;
-  color: #fff;
-  font-weight: 700;
-  background-color: rgba(0, 0, 0, 0.9);
-  padding: 0 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.context_menu__icon__photo_manager:hover {
-  background-color: black;
-  color: #fff;
 }
 
 .photo_input__panel {

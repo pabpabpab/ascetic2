@@ -382,20 +382,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
- // import edit_icon from "./../../../../assets/edit_icon.jpg"
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CategoryItem",
   props: ['category', 'index'],
-
-  /*
-  data() {
-      return {
-          edit_icon: edit_icon,
-      };
-  },
-  */
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByY', ['isDragging', 'topByIndex'])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('dragAndDropByY', ['isDragging', 'draggingOccurs', 'topByIndex'])), {}, {
     singularEntityName: function singularEntityName() {
       var singularEntityName = {
         categories: 'category',
@@ -407,9 +404,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     lastListIndex: function lastListIndex() {
       return this.categories[this.$route.params.entity].length - 1;
     },
-    draggableItemClass: function draggableItemClass() {
+    draggedItemClass: function draggedItemClass() {
       return {
-        'draggableCategory': this.isDragging(this.index)
+        'draggedCategory': this.isDragging(this.index)
+      };
+    },
+    beneathDraggedItemClass: function beneathDraggedItemClass() {
+      return {
+        'beneathDraggedCategory': this.draggingOccurs
       };
     }
   }),
@@ -991,7 +993,7 @@ var render = function() {
     {
       ref: "cat",
       staticClass: "category_item",
-      class: _vm.draggableItemClass,
+      class: [_vm.draggedItemClass, _vm.beneathDraggedItemClass],
       style: {
         top: _vm.topByIndex(_vm.index)
       },
@@ -1003,34 +1005,66 @@ var render = function() {
     },
     [
       _c(
-        "span",
-        {
-          staticClass: "context_menu__icon__category",
-          on: {
-            mouseover: function($event) {
-              return _vm.showContextMenu({
-                event: $event,
-                target: "Categories",
-                data: {
-                  category: _vm.category,
-                  currentListIndex: _vm.index,
-                  lastListIndex: _vm.lastListIndex
-                }
-              })
-            }
-          }
-        },
-        [_vm._v("\n        ⋮\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
         "div",
-        { staticClass: "category_item__name" },
+        { staticClass: "category_item__content" },
         [
+          _c(
+            "span",
+            {
+              staticClass: "context_menu__icon__category",
+              on: {
+                mouseover: function($event) {
+                  return _vm.showContextMenu({
+                    event: $event,
+                    target: "Categories",
+                    data: {
+                      category: _vm.category,
+                      currentListIndex: _vm.index,
+                      lastListIndex: _vm.lastListIndex
+                    }
+                  })
+                }
+              }
+            },
+            [_vm._v("\n            ⋮\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "category_item__name" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "category_item__name__link",
+                  attrs: {
+                    to: {
+                      name: "ProductsByCategory",
+                      params: {
+                        categoryEntity: _vm.singularEntityName,
+                        slug: _vm.category.slug,
+                        categoryId: _vm.category.id,
+                        categoryName: _vm.category.name
+                      }
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.category.name) +
+                      "\n            "
+                  )
+                ]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c(
             "router-link",
             {
-              staticClass: "category_item__name__link",
+              staticClass: "category_item__products_count__link",
               attrs: {
                 to: {
                   name: "ProductsByCategory",
@@ -1045,32 +1079,16 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.category.name) + "\n        "
+                "\n            " +
+                  _vm._s(_vm.category.products_count) +
+                  "\n        "
               )
             ]
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "router-link",
-        {
-          staticClass: "category_item__products_count__link",
-          attrs: {
-            to: {
-              name: "ProductsByCategory",
-              params: {
-                categoryEntity: _vm.singularEntityName,
-                slug: _vm.category.slug
-              }
-            }
-          }
-        },
-        [_vm._v("\n        " + _vm._s(_vm.category.products_count) + "\n    ")]
       )
-    ],
-    1
+    ]
   )
 }
 var staticRenderFns = []

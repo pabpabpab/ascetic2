@@ -15,28 +15,33 @@
     -ms-user-select: none
 
 .category_item
-    padding: 20px 5px
-    text-align: left
-    +font(17px, rgb(50, 45, 45), 400)
-    display: flex
-    justify-content: space-between
-    border-top: 1px solid rgb(206, 217, 240)
-    background-color: rgb(255, 255, 255)
     cursor: move
-    //transition: background-color .2s
-    &:hover
-        background-color: rgba(237, 246, 255, 0.6)
+    &__content
+        padding: 20px 5px
+        text-align: left
+        +font(17px, rgb(50, 45, 45), 400)
+        display: flex
+        justify-content: space-between
+        border-top: 1px solid rgb(206, 217, 240)
+        //background-color: rgb(255, 255, 255)
+        &:hover
+            background-color: rgba(237, 246, 255, 0.6)
     &__name
         flex-grow: 10
 
-.draggableCategory
+.beneathDraggedCategory
+    display: block
+    &:hover .category_item__content
+        background-color: rgba(215, 228, 241, 0.6)
+
+.draggedCategory
     position: absolute
     z-index: 300
     min-width: 450px
     border: 0
-    //background-color: rgba(244, 249, 252, 0.7)
+    background-color: rgba(237, 246, 255, 0.6)
     box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
-    // pointer-events: none
+    pointer-events: none
 
 
 .category_item__name__link

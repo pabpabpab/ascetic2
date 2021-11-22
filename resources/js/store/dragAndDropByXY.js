@@ -29,6 +29,8 @@ export default {
             return state.currentIndex === index && state.isDragging;
         },
 
+        draggingOccurs: (state) => state.currentIndex > -1 && state.isDragging,
+
         leftByIndex: (state) => (index) => {
             if (state.currentIndex !== index) {
                 return 0;

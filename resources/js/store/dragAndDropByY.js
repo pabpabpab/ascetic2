@@ -13,10 +13,9 @@ export default {
         currentIndex: (state) => state.currentIndex,
         startY: (state) => state.startY,
 
+        isDragging: (state) => (index) => state.currentIndex === index && state.isDragging,
 
-        isDragging: (state) => (index) => {
-            return state.currentIndex === index && state.isDragging;
-        },
+        draggingOccurs: (state) => state.currentIndex > -1 && state.isDragging,
 
         topByIndex: (state) => (index) => {
             if (state.currentIndex !== index) {
@@ -96,7 +95,7 @@ export default {
             let newIndex = -1;
             for (let i = coordsArr.length; i >= 0; i--) {
                 if (event.pageY > coordsArr[i]) {
-                    newIndex = i + 1;
+                    newIndex = i;
                     break;
                 }
             }

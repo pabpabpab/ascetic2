@@ -1,72 +1,71 @@
 <template>
     <div ref="cat" class="category_item"
-         :class="draggableItemClass"
+         :class="[draggedItemClass, beneathDraggedItemClass]"
          :style="{
                 'top': topByIndex(index),
             }"
          @mousedown="myDragStart({index: index, event: $event})">
 
-        <span
-            @mouseover="showContextMenu({
-                event: $event,
-                target: 'Categories',
-                data: {
-                    category: category,
-                    currentListIndex: index,
-                    lastListIndex: lastListIndex
-                }
-            })"
-            class="context_menu__icon__category">
-            &#8942;
-        </span>
+        <div class="category_item__content">
 
-        <div class="category_item__name">
+            <span
+                @mouseover="showContextMenu({
+                    event: $event,
+                    target: 'Categories',
+                    data: {
+                        category: category,
+                        currentListIndex: index,
+                        lastListIndex: lastListIndex
+                    }
+                })"
+                class="context_menu__icon__category">
+                &#8942;
+            </span>
+
+            <div class="category_item__name">
+                <router-link
+                    :to="{
+                        name: 'ProductsByCategory',
+                        params: {
+                            categoryEntity: singularEntityName,
+                            slug: category.slug,
+                            categoryId: category.id,
+                            categoryName: category.name,
+                        }
+                    }" class="category_item__name__link">
+                    {{ category.name }}
+                </router-link>
+            </div>
+
             <router-link
                 :to="{
-                name: 'ProductsByCategory',
-                params: {
-                    categoryEntity: singularEntityName,
-                    slug: category.slug,
-                    categoryId: category.id,
-                    categoryName: category.name,
-                }
-            }" class="category_item__name__link">
-                {{ category.name }}
+                    name: 'ProductsByCategory',
+                    params: {
+                        categoryEntity: singularEntityName,
+                        slug: category.slug,
+                        categoryId: category.id,
+                        categoryName: category.name,
+                    }
+                }" class="category_item__products_count__link">
+                {{ category.products_count }}
             </router-link>
-        </div>
 
-        <router-link
-            :to="{
-                name: 'ProductsByCategory',
-                params: {
-                    categoryEntity: singularEntityName,
-                    slug: category.slug
-                }
-            }" class="category_item__products_count__link">
-            {{category.products_count}}
-        </router-link>
+        </div>
     </div>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-// import edit_icon from "./../../../../assets/edit_icon.jpg"
 export default {
     name: "CategoryItem",
     props: ['category', 'index'],
-    /*
-    data() {
-        return {
-            edit_icon: edit_icon,
-        };
-    },
-    */
     computed: {
         ...mapGetters('categories', [
             'categories',
         ]),
         ...mapGetters('dragAndDropByY', [
             'isDragging',
+            'draggingOccurs',
             'topByIndex',
         ]),
         singularEntityName() {
@@ -80,12 +79,16 @@ export default {
         lastListIndex() {
             return this.categories[this.$route.params.entity].length - 1;
         },
-        draggableItemClass() {
+        draggedItemClass() {
             return {
-                'draggableCategory': this.isDragging(this.index),
+                'draggedCategory': this.isDragging(this.index),
             };
         },
-
+        beneathDraggedItemClass() {
+            return {
+                'beneathDraggedCategory': this.draggingOccurs,
+            };
+        },
     },
     methods: {
         ...mapActions('contextMenu', [

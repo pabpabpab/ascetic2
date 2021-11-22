@@ -25,9 +25,9 @@ export default {
         startX: (state) => state.startX,
         startY: (state) => state.startY,
 
-        isDragging: (state) => (index) => {
-            return state.currentIndex === index && state.isDragging;
-        },
+        isDragging: (state) => (index) => state.currentIndex === index && state.isDragging,
+
+        draggingOccurs: (state) => state.currentIndex > -1 && state.isDragging,
 
         leftByIndex: (state) => (index) => {
             if (state.currentIndex !== index) {
