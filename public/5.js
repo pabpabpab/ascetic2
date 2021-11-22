@@ -300,6 +300,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -1442,40 +1444,43 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "product_item__name",
+              staticClass: "product_item__anchor_for_dragging",
               style: { cursor: _vm.cursorType }
             },
             [
               _c(
-                "router-link",
-                {
-                  staticClass: "product_item__name__link",
-                  attrs: {
-                    to: {
-                      name: "SingleProduct",
-                      params: { slug: _vm.product.slug, id: _vm.product.id }
-                    }
-                  }
-                },
+                "div",
+                { staticClass: "product_item__name" },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.product.name) +
-                      "\n            "
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "product_item__name__link",
+                      attrs: {
+                        to: {
+                          name: "SingleProduct",
+                          params: { slug: _vm.product.slug, id: _vm.product.id }
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.product.name) +
+                          "\n                "
+                      )
+                    ]
                   )
-                ]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "product_item__price",
-              style: { cursor: _vm.cursorType }
-            },
-            [_vm._v("\n            " + _vm._s(_vm.getPrice) + "\n        ")]
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "product_item__price" }, [
+                _vm._v(
+                  "\n                " + _vm._s(_vm.getPrice) + "\n            "
+                )
+              ])
+            ]
           ),
           _vm._v(" "),
           _c("div", {

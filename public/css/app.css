@@ -1417,6 +1417,10 @@ h1 {
   color: #f7fbff;
 }
 
+.product_item__anchor_for_dragging {
+  display: block;
+}
+
 .product_item__name {
   font-size: 17px;
   color: #2d2323;

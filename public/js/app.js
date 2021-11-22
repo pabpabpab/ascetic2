@@ -21285,6 +21285,10 @@ __webpack_require__.r(__webpack_exports__);
           event = _ref6.event,
           entity = _ref6.entity;
 
+      if (event.target.parentNode.className !== 'product_item__anchor_for_dragging') {
+        return;
+      }
+
       if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.params.which === 'trashed') {
         return;
       }

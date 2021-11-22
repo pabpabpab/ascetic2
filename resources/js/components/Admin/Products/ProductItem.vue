@@ -53,15 +53,17 @@
             </span>
             </div>
 
-            <div class="product_item__name" :style="{ cursor: cursorType }">
-                <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }"
-                             class="product_item__name__link">
-                    {{ product.name }}
-                </router-link>
-            </div>
+            <div :style="{ cursor: cursorType }" class="product_item__anchor_for_dragging">
+                <div class="product_item__name">
+                    <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }"
+                                 class="product_item__name__link">
+                        {{ product.name }}
+                    </router-link>
+                </div>
 
-            <div class="product_item__price" :style="{ cursor: cursorType }">
-                {{ getPrice }}
+                <div class="product_item__price">
+                    {{ getPrice }}
+                </div>
             </div>
 
             <div @mouseover="changeMainPhotoBySmallPhoto($event)" @mouseout="setFirstMainPhoto()"
