@@ -1,6 +1,6 @@
 <template>
     <div class="show_block"
-         @mousemove="myDragMove($event);collapseAll();"
+         @mousemove="myDragMove($event);"
          @mouseup="myDragStop({ event: $event, entity: $route.params.entity })">
         <div class="categories_header">
             <reload-icon></reload-icon>
@@ -77,14 +77,19 @@ export default {
             this.collapseItemsCommand = false;
         },
         collapseAll() {
-            if (!this.draggingOccurs) {
-                return;
-            }
             this.closeAddingComponent();
             this.collapseItemsCommand = false;
             setTimeout(() => {
                 this.collapseItemsCommand = true;
             }, 100);
+        },
+    },
+    watch: {
+        draggingOccurs(value) {
+            if (!value) {
+                return;
+            }
+            this.collapseAll();
         },
     },
 }

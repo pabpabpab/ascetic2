@@ -81,14 +81,12 @@ export default {
             'typeinErrors',
         ]),
     },
-
     watch: {
-        singleCategoryFromServer(newServerCategory, oldServerCategory) {
+        singleCategoryFromServer(newServerCategory) {
             this.localCategory = {...newServerCategory};
             this.categoryNameHeader = newServerCategory.name;
         },
     },
-
     mounted() {
         this.$store.dispatch('categories/cleanValidationErrors');
         if (this.category.id) {

@@ -47,15 +47,9 @@ export default {
                 // id2: 'CategoryItem',
                 // id3: 'CategoryItem',
             },
-            categoryComponentName: 'CategoryItem',
+            simpleListItemComponentName: 'CategoryItem',
             editionComponentName: 'CategoryItemEditForm',
         };
-    },
-    methods: {
-        ...mapActions([
-            'closeContextMenu',
-        ]),
-        ...categoriesItemsMethods,
     },
     computed: {
         ...mapGetters('categories', [
@@ -68,21 +62,32 @@ export default {
             'showContextMenu',
         ]),
     },
+    methods: {
+        ...mapActions([
+            'closeContextMenu',
+        ]),
 
+        ...categoriesItemsMethods,
+
+        _initComponentsNames(categories) {
+            const temp = {};
+            categories.forEach((item) => {
+                temp['id' + item.id] = this.simpleListItemComponentName;
+            });
+            this.currentComponentsNames = {...temp};
+        },
+    },
     watch: {
-
-        categories(newCategories, oldCategories) {
+        categories(newCategories) {
             const categories = [...newCategories[this.$route.params.entity]];
             this._initComponentsNames(categories);
         },
-
-        collapseItemsCommand(newValue, oldValue) {
+        collapseItemsCommand(newValue) {
             if (newValue === true) {
                 this._collapseItems();
             }
         },
     },
-
     mounted() {
         this.$store.dispatch('categories/showCategories', this.$route.params.entity);
     },

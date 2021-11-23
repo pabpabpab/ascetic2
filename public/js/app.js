@@ -21285,11 +21285,7 @@ __webpack_require__.r(__webpack_exports__);
           event = _ref6.event,
           entity = _ref6.entity;
 
-      if (event.target.parentNode.className !== 'product_item__anchor_for_dragging') {
-        return;
-      }
-
-      if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.params.which === 'trashed') {
+      if (!event.target.parentNode.dataset.anchor_for_dragging) {
         return;
       }
 
@@ -21708,11 +21704,6 @@ __webpack_require__.r(__webpack_exports__);
       var index = _ref6.index,
           event = _ref6.event,
           entity = _ref6.entity;
-
-      if (_router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.params.which === 'trashed') {
-        return;
-      }
-
       commit('setEntity', entity);
       commit('setCurrentIndex', index);
       commit('setStartX', event.x);
@@ -24298,7 +24289,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 var txt = "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(filtered.length, ".");
                 dispatch('showAbsoluteFlashFiltersMessage', {
                   text: txt,
-                  sec: 0.5
+                  sec: 0.7
                 }, {
                   root: true
                 });

@@ -13,25 +13,17 @@ export default  {
     },
 
     async _getNewComponentName(itemId) {
-        if (this.currentComponentsNames['id' + itemId] === this.categoryComponentName) {
+        if (this.currentComponentsNames['id' + itemId] === this.simpleListItemComponentName) {
             return this.editionComponentName;
         }
-        return this.categoryComponentName;
+        return this.simpleListItemComponentName;
     },
 
     _collapseItems() {
         const temp = {...this.currentComponentsNames};
         for (let key in temp) {
-            temp[key] = this.categoryComponentName;
+            temp[key] = this.simpleListItemComponentName;
         }
-        this.currentComponentsNames = {...temp};
-    },
-
-    _initComponentsNames(categories) {
-        const temp = {};
-        categories.forEach((item) => {
-            temp['id' + item.id] = this.categoryComponentName;
-        });
         this.currentComponentsNames = {...temp};
     },
 

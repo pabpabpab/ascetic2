@@ -116,10 +116,6 @@ export default {
         },
 
         myDragStart({ dispatch, commit, getters }, {index, event, entity}) {
-            if (router.currentRoute.params.which === 'trashed') {
-                return;
-            }
-
             commit('setEntity', entity);
             commit('setCurrentIndex', index);
             commit('setStartX', event.x);

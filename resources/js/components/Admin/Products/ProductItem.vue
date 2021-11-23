@@ -11,17 +11,6 @@
 
         <div class="product_item__content">
 
-            <span class="context_menu__icon__product"
-                @mouseover="showContextMenu({
-                    event: $event,
-                    target: 'Products',
-                    data: {
-                        product: product,
-                    }
-                })">
-                &#8942;
-            </span>
-
             <a @click.prevent="showProductQuickViewManager(product.id)"
                href='#'
                class="product_item__quick_view_link">
@@ -53,7 +42,7 @@
             </span>
             </div>
 
-            <div :style="{ cursor: cursorType }" class="product_item__anchor_for_dragging">
+            <div :style="{ cursor: cursorType }" :data-anchor_for_dragging="anchorForDragging">
                 <div class="product_item__name">
                     <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }"
                                  class="product_item__name__link">
@@ -82,6 +71,17 @@
 
         </div>
 
+        <span class="context_menu__icon__product"
+              @mouseover="showContextMenu({
+                    event: $event,
+                    target: 'Products',
+                    data: {
+                        product: product,
+                    }
+                })">
+                &#8942;
+        </span>
+
     </div>
 </template>
 
@@ -92,7 +92,7 @@ import changeMainPhotoOfItemInList from './functions/changeMainPhotoOfItemInList
 
 export default {
     name: "ProductItem",
-    props: ['product', 'index'],
+    props: ['product', 'index', 'numberOfItems'],
     data() {
         return {
             indexOfMainPhoto: 0,
@@ -136,7 +136,11 @@ export default {
         },
 
         cursorType() {
-            return this.defaultSorting ? 'move' : 'default';
+            return this.defaultSorting && this.numberOfItems > 1 ? 'move' : 'default';
+        },
+
+        anchorForDragging() {
+            return this.numberOfItems > 1;
         },
     },
 

@@ -169,19 +169,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         // id2: 'CategoryItem',
         // id3: 'CategoryItem',
       },
-      categoryComponentName: 'CategoryItem',
+      simpleListItemComponentName: 'CategoryItem',
       editionComponentName: 'CategoryItemEditForm'
     };
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeContextMenu'])), _someMethods_categoriesItemsMethods__WEBPACK_IMPORTED_MODULE_4__["default"]),
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['categories'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('seoManager', ['showSeoManager'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('contextMenu', ['showContextMenu'])),
+  methods: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['closeContextMenu'])), _someMethods_categoriesItemsMethods__WEBPACK_IMPORTED_MODULE_4__["default"]), {}, {
+    _initComponentsNames: function _initComponentsNames(categories) {
+      var _this = this;
+
+      var temp = {};
+      categories.forEach(function (item) {
+        temp['id' + item.id] = _this.simpleListItemComponentName;
+      });
+      this.currentComponentsNames = _objectSpread({}, temp);
+    }
+  }),
   watch: {
-    categories: function categories(newCategories, oldCategories) {
+    categories: function categories(newCategories) {
       var categories = _toConsumableArray(newCategories[this.$route.params.entity]);
 
       this._initComponentsNames(categories);
     },
-    collapseItemsCommand: function collapseItemsCommand(newValue, oldValue) {
+    collapseItemsCommand: function collapseItemsCommand(newValue) {
       if (newValue === true) {
         this._collapseItems();
       }
@@ -517,7 +527,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('categories', ['singleCategoryFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['isAlarmingInput', 'typeinErrors'])),
   watch: {
-    singleCategoryFromServer: function singleCategoryFromServer(newServerCategory, oldServerCategory) {
+    singleCategoryFromServer: function singleCategoryFromServer(newServerCategory) {
       this.localCategory = _objectSpread({}, newServerCategory);
       this.categoryNameHeader = newServerCategory.name;
     }
@@ -628,17 +638,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     collapseAll: function collapseAll() {
       var _this = this;
 
-      if (!this.draggingOccurs) {
-        return;
-      }
-
       this.closeAddingComponent();
       this.collapseItemsCommand = false;
       setTimeout(function () {
         _this.collapseItemsCommand = true;
       }, 100);
     }
-  })
+  }),
+  watch: {
+    draggingOccurs: function draggingOccurs(value) {
+      if (!value) {
+        return;
+      }
+
+      this.collapseAll();
+    }
+  }
 });
 
 /***/ }),
@@ -1228,8 +1243,7 @@ var render = function() {
       staticClass: "show_block",
       on: {
         mousemove: function($event) {
-          _vm.myDragMove($event)
-          _vm.collapseAll()
+          return _vm.myDragMove($event)
         },
         mouseup: function($event) {
           return _vm.myDragStop({
@@ -1887,7 +1901,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (!(_this2.currentComponentsNames['id' + itemId] === _this2.categoryComponentName)) {
+              if (!(_this2.currentComponentsNames['id' + itemId] === _this2.simpleListItemComponentName)) {
                 _context.next = 2;
                 break;
               }
@@ -1895,7 +1909,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               return _context.abrupt("return", _this2.editionComponentName);
 
             case 2:
-              return _context.abrupt("return", _this2.categoryComponentName);
+              return _context.abrupt("return", _this2.simpleListItemComponentName);
 
             case 3:
             case "end":
@@ -1909,18 +1923,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var temp = _objectSpread({}, this.currentComponentsNames);
 
     for (var key in temp) {
-      temp[key] = this.categoryComponentName;
+      temp[key] = this.simpleListItemComponentName;
     }
 
-    this.currentComponentsNames = _objectSpread({}, temp);
-  },
-  _initComponentsNames: function _initComponentsNames(categories) {
-    var _this3 = this;
-
-    var temp = {};
-    categories.forEach(function (item) {
-      temp['id' + item.id] = _this3.categoryComponentName;
-    });
     this.currentComponentsNames = _objectSpread({}, temp);
   }
 });

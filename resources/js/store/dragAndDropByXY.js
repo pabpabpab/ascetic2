@@ -118,10 +118,7 @@ export default {
         },
 
         myDragStart({ dispatch, commit, getters }, {index, event, entity}) {
-            if (event.target.parentNode.className !== 'product_item__anchor_for_dragging') {
-                return;
-            }
-            if (router.currentRoute.params.which === 'trashed') {
+            if (!event.target.parentNode.dataset.anchor_for_dragging) {
                 return;
             }
             commit('setEntity', entity);

@@ -12,7 +12,8 @@
                 v-for="(item, index) of items"
                 :key="item.id"
                 :product="item"
-                :index="index">
+                :index="index"
+                :numberOfItems="items.length">
             </product-item>
 
             <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
@@ -62,7 +63,6 @@ import FiltersIcon from "./FiltersIcon";
 
 export default {
     name: "Products",
-    props: ['whichProducts'],
     components: {
         ProductItem,
         SortingModes,

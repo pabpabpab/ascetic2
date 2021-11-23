@@ -40,7 +40,7 @@ export default {
             })
             .then(() => {
                 const txt = `Показано ${filtered.length}.`
-                dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 0.5}, { root: true });
+                dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 0.7}, { root: true });
             });
     },
 

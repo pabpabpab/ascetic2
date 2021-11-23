@@ -176,14 +176,14 @@ export default {
 
         localMinPrice(val) {
             // заплатка
-            if (this.$route.params.which !== 'active') {
+            if (this.$route.name !== 'Products') {
                 return;
             }
 
             const minPrice = Number(this.search.minPrice);
             const maxPrice = Number(this.search.maxPrice);
             if (minPrice >= maxPrice) {
-                this.search.minPrice = maxPrice - 500;
+                this.search.minPrice = maxPrice - 100;
             }
 
             const productsMinPrice = Number(this.productsMinPrice);
@@ -193,14 +193,14 @@ export default {
         },
         localMaxPrice(val) {
             // заплатка
-            if (this.$route.params.which !== 'active') {
+            if (this.$route.name !== 'Products') {
                 return;
             }
 
             const minPrice = Number(this.search.minPrice);
             const maxPrice = Number(this.search.maxPrice);
             if (maxPrice <= minPrice) {
-                this.search.maxPrice = minPrice + 500;
+                this.search.maxPrice = minPrice + 100;
             }
             const productsMaxPrice = Number(this.productsMaxPrice);
             if (maxPrice > productsMaxPrice) {

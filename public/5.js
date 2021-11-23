@@ -307,7 +307,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductItem",
-  props: ['product', 'index'],
+  props: ['product', 'index', 'numberOfItems'],
   data: function data() {
     return {
       indexOfMainPhoto: 0
@@ -331,7 +331,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.sortingMode === 'position';
     },
     cursorType: function cursorType() {
-      return this.defaultSorting ? 'move' : 'default';
+      return this.defaultSorting && this.numberOfItems > 1 ? 'move' : 'default';
+    },
+    anchorForDragging: function anchorForDragging() {
+      return this.numberOfItems > 1;
     }
   }),
   methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('dragAndDropByXY', ['myDragStart', 'myDragStop'])), Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['showProductQuickViewManager'])), _functions_changeMainPhotoOfItemInList__WEBPACK_IMPORTED_MODULE_2__["default"]),
@@ -479,6 +482,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -493,7 +497,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Products",
-  props: ['whichProducts'],
   components: {
     ProductItem: _ProductItem__WEBPACK_IMPORTED_MODULE_1__["default"],
     SortingModes: _SortingModes__WEBPACK_IMPORTED_MODULE_9__["default"],
@@ -703,7 +706,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     localMinPrice: function localMinPrice(val) {
       // заплатка
-      if (this.$route.params.which !== 'active') {
+      if (this.$route.name !== 'Products') {
         return;
       }
 
@@ -711,7 +714,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var maxPrice = Number(this.search.maxPrice);
 
       if (minPrice >= maxPrice) {
-        this.search.minPrice = maxPrice - 500;
+        this.search.minPrice = maxPrice - 100;
       }
 
       var productsMinPrice = Number(this.productsMinPrice);
@@ -722,7 +725,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     localMaxPrice: function localMaxPrice(val) {
       // заплатка
-      if (this.$route.params.which !== 'active') {
+      if (this.$route.name !== 'Products') {
         return;
       }
 
@@ -730,7 +733,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var maxPrice = Number(this.search.maxPrice);
 
       if (maxPrice <= minPrice) {
-        this.search.maxPrice = minPrice + 500;
+        this.search.maxPrice = minPrice + 100;
       }
 
       var productsMaxPrice = Number(this.productsMaxPrice);
@@ -1349,25 +1352,6 @@ var render = function() {
         { staticClass: "product_item__content" },
         [
           _c(
-            "span",
-            {
-              staticClass: "context_menu__icon__product",
-              on: {
-                mouseover: function($event) {
-                  return _vm.showContextMenu({
-                    event: $event,
-                    target: "Products",
-                    data: {
-                      product: _vm.product
-                    }
-                  })
-                }
-              }
-            },
-            [_vm._v("\n            ⋮\n        ")]
-          ),
-          _vm._v(" "),
-          _c(
             "a",
             {
               staticClass: "product_item__quick_view_link",
@@ -1444,8 +1428,8 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "product_item__anchor_for_dragging",
-              style: { cursor: _vm.cursorType }
+              style: { cursor: _vm.cursorType },
+              attrs: { "data-anchor_for_dragging": _vm.anchorForDragging }
             },
             [
               _c(
@@ -1527,6 +1511,25 @@ var render = function() {
           )
         ],
         2
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "context_menu__icon__product",
+          on: {
+            mouseover: function($event) {
+              return _vm.showContextMenu({
+                event: $event,
+                target: "Products",
+                data: {
+                  product: _vm.product
+                }
+              })
+            }
+          }
+        },
+        [_vm._v("\n            ⋮\n    ")]
       )
     ]
   )
@@ -1618,7 +1621,11 @@ var render = function() {
         _vm._l(_vm.items, function(item, index) {
           return _c("product-item", {
             key: item.id,
-            attrs: { product: item, index: index }
+            attrs: {
+              product: item,
+              index: index,
+              numberOfItems: _vm.items.length
+            }
           })
         }),
         _vm._v(" "),
