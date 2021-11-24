@@ -7,6 +7,12 @@ const routes = [
     },
 
     {
+        path: '/admin/help',
+        name: 'Help',
+        component: () => import('../components/Admin/HelpPage.vue'),
+    },
+
+    {
         path: '/admin/user/add',
         name: 'SaveUser',
         component: () => import('../components/Admin/SaveUserPage.vue'),

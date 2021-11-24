@@ -19623,6 +19623,12 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
   }
 }, {
+  path: '/admin/help',
+  name: 'Help',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ../components/Admin/HelpPage.vue */ "./resources/js/components/Admin/HelpPage.vue"));
+  }
+}, {
   path: '/admin/user/add',
   name: 'SaveUser',
   component: function component() {

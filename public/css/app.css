@@ -310,7 +310,52 @@ h1 {
 }
 
 .mainPage__link_with_left_offset {
-  margin-left: 50px;
+  margin-left: 45px;
+}
+
+.helpPage {
+  padding: 35px 30px 35px 50px;
+  font-size: 17px;
+  color: #504646;
+  font-weight: 400;
+  text-align: justify;
+}
+
+.helpPage__link {
+  font-size: 17px;
+  color: #097ef5;
+  font-weight: 400;
+}
+
+.helpPage__link:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.helpPage__context_menu_icon1 {
+  font-size: 17px;
+  color: #1976d2;
+  font-weight: 700;
+  background-color: #e5eff5;
+  padding: 0 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.helpPage__context_menu_icon2 {
+  font-size: 17px;
+  color: #fff;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 0 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.helpPage__cursor_move__span {
+  font-size: 17px;
+  color: #1976d5;
+  font-weight: 400;
+  cursor: move;
 }
 
 .content_block__users {
