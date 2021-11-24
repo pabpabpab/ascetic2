@@ -263,6 +263,56 @@ h1 {
   background-color: #f4f9fc;
 }
 
+.mainPage {
+  padding: 35px 30px 35px 50px;
+}
+
+.mainPage__ul {
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.mainPage__li {
+  list-style-type: none;
+  margin: 0;
+  padding: 8px 0;
+  text-align: left;
+  min-width: 50%;
+}
+
+.mainPage__li_with_border {
+  border-top: 1px solid rgba(1, 128, 255, 0.3);
+  margin-top: 12px;
+  padding-top: 20px;
+}
+
+.mainPage__link {
+  font-size: 17px;
+  color: #504646;
+  font-weight: 400;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+.mainPage__link:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  color: #097ef5;
+}
+
+.mainPage__link_with_left_offset {
+  margin-left: 50px;
+}
+
 .content_block__users {
   padding: 20px 20px 10px 20px;
   max-width: 98%;

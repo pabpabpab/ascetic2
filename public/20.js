@@ -40,12 +40,6 @@ __webpack_require__.r(__webpack_exports__);
       return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./Blocks/ReloadIcon.vue */ "./resources/js/components/Admin/Blocks/ReloadIcon.vue"));
     }
   }
-  /*
-  mounted() {
-      this.$store.dispatch('users/getUsersCount');
-  },
-  */
-
 });
 
 /***/ }),

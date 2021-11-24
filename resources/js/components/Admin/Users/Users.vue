@@ -2,7 +2,8 @@
     <div class="users__list">
         <user-item
             v-for="item of items"
-            :key="item.id" :user="item">
+            :key="item.id"
+            :user="item">
         </user-item>
 
         <transition name="fade">
@@ -25,7 +26,6 @@ export default {
         UserEditManager: () => import('./UserEditManager.vue'),
         UsersContextMenu: () => import('./../ContextMenu/UsersContextMenu.vue'),
     },
-
     computed: {
         ...mapGetters('pagination', [
             'currentPageIndex',
@@ -42,7 +42,6 @@ export default {
             'visibility',
         ]),
     },
-
     mounted() {
         this.$store.dispatch('users/showUsers');
     },

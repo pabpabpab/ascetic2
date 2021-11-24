@@ -521,7 +521,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 //
 //
 //
@@ -629,7 +628,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'navbar',
   computed: {
@@ -652,21 +650,6 @@ __webpack_require__.r(__webpack_exports__);
         'navBar__link_active': cats.includes(this.$route.params.entity)
       };
     },
-
-    /*
-    materialsLinkClass() {
-        return {
-            'navBar__link': true,
-            'navBar__link_active': this.$route.params.entity === 'materials',
-        }
-    },
-    colorsLinkClass() {
-        return {
-            'navBar__link': true,
-            'navBar__link_active': this.$route.params.entity === 'colors',
-        }
-    },
-      */
     usersLinkClass: function usersLinkClass() {
       return {
         'navBar__link': true,
@@ -676,7 +659,7 @@ __webpack_require__.r(__webpack_exports__);
     mainPageLinkClass: function mainPageLinkClass() {
       return {
         'navBar__link': true,
-        'navBar__link_active': this.$route.name === 'Main'
+        'navBar__link_active': this.$route.name === 'Help'
       };
     }
   }
@@ -2431,7 +2414,7 @@ var render = function() {
         [
           _c(
             "router-link",
-            { class: _vm.mainPageLinkClass, attrs: { to: { name: "Main" } } },
+            { class: _vm.mainPageLinkClass, attrs: { to: { name: "Help" } } },
             [_vm._v("Помощь")]
           )
         ],

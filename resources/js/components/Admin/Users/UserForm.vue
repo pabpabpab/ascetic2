@@ -1,7 +1,6 @@
 <template>
     <div class="show_block">
 
-
         <h1 v-if="action==='create'">Создать пользователя</h1>
 
         <div class="content_block content_block__product_form">
@@ -174,6 +173,7 @@ export default {
             userNameWasEdited: false,
         };
     },
+
     computed: {
         ...mapGetters('users', [
             'singleUserFromServer',
@@ -193,7 +193,6 @@ export default {
             return this.action === 'create' || this.taskOfUserEditManager === 'editPassword';
         },
     },
-
 
     methods: {
         ...mapActions('users', [

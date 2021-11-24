@@ -98,7 +98,7 @@
             </li>
 
             <li class="navBar__li">
-                <router-link :to="{ name: 'Main' }" :class="mainPageLinkClass">Помощь</router-link>
+                <router-link :to="{ name: 'Help' }" :class="mainPageLinkClass">Помощь</router-link>
             </li>
         </ul>
 
@@ -106,7 +106,6 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
 
 export default {
     name: 'navbar',
@@ -130,21 +129,6 @@ export default {
                 'navBar__link_active': cats.includes(this.$route.params.entity),
             }
         },
-        /*
-        materialsLinkClass() {
-            return {
-                'navBar__link': true,
-                'navBar__link_active': this.$route.params.entity === 'materials',
-            }
-        },
-        colorsLinkClass() {
-            return {
-                'navBar__link': true,
-                'navBar__link_active': this.$route.params.entity === 'colors',
-            }
-        },
-
-         */
         usersLinkClass() {
             return {
                 'navBar__link': true,
@@ -154,7 +138,7 @@ export default {
         mainPageLinkClass() {
             return {
                 'navBar__link': true,
-                'navBar__link_active': this.$route.name === 'Main',
+                'navBar__link_active': this.$route.name === 'Help',
             }
         },
     },

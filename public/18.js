@@ -46,7 +46,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserItem',
@@ -65,15 +64,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('contextMenu', ['showContextMenu']))
 });
-/*
-
-
-        <router-link class="user__nameLink" :to="'/admin/user/' + user.id">
-            {{user.name}}
-        </router-link>
-        <i style="margin: 0 10px;">{{user.role}}</i>
-        <p>{{user.email}}</p>
- */
 
 /***/ }),
 

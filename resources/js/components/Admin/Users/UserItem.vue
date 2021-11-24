@@ -1,7 +1,6 @@
 <template>
     <div class="user_item">
 
-
         <span
             @mouseover="showContextMenu({
                 event: $event,
@@ -30,7 +29,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapActions} from "vuex";
 
 export default {
     name: 'UserItem',
@@ -52,16 +51,5 @@ export default {
             'showContextMenu',
         ]),
     },
-
 };
-
-/*
-
-
-        <router-link class="user__nameLink" :to="'/admin/user/' + user.id">
-            {{user.name}}
-        </router-link>
-        <i style="margin: 0 10px;">{{user.role}}</i>
-        <p>{{user.email}}</p>
- */
 </script>

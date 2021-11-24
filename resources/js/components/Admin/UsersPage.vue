@@ -22,10 +22,5 @@ export default {
         Pagination: () => import('./Blocks/Pagination.vue'),
         ReloadIcon: () => import('./Blocks/ReloadIcon.vue'),
     },
-    /*
-    mounted() {
-        this.$store.dispatch('users/getUsersCount');
-    },
-    */
 };
 </script>
