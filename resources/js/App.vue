@@ -1,6 +1,9 @@
 <template>
     <div id="app" class="app" @click="closeAllByClickOnAppTag($event);">
         <nav-bar></nav-bar>
+        <transition name="mobile_menu">
+            <mobile-menu v-if="mobileMenuVisibility"></mobile-menu>
+        </transition>
 
 
         <div class="content_wrapper">
@@ -26,7 +29,7 @@
 </template>
 
 <script>
-// import './styles/appx.scss'
+
 import {mapActions, mapGetters} from 'vuex';
 import NavBar from "./components/Admin/NavBar";
 import PopupErrors from "./components/Admin/Blocks/PopupErrors";
@@ -34,10 +37,12 @@ import AbsoluteFlashMessage from "./components/Admin/Blocks/AbsoluteFlashMessage
 import ConfirmationDialogBox from "./components/Admin/Blocks/ConfirmationDialogBox";
 import WaitingScreen from "./components/Admin/Blocks/WaitingScreen";
 import AbsoluteFlashFiltersMessage from "./components/Admin/Blocks/AbsoluteFlashFiltersMessage";
+import MobileMenu from "./components/Admin/MobileMenu";
 
 export default {
     name: 'app',
     components: {
+        MobileMenu,
         NavBar,
         AbsoluteFlashMessage,
         PopupErrors,
@@ -46,6 +51,9 @@ export default {
         AbsoluteFlashFiltersMessage,
     },
     computed: {
+        ...mapGetters('mobileMenu', [
+            'mobileMenuVisibility',
+        ]),
         ...mapGetters('popupErrors', [
             'showPopupErrors',
         ]),

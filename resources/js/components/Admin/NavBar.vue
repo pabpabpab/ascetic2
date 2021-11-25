@@ -2,16 +2,39 @@
     <nav class="navBar">
 
         <div class="navBar_left">
-            <a href="http://asceticshop.ru" class="logo__link">AsceticShop.ru</a>
-            <ul class="navBar__ul">
+
+            <a href="http://asceticshop.ru" data-logo="link" class="logo__link">
+                AsceticShop.ru
+            </a>
+
+            <ul data-menu="left-short" class="navBar__ul">
                 <li class="navBar__li">
-                    <router-link :to="{ name: 'SaveProduct' }" :class="saveProductLinkClass">Добавить товар</router-link>
+                    <router-link :to="{ name: 'SaveProduct' }" :class="saveProductLinkClass">
+                        Добавить
+                    </router-link>
+                </li>
+                <li class="navBar__li">
+                    <router-link
+                        :to="{ name: 'Products' }"
+                        class="navBar__link"
+                        :class="productsLinkClass">
+                        Товары
+                    </router-link>
+                </li>
+            </ul>
+
+
+            <ul data-menu="left" class="navBar__ul">
+                <li class="navBar__li">
+                    <router-link :to="{ name: 'SaveProduct' }" :class="saveProductLinkClass">
+                        Добавить товар
+                    </router-link>
                 </li>
 
                 <li class="navBar__li">
                     <router-link
                         :to="{ name: 'Products' }"
-                        class="navBar__link_with_trigram"
+                        class="navBar__link"
                         :class="productsLinkClass">
                         Товары
 
@@ -32,10 +55,10 @@
                     </router-link>
                 </li>
 
-                <li class="navBar__li">
+                <li data-li="category" class="navBar__li">
                     <router-link
                         :to="{ name: 'Categories', params: { entity: 'categories' } }"
-                        class="navBar__link_with_trigram"
+                        class="navBar__link"
                         :class="categoriesLinkClass">Категории
 
                         <div class="navBar__link__trigram">
@@ -72,12 +95,12 @@
         </div>
 
 
-        <ul class="navBar__ul">
+        <ul data-menu="right" class="navBar__ul">
 
             <li class="navBar__li">
                 <router-link
                     :to="{ name: 'Users' }"
-                    class="navBar__link_with_trigram"
+                    class="navBar__link"
                     :class="usersLinkClass">
                     Пользователи
 
@@ -98,17 +121,27 @@
             </li>
 
             <li class="navBar__li">
-                <router-link :to="{ name: 'Help' }" :class="mainPageLinkClass">Помощь</router-link>
+                <router-link :to="{ name: 'Help' }" :class="mainPageLinkClass">
+                    Помощь
+                </router-link>
             </li>
         </ul>
 
+
+        <ul data-menu="right" data-mobile-menu="icon" class="navBar__ul">
+            <li @click.stop="showMobileMenu()"
+                class="navBar__li navBar__li__mobile_menu_icon">
+                &#9776;
+            </li>
+        </ul>
     </nav>
 </template>
 
 <script>
+import {mapActions} from "vuex";
 
 export default {
-    name: 'navbar',
+    name: 'NavBar',
     computed: {
         saveProductLinkClass() {
             return {
@@ -141,6 +174,11 @@ export default {
                 'navBar__link_active': this.$route.name === 'Help',
             }
         },
+    },
+    methods: {
+        ...mapActions([
+            'showMobileMenu',
+        ]),
     },
 }
 </script>

@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Blocks_MobileMenuContent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Blocks/MobileMenuContent */ "./resources/js/components/Admin/Blocks/MobileMenuContent.vue");
 //
 //
 //
@@ -17,91 +18,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'MainPage'
+  name: 'MainPage',
+  components: {
+    MobileMenuContent: _Blocks_MobileMenuContent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -122,188 +44,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "show_block" }, [
-    _c("div", { staticClass: "content_block mainPage" }, [
-      _c("ul", { staticClass: "mainPage__ul" }, [
-        _c(
-          "li",
-          { staticClass: "mainPage__li" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link",
-                attrs: { to: { name: "SaveProduct" } }
-              },
-              [_vm._v("\n                    Добавить товар\n                ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "mainPage__li" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link",
-                attrs: { to: { name: "Products" } }
-              },
-              [_vm._v("\n                    Товары\n                ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "mainPage__li" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link mainPage__link_with_left_offset",
-                attrs: { to: { name: "TrashedProducts" } }
-              },
-              [
-                _vm._v(
-                  "\n                    Удаленные товары\n                "
-                )
-              ]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "mainPage__li mainPage__li_with_border" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link",
-                attrs: {
-                  to: { name: "Categories", params: { entity: "categories" } }
-                }
-              },
-              [_vm._v("\n                    Категории\n                ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "mainPage__li" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link",
-                attrs: {
-                  to: { name: "Categories", params: { entity: "materials" } }
-                }
-              },
-              [_vm._v("\n                    Материалы\n                ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "mainPage__li" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link",
-                attrs: {
-                  to: { name: "Categories", params: { entity: "colors" } }
-                }
-              },
-              [_vm._v("\n                    Цвета\n                ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "mainPage__li mainPage__li_with_border" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link",
-                attrs: { to: { name: "Users" } }
-              },
-              [_vm._v("\n                    Пользователи\n                ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "mainPage__li" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link mainPage__link_with_left_offset",
-                attrs: { to: { name: "SaveUser" } }
-              },
-              [
-                _vm._v(
-                  "\n                    Создать пользователя\n                "
-                )
-              ]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "mainPage__li mainPage__li_with_border" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "mainPage__link",
-                attrs: { to: { name: "Help" } }
-              },
-              [_vm._v("\n                    Помощь\n                ")]
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _vm._m(0)
-      ])
-    ])
+    _c(
+      "div",
+      { staticClass: "content_block mainPage" },
+      [_c("mobile-menu-content")],
+      1
+    )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "mainPage__li mainPage__li_with_border" }, [
-      _c(
-        "a",
-        {
-          staticClass: "mainPage__link mainPage__link_with_top_offset",
-          attrs: { href: "http://asceticshop.ru" }
-        },
-        [_vm._v("\n                    AsceticShop.ru\n                ")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

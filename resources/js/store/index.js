@@ -18,6 +18,7 @@ import seoManager from './seoManager';
 import dragAndDropByY from './dragAndDropByY';
 import dragAndDropByXY from './dragAndDropByXY';
 import dragAndDropInAbsDiv from './dragAndDropInAbsDiv';
+import mobileMenu from './mobileMenu';
 
 Vue.use(Vuex);
 
@@ -30,15 +31,11 @@ const store = new Vuex.Store({
     getters: {
         imgFolderPrefix: (state) => state.imgFolderPrefix,
     },
-    mutations: {
-        increment: (state) => {
-            state.count++;
-        },
-    },
     actions: {
         closeAllByClickOnAppTag({ dispatch }, event) {
             dispatch('closePopupErrorsBox');
             dispatch('contextMenu/closeContextMenuByClick', event);
+            dispatch('hideMobileMenu');
         },
         scrollWindowBottom() {
             window.scrollBy(0, 1000000);
@@ -62,6 +59,7 @@ const store = new Vuex.Store({
         dragAndDropByY,
         dragAndDropByXY,
         dragAndDropInAbsDiv,
+        mobileMenu,
     },
 });
 

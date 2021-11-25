@@ -7,7 +7,7 @@
 <script>
 import {mapGetters} from "vuex";
 import filterIcon from "./../../../../assets/filterIcon.svg"
-//<img :src="filterIcon" alt="" class="product_filters__icon__img">
+
 
 export default {
     name: "ProductListHeader",

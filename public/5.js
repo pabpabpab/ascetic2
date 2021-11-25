@@ -166,7 +166,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 
- //<img :src="filterIcon" alt="" class="product_filters__icon__img">
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductListHeader",
