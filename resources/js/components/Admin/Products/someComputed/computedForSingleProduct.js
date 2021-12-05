@@ -49,7 +49,7 @@ export default {
     },
 
 
-    getPhotos() {
+    getSmallPhotos() {
         if (this.noData) {
             return '';
         }
@@ -66,6 +66,25 @@ export default {
         });
         return photoArr.join('');
     },
+
+    getAllBigPhotos() {
+        if (this.noData) {
+            return '';
+        }
+        const product = this.singleProductFromServer.product;
+        const photoInfoArr = JSON.parse(product.photo_set);
+        if (!photoInfoArr) {
+            return '';
+        }
+        const folderName = `/storage/${this.imgFolderPrefix}5`;
+        const fileNamePrefix = `${product.id}s5-`;
+
+        const photoArr = photoInfoArr.map(function (timeName, index) {
+            return `<img alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo__size4" />`;
+        });
+        return photoArr.join('');
+    },
+
 
 
     getPrice() {

@@ -6,21 +6,34 @@
         </div>
         <div class="content_block content_block__users">
             <search-user-panel></search-user-panel>
-            <pagination entity="users" class="pdb10"></pagination>
+
+            <pagination-mobile v-if="usersLength > 1" entity="users" class="pdb0 pdt20"></pagination-mobile>
+            <pagination v-if="usersLength > 1" entity="users" class="pdb0"></pagination>
+
             <users></users>
-            <pagination entity="users" class="pdb10"></pagination>
+
+            <pagination v-if="usersLength > 1" entity="users" class="pdb10"></pagination>
+            <pagination-mobile v-if="usersLength > 1" entity="users" class="pdb10"></pagination-mobile>
         </div>
     </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: 'UsersPage',
     components: {
         SearchUserPanel: () => import('./Users/SearchUserPanel.vue'),
         Users: () => import('./Users/Users.vue'),
         Pagination: () => import('./Blocks/Pagination.vue'),
+        PaginationMobile: () => import('./Blocks/PaginationMobile.vue'),
         ReloadIcon: () => import('./Blocks/ReloadIcon.vue'),
+    },
+    computed: {
+        ...mapGetters('users', [
+            'usersLength',
+        ]),
     },
 };
 </script>

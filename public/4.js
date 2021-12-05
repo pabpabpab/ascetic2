@@ -307,6 +307,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   changeMainPhoto: function changeMainPhoto(event) {
+    if (this.draggingOccurs) {
+      return;
+    }
+
     if (this.numberOfPhotos < 2) {
       return;
     }
@@ -325,6 +329,10 @@ __webpack_require__.r(__webpack_exports__);
     this.indexOfMainPhoto = Math.ceil(xWay / this.xPerPhoto) - 1;
   },
   changeMainPhotoBySmallPhoto: function changeMainPhotoBySmallPhoto(event) {
+    if (this.draggingOccurs) {
+      return;
+    }
+
     if (this.numberOfPhotos < 2) {
       return;
     }

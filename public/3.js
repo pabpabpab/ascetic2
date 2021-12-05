@@ -140,6 +140,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PhotoManagerItem",
@@ -462,6 +465,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -549,6 +553,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/scrollSmallPhotos */ "./resources/js/components/Admin/Products/functions/scrollSmallPhotos.js");
 /* harmony import */ var _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/viewLargePhoto */ "./resources/js/components/Admin/Products/functions/viewLargePhoto.js");
+/* harmony import */ var _functions_scrollBigPhotos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./functions/scrollBigPhotos */ "./resources/js/components/Admin/Products/functions/scrollBigPhotos.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -650,6 +655,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -671,13 +702,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['imgFolderPrefix'])), _Products_someComputed_computedForSingleProduct__WEBPACK_IMPORTED_MODULE_1__["default"]), {}, {
     cssPositionOfContextIcon: function cssPositionOfContextIcon() {
       return this.from === 'quickViewManager' ? 'absolute' : 'fixed';
+    },
+    showLeftScrollButton: function showLeftScrollButton() {
+      return this.indexOfMainPhoto > 0;
+    },
+    showRightScrollButton: function showRightScrollButton() {
+      return this.indexOfMainPhoto < this.numberOfPhotos - 1;
     }
   }),
-  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('contextMenu', ['showContextMenu'])), _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__["default"]), _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__["default"]), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('contextMenu', ['showContextMenu'])), _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__["default"]), _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__["default"]), _functions_scrollBigPhotos__WEBPACK_IMPORTED_MODULE_5__["default"]), {}, {
     changeMainPhotoBySmallPhoto: function changeMainPhotoBySmallPhoto(event) {
       if (event.target.className === 'photo__size2') {
         this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
       }
+    },
+    showNextBigPhoto: function showNextBigPhoto(offset) {
+      this.scrollBigPhotos(offset);
+      /*
+      this.indexOfMainPhoto += offset;
+      if (this.indexOfMainPhoto < 0) {
+          this.indexOfMainPhoto = 0;
+      }
+      if (this.indexOfMainPhoto > this.numberOfPhotos - 1) {
+          this.indexOfMainPhoto = this.numberOfPhotos - 1;
+      }
+      */
     }
   }),
   mounted: function mounted() {
@@ -933,71 +982,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      ref: "photo",
-      staticClass: "photo_manager__item",
-      class: [
-        _vm.draggedPhotoClass,
-        _vm.beneathDraggedPhotoClass,
-        _vm.notDraggedPhotosClass
-      ],
-      style: {
-        left: _vm.leftByIndex(_vm.photoIndex),
-        top: _vm.topByIndex(_vm.photoIndex)
-      },
-      on: {
-        mousedown: function($event) {
-          $event.stopPropagation()
-          return _vm.myDragStart({
-            index: _vm.photoIndex,
-            event: $event,
-            entity: "Photo"
-          })
+  return _c("div", { staticClass: "photo_manager__item__wrapper" }, [
+    _c(
+      "div",
+      {
+        ref: "photo",
+        staticClass: "photo_manager__item",
+        class: [
+          _vm.draggedPhotoClass,
+          _vm.beneathDraggedPhotoClass,
+          _vm.notDraggedPhotosClass
+        ],
+        style: {
+          left: _vm.leftByIndex(_vm.photoIndex),
+          top: _vm.topByIndex(_vm.photoIndex)
         },
-        mouseup: function($event) {
-          $event.stopPropagation()
-          return _vm.myDragStop({
-            event: $event,
-            clickedIndex: _vm.photoIndex,
-            entity: "Photo"
-          })
-        }
-      }
-    },
-    [
-      _c("div", { staticClass: "photo_manager__item__content" }, [
-        _c("img", {
-          class: _vm.imgClass,
-          staticStyle: { "pointer-events": "none" },
-          attrs: { alt: "", src: _vm.photoSrc }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "span",
-        {
-          staticClass: "context_menu__icon__photo_manager",
-          on: {
-            mouseover: function($event) {
-              return _vm.showContextMenu({
-                event: $event,
-                target: "Photos",
-                data: {
-                  productId: _vm.productId,
-                  photoName: _vm.photoName,
-                  currentListIndex: _vm.photoIndex,
-                  lastListIndex: _vm.lastPhotoListIndex
-                }
-              })
-            }
+        on: {
+          mousedown: function($event) {
+            $event.stopPropagation()
+            return _vm.myDragStart({
+              index: _vm.photoIndex,
+              event: $event,
+              entity: "Photo"
+            })
+          },
+          mouseup: function($event) {
+            $event.stopPropagation()
+            return _vm.myDragStop({
+              event: $event,
+              clickedIndex: _vm.photoIndex,
+              entity: "Photo"
+            })
           }
-        },
-        [_vm._v("\n        ⋮\n    ")]
-      )
-    ]
-  )
+        }
+      },
+      [
+        _c("div", { staticClass: "photo_manager__item__content" }, [
+          _c("img", {
+            class: _vm.imgClass,
+            staticStyle: { "pointer-events": "none" },
+            attrs: { alt: "", src: _vm.photoSrc }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "context_menu__icon__photo_manager",
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                return _vm.showContextMenu({
+                  event: $event,
+                  target: "Photos",
+                  data: {
+                    productId: _vm.productId,
+                    photoName: _vm.photoName,
+                    currentListIndex: _vm.photoIndex,
+                    lastListIndex: _vm.lastPhotoListIndex
+                  }
+                })
+              }
+            }
+          },
+          [_vm._v("\n            ⋮\n        ")]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1328,7 +1380,7 @@ var render = function() {
                   "single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top",
                 on: {
                   click: function($event) {
-                    return _vm.scrollSmallPhoto(200, "down")
+                    return _vm.scrollSmallPhoto(300, "down")
                   }
                 }
               },
@@ -1343,7 +1395,7 @@ var render = function() {
             _c("div", {
               ref: "smallPhotoDiv",
               staticClass: "single_product__small_photos",
-              domProps: { innerHTML: _vm._s(_vm.getPhotos) },
+              domProps: { innerHTML: _vm._s(_vm.getSmallPhotos) },
               on: {
                 mouseover: function($event) {
                   return _vm.changeMainPhotoBySmallPhoto($event)
@@ -1361,7 +1413,7 @@ var render = function() {
                       "single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom",
                     on: {
                       click: function($event) {
-                        return _vm.scrollSmallPhoto(200, "up")
+                        return _vm.scrollSmallPhoto(300, "up")
                       }
                     }
                   },
@@ -1375,22 +1427,86 @@ var render = function() {
               : _vm._e()
           ]),
           _vm._v(" "),
-          _c("div", {
-            ref: "mainPhotoDiv",
-            staticClass: "single_product__big_photo_wrapper",
-            domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
-            on: {
-              mouseover: function($event) {
-                return _vm.startViewLargePhoto()
-              },
-              mousemove: function($event) {
-                return _vm.viewLargePhoto($event)
-              },
-              mouseleave: function($event) {
-                return _vm.showInitialPhoto()
+          _c("div", { staticClass: "single_product__big_photo__wrapper" }, [
+            _c("div", {
+              ref: "mainPhotoDiv",
+              staticClass: "single_product__big_photo__content",
+              attrs: { "data-big-photo-version": "desktop" },
+              domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
+              on: {
+                mouseover: function($event) {
+                  return _vm.startViewLargePhoto()
+                },
+                mousemove: function($event) {
+                  return _vm.viewLargePhoto($event)
+                },
+                mouseleave: function($event) {
+                  return _vm.showInitialPhoto()
+                }
               }
-            }
-          })
+            }),
+            _vm._v(" "),
+            _c("div", {
+              ref: "mobileMainPhotoDiv",
+              staticClass: "single_product__big_photo__content_mobile",
+              attrs: { "data-big-photo-version": "mobile" },
+              domProps: { innerHTML: _vm._s(_vm.getAllBigPhotos) }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showLeftScrollButton,
+                    expression: "showLeftScrollButton"
+                  }
+                ],
+                staticClass:
+                  "single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left",
+                on: {
+                  click: function($event) {
+                    return _vm.showNextBigPhoto(-1)
+                  }
+                }
+              },
+              [
+                _c("div", {
+                  staticClass:
+                    "single_product__big_photo__scroll_button_left__content"
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.showRightScrollButton,
+                    expression: "showRightScrollButton"
+                  }
+                ],
+                staticClass:
+                  "single_product__big_photo__scroll_button single_product__big_photo__scroll_button_right",
+                on: {
+                  click: function($event) {
+                    return _vm.showNextBigPhoto(1)
+                  }
+                }
+              },
+              [
+                _c("div", {
+                  staticClass:
+                    "single_product__big_photo__scroll_button_right__content"
+                })
+              ]
+            )
+          ])
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -1481,7 +1597,8 @@ var render = function() {
         staticClass: "context_menu__icon__single_product",
         style: { position: _vm.cssPositionOfContextIcon },
         on: {
-          mouseover: function($event) {
+          click: function($event) {
+            $event.stopPropagation()
             return _vm.showContextMenu({
               event: $event,
               target: "Products",
@@ -1966,6 +2083,57 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/Products/functions/scrollBigPhotos.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/functions/scrollBigPhotos.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  scrollBigPhotos: function scrollBigPhotos(offset) {
+    var wrapper = this.$refs.mobileMainPhotoDiv.getBoundingClientRect();
+    var photoWidth = wrapper.right - wrapper.left;
+    this.$refs.mobileMainPhotoDiv.scrollLeft = this.indexOfMainPhoto * photoWidth;
+    var startX = this.$refs.mobileMainPhotoDiv.scrollLeft;
+    this.indexOfMainPhoto += offset;
+
+    if (offset < 0 && this.indexOfMainPhoto < 0) {
+      this.indexOfMainPhoto = 0;
+      return;
+    }
+
+    if (offset > 0 && this.indexOfMainPhoto >= this.numberOfPhotos) {
+      this.indexOfMainPhoto = this.numberOfPhotos - 1;
+      return;
+    }
+
+    this._scrollBigPhotos(offset, startX, photoWidth);
+  },
+  _scrollBigPhotos: function _scrollBigPhotos(offset, startX, photoWidth) {
+    var _this = this;
+
+    var _coveredDistance = Math.abs(this.$refs.mobileMainPhotoDiv.scrollLeft - startX);
+
+    if (_coveredDistance > photoWidth - 10) {
+      // 10 - возможная погрешность
+      this.$refs.mobileMainPhotoDiv.scrollLeft = this.indexOfMainPhoto * photoWidth;
+      return;
+    }
+
+    var step = 10; // px
+
+    this.$refs.mobileMainPhotoDiv.scrollLeft += offset * step;
+    setTimeout(function () {
+      _this._scrollBigPhotos(offset, startX, photoWidth);
+    }, 1);
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/components/Admin/Products/functions/scrollSmallPhotos.js":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/Admin/Products/functions/scrollSmallPhotos.js ***!
@@ -1998,20 +2166,18 @@ __webpack_require__.r(__webpack_exports__);
     return scrollHeight - (scrollTop + clientHeight) > 10;
   },
   scrollSmallPhoto: function scrollSmallPhoto(distance, direction) {
-    var iterationTime = Math.round(400 / distance); // время в милисекундах на 1px, 1000(400) - одна секунды
-
     var coveredDistance = 0; // пройденное расстояние
 
-    this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction);
+    this._scrollSmallPhoto(distance, coveredDistance, direction);
   },
-  _scrollSmallPhoto: function _scrollSmallPhoto(iterationTime, distance, coveredDistance, direction) {
+  _scrollSmallPhoto: function _scrollSmallPhoto(distance, coveredDistance, direction) {
     var _this = this;
 
     if (coveredDistance > distance) {
       return;
     }
 
-    var step = 1; // 1px
+    var step = 3; // px
 
     if (direction === 'down') {
       this.$refs.smallPhotoDiv.scrollTop -= step;
@@ -2021,8 +2187,8 @@ __webpack_require__.r(__webpack_exports__);
 
     coveredDistance += step;
     setTimeout(function () {
-      _this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction);
-    }, iterationTime);
+      _this._scrollSmallPhoto(distance, coveredDistance, direction);
+    }, 1);
   }
 });
 
@@ -2057,11 +2223,13 @@ __webpack_require__.r(__webpack_exports__);
     var photo = this.$refs.mainPhotoDiv.getBoundingClientRect();
     var xWay = event.x - photo.left;
     var yWay = event.y - photo.top;
-    this.$refs.mainPhotoDiv.scrollLeft = xWay * this.mainPhotoRatio / 1.6;
-    this.$refs.mainPhotoDiv.scrollTop = yWay * this.mainPhotoRatio / 1.6; // 1.6 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
+    this.$refs.mainPhotoDiv.scrollLeft = xWay * this.mainPhotoRatio / 1.5;
+    this.$refs.mainPhotoDiv.scrollTop = yWay * this.mainPhotoRatio / 1.5; // 1.5 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
   },
   showInitialPhoto: function showInitialPhoto() {
     this.mainPhotoSizeIndex = 4;
+    this.$refs.mainPhotoDiv.scrollLeft = 0;
+    this.$refs.mainPhotoDiv.scrollTop = 0;
   }
 });
 
@@ -2127,7 +2295,7 @@ __webpack_require__.r(__webpack_exports__);
 
     return photoInfoArr.length;
   },
-  getPhotos: function getPhotos() {
+  getSmallPhotos: function getSmallPhotos() {
     if (this.noData) {
       return '';
     }
@@ -2143,6 +2311,25 @@ __webpack_require__.r(__webpack_exports__);
     var fileNamePrefix = "".concat(product.id, "s2-");
     var photoArr = photoInfoArr.map(function (timeName, index) {
       return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size2\" />");
+    });
+    return photoArr.join('');
+  },
+  getAllBigPhotos: function getAllBigPhotos() {
+    if (this.noData) {
+      return '';
+    }
+
+    var product = this.singleProductFromServer.product;
+    var photoInfoArr = JSON.parse(product.photo_set);
+
+    if (!photoInfoArr) {
+      return '';
+    }
+
+    var folderName = "/storage/".concat(this.imgFolderPrefix, "5");
+    var fileNamePrefix = "".concat(product.id, "s5-");
+    var photoArr = photoInfoArr.map(function (timeName, index) {
+      return "<img alt=\"\" src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size4\" />");
     });
     return photoArr.join('');
   },

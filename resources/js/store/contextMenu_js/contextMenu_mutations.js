@@ -1,5 +1,5 @@
 export default {
-    
+
     setCoordinatesForCategoriesContext: (state, event) => {
         const icon = event.target.getBoundingClientRect();
 
@@ -22,11 +22,14 @@ export default {
     setCoordinatesForProductsContext: (state, event) => {
         const icon = event.target.getBoundingClientRect();
 
-        const xOffset = -185;
-
-        const x = {
-            left: (icon.x + xOffset) + 'px'
-        }
+        // проверка на расстояние от точки клика до левого края
+        const x = event.clientX < 180
+            ? {
+                left: '5px'
+            }
+            : {
+                left: icon.x - 170 + 'px' // 170 - примерная ширина меню
+            };
 
         const y = {
             top: icon.y + window.pageYOffset + 4 + 'px'
@@ -38,15 +41,17 @@ export default {
     setCoordinatesForPhotosContext: (state, event) => {
         const icon = event.target.getBoundingClientRect();
 
-        const xOffset = -162;
-        const yOffset = -2;
-
-        const x = {
-            left: (icon.x + xOffset) + 'px'
-        }
+        // проверка на расстояние от точки клика до левого края
+        const x = event.clientX < 180
+            ? {
+                left: '5px'
+            }
+            : {
+                left: icon.x - 175 + 'px' // 175 - примерная ширина меню
+            };
 
         const y = {
-            top: (icon.y + yOffset) + 'px'
+            top: (icon.y - 2) + 'px' // 2 - offset
         };
 
         state.coordinates = { ...x, ...y };

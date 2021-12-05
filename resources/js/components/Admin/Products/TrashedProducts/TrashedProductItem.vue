@@ -50,7 +50,7 @@
         </div>
 
         <span class="context_menu__icon__product"
-              @mouseover="showContextMenu({
+              @click.stop="showContextMenu({
                 event: $event,
                 target: 'Products',
                 data: {

@@ -88,7 +88,8 @@ var render = function() {
       {
         staticClass: "context_menu__icon__user",
         on: {
-          mouseover: function($event) {
+          click: function($event) {
+            $event.stopPropagation()
             return _vm.showContextMenu({
               event: $event,
               target: "Users",

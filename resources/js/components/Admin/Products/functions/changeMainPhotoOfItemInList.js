@@ -1,6 +1,9 @@
 export default {
 
     changeMainPhoto(event) {
+        if (this.draggingOccurs) {
+            return;
+        }
         if (this.numberOfPhotos < 2) {
             return;
         }
@@ -18,6 +21,9 @@ export default {
     },
 
     changeMainPhotoBySmallPhoto(event) {
+        if (this.draggingOccurs) {
+            return;
+        }
         if (this.numberOfPhotos < 2) {
             return;
         }

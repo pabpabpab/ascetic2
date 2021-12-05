@@ -9,7 +9,7 @@
         <div class="category_item__content">
 
             <span
-                @mouseover="showContextMenu({
+                @click.stop="showContextMenu({
                     event: $event,
                     target: 'Categories',
                     data: {

@@ -1,5 +1,5 @@
 <template>
-    <nav class="pagination_nav">
+    <nav data-pagination="desktop" class="pagination_nav">
 
 
         <quantity-per-page-of-pagination :entity="entity" :key="Number(quantityPerPage)"></quantity-per-page-of-pagination>

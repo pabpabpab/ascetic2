@@ -1,9 +1,18 @@
 .products_sorting_modes
     width: 100%
-    padding: 0 0 5px 10px
+    padding: 0 0 8px 10px
     text-align: left
     +font(15px, rgb(80, 70, 70), 300)
-    // border: 1px solid #00f
+
+@media screen and (max-width: 1151px)
+    .products_sorting_modes
+        padding: 0 0 15px 10px
+@media screen and (max-width: 650px)
+    .products_sorting_modes
+        padding: 8px 0 15px 10px
+@media screen and (max-width: 500px)
+    .products_sorting_modes
+        padding: 10px 0 20px 10px
 
 .products_sorting_modes__link_active
     text-decoration: none

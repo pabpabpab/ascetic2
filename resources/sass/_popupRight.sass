@@ -1,11 +1,11 @@
 .popup_right
     position: fixed
-    z-index: 25
+    z-index: 350
     top: 30px
     right: -570px
     border-radius: 7px
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3)
-
+    background-color: rgb(224, 235, 241)
 
 .popup_right-enter-active
     animation: showRightPopup 20s
@@ -34,7 +34,6 @@
     position: relative
     padding: 25px
     width: 500px
-    background-color: rgb(224, 235, 241)
     +font(18px, #000, 400)
     line-height: 30px
     text-align: left
@@ -45,6 +44,7 @@
 
 .popup_right__collapse_icon
     position: absolute
+    z-index: 351
     top: 4px
     right: 4px
     width: 25px

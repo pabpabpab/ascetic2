@@ -2,7 +2,7 @@
     <div class="user_item">
 
         <span
-            @mouseover="showContextMenu({
+            @click.stop="showContextMenu({
                 event: $event,
                 target: 'Users',
                 data: { user }

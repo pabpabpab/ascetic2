@@ -1,38 +1,42 @@
 <template>
-    <div ref="product"
-         class="product_item"
-         :class="[draggedProductClass, beneathDraggedProductClass]"
-         :style="{
-            'left': draggedEntity === 'Product' ? leftByIndex(index) : 0,
-            'top': draggedEntity === 'Product' ? topByIndex(index) : 0,
-         }"
-         @mousedown="myDragStart({index: index, event: $event, entity: 'Product'})"
-         @mouseup.stop="myDragStop({ event: $event, clickedIndex: index, entity: 'Product' })">
+    <div class="product_item__wrapper">
+        <div ref="product"
+             class="product_item"
+             :class="[draggedProductClass, beneathDraggedProductClass]"
+             :style="{
+                'left': draggedEntity === 'Product' ? leftByIndex(index) : 0,
+                'top': draggedEntity === 'Product' ? topByIndex(index) : 0,
+            }"
+             @mousedown="myDragStart({index: index, event: $event, entity: 'Product'})"
+             @mouseup.stop="myDragStop({ event: $event, clickedIndex: index, entity: 'Product' })">
 
-        <div class="product_item__content">
+            <div class="product_item__content">
 
-            <a @click.prevent="showProductQuickViewManager(product.id)"
-               href='#'
-               class="product_item__quick_view_link">
-                Быстрый просмотр
-            </a>
-
-            <template v-if="numberOfPhotos > 0">
-                <router-link :to="{ name: 'SingleProduct', params: {  slug: product.slug, id: product.id } }">
-                    <div ref="mainPhotoDiv"
-                         @mousemove="changeMainPhoto($event)"
-                         @mouseout="setFirstMainPhoto()"
-                         v-html="getMainPhoto">
-                    </div>
-                </router-link>
-            </template>
-            <template v-else>
-                <div ref="mainPhotoDiv" class="product_item__no_photo">
-                    НЕТ ФОТО
+                <div class="product_item__quick_view_link__wrapper">
+                    <a @click.prevent="showProductQuickViewManager(product.id)"
+                       href='#'
+                       class="product_item__quick_view_link"
+                       :class="{ display_none: draggingOccurs}">
+                        Быстрый просмотр
+                    </a>
                 </div>
-            </template>
 
-            <div v-if="numberOfPhotos > 1" class="product_item__photo_indicator">
+                <template v-if="numberOfPhotos > 0">
+                    <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }">
+                        <div ref="mainPhotoDiv"
+                             @mousemove="changeMainPhoto($event)"
+                             @mouseout="setFirstMainPhoto()"
+                             v-html="getMainPhoto">
+                        </div>
+                    </router-link>
+                </template>
+                <template v-else>
+                    <div ref="mainPhotoDiv" class="product_item__no_photo">
+                        НЕТ ФОТО
+                    </div>
+                </template>
+
+                <div v-if="numberOfPhotos > 1" class="product_item__photo_indicator">
             <span v-for="n in numberOfPhotos" :key="n"
                   class="product_item__photo_indicator_item"
                   :class="{
@@ -40,39 +44,39 @@
                      product_item__photo_indicator_active: indexOfMainPhoto + 1 === n,
                   }">
             </span>
-            </div>
-
-            <div :style="{ cursor: cursorType }" :data-anchor_for_dragging="anchorForDragging">
-                <div class="product_item__name">
-                    <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }"
-                                 class="product_item__name__link">
-                        {{ product.name }}
-                    </router-link>
                 </div>
 
-                <div class="product_item__price">
-                    {{ getPrice }}
+                <div :style="{ cursor: cursorType }" :data-anchor_for_dragging="anchorForDragging">
+                    <div class="product_item__name">
+                        <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }"
+                                     class="product_item__name__link">
+                            {{ product.name }}
+                        </router-link>
+                    </div>
+
+                    <div class="product_item__price">
+                        {{ getPrice }}
+                    </div>
                 </div>
-            </div>
 
-            <div @mouseover="changeMainPhotoBySmallPhoto($event)" @mouseout="setFirstMainPhoto()"
-                 class="product_item__small_photos"
-                 v-html="getPhotos">
-            </div>
-
-
-            <div class="product_item__bottom_info__relative_wrapper">
-                <div class="product_item__bottom_info__absolute">
-                    <p title="Категория" v-html="getCategories" class="product_item__bottom_info__text"></p>
-                    <p title="Материал" v-html="getMaterials" class="product_item__bottom_info__text"></p>
-                    <p title="Цвет" v-html="getColors" class="product_item__bottom_info__text"></p>
+                <div @mouseover="changeMainPhotoBySmallPhoto($event)" @mouseout="setFirstMainPhoto()"
+                     class="product_item__small_photos"
+                     v-html="getPhotos">
                 </div>
+
+
+                <div class="product_item__bottom_info__relative_wrapper">
+                    <div class="product_item__bottom_info__absolute">
+                        <p title="Категория" v-html="getCategories" class="product_item__bottom_info__text"></p>
+                        <p title="Материал" v-html="getMaterials" class="product_item__bottom_info__text"></p>
+                        <p title="Цвет" v-html="getColors" class="product_item__bottom_info__text"></p>
+                    </div>
+                </div>
+
             </div>
 
-        </div>
-
-        <span class="context_menu__icon__product"
-              @mouseover="showContextMenu({
+            <span class="context_menu__icon__product"
+                  @click.stop="showContextMenu({
                     event: $event,
                     target: 'Products',
                     data: {
@@ -82,6 +86,7 @@
                 &#8942;
         </span>
 
+        </div>
     </div>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
     <div class="category_edit_form_item__border_top">
-        <div class="category_form__div m20px_auto relative"
+        <div class="category_form__wrapper m20px_auto relative"
              :class="animationClass">
             <h1 class="tal">Редактировать «{{ categoryNameHeader }}»</h1>
 
             <div>
-                <div class="display-flex">
+                <div class="display_flex">
                     <input type="text" maxlength="50"
                            placeholder="Введите название"
                            class="input_text input_text__category_form"

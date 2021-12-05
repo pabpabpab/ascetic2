@@ -1,30 +1,33 @@
 <template>
-    <div ref="photo" class="photo_manager__item"
-         :class="[draggedPhotoClass, beneathDraggedPhotoClass, notDraggedPhotosClass]"
-         :style="{
-            'left': leftByIndex(photoIndex),
-            'top': topByIndex(photoIndex),
-         }"
-         @mousedown.stop="myDragStart({index: photoIndex, event: $event, entity: 'Photo'})"
-         @mouseup.stop="myDragStop({ event: $event, clickedIndex: photoIndex, entity: 'Photo' })">
+    <div class="photo_manager__item__wrapper">
+        <div ref="photo" class="photo_manager__item"
+             :class="[draggedPhotoClass, beneathDraggedPhotoClass, notDraggedPhotosClass]"
+             :style="{
+                'left': leftByIndex(photoIndex),
+                'top': topByIndex(photoIndex),
+             }"
+             @mousedown.stop="myDragStart({index: photoIndex, event: $event, entity: 'Photo'})"
+             @mouseup.stop="myDragStop({ event: $event, clickedIndex: photoIndex, entity: 'Photo' })">
 
-        <div class="photo_manager__item__content">
-            <img alt="" :src="photoSrc" :class="imgClass" style="pointer-events: none"/>
+            <div class="photo_manager__item__content">
+                <img alt="" :src="photoSrc" :class="imgClass" style="pointer-events: none"/>
+            </div>
+
+            <span class="context_menu__icon__photo_manager"
+                @click.stop="showContextMenu({
+                    event: $event,
+                    target: 'Photos',
+                    data: {
+                        productId: productId,
+                        photoName: photoName,
+                        currentListIndex: photoIndex,
+                        lastListIndex: lastPhotoListIndex
+                    }
+                })">
+                &#8942;
+            </span>
+
         </div>
-
-        <span class="context_menu__icon__photo_manager"
-              @mouseover="showContextMenu({
-                event: $event,
-                target: 'Photos',
-                data: {
-                    productId: productId,
-                    photoName: photoName,
-                    currentListIndex: photoIndex,
-                    lastListIndex: lastPhotoListIndex
-                }
-            })">
-            &#8942;
-        </span>
     </div>
 </template>
 

@@ -18,12 +18,14 @@ export default {
         const xWay = event.x-photo.left;
         const yWay = event.y-photo.top;
 
-        this.$refs.mainPhotoDiv.scrollLeft = xWay * this.mainPhotoRatio/1.6;
-        this.$refs.mainPhotoDiv.scrollTop = yWay * this.mainPhotoRatio/1.6;
-        // 1.6 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
+        this.$refs.mainPhotoDiv.scrollLeft = xWay * this.mainPhotoRatio/1.5;
+        this.$refs.mainPhotoDiv.scrollTop = yWay * this.mainPhotoRatio/1.5;
+        // 1.5 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
     },
 
     showInitialPhoto() {
         this.mainPhotoSizeIndex = 4;
+        this.$refs.mainPhotoDiv.scrollLeft = 0;
+        this.$refs.mainPhotoDiv.scrollTop = 0;
     },
 }

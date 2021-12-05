@@ -5,7 +5,7 @@
             <div class="single_product__small_photos__wrapper">
 
                 <div v-show="notScrolledAllTheWayToTheTop() && numberOfPhotos > 5"
-                     @click="scrollSmallPhoto(200, 'down')"
+                     @click="scrollSmallPhoto(300, 'down')"
                      class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top">
                         <div class="single_product__small_photos__scroll_button_top__content">
                         </div>
@@ -14,22 +14,48 @@
                 <div ref="smallPhotoDiv"
                      @mouseover="changeMainPhotoBySmallPhoto($event)"
                      class="single_product__small_photos"
-                     v-html="getPhotos">
+                     v-html="getSmallPhotos">
                 </div>
 
                 <div v-if="numberOfPhotos > 5 && (notScrolledAllTheWayToTheBottom() || indexOfMainPhoto === 0)"
-                     @click="scrollSmallPhoto(200, 'up')"
+                     @click="scrollSmallPhoto(300, 'up')"
                      class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom">
                         <div class="single_product__small_photos__scroll_button_bottom__content">
                         </div>
                 </div>
 
             </div>
-            <div ref="mainPhotoDiv" class="single_product__big_photo_wrapper"
-                 v-html="getMainPhoto"
-                 @mouseover="startViewLargePhoto()"
-                 @mousemove="viewLargePhoto($event)"
-                 @mouseleave="showInitialPhoto()">
+
+            <div class="single_product__big_photo__wrapper">
+
+                <div ref="mainPhotoDiv"
+                    data-big-photo-version="desktop"
+                    class="single_product__big_photo__content"
+                    v-html="getMainPhoto"
+                    @mouseover="startViewLargePhoto()"
+                    @mousemove="viewLargePhoto($event)"
+                    @mouseleave="showInitialPhoto()">
+                </div>
+
+                <div ref="mobileMainPhotoDiv"
+                     data-big-photo-version="mobile"
+                     class="single_product__big_photo__content_mobile"
+                     v-html="getAllBigPhotos">
+                </div>
+
+                <div v-show="showLeftScrollButton"
+                     @click="showNextBigPhoto(-1)"
+                     class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left">
+                    <div class="single_product__big_photo__scroll_button_left__content">
+                    </div>
+                </div>
+
+                <div v-show="showRightScrollButton"
+                     @click="showNextBigPhoto(1)"
+                     class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_right">
+                    <div class="single_product__big_photo__scroll_button_right__content">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -74,13 +100,12 @@
             <div class="single_product__description">
                 {{ getDescription }}
             </div>
-
         </div>
 
 
         <span class="context_menu__icon__single_product"
               :style="{ position: cssPositionOfContextIcon }"
-              @mouseover="showContextMenu({
+              @click.stop="showContextMenu({
                 event: $event,
                 target: 'Products',
                 data: {
@@ -99,6 +124,7 @@ import computedForSingleProduct from './../Products/someComputed/computedForSing
 import {mapActions, mapGetters} from "vuex";
 import scrollSmallPhotos from "./functions/scrollSmallPhotos";
 import viewLargePhoto from "./functions/viewLargePhoto";
+import scrollBigPhotos from "./functions/scrollBigPhotos";
 
 export default {
     name: "SingleProduct",
@@ -125,7 +151,13 @@ export default {
 
         cssPositionOfContextIcon() {
             return this.from === 'quickViewManager' ? 'absolute' : 'fixed';
-        }
+        },
+        showLeftScrollButton() {
+            return this.indexOfMainPhoto > 0;
+        },
+        showRightScrollButton() {
+            return this.indexOfMainPhoto < this.numberOfPhotos - 1;
+        },
     },
     methods: {
         ...mapActions('contextMenu', [
@@ -134,11 +166,24 @@ export default {
 
         ...scrollSmallPhotos,
         ...viewLargePhoto,
+        ...scrollBigPhotos,
 
         changeMainPhotoBySmallPhoto(event) {
             if (event.target.className === 'photo__size2') {
                 this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
             }
+        },
+        showNextBigPhoto(offset) {
+            this.scrollBigPhotos(offset);
+            /*
+            this.indexOfMainPhoto += offset;
+            if (this.indexOfMainPhoto < 0) {
+                this.indexOfMainPhoto = 0;
+            }
+            if (this.indexOfMainPhoto > this.numberOfPhotos - 1) {
+                this.indexOfMainPhoto = this.numberOfPhotos - 1;
+            }
+            */
         },
     },
     mounted() {

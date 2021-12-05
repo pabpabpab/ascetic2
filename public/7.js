@@ -380,7 +380,7 @@ var render = function() {
                   _c(
                     "label",
                     {
-                      staticClass: "checkbox_label display-table",
+                      staticClass: "checkbox_label display_table",
                       attrs: { for: "email_verified_mark" }
                     },
                     [
@@ -459,7 +459,7 @@ var render = function() {
                   _c(
                     "label",
                     {
-                      staticClass: "checkbox_label display-table",
+                      staticClass: "checkbox_label display_table",
                       attrs: { for: "send_confirm_registration_mark" }
                     },
                     [

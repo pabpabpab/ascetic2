@@ -1,10 +1,10 @@
 <template>
-    <div class="category_form__div mauto relative"
+    <div class="category_form__wrapper mauto relative"
          :class="animationClass">
         <h1 class="tal">{{ getCreationHeader }}</h1>
 
         <div>
-            <div class="input_text__container display-flex">
+            <div class="input_text__container display_flex">
                 <input class="input_text input_text__category_form"
                        :class="{ 'input_alarm': isAlarmingInput('name') }"
                        type="text" maxlength="50" placeholder=" "

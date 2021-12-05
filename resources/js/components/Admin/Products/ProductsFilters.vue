@@ -61,7 +61,7 @@
                 class="mt30">
             </filters-checkboxes-list>
 
-            <button class="button__save_product mauto mt30"
+            <button class="button__filter_product mauto mt30"
                     @click="closeProductsFilters()">
                 Готово
             </button>

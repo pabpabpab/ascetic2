@@ -1,0 +1,44 @@
+@media screen and (max-width: 800px)
+    .popup_right
+        top: 20px
+
+@media screen and (max-width: 600px)
+    .popup_right
+        top: 20px
+    .popup_right__content
+        width: 470px
+
+    @keyframes showRightPopup
+        from, to
+            right: -500px
+        5%, 95%
+            right: 5px
+        100%
+            right: -500px
+
+    @keyframes hideRightPopup
+        from, to
+            right: 5px
+        100%
+            right: -500px
+
+@media screen and (max-width: 550px)
+    .popup_right__content
+        width: 420px
+@media screen and (max-width: 500px)
+    .popup_right__content
+        width: 370px
+@media screen and (max-width: 450px)
+    .popup_right
+        top: 10px
+    .popup_right__content
+        width: 320px
+@media screen and (max-width: 400px)
+    .popup_right__content
+        width: 270px
+@media screen and (max-width: 350px)
+    .popup_right__content
+        width: 250px
+@media screen and (max-width: 320px)
+    .popup_right__content
+        width: 200px

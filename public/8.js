@@ -901,14 +901,14 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "category_form__div mauto relative",
+      staticClass: "category_form__wrapper mauto relative",
       class: _vm.animationClass
     },
     [
       _c("h1", { staticClass: "tal" }, [_vm._v(_vm._s(_vm.getCreationHeader))]),
       _vm._v(" "),
       _c("div", [
-        _c("div", { staticClass: "input_text__container display-flex" }, [
+        _c("div", { staticClass: "input_text__container display_flex" }, [
           _c("input", {
             directives: [
               {
@@ -1028,7 +1028,8 @@ var render = function() {
             {
               staticClass: "context_menu__icon__category",
               on: {
-                mouseover: function($event) {
+                click: function($event) {
+                  $event.stopPropagation()
                   return _vm.showContextMenu({
                     event: $event,
                     target: "Categories",
@@ -1132,7 +1133,7 @@ var render = function() {
     _c(
       "div",
       {
-        staticClass: "category_form__div m20px_auto relative",
+        staticClass: "category_form__wrapper m20px_auto relative",
         class: _vm.animationClass
       },
       [
@@ -1141,7 +1142,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", [
-          _c("div", { staticClass: "display-flex" }, [
+          _c("div", { staticClass: "display_flex" }, [
             _c("input", {
               directives: [
                 {

@@ -1,8 +1,12 @@
 <template>
     <div class="content_block content_block__products">
 
-        <div class="products">
+        <div class="products"
+             :class="{ cursor_move: draggingOccurs }">
+
+            <pagination-mobile v-if="productsLength > 1" entity="products" class="pdb0"></pagination-mobile>
             <pagination v-if="productsLength > 1" entity="products" class="pdb0"></pagination>
+
 
             <sorting-modes></sorting-modes>
 
@@ -17,6 +21,7 @@
             </product-item>
 
             <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
+            <pagination-mobile v-if="productsLength > 1" entity="products" class="pdb0"></pagination-mobile>
 
             <transition name="product_filters">
                 <products-filters v-show="$route.name === 'Products' && visibility('productsFilters')"></products-filters>
@@ -60,10 +65,12 @@ import ProductEditManager from "./ProductEditManager";
 import SortingModes from "./SortingModes";
 import ProductQuickViewManager from "./ProductQuickViewManager";
 import FiltersIcon from "./FiltersIcon";
+import PaginationMobile from "../Blocks/PaginationMobile";
 
 export default {
     name: "Products",
     components: {
+        PaginationMobile,
         ProductItem,
         SortingModes,
         ProductsFilters,
@@ -90,6 +97,9 @@ export default {
         ...mapGetters('pagination', [
             'currentPageIndex',
             'customized',
+        ]),
+        ...mapGetters('dragAndDropByXY', [
+            'draggingOccurs',
         ]),
         items() {
             return this.customized('products')[this.currentPageIndex('products')];

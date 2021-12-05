@@ -17,15 +17,14 @@ export default  {
     },
 
     scrollSmallPhoto(distance, direction) {
-        const iterationTime = Math.round(400/distance); // время в милисекундах на 1px, 1000(400) - одна секунды
         const coveredDistance = 0; // пройденное расстояние
-        this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction)
+        this._scrollSmallPhoto(distance, coveredDistance, direction)
     },
-    _scrollSmallPhoto(iterationTime, distance, coveredDistance, direction) {
+    _scrollSmallPhoto(distance, coveredDistance, direction) {
         if (coveredDistance > distance) {
             return;
         }
-        const step = 1; // 1px
+        const step = 3; // px
         if (direction === 'down') {
             this.$refs.smallPhotoDiv.scrollTop -= step;
         } else {
@@ -33,8 +32,8 @@ export default  {
         }
         coveredDistance += step;
         setTimeout(() => {
-            this._scrollSmallPhoto(iterationTime, distance, coveredDistance, direction);
-        }, iterationTime);
+            this._scrollSmallPhoto(distance, coveredDistance, direction);
+        }, 1);
     },
 
 }

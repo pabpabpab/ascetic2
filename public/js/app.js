@@ -2313,15 +2313,15 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("ul", { staticClass: "mainPage__ul mainPage__ul_with_bg" }, [
+    _c("ul", { staticClass: "mobile_menu__ul mobile_menu__ul_with_bg" }, [
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
             {
-              staticClass: "mainPage__link",
+              staticClass: "mobile_menu__link",
               attrs: { to: { name: "SaveProduct" } }
             },
             [_vm._v("\n                Добавить товар\n            ")]
@@ -2332,12 +2332,12 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
             {
-              staticClass: "mainPage__link",
+              staticClass: "mobile_menu__link",
               attrs: { to: { name: "Products" } }
             },
             [_vm._v("\n                Товары\n            ")]
@@ -2348,12 +2348,13 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
             {
-              staticClass: "mainPage__link mainPage__link_with_left_offset",
+              staticClass:
+                "mobile_menu__link mobile_menu__link_with_left_offset",
               attrs: { to: { name: "TrashedProducts" } }
             },
             [_vm._v("\n                Удаленные товары\n            ")]
@@ -2363,15 +2364,15 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("ul", { staticClass: "mainPage__ul" }, [
+    _c("ul", { staticClass: "mobile_menu__ul" }, [
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
             {
-              staticClass: "mainPage__link",
+              staticClass: "mobile_menu__link",
               attrs: {
                 to: { name: "Categories", params: { entity: "categories" } }
               }
@@ -2384,12 +2385,12 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
             {
-              staticClass: "mainPage__link",
+              staticClass: "mobile_menu__link",
               attrs: {
                 to: { name: "Categories", params: { entity: "materials" } }
               }
@@ -2402,12 +2403,12 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
             {
-              staticClass: "mainPage__link",
+              staticClass: "mobile_menu__link",
               attrs: {
                 to: { name: "Categories", params: { entity: "colors" } }
               }
@@ -2419,14 +2420,17 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("ul", { staticClass: "mainPage__ul mainPage__ul_with_bg" }, [
+    _c("ul", { staticClass: "mobile_menu__ul mobile_menu__ul_with_bg" }, [
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
-            { staticClass: "mainPage__link", attrs: { to: { name: "Users" } } },
+            {
+              staticClass: "mobile_menu__link",
+              attrs: { to: { name: "Users" } }
+            },
             [_vm._v("\n                Пользователи\n            ")]
           )
         ],
@@ -2435,12 +2439,13 @@ var render = function() {
       _vm._v(" "),
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
             {
-              staticClass: "mainPage__link mainPage__link_with_left_offset",
+              staticClass:
+                "mobile_menu__link mobile_menu__link_with_left_offset",
               attrs: { to: { name: "SaveUser" } }
             },
             [_vm._v("\n                Создать пользователя\n            ")]
@@ -2450,14 +2455,17 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("ul", { staticClass: "mainPage__ul" }, [
+    _c("ul", { staticClass: "mobile_menu__ul" }, [
       _c(
         "li",
-        { staticClass: "mainPage__li" },
+        { staticClass: "mobile_menu__li" },
         [
           _c(
             "router-link",
-            { staticClass: "mainPage__link", attrs: { to: { name: "Help" } } },
+            {
+              staticClass: "mobile_menu__link",
+              attrs: { to: { name: "Help" } }
+            },
             [_vm._v("\n                Помощь\n            ")]
           )
         ],
@@ -2473,18 +2481,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "mainPage__ul mainPage__ul_with_bg" }, [
-      _c("li", { staticClass: "mainPage__li" }, [
-        _c(
-          "a",
-          {
-            staticClass: "mainPage__link mainPage__link_with_top_offset",
-            attrs: { href: "http://asceticshop.ru" }
-          },
-          [_vm._v("\n                AsceticShop.ru\n            ")]
-        )
-      ])
-    ])
+    return _c(
+      "ul",
+      { staticClass: "mobile_menu__ul mobile_menu__ul_with_bg" },
+      [
+        _c("li", { staticClass: "mobile_menu__li" }, [
+          _c(
+            "a",
+            {
+              staticClass:
+                "mobile_menu__link mobile_menu__link_with_top_offset",
+              attrs: { href: "http://asceticshop.ru" }
+            },
+            [_vm._v("\n                AsceticShop.ru\n            ")]
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -21630,10 +21643,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     state.coordinates = _objectSpread(_objectSpread({}, x), y);
   },
   setCoordinatesForProductsContext: function setCoordinatesForProductsContext(state, event) {
-    var icon = event.target.getBoundingClientRect();
-    var xOffset = -185;
-    var x = {
-      left: icon.x + xOffset + 'px'
+    var icon = event.target.getBoundingClientRect(); // проверка на расстояние от точки клика до левого края
+
+    var x = event.clientX < 180 ? {
+      left: '5px'
+    } : {
+      left: icon.x - 170 + 'px' // 170 - примерная ширина меню
+
     };
     var y = {
       top: icon.y + window.pageYOffset + 4 + 'px'
@@ -21641,14 +21657,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     state.coordinates = _objectSpread(_objectSpread({}, x), y);
   },
   setCoordinatesForPhotosContext: function setCoordinatesForPhotosContext(state, event) {
-    var icon = event.target.getBoundingClientRect();
-    var xOffset = -162;
-    var yOffset = -2;
-    var x = {
-      left: icon.x + xOffset + 'px'
+    var icon = event.target.getBoundingClientRect(); // проверка на расстояние от точки клика до левого края
+
+    var x = event.clientX < 180 ? {
+      left: '5px'
+    } : {
+      left: icon.x - 175 + 'px' // 175 - примерная ширина меню
+
     };
     var y = {
-      top: icon.y + yOffset + 'px'
+      top: icon.y - 2 + 'px' // 2 - offset
+
     };
     state.coordinates = _objectSpread(_objectSpread({}, x), y);
   },

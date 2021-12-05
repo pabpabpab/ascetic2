@@ -34,7 +34,7 @@
                                @click="checkConfirmRegistrationMark()"
                                v-model="localUser.email_verified">
 
-                        <label class="checkbox_label display-table" for="email_verified_mark">
+                        <label class="checkbox_label display_table" for="email_verified_mark">
                             E-mail существует
                         </label>
                     </p>
@@ -50,7 +50,7 @@
                                @click="checkEmailVerifiedMark()"
                                v-model="localUser.send_confirm_registration">
 
-                        <label class="checkbox_label display-table" for="send_confirm_registration_mark">
+                        <label class="checkbox_label display_table" for="send_confirm_registration_mark">
                             Отправить письмо пользователю для проверки E-mail
                         </label>
                     </p>

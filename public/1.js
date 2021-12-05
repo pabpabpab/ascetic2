@@ -228,7 +228,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "nav",
-    { staticClass: "pagination_nav" },
+    { staticClass: "pagination_nav", attrs: { "data-pagination": "desktop" } },
     [
       _c("quantity-per-page-of-pagination", {
         key: Number(_vm.quantityPerPage),

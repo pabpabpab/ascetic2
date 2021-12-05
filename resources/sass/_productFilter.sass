@@ -2,12 +2,12 @@
 .product_filters__icon
     position: absolute
     z-index: 3
-    top: 180px
+    top: 47vh
     right: 0
-    width: 50px
-    height: 50px
+    width: 45px
+    height: 45px
     background-color: rgb(244, 249, 252)
-    box-shadow: 0 0 8px rgb(0, 0, 0, 0.3)
+    box-shadow: 0 0 7px rgb(0, 0, 0, 0.2)
     cursor: pointer
     border-top-left-radius: 8px
     border-bottom-left-radius: 8px
@@ -16,7 +16,7 @@
     justify-content: center
     align-items: center
 .product_filters__icon__img
-    width: 35px
+    width: 30px
 
 .product_filters
     position: fixed
@@ -57,7 +57,7 @@
 
 .product_filters__content
     position: relative
-    padding: 35px 25px 150px 25px
+    padding: 10px 25px 150px 25px
     width: 350px
     height: 100%
     box-sizing: border-box
@@ -76,10 +76,24 @@
         border-radius: 10px
 
 
+
+
+.button__filter_product
+    +font(15px, #fff, 400)
+    padding: 20px
+    width: 300px
+    border-radius: 7px
+    border: 0
+    background-color: rgb(25, 118, 210)
+    cursor: pointer
+    &:hover
+        background-color: rgb(10, 65, 134)
+
+
 .product_filters__collapse_icon
     position: absolute
     top: 4px
-    left: 4px
+    right: 4px
     width: 25px
     height: 25px
     padding: 0 0 3px 0
@@ -96,7 +110,7 @@
 
 
 .product_filters__selectedCategories__wrapper
-    width: 300px
+    width: 100%
 
 .product_filters__checkbox_input__item
     height: 25px
@@ -227,8 +241,7 @@
 .products_filters_top_total_parameters__item__collapse_icon
     +font(15px, #fff, 400)
     line-height: 25px
-    padding: 5px 5px
+    padding: 10px 5px 10px 10px
     cursor: pointer
-    margin-left: 5px
     &:hover
         color: #fcf081

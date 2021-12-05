@@ -8,9 +8,8 @@ body, html, #app, .app
     height: 100% // важно для клика по документу
     padding: 0
     margin: 0
-    color: rgb(50, 45, 45)
-    background-color: rgb(244, 249, 252)
-    text-align: center
+    background-color: rgb(249, 249, 249) //rgb(244, 249, 252)
+
 
 html
     font-family: 'Source Sans Pro', sans-serif
@@ -18,122 +17,70 @@ html
 a
     text-decoration: none
 
-h1
-    +font(22px, rgb(80, 75, 75), 700)
-    font-family: 'Oswald', sans-serif
-    letter-spacing: 1px
-    // border: 1px solid #888
-.content_wrapper
-    padding: 80px 0 50px 0
-
-.content_block
-    min-width: 500px
-    width: 500px
-    background-color: #fff
-    box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
-    margin: 0 auto
-
-
 
 @import "vars"
 @import "show_hide"
-@import transition
+@import "transition"
+
+@import "h1"
+@import "content"
+
 @import "navBar"
 @import "navBar_mobile"
+
 @import "mobileMenu"
-@import "mainPage"
-@import "helpPage"
-@import "user"
-@import "category"
-@import "form"
-@import "formCategory"
-@import "formProduct"
 
-@import "productList"
-@import "productSorting"
-@import "productFilter"
-@import "productPhoto"
-@import "productSingle"
-
-@import "pagination"
-
-
-@import "rightPopup"
-@import "absoluteMessage"
-@import "absoluteFiltersMessage"
-@import "waitingScreen"
-@import "confirmationDialogBox"
 @import "contextMenu"
 @import "contextMenuIcon"
+
+@import "mainPage"
+@import "helpPage"
+
+@import "user"
+@import "user_mobile"
+@import "category"
+@import "category_mobile"
+
+@import "form"
+@import "form_mobile"
+@import "formCategory"
+@import "formCategory_mobile"
+@import "formProduct"
+@import "formProduct_mobile"
+
+@import "productList"
+@import "productList_mobile2"
+@import "productSorting"
+@import "productFilter"
+@import "productFilter_mobile"
+@import "productPhoto"
+@import "productSingle"
+@import "productSingle_mobile"
+
+@import "pagination"
+@import "pagination_mobile"
+
+@import "popupRight"
+@import "popupRight_mobile"
+
+@import "absoluteMessage"
+@import "absoluteFiltersMessage"
+
+@import "waitingScreen"
+
+@import "confirmationDialogBox"
+
 @import "photoManager"
+@import "photoManager_mobile"
+@import "photoManagerItem_mobile"
+
 @import "seoManager"
+@import "seoManager_mobile"
 @import "editManager"
+@import "editManager_mobile"
 @import "quickViewManager"
+@import "quickViewManager_mobile"
+
 @import "reloadIcon"
 
-
-.w100
-    width: 100%
-
-
-.display-none
-    display: none
-.display-flex
-    display: flex
-.display-table
-    display: table
-.relative
-    position: relative
-
-.mauto
-    margin: 0 auto
-.pd0
-    padding: 0
-.m0
-    margin: 0
-.mb0
-    margin-bottom: 0
-.pdl0
-    padding-left: 0
-.pdr0
-    padding-right: 0
-.pdb0
-    padding-bottom: 0
-.pdb10
-    padding-bottom: 10px
-.pdt10
-    padding-top: 10px
-.pdt20
-    padding-top: 20px
-.pdb20
-    padding-bottom: 20px
-
-.tal
-    text-align: left
-.tac
-    text-align: center
-
-
-
-.pd20
-    padding: 20px
-.mt10
-    margin-top: 10px
-.mt20
-    margin-top: 20px
-.mt30
-    margin-top: 30px
-.mt40
-    margin-top: 40px
-.mt50
-    margin-top: 50px
-.mb20
-    margin-bottom: 20px
-.m20px_auto
-    margin: 20px auto
-
-.w100px
-    width: 100px
-
-.bgWhite
-    background-color: #fff
+@import "auxiliaryModifiers"

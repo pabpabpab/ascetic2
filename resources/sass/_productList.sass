@@ -25,11 +25,16 @@
     justify-content: flex-start
     flex-wrap: wrap
 
+.product_item__wrapper
+    //border: 1px solid #7a7a7a
+    width: unset
+    box-sizing: border-box
 .product_item
     position: relative
     display: block
-    min-width: 250px
+    min-width: 130px
     width: 250px
+    max-width: 250px
     margin: 10px
     padding: 0
     text-align: left
@@ -47,7 +52,7 @@
         transition: padding-left .3s
         &:hover
             box-shadow: none
-            padding-left: 260px
+            padding-left: 200px
         &:hover .product_item__quick_view_link
             opacity: 0
         &:hover .product_item__bottom_info__absolute
@@ -91,10 +96,24 @@
         flex-direction: row
         justify-content: flex-start
         flex-wrap: nowrap
-    &__quick_view_link
+    &__quick_view_link__wrapper
         position: absolute
-        top: 83px
-        left: 52px
+        top: 0
+        left: 0
+        display: flex
+        justify-content: center
+        align-items: center
+        min-width: 150px
+        width: 250px
+        max-width: 250px
+        height: 185px
+        //border: 1px solid #0000ff
+        opacity: 1
+        pointer-events: none
+    &__quick_view_link
+        //position: absolute
+        //top: 83px
+        //left: 52px
         +font(14px,#585050,400)
         background-color: rgba(255, 255, 255, 0.7)
         border-radius: 20px
@@ -104,7 +123,7 @@
         padding: 7px 15px
         opacity: 0
         transition: opacity .3s
-        //pointer-events: none
+        pointer-events: auto
 
 .product_item__photo_indicator
     padding: 0

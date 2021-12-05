@@ -14,6 +14,7 @@
 
             <div class="photo_manager__content">
                 <h1>Фото товара «{{ product.name }}» {{ product.price }} ₽</h1>
+
                 <div class="photo_manager__photos">
                     <photo-manager-item
                         v-for="(photoName, photoIndex) of product.photo_set"

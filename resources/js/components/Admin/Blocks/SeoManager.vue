@@ -110,7 +110,7 @@ export default {
             const header = {
                 category: `Категория «${categoryName}»`,
                 product: `Товар «${productName}» ${productPrice} ₽`,
-                photo: `Это фото товара «${productName}» ${productPrice} ₽`,
+                photo: `Фото товара «${productName}» ${productPrice} ₽`,
             };
 
             return header[this.entity];

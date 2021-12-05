@@ -14,9 +14,11 @@
 .photo_manager__content_wrapper
     width: 90%
     height: 90%
+    box-sizing: border-box
     margin: auto
     padding: 30px 50px 30px 30px
     background-color: #fff
+    border-radius: 20px 0 20px 20px
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -48,8 +50,8 @@
         color: #fff
 
 .photo_manager__collapse_icon_main
-    top: -20px
-    right: -40px
+    top: -22px
+    right: -43px
 
 .photo_manager__collapse_icon_for_photo_input_panel
     top: 10px
@@ -61,6 +63,7 @@
     width: 100%
     height: 90%
     max-height: 95%
+    box-sizing: border-box
     margin: 0
     padding: 0
     overflow-y: auto
@@ -83,11 +86,16 @@
     flex-wrap: wrap
 
 
+.photo_manager__item__wrapper
+    //border: 1px solid #7a7a7a
+    width: 20%
+    box-sizing: border-box
+
 .photo_manager__item
-    background-color: rgba(255, 255, 255, 0)
+    position: relative
+    display: table
     margin: 0
     padding: 0
-    position: relative
     cursor: move
     &__content
         padding: 10px
@@ -107,12 +115,12 @@
     margin: 0 10px 20px 10px
     transition: padding-left .3s
     &:hover
-        padding-left: 250px
+        padding-left: 180px
+
+
+
 .beneathDraggedPhoto .photo_manager__item__content
     box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)
-
-
-
 
 .photo_input__panel
     position: relative

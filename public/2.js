@@ -114,7 +114,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var header = {
         category: "\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F \xAB".concat(categoryName, "\xBB"),
         product: "\u0422\u043E\u0432\u0430\u0440 \xAB".concat(productName, "\xBB ").concat(productPrice, " \u20BD"),
-        photo: "\u042D\u0442\u043E \u0444\u043E\u0442\u043E \u0442\u043E\u0432\u0430\u0440\u0430 \xAB".concat(productName, "\xBB ").concat(productPrice, " \u20BD")
+        photo: "\u0424\u043E\u0442\u043E \u0442\u043E\u0432\u0430\u0440\u0430 \xAB".concat(productName, "\xBB ").concat(productPrice, " \u20BD")
       };
       return header[this.entity];
     },
