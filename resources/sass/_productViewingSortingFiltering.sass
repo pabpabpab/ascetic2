@@ -1,0 +1,60 @@
+.top_viewing_and_sorting_container
+    width: 100%
+    display: flex
+    align-items: flex-end
+    padding: 5px 0 8px 10px
+
+
+.filter_icon__wrapper
+    margin: 0 5px 0 0
+    padding: 0
+.filter_icon__img
+    margin: 0 0 -10px 0
+    padding: 0
+    height: 30px
+
+.viewing_icon__wrapper
+    margin: 0 22px 0 -5px
+    padding: 0
+.viewing_icon__img
+    margin: 0 0 -12px 0
+    padding: 0
+    height: 35px
+
+
+.products_sorting_modes
+    flex-grow: 10
+    margin: 0
+    padding: 0
+    text-align: left
+    +font(15px, rgb(80, 70, 70), 300)
+    &__link_active
+        text-decoration: none
+        margin-left: 10px
+        +font(15px, rgb(25, 118, 213), 300)
+        border-bottom: 1px dashed rgba(25, 118, 213, 0.5)
+    &__link_inactive
+        text-decoration: none
+        margin-left: 10px
+        +font(15px, rgb(120, 110, 110), 300)
+        border-bottom: 1px dashed rgba(120, 110, 110, 0.5)
+
+
+//.product_filters__icon
+    position: absolute
+    z-index: 3
+    top: 47vh
+    right: 0
+    width: 45px
+    height: 45px
+    background-color: $basicBackgroundColor
+    box-shadow: 0 0 7px rgb(0, 0, 0, 0.2)
+    cursor: pointer
+    border-top-left-radius: 8px
+    border-bottom-left-radius: 8px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+//.product_filters__icon__img
+    width: 30px

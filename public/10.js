@@ -72,7 +72,8 @@ var render = function() {
         _c(
           "span",
           {
-            staticClass: "reload_icon__content",
+            staticClass:
+              "icon_with_hint icon_with_right_hint reload_icon__content",
             attrs: { "data-title": _vm.title }
           },
           [_vm._v("\n        ↻\n    ")]

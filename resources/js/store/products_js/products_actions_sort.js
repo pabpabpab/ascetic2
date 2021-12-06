@@ -7,8 +7,10 @@ export default {
         commit('setSortingMode', mode);
     },
 
-    doSort({dispatch}, mode) {
-        dispatch('sortProducts', {mode, data: []})
+    doSort({dispatch, rootGetters}, mode) {
+        const filteredProducts = [ ...rootGetters['pagination/filtered']('products') ];
+
+        dispatch('sortProducts', { mode, data: filteredProducts })
             .then((sorted) => {
                 dispatch('paginateProducts', sorted);
             })
@@ -19,9 +21,6 @@ export default {
     },
 
     sortProducts({dispatch, rootGetters}, {mode, data}) {
-        //const filteredProducts = [ ...rootGetters['pagination/filtered']('products') ];
-        //let products = data.length > 0 ? data : filteredProducts;
-
         const products = [ ...data ];
 
         const func = {

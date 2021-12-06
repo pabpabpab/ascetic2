@@ -1,6 +1,6 @@
 <template>
     <span v-if="showReloadIcon" @click="reload" class="reload_icon">
-        <span :data-title="title" class="reload_icon__content">
+        <span :data-title="title" class="icon_with_hint icon_with_right_hint reload_icon__content">
             &#8635;
         </span>
     </span>

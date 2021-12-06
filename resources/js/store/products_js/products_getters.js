@@ -46,6 +46,7 @@ export default {
     stateSearchObject: (state) => {return {...state.search};},
     searchTotalParameters: (state) => {return {...state.searchTotalParameters};},
 
+    viewingMode: (state) => state.viewingMode,
     sortingMode: (state) => state.sortingMode,
 
     visibility: (state) => (componentName) => state.visibility[componentName],

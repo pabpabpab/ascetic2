@@ -1,13 +1,14 @@
 <template>
-    <div @click.stop="showOrCloseProductsFilters()" class="product_filters__icon">
-        <img :src="filterIcon" alt="" class="product_filters__icon__img">
+    <div @click.stop="showOrCloseProductsFilters()"
+         :data-title="title"
+         class="icon_with_hint icon_with_left_hint filter_icon__wrapper">
+        <img :src="filterIcon" alt="" class="filter_icon__img">
     </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
 import filterIcon from "./../../../../assets/filterIcon.svg"
-
 
 export default {
     name: "ProductListHeader",
@@ -21,6 +22,9 @@ export default {
         ...mapGetters('products', [
             'visibility'
         ]),
+        title() {
+            return 'Открыть фильтр товаров';
+        },
     },
     methods: {
         showOrCloseProductsFilters() {
@@ -32,12 +36,4 @@ export default {
         },
     },
 }
-/*
-<span class="product_filters__icon__content">
-            &#9776;
-            <span class="product_filters__icon__knob product_filters__icon__knob__1"></span>
-            <span class="product_filters__icon__knob product_filters__icon__knob__2"></span>
-            <span class="product_filters__icon__knob product_filters__icon__knob__3"></span>
-        </span>
- */
 </script>

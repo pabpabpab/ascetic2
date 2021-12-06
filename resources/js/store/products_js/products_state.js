@@ -59,7 +59,8 @@ export default {
         color_ids: [],
     },
 
-    sortingMode: 'position', // вида 'position' / 'priceUp' / 'timeDown'
+    viewingMode: 'bigItems', // вида 'bigItems' / 'smallItems'
+    sortingMode: 'position', // вида 'position' / 'priceUp'
 
     visibility: {
         productsFilters: false,

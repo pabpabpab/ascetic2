@@ -4,19 +4,6 @@
     color: $color
     font-weight: $weight
 
-body, html, #app, .app
-    height: 100% // важно для клика по документу
-    padding: 0
-    margin: 0
-    background-color: rgb(249, 249, 249) //rgb(244, 249, 252)
-
-
-html
-    font-family: 'Source Sans Pro', sans-serif
-
-a
-    text-decoration: none
-
 
 @import "vars"
 @import "show_hide"
@@ -29,6 +16,8 @@ a
 @import "navBar_mobile"
 
 @import "mobileMenu"
+
+@import "iconPrototype"
 
 @import "contextMenu"
 @import "contextMenuIcon"
@@ -49,8 +38,12 @@ a
 @import "formProduct_mobile"
 
 @import "productList"
-@import "productList_mobile2"
-@import "productSorting"
+@import "productListItem"
+@import "productListItem_mobile"
+@import "productListItemSmall"
+
+@import "productViewingSortingFiltering"
+@import "productViewingSortingFiltering_mobile"
 @import "productFilter"
 @import "productFilter_mobile"
 @import "productPhoto"
@@ -84,3 +77,18 @@ a
 @import "reloadIcon"
 
 @import "auxiliaryModifiers"
+
+
+
+body, html, #app, .app
+    height: 100% // важно для клика по документу
+    padding: 0
+    margin: 0
+    background-color: $basicBackgroundColor
+
+
+html
+    font-family: 'Source Sans Pro', sans-serif
+
+a
+    text-decoration: none

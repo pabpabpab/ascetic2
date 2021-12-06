@@ -106,6 +106,10 @@ export default {
     setSortingMode: (state, mode) => {
         state.sortingMode = mode;
     },
+    // режим просмотра
+    setViewingMode: (state, mode) => {
+        state.viewingMode = mode;
+    },
 
 
     // ---------------------при drag and drop --------------------------

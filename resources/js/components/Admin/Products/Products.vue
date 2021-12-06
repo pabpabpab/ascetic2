@@ -7,8 +7,12 @@
             <pagination-mobile v-if="productsLength > 1" entity="products" class="pdb0"></pagination-mobile>
             <pagination v-if="productsLength > 1" entity="products" class="pdb0"></pagination>
 
+            <div class="top_viewing_and_sorting_container">
+                <viewing-icon></viewing-icon>
+                <sorting-modes></sorting-modes>
+                <filters-icon v-if="$route.name === 'Products'"></filters-icon>
+            </div>
 
-            <sorting-modes></sorting-modes>
 
             <search-total-parameters></search-total-parameters>
 
@@ -26,7 +30,6 @@
             <transition name="product_filters">
                 <products-filters v-show="$route.name === 'Products' && visibility('productsFilters')"></products-filters>
             </transition>
-            <filters-icon v-if="$route.name === 'Products'"></filters-icon>
 
             <transition name="fade">
                 <products-context-menu v-if="showContextMenu('Products')"></products-context-menu>
@@ -62,6 +65,7 @@ import ProductsContextMenu from "../ContextMenu/ProductsContextMenu";
 import ProductPhotoManager from "./ProductPhotoManager";
 import SeoManager from "./../Blocks/SeoManager";
 import ProductEditManager from "./ProductEditManager";
+import ViewingIcon from "./ViewingIcon";
 import SortingModes from "./SortingModes";
 import ProductQuickViewManager from "./ProductQuickViewManager";
 import FiltersIcon from "./FiltersIcon";
@@ -72,6 +76,7 @@ export default {
     components: {
         PaginationMobile,
         ProductItem,
+        ViewingIcon,
         SortingModes,
         ProductsFilters,
         SearchTotalParameters,

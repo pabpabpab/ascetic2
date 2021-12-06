@@ -20288,7 +20288,7 @@ var routes = [{
   path: '/admin/help',
   name: 'Help',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ../components/Admin/HelpPage.vue */ "./resources/js/components/Admin/HelpPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(21), __webpack_require__.e(24)]).then(__webpack_require__.bind(null, /*! ../components/Admin/HelpPage.vue */ "./resources/js/components/Admin/HelpPage.vue"));
   }
 }, {
   path: '/admin/user/add',
@@ -25461,10 +25461,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     commit('setSortingMode', mode);
   },
   doSort: function doSort(_ref2, mode) {
-    var dispatch = _ref2.dispatch;
+    var dispatch = _ref2.dispatch,
+        rootGetters = _ref2.rootGetters;
+
+    var filteredProducts = _toConsumableArray(rootGetters['pagination/filtered']('products'));
+
     dispatch('sortProducts', {
       mode: mode,
-      data: []
+      data: filteredProducts
     }).then(function (sorted) {
       dispatch('paginateProducts', sorted);
     }).then(function () {
@@ -25483,8 +25487,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var mode = _ref4.mode,
         data = _ref4.data;
 
-    //const filteredProducts = [ ...rootGetters['pagination/filtered']('products') ];
-    //let products = data.length > 0 ? data : filteredProducts;
     var products = _toConsumableArray(data);
 
     var func = {
@@ -25594,6 +25596,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   searchTotalParameters: function searchTotalParameters(state) {
     return _objectSpread({}, state.searchTotalParameters);
+  },
+  viewingMode: function viewingMode(state) {
+    return state.viewingMode;
   },
   sortingMode: function sortingMode(state) {
     return state.sortingMode;
@@ -25750,6 +25755,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   setSortingMode: function setSortingMode(state, mode) {
     state.sortingMode = mode;
   },
+  // режим просмотра
+  setViewingMode: function setViewingMode(state, mode) {
+    state.viewingMode = mode;
+  },
   // ---------------------при drag and drop --------------------------
   moveProductInProductsById: function moveProductInProductsById(state, _ref) {
     var operatedId = _ref.operatedId,
@@ -25886,8 +25895,10 @@ __webpack_require__.r(__webpack_exports__);
     material_ids: [],
     color_ids: []
   },
+  viewingMode: 'bigItems',
+  // вида 'bigItems' / 'smallItems'
   sortingMode: 'position',
-  // вида 'position' / 'priceUp' / 'timeDown'
+  // вида 'position' / 'priceUp'
   visibility: {
     productsFilters: false,
     productEditManager: false,

@@ -1,5 +1,5 @@
 <template>
-    <div class="product_item__wrapper">
+    <div class="product_item__wrapper" :class="[smallItemWrapperClass]">
         <div ref="product"
              class="product_item"
              :class="[draggedProductClass, beneathDraggedProductClass]"
@@ -116,6 +116,7 @@ export default {
             'draggingOccurs',
         ]),
         ...mapGetters('products', [
+            'viewingMode',
             'sortingMode',
         ]),
 
@@ -123,6 +124,12 @@ export default {
 
         draggedEntity() {
             return this.entity;
+        },
+
+        smallItemWrapperClass() {
+            return {
+                'product_item_small__wrapper': this.viewingMode === 'smallItems',
+            };
         },
 
         draggedProductClass() {
