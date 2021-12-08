@@ -56,6 +56,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -242,20 +243,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductListHeader",
   data: function data() {
     return {
-      filterIcon: _assets_filterIcon_svg__WEBPACK_IMPORTED_MODULE_1___default.a
+      filterIcon: _assets_filterIcon_svg__WEBPACK_IMPORTED_MODULE_1___default.a,
+      totalCount: 0
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['visibility'])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('products', ['visibility', 'stateSearchObject', 'productsMinPrice', 'productsMaxPrice'])), {}, {
     title: function title() {
       return 'Открыть фильтр товаров';
     }
   }),
+  watch: {
+    stateSearchObject: function stateSearchObject(val) {
+      //const total = { ...val };
+      var totalCount = 0;
+
+      if (val.minPrice > this.productsMinPrice) {
+        totalCount += 1;
+      }
+
+      if (val.maxPrice > 0 && val.maxPrice < this.productsMaxPrice) {
+        totalCount += 1;
+      }
+
+      totalCount += val.category_ids.length;
+      totalCount += val.material_ids.length;
+      totalCount += val.color_ids.length; //console.log(total);
+
+      this.totalCount = totalCount; //return totalCount;
+    }
+  },
   methods: {
     showOrCloseProductsFilters: function showOrCloseProductsFilters() {
       if (this.visibility('productsFilters')) {
@@ -1374,13 +1397,22 @@ var render = function() {
               _vm._v(" "),
               _c("td", { staticClass: "pagination_numbers_container" }, [
                 _c("div", { staticClass: "pagination_middle" }, [
-                  _c("a", {
-                    staticClass: "pagination_link pagination_link_active",
-                    attrs: { href: "#" },
-                    domProps: {
-                      textContent: _vm._s(_vm.currentPageNumber(_vm.entity))
-                    }
-                  })
+                  _c(
+                    "a",
+                    {
+                      staticClass: "pagination_link pagination_link_active",
+                      attrs: { href: "#" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.currentPageNumber(_vm.entity)) +
+                          " / " +
+                          _vm._s(_vm.customizedLength(_vm.entity)) +
+                          "\n                "
+                      )
+                    ]
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -1639,7 +1671,13 @@ var render = function() {
       _c("img", {
         staticClass: "filter_icon__img",
         attrs: { src: _vm.filterIcon, alt: "" }
-      })
+      }),
+      _vm._v(" "),
+      _vm.totalCount > 0
+        ? _c("div", { staticClass: "filter_icon__total_indicator" }, [
+            _vm._v(_vm._s(_vm.totalCount))
+          ])
+        : _vm._e()
     ]
   )
 }

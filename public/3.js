@@ -680,6 +680,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -1504,6 +1509,30 @@ var render = function() {
                   staticClass:
                     "single_product__big_photo__scroll_button_right__content"
                 })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.numberOfPhotos > 1,
+                    expression: "numberOfPhotos > 1"
+                  }
+                ],
+                staticClass: "single_product__big_photo__photo_number_indicator"
+              },
+              [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.indexOfMainPhoto + 1) +
+                    "/" +
+                    _vm._s(_vm.numberOfPhotos) +
+                    "\n            "
+                )
               ]
             )
           ])

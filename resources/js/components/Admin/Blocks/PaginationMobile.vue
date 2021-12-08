@@ -18,7 +18,8 @@
             <td class="pagination_numbers_container">
 
                 <div class="pagination_middle">
-                    <a href="#" class="pagination_link pagination_link_active" v-text="currentPageNumber(entity)">
+                    <a href="#" class="pagination_link pagination_link_active">
+                        {{ currentPageNumber(entity) }} / {{ customizedLength(entity) }}
                     </a>
                 </div>
 

@@ -56,6 +56,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -184,13 +185,22 @@ var render = function() {
               _vm._v(" "),
               _c("td", { staticClass: "pagination_numbers_container" }, [
                 _c("div", { staticClass: "pagination_middle" }, [
-                  _c("a", {
-                    staticClass: "pagination_link pagination_link_active",
-                    attrs: { href: "#" },
-                    domProps: {
-                      textContent: _vm._s(_vm.currentPageNumber(_vm.entity))
-                    }
-                  })
+                  _c(
+                    "a",
+                    {
+                      staticClass: "pagination_link pagination_link_active",
+                      attrs: { href: "#" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.currentPageNumber(_vm.entity)) +
+                          " / " +
+                          _vm._s(_vm.customizedLength(_vm.entity)) +
+                          "\n                "
+                      )
+                    ]
+                  )
                 ])
               ]),
               _vm._v(" "),

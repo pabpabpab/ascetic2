@@ -3,15 +3,29 @@
     display: flex
     align-items: flex-end
     padding: 5px 0 8px 10px
-    //border: 1px solid #0000ff
 
 .filter_icon__wrapper
+    position: relative
     margin: 0 5px 0 0
     padding: 0
 .filter_icon__img
     margin: 0 0 -10px 0
     padding: 0
     height: 30px
+.filter_icon__total_indicator
+    position: absolute
+    top: -5px
+    right: -5px
+    min-width: 15px
+    max-width: 30px
+    height: 15px
+    padding: 0 2px
+    border-radius: 10px
+    background-color: #ff5000
+    +font(14px, #fff, 400)
+    line-height: 15px
+    text-align: center
+
 
 .viewing_icon__wrapper
     margin: 0 22px 0 -5px
@@ -43,8 +57,6 @@
 .sorting_modes_for_mobile
     &__wrapper
         width: 150px
-        //border: 1px solid rgb(202, 221, 233)
-        //box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
         border-radius: 5px
         margin: 0 10px -7px 10px
     &__selected_mode__wrapper
@@ -55,14 +67,12 @@
         flex-wrap: nowrap
         width: 100%
         box-sizing: border-box
-        // border: 1px solid #cdd1d4
         cursor: pointer
     &__selected_mode
         flex-grow: 1
         +font(15px, rgb(80, 70, 70), 400)
         height: 35px
         line-height: 35px
-        // border-right: 1px solid #cdd1d4
         border-radius: 5px 0 0 5px
     &__arrow
         display: flex
@@ -108,7 +118,6 @@
             border: 4px solid #f8f8f8
             border-radius: 10px
     &__absolute_item
-        //border: 1px solid #0000ff
         +font(15px, rgb(80, 70, 70), 400)
         text-align: left
         padding: 12px 10px 12px 15px

@@ -56,6 +56,11 @@
                     <div class="single_product__big_photo__scroll_button_right__content">
                     </div>
                 </div>
+
+                <div v-show="numberOfPhotos > 1"
+                     class="single_product__big_photo__photo_number_indicator">
+                    {{ indexOfMainPhoto + 1 }}/{{ numberOfPhotos }}
+                </div>
             </div>
         </div>
 

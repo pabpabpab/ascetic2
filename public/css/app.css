@@ -1290,15 +1290,15 @@ h1 {
 
 @media screen and (max-width: 490px) {
   .category__button_add {
-    width: 270px;
+    width: 280px;
   }
 
   .content_block__categories {
-    padding: 20px 15px 10px 15px;
+    padding: 20px 10px 10px 10px;
   }
 
   .category_item__content {
-    padding: 20px 0;
+    padding: 20px 5px;
   }
 
   .category_item__products_count__link {
@@ -1878,17 +1878,17 @@ h1 {
 
 @media screen and (max-width: 600px) {
   .category_form__wrapper {
-    width: 75%;
+    width: 85%;
   }
 
   .input_text__category_form {
     width: 80%;
   }
-}
 
-@media screen and (max-width: 420px) {
-  .category_form__wrapper {
-    margin-left: 5px;
+  .icon__collapse_category_form {
+    top: 1px;
+    right: 1px;
+    border: 0;
   }
 }
 
@@ -3143,6 +3143,7 @@ h1 {
 }
 
 .filter_icon__wrapper {
+  position: relative;
   margin: 0 5px 0 0;
   padding: 0;
 }
@@ -3151,6 +3152,23 @@ h1 {
   margin: 0 0 -10px 0;
   padding: 0;
   height: 30px;
+}
+
+.filter_icon__total_indicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 15px;
+  max-width: 30px;
+  height: 15px;
+  padding: 0 2px;
+  border-radius: 10px;
+  background-color: #ff5000;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 400;
+  line-height: 15px;
+  text-align: center;
 }
 
 .viewing_icon__wrapper {
@@ -3902,6 +3920,21 @@ h1 {
   overflow: hidden;
 }
 
+.single_product__big_photo__photo_number_indicator {
+  position: absolute;
+  top: 9px;
+  left: 7px;
+  width: 43px;
+  height: 23px;
+  line-height: 23px;
+  font-size: 14px;
+  color: gainsboro;
+  font-weight: 400;
+  background-color: rgba(122, 122, 122, 0.5);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
 .single_product__big_photo__scroll_button {
   display: none;
   position: absolute;
@@ -4195,6 +4228,35 @@ h1 {
   }
 }
 
+@media screen and (max-width: 550px) {
+  .single_product__big_photo__photo_number_indicator {
+    top: 8px;
+    left: 7px;
+    width: 40px;
+    height: 21px;
+    line-height: 21px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .single_product__big_photo__photo_number_indicator {
+    top: 6px;
+    left: 5px;
+    width: 33px;
+    height: 19px;
+    line-height: 19px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .single_product__big_photo__photo_number_indicator {
+    top: 5px;
+    left: 3px;
+  }
+}
+
 .pagination_nav {
   width: 100%;
   padding: 0;
@@ -4466,7 +4528,29 @@ h1 {
   }
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (min-width: 1101px) {
+  [data-pagination=desktop] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  [data-pagination=mobile] {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  [data-pagination=desktop] {
+    display: none;
+  }
+
+  [data-pagination=mobile] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
   .pagination_nav {
     margin-top: 5px;
   }
@@ -4475,38 +4559,19 @@ h1 {
     padding: 6px 10px 6px 10px;
   }
 
-  [data-pagination=desktop] {
-    display: none;
+  .pagination_link {
+    min-width: 42px;
+    width: unset;
+    max-width: 90px;
+    padding: 0 5px;
   }
 
-  [data-pagination=mobile] {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
-}
-
-@media screen and (min-width: 701px) {
-  [data-pagination=desktop] {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+  .pagination_link__arrow_left {
+    padding: 0;
   }
 
-  [data-pagination=mobile] {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  [data-pagination=desktop] {
-    display: none;
-  }
-
-  [data-pagination=mobile] {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+  .pagination_link__arrow_right {
+    padding: 0;
   }
 }
 
@@ -4528,9 +4593,9 @@ h1 {
   top: 30px;
   right: -570px;
   border-radius: 7px;
-  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  background-color: #e0ebf1;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  background-color: #e1e1e1;
 }
 
 .popup_right-enter-active {
@@ -4636,7 +4701,7 @@ h1 {
 }
 
 .popup_right__collapse_icon:hover {
-  background-color: #b0c7d6;
+  background-color: #b9b9b9;
   color: #fff;
 }
 
