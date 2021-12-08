@@ -22672,6 +22672,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       dispatch('closePopupErrorsBox');
       dispatch('contextMenu/closeContextMenuByClick', event);
       dispatch('hideMobileMenu');
+      dispatch('products/closeProductsFilters');
       commit('products/setVisibility', {
         componentName: 'productSortingSelectForMobile',
         value: false

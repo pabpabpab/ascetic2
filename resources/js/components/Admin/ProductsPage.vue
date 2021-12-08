@@ -1,11 +1,11 @@
 <template>
-    <div v-if="defaultSorting" @click="closeProductsFilters()" class="show_block"
+    <div v-if="defaultSorting" class="show_block"
          @mousemove="myDragMove({event: $event, entity: 'Product'})"
          @mouseup="myDragStop({ event: $event, clickedIndex: -1, entity: 'Product' })">
         <product-list-header></product-list-header>
         <products></products>
     </div>
-    <div v-else @click="closeProductsFilters()" class="show_block">
+    <div v-else class="show_block">
         <product-list-header></product-list-header>
         <products></products>
     </div>

@@ -36,6 +36,7 @@ const store = new Vuex.Store({
             dispatch('closePopupErrorsBox');
             dispatch('contextMenu/closeContextMenuByClick', event);
             dispatch('hideMobileMenu');
+            dispatch('products/closeProductsFilters');
             commit('products/setVisibility', {
                 componentName: 'productSortingSelectForMobile',
                 value: false

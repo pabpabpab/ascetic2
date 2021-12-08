@@ -2809,9 +2809,6 @@ var render = function() {
         {
           staticClass: "show_block",
           on: {
-            click: function($event) {
-              return _vm.closeProductsFilters()
-            },
             mousemove: function($event) {
               return _vm.myDragMove({ event: $event, entity: "Product" })
             },
@@ -2829,14 +2826,7 @@ var render = function() {
       )
     : _c(
         "div",
-        {
-          staticClass: "show_block",
-          on: {
-            click: function($event) {
-              return _vm.closeProductsFilters()
-            }
-          }
-        },
+        { staticClass: "show_block" },
         [_c("product-list-header"), _vm._v(" "), _c("products")],
         1
       )
