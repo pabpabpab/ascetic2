@@ -20,7 +20,7 @@
             <div
                 class="selectedCategories__arrow"
                 :class="{selectedCategories__arrow_up: checkboxesAreVisible}">
-                &#709;
+                &#9660;
             </div>
         </div>
 

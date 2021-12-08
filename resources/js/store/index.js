@@ -32,10 +32,14 @@ const store = new Vuex.Store({
         imgFolderPrefix: (state) => state.imgFolderPrefix,
     },
     actions: {
-        closeAllByClickOnAppTag({ dispatch }, event) {
+        closeAllByClickOnAppTag({ dispatch, commit }, event) {
             dispatch('closePopupErrorsBox');
             dispatch('contextMenu/closeContextMenuByClick', event);
             dispatch('hideMobileMenu');
+            commit('products/setVisibility', {
+                componentName: 'productSortingSelectForMobile',
+                value: false
+            });
         },
         scrollWindowBottom() {
             window.scrollBy(0, 1000000);

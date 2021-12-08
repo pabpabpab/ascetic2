@@ -7,9 +7,10 @@
             <pagination-mobile v-if="productsLength > 1" entity="products" class="pdb0"></pagination-mobile>
             <pagination v-if="productsLength > 1" entity="products" class="pdb0"></pagination>
 
-            <div class="top_viewing_and_sorting_container">
+            <div class="top_viewing_sorting_filtering_container">
                 <viewing-icon></viewing-icon>
                 <sorting-modes></sorting-modes>
+                <sorting-modes-for-mobile></sorting-modes-for-mobile>
                 <filters-icon v-if="$route.name === 'Products'"></filters-icon>
             </div>
 
@@ -67,9 +68,11 @@ import SeoManager from "./../Blocks/SeoManager";
 import ProductEditManager from "./ProductEditManager";
 import ViewingIcon from "./ViewingIcon";
 import SortingModes from "./SortingModes";
+import SortingModesForMobile from "./SortingModesForMobile";
 import ProductQuickViewManager from "./ProductQuickViewManager";
 import FiltersIcon from "./FiltersIcon";
 import PaginationMobile from "../Blocks/PaginationMobile";
+
 
 export default {
     name: "Products",
@@ -78,6 +81,7 @@ export default {
         ProductItem,
         ViewingIcon,
         SortingModes,
+        SortingModesForMobile,
         ProductsFilters,
         SearchTotalParameters,
         Pagination,

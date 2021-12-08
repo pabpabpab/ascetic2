@@ -60,12 +60,13 @@ export default {
     },
 
     viewingMode: 'bigItems', // вида 'bigItems' / 'smallItems'
-    sortingMode: 'position', // вида 'position' / 'priceUp'
+    sortingMode: 'position', // вида 'position' / 'priceUp' / 'priceDown'
 
     visibility: {
         productsFilters: false,
         productEditManager: false,
         productPhotoManager: false,
         productQuickViewManager: false,
+        productSortingSelectForMobile: false,
     },
 };

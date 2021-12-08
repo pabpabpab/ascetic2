@@ -1,5 +1,6 @@
 import sortByPosition from './functions/sortByPosition';
 import sortByPriceUp from './functions/sortByPriceUp';
+import sortByPriceDown from './functions/sortByPriceDown';
 
 export default {
 
@@ -26,6 +27,7 @@ export default {
         const func = {
             position: sortByPosition,
             priceUp: sortByPriceUp,
+            priceDown: sortByPriceDown,
         }
 
         return func[mode](products);

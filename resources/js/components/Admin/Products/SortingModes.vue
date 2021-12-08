@@ -5,9 +5,9 @@
             :class="defaultSortingLinkClass">
             По умолчанию
         </a>
-        <a href="#" @click.prevent="doSort('priceUp')"
-           :class="priceSortingLinkClass">
-            По цене
+        <a href="#" @click.prevent="doSort(priceModeValue)"
+           :class="priceSortingLinkClass"
+            v-html="priceSortingLinkText">
         </a>
     </div>
 </template>
@@ -29,10 +29,27 @@ export default {
         },
         priceSortingLinkClass() {
             return {
-                'products_sorting_modes__link_inactive': this.sortingMode !== 'priceUp',
-                'products_sorting_modes__link_active': this.sortingMode === 'priceUp',
+                'products_sorting_modes__link_inactive': this.sortingMode.indexOf('price') === -1,
+                'products_sorting_modes__link_active': this.sortingMode.indexOf('price') >= 0,
             }
         },
+        priceSortingLinkText() {
+            const textBook = {
+                position: 'Цене',
+                priceUp: 'Цене &uarr;',
+                priceDown: 'Цене &darr;',
+            }
+            return textBook[this.sortingMode];
+        },
+        priceModeValue() {
+            const valueBook = {
+                position: 'priceUp',
+                priceUp: 'priceDown',
+                priceDown: 'priceUp',
+            }
+            return valueBook[this.sortingMode];
+        },
+
     },
     methods: {
         doSort(mode) {

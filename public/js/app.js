@@ -22667,10 +22667,15 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   },
   actions: {
     closeAllByClickOnAppTag: function closeAllByClickOnAppTag(_ref, event) {
-      var dispatch = _ref.dispatch;
+      var dispatch = _ref.dispatch,
+          commit = _ref.commit;
       dispatch('closePopupErrorsBox');
       dispatch('contextMenu/closeContextMenuByClick', event);
       dispatch('hideMobileMenu');
+      commit('products/setVisibility', {
+        componentName: 'productSortingSelectForMobile',
+        value: false
+      });
     },
     scrollWindowBottom: function scrollWindowBottom() {
       window.scrollBy(0, 1000000);
@@ -23888,6 +23893,24 @@ __webpack_require__.r(__webpack_exports__);
 function sortByPosition(items) {
   return items.sort(function (prev, next) {
     return next.position - prev.position;
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/store/products_js/functions/sortByPriceDown.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/store/products_js/functions/sortByPriceDown.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return sortByPriceDown; });
+function sortByPriceDown(items) {
+  return items.sort(function (prev, next) {
+    return next.price - prev.price;
   });
 }
 
@@ -25441,6 +25464,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_sortByPosition__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/sortByPosition */ "./resources/js/store/products_js/functions/sortByPosition.js");
 /* harmony import */ var _functions_sortByPriceUp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/sortByPriceUp */ "./resources/js/store/products_js/functions/sortByPriceUp.js");
+/* harmony import */ var _functions_sortByPriceDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/sortByPriceDown */ "./resources/js/store/products_js/functions/sortByPriceDown.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -25452,6 +25476,7 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symb
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -25491,7 +25516,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     var func = {
       position: _functions_sortByPosition__WEBPACK_IMPORTED_MODULE_0__["default"],
-      priceUp: _functions_sortByPriceUp__WEBPACK_IMPORTED_MODULE_1__["default"]
+      priceUp: _functions_sortByPriceUp__WEBPACK_IMPORTED_MODULE_1__["default"],
+      priceDown: _functions_sortByPriceDown__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     return func[mode](products);
   }
@@ -25898,12 +25924,13 @@ __webpack_require__.r(__webpack_exports__);
   viewingMode: 'bigItems',
   // вида 'bigItems' / 'smallItems'
   sortingMode: 'position',
-  // вида 'position' / 'priceUp'
+  // вида 'position' / 'priceUp' / 'priceDown'
   visibility: {
     productsFilters: false,
     productEditManager: false,
     productPhotoManager: false,
-    productQuickViewManager: false
+    productQuickViewManager: false,
+    productSortingSelectForMobile: false
   }
 });
 

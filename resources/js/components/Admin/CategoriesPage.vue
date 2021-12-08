@@ -48,10 +48,8 @@ export default {
     computed: {
         ...mapGetters('dragAndDropByY', [
             'currentIndex',
+            'draggingOccurs',
         ]),
-        draggingOccurs() {
-            return this.currentIndex > -1;
-        },
         getHeader() {
             const entity = this.$route.params.entity;
             return this.header[entity];

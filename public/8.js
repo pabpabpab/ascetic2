@@ -611,10 +611,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('dragAndDropByY', ['currentIndex'])), {}, {
-    draggingOccurs: function draggingOccurs() {
-      return this.currentIndex > -1;
-    },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])('dragAndDropByY', ['currentIndex', 'draggingOccurs'])), {}, {
     getHeader: function getHeader() {
       var entity = this.$route.params.entity;
       return this.header[entity];

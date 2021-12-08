@@ -700,7 +700,7 @@ var render = function() {
             staticClass: "selectedCategories__arrow",
             class: { selectedCategories__arrow_up: _vm.checkboxesAreVisible }
           },
-          [_vm._v("\n            ˅\n        ")]
+          [_vm._v("\n            ▼\n        ")]
         )
       ]
     ),
