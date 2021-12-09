@@ -26,8 +26,8 @@ export default {
     components: {
         SearchUserPanel: () => import('./Users/SearchUserPanel.vue'),
         Users: () => import('./Users/Users.vue'),
-        Pagination: () => import('./Blocks/Pagination.vue'),
-        PaginationMobile: () => import('./Blocks/PaginationMobile.vue'),
+        Pagination: () => import('./Pagination/Pagination.vue'),
+        PaginationMobile: () => import('./Pagination/PaginationMobile.vue'),
         ReloadIcon: () => import('./Blocks/ReloadIcon.vue'),
     },
     computed: {

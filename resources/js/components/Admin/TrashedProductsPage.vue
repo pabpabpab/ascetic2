@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ProductListHeader from "./Products/ProductListHeader";
+import ProductListHeader from "./Products/ListOfProducts/ProductListHeader";
 import TrashedProducts from "./Products/TrashedProducts/TrashedProducts";
 
 export default {

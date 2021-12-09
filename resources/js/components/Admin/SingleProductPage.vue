@@ -20,11 +20,11 @@
 
 <script>
 import {mapGetters} from "vuex";
-import SingleProduct from "./Products/SingleProduct";
+import SingleProduct from "./Products/SingleProduct/SingleProduct";
 import ProductsContextMenu from "./ContextMenu/ProductsContextMenu";
-import ProductPhotoManager from "./Products/ProductPhotoManager";
-import SeoManager from "./Blocks/SeoManager";
-import ProductEditManager from "./Products/ProductEditManager";
+import ProductPhotoManager from "./Products/PhotoManager/PhotoManager";
+import SeoManager from "./SeoManager/SeoManager";
+import ProductEditManager from "./Products/EditManager/ProductEditManager";
 
 
 export default {

@@ -32,7 +32,7 @@
             Режим перетаскивания доступен в момент когда курсор мыши обретает вид
             <span class="helpPage__cursor_move__span">четырехсторонней стрелки</span>.
             Перетаскивание товаров удобнее в режиме мелких элементов, доступном по значку
-            <img :src="smallViewingIcon" alt="" class="smallViewingIcon">.
+            <img :src="smallViewingIcon" alt="" class="helpPage__smallViewingIcon">.
             <br><br><br>
             <b>Перемещение фото в отдельном товаре.</b><br><br>
             - Поменять порядок расположения фото в каждом отдельном товаре можно мышью в фото-менеджере,
@@ -68,10 +68,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-    .smallViewingIcon {
-        width: 20px;
-        margin-bottom: -5px;
-    }
-</style>

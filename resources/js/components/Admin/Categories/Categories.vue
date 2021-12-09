@@ -29,7 +29,7 @@ import CategoryItemEditForm from "./CategoryItemEditForm";
 import CategoryItem from "./CategoryItem";
 import CategoriesContextMenu from "../ContextMenu/CategoriesContextMenu";
 import categoriesItemsMethods from './someMethods/categoriesItemsMethods';
-import SeoManager from "./../Blocks/SeoManager";
+import SeoManager from "../SeoManager/SeoManager";
 
 export default {
     name: "Categories",

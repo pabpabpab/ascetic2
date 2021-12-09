@@ -28,9 +28,9 @@
 <script>
 import {mapGetters} from "vuex";
 import TrashedProductItem from "./TrashedProductItem";
-import Pagination from "../../Blocks/Pagination";
+import Pagination from "../../Pagination/Pagination";
 import ProductsContextMenu from "../../ContextMenu/ProductsContextMenu";
-import ProductEditManager from "./../ProductEditManager";
+import ProductEditManager from "../EditManager/ProductEditManager";
 export default {
     name: "ProductsTrashed",
     components: {

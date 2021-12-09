@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Products from "./Products/Products";
-import ProductListHeader from "./Products/ProductListHeader";
+import Products from "./Products/ListOfProducts/Products";
+import ProductListHeader from "./Products/ListOfProducts/ProductListHeader";
 import {mapActions, mapGetters} from "vuex";
 
 export default {
