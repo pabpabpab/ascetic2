@@ -5,13 +5,11 @@ const routes = [
         name: 'Main',
         component: () => import('../components/Admin/MainPage.vue'),
     },
-
     {
         path: '/admin/help',
         name: 'Help',
         component: () => import('../components/Admin/HelpPage.vue'),
     },
-
     {
         path: '/admin/user/add',
         name: 'SaveUser',
@@ -22,15 +20,11 @@ const routes = [
         name: 'Users',
         component: () => import('../components/Admin/UsersPage.vue'),
     },
-
-
     {
         path: '/admin/products/categories/:entity',
         name: 'Categories',
         component: () => import('../components/Admin/CategoriesPage.vue'),
     },
-
-
     {
         path: '/admin/product/add',
         name: 'SaveProduct',
@@ -56,11 +50,9 @@ const routes = [
         name: 'TrashedProducts',
         component: () => import('../components/Admin/TrashedProductsPage.vue'),
     },
-
-
     {
         path: '*',
-        redirect: '/',
+        redirect: '/admin',
     },
 ];
 
