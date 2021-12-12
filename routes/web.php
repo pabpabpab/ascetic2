@@ -1,21 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\ProductController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('main');
+Route::get('/', [ProductController::class, 'index'])
+    ->name('main');
+
+
+Route::get('/products/by/category/{category:slug}', [ProductController::class, 'getByCategory'])
+    ->name('products.byCategory');
+Route::get('/products/by/material/{material:slug}', [ProductController::class, 'getByMaterial'])
+    ->name('products.byMaterial');
+Route::get('/products/by/color/{color:slug}', [ProductController::class, 'getByColor'])
+    ->name('products.byColor');
+
+
+Route::get('/product/{slug}-{product}', [ProductController::class, 'getOne'])
+    ->name('products.single');
+
+
+
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
     ->name('home');
@@ -25,7 +31,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 Route::get('/admin', function () {
     return view('admin.index_vuex');
 })->middleware(['auth', 'role:admin']);
-
 
 Route::get('/admin/{any}', function ($any) {
     return view('admin.index_vuex');

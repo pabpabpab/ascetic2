@@ -37,13 +37,13 @@
                 </template>
 
                 <div v-if="numberOfPhotos > 1" class="product_item__photo_indicator">
-            <span v-for="n in numberOfPhotos" :key="n"
-                  class="product_item__photo_indicator_item"
-                  :class="{
-                     product_item__photo_indicator_inactive: indexOfMainPhoto + 1 !== n,
-                     product_item__photo_indicator_active: indexOfMainPhoto + 1 === n,
-                  }">
-            </span>
+                    <span v-for="n in numberOfPhotos" :key="n"
+                        class="product_item__photo_indicator_item"
+                        :class="{
+                            product_item__photo_indicator_inactive: indexOfMainPhoto + 1 !== n,
+                            product_item__photo_indicator_active: indexOfMainPhoto + 1 === n,
+                        }">
+                    </span>
                 </div>
 
                 <div :style="{ cursor: cursorType }" :data-anchor_for_dragging="anchorForDragging">
@@ -84,7 +84,7 @@
                     }
                 })">
                 &#8942;
-        </span>
+            </span>
 
         </div>
     </div>

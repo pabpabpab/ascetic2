@@ -3,62 +3,36 @@
     color: $color
     font-weight: $weight
 
+body, html, #app
+    height: 100%
+    padding: 0
+    margin: 0
+    font-family: 'Roboto', sans-serif
 
-
-.mauto
-    margin: 0 auto
-.display-none
-    display: none
-.display-block
-    display: block
-.display-flex
-    display: flex
-.relative
-    position: relative
-
-
-
-.pdl0
-    padding-left: 0
-.pdr0
-    padding-right: 0
-
-.tal
-    text-align: left
-.taj
-    text-align: justify
-
-
-.show_block
-    visibility: visible
-    opacity: 1
-    animation: showBlock .5s
-@keyframes showBlock
-    from, to
-        opacity: 0
-        visibility: hidden
-    100%
-        opacity: 1
-        visibility: visible
-
-.hide_block
-    visibility: hidden
-    opacity: 0
-    animation: hideBlock .5s
-@keyframes hideBlock
-    from, to
-        opacity: 1
-        visibility: visible
-    100%
-        opacity: 0
-        visibility: hidden
+a
+    text-decoration: none
 
 
 #flashMessage
     display: none
 
 
+
+@import "show_hide"
+
+@import "h1"
+@import "content"
+
+@import "mainMenu/topMenu"
+
 @import "jsRegisterLoginForm"
 @import "absoluteMessage"
-@import "topMenu"
 @import "authBlock"
+
+@import "product/productList"
+@import "product/productListItem"
+
+@import "auxiliaryModifiers"
+
+
+

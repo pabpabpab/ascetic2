@@ -1,0 +1,124 @@
+
+.navBar
+    position: fixed
+    z-index: 10
+    width: 100%
+    display: flex
+    justify-content: space-between
+    padding: 0
+    background-color: #FFF
+    //box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+    border-bottom: 1px solid #ddd
+    &_left
+        display: flex
+        justify-content: left
+        margin: 0
+        padding: 0
+    &__ul
+        display: flex
+        margin: 0
+        padding: 0
+    &__li
+        position: relative
+        margin: 0
+        list-style-type: none
+    &__li_auth
+        margin: 0
+        list-style-type: none
+        display: flex
+        align-items: center
+        justify-content: flex-end
+    &__link
+        font-family: 'Oswald', sans-serif
+        +font(18px, rgb(0, 0, 0), 400)
+        // letter-spacing: 1px
+        display: block
+        padding: 20px 30px
+        background-color: #fff
+        border-radius: 1px
+        border-bottom: 2px solid #fff
+        &:hover
+            border-bottom: 2px solid #000
+        &_active
+            border-bottom: 2px solid #000
+    &__link_account_exit
+        padding: 20px 5px
+        &:hover
+            border-bottom: 2px solid #fff
+
+.navBar__link__trigram
+    position: relative
+    display: inline
+    padding: 2px 10px 10px 8px
+    //border: 1px solid #0000ec
+    margin-left: 2px
+    &::after
+        content: '\2630'
+        +font(13px, #000, 400)
+
+.navBar__drop_menu
+    position: absolute
+    z-index: 3
+    top: 28px
+    right: -15px
+    border-radius: 5px
+    background-color: #fff
+    padding: 2px
+    //border: 1px solid #ececec
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+    display: none
+    &::after
+        content: ''
+        display: block
+        width: 10px
+        height: 10px
+        background-color: #fff
+        position: absolute
+        top: -6px
+        right: 26px
+        transform: rotate(45deg)
+        border-top: 1px solid #e8e8e8
+        border-left: 1px solid #e8e8e8
+    &__ul
+        margin: 0
+        padding: 0
+    &__li
+        margin: 0
+        list-style-type: none
+    &__link
+        +font(17px, rgb(0, 0, 0), 400)
+        display: block
+        padding: 10px 20px
+        background-color: #fff
+        border-radius: 1px
+        border-bottom: 1px solid rgb(255, 255, 255, 0.5)
+        &:hover
+            color: rgb(25, 118, 213)
+
+
+
+.navBar__link__trigram:hover .navBar__drop_menu
+    display: block
+
+
+
+.logo__link
+    font-family: 'Oswald', sans-serif
+    +font(18px, rgb(0, 0, 0), 700) // rgb(25, 118, 213)
+    letter-spacing: 1px
+    padding: 19px 20px
+    margin: 0
+    border-bottom: 2px solid #fff
+    &:hover
+        border-bottom: 2px solid #000
+
+
+.personal_account__icon
+    width: 27px
+    cursor: pointer
+
+.account_exit__icon
+    width: 20px
+    cursor: pointer
+    margin-bottom: -5px
+
