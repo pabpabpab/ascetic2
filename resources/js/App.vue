@@ -1,6 +1,6 @@
 <template>
     <div id="app" class="app" @click="closeAllByClickOnAppTag($event);">
-        <nav-bar></nav-bar>
+        <top-menu></top-menu>
         <transition name="mobile_menu">
             <mobile-menu v-if="mobileMenuVisibility"></mobile-menu>
         </transition>
@@ -31,7 +31,7 @@
 <script>
 
 import {mapActions, mapGetters} from 'vuex';
-import NavBar from "./components/Admin/NavBar";
+import TopMenu from "./components/Admin/TopMenu";
 import PopupErrors from "./components/Admin/Blocks/PopupErrors";
 import AbsoluteFlashMessage from "./components/Admin/Blocks/AbsoluteFlashMessage";
 import ConfirmationDialogBox from "./components/Admin/Blocks/ConfirmationDialogBox";
@@ -43,7 +43,7 @@ export default {
     name: 'app',
     components: {
         MobileMenu,
-        NavBar,
+        TopMenu,
         AbsoluteFlashMessage,
         PopupErrors,
         ConfirmationDialogBox,

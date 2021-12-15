@@ -492,7 +492,7 @@ function getFailedLoginHtml(css) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getAuthenticatedMenuHtml; });
 function getAuthenticatedMenuHtml(userName) {
-  return "<div id=\"authMenuContent\" class=\"display-flex\">\n                <a href=\"/home\" class=\"navBar__link\">".concat(userName, "</a>\n                <a href=\"/logout\" title=\"\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430\" class=\"navBar__link navBar__link_account_exit\">\n                    <img alt=\"\" src=\"images/accountExitIcon.svg\" class=\"account_exit__icon mr15\">\n                </a>\n            </div>");
+  return "<div id=\"authMenuContent\" class=\"display-flex\">\n                <a href=\"/home\" class=\"top_menu__link\">".concat(userName, "</a>\n                <a href=\"/logout\" title=\"\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430\" class=\"top_menu__link top_menu__link_account_exit\">\n                    <img alt=\"\" src=\"images/accountExitIcon.svg\" class=\"account_exit__icon mr15\">\n                </a>\n            </div>");
 }
 
 /***/ }),

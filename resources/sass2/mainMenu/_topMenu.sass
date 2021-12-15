@@ -1,15 +1,15 @@
 
-.navBar
+.top_menu
     position: fixed
     z-index: 10
     width: 100%
     display: flex
     justify-content: space-between
     padding: 0
-    background-color: #FFF
+    background-color: #fff
     //box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
     border-bottom: 1px solid #ddd
-    &_left
+    &__left
         display: flex
         justify-content: left
         margin: 0
@@ -19,9 +19,9 @@
         margin: 0
         padding: 0
     &__li
-        position: relative
+        //position: relative
         margin: 0
-        list-style-type: none
+        //list-style-type: none
     &__li_auth
         margin: 0
         list-style-type: none
@@ -46,59 +46,55 @@
         &:hover
             border-bottom: 2px solid #fff
 
-.navBar__link__trigram
-    position: relative
-    display: inline
-    padding: 2px 10px 10px 8px
-    //border: 1px solid #0000ec
-    margin-left: 2px
+.top_menu__link_with_drop_menu
+    display: block
     &::after
         content: '\2630'
         +font(13px, #000, 400)
+        margin: 0 0 0 10px
 
-.navBar__drop_menu
+.top_menu__drop_menu
     position: absolute
     z-index: 3
-    top: 28px
-    right: -15px
-    border-radius: 5px
+    top: 70px
+    min-height: 70px
+    left: 0
+    min-width: 100%
+    margin: 0
+    padding: 0
+    box-sizing: border-box
     background-color: #fff
-    padding: 2px
-    //border: 1px solid #ececec
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+    border-bottom: 1px solid #ddd
     display: none
-    &::after
-        content: ''
-        display: block
-        width: 10px
-        height: 10px
-        background-color: #fff
-        position: absolute
-        top: -6px
-        right: 26px
-        transform: rotate(45deg)
-        border-top: 1px solid #e8e8e8
-        border-left: 1px solid #e8e8e8
+    align-items: center
+    flex-wrap: wrap
+    &:hover
+        display: flex
     &__ul
         margin: 0
         padding: 0
+        width: 100%
+        display: flex
+        align-items: center
+        flex-wrap: wrap
     &__li
-        margin: 0
         list-style-type: none
     &__link
-        +font(17px, rgb(0, 0, 0), 400)
+        font-family: 'Oswald', sans-serif
+        +font(18px, #000, 400)
         display: block
         padding: 10px 20px
-        background-color: #fff
-        border-radius: 1px
-        border-bottom: 1px solid rgb(255, 255, 255, 0.5)
         &:hover
-            color: rgb(25, 118, 213)
+            color: #777
+
+
+.top_menu__link_with_drop_menu:hover + .top_menu__drop_menu
+    display: flex
 
 
 
-.navBar__link__trigram:hover .navBar__drop_menu
-    display: block
+
+
 
 
 
@@ -111,7 +107,6 @@
     border-bottom: 2px solid #fff
     &:hover
         border-bottom: 2px solid #000
-
 
 .personal_account__icon
     width: 27px

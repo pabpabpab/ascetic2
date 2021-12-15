@@ -1,22 +1,22 @@
 <template>
-    <nav class="navBar">
+    <nav class="top_menu">
 
-        <div class="navBar_left">
+        <div class="top_menu__left">
 
             <a href="http://asceticshop.ru" data-logo="link" class="logo__link">
                 AsceticShop.ru
             </a>
 
-            <ul data-menu="left-short" class="navBar__ul">
-                <li class="navBar__li">
+            <ul data-menu="left-short" class="top_menu__ul">
+                <li class="top_menu__li">
                     <router-link :to="{ name: 'SaveProduct' }" :class="saveProductLinkClass">
                         Добавить
                     </router-link>
                 </li>
-                <li class="navBar__li">
+                <li class="top_menu__li">
                     <router-link
                         :to="{ name: 'Products' }"
-                        class="navBar__link"
+                        class="top_menu__link"
                         :class="productsLinkClass">
                         Товары
                     </router-link>
@@ -24,27 +24,27 @@
             </ul>
 
 
-            <ul data-menu="left" class="navBar__ul">
-                <li class="navBar__li">
+            <ul data-menu="left" class="top_menu__ul">
+                <li class="top_menu__li">
                     <router-link :to="{ name: 'SaveProduct' }" :class="saveProductLinkClass">
                         Добавить товар
                     </router-link>
                 </li>
 
-                <li class="navBar__li">
+                <li class="top_menu__li">
                     <router-link
                         :to="{ name: 'Products' }"
-                        class="navBar__link"
+                        class="top_menu__link"
                         :class="productsLinkClass">
                         Товары
 
-                        <div class="navBar__link__trigram">
-                            <div class="navBar__drop_menu show_block">
-                                <ul class="navBar__drop_menu__ul">
-                                    <li class="navBar__drop_menu__li">
+                        <div class="top_menu__link__trigram">
+                            <div class="top_menu__drop_menu show_block">
+                                <ul class="top_menu__drop_menu__ul">
+                                    <li class="top_menu__drop_menu__li">
                                         <router-link
                                             :to="{ name: 'TrashedProducts' }"
-                                            class="navBar__drop_menu__link">
+                                            class="top_menu__drop_menu__link">
                                             Удаленные
                                         </router-link>
                                     </li>
@@ -55,33 +55,33 @@
                     </router-link>
                 </li>
 
-                <li data-li="category" class="navBar__li">
+                <li data-li="category" class="top_menu__li">
                     <router-link
                         :to="{ name: 'Categories', params: { entity: 'categories' } }"
-                        class="navBar__link"
+                        class="top_menu__link"
                         :class="categoriesLinkClass">Категории
 
-                        <div class="navBar__link__trigram">
-                            <div class="navBar__drop_menu show_block">
-                                <ul class="navBar__drop_menu__ul">
-                                    <li class="navBar__drop_menu__li">
+                        <div class="top_menu__link__trigram">
+                            <div class="top_menu__drop_menu show_block">
+                                <ul class="top_menu__drop_menu__ul">
+                                    <li class="top_menu__drop_menu__li">
                                         <router-link
                                             :to="{ name: 'Categories', params: { entity: 'categories' } }"
-                                            class="navBar__drop_menu__link tal">
+                                            class="top_menu__drop_menu__link tal">
                                             Категории
                                         </router-link>
                                     </li>
-                                    <li class="navBar__drop_menu__li tal">
+                                    <li class="top_menu__drop_menu__li tal">
                                         <router-link
                                             :to="{ name: 'Categories', params: { entity: 'materials' } }"
-                                            class="navBar__drop_menu__link">
+                                            class="top_menu__drop_menu__link">
                                             Материалы
                                         </router-link>
                                     </li>
-                                    <li class="navBar__drop_menu__li">
+                                    <li class="top_menu__drop_menu__li">
                                         <router-link
                                             :to="{ name: 'Categories', params: { entity: 'colors' } }"
-                                            class="navBar__drop_menu__link tal">
+                                            class="top_menu__drop_menu__link tal">
                                             Цвета
                                         </router-link>
                                     </li>
@@ -95,21 +95,21 @@
         </div>
 
 
-        <ul data-menu="right" class="navBar__ul">
+        <ul data-menu="right" class="top_menu__ul">
 
-            <li class="navBar__li">
+            <li class="top_menu__li">
                 <router-link
                     :to="{ name: 'Users' }"
-                    class="navBar__link"
+                    class="top_menu__link"
                     :class="usersLinkClass">
                     Пользователи
 
-                    <div class="navBar__link__trigram">
-                        <div class="navBar__drop_menu show_block">
-                            <ul class="navBar__drop_menu__ul">
-                                <li class="navBar__drop_menu__li">
+                    <div class="top_menu__link__trigram">
+                        <div class="top_menu__drop_menu show_block">
+                            <ul class="top_menu__drop_menu__ul">
+                                <li class="top_menu__drop_menu__li">
                                     <router-link :to="{ name: 'SaveUser' }"
-                                                 class="navBar__drop_menu__link">
+                                                 class="top_menu__drop_menu__link">
                                         Создать
                                     </router-link>
                                 </li>
@@ -120,7 +120,7 @@
                 </router-link>
             </li>
 
-            <li class="navBar__li">
+            <li class="top_menu__li">
                 <router-link :to="{ name: 'Help' }" :class="mainPageLinkClass">
                     Помощь
                 </router-link>
@@ -128,9 +128,9 @@
         </ul>
 
 
-        <ul data-menu="right" data-mobile-menu="icon" class="navBar__ul">
+        <ul data-menu="right" data-mobile-menu="icon" class="top_menu__ul">
             <li @click.stop="showMobileMenu()"
-                class="navBar__li navBar__li__mobile_menu_icon">
+                class="top_menu__li top_menu__li__mobile_menu_icon">
                 &#9776;
             </li>
         </ul>
@@ -141,37 +141,37 @@
 import {mapActions} from "vuex";
 
 export default {
-    name: 'NavBar',
+    name: 'top_menu',
     computed: {
         saveProductLinkClass() {
             return {
-                'navBar__link': true,
-                'navBar__link_active': this.$route.name === 'SaveProduct',
+                'top_menu__link': true,
+                'top_menu__link_active': this.$route.name === 'SaveProduct',
             }
         },
         productsLinkClass() {
             return {
-                'navBar__link': true,
-                'navBar__link_active': this.$route.name === 'Products',
+                'top_menu__link': true,
+                'top_menu__link_active': this.$route.name === 'Products',
             }
         },
         categoriesLinkClass() {
             const cats = ['categories', 'materials', 'colors'];
             return {
-                'navBar__link': true,
-                'navBar__link_active': cats.includes(this.$route.params.entity),
+                'top_menu__link': true,
+                'top_menu__link_active': cats.includes(this.$route.params.entity),
             }
         },
         usersLinkClass() {
             return {
-                'navBar__link': true,
-                'navBar__link_active': this.$route.name === 'Users',
+                'top_menu__link': true,
+                'top_menu__link_active': this.$route.name === 'Users',
             }
         },
         mainPageLinkClass() {
             return {
-                'navBar__link': true,
-                'navBar__link_active': this.$route.name === 'Help',
+                'top_menu__link': true,
+                'top_menu__link_active': this.$route.name === 'Help',
             }
         },
     },

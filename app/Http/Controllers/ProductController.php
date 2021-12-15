@@ -10,14 +10,38 @@ use App\Models\ProductSEOText;
 use App\Services\PhotoManager\PhotoSeoService;
 use App\Services\Product\ListService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
 {
     public function index(ListService $service)
     {
-        $products = $service->getAll('active');
+        // установить стартовую страницу для пагинатора
+        $currentPage = 1;
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
+
+        $products = $service->getAll('active')
+            ->paginate(3);
         return view('products.index', ['products' => $products]);
     }
+
+
+    public function list(ListService $service, $pageNumber)
+    {
+        // установить стартовую страницу для пагинатора
+        $currentPage = $pageNumber;
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
+
+        $products = $service->getAll('active')
+            ->paginate(3);
+        return view('products.index', ['products' => $products]);
+    }
+
+
 
     public function getByCategory(ListService $service, Category $category)
     {

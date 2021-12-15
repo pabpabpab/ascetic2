@@ -1,20 +1,26 @@
-@extends('layouts.main')
+@extends('layouts.main-layout')
 
 @php
     $routeName = \Illuminate\Support\Facades\Route::currentRouteName();
-    $pageTitle = 'Главная страница';
+
+    $pageTitle = 'Товары из дерева';
+    $pageDescription = 'Товары из дерева на заказ';
+
     if ($routeName === 'products.byCategory') {
-        $pageTitle = 'Товары категории ' . $category->name;
+        $pageTitle = $categorySeo->page_title ?? 'Товары категории ' . $category->name;
+        $pageDescription = $categorySeo->page_description ?? 'Список товаров категории ' . $category->name;
     } elseif ($routeName === 'products.byMaterial') {
         $pageTitle = 'Товары из материала ' . $category->name;
+        $pageDescription = 'Товары из материала ' . $category->name;
     } elseif ($routeName === 'products.byColor') {
         $pageTitle = 'Товары цвета ' . $category->name;
+        $pageDescription = 'Товары цвета ' . $category->name;
     }
-    //dd($routeName);
 @endphp
 
 
 @section('title'){{ $pageTitle }}@endsection
+@section('description'){{ $pageDescription }}@endsection
 
 
 @section('content')
@@ -125,4 +131,8 @@
             </div>
         @endforeach
     </div>
+
+
+
+    {{ $products->links('pagination.products-pagination') }}
 @endsection

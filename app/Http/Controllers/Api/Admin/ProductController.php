@@ -28,7 +28,7 @@ class ProductController extends Controller
 {
     public function getAll(ListService $service, $whichProducts): JsonResponse
     {
-        $products = $service->getAll($whichProducts);
+        $products = $service->getAll($whichProducts)->get();
         return response()->json([
             'products' => $products,
             'seo' => ProductSEOText::query()->get()
@@ -40,7 +40,7 @@ class ProductController extends Controller
         // $category определена в роуте как {category:slug}
         return response()->json([
             'category' => $category,
-            'products' => $service->getAll('active'), // все товары
+            'products' => $service->getAll('active')->get(), // все товары
             'seo' => ProductSEOText::query()->get()
         ]);
     }
@@ -50,7 +50,7 @@ class ProductController extends Controller
         // $material определена в роуте как {material:slug}
         return response()->json([
             'category' => $material,
-            'products' => $service->getAll('active'), // все товары
+            'products' => $service->getAll('active')->get(), // все товары
             'seo' => ProductSEOText::query()->get()
         ]);
     }
@@ -60,7 +60,7 @@ class ProductController extends Controller
         // $color определена в роуте как {color:slug}
         return response()->json([
             'category' => $color,
-            'products' => $service->getAll('active'), // все товары
+            'products' => $service->getAll('active')->get(), // все товары
             'seo' => ProductSEOText::query()->get()
         ]);
     }

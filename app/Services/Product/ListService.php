@@ -17,14 +17,14 @@ class ListService
     protected function activeProducts()
     {
         return Product::query()
-            ->orderBy('position', 'desc')
-            ->get();
+            ->orderBy('position', 'desc');
+            //->get() вынесено в контроллер (т.к. paginate() не работает после get())
     }
 
     protected function trashedProducts()
     {
         return Product::onlyTrashed()
-            ->orderBy('position', 'desc')
-            ->get();
+            ->orderBy('position', 'desc');
+            //->get() вынесено в контроллер (т.к. paginate() не работает после get())
     }
 }

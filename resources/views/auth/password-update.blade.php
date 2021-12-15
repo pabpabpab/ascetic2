@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-layout')
 
 
 @section('title')Создать новый пароль@endsection

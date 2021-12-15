@@ -3,27 +3,40 @@
     color: $color
     font-weight: $weight
 
-body, html, #app
-    height: 100%
+html
+    padding: 0
+    margin: 0
+    min-height: 100vh
+
+body
+    min-height: 100vh
+    box-sizing: border-box
     padding: 0
     margin: 0
     font-family: 'Roboto', sans-serif
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+
+.content_wrapper
+    flex-grow: 10
+    //border: 3px solid #ff0000
+    width: 95%
+    padding: 80px 0 50px 0
+    box-sizing: border-box
+    margin: 0 auto
 
 a
     text-decoration: none
-
-
-#flashMessage
-    display: none
 
 
 
 @import "show_hide"
 
 @import "h1"
-@import "content"
 
 @import "mainMenu/topMenu"
+@import "mainMenu/bottomMenu"
 
 @import "jsRegisterLoginForm"
 @import "absoluteMessage"
@@ -32,7 +45,11 @@ a
 @import "product/productList"
 @import "product/productListItem"
 
+@import "pagination"
+
+
 @import "auxiliaryModifiers"
 
 
-
+#flashMessage
+    display: none

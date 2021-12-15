@@ -5,10 +5,16 @@ use \App\Http\Controllers\ProductController;
 
 
 Route::get('/', [ProductController::class, 'index'])
-    ->name('main');
+    ->name('mainPage');
+
+Route::get('/products/{pageNumber}', [ProductController::class, 'list'])
+    ->where('pageNumber', '[0-9]+')
+    ->name('products.list');
 
 
-Route::get('/products/by/category/{category:slug}', [ProductController::class, 'getByCategory'])
+
+
+Route::get('/products/{category:slug}', [ProductController::class, 'getByCategory'])
     ->name('products.byCategory');
 Route::get('/products/by/material/{material:slug}', [ProductController::class, 'getByMaterial'])
     ->name('products.byMaterial');

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main-layout')
 
 
 @section('title')Товар {{$product->name}}@endsection

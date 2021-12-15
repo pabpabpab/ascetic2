@@ -1,5 +1,5 @@
 
-.navBar
+.top_menu
     position: fixed
     z-index: 10
     width: 100%
@@ -8,7 +8,7 @@
     padding: 0
     background-color: #FFF
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
-    &_left
+    &__left
         display: flex
         justify-content: left
         margin: 0
@@ -36,7 +36,7 @@
 
 
 
-.navBar__link__trigram
+.top_menu__link__trigram
     position: relative
     display: inline
     padding: 2px 10px 10px 8px
@@ -46,7 +46,7 @@
         content: '\2630'
         +font(13px, rgb(25, 118, 213), 400)
 
-.navBar__drop_menu
+.top_menu__drop_menu
     position: absolute
     z-index: 3
     top: 28px
@@ -87,7 +87,7 @@
 
 
 
-.navBar__link__trigram:hover .navBar__drop_menu
+.top_menu__link__trigram:hover .top_menu__drop_menu
     display: block
 
 
