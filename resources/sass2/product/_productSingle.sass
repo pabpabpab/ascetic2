@@ -1,0 +1,209 @@
+.single_product_page__content_wrapper
+    // min-width: 97%
+    width: 100%
+    padding: 0
+    margin: 0 auto
+
+.single_product__content
+    display: flex
+    justify-content: flex-start
+    flex-direction: row
+
+.single_product__all_photo_wrapper
+    position: fixed
+    display: flex
+    justify-content: flex-start
+    flex-direction: row
+    padding: 30px 20px
+    box-sizing: border-box
+    background-color: #fff
+    box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
+    border-radius: 20px
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+
+
+.single_product__small_photos__wrapper
+    position: relative
+    max-width: $small_photo_width
+    margin-right: 20px
+    height: $big_photo_height
+
+
+.single_product__small_photos__scroll_button
+    position: absolute
+    left: 0
+    background-color: rgba(255, 255, 255, 0.7)
+    width: $small_photo_width
+    height: 30px
+    cursor: pointer
+    transition: background .3s
+    &:hover
+        background-color: rgba(255, 255, 255, 0.85)
+    &_top
+        top: 0
+        &__content
+            position: relative
+            &::before
+                position: absolute
+                content: ''
+                left: 43px
+                top: 11px
+                width: 15px
+                height: 15px
+                border: solid #707078
+                border-width: 3px 3px 0 0
+                border-radius: 1px
+                transform: rotate(-45deg)
+    &_bottom
+        bottom: -2px
+        &__content
+            position: relative
+            &::before
+                position: absolute
+                content: ''
+                left: 43px
+                top: 1px
+                width: 15px
+                height: 15px
+                border: solid #707078
+                border-width: 0 3px 3px 0
+                border-radius: 1px
+                transform: rotate(45deg)
+
+
+.single_product__small_photos
+    display: flex
+    flex-direction: column
+    height: $big_photo_height
+    overflow: hidden
+    //scroll-behavior: smooth
+
+
+.single_product__big_photo__wrapper
+    position: relative
+    width: $big_photo_width
+    height: $big_photo_height
+    padding: 0
+    overflow: hidden
+.single_product__big_photo__content
+    width: $big_photo_width
+    height: $big_photo_height
+    padding: 0
+    margin: 0
+    overflow: hidden
+.single_product__big_photo__content_mobile
+    width: $big_photo_width
+    height: $big_photo_height
+    padding: 0
+    margin: 0
+    display: flex
+    overflow: hidden
+
+.single_product__big_photo__photo_number_indicator
+    position: absolute
+    top: 9px
+    left: 7px
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: nowrap
+    min-width: 43px
+    height: 23px
+    //line-height: 23px
+    +font(14px, rgb(220, 220, 220), 400)
+    //text-align: center
+    background-color: rgba(122, 122, 122, 0.5)
+    border-radius: 20px
+    pointer-events: none
+
+
+
+
+.single_product__big_photo__scroll_button
+    display: none
+    position: absolute
+    top: $big_photo_height/2 - 30px
+    background-color: rgba(0, 0, 0, 0.2)
+    width: 30px
+    height: 60px
+    cursor: pointer
+    transition: background .3s
+    &:hover
+        background-color: rgba(0, 0, 0, 0.3)
+    &_right
+        right: 0
+        border-top-left-radius: 7px
+        border-bottom-left-radius: 7px
+        &__content
+            position: relative
+            &::before
+                position: absolute
+                content: ''
+                right: 8px
+                top: 21px
+                width: 15px
+                height: 15px
+                border: solid #0000ff
+                border-width: 3px 3px 0 0
+                border-radius: 1px
+                transform: rotate(45deg)
+    &_left
+        left: 0
+        border-top-right-radius: 7px
+        border-bottom-right-radius: 7px
+        &__content
+            position: relative
+            &::before
+                position: absolute
+                content: ''
+                left: 8px
+                top: 21px
+                width: 15px
+                height: 15px
+                border: solid #0000ff
+                border-width: 0 0 3px 3px
+                border-radius: 1px
+                transform: rotate(45deg)
+
+
+
+
+
+
+.single_product__top_characteristics
+    flex-grow: 10
+    +font(17px, rgb(80, 75, 75), 400)
+    padding: 30px 30px
+    box-sizing: border-box
+    background-color: #fff
+    box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
+    border-radius: 20px
+    &__margin_left
+        margin-left: $big_photo_width + 185px
+.single_product__h1
+    +font(25px, rgb(80, 75, 75), 700)
+    font-family: 'Oswald', sans-serif
+    letter-spacing: 1px
+    text-align: left
+    margin: 0
+.single_product__price
+    padding: 10px 0
+    +font(22px, rgb(80, 75, 75), 400)
+    text-align: left
+.single_product__categories
+    margin: 0
+    padding: 1px 0
+    +font(17px, rgb(80, 75, 75), 400)
+    text-align: left
+.single_product__category_item__link
+    text-align: left
+    +font(17px, rgb(50, 45, 45), 400)
+    border: none
+    &:hover
+        border-bottom: 1px solid rgba(50, 45, 45, 0.4)
+.single_product__description
+    padding: 20px 0 10px 0
+    +font(17px, rgb(80, 75, 75), 400)
+    text-align: justify

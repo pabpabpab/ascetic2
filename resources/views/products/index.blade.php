@@ -1,18 +1,18 @@
 @extends('layouts.main-layout')
 
 @php
-    $routeName = \Illuminate\Support\Facades\Route::currentRouteName();
+    $currentRouteName = \Illuminate\Support\Facades\Route::currentRouteName();
 
     $pageTitle = 'Товары из дерева';
     $pageDescription = 'Товары из дерева на заказ';
 
-    if ($routeName === 'products.byCategory') {
+    if ($currentRouteName === 'products.byCategory') {
         $pageTitle = $categorySeo->page_title ?? 'Товары категории ' . $category->name;
         $pageDescription = $categorySeo->page_description ?? 'Список товаров категории ' . $category->name;
-    } elseif ($routeName === 'products.byMaterial') {
+    } elseif ($currentRouteName === 'products.byMaterial') {
         $pageTitle = 'Товары из материала ' . $category->name;
         $pageDescription = 'Товары из материала ' . $category->name;
-    } elseif ($routeName === 'products.byColor') {
+    } elseif ($currentRouteName === 'products.byColor') {
         $pageTitle = 'Товары цвета ' . $category->name;
         $pageDescription = 'Товары цвета ' . $category->name;
     }
@@ -100,27 +100,13 @@
 
                                 @foreach ($materialsArr as $material)
                                     <p title="Материал" class="product_item__bottom_info__text">
-                                        @php
-                                            $catUrl = route('products.byMaterial', [
-                                                'material' => $material->slug
-                                            ]);
-                                        @endphp
-                                        <a href='{{ $catUrl }}' class="product_item__name__link">
-                                            {{ $material->name }}
-                                        </a>
+                                        {{ $material->name }}
                                     </p>
                                 @endforeach
 
                                 @foreach ($colorsArr as $color)
                                     <p title="Цвет" class="product_item__bottom_info__text">
-                                        @php
-                                            $catUrl = route('products.byColor', [
-                                                'color' => $color->slug
-                                            ]);
-                                        @endphp
-                                        <a href='{{ $catUrl }}' class="product_item__name__link">
-                                            {{ $color->name }}
-                                        </a>
+                                        {{ $color->name }}
                                     </p>
                                 @endforeach
 
@@ -133,6 +119,10 @@
     </div>
 
 
+    @if (in_array($currentRouteName, ['mainPage', 'products.list']))
+        {{ $products->links('pagination.all-products-pagination') }}
+    @elseif (in_array($currentRouteName, ['products.byCategory']))
+        {{ $products->links('pagination.products-by-category-pagination', ['category' => $category]) }}
+    @endif
 
-    {{ $products->links('pagination.products-pagination') }}
 @endsection
