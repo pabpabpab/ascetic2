@@ -1,3 +1,5 @@
+@import "vars"
+
 =font($size,$color,$weight)
     font-size: $size
     color: $color
@@ -13,7 +15,7 @@ body
     box-sizing: border-box
     padding: 0
     margin: 0
-    font-family: 'Roboto', sans-serif
+    font-family: $body_font_family
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -30,7 +32,7 @@ a
     text-decoration: none
 
 
-@import "vars"
+
 @import "show_hide"
 
 @import "h1"
@@ -46,7 +48,7 @@ a
 @import "product/productList"
 @import "product/productListItem"
 @import "product/productSingle"
-
+@import "product/singlePhotoPage"
 
 @import "pagination"
 
@@ -56,3 +58,4 @@ a
 
 #flashMessage
     display: none
+

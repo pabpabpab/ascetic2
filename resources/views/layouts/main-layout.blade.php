@@ -20,20 +20,26 @@
 
 </head>
 <body>
+
+@php
+    $currentRouteName = \Illuminate\Support\Facades\Route::currentRouteName();
+@endphp
+
+@if ($currentRouteName === 'products.singlePhotoPage')
+    @include('blocks.easy-top-menu')
+@else
     @include('blocks.top-menu')
+@endif
 
-    <main class="content_wrapper">
-        @yield('content')
-    </main>
 
-    @include('blocks.bottom-menu')
+<main class="content_wrapper">
+    @yield('content')
+</main>
 
-    @if (session('flashMessage'))
-        <div id="flashMessage">{{ session('flashMessage') }}</div>
-    @endif
+@include('blocks.bottom-menu')
+
+@if (session('flashMessage'))
+    <div id="flashMessage">{{ session('flashMessage') }}</div>
+@endif
 </body>
 </html>
-
-{{--
-
---}}

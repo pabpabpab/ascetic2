@@ -202,6 +202,10 @@ h1 {
   margin: 0 0 0 10px;
 }
 
+.easy_top_menu__link_with_drop_menu {
+  display: block;
+}
+
 .top_menu__drop_menu {
   position: absolute;
   z-index: 3;
@@ -261,6 +265,12 @@ h1 {
 }
 
 .top_menu__link_with_drop_menu:hover + .top_menu__drop_menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.easy_top_menu__link_with_drop_menu:hover + .top_menu__drop_menu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1180,6 +1190,30 @@ h1 {
   text-align: justify;
 }
 
+.single_photo_page__content_wrapper {
+  width: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.single_photo_page__bottom {
+  width: 100%;
+  font-size: 21px;
+  color: #2d2323;
+  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  padding-top: 10px;
+}
+
+.single_photo_page__link {
+  font-size: 21px;
+  color: #2d2323;
+  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(45, 35, 35, 0.5);
+}
+
 .pagination_nav {
   width: 100%;
   padding: 0;
@@ -1310,6 +1344,10 @@ h1 {
   position: relative;
 }
 
+.w100 {
+  width: 100%;
+}
+
 .tal {
   text-align: left;
 }
@@ -1336,6 +1374,10 @@ h1 {
 
 .mr15 {
   margin-right: 15px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
 }
 
 #flashMessage {

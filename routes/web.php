@@ -11,24 +11,21 @@ Route::get('/products/{pageNumber}', [ProductController::class, 'list'])
     ->where('pageNumber', '[0-9]+')
     ->name('products.list');
 
-
-
-
 Route::get('/products/{category:slug}/{pageNumber?}', [ProductController::class, 'getByCategory'])
     ->where('pageNumber', '[0-9]+')
     ->name('products.byCategory');
 
-//Route::get('/products/by/material/{material:slug}', [ProductController::class, 'getByMaterial'])
-    //->name('products.byMaterial');
-//Route::get('/products/by/color/{color:slug}', [ProductController::class, 'getByColor'])
-    //->name('products.byColor');
-
-
 Route::get('/product/{slug}-{product}', [ProductController::class, 'getOne'])
     ->name('products.single');
+Route::get('/product/{product}/photo/{photoSlug}-{photoName}', [ProductController::class, 'getSinglePhotoPage'])
+    ->where('photoName', '[0-9]+')
+    ->name('products.singlePhotoPage');
 
 
-
+//Route::get('/products/by/material/{material:slug}', [ProductController::class, 'getByMaterial'])
+//->name('products.byMaterial');
+//Route::get('/products/by/color/{color:slug}', [ProductController::class, 'getByColor'])
+//->name('products.byColor');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])

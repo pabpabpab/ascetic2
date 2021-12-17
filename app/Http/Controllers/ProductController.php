@@ -66,11 +66,20 @@ class ProductController extends Controller
 
     public function getOne(PhotoSeoService $service, $slug, Product $product)
     {
-        return view('products.single', [
+        return view('products.single-product', [
             'product' => $product,
             'description' => $product->description,
             'seo' => $product->seoText,
             'photoSeo' => $service->getProductPhotoSeoList($product->id),
+        ]);
+    }
+
+    public function getSinglePhotoPage(PhotoSeoService $service, Product $product, $photoSlug, $photoName)
+    {
+        return view('products.single-photo', [
+            'product' => $product,
+            'photoSeo' => $service->getProductPhotoSeoList($product->id),
+            'photoName' => $photoName,
         ]);
     }
 

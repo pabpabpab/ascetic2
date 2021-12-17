@@ -61,7 +61,7 @@
                         @if ($photoSrc)
                             <div>
                                 <a href='{{ $singleProductUrl }}'>
-                                    <img src="{{ $photoSrc }}" alt="" class="photo__size3" />
+                                    <img src="{{ $photoSrc }}" alt="{{ $product->name }}" class="photo__size3" />
                                 </a>
                             </div>
                         @else
