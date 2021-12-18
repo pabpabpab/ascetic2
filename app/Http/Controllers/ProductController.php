@@ -70,16 +70,15 @@ class ProductController extends Controller
             'product' => $product,
             'description' => $product->description,
             'seo' => $product->seoText,
-            'photoSeo' => $service->getProductPhotoSeoList($product->id),
+            'photoSeo' => $service->getProductPhotoSeoListWithFullListOfPhoto($product->id),
         ]);
     }
 
-    public function getSinglePhotoPage(PhotoSeoService $service, Product $product, $photoSlug, $photoName)
+    public function getSinglePhotoPage(PhotoSeoService $service, Product $product, $photoSlug, $photoId)
     {
         return view('products.single-photo', [
             'product' => $product,
-            'photoSeo' => $service->getProductPhotoSeoList($product->id),
-            'photoName' => $photoName,
+            'photoSeo' => $service->getProductPhotoSeoByPhotoId($photoId),
         ]);
     }
 

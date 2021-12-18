@@ -17,9 +17,10 @@ Route::get('/products/{category:slug}/{pageNumber?}', [ProductController::class,
 
 Route::get('/product/{slug}-{product}', [ProductController::class, 'getOne'])
     ->name('products.single');
-Route::get('/product/{product}/photo/{photoSlug}-{photoName}', [ProductController::class, 'getSinglePhotoPage'])
-    ->where('photoName', '[0-9]+')
+Route::get('/product/{product}/photo/{photoSlug}-{photoId}', [ProductController::class, 'getSinglePhotoPage'])
+    ->where('photoId', '[0-9]+')
     ->name('products.singlePhotoPage');
+
 
 
 //Route::get('/products/by/material/{material:slug}', [ProductController::class, 'getByMaterial'])

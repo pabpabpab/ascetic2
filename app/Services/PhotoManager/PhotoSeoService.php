@@ -116,4 +116,26 @@ class PhotoSeoService
             ->get();
     }
 
+    // get seo фоток с полным списком имен файлов при открытии страницы public single product
+    public function getProductPhotoSeoListWithFullListOfPhoto($productId): \Illuminate\Support\Collection
+    {
+        return DB::table('photo')
+            ->leftJoin('photo_seo_texts', 'photo.id', '=', 'photo_seo_texts.photo_id')
+            ->where('photo.product_id', '=', $productId)
+            ->select('photo_id', 'filename', 'alt_text', 'page_title', 'page_description')
+            ->orderBy('position', 'asc')
+            ->get();
+    }
+
+    // get seo одного фото при открытии страницы public single photo
+    public function getProductPhotoSeoByPhotoId($photoId): \Illuminate\Support\Collection
+    {
+        return DB::table('photo')
+            ->join('photo_seo_texts', 'photo.id', '=', 'photo_seo_texts.photo_id')
+            ->where('photo.id', '=', $photoId)
+            ->select('photo_id', 'filename', 'alt_text', 'page_title', 'page_description')
+            ->get();
+    }
+
+
 }
