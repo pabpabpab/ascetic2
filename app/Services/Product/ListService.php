@@ -27,4 +27,5 @@ class ListService
             ->orderBy('position', 'desc');
             //->get() вынесено в контроллер (т.к. paginate() не работает после get())
     }
+
 }

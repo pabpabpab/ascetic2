@@ -31,15 +31,19 @@
     @include('blocks.top-menu')
 @endif
 
-
 <main class="content_wrapper">
     @yield('content')
 </main>
+
+
+@include('blocks.viewed-products-summary')
+
 
 @include('blocks.bottom-menu')
 
 @if (session('flashMessage'))
     <div id="flashMessage">{{ session('flashMessage') }}</div>
 @endif
+
 </body>
 </html>

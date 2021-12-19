@@ -1,6 +1,8 @@
 @extends('layouts.main-layout')
 
 @php
+    //dd(session('viewedProductsIds'));
+
     //dd($product);
 
     $pageTitle = $seo->page_title ?? $product->name;
@@ -42,7 +44,7 @@
             @include("products.photo-block-of-single-product", ['pageTitle' => $pageTitle])
         @endif
 
-        <div class="single_product__top_characteristics
+        <section class="single_product__top_characteristics
                 @if($photoCount > 0)
                     single_product__top_characteristics__margin_left
                 @endif
@@ -68,7 +70,15 @@
             <div class="single_product__description">
                 {{ $description->description }}
             </div>
-        </div>
+
+{{--
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+--}}
+        </section>
 
     </div>
     </div>

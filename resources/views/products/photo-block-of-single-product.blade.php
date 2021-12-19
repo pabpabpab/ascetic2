@@ -19,7 +19,7 @@
      */
 @endphp
 
-<div class="single_product__all_photo_wrapper">
+<section class="single_product__all_photo_wrapper">
 
     @if ($photoCount > 1)
         <div class="single_product__small_photos__wrapper">
@@ -106,4 +106,4 @@
             {{ 1 }}/{{ $photoCount }}
         </div>
     </div>
-</div>
+</section>

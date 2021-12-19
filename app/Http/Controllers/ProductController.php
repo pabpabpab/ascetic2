@@ -9,7 +9,9 @@ use App\Models\Product;
 use App\Models\ProductSEOText;
 use App\Services\PhotoManager\PhotoSeoService;
 use App\Services\Product\ListService;
+use App\Services\Product\ViewedProductsService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
@@ -59,13 +61,26 @@ class ProductController extends Controller
         ]);
     }
 
+    public function getViewedProducts(ViewedProductsService $service, $pageNumber = 1)
+    {
+        // установить стартовую страницу для пагинатора
+        $currentPage = $pageNumber;
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
 
+        $products = $service->getViewed()->paginate(3);
+        return view('products.index', ['products' => $products]);
+    }
 
 
 
 
     public function getOne(PhotoSeoService $service, $slug, Product $product)
     {
+        //session()->flush();
+        (new ViewedProductsService())->addToViewed($product->id);
+
         return view('products.single-product', [
             'product' => $product,
             'description' => $product->description,
@@ -76,6 +91,8 @@ class ProductController extends Controller
 
     public function getSinglePhotoPage(PhotoSeoService $service, Product $product, $photoSlug, $photoId)
     {
+        (new ViewedProductsService())->addToViewed($product->id);
+
         return view('products.single-photo', [
             'product' => $product,
             'photoSeo' => $service->getProductPhotoSeoByPhotoId($photoId),

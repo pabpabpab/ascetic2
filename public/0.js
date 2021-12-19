@@ -206,6 +206,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return '';
       }
 
+      if (photoInfoArr.length === 0) {
+        return '';
+      }
+
       var photoName = photoInfoArr[0];
       var folderName = "/storage/".concat(this.imgFolderPrefix).concat(this.photoSizeIndex);
       var fileNamePrefix = "".concat(this.singleProductFromServer.product.id, "s").concat(this.photoSizeIndex, "-");

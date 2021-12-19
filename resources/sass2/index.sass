@@ -20,13 +20,30 @@ body
     flex-direction: column
     justify-content: space-between
 
+main
+    display: block
+
 .content_wrapper
-    flex-grow: 10
+    flex-grow: 1
     //border: 3px solid #ff0000
     width: 95%
-    padding: 80px 0 50px 0
+    padding: 80px 0 30px 0
     box-sizing: border-box
     margin: 0 auto
+.viewed_products__aside
+    flex-grow: 2
+    display: block
+    padding: 0 0 30px 15px
+    width: 95%
+    box-sizing: border-box
+    margin: 0 auto
+    //border: 3px solid #00f
+.viewed_products__link
+    +font(21px, rgb(45, 35, 35), 400)
+    font-family: $h1_font_family
+    text-decoration: none
+    border-bottom: 1px solid rgba(45, 35, 35, 0.3)
+
 
 a
     text-decoration: none

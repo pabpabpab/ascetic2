@@ -1,4 +1,4 @@
-<nav class="top_menu">
+<header class="top_menu">
     <div class="top_menu__left">
 
         <a href="/" data-logo="link" class="logo__link">
@@ -29,7 +29,6 @@
                         @endforeach
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -41,5 +40,5 @@
             @include('blocks.auth-menu')
         </div>
     </div>
-</nav>
+</header>
 

@@ -1,5 +1,5 @@
-<nav class="bottom_menu">
-
+<footer class="bottom_menu">
+    <nav>
         <ul class="bottom_menu__ul">
             @foreach ($categories as $category)
                 @php
@@ -14,6 +14,6 @@
                     </a>
                 </li>
             @endforeach
-
         </ul>
-</nav>
+    </nav>
+</footer>

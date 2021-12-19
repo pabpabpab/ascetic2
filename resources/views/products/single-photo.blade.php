@@ -34,7 +34,7 @@
     <div class="single_photo_page__content_wrapper">
         <img src="{{ $bigPhotoFolder . $product->id }}s5-{{ $photoSeoObj->filename }}"
             alt="{{ $photoSeoObj->page_title }}"
-            class="w100"/>
+            class="single_photo_page__photo__img"/>
 
         <div class="single_photo_page__bottom">
             Фото товара:

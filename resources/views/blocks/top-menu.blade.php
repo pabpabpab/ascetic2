@@ -1,11 +1,11 @@
-<nav class="top_menu">
+<header class="top_menu">
     <div class="top_menu__left">
 
         <a href="/" data-logo="link" class="logo__link">
             AsceticShop.ru
         </a>
 
-        <div data-menu="left" class="top_menu__ul">
+        <nav data-menu="left" class="top_menu__ul">
 
             @php
                 $categoriesCount = count($categories);
@@ -28,7 +28,7 @@
             @endfor
 
             <div class="top_menu__li">
-                <a href="#" class="top_menu__link top_menu__link_with_drop_menu">
+                <a href="/" class="top_menu__link top_menu__link_with_drop_menu">
                     Все
                 </a>
 
@@ -51,9 +51,7 @@
                 </div>
             </div>
 
-
-
-        </div>
+        </nav>
     </div>
 
 
@@ -62,4 +60,4 @@
             @include('blocks.auth-menu')
         </div>
     </div>
-</nav>
+</header>

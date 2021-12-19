@@ -1,14 +1,14 @@
 @if ($paginator->hasPages())
 
     @php
-        $routeName = 'products.list';
+        $routeName = 'products.viewed';
 
         $prevPageNumber = $paginator->currentPage() - 1;
         $nextPageNumber = $paginator->currentPage() + 1;
 
         $prevRoute = '';
         if ($prevPageNumber === 1) {
-            $prevRoute = route('mainPage');
+            $prevRoute = route($routeName);
         } elseif ($prevPageNumber > 1) {
             $prevRoute = route($routeName, ['pageNumber' => $prevPageNumber]);
         }
@@ -32,7 +32,7 @@
                         {{ $i }}
                     </span>
                 @elseif ($i === 1)
-                    <a href="{{ route('mainPage') }}" class="pagination__link">
+                    <a href="{{ route($routeName) }}" class="pagination__link">
                         1
                     </a>
                 @else

@@ -15,6 +15,10 @@ Route::get('/products/{category:slug}/{pageNumber?}', [ProductController::class,
     ->where('pageNumber', '[0-9]+')
     ->name('products.byCategory');
 
+Route::get('/viewed-products/{pageNumber?}', [ProductController::class, 'getViewedProducts'])
+    ->where('pageNumber', '[0-9]+')
+    ->name('products.viewed');
+
 Route::get('/product/{slug}-{product}', [ProductController::class, 'getOne'])
     ->name('products.single');
 Route::get('/product/{product}/photo/{photoSlug}-{photoId}', [ProductController::class, 'getSinglePhotoPage'])

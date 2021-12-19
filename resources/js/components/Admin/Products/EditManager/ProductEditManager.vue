@@ -82,7 +82,12 @@ export default {
             }
 
             const photoInfoArr = JSON.parse(this.singleProductFromServer.product.photo_set);
+
             if (!photoInfoArr) {
+                return '';
+            }
+
+            if (photoInfoArr.length === 0) {
                 return '';
             }
 
