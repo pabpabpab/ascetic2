@@ -29,9 +29,8 @@ class LoginController extends Controller
         if (!Auth::attempt($credentials, $remember)) {
             return $request->expectsJson()
                 ? response()->json(['success' => false])
-                : back()->withErrors(['result' => 'Логин или пароль неверные.']);
+                : back()->with(['authStatus' => 'Логин или пароль неверные.'])->withInput();
         }
-
 
         $request->session()->regenerate();
 
@@ -40,18 +39,22 @@ class LoginController extends Controller
         if (blank($user)) {
             return $request->expectsJson()
                 ? response()->json(['success' => false])
-                : back()->withErrors(['result' => 'Пользователь не определен.']);
+                : back()->with(['authStatus' => 'Пользователь не определен.']);
         }
 
         session([
             'username' => $user->getUserName(),
-            'admin' => $user->_hasRole('admin'),
+            'isAdmin' => $user->_hasRole('admin'),
             'emailVerified' => filled($user->email_verified_at),
         ]);
 
         return $request->expectsJson()
-            ? response()->json(['success' => true, 'userName' => $user->name])
-            : redirect()->intended('/home');
+            ? response()->json([
+                 'success' => true,
+                 'userName' => $user->name,
+                 'isAdmin' => $user->_hasRole('admin')
+              ])
+            : redirect()->intended('/my');
     }
 
 }

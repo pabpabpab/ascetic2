@@ -29,7 +29,7 @@
 
 @section('content')
     <section>
-        <h1 class="ml15">{{ $pageTitle }}</h1>
+        <h1 class="products__h1">{{ $pageTitle }}</h1>
 
         <div class="products">
             @foreach ($products as $product)

@@ -26,8 +26,8 @@ class ULoginController extends Controller
 
         // если пустая строка
         if (blank($socialUserData)) {
-            return redirect()->route('login.show')
-                ->with(['status' => 'Не удалось получить данные от социальной сети.']);
+            return redirect()->route('account.login.show')
+                ->with(['authStatus' => 'Не удалось получить данные от социальной сети.']);
         }
 
         // массив полученный из json-строки
@@ -35,8 +35,8 @@ class ULoginController extends Controller
 
         // если было поле error вида {"error":"token expired"} или вдруг пустой массив
         if ((blank($socialUserArray)) or (filled($socialUserArray['error']))) {
-            return redirect()->route('login.show')
-                ->with(['status' => 'Не удалось получить данные от социальной сети.']);
+            return redirect()->route('account.login.show')
+                ->with(['authStatus' => 'Не удалось получить данные от социальной сети.']);
         }
 
         // соблюсти данные для БД
@@ -46,8 +46,8 @@ class ULoginController extends Controller
 
         // если из _getNormalizedSocialData() был возвращен null
         if (blank($normalizedSocialData)) {
-            return redirect()->route('login.show')
-                ->with(['status' => 'Не удалось получить данные от социальной сети.']);
+            return redirect()->route('account.login.show')
+                ->with(['authStatus' => 'Не удалось получить данные от социальной сети.']);
         }
 
         // получить модель User (отыскать юзера по social_id=identity или создать нового)
@@ -56,8 +56,8 @@ class ULoginController extends Controller
 
         // если вдруг null вместо модели User
         if (blank($localUser)) {
-            return redirect()->route('login.show')
-                ->with(['status' => 'Не удалось создать пользователя.']);
+            return redirect()->route('account.login.show')
+                ->with(['authStatus' => 'Не удалось создать пользователя.']);
         }
 
         // войти пользователя
@@ -66,12 +66,12 @@ class ULoginController extends Controller
         // заполним данные сессии
         session([
             'username' => $localUser->getUserName(),
-            'admin' => $localUser->_hasRole('admin'),
+            'isAdmin' => $localUser->_hasRole('admin'),
             'emailVerified' => filled($localUser->email_verified_at),
         ]);
 
         // переход в ЛК
-        return redirect()->intended('/home');
+        return redirect()->intended('/my');
     }
 
 

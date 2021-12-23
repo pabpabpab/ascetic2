@@ -6,10 +6,11 @@ import getAuthenticatedMenuHtml from './html/getAuthenticatedMenuHtml';
 import loginValidation from "./validation/loginValidation";
 import AbsoluteFlashMessage from "./absoluteFlashMessage";
 import ForgotPassword from "./forgotPassword";
+import PasswordTypeChanger from "./passwordTypeChanger";
 
 export default class Login extends AbsoluteForm {
 
-    constructor(data, postUrl= '/login/do', successUrl = '/home') {
+    constructor(data, postUrl= '/login/do', successUrl = '/my') {
         super(data);
 
         this.postUrl = postUrl;
@@ -22,12 +23,18 @@ export default class Login extends AbsoluteForm {
 
 
     _preRenderActions() {
-        if (!el('#authBlock')) return;
-        el('#authBlock').className = `auth_block__wrapper hide_block`;
+        if (!el('#authAbsoluteMenu')) return;
+        el('#authAbsoluteMenu').className = `auth_absolute_menu__wrapper hide_block`;
     }
 
     _additionalFirstRenderActions() {
         new ForgotPassword({ clickSourceSelector: '#forgotPasswordLink' });
+
+        new PasswordTypeChanger({
+            closedEyeSelector: "#closedEyeImg",
+            openedEyeSelector: "#openedEyeImg",
+            passwordInputSelector: "#loginPassword",
+        });
     }
 
 
@@ -41,7 +48,7 @@ export default class Login extends AbsoluteForm {
 
     _ultimateSuccess(data) {
         el('#authMenuContent').remove();
-        const html = getAuthenticatedMenuHtml(data.userName);
+        const html = getAuthenticatedMenuHtml(data.userName, data.isAdmin);
         el('#authMenu').insertAdjacentHTML('afterbegin', html);
         el(this.wrapSelector).className = `${this.basicCss} ${this.hideCss}`;
         setTimeout(() => {
@@ -82,5 +89,6 @@ export default class Login extends AbsoluteForm {
             el('#failedLoginErr').insertAdjacentHTML('afterbegin', html);
         }
     }
+
 
 }

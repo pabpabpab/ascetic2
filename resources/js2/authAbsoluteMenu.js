@@ -1,16 +1,16 @@
 import VisibleBlockByClick from "./parentClasses/visibleBlockByClick";
-import getAuthBlockHtml from "./html/getAuthBlockHtml";
+import getAuthAbsoluteMenuHtml from "./html/getAuthAbsoluteMenuHtml";
 import Register from "./register";
 import Login from "./login";
 
 
-export default class AuthBlock extends VisibleBlockByClick {
+export default class AuthAbsoluteMenu extends VisibleBlockByClick {
 
     constructor(data) {
         super(data);
 
-        this.wrapSelector = `#authBlock`;
-        this.basicCss = 'auth_block__wrapper';
+        this.wrapSelector = `#authAbsoluteMenu`;
+        this.basicCss = 'auth_absolute_menu__wrapper';
         this.showCss = 'show_block';
         this.hideCss = 'hide_block';
     }
@@ -20,7 +20,7 @@ export default class AuthBlock extends VisibleBlockByClick {
             basicCss: this.basicCss,
             showCss: this.showCss
         }
-        return getAuthBlockHtml(css);
+        return getAuthAbsoluteMenuHtml(css);
     }
 
     _additionalFirstRenderActions() {

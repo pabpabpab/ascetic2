@@ -18,7 +18,7 @@ export default class AbsoluteFlashMessage {
 
         setTimeout(() => {
             this._removeHtml();
-        }, 2500);
+        }, 3500);
     }
 
     _removeHtml() {

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
 
 <!--<title>{{env('APP_ADMIN_NAME')}}</title>-->
-    <title>Администраторская</title>
+    <title>Admin panel</title>
 </head>
 <body>
 <div id="app">

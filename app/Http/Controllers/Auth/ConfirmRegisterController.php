@@ -18,16 +18,16 @@ class ConfirmRegisterController extends Controller
         $originalUserId = $fakeUserId - env('FAKE_ID_OFFSET');
 
         if (! $request->hasValidSignature()) {
-            return redirect()->route('login.show')
-                ->with(['status' => 'Ссылка больше не действительна. Пожалуйста введите логин и пароль.']);
+            return redirect()->route('account.login.show')
+                ->with(['authStatus' => 'Ссылка больше не действительна. Пожалуйста введите логин и пароль.']);
         }
 
         $user = User::find($originalUserId);
 
         // если пользователь уже верифицировал емайл, то больше не пускать его по этой ссылке
         if (filled($user->email_verified_at)) {
-            return redirect()->route('login.show')
-                ->with(['status' => 'Ссылка больше не действительна. Пожалуйста введите логин и пароль.']);
+            return redirect()->route('account.login.show')
+                ->with(['authStatus' => 'Ссылка больше не действительна. Пожалуйста введите логин и пароль.']);
         }
 
         $user->markEmailAsVerified();
@@ -36,11 +36,11 @@ class ConfirmRegisterController extends Controller
 
         session([
             'username' => Auth::user()->getUserName(),
-            'admin' => Auth::user()->_hasRole('admin'),
+            'isAdmin' => Auth::user()->_hasRole('admin'),
             'emailVerified' => true
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('my');
     }
 
 }

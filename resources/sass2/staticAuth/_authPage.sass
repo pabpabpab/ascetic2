@@ -1,0 +1,111 @@
+$authPageTextInputWidth: 300px
+
+.auth_page
+    +font(16px, rgb(0, 0, 0), 400)
+
+.auth_page__text_input
+    margin: 0
+    padding: 15px 10px
+    +font(15px, #000, 400)
+    border: 1px solid #909096
+    outline: 0
+    width: $authPageTextInputWidth
+    box-sizing: border-box
+
+.auth_page__text_input__label
+    display: block
+    +font(16px, #000, 400)
+    margin: 15px 0 0 0
+
+.auth_page__text_input__error_msg
+    display: block
+    +font(14px, #c06000, 400)
+    margin: 0
+    padding: 0
+
+.auth_page__change_password_type__wrapper
+    position: relative
+    margin: 0
+    padding: 0
+    height: 0
+    width: $authPageTextInputWidth
+.auth_page__closed_eye_img
+    position: absolute
+    height: 25px
+    top: -38px
+    right: 8px
+    cursor: pointer
+.auth_page__opened_eye_img
+    position: absolute
+    height: 25px
+    top: -37px
+    right: 8px
+    cursor: pointer
+    display: none
+
+.auth_page__remember_me
+    margin: 10px 0 0 0
+    padding: 0 0 0 12px
+    &__checkbox
+        visibility: hidden
+    &__label
+        display: table
+        position: relative
+        +font(16px, #000, 400)
+        margin: 0 0 0 20px
+        cursor: pointer
+        &:hover
+            color: #000
+        &::before
+            position: absolute
+            top: -1px
+            left: -31px
+            width: 19px
+            height: 19px
+            border: 1px solid rgb(80, 70, 70)
+            border-radius: 3px
+            background-color: #f8f8f8
+            content: ''
+
+.auth_page__remember_me__checkbox:checked + .auth_page__remember_me__label::after
+    position: absolute
+    content: ''
+    left: -23.5px
+    top: 2px
+    width: 4px
+    height: 9px
+    background-color: #f8f8f8
+    border: solid #003cff
+    border-width: 0 3px 3px 0
+    transform: rotate(45deg)
+
+
+.auth_page__forgot_password__link
+    display: table
+    margin: 30px 0 0 0
+    +font(16px, #0000f0, 400)
+    transition: color .3s
+    &:hover
+        color: #f00000
+
+.auth_page__ulogin_div
+    padding: 30px 0
+
+.auth_page__button
+    display: block
+    +font(16px, rgb(0, 0, 0), 400)
+    padding: 15px 25px
+    margin: 25px 0 0 0
+    width: $authPageTextInputWidth
+    box-sizing: border-box
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3)
+    cursor: pointer
+
+.auth_page__auth_status
+    display: table
+    padding: 30px
+    margin: 20px 0
+    background-color: #e0e0e0
+    +font(16px, rgb(0, 0, 0), 400)
+    box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, 0.3)
+

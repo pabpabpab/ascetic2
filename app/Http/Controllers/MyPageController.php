@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class MyPageController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -29,12 +29,12 @@ class HomeController extends Controller
         //Auth::logout();
 
         if (!Auth::check()) {
-            // return redirect()->route('login.show');
+            // return redirect()->route('account.login.show');
             return redirect('/');
         }
 
 
-        return view('home');
+        return view('auth.my-page');
 
     }
 }

@@ -9,8 +9,12 @@ use Carbon\Carbon;
 class VerificationResendService
 {
     // ПРОШЛО 60 СЕКУНД С ПОСЛЕДНЕГО ОБНОВЛЕНИЯ UPDATED_AT У ЮЗЕРА?
-    public function mailWasRecentlySent($user) {
+    public function mailWasRecentlySent($user): bool {
         $secondsLimit = 60;
+
+        if (blank($user->updated_at)) {
+            return false;
+        }
 
         // updated_at из таблицы users переделать в timestamp
         $updated_at = Carbon::createFromFormat(

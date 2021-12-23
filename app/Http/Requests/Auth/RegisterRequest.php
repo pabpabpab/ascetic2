@@ -44,6 +44,7 @@ class RegisterRequest extends FormRequest
         if (request()->expectsJson()) {
             $response = response()->json(['backValidatorErrors' => $validator->errors()]);
         } else {
+            request()->flashOnly(['name', 'email']);
             $response = back()->withErrors($validator->errors());
         }
 

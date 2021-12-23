@@ -28,8 +28,8 @@ class SetNewPasswordController extends Controller
 
         // подписанная ссылка валидная?
         if (! $request->hasValidSignature()) {
-            return redirect()->route('forgotPassword.showForm')
-                ->with(['status' => $this->_evasiveAnswer()]);
+            return redirect()->route('account.forgotPassword.showForm')
+                ->with(['authStatus' => $this->_evasiveAnswer()]);
         }
 
         // найти юзера по id
@@ -37,8 +37,8 @@ class SetNewPasswordController extends Controller
 
         // юзер есть такой?
         if (blank($user)) {
-            return redirect()->route('forgotPassword.showForm')
-                ->with(['status' => $this->_evasiveAnswer()]);
+            return redirect()->route('account.forgotPassword.showForm')
+                ->with(['authStatus' => $this->_evasiveAnswer()]);
         }
 
         // переход по signed url из письма был совершен,
@@ -52,8 +52,8 @@ class SetNewPasswordController extends Controller
 
         // есть запись с токеном в таблице password_resets ?
         if (blank($tokenObject)) {
-            return redirect()->route('forgotPassword.showForm')
-                ->with(['status' => $this->_evasiveAnswer()]);
+            return redirect()->route('account.forgotPassword.showForm')
+                ->with(['authStatus' => $this->_evasiveAnswer()]);
         }
 
         // вывести форму для ввода нового пароля
@@ -76,7 +76,7 @@ class SetNewPasswordController extends Controller
         // проверка что юзер такой есть
         // и токен в password_resets тоже есть и совпадает с токеном из формы
         if (! (new SetNewPasswordService())->isCorrectCredentials($request->email, $request->token)) {
-            return back()->withErrors(['result' => 'Неправильный токен.']);
+            return back()->with(['authStatus' => 'Неправильный токен.']);
         }
 
         // получить юзера, присвоить новый пароль, и сохранить
@@ -90,9 +90,9 @@ class SetNewPasswordController extends Controller
             ->delete();
 
         // редирект на форму логина
-        return redirect()->route('login.show')
+        return redirect()->route('account.login.show')
             ->with([
-                'status' => 'Новый пароль установлен. Для входа введите пожалуйста Ваш e-mail и новый пароль.',
+                'authStatus' => 'Новый пароль установлен. Для входа введите пожалуйста Ваш e-mail и новый пароль.',
                 'email' => $user->email
             ]);
     }

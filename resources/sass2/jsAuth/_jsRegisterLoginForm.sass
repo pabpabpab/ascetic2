@@ -1,0 +1,131 @@
+$jsRegFormBgColor: #b5bcca
+$jsRegFormBorderColor: #a5acba
+
+
+.js_reg_form__alarm
+    background-color: $jsRegFormBgColor
+    animation: alarmRegisterForm .3s 4 alternate
+@keyframes alarmRegisterForm
+    from, to
+        background-color: $jsRegFormBgColor
+    100%
+        background-color: #e7e8e9
+
+
+
+
+.js_reg_form // wrapper
+    position: absolute
+    z-index: 20
+    top: 10px
+    right: 10px
+    padding: 20px
+    width: 220px
+    background-color: $jsRegFormBgColor
+    border: 1px solid $jsRegFormBorderColor
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3)
+    border-radius: 7px
+    +font(18px, #000, 400)
+    &__header
+        position: relative
+        +font(18px, #006, 400)
+    &__close
+        position: absolute
+        top: -25px
+        right: -12px
+        padding: 0
+        +font(45px, #e0e3e6, 100)
+        cursor: pointer
+        &:hover
+            +font(45px, #333, 100)
+    &__input__text_input
+        margin: 0
+        padding: 10px
+        background-color: #fff
+        +font(15px,#000,400)
+        border: 1px solid #909096
+        outline: 0
+        width: 100%
+        box-sizing: border-box
+    &__input__label
+        display: block
+        margin: 0
+        padding: 10px 0 0 0
+        +font(15px, #000, 400)
+    &__input__validation_message
+        +font(12px, #c00000, 400)
+        font-family: Arial, sans-serif
+    &__submit_button
+        padding: 10px 15px
+        +font(15px, #fff, 400)
+        cursor: pointer
+        background-color: #606066
+        border: 0
+        &:hover
+            background-color: #303036
+    &__submit_and_forgot_flex
+        display: flex
+        justify-content: space-between
+        align-items: center
+    &__forgot_password_link
+        text-decoration: none
+        +font(15px, #0060c0, 400)
+    &__failed_login_message
+        +font(12px, #c00000, 400)
+        font-family: Arial, sans-serif
+        background-color: #d8dbe2
+        padding: 12px
+        border: 1px solid #a0aabe
+        border-radius: 5px
+    &__checkbox_input
+        visibility: hidden
+    &__checkbox_label
+        position: relative
+        display: block
+        +font(15px, #000, 400)
+        margin: 0 0 0 30px
+        cursor: pointer
+    &__checkbox_label::before
+        position: absolute
+        top: -1px
+        left: -30px
+        width: 17px
+        height: 17px
+        border: 1px solid #333
+        background-color: #fff
+        content: ''
+    &__checkbox_input:checked + &__checkbox_label::before
+        background-color: #fcdd0c
+    &__checkbox_input:checked + &__checkbox_label::after
+        position: absolute
+        content: ''
+        left: -23.5px
+        top: 1.5px
+        width: 4px
+        height: 9px
+        background-color: #fcdd0c
+        border: solid #000
+        border-width: 0 3px 3px 0
+        transform: rotate(45deg)
+
+    &__closed_eye_img
+        position: absolute
+        height: 25px
+        top: -34px
+        right: 8px
+        cursor: pointer
+    &__opened_eye_img
+        position: absolute
+        height: 25px
+        top: -32px
+        right: 8px
+        cursor: pointer
+        display: none
+
+    &__ulogin_iframe
+        padding: 0
+        margin: 7px 0 0 -10px
+        height: 50px
+        width: 230px
+
+

@@ -39,10 +39,10 @@ class ConfirmRegister extends Mailable
     {
         $fakeUserId = $this->user->id + env('FAKE_ID_OFFSET');
 
-        return $this->view('emails.confirm_registration')
+        return $this->view('emails.confirm-registration')
             ->with([
-            'userName' => $this->user->getUserName(),
-            'confirmingUrl' => URL::signedRoute('register.confirm', ['fakeUserId' => $fakeUserId]),
-        ]);
+                'userName' => $this->user->getUserName(),
+                'confirmingUrl' => URL::signedRoute('account.register.confirm', ['fakeUserId' => $fakeUserId]),
+            ]);
     }
 }

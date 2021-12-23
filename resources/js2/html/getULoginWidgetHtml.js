@@ -8,11 +8,13 @@ export default function getULoginWidgetHtml() {
         el('#uLoginWrapper').insertAdjacentHTML('afterbegin', data);
     });
 */
+    return '';
+
     return `<iframe src="/u-login/widget"
             scrolling="no"
             align="left"
             frameborder="0"
-            class="ulogin_iframe"></iframe>`;
+            class="js_reg_form__ulogin_iframe"></iframe>`;
 
 
 /*
@@ -25,6 +27,3 @@ export default function getULoginWidgetHtml() {
 */
 }
 
-
-
-// <img src="https://kvadrat64.ru/imgsf/605365s-11625724738.jpg">

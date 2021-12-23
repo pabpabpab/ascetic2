@@ -5,44 +5,23 @@
     color: $color
     font-weight: $weight
 
-html
-    padding: 0
-    margin: 0
-    min-height: 100vh
-
 body
     min-height: 100vh
     box-sizing: border-box
     padding: 0
     margin: 0
-    font-family: $body_font_family
     display: flex
     flex-direction: column
     justify-content: space-between
-
-main
-    display: block
+    font-family: $body_font_family
 
 .content_wrapper
-    flex-grow: 1
-    //border: 3px solid #ff0000
-    width: 95%
+    flex-grow: 2
+    width: $content_wrapper_width
     padding: 80px 0 30px 0
     box-sizing: border-box
     margin: 0 auto
-.viewed_products__aside
-    flex-grow: 2
     display: block
-    padding: 0 0 30px 15px
-    width: 95%
-    box-sizing: border-box
-    margin: 0 auto
-    //border: 3px solid #00f
-.viewed_products__link
-    +font(21px, rgb(45, 35, 35), 400)
-    font-family: $h1_font_family
-    text-decoration: none
-    border-bottom: 1px solid rgba(45, 35, 35, 0.3)
 
 
 a
@@ -52,14 +31,11 @@ a
 
 @import "show_hide"
 
-@import "h1"
 
 @import "mainMenu/topMenu"
 @import "mainMenu/bottomMenu"
 
-@import "jsRegisterLoginForm"
-@import "absoluteMessage"
-@import "authBlock"
+@import "h1"
 
 @import "product/productPhoto"
 @import "product/productList"
@@ -69,10 +45,20 @@ a
 
 @import "pagination"
 
+@import "viewedProductsBlock"
+
+@import "jsAuth/authAbsoluteMenu"
+@import "jsAuth/jsRegisterLoginForm"
+
+@import "staticAuth/authPage"
+@import "staticAuth/myPage"
+
+@import "absoluteMessage"
 
 @import "auxiliaryModifiers"
 
 
 #flashMessage
+    position: absolute
     display: none
 

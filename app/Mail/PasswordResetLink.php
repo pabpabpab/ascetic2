@@ -38,16 +38,16 @@ class PasswordResetLink extends Mailable
     {
         $fakeUserId = $this->user->id + env('FAKE_ID_OFFSET');
 
-        return $this->view('emails.password_reset_link')
+        return $this->view('emails.password-reset-link')
                     ->with([
                         'userName' => $this->user->getUserName(),
-                        'resetPasswordUrl' => URL::signedRoute('resetPassword.showForm',['fakeUserId' => $fakeUserId]
+                        'resetPasswordUrl' => URL::signedRoute('account.resetPassword.showForm',['fakeUserId' => $fakeUserId]
                         ),
                     ]);
 
         /*
          * 'resetPasswordUrl' => URL::temporarySignedRoute(
-                    'resetPassword.showForm', now()->addHours(12), ['fakeUserId' => $fakeUserId]
+                    'account.resetPassword.showForm', now()->addHours(12), ['fakeUserId' => $fakeUserId]
                 )
          */
     }

@@ -3,77 +3,77 @@
 @section('title')Вход для пользователя@endsection
 
 @section('content')
-    <h1>Вход для пользователя</h1>
+    <div class="auth_page">
 
 
-    <table>
-        <tr style="vertical-align:top;">
-            <td style="width:300px;">
-
-                <form action='{{route('login.do')}}' method='post'>
-                    @csrf
-
-
-                    <label for="email">E-mail</label><br>
-                    <input type='email' name='email' id='email'
-                           value="{{ old('email') ?? session('email') }}"
-                           @error('email')style="border:2px solid #c06000;"@enderror required><br>
-                    @error('email')
-                    <div style="font-size:13px;color:#c06000;">{{ $message }}</div>
-                    @enderror
+        @if (session('authStatus'))
+            <div class="auth_page__auth_status">
+                {{ session('authStatus') }}
+            </div>
+        @endif
 
 
-                    <label for="password">Пароль</label><br>
-                    <input type='password' name='password' id='password'
-                           @error('password')style="border:2px solid #c06000;"@enderror required><br>
-                    @error('password')
-                    <div style="font-size:13px;color:#c06000;">{{ $message }}</div>
-                    @enderror
+        <h1>Вход для пользователя</h1>
+
+        <form action='{{route('account.login.do')}}' method='post'>
+            @csrf
+
+            <label for="email" class="auth_page__text_input__label">
+                E-mail
+            </label>
+            <input type='email' name='email' id='email'
+                   class="auth_page__text_input"
+                   value="{{ old('email') ?? session('email') }}" required>
+            @error('email')
+                <p class="auth_page__text_input__error_msg">{{ $message }}</p>
+            @enderror
 
 
-                    <input type="checkbox" name="remember" id="remember" value="1" {{ old('remember') ? 'checked' : '' }}>
-                    <label for="remember">Запомнить меня</label><br>
-
-                    <button type="submit" name='submit' style="padding:10px 25px;margin:10px 0;">
-                        Войти
-                    </button>
-                </form>
-
-            </td>
-
-
-            <td style="padding:0 0 0 150px;">
-                @if ($errors->any())
-                    <ul style="color:#c06000;">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-            </td>
-
-        </tr>
-
-        <tr style="vertical-align:top;">
-            <td colspan="2">
-                <a href="{{ route('forgotPassword.showForm') }}">Забыли пароль?</a>
-            </td>
-        </tr>
-    </table>
+            <label for="password" class="auth_page__text_input__label">
+                Пароль
+            </label>
+            <input type='password'
+                   name='password' id='password'
+                   class="auth_page__text_input" required>
+            <div class="auth_page__change_password_type__wrapper">
+                <img alt="" src="images/closedEye.svg" class="auth_page__closed_eye_img">
+                <img alt="" src="images/openedEye.svg" class="auth_page__opened_eye_img">
+            </div>
+            @error('password')
+                <p class="auth_page__text_input__error_msg">{{ $message }}</p>
+            @enderror
 
 
+            <p class="auth_page__remember_me">
 
-    <script src="//ulogin.ru/js/ulogin.js"></script>
-    <div id="uLogin" style="padding: 20px 0;"
-         data-ulogin="display=small;theme=classic;fields=first_name,last_name;
-         providers=vkontakte,odnoklassniki,yandex,instagram,facebook,google;
-         hidden=twitter,mailru,yandex,livejournal,openid,linkedin,youtube,webmoney,googleplus;
-         redirect_uri=http%3A%2F%2F{{config("app.name")}}%2Fu-login%2Fresponse;mobilebuttons=0;"></div>
-    </div>
+                <input type="checkbox" name="remember" id="remember"
+                       class="auth_page__remember_me__checkbox"
+                       value="1" {{ old('remember') ? 'checked' : '' }}>
 
-    @if (session('status'))
-        <div style="background-color: #c0ced0; display: table; border-radius: 7px; padding: 15px; font-size: 15px; color: #000000;">
-            {{ session('status') }}
+                <label for="remember" class="auth_page__remember_me__label" >
+                    Запомнить меня
+                </label>
+            </p>
+
+
+            <button type="submit" name='submit' class="auth_page__button">
+                Войти
+            </button>
+        </form>
+
+        <a href="{{ route('account.forgotPassword.showForm') }}"
+            class="auth_page__forgot_password__link">
+            Забыли пароль?
+        </a>
+
+
+        <script src="//ulogin.ru/js/ulogin.js"></script>
+        <div id="uLogin" class="auth_page__ulogin_div"
+             data-ulogin="display=panel;theme=classic;fields=first_name,last_name;
+            providers=vkontakte,odnoklassniki,yandex,instagram,facebook,google;
+            hidden=twitter,mailru,yandex,livejournal,openid,linkedin,youtube,webmoney,googleplus;
+            redirect_uri=http%3A%2F%2F{{config("app.name")}}%2Fu-login%2Fresponse;mobilebuttons=0;">
         </div>
-    @endif
+
+    </div>
 @endsection

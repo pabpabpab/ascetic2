@@ -19,7 +19,7 @@
         }
     @endphp
 
-    <nav class="pagination_nav ml15">
+    <nav class="pagination_nav">
 
         <div class="pagination_nav__left">
             @if ($prevRoute)

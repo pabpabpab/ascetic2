@@ -26,9 +26,9 @@
 @endphp
 
 @if ($currentRouteName === 'products.singlePhotoPage')
-    @include('blocks.easy-top-menu')
+    @include('menu.easy-top-menu')
 @else
-    @include('blocks.top-menu')
+    @include('menu.top-menu')
 @endif
 
 <main class="content_wrapper">
@@ -39,7 +39,7 @@
 @include('blocks.viewed-products-summary')
 
 
-@include('blocks.bottom-menu')
+@include('menu.bottom-menu')
 
 @if (session('flashMessage'))
     <div id="flashMessage">{{ session('flashMessage') }}</div>

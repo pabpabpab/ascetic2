@@ -57,7 +57,7 @@
 
     <div data-menu="right" class="top_menu__ul">
         <div class="top_menu__li_auth">
-            @include('blocks.auth-menu')
+            @include('menu.auth-menu')
         </div>
     </div>
 </header>

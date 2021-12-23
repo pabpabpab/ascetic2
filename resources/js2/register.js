@@ -6,7 +6,7 @@ import AbsoluteFlashMessage from "./absoluteFlashMessage.js";
 
 export default class Register extends AbsoluteForm {
 
-    constructor(data, postUrl= '/register', successUrl = '/home') {
+    constructor(data, postUrl= '/register', successUrl = '/my') {
         super(data);
 
         this.postUrl = postUrl;
@@ -18,8 +18,8 @@ export default class Register extends AbsoluteForm {
     }
 
     _preRenderActions() {
-        if (!el('#authBlock')) return;
-        el('#authBlock').className = `auth_block__wrapper hide_block`;
+        if (!el('#authAbsoluteMenu')) return;
+        el('#authAbsoluteMenu').className = `auth_absolute_menu__wrapper hide_block`;
     }
 
     _getHtml(data) {
@@ -30,7 +30,10 @@ export default class Register extends AbsoluteForm {
     }
 
     _ultimateSuccess() {
-        document.location.href = this.successUrl;
+        new AbsoluteFlashMessage('Регистрация создана.');
+        setTimeout(() => {
+            document.location.href = this.successUrl;
+        }, 2000);
     }
 
     _ultimateFail() {

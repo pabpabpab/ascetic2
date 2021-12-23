@@ -33,14 +33,9 @@ Route::get('/product/{product}/photo/{photoSlug}-{photoId}', [ProductController:
 //->name('products.byColor');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
-    ->name('home');
-
-
-
 Route::get('/admin', function () {
     return view('admin.index_vuex');
-})->middleware(['auth', 'role:admin']);
+})->middleware(['auth', 'role:admin'])->name('adminPanel');
 
 Route::get('/admin/{any}', function ($any) {
     return view('admin.index_vuex');
@@ -48,9 +43,15 @@ Route::get('/admin/{any}', function ($any) {
 
 
 
+
+Route::get('/my', [App\Http\Controllers\MyPageController::class, 'index'])
+    ->name('my');
+
+
 // Аутентификация
 Route::group([
-    'namespace' => '\App\Http\Controllers\Auth'
+    'namespace' => '\App\Http\Controllers\Auth',
+    'as' => 'account.',
 ], function () {
 
     // форма регистрации

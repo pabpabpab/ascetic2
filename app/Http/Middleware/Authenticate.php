@@ -16,6 +16,6 @@ class Authenticate extends Middleware
     {
         return $request->expectsJson()
             ? response()->json(['loginRequired' => true]) // временно
-            : route('login.show');
+            : route('account.login.show');
     }
 }

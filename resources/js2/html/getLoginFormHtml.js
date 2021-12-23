@@ -2,34 +2,41 @@ import getULoginWidgetHtml from './getULoginWidgetHtml.js';
 
 export default function getLoginFormHtml(css) {
     return `<div id="loginForm" class="${css.basicCss} ${css.showCss}">
-                <div class="register_form__header">
+                <div class="js_reg_form__header">
                     Вход для пользователя
-                    <div class='register_form__close'>&#215;</div>
+                    <div class='js_reg_form__close'>&#215;</div>
                 </div>
 
                 <div id="failedLoginErr" class="mt10"></div>
 
-                <label for="loginEmail" class="register_input__label">E-mail</label>
-                <input type='email' name='email' id='loginEmail' required class="register_input__text">
-                <div id="loginEmailErr" class="register_input__validation_message"></div>
+                <label for="loginEmail" class="js_reg_form__input__label">E-mail</label>
+                <input type='email' name='email' id='loginEmail' required class="js_reg_form__input__text_input">
+                <div id="loginEmailErr" class="js_reg_form__input__validation_message"></div>
 
-                <label for="loginPassword" class="register_input__label">Пароль</label>
-                <input type='password' name='password' id='loginPassword' required class="register_input__text">
-                <div id="loginPasswordErr" class="register_input__validation_message"></div>
 
-                <input type="checkbox" name="remember" id="loginRemember" value="1" class="login__checkbox_input">
-                <label for="loginRemember" class="login__checkbox_label">Запомнить меня</label>
+                <label for="loginPassword" class="js_reg_form__input__label">Пароль</label>
+                <input type='password' name='password' id='loginPassword' required class="js_reg_form__input__text_input">
+                <div class="height0 relative">
+                    <img alt="" src="images/closedEye.svg" id="closedEyeImg" class="js_reg_form__closed_eye_img">
+                    <img alt="" src="images/openedEye.svg" id="openedEyeImg" class="js_reg_form__opened_eye_img">
+                </div>
+                <div id="loginPasswordErr" class="js_reg_form__input__validation_message"></div>
 
-                <div class="submit_forgot__flex mt18">
-                    <button type="submit" id='loginSubmit' class="register_form__submit_button">
+
+
+                <input type="checkbox" name="remember" id="loginRemember" value="1" class="js_reg_form__checkbox_input">
+                <label for="loginRemember" class="js_reg_form__checkbox_label">Запомнить меня</label>
+
+                <div class="js_reg_form__submit_and_forgot_flex mt18">
+                    <button type="submit" id='loginSubmit' class="js_reg_form__submit_button">
                         Войти
                     </button>
-                    <a href="/forgot-password" id="forgotPasswordLink" class="forgot_password__link">
+                    <a href="/forgot-password" id="forgotPasswordLink" class="js_reg_form__forgot_password_link">
                         Забыли пароль?
                     </a>
                 </div>
 
-                <div class="register_form__header mt30">
+                <div class="js_reg_form__header mt30">
                     Войти через
                 </div>
                 ${getULoginWidgetHtml()}

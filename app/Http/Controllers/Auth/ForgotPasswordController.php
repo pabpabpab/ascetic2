@@ -40,7 +40,7 @@ class ForgotPasswordController extends Controller
         if (blank($user)) {
             return $request->expectsJson()
                 ? response()->json(['success' => false])
-                : back()->with(['status' => $this->_evasiveAnswer()]);
+                : back()->with(['authStatus' => $this->_evasiveAnswer()]);
         }
 
         // получить запись о токене из таблицы password_resets, если есть
@@ -54,7 +54,7 @@ class ForgotPasswordController extends Controller
         if ((new ForgotPasswordService())->recentlyCreatedToken($tokenObject)) {
             return $request->expectsJson()
                 ? response()->json(['success' => false])
-                : back()->with(['status' => $this->_evasiveAnswer()]);
+                : back()->with(['authStatus' => $this->_evasiveAnswer()]);
         }
 
         // обновить время у записи с $user->email,
@@ -79,7 +79,7 @@ class ForgotPasswordController extends Controller
         // успешный ответ с сообщением
         return $request->expectsJson()
             ? response()->json(['success' => true])
-            : back()->with(['status' => $this->_evasiveAnswer()]);
+            : back()->with(['authStatus' => $this->_evasiveAnswer()]);
     }
 
 

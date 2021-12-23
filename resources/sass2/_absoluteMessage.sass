@@ -8,7 +8,7 @@
     display: flex
     justify-content: center
     align-items: center
-
+    pointer-events: none
 
 .absolute_message__show_and_hide
     opacity: 0
@@ -24,6 +24,7 @@
 
 .absolute_message__div
     position: relative
+    z-index: 16
     width: 300px
     min-height: 80px
     padding: 20px
@@ -33,17 +34,20 @@
     display: flex
     justify-content: center
     align-items: center
+    pointer-events: auto
 
 .arial_sans-serif
     font-family: Arial, sans-serif
 
 .absolute_message__close
     position: absolute
-    top: -5px
-    right: 3px
+    z-index: 17
+    top: -8px
+    right: 4px
     padding: 0
-    +font(35px,#ccc,100)
+    +font(35px, #ccc, 100)
     cursor: pointer
+    pointer-events: auto
     &:hover
-        +font(35px,#eee,100)
+        +font(35px, #eee, 100)
 

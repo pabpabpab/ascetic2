@@ -32,19 +32,29 @@ class RegisterController extends Controller
         if ($request->email === env('ADMIN_EMAIL')) {
             $role = 'admin';
         }
-
+/*
         $user = User::create([
             'name' => $request->name,
             'role' => $role,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+*/
 
 
-        if (blank($user)) {
+        $user = new User();
+        $user->name = $request->name;
+        $user->role = $role;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save(); // теперь у $user есть id при create
+
+
+
+        if (blank($user->id)) {
             return $request->expectsJson()
                 ? response()->json(['success' => false])
-                : back()->with(['status' => 'Не удалось создать регистрацию.']);
+                : back()->with(['authStatus' => 'Не удалось создать регистрацию.']);
         }
 
 
@@ -54,13 +64,13 @@ class RegisterController extends Controller
 
         session([
             'username' => Auth::user()->getUserName(),
-            'admin' => Auth::user()->_hasRole('admin')
+            'isAdmin' => Auth::user()->_hasRole('admin')
         ]);
 
 
         return $request->expectsJson()
             ? response()->json(['success' => true])
-            : redirect()->route('home');
+            : redirect()->route('my');
 
     }
 
