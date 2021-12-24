@@ -39,6 +39,22 @@ class User extends Authenticatable
     }
 
 
+    /**
+     * The products that belong to the user.
+     * Many-to-many relationship for products
+     */
+    public function favoriteProducts()
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'users_favorite_products',
+            'user_id',
+            'product_id'
+        );
+    }
+
+
+
     /*
 
     public function getMore($lastId)

@@ -6,16 +6,16 @@
     $smallPhotoFolder = "/storage/products-photos-size2/";
     $bigPhotoFolder = "/storage/products-photos-size4/";
 
-    // преобразование Collection (photoSeo - наследовано из родительского view) в массив
+    // преобразование Collection в массив
     $objPhotoSet = $photoSeo->toArray();
     $photoCount = count($objPhotoSet);
     // $objPhotoSet - список таких объектов
     /*
      *  "photo_id" => null,
      *  "filename" => $photoName,
-        "alt_text" => "",
-        "page_title" => "",
-        "page_description" => "",
+     *  "alt_text" => "",
+     *  "page_title" => "",
+     *  "page_description" => "",
      */
 @endphp
 
@@ -32,12 +32,11 @@
             @endif
 
             <div class="single_product__small_photos">
-                @php $i = 1; @endphp
                 @foreach ($objPhotoSet as $photo)
                     @php
                         $photoAltText = (bool) $photo->alt_text
                             ? $photo->alt_text
-                            : $pageTitle . " (фото $i)";
+                            : $pageTitle . " (фото " . $loop->iteration . ")";
 
                         $singlePhotoUrl = null;
                         if ($photo->page_title) {
@@ -48,7 +47,6 @@
                             ]);
                             ///product/{product}/photo/{photoSlug}-{photoId}
                         }
-                        $i++;
                     @endphp
                     @if ($singlePhotoUrl)
                         <a href="{{ $singlePhotoUrl }}">

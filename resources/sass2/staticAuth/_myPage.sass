@@ -2,18 +2,44 @@
 .my_page
     +font(16px, rgb(0, 0, 0), 400)
 
+    &__h1
+        margin-left: 15px
 
-.my_page__button
-    +font(16px, rgb(0, 0, 0), 400)
-    padding: 15px 25px
-    margin: 10px 0
-    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3)
-    cursor: pointer
+    &__content
+        display: flex
+        flex-wrap: wrap
 
-.my_page__auth_status
-    display: table
-    padding: 30px
-    margin: 15px 0 0 0
-    background-color: #e0e0e0
-    +font(16px, rgb(0, 0, 0), 400)
-    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3)
+    &__item_link
+        +font(16px, rgb(0, 0, 0), 400)
+        width: 300px
+        height: 100px
+        margin: 15px
+        box-sizing: border-box
+        border-radius: 7px
+        box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3)
+        display: flex
+        align-items: center
+        justify-content: center
+        transition: box-shadow .3s
+        &:hover
+            box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.6)
+
+        &__info_tail
+            margin-left: 15px
+            +font(17px, #aaa, 300)
+
+
+    &__button
+        +font(16px, rgb(0, 0, 0), 400)
+        padding: 15px 25px
+        margin: 10px 0
+        box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3)
+        cursor: pointer
+
+    &__auth_status
+        display: table
+        padding: 30px
+        margin: 15px 0 0 0
+        background-color: #e0e0e0
+        +font(16px, rgb(0, 0, 0), 400)
+        box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.3)

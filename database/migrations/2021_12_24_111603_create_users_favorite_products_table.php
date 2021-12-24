@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductsMaterialsTable extends Migration
+class CreateUsersFavoriteProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreateProductsMaterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products_materials', function (Blueprint $table) {
+        Schema::create('users_favorite_products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('material_id');
+            $table->index('user_id', 'user_id_idx');
             $table->index('product_id', 'product_id_idx');
-            $table->index('material_id', 'material_id_idx');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('material_id')->references('id')->on('materials');
         });
     }
-    // php artisan make:migration create_products_materials_table --create=products_materials
-    // php artisan migrate
 
     /**
      * Reverse the migrations.
@@ -33,11 +31,10 @@ class CreateProductsMaterialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_materials');
+        Schema::dropIfExists('users_favorite_products');
     }
 }
 
-// php artisan make:migration create_products_materials_table
+// php artisan make:migration create_users_favorite_products_table
 
-
-
+// php artisan migrate

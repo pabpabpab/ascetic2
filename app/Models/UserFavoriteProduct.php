@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ProductMaterial extends Pivot
+class UserFavoriteProduct extends Pivot
 {
     use HasFactory;
 
-    protected $table = 'products_materials';
+    protected $table = 'users_favorite_products';
     public $incrementing = true;
 }
-
-// php artisan make:model ProductMaterial --pivot
-
-// php artisan make:model UserFavoriteProduct --pivot
