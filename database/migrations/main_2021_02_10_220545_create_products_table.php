@@ -112,8 +112,11 @@ class CreateProductsTable extends Migration
 
             $table->index('product_id', 'product_id_idx');
             $table->index('category_id', 'category_id_idx');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('category_id')->references('id')->on('categories');
+
+            $table->foreign('product_id', 'product_id_fk')
+                ->references('id')->on('products');
+            $table->foreign('category_id', 'category_id_fk')
+                ->references('id')->on('categories');
         });
 
         Schema::create('products_materials', function (Blueprint $table) {
@@ -123,8 +126,11 @@ class CreateProductsTable extends Migration
 
             $table->index('product_id', 'product_id_idx');
             $table->index('material_id', 'material_id_idx');
-            $table->foreign('product_id', 'product_id_fk')->references('id')->on('products');
-            $table->foreign('material_id', 'material_id_fk')->references('id')->on('materials');
+
+            $table->foreign('product_id', 'product_id_fk')
+                ->references('id')->on('products');
+            $table->foreign('material_id', 'material_id_fk')
+                ->references('id')->on('materials');
         });
 
         Schema::create('products_colors', function (Blueprint $table) {
@@ -134,8 +140,11 @@ class CreateProductsTable extends Migration
 
             $table->index('product_id', 'product_id_idx');
             $table->index('color_id', 'color_id_idx');
-            $table->foreign('product_id', 'product_id_fk')->references('id')->on('products');
-            $table->foreign('color_id', 'color_id_fk')->references('id')->on('colors');
+
+            $table->foreign('product_id', 'product_id_fk')
+                ->references('id')->on('products');
+            $table->foreign('color_id', 'color_id_fk')
+                ->references('id')->on('colors');
         });
 
         Schema::create('users_favorite_products', function (Blueprint $table) {
@@ -145,8 +154,11 @@ class CreateProductsTable extends Migration
 
             $table->index('user_id', 'user_id_idx');
             $table->index('product_id', 'product_id_idx');
-            $table->foreign('user_id', 'user_id_fk')->references('id')->on('users');
-            $table->foreign('product_id', 'product_id_fk')->references('id')->on('products');
+
+            $table->foreign('user_id', 'user_id_fk')
+                ->references('id')->on('users');
+            $table->foreign('product_id', 'product_id_fk')
+                ->references('id')->on('products');
         });
 
 
@@ -157,7 +169,8 @@ class CreateProductsTable extends Migration
             $table->text('page_description');
 
             $table->unique('category_id', 'category_id_idx');
-            $table->foreign('category_id', 'category_id_fk')->references('id')->on('categories');
+            $table->foreign('category_id', 'category_id_fk')
+                ->references('id')->on('categories');
         });
 
         Schema::create('products_seo_texts', function (Blueprint $table) {
@@ -167,7 +180,8 @@ class CreateProductsTable extends Migration
             $table->text('page_description');
 
             $table->unique('product_id', 'product_id_idx');
-            $table->foreign('product_id', 'product_id_fk')->references('id')->on('products');
+            $table->foreign('product_id', 'product_id_fk')
+                ->references('id')->on('products');
         });
 
         Schema::create('photo_seo_texts', function (Blueprint $table) {
@@ -177,7 +191,8 @@ class CreateProductsTable extends Migration
             $table->text('page_description');
 
             $table->unique('photo_id', 'photo_id_idx');
-            $table->foreign('photo_id', 'photo_id_fk')->references('id')->on('photo');
+            $table->foreign('photo_id', 'photo_id_fk')
+                ->references('id')->on('photo');
         });
 
     }
