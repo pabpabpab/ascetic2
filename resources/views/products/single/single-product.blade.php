@@ -41,7 +41,7 @@
     <div class="single_product__content">
 
         @if ($photoCount > 0)
-            @include("products.photo-block-of-single-product", ['pageTitle' => $pageTitle])
+            @include("products.single.photo-block-of-single-product", ['pageTitle' => $pageTitle])
         @endif
 
         <section class="single_product__top_characteristics

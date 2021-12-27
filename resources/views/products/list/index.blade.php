@@ -32,7 +32,7 @@
         <h1 class="products__h1">{{ $pageTitle }}</h1>
 
         <div class="products">
-            @each('products.product-item', $products, 'product')
+            @each('products.list.product-item', $products, 'product')
         </div>
     </section>
 

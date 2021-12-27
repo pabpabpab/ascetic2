@@ -26,7 +26,7 @@ class ProductController extends Controller
 
         $products = $service->getAll('active')
             ->paginate(3);
-        return view('products.index', ['products' => $products]);
+        return view('products.list.index', ['products' => $products]);
     }
 
 
@@ -40,7 +40,7 @@ class ProductController extends Controller
 
         $products = $service->getAll('active')
             ->paginate(3);
-        return view('products.index', ['products' => $products]);
+        return view('products.list.index', ['products' => $products]);
     }
 
 
@@ -54,7 +54,7 @@ class ProductController extends Controller
         });
 
         // $category определена в роуте как {category:slug}
-        return view('products.index', [
+        return view('products.list.index', [
             'category' => $category,
             'categorySeo' => $category->seoText,
             'products' => $category->products()->paginate(1),
@@ -70,7 +70,7 @@ class ProductController extends Controller
         });
 
         $products = $service->getViewed()->paginate(3);
-        return view('products.index', ['products' => $products]);
+        return view('products.list.index', ['products' => $products]);
     }
 
 
@@ -81,7 +81,7 @@ class ProductController extends Controller
         //session()->flush();
         (new ViewedProductsService())->addToViewed($product->id);
 
-        return view('products.single-product', [
+        return view('products.single.single-product', [
             'product' => $product,
             'description' => $product->description,
             'seo' => $product->seoText,
@@ -93,7 +93,7 @@ class ProductController extends Controller
     {
         (new ViewedProductsService())->addToViewed($product->id);
 
-        return view('products.single-photo', [
+        return view('products.single.single-photo', [
             'product' => $product,
             'photoSeo' => $service->getProductPhotoSeoByPhotoId($photoId),
         ]);
@@ -105,7 +105,7 @@ class ProductController extends Controller
     public function getByMaterial(ListService $service, Material $material)
     {
         // $material определена в роуте как {material:slug}
-        return view('products.index', [
+        return view('products.list.index', [
             'category' => $material,
             'products' => $material->products,
         ]);
@@ -114,7 +114,7 @@ class ProductController extends Controller
     public function getByColor(ListService $service, Color $color)
     {
         // $color определена в роуте как {color:slug}
-        return view('products.index', [
+        return view('products.list.index', [
             'category' => $color,
             'products' => $color->products,
         ]);

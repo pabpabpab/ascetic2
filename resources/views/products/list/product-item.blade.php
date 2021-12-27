@@ -83,8 +83,8 @@
 
         </div>
 
-        <div class="product_item__favorite_icon__wrapper">
-            <img alt=""
+        <div data-fav-icon-wrapper="{{ $product->id }}" class="product_item__favorite_icon__wrapper">
+            <img id="favIconImg{{ $product->id }}" alt=""
             src="{{ asset('images/favoriteIcon.svg') }}"
             class="product_item__favorite_icon__img">
         </div>

@@ -12,6 +12,8 @@ class CreateProductsTable extends Migration
      *
      * @return void
      */
+
+    /*
     public function up()
     {
 
@@ -152,6 +154,8 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
 
+            $table->unique(['user_id', 'product_id'], 'user_product_idx');
+
             $table->index('user_id', 'user_id_idx');
             $table->index('product_id', 'product_id_idx');
 
@@ -196,13 +200,15 @@ class CreateProductsTable extends Migration
         });
 
     }
-
+*/
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
+
+    /*
     public function down()
     {
 
@@ -223,4 +229,5 @@ class CreateProductsTable extends Migration
         Schema::dropIfExists('products_seo_texts');
         Schema::dropIfExists('photo_seo_texts');
     }
+    */
 }

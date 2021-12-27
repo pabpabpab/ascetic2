@@ -11,6 +11,8 @@ class CreateAllTables extends Migration
      *
      * @return void
      */
+
+    /*
     public function up()
     {
         // Категория товара
@@ -152,6 +154,7 @@ class CreateAllTables extends Migration
             id SERIAL,
             user_id BIGINT UNSIGNED,
             product_id BIGINT UNSIGNED,
+            UNIQUE KEY user_product_idx(user_id, product_id),
             INDEX user_id_idx(user_id),
             INDEX product_id_idx(product_id),
             FOREIGN KEY user_id_fk(material_id) REFERENCES users(id),
@@ -202,13 +205,15 @@ class CreateAllTables extends Migration
 
     }
 
-
+*/
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
+
+    /*
     public function down()
     {
         Schema::dropIfExists('categories');
@@ -228,7 +233,7 @@ class CreateAllTables extends Migration
         Schema::dropIfExists('products_seo_texts');
         Schema::dropIfExists('photo_seo_texts');
     }
-
+*/
 }
 
 // php artisan migrate

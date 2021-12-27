@@ -1707,25 +1707,36 @@ SELECT|sys.sys_config
       <DataType>bigint unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="456" parent="304" name="user_id_idx">
+    <index id="456" parent="304" name="user_product_idx">
+      <ColNames>user_id
+product_id</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <index id="457" parent="304" name="user_id_idx">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="457" parent="304" name="product_id_idx">
+    <index id="458" parent="304" name="product_id_idx">
       <ColNames>product_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="458" parent="304" name="PRIMARY">
+    <key id="459" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="459" parent="304" name="users_favorite_products_user_id_foreign">
+    <key id="460" parent="304" name="user_product_idx">
+      <ColNames>user_id
+product_id</ColNames>
+      <UnderlyingIndexName>user_product_idx</UnderlyingIndexName>
+    </key>
+    <foreign-key id="461" parent="304" name="users_favorite_products_user_id_foreign">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="460" parent="304" name="users_favorite_products_product_id_foreign">
+    <foreign-key id="462" parent="304" name="users_favorite_products_product_id_foreign">
       <ColNames>product_id</ColNames>
       <RefTableName>products</RefTableName>
       <RefColNames>id</RefColNames>

@@ -2,6 +2,7 @@ import el from "./el";
 import AuthAbsoluteMenu from "./authAbsoluteMenu";
 import AbsoluteFlashMessage from "./absoluteFlashMessage";
 import PasswordTypeChanger from "./passwordTypeChanger";
+import FavoriteProductsManager from "./favoriteProductsManager";
 
 if (el('.personal_account__icon')) {
     new AuthAbsoluteMenu({ clickSourceSelector: '.personal_account__icon' });
@@ -19,4 +20,6 @@ if (el('.auth_page__change_password_type__wrapper')) {
     });
 }
 
-
+if (el('[data-fav-icon-wrapper]')) {
+    new FavoriteProductsManager();
+}

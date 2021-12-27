@@ -17,6 +17,7 @@ class CreateUsersFavoriteProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
+            $table->unique(['user_id', 'product_id'], 'user_product_idx');
             $table->index('user_id', 'user_id_idx');
             $table->index('product_id', 'product_id_idx');
             $table->foreign('user_id')->references('id')->on('users');
