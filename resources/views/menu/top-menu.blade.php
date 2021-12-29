@@ -57,6 +57,9 @@
 
     <div data-menu="right" class="top_menu__ul">
         <div class="top_menu__li_auth">
+            @include('menu.fav-icon')
+        </div>
+        <div class="top_menu__li_auth">
             @include('menu.auth-menu')
         </div>
     </div>

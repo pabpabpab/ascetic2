@@ -1,10 +1,10 @@
-import el from './el';
-import AbsoluteForm from "./parentClasses/absoluteForm";
-import getLoginFormHtml from './html/getLoginFormHtml';
-import getFailedLoginHtml from './html/getFailedLoginHtml';
-import getAuthenticatedMenuHtml from './html/getAuthenticatedMenuHtml';
-import loginValidation from "./validation/loginValidation";
-import AbsoluteFlashMessage from "./absoluteFlashMessage";
+import el from '../el';
+import AbsoluteForm from "../parentClasses/absoluteForm";
+import getLoginFormHtml from '../html/getLoginFormHtml';
+import getFailedLoginHtml from '../html/getFailedLoginHtml';
+import getAuthenticatedMenuHtml from '../html/getAuthenticatedMenuHtml';
+import loginValidation from "../validation/loginValidation";
+import AbsoluteFlashMessage from "../absoluteFlashMessage";
 import ForgotPassword from "./forgotPassword";
 import PasswordTypeChanger from "./passwordTypeChanger";
 

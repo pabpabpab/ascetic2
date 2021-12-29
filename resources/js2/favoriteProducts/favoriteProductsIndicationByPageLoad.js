@@ -1,5 +1,5 @@
-import el from './el';
-import getCookie from './cookie/getCookie';
+import el from '../el';
+import getCookie from '../cookie/getCookie';
 
 export default class FavoriteProductsIndicationByPageLoad {
 

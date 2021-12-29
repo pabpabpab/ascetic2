@@ -1,5 +1,5 @@
-import VisibleBlockByClick from "./parentClasses/visibleBlockByClick";
-import getAuthAbsoluteMenuHtml from "./html/getAuthAbsoluteMenuHtml";
+import VisibleBlockByClick from "../parentClasses/visibleBlockByClick";
+import getAuthAbsoluteMenuHtml from "../html/getAuthAbsoluteMenuHtml";
 import Register from "./register";
 import Login from "./login";
 

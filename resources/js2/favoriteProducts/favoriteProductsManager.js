@@ -1,7 +1,7 @@
-import el from './el';
-import setCookie from './cookie/setCookie';
-import getCookie from './cookie/getCookie';
-import postJson from "./http/postJson";
+import el from '../el';
+import setCookie from '../cookie/setCookie';
+import getCookie from '../cookie/getCookie';
+import postJson from "../http/postJson";
 // import AbsoluteFlashMessage from "./absoluteFlashMessage";
 
 export default class FavoriteProductsManager {

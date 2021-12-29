@@ -8,7 +8,7 @@
 
     @php
         $userUrl = (session('isAdmin')) ? route('adminPanel') : route('my');
-        $userText = (session('isAdmin')) ? 'Admin panel' : session('username'); // Auth::user()->name;
+        $userText = (session('isAdmin')) ? 'Admin panel' : \Illuminate\Support\Facades\Auth::user()->name; // session('username');
     @endphp
 
     <a href="{{ $userUrl }}" class="top_menu__link">

@@ -1,10 +1,17 @@
 import el from "./el";
-import AuthAbsoluteMenu from "./authAbsoluteMenu";
-import AbsoluteFlashMessage from "./absoluteFlashMessage";
-import PasswordTypeChanger from "./passwordTypeChanger";
 
-import FavoriteProductsIndicationByPageLoad from "./favoriteProductsIndicationByPageLoad";
-import FavoriteProductsManager from "./favoriteProductsManager";
+import CsrfUpdater from "./http/csrfUpdater";
+
+import AuthAbsoluteMenu from "./auth/authAbsoluteMenu";
+import AbsoluteFlashMessage from "./absoluteFlashMessage";
+import PasswordTypeChanger from "./auth/passwordTypeChanger";
+
+import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoriteProductsIndicationByPageLoad";
+import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
+import FavoriteProductsManager from "./favoriteProducts/favoriteProductsManager";
+
+
+new CsrfUpdater();
 
 
 if (el('.personal_account__icon')) {
@@ -23,7 +30,9 @@ if (el('.auth_page__change_password_type__wrapper')) {
     });
 }
 
+
 if (el('#products') || el('#single-product')) {
     new FavoriteProductsIndicationByPageLoad();
     new FavoriteProductsManager();
 }
+new FavoriteProductsTotal();

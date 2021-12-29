@@ -9,12 +9,6 @@
     if ($currentRouteName === 'products.byCategory') {
         $pageTitle = $categorySeo->page_title ?? 'Товары категории ' . $category->name;
         $pageDescription = $categorySeo->page_description ?? 'Список товаров категории ' . $category->name;
-    } elseif ($currentRouteName === 'products.byMaterial') {
-        $pageTitle = 'Товары из материала ' . $category->name;
-        $pageDescription = 'Товары из материала ' . $category->name;
-    } elseif ($currentRouteName === 'products.byColor') {
-        $pageTitle = 'Товары цвета ' . $category->name;
-        $pageDescription = 'Товары цвета ' . $category->name;
     } elseif ($currentRouteName === 'products.viewed') {
         $pageTitle = 'Вы смотрели';
         $pageDescription = 'Товары которые вы смотрели. ';

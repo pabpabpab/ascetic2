@@ -288,6 +288,30 @@ a {
   margin-bottom: -2px;
 }
 
+.top_menu__favorite_icon__wrapper {
+  position: relative;
+  display: inline;
+}
+
+.top_menu__link_fav_icon {
+  padding: 20px 5px;
+}
+
+.top_menu__favorite_icon__img {
+  width: 20px;
+  cursor: pointer;
+  margin-bottom: -2px;
+}
+
+.topMenu-favIcon-total {
+  position: absolute;
+  top: 13px;
+  right: -3px;
+  font-size: 10px;
+  color: black;
+  font-weight: 100;
+}
+
 .bottom_menu {
   width: 100%;
   min-height: 120px;

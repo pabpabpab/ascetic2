@@ -1,8 +1,8 @@
-import el from './el';
-import AbsoluteForm from "./parentClasses/absoluteForm";
-import forgotPasswordValidation from "./validation/forgotPasswordValidation";
-import getForgotPasswordFormHtml from "./html/getForgotPasswordFormHtml";
-import AbsoluteMessageWithCloseIcon from "./absoluteMessageWithCloseIcon";
+import el from '../el';
+import AbsoluteForm from "../parentClasses/absoluteForm";
+import forgotPasswordValidation from "../validation/forgotPasswordValidation";
+import getForgotPasswordFormHtml from "../html/getForgotPasswordFormHtml";
+import AbsoluteMessageWithCloseIcon from "../absoluteMessageWithCloseIcon";
 
 export default class ForgotPassword extends AbsoluteForm {
     constructor(data, postUrl= '/forgot-password/send-reset-link', successUrl = '') {
