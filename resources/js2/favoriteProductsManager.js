@@ -7,7 +7,7 @@ import postJson from "./http/postJson";
 export default class FavoriteProductsManager {
 
     constructor() {
-        this.postUrl = '/js-favorite-products/post';
+        this.postUrl = '/public-js/favorite-products/post';
 
         this.iconSrc = {
             notInFavorites: '/images/favoriteIcon.svg',

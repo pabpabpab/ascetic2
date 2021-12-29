@@ -497,7 +497,7 @@ var FavoriteProductsManager = /*#__PURE__*/function () {
 
     _classCallCheck(this, FavoriteProductsManager);
 
-    this.postUrl = '/js-favorite-products/post';
+    this.postUrl = '/public-js/favorite-products/post';
     this.iconSrc = {
       notInFavorites: '/images/favoriteIcon.svg',
       inFavorites: '/images/filledFavoriteIcon.svg'
