@@ -22,7 +22,10 @@ class MyPageController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\Foundation\Application|
+     * \Illuminate\Contracts\Support\Renderable|
+     * \Illuminate\Http\RedirectResponse|
+     * \Illuminate\Routing\Redirector
      */
     public function index()
     {
@@ -33,8 +36,6 @@ class MyPageController extends Controller
             return redirect('/');
         }
 
-
         return view('auth.my-page');
-
     }
 }

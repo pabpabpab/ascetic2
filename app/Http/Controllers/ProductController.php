@@ -122,3 +122,8 @@ class ProductController extends Controller
 */
 
 }
+
+
+// php artisan make:controller ProductController
+
+

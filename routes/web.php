@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ProductController;
-
+use \App\Http\Controllers\FavoriteProductController;
 
 Route::get('/', [ProductController::class, 'index'])
     ->name('mainPage');
@@ -51,6 +51,11 @@ Route::get('/admin/{any}', function ($any) {
 
 Route::get('/my', [App\Http\Controllers\MyPageController::class, 'index'])
     ->name('my');
+
+
+// js-post-реквест добавить удалить товар в/из избранных у пользователя
+Route::post('/js-favorite-products/post', [FavoriteProductController::class, 'synchronizeUserFavorites']);
+
 
 
 // Аутентификация

@@ -1,48 +1,30 @@
 import el from './el';
 import setCookie from './cookie/setCookie';
 import getCookie from './cookie/getCookie';
+import postJson from "./http/postJson";
+// import AbsoluteFlashMessage from "./absoluteFlashMessage";
 
 export default class FavoriteProductsManager {
 
     constructor() {
-        this.wrapperSelector = '';
-        this.imgSelector = '';
-        this.notInFavoritesSrc = '/images/favoriteIcon.svg';
-        this.inFavoritesSrc = '/images/filledFavoriteIcon.svg';
+        this.postUrl = '/js-favorite-products/post';
 
-        this._displayFavoriteProducts();
+        this.iconSrc = {
+            notInFavorites: '/images/favoriteIcon.svg',
+            inFavorites: '/images/filledFavoriteIcon.svg',
+        }
 
         el('body').addEventListener('click', (e) => {
-            const productId = parseInt(e.target.parentNode.dataset.favIconWrapper ?? e.target.dataset.favIconWrapper);
-            if (productId > 0) {
-                this.wrapperSelector = this._getIconWrapperSelector(productId);
-                this.imgSelector = this._getIconImgSelector(productId);
-                this._switcher(productId);
+            // id="favIcon-wrapper-$id" / id="favIcon-img-$id"
+            if (!e.target.id) {
+                return;
             }
-        });
-    }
-
-
-    _getIconWrapperSelector(productId) {
-        return `[data-fav-icon-wrapper="${productId}"]`;
-    }
-    _getIconImgSelector(productId) {
-        return `#favIconImg${productId}`;
-    }
-
-    _displayFavoriteProducts() {
-        const idsStr = getCookie('favoriteIds');
-        if (!Boolean(idsStr)) {
-            return;
-        }
-        const idsArr = idsStr.split('-');
-        const that = this;
-        idsArr.forEach(function(productId) {
-            const iconWrapperSelector = that._getIconWrapperSelector(productId);
-            const iconImgSelector = that._getIconImgSelector(productId);
-            if (el(iconImgSelector)) {
-                el(iconImgSelector).src = that.inFavoritesSrc;
-                el(iconWrapperSelector).classList.toggle("set-opacity");
+            if (e.target.id.split('-')[0] !== 'favIcon') {
+                return;
+            }
+            const productId = parseInt(e.target.id.split('-')[2]);
+            if (productId > 0) {
+                this._switcher(productId);
             }
         });
     }
@@ -60,20 +42,44 @@ export default class FavoriteProductsManager {
             this._turnOffIcon(productId);
         }
 
-        //console.log(idsArr);
-
         const favoriteIds = idsArr.join('-');
         setCookie('favoriteIds', favoriteIds, {'max-age': 2592000}); // 30 дней
+
+        //console.log(favoriteIds);
+
+        this._submit({productIds: favoriteIds});
     }
 
     _turnOnIcon(productId) {
-        el(this.imgSelector).src = this.inFavoritesSrc;
-        el(this.wrapperSelector).classList.toggle("set-opacity");
+        const imgSelector = this._getIconImgSelector(productId);
+        const wrapperSelector = this._getIconWrapperSelector(productId);
+        el(imgSelector).src = this.iconSrc.inFavorites;
+        el(wrapperSelector).classList.toggle("set-opacity");
     }
 
     _turnOffIcon(productId) {
-        el(this.imgSelector).src = this.notInFavoritesSrc;
-        el(this.wrapperSelector).classList.toggle("set-opacity");
+        const imgSelector = this._getIconImgSelector(productId);
+        const wrapperSelector = this._getIconWrapperSelector(productId);
+        el(imgSelector).src = this.iconSrc.notInFavorites;
+        el(wrapperSelector).classList.toggle("set-opacity");
+    }
+
+
+    _getIconWrapperSelector(productId) {
+        return `#favIcon-wrapper-${productId}`;
+    }
+    _getIconImgSelector(productId) {
+        return `#favIcon-img-${productId}`;
+    }
+
+    _submit(dataObject) {
+        postJson(this.postUrl, dataObject).then((data) => {
+            if (data.success === true) {
+                // new AbsoluteFlashMessage(`Избранное изменено`);
+            } else {
+                // new AbsoluteFlashMessage(`Избранное не удалось изменить`);
+            }
+        });
     }
 
 }

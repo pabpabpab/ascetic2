@@ -37,7 +37,7 @@
 
 
 @section('content')
-    <div class="single_product_page__content_wrapper">
+    <div id="singleProduct" class="single_product_page__content_wrapper">
     <div class="single_product__content">
 
         @if ($photoCount > 0)

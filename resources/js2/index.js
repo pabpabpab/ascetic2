@@ -2,7 +2,10 @@ import el from "./el";
 import AuthAbsoluteMenu from "./authAbsoluteMenu";
 import AbsoluteFlashMessage from "./absoluteFlashMessage";
 import PasswordTypeChanger from "./passwordTypeChanger";
+
+import FavoriteProductsIndicationByPageLoad from "./favoriteProductsIndicationByPageLoad";
 import FavoriteProductsManager from "./favoriteProductsManager";
+
 
 if (el('.personal_account__icon')) {
     new AuthAbsoluteMenu({ clickSourceSelector: '.personal_account__icon' });
@@ -20,6 +23,7 @@ if (el('.auth_page__change_password_type__wrapper')) {
     });
 }
 
-if (el('[data-fav-icon-wrapper]')) {
+if (el('#products') || el('#single-product')) {
+    new FavoriteProductsIndicationByPageLoad();
     new FavoriteProductsManager();
 }

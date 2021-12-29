@@ -1,7 +1,7 @@
 
 .pagination_nav
     width: 100%
-    padding: 0 0 0 15px
+    padding: 130px 0 0 15px
     display: flex
     align-items: center
     justify-content: flex-start
@@ -22,20 +22,26 @@
     min-width: 38px
     margin-left: 5px
     +font(17px, #000, 400)
-    border: 1px solid #e0e0e0
-    transition: color .2s, background-color .2s
+    background-color: #ffffff
+    transition: background-color .2s
     &:hover
-        color: #fff
-        background-color: #000
+        background-color: #f0f0f0
 
 .pagination__link_active
-    color: #fff
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: nowrap
+    height: 38px
+    min-width: 38px
+    margin-left: 5px
+    +font(17px, #fff, 400)
     background-color: #000
-    border: 1px solid #000
 
 
 .pagination__link__arrow_left
     position: relative
+    margin-left: -15px
     &::before
         position: absolute
         content: ''
@@ -47,9 +53,6 @@
         border-width: 0 0 2px 2px
         border-radius: 1px
         transform: rotate(45deg)
-    &:hover::before
-        border: solid #fff
-        border-width: 0 0 2px 2px
 
 .pagination__link__arrow_right
     position: relative
@@ -64,7 +67,4 @@
         border-width: 2px 2px 0 0
         border-radius: 1px
         transform: rotate(45deg)
-    &:hover::before
-        border: solid #fff
-        border-width: 2px 2px 0 0
 

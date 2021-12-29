@@ -28,7 +28,7 @@
 
             @for ($i = 1; $i <= $paginator->lastPage(); $i++)
                 @if ($paginator->currentPage() === $i)
-                    <span class="pagination__link pagination__link_active">
+                    <span class="pagination__link_active">
                         {{ $i }}
                     </span>
                 @elseif ($i === 1)
