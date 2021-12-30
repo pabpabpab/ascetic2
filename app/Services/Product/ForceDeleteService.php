@@ -78,6 +78,10 @@ class ForceDeleteService
                 ->where('product_id', $productId)
                 ->delete();
 
+            DB::table('users_favorite_products')
+                ->where('product_id', $productId)
+                ->delete();
+
             if ($product->forceDelete()) {
                 DB::commit();
                 foreach ($photoNameArr as $photoName) {

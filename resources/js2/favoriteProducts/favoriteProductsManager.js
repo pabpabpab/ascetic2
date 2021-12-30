@@ -7,7 +7,9 @@ import postJson from "../http/postJson";
 export default class FavoriteProductsManager {
 
     constructor() {
+        this.cookieLifetime = 864000; // 10 дней
         this.postUrl = '/public-js/favorite-products/post';
+        this.disabledSubmit = false;
 
         this.iconSrc = {
             notInFavorites: '/images/favoriteIcon.svg',
@@ -31,7 +33,7 @@ export default class FavoriteProductsManager {
 
     _switcher(productId) {
         const idsStr = getCookie('favoriteIds');
-        const idsArr = Boolean(idsStr) ? idsStr.split('-') : [];
+        const idsArr = Boolean(idsStr) ? idsStr.split(',') : [];
         const index = idsArr.indexOf(String(productId));
 
         if (index === -1) {
@@ -42,10 +44,8 @@ export default class FavoriteProductsManager {
             this._turnOffIcon(productId);
         }
 
-        const favoriteIds = idsArr.join('-');
-        setCookie('favoriteIds', favoriteIds, {'max-age': 2592000}); // 30 дней
-
-        //console.log(favoriteIds);
+        const favoriteIds = idsArr.join(',');
+        setCookie('favoriteIds', favoriteIds, {'max-age': this.cookieLifetime});
 
         this._submit({productIds: favoriteIds});
     }
@@ -73,13 +73,28 @@ export default class FavoriteProductsManager {
     }
 
     _submit(dataObject) {
+        if (! this._getSubmitPermission()) {
+            return;
+        }
+
         postJson(this.postUrl, dataObject).then((data) => {
             if (data.success === true) {
-                // new AbsoluteFlashMessage(`Избранное изменено`);
-            } else {
-                // new AbsoluteFlashMessage(`Избранное не удалось изменить`);
+                setCookie('favoriteIds', data.finalIds, {'max-age': this.cookieLifetime});
             }
         });
+    }
+
+    _getSubmitPermission() {
+        // защита от частых отправок на 5 сек
+        if (this.disabledSubmit) {
+            return false;
+        }
+        this.disabledSubmit = true;
+        setTimeout(() => {
+            this.disabledSubmit = false;
+        }, 5000);
+
+        return true;
     }
 
 }

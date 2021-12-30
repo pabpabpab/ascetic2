@@ -280,6 +280,7 @@ a {
 .personal_account__icon {
   width: 27px;
   cursor: pointer;
+  margin: 0 15px 0 25px;
 }
 
 .account_exit__icon {

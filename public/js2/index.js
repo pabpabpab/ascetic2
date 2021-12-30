@@ -905,7 +905,7 @@ var FavoriteProductsIndicationByPageLoad = /*#__PURE__*/function () {
         return;
       }
 
-      var idsArr = idsStr.split('-');
+      var idsArr = idsStr.split(',');
       idsArr.forEach(function (productId) {
         var iconWrapperSelector = _this._getIconWrapperSelector(productId);
 
@@ -967,7 +967,10 @@ var FavoriteProductsManager = /*#__PURE__*/function () {
 
     _classCallCheck(this, FavoriteProductsManager);
 
+    this.cookieLifetime = 864000; // 10 дней
+
     this.postUrl = '/public-js/favorite-products/post';
+    this.disabledSubmit = false;
     this.iconSrc = {
       notInFavorites: '/images/favoriteIcon.svg',
       inFavorites: '/images/filledFavoriteIcon.svg'
@@ -994,7 +997,7 @@ var FavoriteProductsManager = /*#__PURE__*/function () {
     key: "_switcher",
     value: function _switcher(productId) {
       var idsStr = Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_2__["default"])('favoriteIds');
-      var idsArr = Boolean(idsStr) ? idsStr.split('-') : [];
+      var idsArr = Boolean(idsStr) ? idsStr.split(',') : [];
       var index = idsArr.indexOf(String(productId));
 
       if (index === -1) {
@@ -1007,11 +1010,10 @@ var FavoriteProductsManager = /*#__PURE__*/function () {
         this._turnOffIcon(productId);
       }
 
-      var favoriteIds = idsArr.join('-');
+      var favoriteIds = idsArr.join(',');
       Object(_cookie_setCookie__WEBPACK_IMPORTED_MODULE_1__["default"])('favoriteIds', favoriteIds, {
-        'max-age': 2592000
-      }); // 30 дней
-      //console.log(favoriteIds);
+        'max-age': this.cookieLifetime
+      });
 
       this._submit({
         productIds: favoriteIds
@@ -1050,11 +1052,35 @@ var FavoriteProductsManager = /*#__PURE__*/function () {
   }, {
     key: "_submit",
     value: function _submit(dataObject) {
+      var _this2 = this;
+
+      if (!this._getSubmitPermission()) {
+        return;
+      }
+
       Object(_http_postJson__WEBPACK_IMPORTED_MODULE_3__["default"])(this.postUrl, dataObject).then(function (data) {
-        if (data.success === true) {// new AbsoluteFlashMessage(`Избранное изменено`);
-        } else {// new AbsoluteFlashMessage(`Избранное не удалось изменить`);
-          }
+        if (data.success === true) {
+          Object(_cookie_setCookie__WEBPACK_IMPORTED_MODULE_1__["default"])('favoriteIds', data.finalIds, {
+            'max-age': _this2.cookieLifetime
+          });
+        }
       });
+    }
+  }, {
+    key: "_getSubmitPermission",
+    value: function _getSubmitPermission() {
+      var _this3 = this;
+
+      // защита от частых отправок на 5 сек
+      if (this.disabledSubmit) {
+        return false;
+      }
+
+      this.disabledSubmit = true;
+      setTimeout(function () {
+        _this3.disabledSubmit = false;
+      }, 5000);
+      return true;
     }
   }]);
 
@@ -1113,7 +1139,7 @@ var FavoriteProductsTotal = /*#__PURE__*/function () {
     key: "_renderFavoriteTotal",
     value: function _renderFavoriteTotal() {
       var idsStr = Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_1__["default"])('favoriteIds');
-      var total = Boolean(idsStr) ? idsStr.split('-').length : 0;
+      var total = Boolean(idsStr) ? idsStr.split(',').length : 0;
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.topMenu-favIcon-total').innerText = total;
     }
   }]);

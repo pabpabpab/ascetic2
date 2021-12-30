@@ -24,14 +24,16 @@ class FavoriteProductController extends Controller
         $productIds = $request->productIds ?? '';
 
         if (!$productIds) {
+            $deletedCount = $synchronizer->clearAll($userModel);
             return response()->json([
-                'success' => (Boolean) $synchronizer->clearAll($userModel)
+                'success' => is_numeric($deletedCount),
+                'finalIds' => ''
             ]);
         }
 
-        $result = $synchronizer->synchronize($userModel, $productIds);
         return response()->json([
-            'success' => is_array($result)
+            'success' => true,
+            'finalIds' => $synchronizer->synchronize($userModel, $productIds)
         ]);
     }
 }

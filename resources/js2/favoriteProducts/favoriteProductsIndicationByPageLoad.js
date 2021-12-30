@@ -18,7 +18,7 @@ export default class FavoriteProductsIndicationByPageLoad {
         if (!Boolean(idsStr)) {
             return;
         }
-        const idsArr = idsStr.split('-');
+        const idsArr = idsStr.split(',');
         idsArr.forEach((productId) => {
             const iconWrapperSelector = this._getIconWrapperSelector(productId);
             const iconImgSelector = this._getIconImgSelector(productId);

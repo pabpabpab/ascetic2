@@ -38,6 +38,12 @@ Route::get('/favorite-products/{pageNumber?}', [ProductController::class, 'getVi
 //->name('products.byColor');
 
 
+
+Route::get('/my', [App\Http\Controllers\MyPageController::class, 'index'])
+    ->name('my');
+
+
+
 Route::get('/admin', function () {
     return view('admin.index_vuex');
 })->middleware(['auth', 'role:admin'])->name('adminPanel');
@@ -49,6 +55,5 @@ Route::get('/admin/{any}', function ($any) {
 
 
 
-Route::get('/my', [App\Http\Controllers\MyPageController::class, 'index'])
-    ->name('my');
+
 

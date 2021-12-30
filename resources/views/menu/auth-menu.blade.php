@@ -1,6 +1,6 @@
 @guest
     <div id="authMenu">
-        <div id="authMenuContent" class="mr15">
+        <div id="authMenuContent">
             <img alt="" src="{{ asset('images/accountIcon.svg') }}" class="personal_account__icon">
         </div>
     </div>
