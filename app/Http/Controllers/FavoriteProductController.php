@@ -19,12 +19,12 @@ class FavoriteProductController extends Controller
                 'reason' => 'userIsNotLoggedIn',
             ]);
         }
-        $userModel = User::find($user->id);
 
-        $productIds = $request->productIds ?? '';
 
-        if (!$productIds) {
-            $deletedCount = $synchronizer->clearAll($userModel);
+        $productIdsStr = $request->productIds ?? '';
+
+        if (!$productIdsStr) {
+            $deletedCount = $synchronizer->clearAll($user->id);
             return response()->json([
                 'success' => is_numeric($deletedCount),
                 'finalIds' => ''
@@ -33,7 +33,7 @@ class FavoriteProductController extends Controller
 
         return response()->json([
             'success' => true,
-            'finalIds' => $synchronizer->synchronize($userModel, $productIds)
+            'finalIds' => $synchronizer->synchronize($user->id, $productIdsStr)
         ]);
     }
 }

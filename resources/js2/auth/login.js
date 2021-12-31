@@ -7,11 +7,16 @@ import loginValidation from "../validation/loginValidation";
 import AbsoluteFlashMessage from "../absoluteFlashMessage";
 import ForgotPassword from "./forgotPassword";
 import PasswordTypeChanger from "./passwordTypeChanger";
+import getCookie from "../cookie/getCookie";
+import setCookie from '../cookie/setCookie';
+import FavoriteProductsIndicationByPageLoad from "../favoriteProducts/favoriteProductsIndicationByPageLoad";
 
 export default class Login extends AbsoluteForm {
 
     constructor(data, postUrl= '/login/do', successUrl = '/my') {
         super(data);
+
+        this.cookieLifetime = 864000; // 10 дней
 
         this.postUrl = postUrl;
         this.successUrl = successUrl;
@@ -53,9 +58,13 @@ export default class Login extends AbsoluteForm {
         el(this.wrapSelector).className = `${this.basicCss} ${this.hideCss}`;
         setTimeout(() => {
             el(this.wrapSelector).remove();
-        }, 3000);
+        }, 3000); // чтобы успел отработать hideCss
         new AbsoluteFlashMessage(`Добро пожаловать, ${data.userName}`);
+
+        setCookie('favoriteIds', String(data.mixedFavoriteIds), {'max-age': this.cookieLifetime});
+        this._indicateFavoriteProductsAfterLogin();
     }
+
 
     _ultimateFail() {
         this._turnOffAlarm();
@@ -71,7 +80,8 @@ export default class Login extends AbsoluteForm {
         return {
             email: el('#loginEmail').value,
             password: el('#loginPassword').value,
-            remember: el('#loginRemember').value
+            remember: el('#loginRemember').value,
+            favoriteIds: getCookie('favoriteIds'), // для слияния фронт (которые могут быть) и бэк favoriteIds
         };
     }
 
@@ -90,5 +100,10 @@ export default class Login extends AbsoluteForm {
         }
     }
 
-
+    _indicateFavoriteProductsAfterLogin() {
+        new FavoriteProductsIndicationByPageLoad();
+        const idsStr = getCookie('favoriteIds');
+        const total = Boolean(idsStr) ? idsStr.split(',').length : 0;
+        el('.topMenu-favIcon-total').innerText = total;
+    }
 }

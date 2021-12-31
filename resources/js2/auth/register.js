@@ -3,6 +3,7 @@ import AbsoluteForm from "../parentClasses/absoluteForm.js";
 import getRegisterFormHtml from '../html/getRegisterFormHtml.js';
 import registerValidation from "../validation/registerValidation.js";
 import AbsoluteFlashMessage from "../absoluteFlashMessage.js";
+import getCookie from "../cookie/getCookie";
 
 export default class Register extends AbsoluteForm {
 
@@ -45,7 +46,8 @@ export default class Register extends AbsoluteForm {
             name: el('#regName').value,
             email: el('#regEmail').value,
             password: el('#regPassword').value,
-            password_confirmation: el('#regPassword_confirmation').value
+            password_confirmation: el('#regPassword_confirmation').value,
+            favoriteIds: getCookie('favoriteIds'), // для записи фронт (которые могут быть) в бэк favoriteIds
         };
     }
 

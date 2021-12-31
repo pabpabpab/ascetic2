@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
+use App\Services\User\FavoriteProductsSynchronizer;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -42,17 +44,25 @@ class LoginController extends Controller
                 : back()->with(['authStatus' => 'Пользователь не определен.']);
         }
 
+        //info((string) $_COOKIE['favoriteIds']);
+        // почему-то не тот кук читает, поэтому с фронта favoriteIds в реквест добавлен при login
+        $mixedFavoriteIdsStr = (new FavoriteProductsSynchronizer())
+            ->mixFrontAndBackUserFavoriteIds($user->id, (string) $request->favoriteIds);
+
+
         session([
             'username' => $user->getUserName(),
             'isAdmin' => $user->_hasRole('admin'),
             'emailVerified' => filled($user->email_verified_at),
         ]);
 
+
         return $request->expectsJson()
             ? response()->json([
                  'success' => true,
                  'userName' => $user->name,
-                 'isAdmin' => $user->_hasRole('admin')
+                 'isAdmin' => $user->_hasRole('admin'),
+                 'mixedFavoriteIds' => $mixedFavoriteIdsStr,
               ])
             : redirect()->intended('/my');
     }

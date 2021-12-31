@@ -7,8 +7,9 @@
 @else
 
     @php
-        $userUrl = (session('isAdmin')) ? route('adminPanel') : route('my');
-        $userText = (session('isAdmin')) ? 'Admin panel' : \Illuminate\Support\Facades\Auth::user()->name; // session('username');
+        $isAdmin = \Illuminate\Support\Facades\Auth::user()->_hasRole('admin');
+        $userUrl = $isAdmin ? route('adminPanel') : route('my');
+        $userText = $isAdmin ? 'Admin panel' : \Illuminate\Support\Facades\Auth::user()->name; // session('username');
     @endphp
 
     <a href="{{ $userUrl }}" class="top_menu__link">

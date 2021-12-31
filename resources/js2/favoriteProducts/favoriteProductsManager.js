@@ -47,6 +47,8 @@ export default class FavoriteProductsManager {
         const favoriteIds = idsArr.join(',');
         setCookie('favoriteIds', favoriteIds, {'max-age': this.cookieLifetime});
 
+        //console.log(favoriteIds);
+
         this._submit({productIds: favoriteIds});
     }
 
