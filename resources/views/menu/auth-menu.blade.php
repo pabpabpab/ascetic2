@@ -9,7 +9,7 @@
     @php
         $isAdmin = \Illuminate\Support\Facades\Auth::user()->_hasRole('admin');
         $userUrl = $isAdmin ? route('adminPanel') : route('my');
-        $userText = $isAdmin ? 'Admin panel' : \Illuminate\Support\Facades\Auth::user()->name; // session('username');
+        $userText = $isAdmin ? 'Admin panel' : \Illuminate\Support\Facades\Auth::user()->name;
     @endphp
 
     <a href="{{ $userUrl }}" class="top_menu__link">

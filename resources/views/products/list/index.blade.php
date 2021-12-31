@@ -12,6 +12,9 @@
     } elseif ($currentRouteName === 'products.viewed') {
         $pageTitle = 'Вы смотрели';
         $pageDescription = 'Товары которые вы смотрели. ';
+    } elseif ($currentRouteName === 'products.favorites') {
+        $pageTitle = 'Избранные товары';
+        $pageDescription = 'Товары которые вам понравились. ';
     }
 
 @endphp
@@ -37,5 +40,7 @@
         {{ $products->links('pagination.products-by-category-pagination', ['category' => $category]) }}
     @elseif (in_array($currentRouteName, ['products.viewed']))
         {{ $products->links('pagination.viewed-products-pagination') }}
+    @elseif (in_array($currentRouteName, ['products.favorites']))
+        {{ $products->links('pagination.favorite-products-pagination') }}
     @endif
 @endsection

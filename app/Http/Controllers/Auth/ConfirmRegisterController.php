@@ -34,12 +34,6 @@ class ConfirmRegisterController extends Controller
 
         Auth::login($user);
 
-        session([
-            'username' => Auth::user()->getUserName(),
-            'isAdmin' => Auth::user()->_hasRole('admin'),
-            'emailVerified' => true
-        ]);
-
         return redirect()->route('my');
     }
 

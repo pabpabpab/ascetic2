@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <h1 class="my_page__h1">Привет {{ session('username') }}!</h1>
+        <h1 class="my_page__h1">Привет {{ \Illuminate\Support\Facades\Auth::user()->name }}!</h1>
 
         <div class="my_page__content">
             <a href="{{ route('products.favorites') }}" class="my_page__item_link">

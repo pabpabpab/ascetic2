@@ -8,6 +8,7 @@ use App\Models\Material;
 use App\Models\Product;
 use App\Models\ProductSEOText;
 use App\Services\PhotoManager\PhotoSeoService;
+use App\Services\Product\FavoriteProductsListService;
 use App\Services\Product\ListService;
 use App\Services\Product\ViewedProductsService;
 use Illuminate\Http\JsonResponse;
@@ -73,7 +74,17 @@ class ProductController extends Controller
         return view('products.list.index', ['products' => $products]);
     }
 
+    public function getFavoriteProducts(FavoriteProductsListService $service, $pageNumber = 1)
+    {
+        // установить стартовую страницу для пагинатора
+        $currentPage = $pageNumber;
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
 
+        $products = $service->getList()->paginate(3);
+        return view('products.list.index', ['products' => $products]);
+    }
 
 
     public function getOne(PhotoSeoService $service, $slug, Product $product)

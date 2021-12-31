@@ -50,13 +50,6 @@ class LoginController extends Controller
             ->mixFrontAndBackUserFavoriteIds($user->id, (string) $request->favoriteIds);
 
 
-        session([
-            'username' => $user->getUserName(),
-            'isAdmin' => $user->_hasRole('admin'),
-            'emailVerified' => filled($user->email_verified_at),
-        ]);
-
-
         return $request->expectsJson()
             ? response()->json([
                  'success' => true,

@@ -70,13 +70,6 @@ class RegisterController extends Controller
             ->mixFrontAndBackUserFavoriteIds(Auth::user()->id, (string) $request->favoriteIds);
 
 
-
-        session([
-            'username' => Auth::user()->getUserName(),
-            'isAdmin' => Auth::user()->_hasRole('admin')
-        ]);
-
-
         return $request->expectsJson()
             ? response()->json(['success' => true])
             : redirect()->route('my');

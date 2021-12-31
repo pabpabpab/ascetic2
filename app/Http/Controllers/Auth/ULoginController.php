@@ -63,13 +63,6 @@ class ULoginController extends Controller
         // войти пользователя
         Auth::login($localUser);
 
-        // заполним данные сессии
-        session([
-            'username' => $localUser->getUserName(),
-            'isAdmin' => $localUser->_hasRole('admin'),
-            'emailVerified' => filled($localUser->email_verified_at),
-        ]);
-
         // переход в ЛК
         return redirect()->intended('/my');
     }

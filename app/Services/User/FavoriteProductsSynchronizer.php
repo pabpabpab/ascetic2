@@ -11,18 +11,17 @@ use Illuminate\Support\Facades\DB;
 class FavoriteProductsSynchronizer
 {
 
-    public function mixFrontAndBackUserFavoriteIds(Int $userId, String $frontFavoriteIds): String
+    public function mixFrontAndBackUserFavoriteIds(Int $userId, String $frontIdsStr): String
     {
         $user = User::find($userId);
 
-        $frontIdsArr = $this->_getArrayOfIntegers($frontFavoriteIds);
+        $frontIdsArr = $this->_getArrayOfIntegers($frontIdsStr);
 
-        $backIds = $user->favoriteProducts()->pluck('products.id');
-        $backIdsArr = $backIds->toArray();
+        $backIdsCollection = $user->favoriteProducts()->pluck('products.id');
+        $backIdsArr = $backIdsCollection->toArray();
 
         $mixedIdsArr = array_merge($frontIdsArr, $backIdsArr);
         $mixedIdsArr = array_unique($mixedIdsArr, SORT_NUMERIC);
-
 
         try {
             $user->favoriteProducts()->sync($mixedIdsArr);

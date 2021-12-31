@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="my_page">
-        <h1>Привет {{ session('username') }}!</h1>
+        <h1>Привет {{ \Illuminate\Support\Facades\Auth::user()->name }}!</h1>
 
         @if (session('isAdmin'))
             <p>Вы администратор.</p>
@@ -14,7 +14,7 @@
             <p>Вы простой пользователь.</p>
         @endif
 
-        @if (session('emailVerified'))
+        @if (filled(\Illuminate\Support\Facades\Auth::user()->email_verified_at))
             <p>Email подтвержден.</p>
         @else
             <div>

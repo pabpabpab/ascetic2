@@ -26,7 +26,7 @@ Route::get('/product/{product}/photo/{photoSlug}-{photoId}', [ProductController:
 Route::get('/viewed-products/{pageNumber?}', [ProductController::class, 'getViewedProducts'])
     ->where('pageNumber', '[0-9]+')
     ->name('products.viewed');
-Route::get('/favorite-products/{pageNumber?}', [ProductController::class, 'getViewedProducts'])
+Route::get('/favorite-products/{pageNumber?}', [ProductController::class, 'getFavoriteProducts'])
     ->where('pageNumber', '[0-9]+')
     ->name('products.favorites');
 
