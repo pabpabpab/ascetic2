@@ -1499,12 +1499,14 @@ function postJson(url, data) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
 /* harmony import */ var _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./http/csrfUpdater */ "./resources/js2/http/csrfUpdater.js");
-/* harmony import */ var _auth_authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth/authAbsoluteMenu */ "./resources/js2/auth/authAbsoluteMenu.js");
-/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
-/* harmony import */ var _auth_passwordTypeChanger__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth/passwordTypeChanger */ "./resources/js2/auth/passwordTypeChanger.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotal */ "./resources/js2/favoriteProducts/favoriteProductsTotal.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
+/* harmony import */ var _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./topDropMenuFiller */ "./resources/js2/topDropMenuFiller.js");
+/* harmony import */ var _auth_authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth/authAbsoluteMenu */ "./resources/js2/auth/authAbsoluteMenu.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
+/* harmony import */ var _auth_passwordTypeChanger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth/passwordTypeChanger */ "./resources/js2/auth/passwordTypeChanger.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotal */ "./resources/js2/favoriteProducts/favoriteProductsTotal.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
+
 
 
 
@@ -1514,19 +1516,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 new _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__["default"]();
+new _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__["default"]();
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
-  new _auth_authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_2__["default"]({
+  new _auth_authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_3__["default"]({
     clickSourceSelector: '.personal_account__icon'
   });
 }
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage')) {
-  new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__["default"](Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage').innerText);
+  new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__["default"](Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage').innerText);
 }
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_password_type__wrapper')) {
-  new _auth_passwordTypeChanger__WEBPACK_IMPORTED_MODULE_4__["default"]({
+  new _auth_passwordTypeChanger__WEBPACK_IMPORTED_MODULE_5__["default"]({
     closedEyeSelector: ".auth_page__closed_eye_img",
     openedEyeSelector: ".auth_page__opened_eye_img",
     passwordInputSelector: "#password"
@@ -1534,11 +1537,11 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_pass
 }
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products') || Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
-  new _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_5__["default"]();
-  new _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_7__["default"]();
+  new _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_6__["default"]();
+  new _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__["default"]();
 }
 
-new _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_6__["default"]();
+new _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__["default"]();
 
 /***/ }),
 
@@ -1900,6 +1903,78 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
   return VisibleBlockByClick;
 }(_visibleBlock__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/topDropMenuFiller.js":
+/*!********************************************!*\
+  !*** ./resources/js2/topDropMenuFiller.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TopDropMenuFiller; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var TopDropMenuFiller = /*#__PURE__*/function () {
+  function TopDropMenuFiller() {
+    var _this = this;
+
+    _classCallCheck(this, TopDropMenuFiller);
+
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-allCategoriesIcon').addEventListener('mouseover', function (e) {
+      _this._fillMenu();
+    });
+  }
+
+  _createClass(TopDropMenuFiller, [{
+    key: "_fillMenu",
+    value: function _fillMenu() {
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuContent')) {
+        return;
+      }
+
+      var innerHTML = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#bottomMenu-allCategories').innerHTML;
+      var wholeHTML = "<ul id=\"topMenu-dropMenuContent\" class=\"top_menu__drop_menu__ul\">\n                              ".concat(innerHTML, "\n                           </ul>");
+      var dropMenuWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuWrapper');
+      dropMenuWrapper.insertAdjacentHTML('afterbegin', wholeHTML);
+      var nodes = dropMenuWrapper.querySelectorAll('.bottom_menu__link');
+
+      var _iterator = _createForOfIteratorHelper(nodes),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var node = _step.value;
+          node.className = 'top_menu__link';
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    }
+  }]);
+
+  return TopDropMenuFiller;
+}();
 
 
 

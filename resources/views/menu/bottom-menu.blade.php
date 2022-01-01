@@ -1,6 +1,6 @@
 <footer class="bottom_menu">
     <nav>
-        <ul class="bottom_menu__ul">
+        <ul id="bottomMenu-allCategories" class="bottom_menu__ul">
             @foreach ($categories as $category)
                 @php
                     $catUrl = route('products.byCategory', [

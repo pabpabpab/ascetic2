@@ -2,6 +2,8 @@ import el from "./el";
 
 import CsrfUpdater from "./http/csrfUpdater";
 
+import TopDropMenuFiller from "./topDropMenuFiller";
+
 import AuthAbsoluteMenu from "./auth/authAbsoluteMenu";
 import AbsoluteFlashMessage from "./absoluteFlashMessage";
 import PasswordTypeChanger from "./auth/passwordTypeChanger";
@@ -13,6 +15,7 @@ import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitche
 
 new CsrfUpdater();
 
+new TopDropMenuFiller();
 
 if (el('.personal_account__icon')) {
     new AuthAbsoluteMenu({ clickSourceSelector: '.personal_account__icon' });
@@ -36,3 +39,6 @@ if (el('#products') || el('#singleProduct')) {
     new FavoriteProductsSwitcher();
 }
 new FavoriteProductsTotal();
+
+
+

@@ -27,27 +27,28 @@
                 </div>
             @endfor
 
-            <div class="top_menu__li">
+            <div id="topMenu-allCategoriesIcon" class="top_menu__li">
                 <a href="/" class="top_menu__link top_menu__link_with_drop_menu">
                     Все
                 </a>
 
-                <div class="top_menu__drop_menu show_block">
-                    <div class="top_menu__drop_menu__ul">
+                <div id="topMenu-dropMenuWrapper" class="top_menu__drop_menu show_block">
+                    {{--<ul id="topMenu-dropMenuContent" class="top_menu__drop_menu__ul">
                         @foreach ($categories as $category)
                             @php
                                 $catUrl = route('products.byCategory', [
                                     'category' => $category->slug
                                 ]);
                             @endphp
-                            <div class="top_menu__drop_menu__li">
+                            <li class="top_menu__drop_menu__li">
                                 <a href='{{ $catUrl }}' class="top_menu__drop_menu__link">
                                     {{ $category->name }}
-                                    {{-- $category->products_count --}}
+                                    {{ $category->products_count }}
                                 </a>
-                            </div>
+                            </li>
                         @endforeach
-                    </div>
+                    </ul>
+                    --}}
                 </div>
             </div>
 

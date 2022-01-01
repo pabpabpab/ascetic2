@@ -196,7 +196,7 @@ a {
   position: absolute;
   z-index: 3;
   top: 70px;
-  min-height: 70px;
+  min-height: 170px;
   left: 0;
   min-width: 100%;
   margin: 0;
@@ -229,6 +229,9 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
