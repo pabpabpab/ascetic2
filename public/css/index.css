@@ -903,6 +903,44 @@ h1 {
   text-align: justify;
 }
 
+.single_product__favorite_icon__wrapper {
+  margin: 15px 0 0 0;
+  width: 100%;
+  height: 50px;
+  background-color: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.single_product__favorite_icon__wrapper:hover {
+  background-color: #e8e8e8;
+}
+
+.single_product__favorite_icon__img {
+  width: 21px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.single_product__favorite_icon__text {
+  margin-left: 15px;
+  font-size: 13px;
+  color: #504b4b;
+  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
+}
+
 .single_photo_page__content_wrapper {
   width: 100%;
   padding: 0;

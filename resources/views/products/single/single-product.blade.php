@@ -71,6 +71,17 @@
                 {{ $description->description }}
             </div>
 
+
+            <div id="favIcon-wrapper-{{ $product->id }}" class="single_product__favorite_icon__wrapper">
+                <img id="favIcon-img-{{ $product->id }}" alt=""
+                     src="{{ asset('images/favoriteIcon.svg') }}"
+                     class="single_product__favorite_icon__img">
+                <span id="favIcon-text-{{ $product->id }}" class="single_product__favorite_icon__text">
+                    В ИЗБРАННОЕ
+                </span>
+            </div>
+
+
 {{--
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

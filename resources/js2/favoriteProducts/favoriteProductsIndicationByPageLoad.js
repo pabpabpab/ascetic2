@@ -18,13 +18,20 @@ export default class FavoriteProductsIndicationByPageLoad {
         if (!Boolean(idsStr)) {
             return;
         }
+
         const idsArr = idsStr.split(',');
         idsArr.forEach((productId) => {
-            const iconWrapperSelector = this._getIconWrapperSelector(productId);
-            const iconImgSelector = this._getIconImgSelector(productId);
-            if (el(iconImgSelector)) {
-                el(iconImgSelector).src = this.iconSrc.inFavorites;
-                el(iconWrapperSelector).classList.toggle("set-opacity");
+            const imgSelector = this._getIconImgSelector(productId);
+            if (el(imgSelector)) {
+                el(imgSelector).src = this.iconSrc.inFavorites;
+
+                const wrapperSelector = this._getIconWrapperSelector(productId);
+                el(wrapperSelector).classList.toggle("set-opacity");
+
+                const textSelector = this._getIconTextSelector(productId);
+                if (el(textSelector)) {
+                    el(textSelector).innerText = 'ИЗ ИЗБРАННОГО';
+                }
             }
         });
     }
@@ -36,5 +43,7 @@ export default class FavoriteProductsIndicationByPageLoad {
     _getIconImgSelector(productId) {
         return `#favIcon-img-${productId}`;
     }
-
+    _getIconTextSelector(productId) {
+        return `#favIcon-text-${productId}`;
+    }
 }

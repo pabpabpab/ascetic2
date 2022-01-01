@@ -8,7 +8,7 @@ import PasswordTypeChanger from "./auth/passwordTypeChanger";
 
 import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoriteProductsIndicationByPageLoad";
 import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
-import FavoriteProductsManager from "./favoriteProducts/favoriteProductsManager";
+import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
 
 new CsrfUpdater();
@@ -31,8 +31,8 @@ if (el('.auth_page__change_password_type__wrapper')) {
 }
 
 
-if (el('#products') || el('#single-product')) {
+if (el('#products') || el('#singleProduct')) {
     new FavoriteProductsIndicationByPageLoad();
-    new FavoriteProductsManager();
+    new FavoriteProductsSwitcher();
 }
 new FavoriteProductsTotal();

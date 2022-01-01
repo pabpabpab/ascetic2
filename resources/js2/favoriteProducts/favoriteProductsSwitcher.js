@@ -4,7 +4,7 @@ import getCookie from '../cookie/getCookie';
 import postJson from "../http/postJson";
 // import AbsoluteFlashMessage from "./absoluteFlashMessage";
 
-export default class FavoriteProductsManager {
+export default class FavoriteProductsSwitcher {
 
     constructor() {
         this.cookieLifetime = 864000; // 10 дней
@@ -26,12 +26,12 @@ export default class FavoriteProductsManager {
             }
             const productId = parseInt(e.target.id.split('-')[2]);
             if (productId > 0) {
-                this._switcher(productId);
+                this._switch(productId);
             }
         });
     }
 
-    _switcher(productId) {
+    _switch(productId) {
         const idsStr = getCookie('favoriteIds');
         const idsArr = Boolean(idsStr) ? idsStr.split(',') : [];
         const index = idsArr.indexOf(String(productId));
@@ -55,15 +55,23 @@ export default class FavoriteProductsManager {
     _turnOnIcon(productId) {
         const imgSelector = this._getIconImgSelector(productId);
         const wrapperSelector = this._getIconWrapperSelector(productId);
+        const textSelector = this._getIconTextSelector(productId);
         el(imgSelector).src = this.iconSrc.inFavorites;
         el(wrapperSelector).classList.toggle("set-opacity");
+        if (el(textSelector)) {
+            el(textSelector).innerText = 'ИЗ ИЗБРАННОГО';
+        }
     }
 
     _turnOffIcon(productId) {
         const imgSelector = this._getIconImgSelector(productId);
         const wrapperSelector = this._getIconWrapperSelector(productId);
+        const textSelector = this._getIconTextSelector(productId);
         el(imgSelector).src = this.iconSrc.notInFavorites;
         el(wrapperSelector).classList.toggle("set-opacity");
+        if (el(textSelector)) {
+            el(textSelector).innerText = 'В ИЗБРАННОЕ';
+        }
     }
 
 
@@ -72,6 +80,9 @@ export default class FavoriteProductsManager {
     }
     _getIconImgSelector(productId) {
         return `#favIcon-img-${productId}`;
+    }
+    _getIconTextSelector(productId) {
+        return `#favIcon-text-${productId}`;
     }
 
     _submit(dataObject) {
