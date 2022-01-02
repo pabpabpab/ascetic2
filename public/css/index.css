@@ -246,11 +246,12 @@ a {
   color: #000;
   font-weight: 400;
   display: block;
-  padding: 10px 20px;
+  padding: 5px 30px;
+  border-bottom: 2px solid #fff;
 }
 
 .top_menu__drop_menu__link:hover {
-  color: #777;
+  border-bottom-color: #000000;
 }
 
 .top_menu__link_with_drop_menu:hover + .top_menu__drop_menu {

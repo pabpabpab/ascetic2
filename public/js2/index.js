@@ -1257,6 +1257,22 @@ function getAuthenticatedMenuHtml(userName, isAdmin) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/getDropMenuHtml.js":
+/*!***********************************************!*\
+  !*** ./resources/js2/html/getDropMenuHtml.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getDropMenuHtml; });
+function getDropMenuHtml(innerHtml) {
+  return "<div id=\"topMenu-dropMenuWrapper\" class=\"top_menu__drop_menu show_block\">\n                <ul id=\"topMenu-dropMenuContent\" class=\"top_menu__drop_menu__ul\">\n                    ".concat(innerHtml, "\n                </ul>\n            </div>");
+}
+
+/***/ }),
+
 /***/ "./resources/js2/html/getFailedLoginHtml.js":
 /*!**************************************************!*\
   !*** ./resources/js2/html/getFailedLoginHtml.js ***!
@@ -1919,6 +1935,7 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TopDropMenuFiller; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
+/* harmony import */ var _html_getDropMenuHtml_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./html/getDropMenuHtml.js */ "./resources/js2/html/getDropMenuHtml.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -1933,13 +1950,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var TopDropMenuFiller = /*#__PURE__*/function () {
   function TopDropMenuFiller() {
     var _this = this;
 
     _classCallCheck(this, TopDropMenuFiller);
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-allCategoriesIcon').addEventListener('mouseover', function (e) {
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuContainer').addEventListener('mouseover', function (e) {
       _this._fillMenu();
     });
   }
@@ -1947,15 +1965,15 @@ var TopDropMenuFiller = /*#__PURE__*/function () {
   _createClass(TopDropMenuFiller, [{
     key: "_fillMenu",
     value: function _fillMenu() {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuContent')) {
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuWrapper')) {
         return;
       }
 
-      var innerHTML = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#bottomMenu-allCategories').innerHTML;
-      var wholeHTML = "<ul id=\"topMenu-dropMenuContent\" class=\"top_menu__drop_menu__ul\">\n                              ".concat(innerHTML, "\n                           </ul>");
-      var dropMenuWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuWrapper');
-      dropMenuWrapper.insertAdjacentHTML('afterbegin', wholeHTML);
-      var nodes = dropMenuWrapper.querySelectorAll('.bottom_menu__link');
+      var innerHtml = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#bottomMenu-allCategories').innerHTML;
+      var dropMenuHtml = Object(_html_getDropMenuHtml_js__WEBPACK_IMPORTED_MODULE_1__["default"])(innerHtml);
+      var container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuContainer');
+      container.insertAdjacentHTML('beforeend', dropMenuHtml);
+      var nodes = container.querySelectorAll('.bottom_menu__link');
 
       var _iterator = _createForOfIteratorHelper(nodes),
           _step;
@@ -1963,7 +1981,7 @@ var TopDropMenuFiller = /*#__PURE__*/function () {
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var node = _step.value;
-          node.className = 'top_menu__link';
+          node.className = 'top_menu__drop_menu__link';
         }
       } catch (err) {
         _iterator.e(err);
