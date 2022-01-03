@@ -1525,6 +1525,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _product_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product/largePhotoMaker */ "./resources/js2/product/largePhotoMaker.js");
 /* harmony import */ var _product_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./product/mainPhotoChanger */ "./resources/js2/product/mainPhotoChanger.js");
 /* harmony import */ var _product_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./product/largePhotoViewer */ "./resources/js2/product/largePhotoViewer.js");
+/* harmony import */ var _product_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./product/smallPhotoScroller */ "./resources/js2/product/smallPhotoScroller.js");
+
 
 
 
@@ -1573,6 +1575,10 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
 
   if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer')) {
     new _product_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__["default"]();
+  }
+
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown')) {
+    new _product_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__["default"]();
   }
 }
 
@@ -2112,6 +2118,109 @@ var MainPhotoChanger = /*#__PURE__*/function () {
   }]);
 
   return MainPhotoChanger;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/product/smallPhotoScroller.js":
+/*!*****************************************************!*\
+  !*** ./resources/js2/product/smallPhotoScroller.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SmallPhotoScroller; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var SmallPhotoScroller = /*#__PURE__*/function () {
+  function SmallPhotoScroller() {
+    var _this = this;
+
+    _classCallCheck(this, SmallPhotoScroller);
+
+    this.container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos');
+    this.buttonDown = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown');
+    this.buttonUp = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonUp');
+    this.buttonDown.addEventListener('click', function (e) {
+      _this.scrollSmallPhoto(300, 'down');
+    });
+    this.buttonUp.addEventListener('click', function (e) {
+      _this.scrollSmallPhoto(300, 'up');
+    });
+  }
+
+  _createClass(SmallPhotoScroller, [{
+    key: "scrollSmallPhoto",
+    value: function scrollSmallPhoto(distance, direction) {
+      this._changeButtonsVisibilityWhenScrollClick(direction);
+
+      var coveredDistance = 0; // пройденное расстояние
+
+      this._scrollSmallPhoto(distance, coveredDistance, direction);
+    }
+  }, {
+    key: "_scrollSmallPhoto",
+    value: function _scrollSmallPhoto(distance, coveredDistance, direction) {
+      var _this2 = this;
+
+      if (coveredDistance > distance) {
+        this._changeButtonsVisibilityWhenScrollFinish();
+
+        return;
+      }
+
+      var step = 3; // px
+
+      if (direction === 'down') {
+        this.container.scrollTop += step;
+      } else {
+        this.container.scrollTop -= step;
+      }
+
+      coveredDistance += step;
+      setTimeout(function () {
+        _this2._scrollSmallPhoto(distance, coveredDistance, direction);
+      }, 1);
+    }
+  }, {
+    key: "_changeButtonsVisibilityWhenScrollClick",
+    value: function _changeButtonsVisibilityWhenScrollClick(direction) {
+      if (direction === 'down') {
+        this.buttonUp.style.display = 'block';
+      } else {
+        this.buttonDown.style.display = 'block';
+      }
+    }
+  }, {
+    key: "_changeButtonsVisibilityWhenScrollFinish",
+    value: function _changeButtonsVisibilityWhenScrollFinish() {
+      if (this.container.scrollTop < 5) {
+        this.buttonUp.style.display = 'none';
+        return;
+      }
+
+      var scrollTop = this.container.scrollTop;
+      var clientHeight = this.container.clientHeight;
+      var scrollHeight = this.container.scrollHeight;
+
+      if (scrollHeight - (scrollTop + clientHeight) < 10) {
+        this.buttonDown.style.display = 'none';
+      }
+    }
+  }]);
+
+  return SmallPhotoScroller;
 }();
 
 

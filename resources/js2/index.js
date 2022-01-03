@@ -15,7 +15,7 @@ import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitche
 import LargePhotoMaker from "./product/largePhotoMaker";
 import MainPhotoChanger from "./product/mainPhotoChanger";
 import LargePhotoViewer from "./product/largePhotoViewer";
-
+import SmallPhotoScroller from "./product/smallPhotoScroller";
 
 
 new CsrfUpdater();
@@ -45,6 +45,7 @@ if (el('#products') || el('#singleProduct')) {
 }
 new FavoriteProductsTotal();
 
+
 if (el('#singleProduct')) {
     if (el('#smallPhotos')) {
         new LargePhotoMaker();
@@ -52,6 +53,9 @@ if (el('#singleProduct')) {
     }
     if (el('#mainPhotoContainer')) {
         new LargePhotoViewer();
+    }
+    if (el('#smallPhotos-scrollButtonDown')) {
+        new SmallPhotoScroller();
     }
 }
 

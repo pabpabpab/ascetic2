@@ -22,8 +22,8 @@
     @if ($photoCount > 1)
         <div class="single_product__small_photos__wrapper">
             @if ($photoCount > 5)
-                <div
-                    class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top">
+                <div id="smallPhotos-scrollButtonUp"
+                    class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top display-none">
                     <div class="single_product__small_photos__scroll_button_top__content">
                     </div>
                 </div>
@@ -63,7 +63,7 @@
             </div>
 
             @if ($photoCount > 5)
-                <div
+                <div id="smallPhotos-scrollButtonDown"
                     class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom">
                     <div class="single_product__small_photos__scroll_button_bottom__content">
                     </div>
