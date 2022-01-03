@@ -12,6 +12,11 @@ import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoritePro
 import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
+import LargePhotoMaker from "./product/largePhotoMaker";
+import MainPhotoChanger from "./product/mainPhotoChanger";
+//import LargePhotoViewer from "./product/largePhotoViewer";
+
+
 
 new CsrfUpdater();
 
@@ -40,5 +45,12 @@ if (el('#products') || el('#singleProduct')) {
 }
 new FavoriteProductsTotal();
 
+if (el('#singleProduct')) {
+    new LargePhotoMaker();
+    if (el('#smallPhotos')) {
+        new MainPhotoChanger();
+    }
+    // new LargePhotoMaker();
 
+}
 

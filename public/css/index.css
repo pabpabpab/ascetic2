@@ -1708,6 +1708,7 @@ h1 {
 }
 
 .height0 {
+  max-height: 0;
   height: 0;
 }
 

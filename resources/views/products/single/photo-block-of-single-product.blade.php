@@ -2,10 +2,6 @@
 @php
     //$photoSeo - наследовано из родительского view
     //dd($photoSeo);
-
-    $smallPhotoFolder = "/storage/products-photos-size2/";
-    $bigPhotoFolder = "/storage/products-photos-size4/";
-
     // преобразование Collection в массив
     $objPhotoSet = $photoSeo->toArray();
     $photoCount = count($objPhotoSet);
@@ -17,6 +13,8 @@
      *  "page_title" => "",
      *  "page_description" => "",
      */
+
+    $smallPhotoFolder = "/storage/products-photos-size2/";
 @endphp
 
 <section class="single_product__all_photo_wrapper">
@@ -31,7 +29,7 @@
                 </div>
             @endif
 
-            <div class="single_product__small_photos">
+            <div id="smallPhotos" class="single_product__small_photos">
                 @foreach ($objPhotoSet as $photo)
                     @php
                         $photoAltText = (bool) $photo->alt_text
@@ -52,11 +50,13 @@
                         <a href="{{ $singlePhotoUrl }}">
                             <img src="{{ $smallPhotoFolder . $product->id }}s2-{{ $photo->filename }}"
                                  alt="{{ $photoAltText }}"
+                                 data-small-photo="{{ $loop->iteration }}"
                                  class="photo__size2 mb5"/>
                         </a>
                     @else
                         <img src="{{ $smallPhotoFolder . $product->id }}s2-{{ $photo->filename }}"
                              alt="{{ $photoAltText }}"
+                             data-small-photo="{{ $loop->iteration }}"
                              class="photo__size2"/>
                     @endif
                 @endforeach
@@ -74,10 +74,18 @@
 
     <div class="single_product__big_photo__wrapper">
 
-        <div data-big-photo-version="desktop" class="single_product__big_photo__content">
-            <img src="{{ $bigPhotoFolder . $product->id }}s4-{{ $objPhotoSet[0]->filename }}"
-                 alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
-                 class="photo__size4"/>
+        <div data-main-photo-container data-big-photo-version="desktop" class="single_product__big_photo__content">
+            @if ($photoCount > 1)
+                <img src="/storage/products-photos-size4/{{ $product->id }}s4-{{ $objPhotoSet[0]->filename }}"
+                     alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
+                     data-main-photo
+                     class="photo__size4"/>
+            @else
+                <img src="/storage/products-photos-size5/{{ $product->id }}s5-{{ $objPhotoSet[0]->filename }}"
+                     alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
+                     data-main-photo
+                     class="photo__size4"/>
+            @endif
         </div>
 
 {{--

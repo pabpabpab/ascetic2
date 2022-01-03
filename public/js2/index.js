@@ -1522,6 +1522,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotal */ "./resources/js2/favoriteProducts/favoriteProductsTotal.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
+/* harmony import */ var _product_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product/largePhotoMaker */ "./resources/js2/product/largePhotoMaker.js");
+/* harmony import */ var _product_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./product/mainPhotoChanger */ "./resources/js2/product/mainPhotoChanger.js");
 
 
 
@@ -1530,6 +1532,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+ //import LargePhotoViewer from "./product/largePhotoViewer";
 
 new _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__["default"]();
 new _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -1558,6 +1563,15 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products') || Object(_
 }
 
 new _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__["default"]();
+
+if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
+  new _product_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__["default"]();
+
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+    new _product_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__["default"]();
+  } // new LargePhotoMaker();
+
+}
 
 /***/ }),
 
@@ -1919,6 +1933,136 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
   return VisibleBlockByClick;
 }(_visibleBlock__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/product/largePhotoMaker.js":
+/*!**************************************************!*\
+  !*** ./resources/js2/product/largePhotoMaker.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LargePhotoMaker; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var LargePhotoMaker = /*#__PURE__*/function () {
+  function LargePhotoMaker() {
+    var _this = this;
+
+    _classCallCheck(this, LargePhotoMaker);
+
+    this.largePhotosHtmlWasDone = false;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('mouseover', function (e) {
+      _this._makeLargePhotos();
+    });
+    /*
+    el('[data-small-photo]').addEventListener('mouseover', (e) => {
+        this._getLargePhotos();
+    });
+    */
+    // data-main-photo-container
+  }
+
+  _createClass(LargePhotoMaker, [{
+    key: "_makeLargePhotos",
+    value: function _makeLargePhotos() {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+        return;
+      }
+
+      if (this.largePhotosHtmlWasDone) {
+        return;
+      }
+
+      this.largePhotosHtmlWasDone = true;
+      var smallPhotosHtml = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos').innerHTML;
+      var largePhotosHtml = smallPhotosHtml.replaceAll("products-photos-size2", "products-photos-size5");
+      largePhotosHtml = largePhotosHtml.replaceAll("s2-", "s5-");
+      largePhotosHtml = largePhotosHtml.replaceAll("data-small-photo", "data-large-photo");
+      largePhotosHtml = "<div class=\"display-none\">".concat(largePhotosHtml, "</div>");
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml); //console.log(largePhotosHtml);
+    }
+    /*
+    _getLargePhotos() {
+        if (this.sourceOfLargePhotosWasCalculated) {
+            return;
+        }
+        this.sourceOfLargePhotosWasCalculated = true;
+         const container = el('#smallPhotos');
+        let nodes = container.querySelectorAll('[data-small-photo]');
+        let src;
+        for (let node of nodes) {
+            src = node.src;
+            src = src.replace("size2", "size5");
+            src = src.replace("s2-", "s5-");
+            node.src = src;
+        }
+    }
+      */
+
+  }]);
+
+  return LargePhotoMaker;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/product/mainPhotoChanger.js":
+/*!***************************************************!*\
+  !*** ./resources/js2/product/mainPhotoChanger.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MainPhotoChanger; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var MainPhotoChanger = /*#__PURE__*/function () {
+  function MainPhotoChanger() {
+    var _this = this;
+
+    _classCallCheck(this, MainPhotoChanger);
+
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos').addEventListener('mouseover', function (e) {
+      if (e.target.dataset.smallPhoto) {
+        _this._changeMainPhoto(e.target.dataset.smallPhoto);
+      }
+    });
+  }
+
+  _createClass(MainPhotoChanger, [{
+    key: "_changeMainPhoto",
+    value: function _changeMainPhoto(photoNumber) {
+      var largePhotoSelector = "[data-large-photo=\"".concat(photoNumber, "\"]");
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-main-photo]').src = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(largePhotoSelector).src;
+    }
+  }]);
+
+  return MainPhotoChanger;
+}();
 
 
 
