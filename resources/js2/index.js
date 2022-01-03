@@ -14,7 +14,7 @@ import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitche
 
 import LargePhotoMaker from "./product/largePhotoMaker";
 import MainPhotoChanger from "./product/mainPhotoChanger";
-//import LargePhotoViewer from "./product/largePhotoViewer";
+import LargePhotoViewer from "./product/largePhotoViewer";
 
 
 
@@ -46,11 +46,12 @@ if (el('#products') || el('#singleProduct')) {
 new FavoriteProductsTotal();
 
 if (el('#singleProduct')) {
-    new LargePhotoMaker();
     if (el('#smallPhotos')) {
+        new LargePhotoMaker();
         new MainPhotoChanger();
     }
-    // new LargePhotoMaker();
-
+    if (el('#mainPhotoContainer')) {
+        new LargePhotoViewer();
+    }
 }
 

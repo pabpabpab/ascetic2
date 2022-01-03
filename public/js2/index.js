@@ -1524,6 +1524,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
 /* harmony import */ var _product_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product/largePhotoMaker */ "./resources/js2/product/largePhotoMaker.js");
 /* harmony import */ var _product_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./product/mainPhotoChanger */ "./resources/js2/product/mainPhotoChanger.js");
+/* harmony import */ var _product_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./product/largePhotoViewer */ "./resources/js2/product/largePhotoViewer.js");
 
 
 
@@ -1534,7 +1535,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- //import LargePhotoViewer from "./product/largePhotoViewer";
+
 
 new _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__["default"]();
 new _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__["default"]();
@@ -1565,12 +1566,14 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products') || Object(_
 new _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__["default"]();
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
-  new _product_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__["default"]();
-
   if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+    new _product_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__["default"]();
     new _product_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__["default"]();
-  } // new LargePhotoMaker();
+  }
 
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer')) {
+    new _product_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__["default"]();
+  }
 }
 
 /***/ }),
@@ -1967,12 +1970,6 @@ var LargePhotoMaker = /*#__PURE__*/function () {
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('mouseover', function (e) {
       _this._makeLargePhotos();
     });
-    /*
-    el('[data-small-photo]').addEventListener('mouseover', (e) => {
-        this._getLargePhotos();
-    });
-    */
-    // data-main-photo-container
   }
 
   _createClass(LargePhotoMaker, [{
@@ -1994,27 +1991,80 @@ var LargePhotoMaker = /*#__PURE__*/function () {
       largePhotosHtml = "<div class=\"display-none\">".concat(largePhotosHtml, "</div>");
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml); //console.log(largePhotosHtml);
     }
-    /*
-    _getLargePhotos() {
-        if (this.sourceOfLargePhotosWasCalculated) {
-            return;
-        }
-        this.sourceOfLargePhotosWasCalculated = true;
-         const container = el('#smallPhotos');
-        let nodes = container.querySelectorAll('[data-small-photo]');
-        let src;
-        for (let node of nodes) {
-            src = node.src;
-            src = src.replace("size2", "size5");
-            src = src.replace("s2-", "s5-");
-            node.src = src;
-        }
-    }
-      */
-
   }]);
 
   return LargePhotoMaker;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/product/largePhotoViewer.js":
+/*!***************************************************!*\
+  !*** ./resources/js2/product/largePhotoViewer.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LargePhotoViewer; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var LargePhotoViewer = /*#__PURE__*/function () {
+  function LargePhotoViewer() {
+    var _this = this;
+
+    _classCallCheck(this, LargePhotoViewer);
+
+    this.mainPhotoRatio = 0;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').addEventListener('mouseover', function (e) {
+      _this._startViewLargePhoto();
+    });
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').addEventListener('mousemove', function (e) {
+      _this._viewLargePhoto(e);
+    });
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').addEventListener('mouseleave', function (e) {
+      _this._finishViewLargePhoto();
+    });
+  }
+
+  _createClass(LargePhotoViewer, [{
+    key: "_startViewLargePhoto",
+    value: function _startViewLargePhoto() {
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').className = 'photo__size5';
+      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').getBoundingClientRect();
+      this.mainPhotoRatio = 1600 / (wrapper.right - wrapper.left); // 1600px ширина фото под лупой
+    }
+  }, {
+    key: "_viewLargePhoto",
+    value: function _viewLargePhoto(e) {
+      var container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
+      var photoContainer = container.getBoundingClientRect();
+      var xWay = e.x - photoContainer.left;
+      var yWay = e.y - photoContainer.top;
+      container.scrollLeft = xWay * this.mainPhotoRatio / 1.5;
+      container.scrollTop = yWay * this.mainPhotoRatio / 1.5; // 1.5 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
+    }
+  }, {
+    key: "_finishViewLargePhoto",
+    value: function _finishViewLargePhoto() {
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').className = 'photo__size4';
+      var container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
+      container.scrollLeft = 0;
+      container.scrollTop = 0;
+    }
+  }]);
+
+  return LargePhotoViewer;
 }();
 
 
@@ -2057,7 +2107,7 @@ var MainPhotoChanger = /*#__PURE__*/function () {
     key: "_changeMainPhoto",
     value: function _changeMainPhoto(photoNumber) {
       var largePhotoSelector = "[data-large-photo=\"".concat(photoNumber, "\"]");
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-main-photo]').src = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(largePhotoSelector).src;
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').src = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(largePhotoSelector).src;
     }
   }]);
 

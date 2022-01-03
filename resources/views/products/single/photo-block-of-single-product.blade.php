@@ -74,16 +74,16 @@
 
     <div class="single_product__big_photo__wrapper">
 
-        <div data-main-photo-container data-big-photo-version="desktop" class="single_product__big_photo__content">
+        <div id="mainPhotoContainer" data-big-photo-version="desktop" class="single_product__big_photo__content">
             @if ($photoCount > 1)
                 <img src="/storage/products-photos-size4/{{ $product->id }}s4-{{ $objPhotoSet[0]->filename }}"
                      alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
-                     data-main-photo
+                     id="mainPhoto"
                      class="photo__size4"/>
             @else
                 <img src="/storage/products-photos-size5/{{ $product->id }}s5-{{ $objPhotoSet[0]->filename }}"
                      alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
-                     data-main-photo
+                     id="mainPhoto"
                      class="photo__size4"/>
             @endif
         </div>

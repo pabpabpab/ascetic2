@@ -6,14 +6,6 @@ export default class LargePhotoMaker {
         el('#singleProduct').addEventListener('mouseover', (e) => {
             this._makeLargePhotos();
         });
-
-        /*
-        el('[data-small-photo]').addEventListener('mouseover', (e) => {
-            this._getLargePhotos();
-        });
-        */
-
-        // data-main-photo-container
     }
 
 
@@ -34,26 +26,4 @@ export default class LargePhotoMaker {
         el('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml);
         //console.log(largePhotosHtml);
     }
-
-
-
-    /*
-    _getLargePhotos() {
-        if (this.sourceOfLargePhotosWasCalculated) {
-            return;
-        }
-        this.sourceOfLargePhotosWasCalculated = true;
-
-        const container = el('#smallPhotos');
-        let nodes = container.querySelectorAll('[data-small-photo]');
-        let src;
-        for (let node of nodes) {
-            src = node.src;
-            src = src.replace("size2", "size5");
-            src = src.replace("s2-", "s5-");
-            node.src = src;
-        }
-    }
-
-     */
 }

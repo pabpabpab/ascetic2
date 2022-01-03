@@ -11,6 +11,6 @@ export default class MainPhotoChanger {
 
     _changeMainPhoto(photoNumber) {
         const largePhotoSelector = `[data-large-photo="${photoNumber}"]`;
-        el('[data-main-photo]').src = el(largePhotoSelector).src;
+        el('#mainPhoto').src = el(largePhotoSelector).src;
     }
 }
