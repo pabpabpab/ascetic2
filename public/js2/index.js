@@ -2307,13 +2307,11 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
 
     this.largePhotosHtmlWasDone = false;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('touchstart', function (e) {
-      //console.log('touchstart');
       e.preventDefault();
 
       _this._makeLargePhotos();
     });
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('mouseover', function (e) {
-      //console.log('mouseover');
       _this._makeLargePhotos();
     });
   }
@@ -2328,12 +2326,10 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
       if (this.largePhotosHtmlWasDone) {
         return;
       }
-      /*
-      if (el('#largePhotos')) {
-          return;
-      }
-      */
 
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#tapeOfLargePhotos')) {
+        return;
+      }
 
       this.largePhotosHtmlWasDone = true;
       var nodes = document.querySelectorAll('[data-small-photo]');
@@ -2348,17 +2344,8 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
           var src = node.src;
           src = src.replace("products-photos-size2", "products-photos-size5");
           src = src.replaceAll("s2-", "s5-");
-          /*
-          let photo = '';
-          if (photoArr.length === 0) {
-              photo = `<img alt="" src="${src}" id="mainPhoto" class="photo__size4" />`;
-          } else {
-              photo = `<img alt="" src="${src}" class="photo__size4" />`;
-          }
-          */
-
           var photo = "<img alt=\"\" src=\"".concat(src, "\" class=\"photo__size4\" />");
-          photoArr.push(photo); //console.log(node.src);
+          photoArr.push(photo);
         }
       } catch (err) {
         _iterator.e(err);
@@ -2366,13 +2353,13 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
         _iterator.f();
       }
 
-      var photosHtml = photoArr.join(''); //el('#mainPhotoContainer').style.width = '3000px';
+      var largePhotosHtml = "<div id=\"tapeOfLargePhotos\" class=\"display-flex\">\n                                    ".concat(photoArr.join(''), "\n                                 </div>");
 
       if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto')) {
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').remove();
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').insertAdjacentHTML('afterbegin', photosHtml);
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').insertAdjacentHTML('afterbegin', largePhotosHtml);
     }
   }]);
 

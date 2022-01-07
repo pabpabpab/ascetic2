@@ -1050,9 +1050,6 @@ h1 {
   }
 
   .single_product__big_photo__content {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     width: 100%;
     height: auto;
   }
