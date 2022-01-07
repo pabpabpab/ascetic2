@@ -1,4 +1,4 @@
-import el from './../el';
+import el from '../../el';
 
 export default class LargePhotoMaker {
     constructor() {
@@ -16,13 +16,16 @@ export default class LargePhotoMaker {
         if (this.largePhotosHtmlWasDone) {
             return;
         }
+        if (el('#largePhotos')) {
+            return;
+        }
         this.largePhotosHtmlWasDone = true;
 
         const smallPhotosHtml = el('#smallPhotos').innerHTML;
         let largePhotosHtml = smallPhotosHtml.replaceAll("products-photos-size2", "products-photos-size5");
         largePhotosHtml = largePhotosHtml.replaceAll("s2-", "s5-");
         largePhotosHtml = largePhotosHtml.replaceAll("data-small-photo", "data-large-photo");
-        largePhotosHtml = `<div class="display-none">${largePhotosHtml}</div>`;
+        largePhotosHtml = `<div id="largePhotos" class="display-none">${largePhotosHtml}</div>`;
         el('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml);
         //console.log(largePhotosHtml);
     }

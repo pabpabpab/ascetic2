@@ -2336,8 +2336,8 @@ __webpack_require__.r(__webpack_exports__);
       return '';
     }
 
-    var folderName = "/storage/".concat(this.imgFolderPrefix, "2");
-    var fileNamePrefix = "".concat(product.id, "s2-");
+    var folderName = "/storage/".concat(this.imgFolderPrefix, "5");
+    var fileNamePrefix = "".concat(product.id, "s5-");
     var photoArr = photoInfoArr.map(function (timeName, index) {
       return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size2\" />");
     });

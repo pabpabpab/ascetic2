@@ -1522,10 +1522,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotal */ "./resources/js2/favoriteProducts/favoriteProductsTotal.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
-/* harmony import */ var _product_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product/largePhotoMaker */ "./resources/js2/product/largePhotoMaker.js");
-/* harmony import */ var _product_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./product/mainPhotoChanger */ "./resources/js2/product/mainPhotoChanger.js");
-/* harmony import */ var _product_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./product/largePhotoViewer */ "./resources/js2/product/largePhotoViewer.js");
-/* harmony import */ var _product_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./product/smallPhotoScroller */ "./resources/js2/product/smallPhotoScroller.js");
+/* harmony import */ var _product_desktop_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product/desktop/largePhotoMaker */ "./resources/js2/product/desktop/largePhotoMaker.js");
+/* harmony import */ var _product_desktop_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./product/desktop/mainPhotoChanger */ "./resources/js2/product/desktop/mainPhotoChanger.js");
+/* harmony import */ var _product_desktop_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./product/desktop/largePhotoViewer */ "./resources/js2/product/desktop/largePhotoViewer.js");
+/* harmony import */ var _product_desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./product/desktop/smallPhotoScroller */ "./resources/js2/product/desktop/smallPhotoScroller.js");
+/* harmony import */ var _product_mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./product/mobile/mobileLargePhotoMaker */ "./resources/js2/product/mobile/mobileLargePhotoMaker.js");
+/* harmony import */ var _product_mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./product/mobile/mobileLargePhotoScroller */ "./resources/js2/product/mobile/mobileLargePhotoScroller.js");
+
+
 
 
 
@@ -1568,17 +1572,33 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products') || Object(_
 new _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__["default"]();
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
-    new _product_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__["default"]();
-    new _product_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__["default"]();
+  var largePhotoScrollRightButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollRightButton');
+  var largePhotoScrollRightButtonVisibility = false;
+
+  if (largePhotoScrollRightButton) {
+    largePhotoScrollRightButtonVisibility = largePhotoScrollRightButton.getBoundingClientRect().x > 0;
   }
 
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer')) {
-    new _product_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__["default"]();
+  if (!largePhotoScrollRightButtonVisibility) {
+    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+      new _product_desktop_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__["default"]();
+      new _product_desktop_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__["default"](); // change main photo by small photo
+    }
+
+    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer')) {
+      new _product_desktop_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__["default"]();
+    }
+
+    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown')) {
+      new _product_desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__["default"]();
+    }
   }
 
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown')) {
-    new _product_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__["default"]();
+  if (largePhotoScrollRightButtonVisibility) {
+    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+      new _product_mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_13__["default"]();
+      new _product_mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_14__["default"]();
+    }
   }
 }
 
@@ -1947,17 +1967,17 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
 /***/ }),
 
-/***/ "./resources/js2/product/largePhotoMaker.js":
-/*!**************************************************!*\
-  !*** ./resources/js2/product/largePhotoMaker.js ***!
-  \**************************************************/
+/***/ "./resources/js2/product/desktop/largePhotoMaker.js":
+/*!**********************************************************!*\
+  !*** ./resources/js2/product/desktop/largePhotoMaker.js ***!
+  \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LargePhotoMaker; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1989,12 +2009,16 @@ var LargePhotoMaker = /*#__PURE__*/function () {
         return;
       }
 
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotos')) {
+        return;
+      }
+
       this.largePhotosHtmlWasDone = true;
       var smallPhotosHtml = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos').innerHTML;
       var largePhotosHtml = smallPhotosHtml.replaceAll("products-photos-size2", "products-photos-size5");
       largePhotosHtml = largePhotosHtml.replaceAll("s2-", "s5-");
       largePhotosHtml = largePhotosHtml.replaceAll("data-small-photo", "data-large-photo");
-      largePhotosHtml = "<div class=\"display-none\">".concat(largePhotosHtml, "</div>");
+      largePhotosHtml = "<div id=\"largePhotos\" class=\"display-none\">".concat(largePhotosHtml, "</div>");
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml); //console.log(largePhotosHtml);
     }
   }]);
@@ -2006,17 +2030,17 @@ var LargePhotoMaker = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/product/largePhotoViewer.js":
-/*!***************************************************!*\
-  !*** ./resources/js2/product/largePhotoViewer.js ***!
-  \***************************************************/
+/***/ "./resources/js2/product/desktop/largePhotoViewer.js":
+/*!***********************************************************!*\
+  !*** ./resources/js2/product/desktop/largePhotoViewer.js ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LargePhotoViewer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2032,13 +2056,26 @@ var LargePhotoViewer = /*#__PURE__*/function () {
     _classCallCheck(this, LargePhotoViewer);
 
     this.mainPhotoRatio = 0;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').addEventListener('mouseover', function (e) {
+    this.photoContainer = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
+    this.photoContainer.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    this.photoContainer.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    this.photoContainer.addEventListener('touchend', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    this.photoContainer.addEventListener('mouseover', function (e) {
       _this._startViewLargePhoto();
     });
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').addEventListener('mousemove', function (e) {
+    this.photoContainer.addEventListener('mousemove', function (e) {
       _this._viewLargePhoto(e);
     });
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').addEventListener('mouseleave', function (e) {
+    this.photoContainer.addEventListener('mouseleave', function (e) {
       _this._finishViewLargePhoto();
     });
   }
@@ -2046,27 +2083,26 @@ var LargePhotoViewer = /*#__PURE__*/function () {
   _createClass(LargePhotoViewer, [{
     key: "_startViewLargePhoto",
     value: function _startViewLargePhoto() {
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').style.display = 'block';
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').className = 'photo__size5';
-      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').getBoundingClientRect();
+      var wrapper = this.photoContainer.getBoundingClientRect();
       this.mainPhotoRatio = 1600 / (wrapper.right - wrapper.left); // 1600px ширина фото под лупой
     }
   }, {
     key: "_viewLargePhoto",
     value: function _viewLargePhoto(e) {
-      var container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
-      var photoContainer = container.getBoundingClientRect();
-      var xWay = e.x - photoContainer.left;
-      var yWay = e.y - photoContainer.top;
-      container.scrollLeft = xWay * this.mainPhotoRatio / 1.5;
-      container.scrollTop = yWay * this.mainPhotoRatio / 1.5; // 1.5 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
+      var wrapper = this.photoContainer.getBoundingClientRect();
+      var xWay = e.x - wrapper.left;
+      var yWay = e.y - wrapper.top;
+      this.photoContainer.scrollLeft = xWay * this.mainPhotoRatio / 1.5;
+      this.photoContainer.scrollTop = yWay * this.mainPhotoRatio / 1.5; // 1.5 ручной коэффициент, чтобы большое фото под лупой двигалось сразу
     }
   }, {
     key: "_finishViewLargePhoto",
     value: function _finishViewLargePhoto() {
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').className = 'photo__size4';
-      var container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
-      container.scrollLeft = 0;
-      container.scrollTop = 0;
+      this.photoContainer.scrollLeft = 0;
+      this.photoContainer.scrollTop = 0;
     }
   }]);
 
@@ -2077,17 +2113,17 @@ var LargePhotoViewer = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/product/mainPhotoChanger.js":
-/*!***************************************************!*\
-  !*** ./resources/js2/product/mainPhotoChanger.js ***!
-  \***************************************************/
+/***/ "./resources/js2/product/desktop/mainPhotoChanger.js":
+/*!***********************************************************!*\
+  !*** ./resources/js2/product/desktop/mainPhotoChanger.js ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MainPhotoChanger; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2114,6 +2150,17 @@ var MainPhotoChanger = /*#__PURE__*/function () {
     value: function _changeMainPhoto(photoNumber) {
       var largePhotoSelector = "[data-large-photo=\"".concat(photoNumber, "\"]");
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').src = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(largePhotoSelector).src;
+
+      this._refreshPhotoNumberIndicator(photoNumber);
+    }
+  }, {
+    key: "_refreshPhotoNumberIndicator",
+    value: function _refreshPhotoNumberIndicator(photoNumber) {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator')) {
+        return;
+      }
+
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator').innerText = photoNumber;
     }
   }]);
 
@@ -2124,17 +2171,17 @@ var MainPhotoChanger = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/product/smallPhotoScroller.js":
-/*!*****************************************************!*\
-  !*** ./resources/js2/product/smallPhotoScroller.js ***!
-  \*****************************************************/
+/***/ "./resources/js2/product/desktop/smallPhotoScroller.js":
+/*!*************************************************************!*\
+  !*** ./resources/js2/product/desktop/smallPhotoScroller.js ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SmallPhotoScroller; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2221,6 +2268,253 @@ var SmallPhotoScroller = /*#__PURE__*/function () {
   }]);
 
   return SmallPhotoScroller;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/product/mobile/mobileLargePhotoMaker.js":
+/*!***************************************************************!*\
+  !*** ./resources/js2/product/mobile/mobileLargePhotoMaker.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MobileLargePhotoMaker; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../el */ "./resources/js2/el.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var MobileLargePhotoMaker = /*#__PURE__*/function () {
+  function MobileLargePhotoMaker() {
+    var _this = this;
+
+    _classCallCheck(this, MobileLargePhotoMaker);
+
+    this.largePhotosHtmlWasDone = false;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('touchstart', function (e) {
+      //console.log('touchstart');
+      e.preventDefault();
+
+      _this._makeLargePhotos();
+    });
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('mouseover', function (e) {
+      //console.log('mouseover');
+      _this._makeLargePhotos();
+    });
+  }
+
+  _createClass(MobileLargePhotoMaker, [{
+    key: "_makeLargePhotos",
+    value: function _makeLargePhotos() {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+        return;
+      }
+
+      if (this.largePhotosHtmlWasDone) {
+        return;
+      }
+      /*
+      if (el('#largePhotos')) {
+          return;
+      }
+      */
+
+
+      this.largePhotosHtmlWasDone = true;
+      var nodes = document.querySelectorAll('[data-small-photo]');
+      var photoArr = [];
+
+      var _iterator = _createForOfIteratorHelper(nodes),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var node = _step.value;
+          var src = node.src;
+          src = src.replace("products-photos-size2", "products-photos-size5");
+          src = src.replaceAll("s2-", "s5-");
+          /*
+          let photo = '';
+          if (photoArr.length === 0) {
+              photo = `<img alt="" src="${src}" id="mainPhoto" class="photo__size4" />`;
+          } else {
+              photo = `<img alt="" src="${src}" class="photo__size4" />`;
+          }
+          */
+
+          var photo = "<img alt=\"\" src=\"".concat(src, "\" class=\"photo__size4\" />");
+          photoArr.push(photo); //console.log(node.src);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      var photosHtml = photoArr.join(''); //el('#mainPhotoContainer').style.width = '3000px';
+
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto')) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').remove();
+      }
+
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').insertAdjacentHTML('afterbegin', photosHtml);
+    }
+  }]);
+
+  return MobileLargePhotoMaker;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/product/mobile/mobileLargePhotoScroller.js":
+/*!******************************************************************!*\
+  !*** ./resources/js2/product/mobile/mobileLargePhotoScroller.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MobileLargePhotoScroller; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var MobileLargePhotoScroller = /*#__PURE__*/function () {
+  function MobileLargePhotoScroller() {
+    var _this = this;
+
+    _classCallCheck(this, MobileLargePhotoScroller);
+
+    this.container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
+    this.buttonLeft = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollLeftButton');
+    this.buttonRight = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollRightButton');
+    this.photoNumberIndicator = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator');
+    this.indexOfMainPhoto = 0;
+    this.numberOfPhotos = this._getPhotoCount();
+    this.buttonLeft.addEventListener('click', function (e) {
+      _this._showNextPhoto(-1);
+    });
+    this.buttonRight.addEventListener('click', function (e) {
+      _this._showNextPhoto(1);
+    });
+  }
+
+  _createClass(MobileLargePhotoScroller, [{
+    key: "_getPhotoCount",
+    value: function _getPhotoCount() {
+      var nodes = document.querySelectorAll('[data-small-photo]');
+      return nodes.length;
+    }
+  }, {
+    key: "_showNextPhoto",
+    value: function _showNextPhoto(offset) {
+      this._changeButtonsVisibilityWhenScrollClick(offset);
+
+      var wrapper = this.container.getBoundingClientRect();
+      var photoWidth = wrapper.right - wrapper.left;
+      this.container.scrollLeft = this.indexOfMainPhoto * photoWidth;
+      var startX = this.container.scrollLeft;
+      this.indexOfMainPhoto += offset;
+
+      if (offset < 0 && this.indexOfMainPhoto < 0) {
+        this.indexOfMainPhoto = 0;
+        return;
+      }
+
+      if (offset > 0 && this.indexOfMainPhoto >= this.numberOfPhotos) {
+        this.indexOfMainPhoto = this.numberOfPhotos - 1;
+        return;
+      }
+
+      this._scrollLargePhotos(offset, startX, photoWidth);
+    }
+  }, {
+    key: "_scrollLargePhotos",
+    value: function _scrollLargePhotos(offset, startX, photoWidth) {
+      var _this2 = this;
+
+      var _coveredDistance = Math.abs(this.container.scrollLeft - startX);
+
+      if (_coveredDistance > photoWidth - 10) {
+        // 10 - возможная погрешность
+        this.container.scrollLeft = this.indexOfMainPhoto * photoWidth;
+
+        this._changeButtonsVisibilityWhenScrollFinish();
+
+        this._refreshPhotoNumberIndicator(this.indexOfMainPhoto + 1);
+
+        return;
+      }
+
+      var step = 10; // px
+
+      this.container.scrollLeft += offset * step;
+      setTimeout(function () {
+        _this2._scrollLargePhotos(offset, startX, photoWidth);
+      }, 1);
+    }
+  }, {
+    key: "_changeButtonsVisibilityWhenScrollClick",
+    value: function _changeButtonsVisibilityWhenScrollClick(offset) {
+      if (offset > 0) {
+        this.buttonLeft.style.display = 'block';
+      } else {
+        this.buttonRight.style.display = 'block';
+      }
+    }
+  }, {
+    key: "_changeButtonsVisibilityWhenScrollFinish",
+    value: function _changeButtonsVisibilityWhenScrollFinish() {
+      if (this.container.scrollLeft < 10) {
+        this.buttonLeft.style.display = 'none';
+        this.buttonRight.style.display = 'block';
+        return;
+      }
+
+      var scrollLeft = this.container.scrollLeft;
+      var clientWidth = this.container.clientWidth;
+      var scrollWidth = this.container.scrollWidth;
+
+      if (scrollWidth - (scrollLeft + clientWidth) < 10) {
+        this.buttonRight.style.display = 'none';
+        this.buttonLeft.style.display = 'block';
+      }
+    }
+  }, {
+    key: "_refreshPhotoNumberIndicator",
+    value: function _refreshPhotoNumberIndicator(photoNumber) {
+      if (!this.photoNumberIndicator) {
+        return;
+      }
+
+      this.photoNumberIndicator.innerText = photoNumber;
+    }
+  }]);
+
+  return MobileLargePhotoScroller;
 }();
 
 

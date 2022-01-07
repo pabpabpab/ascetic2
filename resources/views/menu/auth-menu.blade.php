@@ -9,11 +9,11 @@
     @php
         $isAdmin = \Illuminate\Support\Facades\Auth::user()->_hasRole('admin');
         $userUrl = $isAdmin ? route('adminPanel') : route('my');
-        $userText = $isAdmin ? 'Admin panel' : \Illuminate\Support\Facades\Auth::user()->name;
+        $userName = $isAdmin ? 'Admin panel' : \Illuminate\Support\Facades\Auth::user()->name;
     @endphp
 
-    <a href="{{ $userUrl }}" class="top_menu__link">
-        {{ $userText }}
+    <a href="{{ $userUrl }}" class="top_menu__link nowrap">
+        {{ $userName }}
     </a>
 
     <a href="{{ route('account.logout') }}" title="Выйти из аккаунта" class="top_menu__link top_menu__link_account_exit">

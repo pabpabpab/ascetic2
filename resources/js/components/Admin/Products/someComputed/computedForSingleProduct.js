@@ -58,8 +58,8 @@ export default {
         if (!photoInfoArr) {
             return '';
         }
-        const folderName = `/storage/${this.imgFolderPrefix}2`;
-        const fileNamePrefix = `${product.id}s2-`;
+        const folderName = `/storage/${this.imgFolderPrefix}5`;
+        const fileNamePrefix = `${product.id}s5-`;
 
         const photoArr = photoInfoArr.map(function (timeName, index) {
             return `<img data-photoindex="${index}" alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo__size2" />`;

@@ -1,4 +1,4 @@
-import el from './../el';
+import el from '../../el';
 
 export default class SmallPhotoScroller {
     constructor() {

@@ -74,42 +74,31 @@
 
     <div class="single_product__big_photo__wrapper">
 
-        <div id="mainPhotoContainer" data-big-photo-version="desktop" class="single_product__big_photo__content">
-            @if ($photoCount > 1)
-                <img src="/storage/products-photos-size4/{{ $product->id }}s4-{{ $objPhotoSet[0]->filename }}"
-                     alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
-                     id="mainPhoto"
-                     class="photo__size4"/>
-            @else
-                <img src="/storage/products-photos-size5/{{ $product->id }}s5-{{ $objPhotoSet[0]->filename }}"
-                     alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
-                     id="mainPhoto"
-                     class="photo__size4"/>
-            @endif
+        <div id="mainPhotoContainer" class="single_product__big_photo__content">
+            <img src="/storage/products-photos-size5/{{ $product->id }}s5-{{ $objPhotoSet[0]->filename }}"
+                 alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
+                 id="mainPhoto"
+                 class="photo__size4"/>
         </div>
 
-{{--
-        <div data-big-photo-version="mobile"
-             class="single_product__big_photo__content_mobile" style="display: none;">
-            {{getAllBigPhotos }}
-        </div>
 
-        <div
-            class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left"
-            style="display: none;">
-            <div class="single_product__big_photo__scroll_button_left__content">
+        @if ($photoCount > 1)
+            <div id="largePhotoScrollLeftButton"
+                class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left display-none">
+                <div class="single_product__big_photo__scroll_button_left__content">
+                </div>
             </div>
-        </div>
-
-        <div
-            class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_right"
-            style="display: none;">
-            <div class="single_product__big_photo__scroll_button_right__content">
+            <div id="largePhotoScrollRightButton"
+                 class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_right">
+                <div class="single_product__big_photo__scroll_button_right__content">
+                </div>
             </div>
-        </div>
---}}
-        <div class="single_product__big_photo__photo_number_indicator">
-            {{ 1 }}/{{ $photoCount }}
-        </div>
+
+            <div class="single_product__big_photo__photo_number_indicator">
+                <span id="photoNumberIndicator">{{ 1 }}</span>/{{ $photoCount }}
+            </div>
+        @endif
+
+
     </div>
 </section>

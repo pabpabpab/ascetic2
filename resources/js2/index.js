@@ -12,10 +12,14 @@ import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoritePro
 import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
-import LargePhotoMaker from "./product/largePhotoMaker";
-import MainPhotoChanger from "./product/mainPhotoChanger";
-import LargePhotoViewer from "./product/largePhotoViewer";
-import SmallPhotoScroller from "./product/smallPhotoScroller";
+import DesktopLargePhotoMaker from "./product/desktop/largePhotoMaker";
+import DesktopMainPhotoChanger from "./product/desktop/mainPhotoChanger";
+import DesktopLargePhotoViewer from "./product/desktop/largePhotoViewer";
+import DesktopSmallPhotoScroller from "./product/desktop/smallPhotoScroller";
+
+import MobileLargePhotoMaker from "./product/mobile/mobileLargePhotoMaker";
+import MobileLargePhotoScroller from "./product/mobile/mobileLargePhotoScroller";
+
 
 
 new CsrfUpdater();
@@ -47,15 +51,29 @@ new FavoriteProductsTotal();
 
 
 if (el('#singleProduct')) {
-    if (el('#smallPhotos')) {
-        new LargePhotoMaker();
-        new MainPhotoChanger();
+    const largePhotoScrollRightButton = el('#largePhotoScrollRightButton');
+    let largePhotoScrollRightButtonVisibility = false;
+    if (largePhotoScrollRightButton) {
+        largePhotoScrollRightButtonVisibility = largePhotoScrollRightButton.getBoundingClientRect().x > 0;
     }
-    if (el('#mainPhotoContainer')) {
-        new LargePhotoViewer();
+
+    if (!largePhotoScrollRightButtonVisibility) {
+        if (el('#smallPhotos')) {
+            new DesktopLargePhotoMaker();
+            new DesktopMainPhotoChanger(); // change main photo by small photo
+        }
+        if (el('#mainPhotoContainer')) {
+            new DesktopLargePhotoViewer();
+        }
+        if (el('#smallPhotos-scrollButtonDown')) {
+            new DesktopSmallPhotoScroller();
+        }
     }
-    if (el('#smallPhotos-scrollButtonDown')) {
-        new SmallPhotoScroller();
+
+    if (largePhotoScrollRightButtonVisibility) {
+        if (el('#smallPhotos')) {
+            new MobileLargePhotoMaker();
+            new MobileLargePhotoScroller();
+        }
     }
 }
-

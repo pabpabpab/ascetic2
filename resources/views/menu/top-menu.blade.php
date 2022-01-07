@@ -28,7 +28,7 @@
             @endfor
 
             <div id="topMenu-dropMenuContainer" class="top_menu__li">
-                <a href="/" class="top_menu__link top_menu__link_with_drop_menu">
+                <a href="/" class="top_menu__link top_menu__link_with_drop_menu nowrap">
                     Все
                 </a>
             </div>

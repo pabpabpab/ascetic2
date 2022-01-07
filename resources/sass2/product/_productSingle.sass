@@ -14,7 +14,6 @@
     position: -webkit-sticky
     position: sticky
     top: 80px
-    height: $big_photo_height + 60px
     //border: 1px solid #003cff
     display: flex
     justify-content: flex-start
@@ -86,6 +85,9 @@
     //scroll-behavior: smooth
 
 
+
+
+
 .single_product__big_photo__wrapper
     position: relative
     width: $big_photo_width
@@ -93,18 +95,13 @@
     padding: 0
     overflow: hidden
 .single_product__big_photo__content
+    position: relative
     width: $big_photo_width
     height: $big_photo_height
     padding: 0
     margin: 0
     overflow: hidden
-.single_product__big_photo__content_mobile
-    width: $big_photo_width
-    height: $big_photo_height
-    padding: 0
-    margin: 0
-    display: flex
-    overflow: hidden
+
 
 .single_product__big_photo__photo_number_indicator
     position: absolute
@@ -221,6 +218,7 @@
     display: flex
     align-items: center
     justify-content: center
+    flex-wrap: nowrap
     cursor: pointer
     transition: .2s
     &:hover
@@ -234,3 +232,4 @@
     +font(13px, rgb(80, 75, 75), 400)
     font-family: $h1_font_family
     letter-spacing: 1px
+    white-space: nowrap
