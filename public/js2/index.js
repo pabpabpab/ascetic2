@@ -1341,6 +1341,83 @@ function getRegisterFormHtml(css) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/getSingleProductHtml.js":
+/*!****************************************************!*\
+  !*** ./resources/js2/html/getSingleProductHtml.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getSingleProductHtml; });
+function getSingleProductHtml(product) {
+  //console.log(product);
+  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                        ".concat(product.photos.length > 0 ? _getPhotoBlock(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(_getListOfCategories(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(_getListOfMaterials(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(_getListOfColors(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                </div>\n\n\n                                <div id=\"favIcon-wrapper-").concat(product.id, "\" class=\"single_product__favorite_icon__wrapper\">\n                                    <img id=\"favIcon-img-").concat(product.id, "\" alt=\"\"\n                                        src=\"/images/favoriteIcon.svg\"\n                                        class=\"single_product__favorite_icon__img\">\n                                    <span id=\"favIcon-text-").concat(product.id, "\" class=\"single_product__favorite_icon__text\">\n                                        \u0412 \u0418\u0417\u0411\u0420\u0410\u041D\u041D\u041E\u0415\n                                    </span>\n                                </div>\n\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
+}
+
+function _getPhotoBlock(productId, photosArr) {
+  var photoCount = photosArr.length;
+  return "<section class=\"single_product__all_photo_wrapper\">\n                ".concat(photoCount > 1 ? _getSmallPhotosBlock(productId, photosArr) : "", "\n                ").concat(_getBigPhotoBlock(productId, photosArr), "\n            </section>");
+}
+
+function _getSmallPhotosBlock(productId, photosArr) {
+  var photoCount = photosArr.length;
+  return "<div class=\"single_product__small_photos__wrapper\">\n\n                ".concat(photoCount > 5 ? "<div id=\"smallPhotos-scrollButtonUp\"\n                            class=\"single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top display-none\">\n                            <div class=\"single_product__small_photos__scroll_button_top__content\">\n                            </div>\n                        </div>" : "", "\n                <div id=\"smallPhotos\" class=\"single_product__small_photos\">\n                    ").concat(_getSmallPhotos(productId, photosArr), "\n                </div>\n                ").concat(photoCount > 5 ? "<div id=\"smallPhotos-scrollButtonDown\"\n                            class=\"single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom\">\n                            <div class=\"single_product__small_photos__scroll_button_bottom__content\">\n                            </div>\n                        </div>" : "", "\n\n            </div>");
+}
+
+function _getBigPhotoBlock(productId, photosArr) {
+  var photoCount = photosArr.length;
+  return "<div class=\"single_product__big_photo__wrapper\">\n\n                <div id=\"mainPhotoContainer\" class=\"single_product__big_photo__content\">\n                    <img src=\"/storage/products-photos-size5/".concat(productId, "s5-").concat(photosArr[0], "\"\n                        alt=\"\"\n                        id=\"mainPhoto\"\n                        class=\"photo__size4\"/>\n                </div>\n\n                ").concat(photoCount > 1 ? "<div id=\"largePhotoScrollLeftButton\"\n                                class=\"single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left display-none\">\n                                <div class=\"single_product__big_photo__scroll_button_left__content\">\n                                </div>\n                           </div>\n                           <div id=\"largePhotoScrollRightButton\"\n                                class=\"single_product__big_photo__scroll_button single_product__big_photo__scroll_button_right\">\n                                <div class=\"single_product__big_photo__scroll_button_right__content\">\n                                </div>\n                           </div>\n                           <div class=\"single_product__big_photo__photo_number_indicator\">\n                                <span id=\"photoNumberIndicator\">1</span>/".concat(photoCount, "\n                           </div>") : "", "\n\n            </div>");
+}
+
+function _getSmallPhotos(productId, photosArr) {
+  var photoCount = photosArr.length;
+  var smallPhotoFolder = "/storage/products-photos-size5/";
+  var phArr = photosArr.map(function (item, i) {
+    return "<img src='".concat(smallPhotoFolder).concat(productId, "s5-").concat(item, "'\n                    alt=''\n                    data-small-photo=\"").concat(i + 1, "\"\n                    class=\"photo__size2\"/>");
+  });
+  return phArr.join('');
+}
+/*
+function _getSmallPhotos(productId, photosArr) {
+    const photoCount = photosArr.length;
+    const smallPhotoFolder = "/storage/products-photos-size2/";
+
+    const phArr = photosArr.map((item, i) => {
+        return `<img src='${smallPhotoFolder}${productId}s2-${item}'
+                    alt=''
+                    data-small-photo="${i + 1}"
+                    class="photo__size2"/>`;
+    });
+    return phArr.join('');
+}
+*/
+
+
+function _getListOfCategories(categoriesArr) {
+  var catsArr = categoriesArr.map(function (item) {
+    return "<a href='products/".concat(item.slug, "' class='single_product__category_item__link'>").concat(item.name, "</a>");
+  });
+  return catsArr.join(', ');
+}
+
+function _getListOfMaterials(materialsArr) {
+  var catsArr = materialsArr.map(function (item) {
+    return item.name;
+  });
+  return catsArr.join(', ');
+}
+
+function _getListOfColors(colorsArr) {
+  var catsArr = colorsArr.map(function (item) {
+    return item.name;
+  });
+  return catsArr.join(', ');
+}
+
+/***/ }),
+
 /***/ "./resources/js2/html/getULoginWidgetHtml.js":
 /*!***************************************************!*\
   !*** ./resources/js2/html/getULoginWidgetHtml.js ***!
@@ -1522,12 +1599,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotal */ "./resources/js2/favoriteProducts/favoriteProductsTotal.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
-/* harmony import */ var _product_desktop_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product/desktop/largePhotoMaker */ "./resources/js2/product/desktop/largePhotoMaker.js");
-/* harmony import */ var _product_desktop_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./product/desktop/mainPhotoChanger */ "./resources/js2/product/desktop/mainPhotoChanger.js");
-/* harmony import */ var _product_desktop_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./product/desktop/largePhotoViewer */ "./resources/js2/product/desktop/largePhotoViewer.js");
-/* harmony import */ var _product_desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./product/desktop/smallPhotoScroller */ "./resources/js2/product/desktop/smallPhotoScroller.js");
-/* harmony import */ var _product_mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./product/mobile/mobileLargePhotoMaker */ "./resources/js2/product/mobile/mobileLargePhotoMaker.js");
-/* harmony import */ var _product_mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./product/mobile/mobileLargePhotoScroller */ "./resources/js2/product/mobile/mobileLargePhotoScroller.js");
+/* harmony import */ var _productSingle_desktop_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./productSingle/desktop/largePhotoMaker */ "./resources/js2/productSingle/desktop/largePhotoMaker.js");
+/* harmony import */ var _productSingle_desktop_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./productSingle/desktop/mainPhotoChanger */ "./resources/js2/productSingle/desktop/mainPhotoChanger.js");
+/* harmony import */ var _productSingle_desktop_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./productSingle/desktop/largePhotoViewer */ "./resources/js2/productSingle/desktop/largePhotoViewer.js");
+/* harmony import */ var _productSingle_desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./productSingle/desktop/smallPhotoScroller */ "./resources/js2/productSingle/desktop/smallPhotoScroller.js");
+/* harmony import */ var _productSingle_mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./productSingle/mobile/mobileLargePhotoMaker */ "./resources/js2/productSingle/mobile/mobileLargePhotoMaker.js");
+/* harmony import */ var _productSingle_mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./productSingle/mobile/mobileLargePhotoScroller */ "./resources/js2/productSingle/mobile/mobileLargePhotoScroller.js");
+/* harmony import */ var _productList_productSource__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./productList/productSource */ "./resources/js2/productList/productSource.js");
+/* harmony import */ var _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./productList/singleProductQuickViewer */ "./resources/js2/productList/singleProductQuickViewer.js");
+/* harmony import */ var _productList_quickProductDestructor__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./productList/quickProductDestructor */ "./resources/js2/productList/quickProductDestructor.js");
+/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
+
+
+
+
 
 
 
@@ -1572,34 +1657,12 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products') || Object(_
 new _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__["default"]();
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
-  var largePhotoScrollRightButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollRightButton');
-  var largePhotoScrollRightButtonVisibility = false;
+  Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_18__["default"])();
+}
 
-  if (largePhotoScrollRightButton) {
-    largePhotoScrollRightButtonVisibility = largePhotoScrollRightButton.getBoundingClientRect().x > 0;
-  }
-
-  if (!largePhotoScrollRightButtonVisibility) {
-    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
-      new _product_desktop_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__["default"]();
-      new _product_desktop_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__["default"](); // change main photo by small photo
-    }
-
-    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer')) {
-      new _product_desktop_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__["default"]();
-    }
-
-    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown')) {
-      new _product_desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__["default"]();
-    }
-  }
-
-  if (largePhotoScrollRightButtonVisibility) {
-    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
-      new _product_mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_13__["default"]();
-      new _product_mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_14__["default"]();
-    }
-  }
+if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products')) {
+  var productSource = new _productList_productSource__WEBPACK_IMPORTED_MODULE_15__["default"]();
+  new _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_16__["default"](productSource);
 }
 
 /***/ }),
@@ -1967,10 +2030,268 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
 /***/ }),
 
-/***/ "./resources/js2/product/desktop/largePhotoMaker.js":
-/*!**********************************************************!*\
-  !*** ./resources/js2/product/desktop/largePhotoMaker.js ***!
-  \**********************************************************/
+/***/ "./resources/js2/productList/productSource.js":
+/*!****************************************************!*\
+  !*** ./resources/js2/productList/productSource.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductSource; });
+/* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var ProductSource = /*#__PURE__*/function () {
+  function ProductSource() {
+    _classCallCheck(this, ProductSource);
+
+    this.entireList = [];
+    this.entireListUrl = '/public-js/entire-product-list';
+  }
+
+  _createClass(ProductSource, [{
+    key: "getEntireList",
+    value: function getEntireList() {
+      var _this = this;
+
+      if (this.entireList.length > 0) {
+        return new Promise(function (resolve) {
+          return resolve(_toConsumableArray(_this.entireList));
+        });
+      }
+
+      return this.loadEntireList().then(function (data) {
+        //console.log(data);
+        _this.entireList = _toConsumableArray(data);
+        return _toConsumableArray(data);
+      });
+    }
+  }, {
+    key: "loadEntireList",
+    value: function loadEntireList() {
+      var _this2 = this;
+
+      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.entireListUrl).then(function (data) {
+        _this2.entireList = _toConsumableArray(data.products);
+        return _toConsumableArray(data.products);
+      })["catch"](function () {
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B");
+      });
+    }
+  }]);
+
+  return ProductSource;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/quickProductDestructor.js":
+/*!*************************************************************!*\
+  !*** ./resources/js2/productList/quickProductDestructor.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return quickProductDestructor; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var quickProductDestructor = /*#__PURE__*/function () {
+  function quickProductDestructor() {
+    var _this = this;
+
+    _classCallCheck(this, quickProductDestructor);
+
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon').addEventListener('click', function (e) {
+      _this._removeQuickProduct();
+    });
+  }
+
+  _createClass(quickProductDestructor, [{
+    key: "_removeQuickProduct",
+    value: function _removeQuickProduct() {
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
+      }
+
+      document.body.style.overflow = 'auto';
+    }
+  }]);
+
+  return quickProductDestructor;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/singleProductQuickViewer.js":
+/*!***************************************************************!*\
+  !*** ./resources/js2/productList/singleProductQuickViewer.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SingleProductQuickViewer; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _html_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../html/getSingleProductHtml */ "./resources/js2/html/getSingleProductHtml.js");
+/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var SingleProductQuickViewer = /*#__PURE__*/function () {
+  function SingleProductQuickViewer(productSource) {
+    var _this = this;
+
+    _classCallCheck(this, SingleProductQuickViewer);
+
+    this.source = productSource;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products').addEventListener('click', function (e) {
+      if (e.target.dataset.quickView) {
+        e.preventDefault();
+
+        _this._showOneProduct(e.target.dataset.quickView);
+      }
+    });
+  }
+
+  _createClass(SingleProductQuickViewer, [{
+    key: "_showOneProduct",
+    value: function _showOneProduct(productId) {
+      var _this2 = this;
+
+      var id = Number(productId);
+      this.source.getEntireList().then(function (data) {
+        var list = _toConsumableArray(data);
+
+        var product = list.filter(function (item) {
+          return item.id === id;
+        })[0];
+
+        var productObject = _this2._prepareProductObject(product); //console.log(productObject);
+
+
+        var productHtml = Object(_html_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(productObject);
+
+        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
+        }
+
+        document.body.style.overflow = 'hidden';
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', productHtml);
+        Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__["default"])();
+      });
+    }
+  }, {
+    key: "_prepareProductObject",
+    value: function _prepareProductObject(product) {
+      var obj = {};
+      obj.id = product.id;
+      obj.name = product.name;
+      obj.slug = product.slug;
+      var params = JSON.parse(product.parameters);
+      obj.price = params.price;
+      obj.categories = params.categories;
+      obj.colors = params.colors;
+      obj.materials = params.materials;
+      obj.photos = JSON.parse(product.photo_set);
+      return obj;
+    }
+    /*
+        this._getProductList()
+            .then((data) => {
+                const list = [...data];
+                const product = list.filter(item => item.id === id)[0];
+                const productHtml = this._renderOne(product);
+                if (el('#quickProduct')) {
+                    el('#quickProduct').remove();
+                }
+                el('body').insertAdjacentHTML('beforeend', productHtml);
+            });
+        */
+
+    /*
+    _renderOne(product) {
+        console.log(product);
+        return `<div id="quickProduct">${product.id}</div>`;
+    }
+    */
+
+    /*
+    _getProductList() {
+        return this.source.getEntireList()
+            .then((data) => {
+                return [ ...data ];
+            });
+    }
+    */
+
+  }]);
+
+  return SingleProductQuickViewer;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productSingle/desktop/largePhotoMaker.js":
+/*!****************************************************************!*\
+  !*** ./resources/js2/productSingle/desktop/largePhotoMaker.js ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2030,10 +2351,10 @@ var LargePhotoMaker = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/product/desktop/largePhotoViewer.js":
-/*!***********************************************************!*\
-  !*** ./resources/js2/product/desktop/largePhotoViewer.js ***!
-  \***********************************************************/
+/***/ "./resources/js2/productSingle/desktop/largePhotoViewer.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js2/productSingle/desktop/largePhotoViewer.js ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2113,10 +2434,10 @@ var LargePhotoViewer = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/product/desktop/mainPhotoChanger.js":
-/*!***********************************************************!*\
-  !*** ./resources/js2/product/desktop/mainPhotoChanger.js ***!
-  \***********************************************************/
+/***/ "./resources/js2/productSingle/desktop/mainPhotoChanger.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js2/productSingle/desktop/mainPhotoChanger.js ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2171,10 +2492,10 @@ var MainPhotoChanger = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/product/desktop/smallPhotoScroller.js":
-/*!*************************************************************!*\
-  !*** ./resources/js2/product/desktop/smallPhotoScroller.js ***!
-  \*************************************************************/
+/***/ "./resources/js2/productSingle/desktop/smallPhotoScroller.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js2/productSingle/desktop/smallPhotoScroller.js ***!
+  \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2274,10 +2595,10 @@ var SmallPhotoScroller = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/product/mobile/mobileLargePhotoMaker.js":
-/*!***************************************************************!*\
-  !*** ./resources/js2/product/mobile/mobileLargePhotoMaker.js ***!
-  \***************************************************************/
+/***/ "./resources/js2/productSingle/mobile/mobileLargePhotoMaker.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js2/productSingle/mobile/mobileLargePhotoMaker.js ***!
+  \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2370,10 +2691,10 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/product/mobile/mobileLargePhotoScroller.js":
-/*!******************************************************************!*\
-  !*** ./resources/js2/product/mobile/mobileLargePhotoScroller.js ***!
-  \******************************************************************/
+/***/ "./resources/js2/productSingle/mobile/mobileLargePhotoScroller.js":
+/*!************************************************************************!*\
+  !*** ./resources/js2/productSingle/mobile/mobileLargePhotoScroller.js ***!
+  \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2505,6 +2826,69 @@ var MobileLargePhotoScroller = /*#__PURE__*/function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "./resources/js2/productSingle/singleProductKit.js":
+/*!*********************************************************!*\
+  !*** ./resources/js2/productSingle/singleProductKit.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return singleProductKit; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _desktop_largePhotoMaker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./desktop/largePhotoMaker */ "./resources/js2/productSingle/desktop/largePhotoMaker.js");
+/* harmony import */ var _desktop_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./desktop/mainPhotoChanger */ "./resources/js2/productSingle/desktop/mainPhotoChanger.js");
+/* harmony import */ var _desktop_largePhotoViewer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./desktop/largePhotoViewer */ "./resources/js2/productSingle/desktop/largePhotoViewer.js");
+/* harmony import */ var _desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./desktop/smallPhotoScroller */ "./resources/js2/productSingle/desktop/smallPhotoScroller.js");
+/* harmony import */ var _mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mobile/mobileLargePhotoMaker */ "./resources/js2/productSingle/mobile/mobileLargePhotoMaker.js");
+/* harmony import */ var _mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mobile/mobileLargePhotoScroller */ "./resources/js2/productSingle/mobile/mobileLargePhotoScroller.js");
+/* harmony import */ var _productList_quickProductDestructor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../productList/quickProductDestructor */ "./resources/js2/productList/quickProductDestructor.js");
+
+
+
+
+
+
+
+
+function singleProductKit() {
+  var largePhotoScrollRightButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollRightButton');
+  var largePhotoScrollRightButtonVisibility = false;
+
+  if (largePhotoScrollRightButton) {
+    largePhotoScrollRightButtonVisibility = largePhotoScrollRightButton.getBoundingClientRect().x > 0;
+  }
+
+  if (!largePhotoScrollRightButtonVisibility) {
+    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+      new _desktop_largePhotoMaker__WEBPACK_IMPORTED_MODULE_1__["default"]();
+      new _desktop_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_2__["default"](); // change main photo by small photo
+    }
+
+    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer')) {
+      new _desktop_largePhotoViewer__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    }
+
+    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown')) {
+      new _desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    }
+  }
+
+  if (largePhotoScrollRightButtonVisibility) {
+    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+      new _mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_5__["default"]();
+      new _mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_6__["default"]();
+    }
+  }
+
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon')) {
+    new _productList_quickProductDestructor__WEBPACK_IMPORTED_MODULE_7__["default"]();
+  }
+}
 
 /***/ }),
 

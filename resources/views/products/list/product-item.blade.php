@@ -22,7 +22,7 @@
         <div class="product_item__content">
 
             <div class="product_item__quick_view_link__wrapper">
-                <a href='{{ $singleProductUrl }}' class="product_item__quick_view_link">
+                <a data-quick-view="{{ $product->id }}" href='{{ $singleProductUrl }}' class="product_item__quick_view_link">
                     Быстрый просмотр
                 </a>
             </div>

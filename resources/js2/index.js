@@ -12,13 +12,19 @@ import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoritePro
 import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
-import DesktopLargePhotoMaker from "./product/desktop/largePhotoMaker";
-import DesktopMainPhotoChanger from "./product/desktop/mainPhotoChanger";
-import DesktopLargePhotoViewer from "./product/desktop/largePhotoViewer";
-import DesktopSmallPhotoScroller from "./product/desktop/smallPhotoScroller";
+import DesktopLargePhotoMaker from "./productSingle/desktop/largePhotoMaker";
+import DesktopMainPhotoChanger from "./productSingle/desktop/mainPhotoChanger";
+import DesktopLargePhotoViewer from "./productSingle/desktop/largePhotoViewer";
+import DesktopSmallPhotoScroller from "./productSingle/desktop/smallPhotoScroller";
 
-import MobileLargePhotoMaker from "./product/mobile/mobileLargePhotoMaker";
-import MobileLargePhotoScroller from "./product/mobile/mobileLargePhotoScroller";
+import MobileLargePhotoMaker from "./productSingle/mobile/mobileLargePhotoMaker";
+import MobileLargePhotoScroller from "./productSingle/mobile/mobileLargePhotoScroller";
+
+import ProductSource from "./productList/productSource";
+import SingleProductQuickViewer from "./productList/singleProductQuickViewer";
+import QuickProductDestructor from "./productList/quickProductDestructor";
+import singleProductKit from "./productSingle/singleProductKit";
+
 
 
 
@@ -50,30 +56,26 @@ if (el('#products') || el('#singleProduct')) {
 new FavoriteProductsTotal();
 
 
+
 if (el('#singleProduct')) {
-    const largePhotoScrollRightButton = el('#largePhotoScrollRightButton');
-    let largePhotoScrollRightButtonVisibility = false;
-    if (largePhotoScrollRightButton) {
-        largePhotoScrollRightButtonVisibility = largePhotoScrollRightButton.getBoundingClientRect().x > 0;
-    }
-
-    if (!largePhotoScrollRightButtonVisibility) {
-        if (el('#smallPhotos')) {
-            new DesktopLargePhotoMaker();
-            new DesktopMainPhotoChanger(); // change main photo by small photo
-        }
-        if (el('#mainPhotoContainer')) {
-            new DesktopLargePhotoViewer();
-        }
-        if (el('#smallPhotos-scrollButtonDown')) {
-            new DesktopSmallPhotoScroller();
-        }
-    }
-
-    if (largePhotoScrollRightButtonVisibility) {
-        if (el('#smallPhotos')) {
-            new MobileLargePhotoMaker();
-            new MobileLargePhotoScroller();
-        }
-    }
+    singleProductKit();
 }
+
+
+if (el('#products')) {
+    const productSource = new ProductSource();
+    new SingleProductQuickViewer(productSource);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
