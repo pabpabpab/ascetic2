@@ -1,3 +1,6 @@
+import getCookie from './../cookie/getCookie';
+
+
 export default function getSingleProductHtml(product) {
     //console.log(product);
 
@@ -6,15 +9,14 @@ export default function getSingleProductHtml(product) {
                     <div class="quick_view_manager__content">
 
 
-
                     <div id="singleProduct" class="single_product_page__content_wrapper">
                         <div class="single_product__content">
 
-                        ${
-                            product.photos.length > 0
-                                ? _getPhotoBlock(product.id, product.photos)
-                                : ''
-                        }
+                            ${
+                                product.photos.length > 0
+                                    ? _getPhotoBlock(product.id, product.photos)
+                                    : ''
+                            }
 
                             <section class="single_product__top_characteristics
                                 ${
@@ -31,29 +33,19 @@ export default function getSingleProductHtml(product) {
                                 </div>
                                 <div class="single_product__categories">
                                     Категория:
-                                    ${_getListOfCategories(product.categories)}
+                                    ${ _getListOfCategories(product.categories) }
                                 </div>
                                 <div class="single_product__categories">
                                     Материал:
-                                    ${_getListOfMaterials(product.materials)}
+                                    ${ _getListOfMaterials(product.materials) }
                                 </div>
                                 <div class="single_product__categories">
                                     Цвет:
-                                    ${_getListOfColors(product.colors)}
+                                    ${ _getListOfColors(product.colors) }
                                 </div>
                                 <div id="productDescriptionContainer" class="single_product__description">
                                 </div>
-
-
-                                <div id="favIcon-wrapper-${product.id}" class="single_product__favorite_icon__wrapper">
-                                    <img id="favIcon-img-${product.id}" alt=""
-                                        src="/images/favoriteIcon.svg"
-                                        class="single_product__favorite_icon__img">
-                                    <span id="favIcon-text-${product.id}" class="single_product__favorite_icon__text">
-                                        В ИЗБРАННОЕ
-                                    </span>
-                                </div>
-
+                                ${ _getFavoriteIconBlock(product.id) }
                             </section>
 
                         </div>
@@ -155,22 +147,6 @@ function _getSmallPhotos(productId, photosArr) {
     return phArr.join('');
 }
 
-/*
-function _getSmallPhotos(productId, photosArr) {
-    const photoCount = photosArr.length;
-    const smallPhotoFolder = "/storage/products-photos-size2/";
-
-    const phArr = photosArr.map((item, i) => {
-        return `<img src='${smallPhotoFolder}${productId}s2-${item}'
-                    alt=''
-                    data-small-photo="${i + 1}"
-                    class="photo__size2"/>`;
-    });
-    return phArr.join('');
-}
-*/
-
-
 function _getListOfCategories(categoriesArr) {
     const catsArr = categoriesArr.map(item => {
         return `<a href='products/${item.slug}' class='single_product__category_item__link'>${item.name}</a>`;
@@ -187,3 +163,28 @@ function _getListOfColors(colorsArr) {
     const catsArr = colorsArr.map(item => item.name);
     return catsArr.join(', ');
 }
+
+
+function _getFavoriteIconBlock(productId) {
+    const idsStr = getCookie('favoriteIds');
+    const idsArr = Boolean(idsStr) ? idsStr.split(',') : [];
+
+    let text, imgName;
+    if (idsArr.includes(String(productId))) {
+        text = 'ИЗ ИЗБРАННОГО';
+        imgName = 'filledFavoriteIcon.svg';
+    } else {
+        text = 'В ИЗБРАННОЕ';
+        imgName = 'favoriteIcon.svg';
+    }
+
+    return `<div id="favIcon-wrapper-${productId}" class="single_product__favorite_icon__wrapper">
+                <img id="quickProduct-favIcon-img-${productId}" alt=""
+                    src="/images/${imgName}"
+                    class="single_product__favorite_icon__img">
+                <span id="favIcon-text-${productId}" class="single_product__favorite_icon__text">
+                    ${text}
+                </span>
+            </div>`;
+}
+

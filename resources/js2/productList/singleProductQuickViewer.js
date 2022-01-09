@@ -16,13 +16,13 @@ export default class SingleProductQuickViewer {
 
     }
 
-    _showOneProduct(productId) {
-        const id = Number(productId);
+    _showOneProduct(id) {
+        const productId = Number(id);
 
         this.source.getEntireList()
             .then((data) => {
                 const list = [...data];
-                const product = list.filter(item => item.id === id)[0];
+                const product = list.filter(item => item.id === productId)[0];
                 const productObject = this._prepareProductObject(product);
                 //console.log(productObject);
 
@@ -35,6 +35,11 @@ export default class SingleProductQuickViewer {
                 el('body').insertAdjacentHTML('beforeend', productHtml);
 
                 singleProductKit();
+
+                this.source.getOneDescription(productId)
+                    .then((data) => {
+                        el('#productDescriptionContainer').innerText = data.description;
+                    });
             });
     }
 

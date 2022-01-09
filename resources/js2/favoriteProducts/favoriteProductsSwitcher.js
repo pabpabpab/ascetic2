@@ -54,9 +54,13 @@ export default class FavoriteProductsSwitcher {
 
     _turnOnIcon(productId) {
         const imgSelector = this._getIconImgSelector(productId);
+        const imgSelectorOfQuickProduct = this._getIconImgSelectorOfQuickProduct(productId);
         const wrapperSelector = this._getIconWrapperSelector(productId);
         const textSelector = this._getIconTextSelector(productId);
         el(imgSelector).src = this.iconSrc.inFavorites;
+        if (el(imgSelectorOfQuickProduct)) {
+            el(imgSelectorOfQuickProduct).src = this.iconSrc.inFavorites;
+        }
         el(wrapperSelector).classList.toggle("set-opacity");
         if (el(textSelector)) {
             el(textSelector).innerText = 'ИЗ ИЗБРАННОГО';
@@ -65,9 +69,13 @@ export default class FavoriteProductsSwitcher {
 
     _turnOffIcon(productId) {
         const imgSelector = this._getIconImgSelector(productId);
+        const imgSelectorOfQuickProduct = this._getIconImgSelectorOfQuickProduct(productId);
         const wrapperSelector = this._getIconWrapperSelector(productId);
         const textSelector = this._getIconTextSelector(productId);
         el(imgSelector).src = this.iconSrc.notInFavorites;
+        if (el(imgSelectorOfQuickProduct)) {
+            el(imgSelectorOfQuickProduct).src = this.iconSrc.notInFavorites;
+        }
         el(wrapperSelector).classList.toggle("set-opacity");
         if (el(textSelector)) {
             el(textSelector).innerText = 'В ИЗБРАННОЕ';
@@ -80,6 +88,9 @@ export default class FavoriteProductsSwitcher {
     }
     _getIconImgSelector(productId) {
         return `#favIcon-img-${productId}`;
+    }
+    _getIconImgSelectorOfQuickProduct(productId) {
+        return `#quickProduct-favIcon-img-${productId}`;
     }
     _getIconTextSelector(productId) {
         return `#favIcon-text-${productId}`;
