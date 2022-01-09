@@ -27,6 +27,14 @@ class ProductController extends Controller
             'description' => $product->description
         ]);
     }
+
+    public function getOneProduct(Product $product): JsonResponse
+    {
+        $description = $product->description;
+        return response()->json([
+            'product' => $product
+        ]);
+    }
 }
 
 

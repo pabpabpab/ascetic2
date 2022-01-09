@@ -240,7 +240,7 @@ var AbsoluteMessageWithCloseIcon = /*#__PURE__*/function (_VisibleBlock) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AuthAbsoluteMenu; });
 /* harmony import */ var _parentClasses_visibleBlockByClick__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../parentClasses/visibleBlockByClick */ "./resources/js2/parentClasses/visibleBlockByClick.js");
-/* harmony import */ var _html_getAuthAbsoluteMenuHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/getAuthAbsoluteMenuHtml */ "./resources/js2/html/getAuthAbsoluteMenuHtml.js");
+/* harmony import */ var _html_auth_getAuthAbsoluteMenuHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/auth/getAuthAbsoluteMenuHtml */ "./resources/js2/html/auth/getAuthAbsoluteMenuHtml.js");
 /* harmony import */ var _register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./register */ "./resources/js2/auth/register.js");
 /* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./login */ "./resources/js2/auth/login.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -295,7 +295,7 @@ var AuthAbsoluteMenu = /*#__PURE__*/function (_VisibleBlockByClick) {
         basicCss: this.basicCss,
         showCss: this.showCss
       };
-      return Object(_html_getAuthAbsoluteMenuHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(css);
+      return Object(_html_auth_getAuthAbsoluteMenuHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(css);
     }
   }, {
     key: "_additionalFirstRenderActions",
@@ -329,7 +329,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
 /* harmony import */ var _parentClasses_absoluteForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/absoluteForm */ "./resources/js2/parentClasses/absoluteForm.js");
 /* harmony import */ var _validation_forgotPasswordValidation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../validation/forgotPasswordValidation */ "./resources/js2/validation/forgotPasswordValidation.js");
-/* harmony import */ var _html_getForgotPasswordFormHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/getForgotPasswordFormHtml */ "./resources/js2/html/getForgotPasswordFormHtml.js");
+/* harmony import */ var _html_auth_getForgotPasswordFormHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/auth/getForgotPasswordFormHtml */ "./resources/js2/html/auth/getForgotPasswordFormHtml.js");
 /* harmony import */ var _absoluteMessageWithCloseIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../absoluteMessageWithCloseIcon */ "./resources/js2/absoluteMessageWithCloseIcon.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -390,7 +390,7 @@ var ForgotPassword = /*#__PURE__*/function (_AbsoluteForm) {
   }, {
     key: "_getHtml",
     value: function _getHtml() {
-      return Object(_html_getForgotPasswordFormHtml__WEBPACK_IMPORTED_MODULE_3__["default"])({
+      return Object(_html_auth_getForgotPasswordFormHtml__WEBPACK_IMPORTED_MODULE_3__["default"])({
         basicCss: this.basicCss,
         showCss: this.showCss
       });
@@ -445,9 +445,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
 /* harmony import */ var _parentClasses_absoluteForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/absoluteForm */ "./resources/js2/parentClasses/absoluteForm.js");
-/* harmony import */ var _html_getLoginFormHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/getLoginFormHtml */ "./resources/js2/html/getLoginFormHtml.js");
-/* harmony import */ var _html_getFailedLoginHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/getFailedLoginHtml */ "./resources/js2/html/getFailedLoginHtml.js");
-/* harmony import */ var _html_getAuthenticatedMenuHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../html/getAuthenticatedMenuHtml */ "./resources/js2/html/getAuthenticatedMenuHtml.js");
+/* harmony import */ var _html_auth_getLoginFormHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/auth/getLoginFormHtml */ "./resources/js2/html/auth/getLoginFormHtml.js");
+/* harmony import */ var _html_auth_getFailedLoginHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/auth/getFailedLoginHtml */ "./resources/js2/html/auth/getFailedLoginHtml.js");
+/* harmony import */ var _html_auth_getAuthenticatedMenuHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../html/auth/getAuthenticatedMenuHtml */ "./resources/js2/html/auth/getAuthenticatedMenuHtml.js");
 /* harmony import */ var _validation_loginValidation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../validation/loginValidation */ "./resources/js2/validation/loginValidation.js");
 /* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
 /* harmony import */ var _forgotPassword__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./forgotPassword */ "./resources/js2/auth/forgotPassword.js");
@@ -535,7 +535,7 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
   }, {
     key: "_getHtml",
     value: function _getHtml() {
-      return Object(_html_getLoginFormHtml__WEBPACK_IMPORTED_MODULE_2__["default"])({
+      return Object(_html_auth_getLoginFormHtml__WEBPACK_IMPORTED_MODULE_2__["default"])({
         basicCss: this.basicCss,
         showCss: this.showCss
       });
@@ -546,7 +546,7 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
       var _this2 = this;
 
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authMenuContent').remove();
-      var html = Object(_html_getAuthenticatedMenuHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(data.userName, data.isAdmin);
+      var html = Object(_html_auth_getAuthenticatedMenuHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(data.userName, data.isAdmin);
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authMenu').insertAdjacentHTML('afterbegin', html);
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
       setTimeout(function () {
@@ -596,7 +596,7 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
       }
 
       if (err.failedLogin) {
-        var html = Object(_html_getFailedLoginHtml__WEBPACK_IMPORTED_MODULE_3__["default"])();
+        var html = Object(_html_auth_getFailedLoginHtml__WEBPACK_IMPORTED_MODULE_3__["default"])();
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#failedLoginErr').insertAdjacentHTML('afterbegin', html);
       }
     }
@@ -700,7 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Register; });
 /* harmony import */ var _el_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el.js */ "./resources/js2/el.js");
 /* harmony import */ var _parentClasses_absoluteForm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/absoluteForm.js */ "./resources/js2/parentClasses/absoluteForm.js");
-/* harmony import */ var _html_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/getRegisterFormHtml.js */ "./resources/js2/html/getRegisterFormHtml.js");
+/* harmony import */ var _html_auth_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/auth/getRegisterFormHtml.js */ "./resources/js2/html/auth/getRegisterFormHtml.js");
 /* harmony import */ var _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../validation/registerValidation.js */ "./resources/js2/validation/registerValidation.js");
 /* harmony import */ var _absoluteFlashMessage_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../absoluteFlashMessage.js */ "./resources/js2/absoluteFlashMessage.js");
 /* harmony import */ var _cookie_getCookie__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../cookie/getCookie */ "./resources/js2/cookie/getCookie.js");
@@ -764,7 +764,7 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
   }, {
     key: "_getHtml",
     value: function _getHtml(data) {
-      return Object(_html_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__["default"])({
+      return Object(_html_auth_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__["default"])({
         basicCss: this.basicCss,
         showCss: this.showCss
       });
@@ -1227,26 +1227,10 @@ var FavoriteProductsTotal = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/html/getAbsoluteMessageWithCloseIconHtml.js":
-/*!*******************************************************************!*\
-  !*** ./resources/js2/html/getAbsoluteMessageWithCloseIconHtml.js ***!
-  \*******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getAbsoluteMessageWithCloseIconHtml; });
-function getAbsoluteMessageWithCloseIconHtml(css, id, text) {
-  return "<div id=\"".concat(id, "\" class=\"").concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"absolute_message__div\">\n                    ").concat(text, "\n                    <div class='absolute_message__close'>&#215;</div>\n                </div>\n            </div>");
-}
-
-/***/ }),
-
-/***/ "./resources/js2/html/getAuthAbsoluteMenuHtml.js":
-/*!*******************************************************!*\
-  !*** ./resources/js2/html/getAuthAbsoluteMenuHtml.js ***!
-  \*******************************************************/
+/***/ "./resources/js2/html/auth/getAuthAbsoluteMenuHtml.js":
+/*!************************************************************!*\
+  !*** ./resources/js2/html/auth/getAuthAbsoluteMenuHtml.js ***!
+  \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1259,10 +1243,10 @@ function getAuthAbsoluteMenuHtml(css) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/getAuthenticatedMenuHtml.js":
-/*!********************************************************!*\
-  !*** ./resources/js2/html/getAuthenticatedMenuHtml.js ***!
-  \********************************************************/
+/***/ "./resources/js2/html/auth/getAuthenticatedMenuHtml.js":
+/*!*************************************************************!*\
+  !*** ./resources/js2/html/auth/getAuthenticatedMenuHtml.js ***!
+  \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1276,26 +1260,10 @@ function getAuthenticatedMenuHtml(userName, isAdmin) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/getDropMenuHtml.js":
-/*!***********************************************!*\
-  !*** ./resources/js2/html/getDropMenuHtml.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getDropMenuHtml; });
-function getDropMenuHtml(innerHtml) {
-  return "<div id=\"topMenu-dropMenuWrapper\" class=\"top_menu__drop_menu show_block\">\n                <ul id=\"topMenu-dropMenuContent\" class=\"top_menu__drop_menu__ul\">\n                    ".concat(innerHtml, "\n                </ul>\n            </div>");
-}
-
-/***/ }),
-
-/***/ "./resources/js2/html/getFailedLoginHtml.js":
-/*!**************************************************!*\
-  !*** ./resources/js2/html/getFailedLoginHtml.js ***!
-  \**************************************************/
+/***/ "./resources/js2/html/auth/getFailedLoginHtml.js":
+/*!*******************************************************!*\
+  !*** ./resources/js2/html/auth/getFailedLoginHtml.js ***!
+  \*******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1308,10 +1276,10 @@ function getFailedLoginHtml() {
 
 /***/ }),
 
-/***/ "./resources/js2/html/getForgotPasswordFormHtml.js":
-/*!*********************************************************!*\
-  !*** ./resources/js2/html/getForgotPasswordFormHtml.js ***!
-  \*********************************************************/
+/***/ "./resources/js2/html/auth/getForgotPasswordFormHtml.js":
+/*!**************************************************************!*\
+  !*** ./resources/js2/html/auth/getForgotPasswordFormHtml.js ***!
+  \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1324,17 +1292,17 @@ function getForgotPasswordFormHtml(css) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/getLoginFormHtml.js":
-/*!************************************************!*\
-  !*** ./resources/js2/html/getLoginFormHtml.js ***!
-  \************************************************/
+/***/ "./resources/js2/html/auth/getLoginFormHtml.js":
+/*!*****************************************************!*\
+  !*** ./resources/js2/html/auth/getLoginFormHtml.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getLoginFormHtml; });
-/* harmony import */ var _getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getULoginWidgetHtml.js */ "./resources/js2/html/getULoginWidgetHtml.js");
+/* harmony import */ var _getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getULoginWidgetHtml.js */ "./resources/js2/html/auth/getULoginWidgetHtml.js");
 
 function getLoginFormHtml(css) {
   return "<div id=\"loginForm\" class=\"".concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"js_reg_form__header\">\n                    \u0412\u0445\u043E\u0434 \u0434\u043B\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F\n                    <div class='js_reg_form__close'>&#215;</div>\n                </div>\n\n                <div id=\"failedLoginErr\" class=\"mt10\"></div>\n\n                <label for=\"loginEmail\" class=\"js_reg_form__input__label\">E-mail</label>\n                <input type='email' name='email' id='loginEmail' required class=\"js_reg_form__input__text_input\">\n                <div id=\"loginEmailErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n\n                <label for=\"loginPassword\" class=\"js_reg_form__input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password' id='loginPassword' required class=\"js_reg_form__input__text_input\">\n                <div class=\"height0 relative\">\n                    <img alt=\"\" src=\"images/closedEye.svg\" id=\"closedEyeImg\" class=\"js_reg_form__closed_eye_img\">\n                    <img alt=\"\" src=\"images/openedEye.svg\" id=\"openedEyeImg\" class=\"js_reg_form__opened_eye_img\">\n                </div>\n                <div id=\"loginPasswordErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n\n\n                <input type=\"checkbox\" name=\"remember\" id=\"loginRemember\" value=\"1\" class=\"js_reg_form__checkbox_input\">\n                <label for=\"loginRemember\" class=\"js_reg_form__checkbox_label\">\u0417\u0430\u043F\u043E\u043C\u043D\u0438\u0442\u044C \u043C\u0435\u043D\u044F</label>\n\n                <div class=\"js_reg_form__submit_and_forgot_flex mt18\">\n                    <button type=\"submit\" id='loginSubmit' class=\"js_reg_form__submit_button\">\n                        \u0412\u043E\u0439\u0442\u0438\n                    </button>\n                    <a href=\"/forgot-password\" id=\"forgotPasswordLink\" class=\"js_reg_form__forgot_password_link\">\n                        \u0417\u0430\u0431\u044B\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C?\n                    </a>\n                </div>\n\n                <div class=\"js_reg_form__header mt30\">\n                    \u0412\u043E\u0439\u0442\u0438 \u0447\u0435\u0440\u0435\u0437\n                </div>\n                ").concat(Object(_getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__["default"])(), "\n            <div>");
@@ -1342,17 +1310,17 @@ function getLoginFormHtml(css) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/getRegisterFormHtml.js":
-/*!***************************************************!*\
-  !*** ./resources/js2/html/getRegisterFormHtml.js ***!
-  \***************************************************/
+/***/ "./resources/js2/html/auth/getRegisterFormHtml.js":
+/*!********************************************************!*\
+  !*** ./resources/js2/html/auth/getRegisterFormHtml.js ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getRegisterFormHtml; });
-/* harmony import */ var _getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getULoginWidgetHtml.js */ "./resources/js2/html/getULoginWidgetHtml.js");
+/* harmony import */ var _getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getULoginWidgetHtml.js */ "./resources/js2/html/auth/getULoginWidgetHtml.js");
 
 function getRegisterFormHtml(css) {
   return "<div id=\"regForm\" class=\"".concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"js_reg_form__header\">\n                    \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F\n                    <div class='js_reg_form__close'>&#215;</div>\n                </div>\n                <label for=\"regName\" class=\"js_reg_form__input__label\">\u0412\u0430\u0448\u0435 \u0438\u043C\u044F</label>\n                <input type='text' name='name' id='regName' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regNameErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regEmail\" class=\"js_reg_form__input__label\">E-mail</label>\n                <input type='email' name='email' id='regEmail' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regEmailErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regPassword\" class=\"js_reg_form__input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password' id='regPassword' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regPasswordErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regPassword_confirmation\" class=\"js_reg_form__input__label\">\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password_confirmation' id='regPassword_confirmation' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regPasswordConfirmationErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <button type=\"submit\" id='regSubmit' class=\"js_reg_form__submit_button mt18\">\n                   \u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F\n                </button>\n\n                <div class=\"js_reg_form__header mt30\">\n                    \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F \u0447\u0435\u0440\u0435\u0437\n                </div>\n                ").concat(Object(_getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__["default"])(), "\n            <div>");
@@ -1360,10 +1328,10 @@ function getRegisterFormHtml(css) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/getULoginWidgetHtml.js":
-/*!***************************************************!*\
-  !*** ./resources/js2/html/getULoginWidgetHtml.js ***!
-  \***************************************************/
+/***/ "./resources/js2/html/auth/getULoginWidgetHtml.js":
+/*!********************************************************!*\
+  !*** ./resources/js2/html/auth/getULoginWidgetHtml.js ***!
+  \********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1389,6 +1357,38 @@ function getULoginWidgetHtml() {
                   redirect_uri=http%3A%2F%2F${document.location.host}%2Fu-login%2Fresponse;mobilebuttons=0;">ddd<div>`;
   
   */
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/getAbsoluteMessageWithCloseIconHtml.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js2/html/getAbsoluteMessageWithCloseIconHtml.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getAbsoluteMessageWithCloseIconHtml; });
+function getAbsoluteMessageWithCloseIconHtml(css, id, text) {
+  return "<div id=\"".concat(id, "\" class=\"").concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"absolute_message__div\">\n                    ").concat(text, "\n                    <div class='absolute_message__close'>&#215;</div>\n                </div>\n            </div>");
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/getDropMenuHtml.js":
+/*!***********************************************!*\
+  !*** ./resources/js2/html/getDropMenuHtml.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getDropMenuHtml; });
+function getDropMenuHtml(innerHtml) {
+  return "<div id=\"topMenu-dropMenuWrapper\" class=\"top_menu__drop_menu show_block\">\n                <ul id=\"topMenu-dropMenuContent\" class=\"top_menu__drop_menu__ul\">\n                    ".concat(innerHtml, "\n                </ul>\n            </div>");
 }
 
 /***/ }),
@@ -1540,7 +1540,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getSingleProductHtml(product) {
   //console.log(product);
-  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
+  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                    ").concat(product.description, "\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
 }
 
 /***/ }),
@@ -2194,8 +2194,10 @@ var ProductSource = /*#__PURE__*/function () {
 
     this.entireList = [];
     this.descriptionsCache = [];
+    this.singlesCache = [];
     this.entireListUrl = '/public-js/entire-product-list';
     this.oneDescriptionUrl = '/public-js/one-product-description/';
+    this.oneProductUrl = '/public-js/one-product/';
   }
 
   _createClass(ProductSource, [{
@@ -2219,6 +2221,7 @@ var ProductSource = /*#__PURE__*/function () {
       var _this2 = this;
 
       return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.entireListUrl).then(function (data) {
+        //console.log(data);
         _this2.entireList = _toConsumableArray(data.products);
         return _toConsumableArray(data.products);
       })["catch"](function () {
@@ -2228,14 +2231,16 @@ var ProductSource = /*#__PURE__*/function () {
   }, {
     key: "getOneDescription",
     value: function getOneDescription(productId) {
-      var filtered = this.descriptionsCache.filter(function (item) {
-        return item.product_id === productId;
-      });
-
-      if (filtered.length > 0) {
-        return new Promise(function (resolve) {
-          return resolve(filtered[0]);
+      if (this.descriptionsCache.length > 0) {
+        var filtered = this.descriptionsCache.filter(function (item) {
+          return item.product_id === productId;
         });
+
+        if (filtered.length > 0) {
+          return new Promise(function (resolve) {
+            return resolve(filtered[0]);
+          });
+        }
       }
 
       return this.loadOneDescription(productId).then(function (data) {
@@ -2248,11 +2253,45 @@ var ProductSource = /*#__PURE__*/function () {
       var _this3 = this;
 
       return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.oneDescriptionUrl + productId).then(function (data) {
+        //console.log(data);
         _this3.descriptionsCache.push(data.description);
 
         return _objectSpread({}, data.description);
       })["catch"](function () {
         new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u0442\u043E\u0432\u0430\u0440\u0430");
+      });
+    }
+  }, {
+    key: "getOneFromServer",
+    value: function getOneFromServer(productId) {
+      if (this.singlesCache.length > 0) {
+        var filtered = this.singlesCache.filter(function (item) {
+          return item.id === productId;
+        });
+
+        if (filtered.length > 0) {
+          return new Promise(function (resolve) {
+            return resolve(filtered[0]);
+          });
+        }
+      }
+
+      return this.loadOneProduct(productId).then(function (data) {
+        return _objectSpread({}, data);
+      });
+    }
+  }, {
+    key: "loadOneProduct",
+    value: function loadOneProduct(productId) {
+      var _this4 = this;
+
+      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.oneProductUrl + productId).then(function (data) {
+        //console.log(data.product);
+        _this4.singlesCache.push(data.product);
+
+        return _objectSpread({}, data.product);
+      })["catch"](function () {
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440");
       });
     }
   }]);
@@ -2354,49 +2393,78 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
     _classCallCheck(this, SingleProductQuickViewer);
 
     this.source = productSource;
+    this.limitForLoadingOfEntireList = 150;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products').addEventListener('click', function (e) {
       if (e.target.dataset.quickView) {
         e.preventDefault();
+        var productId = Number(e.target.dataset.quickView);
 
-        _this._showOneProduct(e.target.dataset.quickView);
+        _this._showOneProduct(productId);
       }
     });
   }
 
   _createClass(SingleProductQuickViewer, [{
     key: "_showOneProduct",
-    value: function _showOneProduct(id) {
+    value: function _showOneProduct(productId) {
+      var productsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products').dataset.productsCount);
+
+      if (productsCount > this.limitForLoadingOfEntireList) {
+        this._showOneFromServer(productId);
+      } else {
+        this._showOneFromDownloadedList(productId);
+      }
+    }
+  }, {
+    key: "_showOneFromServer",
+    value: function _showOneFromServer(productId) {
       var _this2 = this;
 
-      var productId = Number(id);
-      this.source.getEntireList().then(function (data) {
+      return this.source.getOneFromServer(productId).then(function (product) {
+        var productObject = _this2._prepareProductObject(product);
+
+        _this2._renderProduct(productObject);
+      });
+    }
+  }, {
+    key: "_showOneFromDownloadedList",
+    value: function _showOneFromDownloadedList(productId) {
+      var _this3 = this;
+
+      return this.source.getEntireList().then(function (data) {
         var list = _toConsumableArray(data);
 
         var product = list.filter(function (item) {
           return item.id === productId;
         })[0];
 
-        var productObject = _this2._prepareProductObject(product); //console.log(productObject);
+        var productObject = _this3._prepareProductObject(product);
 
+        _this3._renderProduct(productObject);
 
-        var productHtml = Object(_html_singleProduct_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(productObject);
-
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
-        }
-
-        document.body.style.overflow = 'hidden';
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', productHtml);
-        Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__["default"])();
-
-        _this2.source.getOneDescription(productId).then(function (data) {
+        _this3.source.getOneDescription(productId).then(function (data) {
           Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productDescriptionContainer').innerText = data.description;
         });
       });
     }
   }, {
+    key: "_renderProduct",
+    value: function _renderProduct(product) {
+      var productHtml = Object(_html_singleProduct_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
+      }
+
+      document.body.style.overflow = 'hidden';
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', productHtml);
+      Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    }
+  }, {
     key: "_prepareProductObject",
     value: function _prepareProductObject(product) {
+      var _product$description;
+
       var obj = {};
       obj.id = product.id;
       obj.name = product.name;
@@ -2407,37 +2475,14 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
       obj.colors = params.colors;
       obj.materials = params.materials;
       obj.photos = JSON.parse(product.photo_set);
+      obj.descripton = '';
+
+      if (product !== null && product !== void 0 && (_product$description = product.description) !== null && _product$description !== void 0 && _product$description.description) {
+        obj.description = product.description.description;
+      }
+
       return obj;
     }
-    /*
-        this._getProductList()
-            .then((data) => {
-                const list = [...data];
-                const product = list.filter(item => item.id === id)[0];
-                const productHtml = this._renderOne(product);
-                if (el('#quickProduct')) {
-                    el('#quickProduct').remove();
-                }
-                el('body').insertAdjacentHTML('beforeend', productHtml);
-            });
-        */
-
-    /*
-    _renderOne(product) {
-        console.log(product);
-        return `<div id="quickProduct">${product.id}</div>`;
-    }
-    */
-
-    /*
-    _getProductList() {
-        return this.source.getEntireList()
-            .then((data) => {
-                return [ ...data ];
-            });
-    }
-    */
-
   }]);
 
   return SingleProductQuickViewer;

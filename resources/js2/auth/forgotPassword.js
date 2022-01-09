@@ -1,7 +1,7 @@
 import el from '../el';
 import AbsoluteForm from "../parentClasses/absoluteForm";
 import forgotPasswordValidation from "../validation/forgotPasswordValidation";
-import getForgotPasswordFormHtml from "../html/getForgotPasswordFormHtml";
+import getForgotPasswordFormHtml from "../html/auth/getForgotPasswordFormHtml";
 import AbsoluteMessageWithCloseIcon from "../absoluteMessageWithCloseIcon";
 
 export default class ForgotPassword extends AbsoluteForm {

@@ -15,3 +15,4 @@ Route::post('/favorite-products/post', [FavoriteProductController::class, 'synch
 
 Route::get('/entire-product-list', [ProductController::class, 'getEntireList']);
 Route::get('/one-product-description/{product}', [ProductController::class, 'getOneDescription']);
+Route::get('/one-product/{product}', [ProductController::class, 'getOneProduct']);

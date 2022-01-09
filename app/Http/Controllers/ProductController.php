@@ -27,7 +27,10 @@ class ProductController extends Controller
 
         $products = $service->getAll('active')
             ->paginate(3);
-        return view('products.list.index', ['products' => $products]);
+        return view('products.list.index', [
+            'products' => $products,
+            'productsCount' => Product::count()
+        ]);
     }
 
 
@@ -41,7 +44,10 @@ class ProductController extends Controller
 
         $products = $service->getAll('active')
             ->paginate(3);
-        return view('products.list.index', ['products' => $products]);
+        return view('products.list.index', [
+            'products' => $products,
+            'productsCount' => Product::count()
+        ]);
     }
 
 
@@ -59,6 +65,7 @@ class ProductController extends Controller
             'category' => $category,
             'categorySeo' => $category->seoText,
             'products' => $category->products()->paginate(1),
+            'productsCount' => Product::count()
         ]);
     }
 
@@ -71,7 +78,10 @@ class ProductController extends Controller
         });
 
         $products = $service->getViewed()->paginate(3);
-        return view('products.list.index', ['products' => $products]);
+        return view('products.list.index', [
+            'products' => $products,
+            'productsCount' => Product::count()
+        ]);
     }
 
     public function getFavoriteProducts(FavoriteProductsListService $service, $pageNumber = 1)
@@ -83,7 +93,10 @@ class ProductController extends Controller
         });
 
         $products = $service->getList()->paginate(3);
-        return view('products.list.index', ['products' => $products]);
+        return view('products.list.index', [
+            'products' => $products,
+            'productsCount' => Product::count()
+        ]);
     }
 
 

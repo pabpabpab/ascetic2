@@ -47,6 +47,7 @@ export default function getSingleProductHtml(product) {
                                     ${ getListOfColorsHtml(product.colors) }
                                 </div>
                                 <div id="productDescriptionContainer" class="single_product__description">
+                                    ${product.description}
                                 </div>
                                 ${ getFavoriteIconBlockHtml(product.id) }
                             </section>
