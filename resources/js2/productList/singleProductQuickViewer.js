@@ -1,5 +1,5 @@
 import el from './../el';
-import getSingleProductHtml from "./../html/getSingleProductHtml";
+import getSingleProductHtml from "../html/singleProduct/getSingleProductHtml";
 import singleProductKit from "./../productSingle/singleProductKit";
 
 export default class SingleProductQuickViewer {

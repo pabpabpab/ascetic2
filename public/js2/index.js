@@ -1360,86 +1360,6 @@ function getRegisterFormHtml(css) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/getSingleProductHtml.js":
-/*!****************************************************!*\
-  !*** ./resources/js2/html/getSingleProductHtml.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getSingleProductHtml; });
-/* harmony import */ var _cookie_getCookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../cookie/getCookie */ "./resources/js2/cookie/getCookie.js");
-
-function getSingleProductHtml(product) {
-  //console.log(product);
-  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? _getPhotoBlock(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(_getListOfCategories(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(_getListOfMaterials(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(_getListOfColors(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                </div>\n                                ").concat(_getFavoriteIconBlock(product.id), "\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
-}
-
-function _getPhotoBlock(productId, photosArr) {
-  var photoCount = photosArr.length;
-  return "<section class=\"single_product__all_photo_wrapper\">\n                ".concat(photoCount > 1 ? _getSmallPhotosBlock(productId, photosArr) : "", "\n                ").concat(_getBigPhotoBlock(productId, photosArr), "\n            </section>");
-}
-
-function _getSmallPhotosBlock(productId, photosArr) {
-  var photoCount = photosArr.length;
-  return "<div class=\"single_product__small_photos__wrapper\">\n\n                ".concat(photoCount > 5 ? "<div id=\"smallPhotos-scrollButtonUp\"\n                            class=\"single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top display-none\">\n                            <div class=\"single_product__small_photos__scroll_button_top__content\">\n                            </div>\n                        </div>" : "", "\n                <div id=\"smallPhotos\" class=\"single_product__small_photos\">\n                    ").concat(_getSmallPhotos(productId, photosArr), "\n                </div>\n                ").concat(photoCount > 5 ? "<div id=\"smallPhotos-scrollButtonDown\"\n                            class=\"single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom\">\n                            <div class=\"single_product__small_photos__scroll_button_bottom__content\">\n                            </div>\n                        </div>" : "", "\n\n            </div>");
-}
-
-function _getBigPhotoBlock(productId, photosArr) {
-  var photoCount = photosArr.length;
-  return "<div class=\"single_product__big_photo__wrapper\">\n\n                <div id=\"mainPhotoContainer\" class=\"single_product__big_photo__content\">\n                    <img src=\"/storage/products-photos-size5/".concat(productId, "s5-").concat(photosArr[0], "\"\n                        alt=\"\"\n                        id=\"mainPhoto\"\n                        class=\"photo__size4\"/>\n                </div>\n\n                ").concat(photoCount > 1 ? "<div id=\"largePhotoScrollLeftButton\"\n                                class=\"single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left display-none\">\n                                <div class=\"single_product__big_photo__scroll_button_left__content\">\n                                </div>\n                           </div>\n                           <div id=\"largePhotoScrollRightButton\"\n                                class=\"single_product__big_photo__scroll_button single_product__big_photo__scroll_button_right\">\n                                <div class=\"single_product__big_photo__scroll_button_right__content\">\n                                </div>\n                           </div>\n                           <div class=\"single_product__big_photo__photo_number_indicator\">\n                                <span id=\"photoNumberIndicator\">1</span>/".concat(photoCount, "\n                           </div>") : "", "\n\n            </div>");
-}
-
-function _getSmallPhotos(productId, photosArr) {
-  var photoCount = photosArr.length;
-  var smallPhotoFolder = "/storage/products-photos-size5/";
-  var phArr = photosArr.map(function (item, i) {
-    return "<img src='".concat(smallPhotoFolder).concat(productId, "s5-").concat(item, "'\n                    alt=''\n                    data-small-photo=\"").concat(i + 1, "\"\n                    class=\"photo__size2\"/>");
-  });
-  return phArr.join('');
-}
-
-function _getListOfCategories(categoriesArr) {
-  var catsArr = categoriesArr.map(function (item) {
-    return "<a href='products/".concat(item.slug, "' class='single_product__category_item__link'>").concat(item.name, "</a>");
-  });
-  return catsArr.join(', ');
-}
-
-function _getListOfMaterials(materialsArr) {
-  var catsArr = materialsArr.map(function (item) {
-    return item.name;
-  });
-  return catsArr.join(', ');
-}
-
-function _getListOfColors(colorsArr) {
-  var catsArr = colorsArr.map(function (item) {
-    return item.name;
-  });
-  return catsArr.join(', ');
-}
-
-function _getFavoriteIconBlock(productId) {
-  var idsStr = Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_0__["default"])('favoriteIds');
-  var idsArr = Boolean(idsStr) ? idsStr.split(',') : [];
-  var text, imgName;
-
-  if (idsArr.includes(String(productId))) {
-    text = 'ИЗ ИЗБРАННОГО';
-    imgName = 'filledFavoriteIcon.svg';
-  } else {
-    text = 'В ИЗБРАННОЕ';
-    imgName = 'favoriteIcon.svg';
-  }
-
-  return "<div id=\"favIcon-wrapper-".concat(productId, "\" class=\"single_product__favorite_icon__wrapper\">\n                <img id=\"quickProduct-favIcon-img-").concat(productId, "\" alt=\"\"\n                    src=\"/images/").concat(imgName, "\"\n                    class=\"single_product__favorite_icon__img\">\n                <span id=\"favIcon-text-").concat(productId, "\" class=\"single_product__favorite_icon__text\">\n                    ").concat(text, "\n                </span>\n            </div>");
-}
-
-/***/ }),
-
 /***/ "./resources/js2/html/getULoginWidgetHtml.js":
 /*!***************************************************!*\
   !*** ./resources/js2/html/getULoginWidgetHtml.js ***!
@@ -1469,6 +1389,183 @@ function getULoginWidgetHtml() {
                   redirect_uri=http%3A%2F%2F${document.location.host}%2Fu-login%2Fresponse;mobilebuttons=0;">ddd<div>`;
   
   */
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/getBigPhotoBlockHtml.js":
+/*!******************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/getBigPhotoBlockHtml.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getBigPhotoBlockHtml; });
+function getBigPhotoBlockHtml(productId, photosArr) {
+  var photoCount = photosArr.length;
+  return "<div class=\"single_product__big_photo__wrapper\">\n\n                <div id=\"mainPhotoContainer\" class=\"single_product__big_photo__content\">\n                    <img src=\"/storage/products-photos-size5/".concat(productId, "s5-").concat(photosArr[0], "\"\n                        alt=\"\"\n                        id=\"mainPhoto\"\n                        class=\"photo__size4\"/>\n                </div>\n\n                ").concat(photoCount > 1 ? "<div id=\"largePhotoScrollLeftButton\"\n                                class=\"single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left display-none\">\n                                <div class=\"single_product__big_photo__scroll_button_left__content\">\n                                </div>\n                           </div>\n                           <div id=\"largePhotoScrollRightButton\"\n                                class=\"single_product__big_photo__scroll_button single_product__big_photo__scroll_button_right\">\n                                <div class=\"single_product__big_photo__scroll_button_right__content\">\n                                </div>\n                           </div>\n                           <div class=\"single_product__big_photo__photo_number_indicator\">\n                                <span id=\"photoNumberIndicator\">1</span>/".concat(photoCount, "\n                           </div>") : "", "\n\n            </div>");
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/getFavoriteIconBlockHtml.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/getFavoriteIconBlockHtml.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getFavoriteIconBlockHtml; });
+/* harmony import */ var _cookie_getCookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../cookie/getCookie */ "./resources/js2/cookie/getCookie.js");
+
+function getFavoriteIconBlockHtml(productId) {
+  var idsStr = Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_0__["default"])('favoriteIds');
+  var idsArr = Boolean(idsStr) ? idsStr.split(',') : [];
+  var text, imgName;
+
+  if (idsArr.includes(String(productId))) {
+    text = 'ИЗ ИЗБРАННОГО';
+    imgName = 'filledFavoriteIcon.svg';
+  } else {
+    text = 'В ИЗБРАННОЕ';
+    imgName = 'favoriteIcon.svg';
+  }
+
+  return "<div id=\"favIcon-wrapper-".concat(productId, "\" class=\"single_product__favorite_icon__wrapper\">\n                <img id=\"quickProduct-favIcon-img-").concat(productId, "\" alt=\"\"\n                    src=\"/images/").concat(imgName, "\"\n                    class=\"single_product__favorite_icon__img\">\n                <span id=\"favIcon-text-").concat(productId, "\" class=\"single_product__favorite_icon__text\">\n                    ").concat(text, "\n                </span>\n            </div>");
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/getListOfCategoriesHtml.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/getListOfCategoriesHtml.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getListOfCategoriesHtml; });
+function getListOfCategoriesHtml(categoriesArr) {
+  var catsArr = categoriesArr.map(function (item) {
+    return "<a href='products/".concat(item.slug, "' class='single_product__category_item__link'>").concat(item.name, "</a>");
+  });
+  return catsArr.join(', ');
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/getListOfColorsHtml.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/getListOfColorsHtml.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getListOfColorsHtml; });
+function getListOfColorsHtml(colorsArr) {
+  var catsArr = colorsArr.map(function (item) {
+    return item.name;
+  });
+  return catsArr.join(', ');
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/getListOfMaterialsHtml.js":
+/*!********************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/getListOfMaterialsHtml.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getListOfMaterialsHtml; });
+function getListOfMaterialsHtml(materialsArr) {
+  var catsArr = materialsArr.map(function (item) {
+    return item.name;
+  });
+  return catsArr.join(', ');
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/getPhotoBlockHtml.js":
+/*!***************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/getPhotoBlockHtml.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getFavoriteIconBlockHtml; });
+/* harmony import */ var _getSmallPhotosBlockHtml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getSmallPhotosBlockHtml */ "./resources/js2/html/singleProduct/getSmallPhotosBlockHtml.js");
+/* harmony import */ var _getBigPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getBigPhotoBlockHtml */ "./resources/js2/html/singleProduct/getBigPhotoBlockHtml.js");
+
+
+function getFavoriteIconBlockHtml(productId, photosArr) {
+  var photoCount = photosArr.length;
+  return "<section class=\"single_product__all_photo_wrapper\">\n                ".concat(photoCount > 1 ? Object(_getSmallPhotosBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(productId, photosArr) : "", "\n                ").concat(Object(_getBigPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(productId, photosArr), "\n            </section>");
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/getSingleProductHtml.js":
+/*!******************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/getSingleProductHtml.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getSingleProductHtml; });
+/* harmony import */ var _getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getFavoriteIconBlockHtml */ "./resources/js2/html/singleProduct/getFavoriteIconBlockHtml.js");
+/* harmony import */ var _getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getPhotoBlockHtml */ "./resources/js2/html/singleProduct/getPhotoBlockHtml.js");
+/* harmony import */ var _getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getListOfCategoriesHtml */ "./resources/js2/html/singleProduct/getListOfCategoriesHtml.js");
+/* harmony import */ var _getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getListOfMaterialsHtml */ "./resources/js2/html/singleProduct/getListOfMaterialsHtml.js");
+/* harmony import */ var _getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getListOfColorsHtml */ "./resources/js2/html/singleProduct/getListOfColorsHtml.js");
+
+
+
+
+
+function getSingleProductHtml(product) {
+  //console.log(product);
+  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/getSmallPhotosBlockHtml.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/getSmallPhotosBlockHtml.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getSmallPhotosBlockHtml; });
+function getSmallPhotosBlockHtml(productId, photosArr) {
+  var photoCount = photosArr.length;
+  return "<div class=\"single_product__small_photos__wrapper\">\n\n                ".concat(photoCount > 5 ? "<div id=\"smallPhotos-scrollButtonUp\"\n                            class=\"single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top display-none\">\n                            <div class=\"single_product__small_photos__scroll_button_top__content\">\n                            </div>\n                          </div>" : "", "\n\n                <div id=\"smallPhotos\" class=\"single_product__small_photos\">\n                    ").concat(_getSmallPhotos(productId, photosArr), "\n                </div>\n\n                ").concat(photoCount > 5 ? "<div id=\"smallPhotos-scrollButtonDown\"\n                            class=\"single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom\">\n                            <div class=\"single_product__small_photos__scroll_button_bottom__content\">\n                            </div>\n                          </div>" : "", "\n\n            </div>");
+}
+
+function _getSmallPhotos(productId, photosArr) {
+  var smallPhotoFolder = "/storage/products-photos-size5/";
+  var phArr = photosArr.map(function (item, i) {
+    return "<img src='".concat(smallPhotoFolder).concat(productId, "s5-").concat(item, "'\n                    alt=''\n                    data-small-photo=\"").concat(i + 1, "\"\n                    class=\"photo__size2\"/>");
+  });
+  return phArr.join('');
 }
 
 /***/ }),
@@ -2226,7 +2323,7 @@ var quickProductDestructor = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SingleProductQuickViewer; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _html_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../html/getSingleProductHtml */ "./resources/js2/html/getSingleProductHtml.js");
+/* harmony import */ var _html_singleProduct_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/singleProduct/getSingleProductHtml */ "./resources/js2/html/singleProduct/getSingleProductHtml.js");
 /* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -2282,7 +2379,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
         var productObject = _this2._prepareProductObject(product); //console.log(productObject);
 
 
-        var productHtml = Object(_html_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(productObject);
+        var productHtml = Object(_html_singleProduct_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(productObject);
 
         if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
           Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
