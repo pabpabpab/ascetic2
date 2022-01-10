@@ -4974,12 +4974,12 @@ h1 {
   position: absolute;
   top: 5px;
   right: 5px;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 0 0 3px 0;
-  font-size: 65px;
+  font-size: 69px;
   color: #fff;
   font-weight: 400;
   background-color: #000;
@@ -5015,6 +5015,14 @@ h1 {
   }
 }
 
+@media screen and (max-width: 850px) {
+  .quick_view_manager__collapse_icon {
+    width: 32px;
+    height: 32px;
+    font-size: 65px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .quick_view_manager__content_wrapper {
     width: 100%;
@@ -5032,9 +5040,9 @@ h1 {
 
 @media screen and (max-width: 400px) {
   .quick_view_manager__collapse_icon {
-    font-size: 60px;
-    height: 26px;
-    width: 26px;
+    font-size: 63px;
+    height: 29px;
+    width: 29px;
     border-radius: 0;
   }
 }
