@@ -14,6 +14,7 @@
     position: -webkit-sticky
     position: sticky
     top: 80px
+    height: $big_photo_height + 65 // не убирать, сломается sticky
     //border: 1px solid #003cff
     display: flex
     justify-content: flex-start
@@ -27,6 +28,9 @@
     -moz-user-select: none
     -ms-user-select: none
 
+.quick_view_manager__content .single_product__all_photo_wrapper
+    top: 0
+
 
 .single_product__small_photos__wrapper
     position: relative
@@ -38,13 +42,13 @@
 .single_product__small_photos__scroll_button
     position: absolute
     left: 0
-    background-color: rgba(255, 255, 255, 0.7)
+    background-color: rgba(0, 0, 0, 0.5)
     width: $small_photo_width
     height: 30px
     cursor: pointer
     transition: background .3s
     &:hover
-        background-color: rgba(255, 255, 255, 0.85)
+        background-color: rgba(0, 0, 0, 0.8)
     &_top
         top: 0
         &__content
@@ -56,7 +60,7 @@
                 top: 11px
                 width: 15px
                 height: 15px
-                border: solid #707078
+                border: solid #f0f0f0
                 border-width: 3px 3px 0 0
                 border-radius: 1px
                 transform: rotate(-45deg)
@@ -71,7 +75,7 @@
                 top: 1px
                 width: 15px
                 height: 15px
-                border: solid #707078
+                border: solid #f0f0f0
                 border-width: 0 3px 3px 0
                 border-radius: 1px
                 transform: rotate(45deg)

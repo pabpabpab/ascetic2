@@ -1540,7 +1540,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getSingleProductHtml(product) {
   //console.log(product);
-  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                    ").concat(product.description, "\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
+  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                    ").concat(product.description, "\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n\n                                <div>\n                                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n                                </div>\n\n\n\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
 }
 
 /***/ }),
@@ -1718,23 +1718,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotal */ "./resources/js2/favoriteProducts/favoriteProductsTotal.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
-/* harmony import */ var _productSingle_desktop_largePhotoMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./productSingle/desktop/largePhotoMaker */ "./resources/js2/productSingle/desktop/largePhotoMaker.js");
-/* harmony import */ var _productSingle_desktop_mainPhotoChanger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./productSingle/desktop/mainPhotoChanger */ "./resources/js2/productSingle/desktop/mainPhotoChanger.js");
-/* harmony import */ var _productSingle_desktop_largePhotoViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./productSingle/desktop/largePhotoViewer */ "./resources/js2/productSingle/desktop/largePhotoViewer.js");
-/* harmony import */ var _productSingle_desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./productSingle/desktop/smallPhotoScroller */ "./resources/js2/productSingle/desktop/smallPhotoScroller.js");
-/* harmony import */ var _productSingle_mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./productSingle/mobile/mobileLargePhotoMaker */ "./resources/js2/productSingle/mobile/mobileLargePhotoMaker.js");
-/* harmony import */ var _productSingle_mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./productSingle/mobile/mobileLargePhotoScroller */ "./resources/js2/productSingle/mobile/mobileLargePhotoScroller.js");
-/* harmony import */ var _productList_productSource__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./productList/productSource */ "./resources/js2/productList/productSource.js");
-/* harmony import */ var _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./productList/singleProductQuickViewer */ "./resources/js2/productList/singleProductQuickViewer.js");
-/* harmony import */ var _productList_quickProductDestructor__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./productList/quickProductDestructor */ "./resources/js2/productList/quickProductDestructor.js");
-/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
-
-
-
-
-
-
-
+/* harmony import */ var _productList_productSource__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./productList/productSource */ "./resources/js2/productList/productSource.js");
+/* harmony import */ var _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./productList/singleProductQuickViewer */ "./resources/js2/productList/singleProductQuickViewer.js");
+/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
 
 
 
@@ -1776,12 +1762,12 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products') || Object(_
 new _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__["default"]();
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
-  Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_18__["default"])();
+  Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_11__["default"])();
 }
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products')) {
-  var productSource = new _productList_productSource__WEBPACK_IMPORTED_MODULE_15__["default"]();
-  new _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_16__["default"](productSource);
+  var productSource = new _productList_productSource__WEBPACK_IMPORTED_MODULE_9__["default"]();
+  new _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_10__["default"](productSource);
 }
 
 /***/ }),
@@ -2393,7 +2379,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
     _classCallCheck(this, SingleProductQuickViewer);
 
     this.source = productSource;
-    this.limitForLoadingOfEntireList = 150;
+    this.limitForLoadingOfEntireList = 100;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products').addEventListener('click', function (e) {
       if (e.target.dataset.quickView) {
         e.preventDefault();

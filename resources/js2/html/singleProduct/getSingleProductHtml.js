@@ -50,6 +50,18 @@ export default function getSingleProductHtml(product) {
                                     ${product.description}
                                 </div>
                                 ${ getFavoriteIconBlockHtml(product.id) }
+
+
+                                <div>
+                                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                                </div>
+
+
+
                             </section>
 
                         </div>

@@ -6,7 +6,7 @@ export default class SingleProductQuickViewer {
 
     constructor(productSource) {
         this.source = productSource;
-        this.limitForLoadingOfEntireList = 150;
+        this.limitForLoadingOfEntireList = 100;
 
         el('#products').addEventListener('click', (e) => {
             if (e.target.dataset.quickView) {

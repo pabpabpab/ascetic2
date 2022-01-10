@@ -3,7 +3,6 @@ export default {
     showUserEditManager({dispatch, commit, getters, state}, {userId, task}) {
         dispatch('closeContextMenu', null, {root: true});
         dispatch('showWaitingScreen', null, {root: true});
-        document.body.style.cssText = 'overflow:hidden;';
         commit('setSingleUserFromServer', {});
         dispatch('loadSingleUser', userId)
             .then(() => {
@@ -16,7 +15,6 @@ export default {
     },
 
     closeUserEditManager({ commit }) {
-        document.body.style.cssText='overflow:auto;';
         commit('setVisibility', { componentName: 'userEditManager', value: false });
     },
 }

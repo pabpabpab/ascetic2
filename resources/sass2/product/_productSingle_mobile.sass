@@ -15,6 +15,7 @@
         position: static
         width: $big_photo_width + $small_photo_width + 50px
         max-width: 100%
+        height: unset
         border-radius: 20px
         box-shadow: none
     .single_product__top_characteristics__margin_left
@@ -41,22 +42,22 @@
     .single_product_page__content_wrapper
         width: $big_photo_width + 20px
         background-color: #fff
-        border-radius: 20px
-        box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
+        //border-radius: 20px
+        box-shadow: unset //0 10px 40px rgb(0, 0, 0, 0)
     .single_product__all_photo_wrapper
         width: $big_photo_width
-        border-radius: 20px
+        //border-radius: 20px
         padding-left: 2%
         padding-right: 2%
     .single_product__top_characteristics
         width: $big_photo_width
         border-radius: 20px
 
-@media screen and (max-width: $big_photo_width + 50px)
+@media screen and (max-width: $big_photo_width + 150px)
     .single_product_page__content_wrapper
         width: 100%
         border-radius: 0
-        box-shadow: 0 0 300px 300px rgb(255, 255, 255)
+        box-shadow: none //0 0 300px 300px rgb(255, 255, 255)
     .single_product__all_photo_wrapper
         width: 100%
         padding: 0 0 20px 0
@@ -72,6 +73,7 @@
         height: auto
     .photo__size4
         width: 100%
+        height: auto
     .photo__size5
         width: 100%
     .single_product__big_photo__scroll_button

@@ -22860,7 +22860,6 @@ __webpack_require__.r(__webpack_exports__);
       var entity = _ref4.entity,
           customQuantityPerPage = _ref4.customQuantityPerPage;
 
-      //document.body.style.cssText='overflow: scroll;';
       if (customQuantityPerPage > 0) {
         Object(_functions_setCookie__WEBPACK_IMPORTED_MODULE_0__["default"])(entity + 'QuantityPerPage', customQuantityPerPage, {
           'max-age': 31536000
@@ -24942,7 +24941,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       componentName: 'productsFilters',
       value: true
     });
-    document.body.style.cssText = 'overflow-y:scroll;';
   },
   closeProductsFilters: function closeProductsFilters(_ref2) {
     var commit = _ref2.commit;
@@ -24950,7 +24948,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       componentName: 'productsFilters',
       value: false
     });
-    document.body.style.cssText = 'overflow-y:auto;';
   },
   setProductsFiltersVisibility: function setProductsFiltersVisibility(_ref3, value) {
     var commit = _ref3.commit;
@@ -26495,7 +26492,6 @@ __webpack_require__.r(__webpack_exports__);
     dispatch('showWaitingScreen', null, {
       root: true
     });
-    document.body.style.cssText = 'overflow:hidden;';
     commit('setSingleUserFromServer', {});
     dispatch('loadSingleUser', userId).then(function () {
       commit('setTaskOfUserEditManager', task);
@@ -26511,7 +26507,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   closeUserEditManager: function closeUserEditManager(_ref3) {
     var commit = _ref3.commit;
-    document.body.style.cssText = 'overflow:auto;';
     commit('setVisibility', {
       componentName: 'userEditManager',
       value: false

@@ -7,12 +7,10 @@ export default {
 
     showProductsFilters({commit}) {
         commit('setVisibility', { componentName: 'productsFilters', value: true });
-        document.body.style.cssText='overflow-y:scroll;';
     },
 
     closeProductsFilters({commit}) {
         commit('setVisibility', { componentName: 'productsFilters', value: false });
-        document.body.style.cssText='overflow-y:auto;';
     },
 
     setProductsFiltersVisibility({commit}, value) {

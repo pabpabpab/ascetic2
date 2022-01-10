@@ -12,17 +12,8 @@ import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoritePro
 import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
-import DesktopLargePhotoMaker from "./productSingle/desktop/largePhotoMaker";
-import DesktopMainPhotoChanger from "./productSingle/desktop/mainPhotoChanger";
-import DesktopLargePhotoViewer from "./productSingle/desktop/largePhotoViewer";
-import DesktopSmallPhotoScroller from "./productSingle/desktop/smallPhotoScroller";
-
-import MobileLargePhotoMaker from "./productSingle/mobile/mobileLargePhotoMaker";
-import MobileLargePhotoScroller from "./productSingle/mobile/mobileLargePhotoScroller";
-
 import ProductSource from "./productList/productSource";
 import SingleProductQuickViewer from "./productList/singleProductQuickViewer";
-import QuickProductDestructor from "./productList/quickProductDestructor";
 import singleProductKit from "./productSingle/singleProductKit";
 
 

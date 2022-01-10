@@ -13,7 +13,6 @@ export default {
     divideIntoPages: {
         root: true,
         handler ({dispatch, commit, getters}, {entity, customQuantityPerPage}) {
-            //document.body.style.cssText='overflow: scroll;';
 
             if (customQuantityPerPage > 0) {
                 setCookie(entity + 'QuantityPerPage', customQuantityPerPage, {'max-age': 31536000});
