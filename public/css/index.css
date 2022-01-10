@@ -1238,6 +1238,17 @@ h1 {
   }
 }
 
+@media screen and (max-width: 400px) {
+  .quick_view_manager__collapse_icon {
+    background-color: #000;
+    color: #fff;
+    font-size: 60px;
+    height: 26px;
+    width: 26px;
+    border-radius: 0;
+  }
+}
+
 .single_photo_page__content_wrapper {
   width: 100%;
   padding: 0;
