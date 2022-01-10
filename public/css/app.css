@@ -4980,8 +4980,9 @@ h1 {
           box-sizing: border-box;
   padding: 0 0 3px 0;
   font-size: 65px;
-  color: #4e6e83;
+  color: #fff;
   font-weight: 400;
+  background-color: #000;
   cursor: pointer;
   border-radius: 3px;
   display: -webkit-box;
@@ -4997,7 +4998,6 @@ h1 {
 
 .quick_view_manager__collapse_icon:hover {
   background-color: #505050;
-  color: #fff;
 }
 
 @media screen and (max-width: 1100px) {
@@ -5027,6 +5027,15 @@ h1 {
 
   .quick_view_manager__content .single_product__all_photo_wrapper {
     padding: 0 7px 30px 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .quick_view_manager__collapse_icon {
+    font-size: 60px;
+    height: 26px;
+    width: 26px;
+    border-radius: 0;
   }
 }
 
