@@ -10,7 +10,12 @@
     flex-direction: row
 
 .single_product__all_photo_wrapper
-    position: fixed
+    //position: fixed
+    position: -webkit-sticky
+    position: sticky
+    top: 80px
+    height: $big_photo_height + 65 // не убирать, сломается sticky
+    //border: 1px solid #003cff
     display: flex
     justify-content: flex-start
     flex-direction: row
@@ -176,7 +181,7 @@
     box-shadow: 0 10px 40px rgb(0, 0, 0, 0.1)
     border-radius: 20px
     &__margin_left
-        margin-left: $big_photo_width + 185px
+        margin-left: 30px // $big_photo_width + 185px
 .single_product__h1
     +font(25px, rgb(80, 75, 75), 700)
     font-family: 'Oswald', sans-serif

@@ -2,7 +2,7 @@
     <div class="single_product__content">
 
         <div v-if="numberOfPhotos > 0" class="single_product__all_photo_wrapper">
-            <div class="single_product__small_photos__wrapper">
+            <div v-show="numberOfPhotos > 1" class="single_product__small_photos__wrapper">
 
                 <div v-show="notScrolledAllTheWayToTheTop() && numberOfPhotos > 5"
                      @click="scrollSmallPhoto(300, 'down')"

@@ -1366,71 +1366,85 @@ var render = function() {
   return _c("div", { staticClass: "single_product__content" }, [
     _vm.numberOfPhotos > 0
       ? _c("div", { staticClass: "single_product__all_photo_wrapper" }, [
-          _c("div", { staticClass: "single_product__small_photos__wrapper" }, [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value:
-                      _vm.notScrolledAllTheWayToTheTop() &&
-                      _vm.numberOfPhotos > 5,
-                    expression:
-                      "notScrolledAllTheWayToTheTop() && numberOfPhotos > 5"
-                  }
-                ],
-                staticClass:
-                  "single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top",
-                on: {
-                  click: function($event) {
-                    return _vm.scrollSmallPhoto(300, "down")
-                  }
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.numberOfPhotos > 1,
+                  expression: "numberOfPhotos > 1"
                 }
-              },
-              [
-                _c("div", {
-                  staticClass:
-                    "single_product__small_photos__scroll_button_top__content"
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", {
-              ref: "smallPhotoDiv",
-              staticClass: "single_product__small_photos",
-              domProps: { innerHTML: _vm._s(_vm.getSmallPhotos) },
-              on: {
-                mouseover: function($event) {
-                  return _vm.changeMainPhotoBySmallPhoto($event)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.numberOfPhotos > 5 &&
-            (_vm.notScrolledAllTheWayToTheBottom() ||
-              _vm.indexOfMainPhoto === 0)
-              ? _c(
-                  "div",
-                  {
-                    staticClass:
-                      "single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom",
-                    on: {
-                      click: function($event) {
-                        return _vm.scrollSmallPhoto(300, "up")
-                      }
+              ],
+              staticClass: "single_product__small_photos__wrapper"
+            },
+            [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value:
+                        _vm.notScrolledAllTheWayToTheTop() &&
+                        _vm.numberOfPhotos > 5,
+                      expression:
+                        "notScrolledAllTheWayToTheTop() && numberOfPhotos > 5"
                     }
-                  },
-                  [
-                    _c("div", {
+                  ],
+                  staticClass:
+                    "single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top",
+                  on: {
+                    click: function($event) {
+                      return _vm.scrollSmallPhoto(300, "down")
+                    }
+                  }
+                },
+                [
+                  _c("div", {
+                    staticClass:
+                      "single_product__small_photos__scroll_button_top__content"
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                ref: "smallPhotoDiv",
+                staticClass: "single_product__small_photos",
+                domProps: { innerHTML: _vm._s(_vm.getSmallPhotos) },
+                on: {
+                  mouseover: function($event) {
+                    return _vm.changeMainPhotoBySmallPhoto($event)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.numberOfPhotos > 5 &&
+              (_vm.notScrolledAllTheWayToTheBottom() ||
+                _vm.indexOfMainPhoto === 0)
+                ? _c(
+                    "div",
+                    {
                       staticClass:
-                        "single_product__small_photos__scroll_button_bottom__content"
-                    })
-                  ]
-                )
-              : _vm._e()
-          ]),
+                        "single_product__small_photos__scroll_button single_product__small_photos__scroll_button_bottom",
+                      on: {
+                        click: function($event) {
+                          return _vm.scrollSmallPhoto(300, "up")
+                        }
+                      }
+                    },
+                    [
+                      _c("div", {
+                        staticClass:
+                          "single_product__small_photos__scroll_button_bottom__content"
+                      })
+                    ]
+                  )
+                : _vm._e()
+            ]
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "single_product__big_photo__wrapper" }, [
             _c("div", {

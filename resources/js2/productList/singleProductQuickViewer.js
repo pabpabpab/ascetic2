@@ -1,5 +1,5 @@
 import el from './../el';
-import getSingleProductHtml from "../html/singleProduct/getSingleProductHtml";
+import indexGetSingleProductHtml from "../html/singleProduct/index-getSingleProductHtml";
 import singleProductKit from "./../productSingle/singleProductKit";
 
 export default class SingleProductQuickViewer {
@@ -52,7 +52,7 @@ export default class SingleProductQuickViewer {
 
 
     _renderProduct(product) {
-        const productHtml = getSingleProductHtml(product);
+        const productHtml = indexGetSingleProductHtml(product);
         if (el('#quickProduct')) {
             el('#quickProduct').remove();
         }

@@ -10,7 +10,7 @@ export default class quickProductDestructor {
 
     _removeQuickProduct() {
         if (el('#quickProduct')) {
-            el('#quickProduct').remove();
+           el('#quickProduct').remove();
         }
         document.body.style.overflow = 'auto';
     }

@@ -4,7 +4,7 @@ import getListOfCategoriesHtml from './getListOfCategoriesHtml';
 import getListOfMaterialsHtml from './getListOfMaterialsHtml';
 import getListOfColorsHtml from './getListOfColorsHtml';
 
-export default function getSingleProductHtml(product) {
+export default function indexGetSingleProductHtml(product) {
     //console.log(product);
 
     return `<div id="quickProduct" class="quick_view_manager__screen">

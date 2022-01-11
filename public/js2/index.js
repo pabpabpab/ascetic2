@@ -1518,33 +1518,6 @@ function getFavoriteIconBlockHtml(productId, photosArr) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/singleProduct/getSingleProductHtml.js":
-/*!******************************************************************!*\
-  !*** ./resources/js2/html/singleProduct/getSingleProductHtml.js ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getSingleProductHtml; });
-/* harmony import */ var _getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getFavoriteIconBlockHtml */ "./resources/js2/html/singleProduct/getFavoriteIconBlockHtml.js");
-/* harmony import */ var _getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getPhotoBlockHtml */ "./resources/js2/html/singleProduct/getPhotoBlockHtml.js");
-/* harmony import */ var _getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getListOfCategoriesHtml */ "./resources/js2/html/singleProduct/getListOfCategoriesHtml.js");
-/* harmony import */ var _getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getListOfMaterialsHtml */ "./resources/js2/html/singleProduct/getListOfMaterialsHtml.js");
-/* harmony import */ var _getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getListOfColorsHtml */ "./resources/js2/html/singleProduct/getListOfColorsHtml.js");
-
-
-
-
-
-function getSingleProductHtml(product) {
-  //console.log(product);
-  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                    ").concat(product.description, "\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
-}
-
-/***/ }),
-
 /***/ "./resources/js2/html/singleProduct/getSmallPhotosBlockHtml.js":
 /*!*********************************************************************!*\
   !*** ./resources/js2/html/singleProduct/getSmallPhotosBlockHtml.js ***!
@@ -1566,6 +1539,33 @@ function _getSmallPhotos(productId, photosArr) {
     return "<img src='".concat(smallPhotoFolder).concat(productId, "s5-").concat(item, "'\n                    alt=''\n                    data-small-photo=\"").concat(i + 1, "\"\n                    class=\"photo__size2\"/>");
   });
   return phArr.join('');
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js":
+/*!************************************************************************!*\
+  !*** ./resources/js2/html/singleProduct/index-getSingleProductHtml.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return indexGetSingleProductHtml; });
+/* harmony import */ var _getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getFavoriteIconBlockHtml */ "./resources/js2/html/singleProduct/getFavoriteIconBlockHtml.js");
+/* harmony import */ var _getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getPhotoBlockHtml */ "./resources/js2/html/singleProduct/getPhotoBlockHtml.js");
+/* harmony import */ var _getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getListOfCategoriesHtml */ "./resources/js2/html/singleProduct/getListOfCategoriesHtml.js");
+/* harmony import */ var _getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getListOfMaterialsHtml */ "./resources/js2/html/singleProduct/getListOfMaterialsHtml.js");
+/* harmony import */ var _getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getListOfColorsHtml */ "./resources/js2/html/singleProduct/getListOfColorsHtml.js");
+
+
+
+
+
+function indexGetSingleProductHtml(product) {
+  //console.log(product);
+  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                    ").concat(product.description, "\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
 }
 
 /***/ }),
@@ -2348,7 +2348,7 @@ var quickProductDestructor = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SingleProductQuickViewer; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _html_singleProduct_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/singleProduct/getSingleProductHtml */ "./resources/js2/html/singleProduct/getSingleProductHtml.js");
+/* harmony import */ var _html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/singleProduct/index-getSingleProductHtml */ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js");
 /* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -2436,7 +2436,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
   }, {
     key: "_renderProduct",
     value: function _renderProduct(product) {
-      var productHtml = Object(_html_singleProduct_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+      var productHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
 
       if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
