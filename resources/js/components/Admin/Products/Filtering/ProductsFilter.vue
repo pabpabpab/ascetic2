@@ -66,7 +66,6 @@
                 Готово
             </button>
 
-
             <div class='product_filters__collapse_icon'
                  @click.stop="closeProductsFilters()">
                 &#215;

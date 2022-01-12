@@ -6,6 +6,7 @@ export default {
         commit('setSingleUserFromServer', {});
         dispatch('loadSingleUser', userId)
             .then(() => {
+                window.document.body.style.overflow = 'hidden';
                 commit('setTaskOfUserEditManager', task);
                 commit('setVisibility', {componentName: 'userEditManager', value: true});
             })
@@ -15,6 +16,7 @@ export default {
     },
 
     closeUserEditManager({ commit }) {
+        window.document.body.style.overflow = 'auto';
         commit('setVisibility', { componentName: 'userEditManager', value: false });
     },
 }

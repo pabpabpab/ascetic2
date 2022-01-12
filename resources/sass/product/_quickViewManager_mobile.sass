@@ -1,34 +1,30 @@
-@media screen and (max-width: 1100px)
-    .quick_view_manager__content_wrapper
-        width: 100%
+@media screen and (max-width: 1280px)
+    .quick_view_manager__content
+        padding-top: 30px
     .quick_view_manager__content .single_product__all_photo_wrapper
-        padding: 0 20px 30px 20px
-    .quick_view_manager__collapse_icon
-        top: 0
-        right: 0
-
+        border-radius: 20px 20px 0 0
+    .quick_view_manager__content .single_product__top_characteristics
+        border-radius: 0 0 20px 20px
 
 @media screen and (max-width: 850px)
-    .quick_view_manager__collapse_icon
-        width: 32px
-        height: 32px
-        font-size: 65px
-
-
-@media screen and (max-width: 600px)
     .quick_view_manager__content_wrapper
-        width: 100%
-        padding: 50px 0 20px 10px
+        background-color: rgba(0, 0, 0, 0.9)
     .quick_view_manager__content
-        &::-webkit-scrollbar
-            width: 7px
+        padding: 50px 0 0 0
     .quick_view_manager__content .single_product__all_photo_wrapper
-        padding: 0 7px 30px 0
-
-
-@media screen and (max-width: 400px)
+        padding: 0 0 20px 0
     .quick_view_manager__collapse_icon
-        font-size: 63px
-        height: 29px
-        width: 29px
-        border-radius: 0
+        position: fixed
+        top: 0
+        right: 19px
+        display: block
+        height: 50px
+        width: 50px
+        box-sizing: border-box
+        +font(69px, #f0f0f0, 100)
+        text-align: center
+        padding: 0 0 3px 0
+        border-radius: 25px
+        line-height: 49px
+        background-color: rgba(0, 0, 0, 0.5)
+

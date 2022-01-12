@@ -6,10 +6,12 @@ import colorFilterCore from './functions/colorFilterCore';
 export default {
 
     showProductsFilters({commit}) {
+        window.document.body.style.overflow = 'hidden';
         commit('setVisibility', { componentName: 'productsFilters', value: true });
     },
 
     closeProductsFilters({commit}) {
+        window.document.body.style.overflow = 'auto';
         commit('setVisibility', { componentName: 'productsFilters', value: false });
     },
 

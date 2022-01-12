@@ -15,12 +15,14 @@ export default {
         showMobileMenu: {
             root: true,
             handler ({ commit }) {
+                window.document.body.style.overflow = 'hidden';
                 commit('setVisibility', true);
             }
         },
         hideMobileMenu: {
             root: true,
             handler ({ commit }) {
+                window.document.body.style.overflow = 'auto';
                 commit('setVisibility', false);
             }
         },

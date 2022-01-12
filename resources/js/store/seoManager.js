@@ -88,9 +88,16 @@ export default {
             commit('clearSeoData', entity);
             dispatch('loadSeoData', {entity, data})
                 .then(() => {
+                    window.document.body.style.overflow = 'hidden';
                     commit('setShowSeoManager', true);
                 });
 
+        },
+
+
+        closeSeoManager({ commit }) {
+            window.document.body.style.overflow = 'auto';
+            commit('setShowSeoManager', false);
         },
 
 
@@ -141,11 +148,6 @@ export default {
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }
                 });
-        },
-
-
-        closeSeoManager({ commit }) {
-            commit('setShowSeoManager', false);
         },
 
     },

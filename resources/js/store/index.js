@@ -32,11 +32,18 @@ const store = new Vuex.Store({
         imgFolderPrefix: (state) => state.imgFolderPrefix,
     },
     actions: {
-        closeAllByClickOnAppTag({ dispatch, commit }, event) {
+        closeAllByClickOnAppTag({ dispatch, commit, getters }, event) {
             dispatch('closePopupErrorsBox');
             dispatch('contextMenu/closeContextMenuByClick', event);
-            dispatch('hideMobileMenu');
-            dispatch('products/closeProductsFilters');
+
+            if (getters["mobileMenu/mobileMenuVisibility"]) {
+                dispatch('hideMobileMenu');
+            }
+
+            if (getters["products/visibility"]("productsFilters")) {
+                dispatch('products/closeProductsFilters');
+            }
+
             commit('products/setVisibility', {
                 componentName: 'productSortingSelectForMobile',
                 value: false

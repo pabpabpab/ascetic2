@@ -546,6 +546,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MobileMenuContent"
 });
@@ -2109,8 +2110,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "app",
-      attrs: { id: "app" },
+      staticClass: "app_content",
       on: {
         click: function($event) {
           return _vm.closeAllByClickOnAppTag($event)
@@ -22655,11 +22655,19 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   actions: {
     closeAllByClickOnAppTag: function closeAllByClickOnAppTag(_ref, event) {
       var dispatch = _ref.dispatch,
-          commit = _ref.commit;
+          commit = _ref.commit,
+          getters = _ref.getters;
       dispatch('closePopupErrorsBox');
       dispatch('contextMenu/closeContextMenuByClick', event);
-      dispatch('hideMobileMenu');
-      dispatch('products/closeProductsFilters');
+
+      if (getters["mobileMenu/mobileMenuVisibility"]) {
+        dispatch('hideMobileMenu');
+      }
+
+      if (getters["products/visibility"]("productsFilters")) {
+        dispatch('products/closeProductsFilters');
+      }
+
       commit('products/setVisibility', {
         componentName: 'productSortingSelectForMobile',
         value: false
@@ -22723,6 +22731,7 @@ __webpack_require__.r(__webpack_exports__);
       root: true,
       handler: function handler(_ref) {
         var commit = _ref.commit;
+        window.document.body.style.overflow = 'hidden';
         commit('setVisibility', true);
       }
     },
@@ -22730,6 +22739,7 @@ __webpack_require__.r(__webpack_exports__);
       root: true,
       handler: function handler(_ref2) {
         var commit = _ref2.commit;
+        window.document.body.style.overflow = 'auto';
         commit('setVisibility', false);
       }
     }
@@ -24170,6 +24180,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     commit('setSingleProductFromServer', {});
     dispatch('loadSingleProduct', productId).then(function () {
+      window.document.body.style.overflow = 'hidden';
       commit('setVisibility', {
         componentName: 'productEditManager',
         value: true
@@ -24178,6 +24189,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   closeProductEditManager: function closeProductEditManager(_ref2) {
     var commit = _ref2.commit;
+    window.document.body.style.overflow = 'auto';
     commit('setVisibility', {
       componentName: 'productEditManager',
       value: false
@@ -24299,6 +24311,7 @@ __webpack_require__.r(__webpack_exports__);
       var product = state.singleProductFromServer;
 
       if (product) {
+        window.document.body.style.overflow = 'hidden';
         commit('setVisibility', {
           componentName: 'productPhotoManager',
           value: true
@@ -24308,6 +24321,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   closeProductPhotoManager: function closeProductPhotoManager(_ref2) {
     var commit = _ref2.commit;
+    window.document.body.style.overflow = 'auto';
     commit('setVisibility', {
       componentName: 'productPhotoManager',
       value: false
@@ -24619,6 +24633,7 @@ __webpack_require__.r(__webpack_exports__);
         commit = _ref.commit;
     commit('setSingleProductFromServer', {});
     dispatch('loadSingleProduct', productId).then(function () {
+      window.document.body.style.overflow = 'hidden';
       commit('setVisibility', {
         componentName: 'productQuickViewManager',
         value: true
@@ -24627,6 +24642,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   closeProductQuickViewManager: function closeProductQuickViewManager(_ref2) {
     var commit = _ref2.commit;
+    window.document.body.style.overflow = 'auto';
     commit('setVisibility', {
       componentName: 'productQuickViewManager',
       value: false
@@ -24937,6 +24953,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   showProductsFilters: function showProductsFilters(_ref) {
     var commit = _ref.commit;
+    window.document.body.style.overflow = 'hidden';
     commit('setVisibility', {
       componentName: 'productsFilters',
       value: true
@@ -24944,6 +24961,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   closeProductsFilters: function closeProductsFilters(_ref2) {
     var commit = _ref2.commit;
+    window.document.body.style.overflow = 'auto';
     commit('setVisibility', {
       componentName: 'productsFilters',
       value: false
@@ -26052,15 +26070,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         entity: entity,
         data: data
       }).then(function () {
+        window.document.body.style.overflow = 'hidden';
         commit('setShowSeoManager', true);
       });
     },
-    loadSeoData: function loadSeoData(_ref6, _ref7) {
-      var dispatch = _ref6.dispatch,
-          commit = _ref6.commit,
-          state = _ref6.state;
-      var entity = _ref7.entity,
-          data = _ref7.data;
+    closeSeoManager: function closeSeoManager(_ref6) {
+      var commit = _ref6.commit;
+      window.document.body.style.overflow = 'auto';
+      commit('setShowSeoManager', false);
+    },
+    loadSeoData: function loadSeoData(_ref7, _ref8) {
+      var dispatch = _ref7.dispatch,
+          commit = _ref7.commit,
+          state = _ref7.state;
+      var entity = _ref8.entity,
+          data = _ref8.data;
       var urlParams = {
         product: data.id,
         category: data.id,
@@ -26076,13 +26100,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
     },
-    saveSeoData: function saveSeoData(_ref8, _ref9) {
-      var dispatch = _ref8.dispatch,
-          commit = _ref8.commit,
-          state = _ref8.state,
-          rootState = _ref8.rootState;
-      var entity = _ref9.entity,
-          data = _ref9.data;
+    saveSeoData: function saveSeoData(_ref9, _ref10) {
+      var dispatch = _ref9.dispatch,
+          commit = _ref9.commit,
+          state = _ref9.state,
+          rootState = _ref9.rootState;
+      var entity = _ref10.entity,
+          data = _ref10.data;
       var frontItem = data;
       var urlParams = {
         product: data.entityId,
@@ -26126,10 +26150,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           });
         }
       });
-    },
-    closeSeoManager: function closeSeoManager(_ref10) {
-      var commit = _ref10.commit;
-      commit('setShowSeoManager', false);
     }
   }
 });
@@ -26494,6 +26514,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     commit('setSingleUserFromServer', {});
     dispatch('loadSingleUser', userId).then(function () {
+      window.document.body.style.overflow = 'hidden';
       commit('setTaskOfUserEditManager', task);
       commit('setVisibility', {
         componentName: 'userEditManager',
@@ -26507,6 +26528,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   closeUserEditManager: function closeUserEditManager(_ref3) {
     var commit = _ref3.commit;
+    window.document.body.style.overflow = 'auto';
     commit('setVisibility', {
       componentName: 'userEditManager',
       value: false

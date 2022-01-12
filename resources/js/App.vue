@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="app" @click="closeAllByClickOnAppTag($event);">
+    <div @click="closeAllByClickOnAppTag($event);" class="app_content">
         <top-menu></top-menu>
         <transition name="mobile_menu">
             <mobile-menu v-if="mobileMenuVisibility"></mobile-menu>

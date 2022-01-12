@@ -6,12 +6,14 @@ export default {
         dispatch('loadSingleProduct', product.id).then(() => {
             const product = state.singleProductFromServer;
             if (product) {
+                window.document.body.style.overflow = 'hidden';
                 commit('setVisibility', { componentName: 'productPhotoManager', value: true });
             }
         });
     },
 
     closeProductPhotoManager({ commit }) {
+        window.document.body.style.overflow = 'auto';
         commit('setVisibility', { componentName: 'productPhotoManager', value: false });
     },
 
