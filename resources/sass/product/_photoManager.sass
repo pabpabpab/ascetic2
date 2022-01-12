@@ -1,6 +1,6 @@
 .photo_manager__screen
     position: fixed
-    z-index: 15
+    z-index: $photo_manager__screen__z-index
     top: 0
     left: 0
     width: 100%
@@ -103,7 +103,7 @@
 
 .draggedPhoto
     position: absolute
-    z-index: 300
+    z-index: $draggedPhoto__z-index
     pointer-events: none
 .draggedPhoto .photo_manager__item__content
     box-shadow: 0 6px 16px rgb(0, 0, 0, 0.3)

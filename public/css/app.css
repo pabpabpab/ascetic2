@@ -212,7 +212,7 @@ h1 {
 
 .top_menu__drop_menu {
   position: absolute;
-  z-index: 3;
+  z-index: 11;
   top: 28px;
   right: -15px;
   border-radius: 5px;
@@ -2392,7 +2392,7 @@ h1 {
 
 .product_item__bottom_info__absolute {
   position: absolute;
-  z-index: 10;
+  z-index: 7;
   background-color: white;
   width: 100%;
   margin: 0;
@@ -3369,7 +3369,7 @@ h1 {
 
 .sorting_modes_for_mobile__absolute_items_list {
   position: absolute;
-  z-index: 5;
+  z-index: 8;
   top: 0;
   left: 0;
   width: 99%;
@@ -3435,7 +3435,7 @@ h1 {
 
 .product_filters {
   position: fixed;
-  z-index: 35;
+  z-index: 33;
   top: 0;
   right: 0;
   height: 100%;
@@ -3615,7 +3615,7 @@ h1 {
 
 .filter_price__range_input__kernel {
   position: absolute;
-  z-index: 30;
+  z-index: 34;
   left: 0;
   top: 6.7px;
   padding: 0;
@@ -3627,7 +3627,7 @@ h1 {
 
 .filter_price__range_input {
   position: absolute;
-  z-index: 31;
+  z-index: 35;
   top: -7px;
   left: -2px;
   width: 100%;
