@@ -7,7 +7,7 @@ import postJson from "../http/postJson";
 export default class FavoriteProductsSwitcher {
 
     constructor() {
-        this.cookieLifetime = 864000; // 10 дней
+        this.cookieLifetime = 8640000; // 100 дней
         this.postUrl = '/public-js/favorite-products/post';
         this.disabledSubmit = false;
 

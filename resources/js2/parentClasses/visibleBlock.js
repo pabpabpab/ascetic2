@@ -7,15 +7,17 @@ export default class VisibleBlock {
         this.basicCss = '';
         this.showCss = '';
         this.hideCss = '';
+
+        // this._render(); // не снимать комментарий
     }
 
     _render() {
         this._preRenderActions();
         if (!el(this.wrapSelector)) {
-            this._firstRender();
+            this._firstRender(); // and set the visibility to true
             return;
         }
-        this._show();
+        this._justSetVisibilityToTrue(); 
     }
 
     _preRenderActions() {}
@@ -23,7 +25,7 @@ export default class VisibleBlock {
     _firstRender() {
         const html = this._getHtml();
         el('body').insertAdjacentHTML('beforeend', html);
-        this._listenBody();
+        this._listenBodyTag();
         this._listenThisBlock();
         this._additionalFirstRenderActions();
     }
@@ -31,23 +33,23 @@ export default class VisibleBlock {
     _getHtml() {}
     _additionalFirstRenderActions() {}
 
-    _listenBody() {
+    _listenBodyTag() {
         el('body').addEventListener('click', (e) => {
             // скрыть блок при клике мимо
-            this._hide(e);
+            this._setVisibilityToFalse(e);
         });
     }
 
     _listenThisBlock() {}
 
-    _show(e) {
+    _justSetVisibilityToTrue() {
         if (!el(this.wrapSelector)) {
             return;
         }
         el(this.wrapSelector).className = `${this.basicCss} ${this.showCss}`;
     }
 
-    _hide(e) {
+    _setVisibilityToFalse(e) {
         if (!el(this.wrapSelector)) {
             return;
         }

@@ -16,7 +16,7 @@ export default class Login extends AbsoluteForm {
     constructor(data, postUrl= '/login/do', successUrl = '/my') {
         super(data);
 
-        this.cookieLifetime = 864000; // 10 дней
+        this.cookieLifetime = 8640000; // 100 дней
 
         this.postUrl = postUrl;
         this.successUrl = successUrl;

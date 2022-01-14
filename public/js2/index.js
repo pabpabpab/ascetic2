@@ -504,7 +504,7 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
     _classCallCheck(this, Login);
 
     _this = _super.call(this, data);
-    _this.cookieLifetime = 864000; // 10 дней
+    _this.cookieLifetime = 8640000; // 100 дней
 
     _this.postUrl = postUrl;
     _this.successUrl = successUrl;
@@ -1007,7 +1007,7 @@ var FavoriteProductsSwitcher = /*#__PURE__*/function () {
 
     _classCallCheck(this, FavoriteProductsSwitcher);
 
-    this.cookieLifetime = 864000; // 10 дней
+    this.cookieLifetime = 8640000; // 100 дней
 
     this.postUrl = '/public-js/favorite-products/post';
     this.disabledSubmit = false;
@@ -1979,7 +1979,7 @@ var VisibleBlock = /*#__PURE__*/function () {
     this.wrapSelector = '';
     this.basicCss = '';
     this.showCss = '';
-    this.hideCss = '';
+    this.hideCss = ''; // this._render(); // не снимать комментарий
   }
 
   _createClass(VisibleBlock, [{
@@ -1988,12 +1988,13 @@ var VisibleBlock = /*#__PURE__*/function () {
       this._preRenderActions();
 
       if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
-        this._firstRender();
+        this._firstRender(); // and set the visibility to true
+
 
         return;
       }
 
-      this._show();
+      this._justSetVisibilityToTrue();
     }
   }, {
     key: "_preRenderActions",
@@ -2005,7 +2006,7 @@ var VisibleBlock = /*#__PURE__*/function () {
 
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
 
-      this._listenBody();
+      this._listenBodyTag();
 
       this._listenThisBlock();
 
@@ -2018,21 +2019,21 @@ var VisibleBlock = /*#__PURE__*/function () {
     key: "_additionalFirstRenderActions",
     value: function _additionalFirstRenderActions() {}
   }, {
-    key: "_listenBody",
-    value: function _listenBody() {
+    key: "_listenBodyTag",
+    value: function _listenBodyTag() {
       var _this = this;
 
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
         // скрыть блок при клике мимо
-        _this._hide(e);
+        _this._setVisibilityToFalse(e);
       });
     }
   }, {
     key: "_listenThisBlock",
     value: function _listenThisBlock() {}
   }, {
-    key: "_show",
-    value: function _show(e) {
+    key: "_justSetVisibilityToTrue",
+    value: function _justSetVisibilityToTrue() {
       if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
@@ -2040,8 +2041,8 @@ var VisibleBlock = /*#__PURE__*/function () {
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
     }
   }, {
-    key: "_hide",
-    value: function _hide(e) {
+    key: "_setVisibilityToFalse",
+    value: function _setVisibilityToFalse(e) {
       if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
