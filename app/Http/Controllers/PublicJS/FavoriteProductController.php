@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\PublicJS;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\User\FavoriteProductsSynchronizer;
 use Illuminate\Http\JsonResponse;
@@ -38,4 +39,4 @@ class FavoriteProductController extends Controller
     }
 }
 
-// php artisan make:controller FavoriteProductController
+// php artisan make:controller PublicJS/FavoriteProductController

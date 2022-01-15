@@ -17,7 +17,7 @@ export default class VisibleBlock {
             this._firstRender(); // and set the visibility to true
             return;
         }
-        this._justSetVisibilityToTrue(); 
+        this._justSetVisibilityToTrue();
     }
 
     _preRenderActions() {}

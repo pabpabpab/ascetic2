@@ -13,6 +13,7 @@ import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
 import ProductSource from "./productList/productSource";
+import ViewedProductsSynchronizer from "./productList/viewedProductsSynchronizer";
 import SingleProductQuickViewer from "./productList/singleProductQuickViewer";
 import singleProductKit from "./productSingle/singleProductKit";
 
@@ -54,8 +55,9 @@ if (el('#singleProduct')) {
 
 
 if (el('#products')) {
+    const viewedProductsSynchronizer = new ViewedProductsSynchronizer();
     const productSource = new ProductSource();
-    new SingleProductQuickViewer(productSource);
+    new SingleProductQuickViewer(productSource, viewedProductsSynchronizer);
 }
 
 

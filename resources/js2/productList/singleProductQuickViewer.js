@@ -4,8 +4,9 @@ import singleProductKit from "./../productSingle/singleProductKit";
 
 export default class SingleProductQuickViewer {
 
-    constructor(productSource) {
+    constructor(productSource, viewedProductsSynchronizer) {
         this.source = productSource;
+        this.viewedProductsSynchronizer = viewedProductsSynchronizer;
         this.limitForLoadingOfEntireList = 100;
 
         el('#products').addEventListener('click', (e) => {
@@ -13,6 +14,7 @@ export default class SingleProductQuickViewer {
                 e.preventDefault();
                 const productId = Number(e.target.dataset.quickView);
                 this._showOneProduct(productId);
+                this.viewedProductsSynchronizer.sync(productId);
             }
         });
     }

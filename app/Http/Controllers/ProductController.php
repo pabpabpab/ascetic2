@@ -77,7 +77,8 @@ class ProductController extends Controller
             return $currentPage;
         });
 
-        $products = $service->getViewed()->paginate(3);
+
+        $products = $service->getViewed()->paginate(30);
         return view('products.list.index', [
             'products' => $products,
             'productsCount' => Product::count()
