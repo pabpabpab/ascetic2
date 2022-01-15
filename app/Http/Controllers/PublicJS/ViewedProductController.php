@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Product\ViewedProductsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class ViewedProductController extends Controller
 {
@@ -13,14 +14,12 @@ class ViewedProductController extends Controller
     {
         $productId = (int) $request->productId ?? 0;
 
-        $viewed = [];
         if ($productId > 0) {
-            $viewed = $service->addToViewed($productId);
+            $service->addToViewed($productId);
         }
 
         return response()->json([
-            'success' => true,
-            'sessionViewedProductIds' => implode(',', $viewed)
+            'success' => true
         ]);
     }
 }

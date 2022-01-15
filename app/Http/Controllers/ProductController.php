@@ -103,7 +103,6 @@ class ProductController extends Controller
 
     public function getOne(PhotoSeoService $service, $slug, Product $product)
     {
-        //session()->flush();
         (new ViewedProductsService())->addToViewed($product->id);
 
         return view('products.single.single-product', [

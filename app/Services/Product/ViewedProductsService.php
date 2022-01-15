@@ -5,57 +5,54 @@ namespace App\Services\Product;
 
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Cookie;
 
 class ViewedProductsService
 {
 
     public function addToViewed($productId)
     {
-        //$frontIdsStr = $_COOKIE['viewedIds'] ?? '';
-        //info($frontIdsStr);
+        $productId = (Integer) $productId;
+        
+        $frontIdsArr = $this->_getFrontIdsArr();
 
+        // если нет такого id, то просто добавить в начало
+        if (!in_array($productId, $frontIdsArr)) {
+            $viewedArr = array_merge([$productId], $frontIdsArr);
+            $viewedStr = implode(',', $viewedArr);
 
-        $productId = (Integer) $productId; //session()->put('viewedProductsIds', []);
+            Cookie::queue('viewedIds', $viewedStr, 144000); // в минутах, 100 дней
 
-        if (!session()->exists('viewedProductsIds')) {
-            session()->put('viewedProductsIds', []);
+            return;
+            // return $viewedStr;
         }
 
-        $viewed = session('viewedProductsIds');
+        // если есть такой id, то удалить его со старой позиции, и добавить в начало
+        $index = array_search($productId, $frontIdsArr);
+        unset($frontIdsArr[$index]);
+        $viewedArr = array_merge([$productId], $frontIdsArr);
+        $viewedStr = implode(',', $viewedArr);
 
+        Cookie::queue('viewedIds', $viewedStr, 144000); // в минутах, 100 дней
 
-        // если нет такого id, то просто добавить
-        if (!in_array($productId, $viewed)) {
-            array_push($viewed, $productId);
-            session()->put('viewedProductsIds', $viewed);
-            return session('viewedProductsIds');
-        }
-
-        // если есть такой id, то удалить его со старой позиции, и добавить снова в хвост
-        $index = array_search($productId, $viewed);
-        unset($viewed[$index]);
-        array_push($viewed, $productId);
-        session()->put('viewedProductsIds', $viewed);
-        return session('viewedProductsIds');
+        // return $viewedStr;
     }
 
     public function getViewed()
     {
-        // реверс массива id, чтобы последние просмотренные показывались первыми
-        $backIdsArr = array_reverse(session('viewedProductsIds', [0]));
-        // dd($ids);
+        $frontIdsArr = $this->_getFrontIdsArr();
+        $viewedStr = count($frontIdsArr) > 0 ? implode(',', $frontIdsArr) : '0';
+        return Product::whereRaw("id IN ($viewedStr)")->orderByRaw("FIELD(id, $viewedStr)");
+    }
 
 
-        // сессия не всегда работает, добавлю ids из кукис
-        $frontIdsStr = $_COOKIE['viewedIds'] ?? '';
-        //info($frontIdsStr);
-        $frontIdsArr = $this->_getArrayOfIntegers((string) $frontIdsStr); // обезопасить строку приведением элементов к Int
-        $mergedIdsArr = array_merge($backIdsArr, $frontIdsArr);
-        $uniqueIdsArr = array_unique($mergedIdsArr, SORT_NUMERIC);
+    protected function _getFrontIdsArr(): array
+    {
+        $frontIdsStr = request()->cookie('viewedIds') ?? '';
 
-
-        $uniqueIdsStr = implode(',', $uniqueIdsArr);
-        return Product::whereRaw("id IN ($uniqueIdsStr)")->orderByRaw("FIELD(id, $uniqueIdsStr)");
+        return (Boolean) $frontIdsStr
+            ? $this->_getArrayOfIntegers((string) $frontIdsStr)
+            : [];
     }
 
 
