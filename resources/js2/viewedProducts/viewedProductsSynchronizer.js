@@ -1,4 +1,4 @@
-import postJson from "../http/postJson";
+import postJson from "./../http/postJson";
 
 export default class ViewedProductsSynchronizer {
 

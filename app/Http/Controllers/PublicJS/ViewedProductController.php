@@ -22,6 +22,13 @@ class ViewedProductController extends Controller
             'success' => true
         ]);
     }
+
+    public function getSummaryList(ViewedProductsService $service): JsonResponse
+    {
+        return response()->json([
+            'products' => $service->getSummaryOfViewed()
+        ]);
+    }
 }
 
 // php artisan make:controller PublicJS/ViewedProductController

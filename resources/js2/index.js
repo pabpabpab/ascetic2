@@ -13,11 +13,11 @@ import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
 import ProductSource from "./productList/productSource";
-import ViewedProductsSynchronizer from "./productList/viewedProductsSynchronizer";
+import ViewedProductsSynchronizer from "./viewedProducts/viewedProductsSynchronizer";
 import SingleProductQuickViewer from "./productList/singleProductQuickViewer";
 import singleProductKit from "./productSingle/singleProductKit";
 
-
+import ViewedProductsSummaryRenderer from "./viewedProducts/viewedProductsSummaryRenderer";
 
 
 new CsrfUpdater();
@@ -41,6 +41,8 @@ if (el('.auth_page__change_password_type__wrapper')) {
 }
 
 
+
+
 if (el('#products') || el('#singleProduct')) {
     new FavoriteProductsIndicationByPageLoad();
     new FavoriteProductsSwitcher();
@@ -52,6 +54,9 @@ new FavoriteProductsTotal();
 if (el('#singleProduct')) {
     singleProductKit();
 }
+
+
+const viewedProductsSummaryRenderer = new ViewedProductsSummaryRenderer();
 
 
 if (el('#products')) {

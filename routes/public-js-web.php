@@ -17,3 +17,6 @@ Route::post('/viewed-products/post', [ViewedProductController::class, 'addToView
 Route::get('/entire-product-list', [ProductController::class, 'getEntireList']);
 Route::get('/one-product-description/{product}', [ProductController::class, 'getOneDescription']);
 Route::get('/one-product/{product}', [ProductController::class, 'getOneProduct']);
+
+
+Route::get('/viewed-product-summary-list', [ViewedProductController::class, 'getSummaryList']);

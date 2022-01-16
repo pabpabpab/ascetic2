@@ -1,11 +1,12 @@
 
 @php
-    $excludedRoutes = [
-        'products.viewed',
-        'products.singlePhotoPage',
-        'my'
-    ];
-    $isAccountRoute = explode(".", $currentRouteName)[0] === 'account';
+   $viewedIdsStr = request()->cookie('viewedIds') ?? '';
+   $excludedRoutes = [
+       'products.viewed',
+       'products.singlePhotoPage',
+       'my'
+   ];
+   $isAccountRoute = explode(".", $currentRouteName)[0] === 'account';
 @endphp
 
 
@@ -13,10 +14,10 @@
     {{-- --}}
 @elseif ($isAccountRoute)
     {{-- --}}
-@elseif (!session()->exists('viewedProductsIds'))
+@elseif (!$viewedIdsStr)
     {{-- --}}
 @else
-    <aside class="viewed_products__aside">
+    <aside id="viewedProductsSummaryWrapper" class="viewed_products__aside">
         <a href='{{ route('products.viewed') }}' class="viewed_products__link">
             Просмотренные товары
         </a>

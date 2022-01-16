@@ -1570,6 +1570,28 @@ function indexGetSingleProductHtml(product) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/viewedProducts/getViewedProductsItemHtml.js":
+/*!************************************************************************!*\
+  !*** ./resources/js2/html/viewedProducts/getViewedProductsItemHtml.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getViewedProductItemHtml; });
+function getViewedProductItemHtml(product) {
+  //console.log(product);
+  return "<div class=\"product_item__wrapper\">\n               <div class=\"product_item\">\n\n                  <div class=\"product_item__content\">\n                      <div class=\"product_item__quick_view_link__wrapper\">\n                         <a data-quick-view=\"".concat(product.id, "\"\n                            href='product/").concat(product.slug, "-").concat(product.id, "'\n                            class=\"product_item__quick_view_link\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                         </a>\n                      </div>\n\n                      ").concat(Boolean(product.photoName) ? _getPhotoBlockHtml(product) : "<div class=\"product_item__no_photo\">\n                                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                                 </div>", "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='product/").concat(product.slug, "-").concat(product.id, "'\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n                  </div>\n\n               </div>\n            </div>");
+}
+
+function _getPhotoBlockHtml(product) {
+  var photoFolder = "/storage/products-photos-size3/";
+  return "<div>\n                <a href='product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photoName, "'\n                       alt=\"\"\n                       class=\"photo__size3\"/>\n                </a>\n            </div>");
+}
+
+/***/ }),
+
 /***/ "./resources/js2/http/csrfToken.js":
 /*!*****************************************!*\
   !*** ./resources/js2/http/csrfToken.js ***!
@@ -1719,9 +1741,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotal */ "./resources/js2/favoriteProducts/favoriteProductsTotal.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
 /* harmony import */ var _productList_productSource__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./productList/productSource */ "./resources/js2/productList/productSource.js");
-/* harmony import */ var _productList_viewedProductsSynchronizer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./productList/viewedProductsSynchronizer */ "./resources/js2/productList/viewedProductsSynchronizer.js");
+/* harmony import */ var _viewedProducts_viewedProductsSynchronizer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./viewedProducts/viewedProductsSynchronizer */ "./resources/js2/viewedProducts/viewedProductsSynchronizer.js");
 /* harmony import */ var _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./productList/singleProductQuickViewer */ "./resources/js2/productList/singleProductQuickViewer.js");
 /* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
+/* harmony import */ var _viewedProducts_viewedProductsSummaryRenderer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./viewedProducts/viewedProductsSummaryRenderer */ "./resources/js2/viewedProducts/viewedProductsSummaryRenderer.js");
+
 
 
 
@@ -1767,8 +1791,10 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
   Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_12__["default"])();
 }
 
+var viewedProductsSummaryRenderer = new _viewedProducts_viewedProductsSummaryRenderer__WEBPACK_IMPORTED_MODULE_13__["default"]();
+
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products')) {
-  var viewedProductsSynchronizer = new _productList_viewedProductsSynchronizer__WEBPACK_IMPORTED_MODULE_10__["default"]();
+  var viewedProductsSynchronizer = new _viewedProducts_viewedProductsSynchronizer__WEBPACK_IMPORTED_MODULE_10__["default"]();
   var productSource = new _productList_productSource__WEBPACK_IMPORTED_MODULE_9__["default"]();
   new _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__["default"](productSource, viewedProductsSynchronizer);
 }
@@ -2479,72 +2505,6 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
   }]);
 
   return SingleProductQuickViewer;
-}();
-
-
-
-/***/ }),
-
-/***/ "./resources/js2/productList/viewedProductsSynchronizer.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js2/productList/viewedProductsSynchronizer.js ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ViewedProductsSynchronizer; });
-/* harmony import */ var _http_postJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../http/postJson */ "./resources/js2/http/postJson.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-var ViewedProductsSynchronizer = /*#__PURE__*/function () {
-  function ViewedProductsSynchronizer() {
-    _classCallCheck(this, ViewedProductsSynchronizer);
-
-    this.postUrl = '/public-js/viewed-products/post';
-    this.disabledSubmit = false;
-  }
-
-  _createClass(ViewedProductsSynchronizer, [{
-    key: "sync",
-    value: function sync(productId) {
-      if (!this._getSubmitPermission()) {
-        return;
-      }
-
-      Object(_http_postJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.postUrl, {
-        productId: productId
-      }).then(function (data) {
-        if (data.success === true) {//
-        }
-      });
-    }
-  }, {
-    key: "_getSubmitPermission",
-    value: function _getSubmitPermission() {
-      var _this = this;
-
-      // защита от частых отправок на 3 сек
-      if (this.disabledSubmit) {
-        return false;
-      }
-
-      this.disabledSubmit = true;
-      setTimeout(function () {
-        _this.disabledSubmit = false;
-      }, 3000);
-      return true;
-    }
-  }]);
-
-  return ViewedProductsSynchronizer;
 }();
 
 
@@ -3383,6 +3343,193 @@ function registerValidation(user) {
 
   return null;
 }
+
+/***/ }),
+
+/***/ "./resources/js2/viewedProducts/viewedProductsSummaryRenderer.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js2/viewedProducts/viewedProductsSummaryRenderer.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ViewedProductsSummaryRenderer; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
+/* harmony import */ var _html_viewedProducts_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/viewedProducts/getViewedProductsItemHtml */ "./resources/js2/html/viewedProducts/getViewedProductsItemHtml.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var ViewedProductsSummaryRenderer = /*#__PURE__*/function () {
+  function ViewedProductsSummaryRenderer() {
+    var _this = this;
+
+    _classCallCheck(this, ViewedProductsSummaryRenderer);
+
+    this.htmlWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper');
+
+    if (!this.htmlWrapper) {
+      return;
+    }
+
+    this.viewedProductsSummaryWasRendered = false;
+    this.summaryListUrl = '/public-js/viewed-product-summary-list';
+    this.summaryList = [];
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('mouseover', function (e) {
+      _this._firstRender();
+    });
+  }
+
+  _createClass(ViewedProductsSummaryRenderer, [{
+    key: "_firstRender",
+    value: function _firstRender() {
+      var _this2 = this;
+
+      if (this.viewedProductsSummaryWasRendered) {
+        return;
+      }
+
+      this.viewedProductsSummaryWasRendered = true;
+
+      this._loadSummaryList().then(function (data) {
+        var products = _toConsumableArray(data); //console.log(products);
+
+
+        var html = _this2._getTotalHtml(products);
+
+        _this2.htmlWrapper.insertAdjacentHTML('beforeend', html);
+      });
+    }
+  }, {
+    key: "_getTotalHtml",
+    value: function _getTotalHtml(products) {
+      var _this3 = this;
+
+      var itemsHtmlArr = products.map(function (product) {
+        var productObject = _this3._prepareProductObject(product);
+
+        return Object(_html_viewedProducts_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
+      });
+      var itemsHtml = itemsHtmlArr.join('');
+      return "<div id=\"viewedProductsSummaryContent\" class=\"display-flex\">".concat(itemsHtml, "</div>");
+    }
+  }, {
+    key: "_loadSummaryList",
+    value: function _loadSummaryList() {
+      var _this4 = this;
+
+      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_1__["default"])(this.summaryListUrl).then(function (data) {
+        //console.log(data);
+        _this4.summaryList = _toConsumableArray(data.products);
+        return _toConsumableArray(data.products);
+      })["catch"](function () {//
+      });
+    }
+  }, {
+    key: "_prepareProductObject",
+    value: function _prepareProductObject(product) {
+      var obj = {};
+      obj.id = product.id;
+      obj.name = product.name;
+      obj.slug = product.slug;
+      var params = JSON.parse(product.parameters);
+      obj.price = params.price;
+      obj.photoName = JSON.parse(product.photo_set)[0];
+      return obj;
+    }
+  }]);
+
+  return ViewedProductsSummaryRenderer;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/viewedProducts/viewedProductsSynchronizer.js":
+/*!********************************************************************!*\
+  !*** ./resources/js2/viewedProducts/viewedProductsSynchronizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ViewedProductsSynchronizer; });
+/* harmony import */ var _http_postJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../http/postJson */ "./resources/js2/http/postJson.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var ViewedProductsSynchronizer = /*#__PURE__*/function () {
+  function ViewedProductsSynchronizer() {
+    _classCallCheck(this, ViewedProductsSynchronizer);
+
+    this.postUrl = '/public-js/viewed-products/post';
+    this.disabledSubmit = false;
+  }
+
+  _createClass(ViewedProductsSynchronizer, [{
+    key: "sync",
+    value: function sync(productId) {
+      if (!this._getSubmitPermission()) {
+        return;
+      }
+
+      Object(_http_postJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.postUrl, {
+        productId: productId
+      }).then(function (data) {
+        if (data.success === true) {//
+        }
+      });
+    }
+  }, {
+    key: "_getSubmitPermission",
+    value: function _getSubmitPermission() {
+      var _this = this;
+
+      // защита от частых отправок на 3 сек
+      if (this.disabledSubmit) {
+        return false;
+      }
+
+      this.disabledSubmit = true;
+      setTimeout(function () {
+        _this.disabledSubmit = false;
+      }, 3000);
+      return true;
+    }
+  }]);
+
+  return ViewedProductsSynchronizer;
+}();
+
+
 
 /***/ }),
 

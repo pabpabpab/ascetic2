@@ -13,7 +13,7 @@ class ViewedProductsService
     public function addToViewed($productId)
     {
         $productId = (Integer) $productId;
-        
+
         $frontIdsArr = $this->_getFrontIdsArr();
 
         // если нет такого id, то просто добавить в начало
@@ -38,11 +38,20 @@ class ViewedProductsService
         // return $viewedStr;
     }
 
-    public function getViewed()
+    public function getAllViewed()
     {
         $frontIdsArr = $this->_getFrontIdsArr();
         $viewedStr = count($frontIdsArr) > 0 ? implode(',', $frontIdsArr) : '0';
         return Product::whereRaw("id IN ($viewedStr)")->orderByRaw("FIELD(id, $viewedStr)");
+    }
+
+    public function getSummaryOfViewed()
+    {
+        $itemCountOfSummary = 5;
+        $frontIdsArr = $this->_getFrontIdsArr();
+        $summaryIdsArr = array_slice($frontIdsArr, 0, $itemCountOfSummary);
+        $summaryIdsStr = count($summaryIdsArr) > 0 ? implode(',', $summaryIdsArr) : '0';
+        return Product::whereRaw("id IN ($summaryIdsStr)")->orderByRaw("FIELD(id, $summaryIdsStr)")->get();
     }
 
 
