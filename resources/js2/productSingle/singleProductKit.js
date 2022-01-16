@@ -5,7 +5,7 @@ import DesktopLargePhotoViewer from "./desktop/largePhotoViewer";
 import DesktopSmallPhotoScroller from "./desktop/smallPhotoScroller";
 import MobileLargePhotoMaker from "./mobile/mobileLargePhotoMaker";
 import MobileLargePhotoScroller from "./mobile/mobileLargePhotoScroller";
-import QuickProductDestructor from "./../productList/quickProductDestructor";
+import QuickProductDestructor from "../quickProductViewer/quickProductDestructor";
 
 export default function singleProductKit() {
 

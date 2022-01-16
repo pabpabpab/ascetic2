@@ -2,38 +2,54 @@ import el from './../el';
 import getJson from "./../http/getJson";
 import getViewedProductsItemHtml from "../html/viewedProducts/getViewedProductsItemHtml";
 
-export default class ViewedProductsSummaryRenderer {
+export default class ViewedProductsSummaryMaker {
     constructor() {
-        this.htmlWrapper = el('#viewedProductsSummaryWrapper');
-        if (!this.htmlWrapper) {
+        this.wrapperOfSummary = el('#viewedProductsSummaryWrapper');
+        if (!this.wrapperOfSummary) {
             return;
         }
+        this.idOfContent = 'viewedProductsSummaryContent';
 
-        this.viewedProductsSummaryWasRendered = false;
+        this.viewedProductsSummaryWasCreated = false;
         this.summaryListUrl = '/public-js/viewed-product-summary-list';
         this.summaryList = [];
 
         el('body').addEventListener('mouseover', (e) => {
-            this._firstRender();
+            this._firstCreation();
         });
     }
 
 
-    _firstRender() {
-        if (this.viewedProductsSummaryWasRendered) {
+    _firstCreation() {
+        if (this.viewedProductsSummaryWasCreated) {
             return;
         }
-        this.viewedProductsSummaryWasRendered = true;
+        this.viewedProductsSummaryWasCreated = true;
 
         this._loadSummaryList()
             .then((data) => {
                 const products = [...data];
                 //console.log(products);
-                const html = this._getTotalHtml(products);
-                this.htmlWrapper.insertAdjacentHTML('beforeend', html);
+                this._render(products);
             });
     }
 
+    remakeWith(product) {
+        const index = this.summaryList.findIndex(item => item.id === product.id);
+        if (index > -1) {
+            this.summaryList.splice(index, 1);
+        }
+        this.summaryList = [ ...[product], ...this.summaryList ];
+        this._render(this.summaryList);
+    }
+
+    _render(products) {
+        if (el(`#${this.idOfContent}`)) {
+            el(`#${this.idOfContent}`).remove();
+        }
+        const html = this._getTotalHtml(products);
+        this.wrapperOfSummary.insertAdjacentHTML('beforeend', html);
+    }
 
     _getTotalHtml(products) {
         const itemsHtmlArr = products.map((product) => {
@@ -41,9 +57,8 @@ export default class ViewedProductsSummaryRenderer {
             return getViewedProductsItemHtml(productObject);
         });
         const itemsHtml = itemsHtmlArr.join('');
-        return `<div id="viewedProductsSummaryContent" class="display-flex">${itemsHtml}</div>`;
+        return `<div id="${this.idOfContent}" class="display-flex">${itemsHtml}</div>`;
     }
-
 
     _loadSummaryList() {
         return getJson(this.summaryListUrl)
@@ -56,7 +71,6 @@ export default class ViewedProductsSummaryRenderer {
                 //
             });
     }
-
 
     _prepareProductObject(product) {
         const obj = {};

@@ -1,5 +1,5 @@
-import getJson from "./../http/getJson";
-import AbsoluteFlashMessage from "./../absoluteFlashMessage";
+import getJson from "../http/getJson";
+import AbsoluteFlashMessage from "../absoluteFlashMessage";
 
 export default class ProductSource {
 

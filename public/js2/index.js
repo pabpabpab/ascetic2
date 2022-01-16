@@ -1582,12 +1582,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getViewedProductItemHtml; });
 function getViewedProductItemHtml(product) {
   //console.log(product);
-  return "<div class=\"product_item__wrapper\">\n               <div class=\"product_item\">\n\n                  <div class=\"product_item__content\">\n                      <div class=\"product_item__quick_view_link__wrapper\">\n                         <a data-quick-view=\"".concat(product.id, "\"\n                            href='product/").concat(product.slug, "-").concat(product.id, "'\n                            class=\"product_item__quick_view_link\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                         </a>\n                      </div>\n\n                      ").concat(Boolean(product.photoName) ? _getPhotoBlockHtml(product) : "<div class=\"product_item__no_photo\">\n                                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                                 </div>", "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='product/").concat(product.slug, "-").concat(product.id, "'\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n                  </div>\n\n               </div>\n            </div>");
+  return "<div class=\"product_item__wrapper\">\n               <div class=\"product_item product_item__in_viewed_summary\">\n\n                  <div class=\"product_item__content\">\n                      <div class=\"product_item__quick_view_link__wrapper product_item__quick_view_link__wrapper__in_viewed_summary\">\n                         <a data-quick-view=\"".concat(product.id, "\"\n                            href='product/").concat(product.slug, "-").concat(product.id, "'\n                            class=\"product_item__quick_view_link product_item__quick_view_link__in_viewed_summary\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                         </a>\n                      </div>\n\n                      ").concat(Boolean(product.photoName) ? _getPhotoBlockHtml(product) : "<div class=\"product_item__no_photo\">\n                                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                                 </div>", "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='product/").concat(product.slug, "-").concat(product.id, "'\n                                  class=\"product_item__name__link product_item__name__link__in_viewed_summary\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price product_item__price__in_viewed_summary\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n                  </div>\n\n               </div>\n            </div>");
 }
 
 function _getPhotoBlockHtml(product) {
   var photoFolder = "/storage/products-photos-size3/";
-  return "<div>\n                <a href='product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photoName, "'\n                       alt=\"\"\n                       class=\"photo__size3\"/>\n                </a>\n            </div>");
+  return "<div>\n                <a href='product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photoName, "'\n                       alt=\"\"\n                       class=\"photo__size3 product_item__photo__in_viewed_summary\"/>\n                </a>\n            </div>");
 }
 
 /***/ }),
@@ -1740,11 +1740,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsTotal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotal */ "./resources/js2/favoriteProducts/favoriteProductsTotal.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
-/* harmony import */ var _productList_productSource__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./productList/productSource */ "./resources/js2/productList/productSource.js");
+/* harmony import */ var _quickProductViewer_productSource__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./quickProductViewer/productSource */ "./resources/js2/quickProductViewer/productSource.js");
 /* harmony import */ var _viewedProducts_viewedProductsSynchronizer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./viewedProducts/viewedProductsSynchronizer */ "./resources/js2/viewedProducts/viewedProductsSynchronizer.js");
-/* harmony import */ var _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./productList/singleProductQuickViewer */ "./resources/js2/productList/singleProductQuickViewer.js");
+/* harmony import */ var _quickProductViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./quickProductViewer/singleProductQuickViewer */ "./resources/js2/quickProductViewer/singleProductQuickViewer.js");
 /* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
-/* harmony import */ var _viewedProducts_viewedProductsSummaryRenderer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./viewedProducts/viewedProductsSummaryRenderer */ "./resources/js2/viewedProducts/viewedProductsSummaryRenderer.js");
+/* harmony import */ var _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./viewedProducts/viewedProductsSummaryMaker */ "./resources/js2/viewedProducts/viewedProductsSummaryMaker.js");
 
 
 
@@ -1780,7 +1780,7 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_pass
   });
 }
 
-if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products') || Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
+if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
   new _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_6__["default"]();
   new _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__["default"]();
 }
@@ -1791,12 +1791,12 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
   Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_12__["default"])();
 }
 
-var viewedProductsSummaryRenderer = new _viewedProducts_viewedProductsSummaryRenderer__WEBPACK_IMPORTED_MODULE_13__["default"]();
+var viewedProductsSummaryMaker = new _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_13__["default"]();
 
-if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products')) {
+if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper')) {
   var viewedProductsSynchronizer = new _viewedProducts_viewedProductsSynchronizer__WEBPACK_IMPORTED_MODULE_10__["default"]();
-  var productSource = new _productList_productSource__WEBPACK_IMPORTED_MODULE_9__["default"]();
-  new _productList_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__["default"](productSource, viewedProductsSynchronizer);
+  var productSource = new _quickProductViewer_productSource__WEBPACK_IMPORTED_MODULE_9__["default"]();
+  new _quickProductViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__["default"](productSource, viewedProductsSynchronizer, viewedProductsSummaryMaker);
 }
 
 /***/ }),
@@ -2160,352 +2160,6 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
   return VisibleBlockByClick;
 }(_visibleBlock__WEBPACK_IMPORTED_MODULE_1__["default"]);
-
-
-
-/***/ }),
-
-/***/ "./resources/js2/productList/productSource.js":
-/*!****************************************************!*\
-  !*** ./resources/js2/productList/productSource.js ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductSource; });
-/* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
-/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-var ProductSource = /*#__PURE__*/function () {
-  function ProductSource() {
-    _classCallCheck(this, ProductSource);
-
-    this.entireList = [];
-    this.descriptionsCache = [];
-    this.singlesCache = [];
-    this.entireListUrl = '/public-js/entire-product-list';
-    this.oneDescriptionUrl = '/public-js/one-product-description/';
-    this.oneProductUrl = '/public-js/one-product/';
-  }
-
-  _createClass(ProductSource, [{
-    key: "getEntireList",
-    value: function getEntireList() {
-      var _this = this;
-
-      if (this.entireList.length > 0) {
-        return new Promise(function (resolve) {
-          return resolve(_toConsumableArray(_this.entireList));
-        });
-      }
-
-      return this.loadEntireList().then(function (data) {
-        return _toConsumableArray(data);
-      });
-    }
-  }, {
-    key: "loadEntireList",
-    value: function loadEntireList() {
-      var _this2 = this;
-
-      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.entireListUrl).then(function (data) {
-        //console.log(data);
-        _this2.entireList = _toConsumableArray(data.products);
-        return _toConsumableArray(data.products);
-      })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B");
-      });
-    }
-  }, {
-    key: "getOneDescription",
-    value: function getOneDescription(productId) {
-      if (this.descriptionsCache.length > 0) {
-        var filtered = this.descriptionsCache.filter(function (item) {
-          return item.product_id === productId;
-        });
-
-        if (filtered.length > 0) {
-          return new Promise(function (resolve) {
-            return resolve(filtered[0]);
-          });
-        }
-      }
-
-      return this.loadOneDescription(productId).then(function (data) {
-        return _objectSpread({}, data);
-      });
-    }
-  }, {
-    key: "loadOneDescription",
-    value: function loadOneDescription(productId) {
-      var _this3 = this;
-
-      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.oneDescriptionUrl + productId).then(function (data) {
-        //console.log(data);
-        _this3.descriptionsCache.push(data.description);
-
-        return _objectSpread({}, data.description);
-      })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u0442\u043E\u0432\u0430\u0440\u0430");
-      });
-    }
-  }, {
-    key: "getOneFromServer",
-    value: function getOneFromServer(productId) {
-      if (this.singlesCache.length > 0) {
-        var filtered = this.singlesCache.filter(function (item) {
-          return item.id === productId;
-        });
-
-        if (filtered.length > 0) {
-          return new Promise(function (resolve) {
-            return resolve(filtered[0]);
-          });
-        }
-      }
-
-      return this.loadOneProduct(productId).then(function (data) {
-        return _objectSpread({}, data);
-      });
-    }
-  }, {
-    key: "loadOneProduct",
-    value: function loadOneProduct(productId) {
-      var _this4 = this;
-
-      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.oneProductUrl + productId).then(function (data) {
-        //console.log(data.product);
-        _this4.singlesCache.push(data.product);
-
-        return _objectSpread({}, data.product);
-      })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440");
-      });
-    }
-  }]);
-
-  return ProductSource;
-}();
-
-
-
-/***/ }),
-
-/***/ "./resources/js2/productList/quickProductDestructor.js":
-/*!*************************************************************!*\
-  !*** ./resources/js2/productList/quickProductDestructor.js ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return quickProductDestructor; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-var quickProductDestructor = /*#__PURE__*/function () {
-  function quickProductDestructor() {
-    var _this = this;
-
-    _classCallCheck(this, quickProductDestructor);
-
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon').addEventListener('click', function (e) {
-      _this._removeQuickProduct();
-    });
-  }
-
-  _createClass(quickProductDestructor, [{
-    key: "_removeQuickProduct",
-    value: function _removeQuickProduct() {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
-      }
-
-      document.body.style.overflow = 'auto';
-    }
-  }]);
-
-  return quickProductDestructor;
-}();
-
-
-
-/***/ }),
-
-/***/ "./resources/js2/productList/singleProductQuickViewer.js":
-/*!***************************************************************!*\
-  !*** ./resources/js2/productList/singleProductQuickViewer.js ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SingleProductQuickViewer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/singleProduct/index-getSingleProductHtml */ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js");
-/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-var SingleProductQuickViewer = /*#__PURE__*/function () {
-  function SingleProductQuickViewer(productSource, viewedProductsSynchronizer) {
-    var _this = this;
-
-    _classCallCheck(this, SingleProductQuickViewer);
-
-    this.source = productSource;
-    this.viewedProductsSynchronizer = viewedProductsSynchronizer;
-    this.limitForLoadingOfEntireList = 100;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products').addEventListener('click', function (e) {
-      if (e.target.dataset.quickView) {
-        e.preventDefault();
-        var productId = Number(e.target.dataset.quickView);
-
-        _this._showOneProduct(productId);
-
-        _this.viewedProductsSynchronizer.sync(productId);
-      }
-    });
-  }
-
-  _createClass(SingleProductQuickViewer, [{
-    key: "_showOneProduct",
-    value: function _showOneProduct(productId) {
-      var productsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#products').dataset.productsCount);
-
-      if (productsCount > this.limitForLoadingOfEntireList) {
-        this._showOneFromServer(productId);
-      } else {
-        this._showOneFromDownloadedList(productId);
-      }
-    }
-  }, {
-    key: "_showOneFromServer",
-    value: function _showOneFromServer(productId) {
-      var _this2 = this;
-
-      return this.source.getOneFromServer(productId).then(function (product) {
-        var productObject = _this2._prepareProductObject(product);
-
-        _this2._renderProduct(productObject);
-      });
-    }
-  }, {
-    key: "_showOneFromDownloadedList",
-    value: function _showOneFromDownloadedList(productId) {
-      var _this3 = this;
-
-      return this.source.getEntireList().then(function (data) {
-        var list = _toConsumableArray(data);
-
-        var product = list.filter(function (item) {
-          return item.id === productId;
-        })[0];
-
-        var productObject = _this3._prepareProductObject(product);
-
-        _this3._renderProduct(productObject);
-
-        _this3.source.getOneDescription(productId).then(function (data) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productDescriptionContainer').innerText = data.description;
-        });
-      });
-    }
-  }, {
-    key: "_renderProduct",
-    value: function _renderProduct(product) {
-      var productHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
-
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
-      }
-
-      document.body.style.overflow = 'hidden';
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', productHtml);
-      Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__["default"])();
-    }
-  }, {
-    key: "_prepareProductObject",
-    value: function _prepareProductObject(product) {
-      var _product$description;
-
-      var obj = {};
-      obj.id = product.id;
-      obj.name = product.name;
-      obj.slug = product.slug;
-      var params = JSON.parse(product.parameters);
-      obj.price = params.price;
-      obj.categories = params.categories;
-      obj.colors = params.colors;
-      obj.materials = params.materials;
-      obj.photos = JSON.parse(product.photo_set);
-      obj.descripton = '';
-
-      if (product !== null && product !== void 0 && (_product$description = product.description) !== null && _product$description !== void 0 && _product$description.description) {
-        obj.description = product.description.description;
-      }
-
-      return obj;
-    }
-  }]);
-
-  return SingleProductQuickViewer;
-}();
 
 
 
@@ -3069,7 +2723,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _desktop_smallPhotoScroller__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./desktop/smallPhotoScroller */ "./resources/js2/productSingle/desktop/smallPhotoScroller.js");
 /* harmony import */ var _mobile_mobileLargePhotoMaker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mobile/mobileLargePhotoMaker */ "./resources/js2/productSingle/mobile/mobileLargePhotoMaker.js");
 /* harmony import */ var _mobile_mobileLargePhotoScroller__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./mobile/mobileLargePhotoScroller */ "./resources/js2/productSingle/mobile/mobileLargePhotoScroller.js");
-/* harmony import */ var _productList_quickProductDestructor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../productList/quickProductDestructor */ "./resources/js2/productList/quickProductDestructor.js");
+/* harmony import */ var _quickProductViewer_quickProductDestructor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../quickProductViewer/quickProductDestructor */ "./resources/js2/quickProductViewer/quickProductDestructor.js");
 
 
 
@@ -3109,9 +2763,368 @@ function singleProductKit() {
   }
 
   if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon')) {
-    new _productList_quickProductDestructor__WEBPACK_IMPORTED_MODULE_7__["default"]();
+    new _quickProductViewer_quickProductDestructor__WEBPACK_IMPORTED_MODULE_7__["default"]();
   }
 }
+
+/***/ }),
+
+/***/ "./resources/js2/quickProductViewer/productSource.js":
+/*!***********************************************************!*\
+  !*** ./resources/js2/quickProductViewer/productSource.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductSource; });
+/* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../http/getJson */ "./resources/js2/http/getJson.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var ProductSource = /*#__PURE__*/function () {
+  function ProductSource() {
+    _classCallCheck(this, ProductSource);
+
+    this.entireList = [];
+    this.descriptionsCache = [];
+    this.singlesCache = [];
+    this.entireListUrl = '/public-js/entire-product-list';
+    this.oneDescriptionUrl = '/public-js/one-product-description/';
+    this.oneProductUrl = '/public-js/one-product/';
+  }
+
+  _createClass(ProductSource, [{
+    key: "getEntireList",
+    value: function getEntireList() {
+      var _this = this;
+
+      if (this.entireList.length > 0) {
+        return new Promise(function (resolve) {
+          return resolve(_toConsumableArray(_this.entireList));
+        });
+      }
+
+      return this.loadEntireList().then(function (data) {
+        return _toConsumableArray(data);
+      });
+    }
+  }, {
+    key: "loadEntireList",
+    value: function loadEntireList() {
+      var _this2 = this;
+
+      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.entireListUrl).then(function (data) {
+        //console.log(data);
+        _this2.entireList = _toConsumableArray(data.products);
+        return _toConsumableArray(data.products);
+      })["catch"](function () {
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B");
+      });
+    }
+  }, {
+    key: "getOneDescription",
+    value: function getOneDescription(productId) {
+      if (this.descriptionsCache.length > 0) {
+        var filtered = this.descriptionsCache.filter(function (item) {
+          return item.product_id === productId;
+        });
+
+        if (filtered.length > 0) {
+          return new Promise(function (resolve) {
+            return resolve(filtered[0]);
+          });
+        }
+      }
+
+      return this.loadOneDescription(productId).then(function (data) {
+        return _objectSpread({}, data);
+      });
+    }
+  }, {
+    key: "loadOneDescription",
+    value: function loadOneDescription(productId) {
+      var _this3 = this;
+
+      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.oneDescriptionUrl + productId).then(function (data) {
+        //console.log(data);
+        _this3.descriptionsCache.push(data.description);
+
+        return _objectSpread({}, data.description);
+      })["catch"](function () {
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u0442\u043E\u0432\u0430\u0440\u0430");
+      });
+    }
+  }, {
+    key: "getOneFromServer",
+    value: function getOneFromServer(productId) {
+      if (this.singlesCache.length > 0) {
+        var filtered = this.singlesCache.filter(function (item) {
+          return item.id === productId;
+        });
+
+        if (filtered.length > 0) {
+          return new Promise(function (resolve) {
+            return resolve(filtered[0]);
+          });
+        }
+      }
+
+      return this.loadOneProduct(productId).then(function (data) {
+        return _objectSpread({}, data);
+      });
+    }
+  }, {
+    key: "loadOneProduct",
+    value: function loadOneProduct(productId) {
+      var _this4 = this;
+
+      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.oneProductUrl + productId).then(function (data) {
+        //console.log(data.product);
+        _this4.singlesCache.push(data.product);
+
+        return _objectSpread({}, data.product);
+      })["catch"](function () {
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440");
+      });
+    }
+  }]);
+
+  return ProductSource;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/quickProductViewer/quickProductDestructor.js":
+/*!********************************************************************!*\
+  !*** ./resources/js2/quickProductViewer/quickProductDestructor.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return quickProductDestructor; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var quickProductDestructor = /*#__PURE__*/function () {
+  function quickProductDestructor() {
+    var _this = this;
+
+    _classCallCheck(this, quickProductDestructor);
+
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon').addEventListener('click', function (e) {
+      _this._removeQuickProduct();
+    });
+  }
+
+  _createClass(quickProductDestructor, [{
+    key: "_removeQuickProduct",
+    value: function _removeQuickProduct() {
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
+      }
+
+      document.body.style.overflow = 'auto';
+    }
+  }]);
+
+  return quickProductDestructor;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/quickProductViewer/singleProductQuickViewer.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js2/quickProductViewer/singleProductQuickViewer.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SingleProductQuickViewer; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/singleProduct/index-getSingleProductHtml */ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js");
+/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var SingleProductQuickViewer = /*#__PURE__*/function () {
+  function SingleProductQuickViewer(productSource, viewedProductsSynchronizer, viewedProductsSummaryMaker) {
+    var _this = this;
+
+    _classCallCheck(this, SingleProductQuickViewer);
+
+    this.source = productSource;
+    this.viewedProductsSynchronizer = viewedProductsSynchronizer;
+    this.viewedProductsSummaryMaker = viewedProductsSummaryMaker;
+    this.limitForLoadingOfEntireList = 100;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+      if (e.target.dataset.quickView) {
+        e.preventDefault();
+        var productId = Number(e.target.dataset.quickView);
+
+        _this._showOneProduct(productId);
+
+        _this.viewedProductsSynchronizer.sync(productId);
+      }
+    });
+  }
+
+  _createClass(SingleProductQuickViewer, [{
+    key: "_showOneProduct",
+    value: function _showOneProduct(productId) {
+      // на страницах где нет списка товаров
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList')) {
+        this._showOneFromServer(productId);
+
+        return;
+      } // на страницах где есть список товаров
+
+
+      var productsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.productsCount);
+
+      if (productsCount > this.limitForLoadingOfEntireList) {
+        this._showOneFromServer(productId);
+      } else {
+        this._showOneFromDownloadedList(productId);
+      }
+    }
+  }, {
+    key: "_showOneFromServer",
+    value: function _showOneFromServer(productId) {
+      var _this2 = this;
+
+      return this.source.getOneFromServer(productId).then(function (product) {
+        _this2.viewedProductsSummaryMaker.remakeWith(product);
+
+        var productObject = _this2._prepareProductObject(product);
+
+        _this2._renderProduct(productObject);
+      });
+    }
+  }, {
+    key: "_showOneFromDownloadedList",
+    value: function _showOneFromDownloadedList(productId) {
+      var _this3 = this;
+
+      return this.source.getEntireList().then(function (data) {
+        var list = _toConsumableArray(data);
+
+        var product = list.filter(function (item) {
+          return item.id === productId;
+        })[0];
+
+        _this3.viewedProductsSummaryMaker.remakeWith(product);
+
+        var productObject = _this3._prepareProductObject(product);
+
+        _this3._renderProduct(productObject);
+
+        _this3.source.getOneDescription(productId).then(function (data) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productDescriptionContainer').innerText = data.description;
+        });
+      });
+    }
+  }, {
+    key: "_renderProduct",
+    value: function _renderProduct(product) {
+      var productHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
+      }
+
+      document.body.style.overflow = 'hidden';
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', productHtml);
+      Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_2__["default"])();
+    }
+  }, {
+    key: "_prepareProductObject",
+    value: function _prepareProductObject(product) {
+      var _product$description;
+
+      var obj = {};
+      obj.id = product.id;
+      obj.name = product.name;
+      obj.slug = product.slug;
+      var params = JSON.parse(product.parameters);
+      obj.price = params.price;
+      obj.categories = params.categories;
+      obj.colors = params.colors;
+      obj.materials = params.materials;
+      obj.photos = JSON.parse(product.photo_set);
+      obj.descripton = '';
+
+      if (product !== null && product !== void 0 && (_product$description = product.description) !== null && _product$description !== void 0 && _product$description.description) {
+        obj.description = product.description.description;
+      }
+
+      return obj;
+    }
+  }]);
+
+  return SingleProductQuickViewer;
+}();
+
+
 
 /***/ }),
 
@@ -3346,16 +3359,16 @@ function registerValidation(user) {
 
 /***/ }),
 
-/***/ "./resources/js2/viewedProducts/viewedProductsSummaryRenderer.js":
-/*!***********************************************************************!*\
-  !*** ./resources/js2/viewedProducts/viewedProductsSummaryRenderer.js ***!
-  \***********************************************************************/
+/***/ "./resources/js2/viewedProducts/viewedProductsSummaryMaker.js":
+/*!********************************************************************!*\
+  !*** ./resources/js2/viewedProducts/viewedProductsSummaryMaker.js ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ViewedProductsSummaryRenderer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ViewedProductsSummaryMaker; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
 /* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
 /* harmony import */ var _html_viewedProducts_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/viewedProducts/getViewedProductsItemHtml */ "./resources/js2/html/viewedProducts/getViewedProductsItemHtml.js");
@@ -3381,45 +3394,70 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-var ViewedProductsSummaryRenderer = /*#__PURE__*/function () {
-  function ViewedProductsSummaryRenderer() {
+var ViewedProductsSummaryMaker = /*#__PURE__*/function () {
+  function ViewedProductsSummaryMaker() {
     var _this = this;
 
-    _classCallCheck(this, ViewedProductsSummaryRenderer);
+    _classCallCheck(this, ViewedProductsSummaryMaker);
 
-    this.htmlWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper');
+    this.wrapperOfSummary = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper');
 
-    if (!this.htmlWrapper) {
+    if (!this.wrapperOfSummary) {
       return;
     }
 
-    this.viewedProductsSummaryWasRendered = false;
+    this.idOfContent = 'viewedProductsSummaryContent';
+    this.viewedProductsSummaryWasCreated = false;
     this.summaryListUrl = '/public-js/viewed-product-summary-list';
     this.summaryList = [];
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('mouseover', function (e) {
-      _this._firstRender();
+      _this._firstCreation();
     });
   }
 
-  _createClass(ViewedProductsSummaryRenderer, [{
-    key: "_firstRender",
-    value: function _firstRender() {
+  _createClass(ViewedProductsSummaryMaker, [{
+    key: "_firstCreation",
+    value: function _firstCreation() {
       var _this2 = this;
 
-      if (this.viewedProductsSummaryWasRendered) {
+      if (this.viewedProductsSummaryWasCreated) {
         return;
       }
 
-      this.viewedProductsSummaryWasRendered = true;
+      this.viewedProductsSummaryWasCreated = true;
 
       this._loadSummaryList().then(function (data) {
         var products = _toConsumableArray(data); //console.log(products);
 
 
-        var html = _this2._getTotalHtml(products);
-
-        _this2.htmlWrapper.insertAdjacentHTML('beforeend', html);
+        _this2._render(products);
       });
+    }
+  }, {
+    key: "remakeWith",
+    value: function remakeWith(product) {
+      var index = this.summaryList.findIndex(function (item) {
+        return item.id === product.id;
+      });
+
+      if (index > -1) {
+        this.summaryList.splice(index, 1);
+      }
+
+      this.summaryList = [product].concat(_toConsumableArray(this.summaryList));
+
+      this._render(this.summaryList);
+    }
+  }, {
+    key: "_render",
+    value: function _render(products) {
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent))) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent)).remove();
+      }
+
+      var html = this._getTotalHtml(products);
+
+      this.wrapperOfSummary.insertAdjacentHTML('beforeend', html);
     }
   }, {
     key: "_getTotalHtml",
@@ -3432,7 +3470,7 @@ var ViewedProductsSummaryRenderer = /*#__PURE__*/function () {
         return Object(_html_viewedProducts_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
       });
       var itemsHtml = itemsHtmlArr.join('');
-      return "<div id=\"viewedProductsSummaryContent\" class=\"display-flex\">".concat(itemsHtml, "</div>");
+      return "<div id=\"".concat(this.idOfContent, "\" class=\"display-flex\">").concat(itemsHtml, "</div>");
     }
   }, {
     key: "_loadSummaryList",
@@ -3460,7 +3498,7 @@ var ViewedProductsSummaryRenderer = /*#__PURE__*/function () {
     }
   }]);
 
-  return ViewedProductsSummaryRenderer;
+  return ViewedProductsSummaryMaker;
 }();
 
 

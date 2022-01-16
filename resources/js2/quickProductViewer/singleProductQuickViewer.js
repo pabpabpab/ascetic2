@@ -1,15 +1,16 @@
-import el from './../el';
+import el from '../el';
 import getSingleProductHtml from "../html/singleProduct/index-getSingleProductHtml";
-import singleProductKit from "./../productSingle/singleProductKit";
+import singleProductKit from "../productSingle/singleProductKit";
 
 export default class SingleProductQuickViewer {
 
-    constructor(productSource, viewedProductsSynchronizer) {
+    constructor(productSource, viewedProductsSynchronizer, viewedProductsSummaryMaker) {
         this.source = productSource;
         this.viewedProductsSynchronizer = viewedProductsSynchronizer;
+        this.viewedProductsSummaryMaker = viewedProductsSummaryMaker;
         this.limitForLoadingOfEntireList = 100;
 
-        el('#products').addEventListener('click', (e) => {
+        el('body').addEventListener('click', (e) => {
             if (e.target.dataset.quickView) {
                 e.preventDefault();
                 const productId = Number(e.target.dataset.quickView);
@@ -20,7 +21,14 @@ export default class SingleProductQuickViewer {
     }
 
     _showOneProduct(productId) {
-        const productsCount = Number(el('#products').dataset.productsCount);
+        // на страницах где нет списка товаров
+        if (!el('#productList')) {
+            this._showOneFromServer(productId);
+            return;
+        }
+
+        // на страницах где есть список товаров
+        const productsCount = Number(el('#productList').dataset.productsCount);
         if (productsCount > this.limitForLoadingOfEntireList) {
             this._showOneFromServer(productId);
         } else {
@@ -32,6 +40,7 @@ export default class SingleProductQuickViewer {
     _showOneFromServer(productId) {
         return this.source.getOneFromServer(productId)
             .then((product) => {
+                this.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = this._prepareProductObject(product);
                 this._renderProduct(productObject);
             });
@@ -43,6 +52,7 @@ export default class SingleProductQuickViewer {
             .then((data) => {
                 const list = [...data];
                 const product = list.filter(item => item.id === productId)[0];
+                this.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = this._prepareProductObject(product);
                 this._renderProduct(productObject);
                 this.source.getOneDescription(productId)

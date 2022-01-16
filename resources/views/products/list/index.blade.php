@@ -28,7 +28,7 @@
     <section>
         <h1 class="products__h1">{{ $pageTitle }}</h1>
 
-        <div id="products" data-products-count="{{ $productsCount }}" class="products">
+        <div id="productList" data-products-count="{{ $productsCount }}" class="products">
             @each('products.list.product-item', $products, 'product')
         </div>
     </section>

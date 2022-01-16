@@ -12,12 +12,12 @@ import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoritePro
 import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
-import ProductSource from "./productList/productSource";
+import ProductSource from "./quickProductViewer/productSource";
 import ViewedProductsSynchronizer from "./viewedProducts/viewedProductsSynchronizer";
-import SingleProductQuickViewer from "./productList/singleProductQuickViewer";
+import SingleProductQuickViewer from "./quickProductViewer/singleProductQuickViewer";
 import singleProductKit from "./productSingle/singleProductKit";
 
-import ViewedProductsSummaryRenderer from "./viewedProducts/viewedProductsSummaryRenderer";
+import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMaker";
 
 
 new CsrfUpdater();
@@ -43,7 +43,7 @@ if (el('.auth_page__change_password_type__wrapper')) {
 
 
 
-if (el('#products') || el('#singleProduct')) {
+if (el('#productList') || el('#singleProduct')) {
     new FavoriteProductsIndicationByPageLoad();
     new FavoriteProductsSwitcher();
 }
@@ -56,16 +56,12 @@ if (el('#singleProduct')) {
 }
 
 
-const viewedProductsSummaryRenderer = new ViewedProductsSummaryRenderer();
-
-
-if (el('#products')) {
+const viewedProductsSummaryMaker = new ViewedProductsSummaryMaker();
+if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
     const viewedProductsSynchronizer = new ViewedProductsSynchronizer();
     const productSource = new ProductSource();
-    new SingleProductQuickViewer(productSource, viewedProductsSynchronizer);
+    new SingleProductQuickViewer(productSource, viewedProductsSynchronizer, viewedProductsSummaryMaker);
 }
-
-
 
 
 
