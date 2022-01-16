@@ -47,7 +47,7 @@ class ViewedProductsService
 
     public function getSummaryOfViewed()
     {
-        $itemCountOfSummary = 5;
+        $itemCountOfSummary = 8;
         $frontIdsArr = $this->_getFrontIdsArr();
         $summaryIdsArr = array_slice($frontIdsArr, 0, $itemCountOfSummary);
         $summaryIdsStr = count($summaryIdsArr) > 0 ? implode(',', $summaryIdsArr) : '0';

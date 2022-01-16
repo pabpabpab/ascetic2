@@ -18,9 +18,6 @@
     {{-- --}}
 @else
     <aside id="viewedProductsSummaryWrapper" class="viewed_products__aside">
-        <a href='{{ route('products.viewed') }}' class="viewed_products__link">
-            Просмотренные товары
-        </a>
     </aside>
 @endif
 

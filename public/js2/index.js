@@ -1570,10 +1570,26 @@ function indexGetSingleProductHtml(product) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/viewedProducts/getViewedProductsItemHtml.js":
-/*!************************************************************************!*\
-  !*** ./resources/js2/html/viewedProducts/getViewedProductsItemHtml.js ***!
-  \************************************************************************/
+/***/ "./resources/js2/html/viewedProductsSummary/getViewedProductsHeaderHtml.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js2/html/viewedProductsSummary/getViewedProductsHeaderHtml.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getViewedProductHeaderHtml; });
+function getViewedProductHeaderHtml(product) {
+  return "<div class=\"viewed_products__aside__header\">\n                <h2 class=\"viewed_products__aside__h2\">\u0412\u044B \u043D\u0435\u0434\u0430\u0432\u043D\u043E \u0441\u043C\u043E\u0442\u0440\u0435\u043B\u0438</h2>\n                <a href=\"/viewed-products\" class=\"viewed_products__link\">\n                    \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0432\u0441\u0435\n                </a>\n           </div>";
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/viewedProductsSummary/getViewedProductsItemHtml.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js2/html/viewedProductsSummary/getViewedProductsItemHtml.js ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3371,7 +3387,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ViewedProductsSummaryMaker; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
 /* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
-/* harmony import */ var _html_viewedProducts_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/viewedProducts/getViewedProductsItemHtml */ "./resources/js2/html/viewedProducts/getViewedProductsItemHtml.js");
+/* harmony import */ var _html_viewedProductsSummary_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/viewedProductsSummary/getViewedProductsItemHtml */ "./resources/js2/html/viewedProductsSummary/getViewedProductsItemHtml.js");
+/* harmony import */ var _html_viewedProductsSummary_getViewedProductsHeaderHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/viewedProductsSummary/getViewedProductsHeaderHtml */ "./resources/js2/html/viewedProductsSummary/getViewedProductsHeaderHtml.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3389,6 +3406,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -3430,12 +3448,18 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function () {
         var products = _toConsumableArray(data); //console.log(products);
 
 
-        _this2._render(products);
+        _this2._renderHeader();
+
+        _this2._renderBody(products);
       });
     }
   }, {
     key: "remakeWith",
     value: function remakeWith(product) {
+      if (!this.wrapperOfSummary) {
+        return;
+      }
+
       var index = this.summaryList.findIndex(function (item) {
         return item.id === product.id;
       });
@@ -3446,31 +3470,32 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function () {
 
       this.summaryList = [product].concat(_toConsumableArray(this.summaryList));
 
-      this._render(this.summaryList);
+      this._renderBody(this.summaryList);
     }
   }, {
-    key: "_render",
-    value: function _render(products) {
+    key: "_renderHeader",
+    value: function _renderHeader() {
+      var html = Object(_html_viewedProductsSummary_getViewedProductsHeaderHtml__WEBPACK_IMPORTED_MODULE_3__["default"])();
+      this.wrapperOfSummary.insertAdjacentHTML('afterbegin', html);
+    }
+  }, {
+    key: "_renderBody",
+    value: function _renderBody(products) {
+      var _this3 = this;
+
       if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent))) {
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent)).remove();
-      }
+      } //const html = this._getTotalHtml(products);
 
-      var html = this._getTotalHtml(products);
-
-      this.wrapperOfSummary.insertAdjacentHTML('beforeend', html);
-    }
-  }, {
-    key: "_getTotalHtml",
-    value: function _getTotalHtml(products) {
-      var _this3 = this;
 
       var itemsHtmlArr = products.map(function (product) {
         var productObject = _this3._prepareProductObject(product);
 
-        return Object(_html_viewedProducts_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
+        return Object(_html_viewedProductsSummary_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
       });
       var itemsHtml = itemsHtmlArr.join('');
-      return "<div id=\"".concat(this.idOfContent, "\" class=\"display-flex\">").concat(itemsHtml, "</div>");
+      var totalHtml = "<div id=\"".concat(this.idOfContent, "\">").concat(itemsHtml, "</div>");
+      this.wrapperOfSummary.insertAdjacentHTML('beforeend', totalHtml);
     }
   }, {
     key: "_loadSummaryList",

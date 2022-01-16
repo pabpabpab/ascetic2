@@ -1,6 +1,7 @@
 import el from './../el';
 import getJson from "./../http/getJson";
-import getViewedProductsItemHtml from "../html/viewedProducts/getViewedProductsItemHtml";
+import getViewedProductsItemHtml from "../html/viewedProductsSummary/getViewedProductsItemHtml";
+import getViewedProductsHeaderHtml from "../html/viewedProductsSummary/getViewedProductsHeaderHtml";
 
 export default class ViewedProductsSummaryMaker {
     constructor() {
@@ -30,34 +31,41 @@ export default class ViewedProductsSummaryMaker {
             .then((data) => {
                 const products = [...data];
                 //console.log(products);
-                this._render(products);
+                this._renderHeader();
+                this._renderBody(products);
             });
     }
 
     remakeWith(product) {
+        if (!this.wrapperOfSummary) {
+            return;
+        }
         const index = this.summaryList.findIndex(item => item.id === product.id);
         if (index > -1) {
             this.summaryList.splice(index, 1);
         }
         this.summaryList = [ ...[product], ...this.summaryList ];
-        this._render(this.summaryList);
+        this._renderBody(this.summaryList);
     }
 
-    _render(products) {
+    _renderHeader() {
+        const html = getViewedProductsHeaderHtml();
+        this.wrapperOfSummary.insertAdjacentHTML('afterbegin', html);
+    }
+
+    _renderBody(products) {
         if (el(`#${this.idOfContent}`)) {
             el(`#${this.idOfContent}`).remove();
         }
-        const html = this._getTotalHtml(products);
-        this.wrapperOfSummary.insertAdjacentHTML('beforeend', html);
-    }
+        //const html = this._getTotalHtml(products);
 
-    _getTotalHtml(products) {
         const itemsHtmlArr = products.map((product) => {
             const productObject = this._prepareProductObject(product);
             return getViewedProductsItemHtml(productObject);
         });
         const itemsHtml = itemsHtmlArr.join('');
-        return `<div id="${this.idOfContent}" class="display-flex">${itemsHtml}</div>`;
+        const totalHtml = `<div id="${this.idOfContent}">${itemsHtml}</div>`;
+        this.wrapperOfSummary.insertAdjacentHTML('beforeend', totalHtml);
     }
 
     _loadSummaryList() {
