@@ -1,13 +1,13 @@
 import postJson from "./../http/postJson";
 
-export default class ViewedProductsSynchronizer {
+export default class ViewedProductsAppender {
 
     constructor() {
         this.postUrl = '/public-js/viewed-products/post';
         this.disabledSubmit = false;
     }
 
-    sync(productId) {
+    post(productId) {
         if (! this._getSubmitPermission()) {
             return;
         }

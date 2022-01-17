@@ -25,11 +25,15 @@ class ProductController extends Controller
             return $currentPage;
         });
 
+        $productsCount = Product::count();
+        $perPage = 3;
         $products = $service->getAll('active')
-            ->paginate(3);
+            ->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
-            'productsCount' => Product::count()
+            'currentPage' => $currentPage,
+            'productsCount' => $productsCount,
+            'pageCount' => ceil($productsCount/$perPage)
         ]);
     }
 
@@ -42,11 +46,15 @@ class ProductController extends Controller
             return $currentPage;
         });
 
+        $productsCount = Product::count();
+        $perPage = 3;
         $products = $service->getAll('active')
-            ->paginate(3);
+            ->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
-            'productsCount' => Product::count()
+            'currentPage' => $currentPage,
+            'productsCount' => $productsCount,
+            'pageCount' => ceil($productsCount/$perPage)
         ]);
     }
 
@@ -60,12 +68,16 @@ class ProductController extends Controller
             return $currentPage;
         });
 
+        $productsCount = Product::count();
+        $perPage = 1;
         // $category определена в роуте как {category:slug}
         return view('products.list.index', [
             'category' => $category,
             'categorySeo' => $category->seoText,
-            'products' => $category->products()->paginate(1),
-            'productsCount' => Product::count()
+            'products' => $category->products()->paginate($perPage),
+            'currentPage' => $currentPage,
+            'productsCount' => $productsCount,
+            'pageCount' => ceil($productsCount/$perPage)
         ]);
     }
 
@@ -78,10 +90,14 @@ class ProductController extends Controller
         });
 
 
-        $products = $service->getAllViewed()->paginate(30);
+        $productsCount = Product::count();
+        $perPage = 30;
+        $products = $service->getAllViewed()->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
-            'productsCount' => Product::count()
+            'currentPage' => $currentPage,
+            'productsCount' => $productsCount,
+            'pageCount' => ceil($productsCount/$perPage)
         ]);
     }
 
@@ -93,10 +109,14 @@ class ProductController extends Controller
             return $currentPage;
         });
 
-        $products = $service->getList()->paginate(3);
+        $productsCount = Product::count();
+        $perPage = 3;
+        $products = $service->getList()->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
-            'productsCount' => Product::count()
+            'currentPage' => $currentPage,
+            'productsCount' => $productsCount,
+            'pageCount' => ceil($productsCount/$perPage)
         ]);
     }
 

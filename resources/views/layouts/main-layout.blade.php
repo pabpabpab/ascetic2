@@ -15,8 +15,8 @@
 -->
 
     <link rel="stylesheet" href="{{ asset('css/fonts2.css') }}" />
-    <link rel="stylesheet" href="{{ mix('css/index.css') }}">
-    <script src="{{ mix('js2/index.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ mix('css/index.css') }}?t=@php echo time(); @endphp">
+    <script src="{{ mix('js2/index.js') }}?t=@php echo time(); @endphp" defer></script>
 
 </head>
 <body>

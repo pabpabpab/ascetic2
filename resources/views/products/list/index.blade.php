@@ -34,13 +34,29 @@
     </section>
 
 
-    @if (in_array($currentRouteName, ['mainPage', 'products.list']))
-        {{ $products->links('pagination.all-products-pagination') }}
-    @elseif (in_array($currentRouteName, ['products.byCategory']))
-        {{ $products->links('pagination.products-by-category-pagination', ['category' => $category]) }}
-    @elseif (in_array($currentRouteName, ['products.viewed']))
-        {{ $products->links('pagination.viewed-products-pagination') }}
-    @elseif (in_array($currentRouteName, ['products.favorites']))
-        {{ $products->links('pagination.favorite-products-pagination') }}
+    @if($pageCount > 1)
+        <div class="pagination_and_view_more">
+
+            @if($currentPage === 1)
+                <div class="pagination_and_view_more__view_more">
+                    <button class="pagination_and_view_more__view_more__button">
+                        Показать еще
+                    </button>
+                </div>
+            @endif
+
+            <nav class="pagination_and_view_more__pagination_nav @if($currentPage > 1) w100 @endif">
+                @if (in_array($currentRouteName, ['mainPage', 'products.list']))
+                    {{ $products->links('pagination.all-products-pagination') }}
+                @elseif (in_array($currentRouteName, ['products.byCategory']))
+                    {{ $products->links('pagination.products-by-category-pagination', ['category' => $category]) }}
+                @elseif (in_array($currentRouteName, ['products.viewed']))
+                    {{ $products->links('pagination.viewed-products-pagination') }}
+                @elseif (in_array($currentRouteName, ['products.favorites']))
+                    {{ $products->links('pagination.favorite-products-pagination') }}
+                @endif
+            </nav>
+        </div>
     @endif
+
 @endsection

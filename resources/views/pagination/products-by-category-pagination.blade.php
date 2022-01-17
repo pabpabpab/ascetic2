@@ -19,33 +19,32 @@
         }
     @endphp
 
-    <nav class="pagination_nav">
 
-        <div class="pagination_nav__left">
-            @if ($prevRoute)
-                <a href="{{ $prevRoute }}" class="pagination__link pagination__link__arrow_left"></a>
-            @endif
+    <div class="pagination_nav__content">
+        @if ($prevRoute)
+            <a href="{{ $prevRoute }}" class="pagination__link pagination__link__arrow_left"></a>
+        @endif
 
-            @for ($i = 1; $i <= $paginator->lastPage(); $i++)
-                @if ($paginator->currentPage() === $i)
-                    <span class="pagination__link_active">
+        @for ($i = 1; $i <= $paginator->lastPage(); $i++)
+            @if ($paginator->currentPage() === $i)
+                <span class="pagination__link_active">
                         {{ $i }}
                     </span>
-                @elseif ($i === 1)
-                    <a href="{{ route($routeName, ['category' => $category->slug]) }}" class="pagination__link">
-                        1
-                    </a>
-                @else
-                    <a href="{{ route($routeName, ['category' => $category->slug, 'pageNumber' => $i]) }}" class="pagination__link">
-                        {{ $i }}
-                    </a>
-                @endif
-            @endfor
-
-            @if ($nextRoute)
-                <a href="{{ $nextRoute }}" class="pagination__link pagination__link__arrow_right"></a>
+            @elseif ($i === 1)
+                <a href="{{ route($routeName, ['category' => $category->slug]) }}" class="pagination__link">
+                    1
+                </a>
+            @else
+                <a href="{{ route($routeName, ['category' => $category->slug, 'pageNumber' => $i]) }}"
+                   class="pagination__link">
+                    {{ $i }}
+                </a>
             @endif
-        </div>
+        @endfor
 
-    </nav>
+        @if ($nextRoute)
+            <a href="{{ $nextRoute }}" class="pagination__link pagination__link__arrow_right"></a>
+        @endif
+    </div>
+
 @endif

@@ -4,18 +4,18 @@ import singleProductKit from "../productSingle/singleProductKit";
 
 export default class SingleProductQuickViewer {
 
-    constructor(productSource, viewedProductsSynchronizer, viewedProductsSummaryMaker) {
-        this.source = productSource;
-        this.viewedProductsSynchronizer = viewedProductsSynchronizer;
-        this.viewedProductsSummaryMaker = viewedProductsSummaryMaker;
-        this.limitForLoadingOfEntireList = 100;
+    constructor(data) {
+        this.source = data.productSource;
+        this.viewedProductsAppender = data.viewedProductsAppender;
+        this.viewedProductsSummaryMaker = data.viewedProductsSummaryMaker;
+        this.limitForLoadingOfEntireList = data.limitForLoadingOfProductEntireList;
 
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.quickView) {
                 e.preventDefault();
                 const productId = Number(e.target.dataset.quickView);
                 this._showOneProduct(productId);
-                this.viewedProductsSynchronizer.sync(productId);
+                this.viewedProductsAppender.post(productId);
             }
         });
     }

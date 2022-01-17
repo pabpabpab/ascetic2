@@ -12,9 +12,9 @@ import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoritePro
 import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
-import ProductSource from "./quickProductViewer/productSource";
-import ViewedProductsSynchronizer from "./viewedProducts/viewedProductsSynchronizer";
-import SingleProductQuickViewer from "./quickProductViewer/singleProductQuickViewer";
+import ProductSource from "./productSource/productSource";
+import ViewedProductsAppender from "./viewedProducts/viewedProductsAppender";
+import SingleProductQuickViewer from "./productQuickViewer/singleProductQuickViewer";
 import singleProductKit from "./productSingle/singleProductKit";
 
 import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMaker";
@@ -56,11 +56,19 @@ if (el('#singleProduct')) {
 }
 
 
+const limitForLoadingOfProductEntireList = 100;
+
+
 const viewedProductsSummaryMaker = new ViewedProductsSummaryMaker();
 if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
-    const viewedProductsSynchronizer = new ViewedProductsSynchronizer();
+    const viewedProductsAppender = new ViewedProductsAppender();
     const productSource = new ProductSource();
-    new SingleProductQuickViewer(productSource, viewedProductsSynchronizer, viewedProductsSummaryMaker);
+    new SingleProductQuickViewer({
+        productSource,
+        viewedProductsAppender,
+        viewedProductsSummaryMaker,
+        limitForLoadingOfProductEntireList,
+    });
 }
 
 
