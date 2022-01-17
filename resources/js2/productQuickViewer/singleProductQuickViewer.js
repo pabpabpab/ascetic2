@@ -1,6 +1,7 @@
-import el from '../el';
-import getSingleProductHtml from "../html/singleProduct/index-getSingleProductHtml";
-import singleProductKit from "../productSingle/singleProductKit";
+import el from './../el';
+import getProductObject from "./../productObject/getProductObject";
+import getSingleProductHtml from "./../html/singleProduct/index-getSingleProductHtml";
+import singleProductKit from "./../productSingle/singleProductKit";
 
 export default class SingleProductQuickViewer {
 
@@ -41,7 +42,7 @@ export default class SingleProductQuickViewer {
         return this.source.getOneFromServer(productId)
             .then((product) => {
                 this.viewedProductsSummaryMaker.remakeWith(product);
-                const productObject = this._prepareProductObject(product);
+                const productObject = getProductObject(product);
                 this._renderProduct(productObject);
             });
     }
@@ -53,7 +54,7 @@ export default class SingleProductQuickViewer {
                 const list = [...data];
                 const product = list.filter(item => item.id === productId)[0];
                 this.viewedProductsSummaryMaker.remakeWith(product);
-                const productObject = this._prepareProductObject(product);
+                const productObject = getProductObject(product);
                 this._renderProduct(productObject);
                 this.source.getOneDescription(productId)
                     .then((data) => {
@@ -73,29 +74,6 @@ export default class SingleProductQuickViewer {
         el('body').insertAdjacentHTML('beforeend', productHtml);
 
         singleProductKit();
-    }
-
-
-    _prepareProductObject(product) {
-        const obj = {};
-        obj.id = product.id;
-        obj.name = product.name;
-        obj.slug = product.slug;
-
-        const params = JSON.parse(product.parameters);
-        obj.price = params.price;
-        obj.categories = params.categories;
-        obj.colors = params.colors;
-        obj.materials = params.materials;
-
-        obj.photos = JSON.parse(product.photo_set);
-
-        obj.descripton = '';
-        if (product?.description?.description) {
-            obj.description = product.description.description;
-        }
-
-        return obj;
     }
 
 }

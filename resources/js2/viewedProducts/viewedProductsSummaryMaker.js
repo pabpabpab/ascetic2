@@ -1,7 +1,9 @@
 import el from './../el';
 import getJson from "./../http/getJson";
-import getViewedProductsItemHtml from "../html/viewedProductsSummary/getViewedProductsItemHtml";
-import getViewedProductsHeaderHtml from "../html/viewedProductsSummary/getViewedProductsHeaderHtml";
+import getViewedProductsItemHtml from "./../html/viewedProductsSummary/getViewedProductsItemHtml";
+import getViewedProductsHeaderHtml from "./../html/viewedProductsSummary/getViewedProductsHeaderHtml";
+import getProductObject from "./../productObject/getProductObject";
+
 
 export default class ViewedProductsSummaryMaker {
     constructor() {
@@ -57,10 +59,9 @@ export default class ViewedProductsSummaryMaker {
         if (el(`#${this.idOfContent}`)) {
             el(`#${this.idOfContent}`).remove();
         }
-        //const html = this._getTotalHtml(products);
 
         const itemsHtmlArr = products.map((product) => {
-            const productObject = this._prepareProductObject(product);
+            const productObject = getProductObject(product);
             return getViewedProductsItemHtml(productObject);
         });
         const itemsHtml = itemsHtmlArr.join('');
@@ -80,17 +81,4 @@ export default class ViewedProductsSummaryMaker {
             });
     }
 
-    _prepareProductObject(product) {
-        const obj = {};
-        obj.id = product.id;
-        obj.name = product.name;
-        obj.slug = product.slug;
-
-        const params = JSON.parse(product.parameters);
-        obj.price = params.price;
-
-        obj.photoName = JSON.parse(product.photo_set)[0];
-
-        return obj;
-    }
 }

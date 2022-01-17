@@ -14,7 +14,7 @@ export default function getViewedProductItemHtml(product) {
                       </div>
 
                       ${
-                          Boolean(product.photoName)
+                          Boolean(product.photos)
                               ? _getPhotoBlockHtml(product)
                               : `<div class="product_item__no_photo">
                                     НЕТ ФОТО
@@ -43,7 +43,7 @@ function _getPhotoBlockHtml(product) {
     const photoFolder = "/storage/products-photos-size3/";
     return `<div>
                 <a href='product/${product.slug}-${product.id}'>
-                    <img src='${photoFolder}${product.id}s3-${product.photoName}'
+                    <img src='${photoFolder}${product.id}s3-${product.photos[0]}'
                        alt=""
                        class="photo__size3 product_item__photo__in_viewed_summary"/>
                 </a>

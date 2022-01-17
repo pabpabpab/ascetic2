@@ -68,8 +68,8 @@ class ProductController extends Controller
             return $currentPage;
         });
 
-        $productsCount = Product::count();
-        $perPage = 1;
+        $productsCount = $category->products()->count();
+        $perPage = 3;
         // $category определена в роуте как {category:slug}
         return view('products.list.index', [
             'category' => $category,
@@ -90,7 +90,7 @@ class ProductController extends Controller
         });
 
 
-        $productsCount = Product::count();
+        $productsCount = $service->getAllViewed()->count();
         $perPage = 30;
         $products = $service->getAllViewed()->paginate($perPage);
         return view('products.list.index', [
@@ -109,7 +109,7 @@ class ProductController extends Controller
             return $currentPage;
         });
 
-        $productsCount = Product::count();
+        $productsCount = $service->getList()->count();
         $perPage = 3;
         $products = $service->getList()->paginate($perPage);
         return view('products.list.index', [
