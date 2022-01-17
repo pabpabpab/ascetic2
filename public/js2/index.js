@@ -1819,7 +1819,7 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Objec
     viewedProductsSummaryMaker: viewedProductsSummaryMaker,
     limitForLoadingOfProductEntireList: limitForLoadingOfProductEntireList
   });
-}
+} // history.replaceState(null,null, 'newpage');
 
 /***/ }),
 

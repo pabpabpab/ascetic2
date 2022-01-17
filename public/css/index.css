@@ -1291,20 +1291,27 @@ h2 {
 .pagination_and_view_more__view_more__button {
   display: block;
   font-size: 16px;
-  color: #000;
+  color: #fff;
   font-weight: 400;
   font-family: "Oswald", sans-serif;
-  background-color: #f0f0f0;
+  background-color: #000;
   border: 0;
   padding: 12px 25px;
   cursor: pointer;
-  -webkit-transition: background-color 0.2s, color 0.2s;
-  transition: background-color 0.2s, color 0.2s;
+  -webkit-transition: -webkit-box-shadow 0.2s;
+  transition: -webkit-box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
 }
 
 .pagination_and_view_more__view_more__button:hover {
-  background-color: #000;
-  color: #fff;
+  -webkit-box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.9);
+          box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.9);
+}
+
+.pagination_and_view_more__view_more__button:active {
+  -webkit-box-shadow: unset;
+          box-shadow: unset;
 }
 
 .pagination_and_view_more__pagination_nav {

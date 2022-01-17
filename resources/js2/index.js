@@ -73,7 +73,7 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
 
 
 
-
+// history.replaceState(null,null, 'newpage');
 
 
 

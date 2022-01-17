@@ -5,7 +5,6 @@
     display: flex
     align-items: flex-end
     justify-content: space-between
-    //border: 1px solid #003cff
     &__view_more
         min-width: 52%
         display: flex
@@ -13,17 +12,17 @@
         justify-content: flex-end
         &__button
             display: block
-            +font(16px, #000, 400)
+            +font(16px, #fff, 400)
             font-family: $h1_font_family
-            // letter-spacing: 1px
-            background-color: #f0f0f0 // #fff
+            background-color: #000
             border: 0
             padding: 12px 25px
             cursor: pointer
-            transition: background-color .2s, color .2s
+            transition: box-shadow .2s
             &:hover
-                background-color: #000
-                color: #fff
+                box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.9)
+            &:active
+                box-shadow: unset
     &__pagination_nav
         width: 48%
         padding: 0 0 0 15px
