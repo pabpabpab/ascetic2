@@ -12,7 +12,7 @@ import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoritePro
 import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
-import ProductSource from "./productSource/productSource";
+import ProductCache from "./productSource/productCache";
 import ViewedProductsAppender from "./viewedProducts/viewedProductsAppender";
 import SingleProductQuickViewer from "./productQuickViewer/singleProductQuickViewer";
 import singleProductKit from "./productSingle/singleProductKit";
@@ -56,25 +56,41 @@ if (el('#singleProduct')) {
 }
 
 
-const limitForLoadingOfProductEntireList = 100;
+import SearchSettingsStore from "./productSource/searchSettingsStore";
+import SearchUrlMaker from "./productSource/searchUrlMaker";
+import PublicUrlMaker from "./productSource/publicUrlMaker";
+import FilteredProductsSource from "./productSource/filteredProductsSource";
 
+const limitForCachingOfProductEntireList = 100;
 
 const viewedProductsSummaryMaker = new ViewedProductsSummaryMaker();
 if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
     const viewedProductsAppender = new ViewedProductsAppender();
-    const productSource = new ProductSource();
+    const productCache = new ProductCache();
     new SingleProductQuickViewer({
-        productSource,
+        productCache,
         viewedProductsAppender,
         viewedProductsSummaryMaker,
-        limitForLoadingOfProductEntireList,
+        limitForCachingOfProductEntireList,
     });
+
+
+    if (el('#productList')) {
+        const searchSettingsStore = new SearchSettingsStore();
+        const searchUrlMaker = new SearchUrlMaker(searchSettingsStore);
+        const publicUrlMaker = new PublicUrlMaker(searchSettingsStore);
+        const filteredProductsSource = new FilteredProductsSource({
+            productCache,
+            searchUrlMaker,
+            publicUrlMaker,
+            limitForCachingOfProductEntireList,
+        });
+
+    }
+
+
+
 }
-
-
-
-// history.replaceState(null,null, 'newpage');
-
 
 
 

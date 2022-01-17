@@ -1,7 +1,7 @@
 import getJson from "../http/getJson";
 import AbsoluteFlashMessage from "../absoluteFlashMessage";
 
-export default class ProductSource {
+export default class ProductCache {
 
     constructor() {
         this.entireList = [];

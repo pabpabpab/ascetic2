@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\PublicJS\ProductController;
 use \App\Http\Controllers\PublicJS\FavoriteProductController;
 use \App\Http\Controllers\PublicJS\ViewedProductController;
-
+use \App\Http\Controllers\PublicJS\ProductSearchController;
 
 // csrf-updater
 Route::get('/csrf', function () { return response()->json(csrf_token()); });
@@ -20,3 +20,8 @@ Route::get('/one-product/{product}', [ProductController::class, 'getOneProduct']
 
 
 Route::get('/viewed-product-summary-list', [ViewedProductController::class, 'getSummaryList']);
+
+
+Route::get('/product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}/startOffset/{startOffset}',
+    [ProductSearchController::class, 'search']
+)->where(['minPrice' => '[0-9]+', 'maxPrice' => '[0-9]+', 'categories' => '[0-9-]+', 'startIndex' => '[0-9]+']);

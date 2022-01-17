@@ -6,10 +6,10 @@ import singleProductKit from "./../productSingle/singleProductKit";
 export default class SingleProductQuickViewer {
 
     constructor(data) {
-        this.source = data.productSource;
+        this.productCache = data.productCache;
         this.viewedProductsAppender = data.viewedProductsAppender;
         this.viewedProductsSummaryMaker = data.viewedProductsSummaryMaker;
-        this.limitForLoadingOfEntireList = data.limitForLoadingOfProductEntireList;
+        this.limitForCachingOfProductEntireList = data.limitForCachingOfProductEntireList;
 
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.quickView) {
@@ -30,7 +30,7 @@ export default class SingleProductQuickViewer {
 
         // на страницах где есть список товаров
         const productsCount = Number(el('#productList').dataset.productsCount);
-        if (productsCount > this.limitForLoadingOfEntireList) {
+        if (productsCount > this.limitForCachingOfProductEntireList) {
             this._showOneFromServer(productId);
         } else {
             this._showOneFromDownloadedList(productId);
@@ -39,7 +39,7 @@ export default class SingleProductQuickViewer {
 
 
     _showOneFromServer(productId) {
-        return this.source.getOneFromServer(productId)
+        return this.productCache.getOneFromServer(productId)
             .then((product) => {
                 this.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = getProductObject(product);
@@ -49,14 +49,14 @@ export default class SingleProductQuickViewer {
 
 
     _showOneFromDownloadedList(productId) {
-        return this.source.getEntireList()
+        return this.productCache.getEntireList()
             .then((data) => {
                 const list = [...data];
                 const product = list.filter(item => item.id === productId)[0];
                 this.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = getProductObject(product);
                 this._renderProduct(productObject);
-                this.source.getOneDescription(productId)
+                this.productCache.getOneDescription(productId)
                     .then((data) => {
                         el('#productDescriptionContainer').innerText = data.description;
                     });

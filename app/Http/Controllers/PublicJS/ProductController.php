@@ -40,3 +40,4 @@ class ProductController extends Controller
 
 
 // php artisan make:controller PublicJS/ProductController
+// php artisan make:controller PublicJS/ProductSearchController
