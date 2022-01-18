@@ -6,10 +6,15 @@ export default class SearchSettingsStore {
             maxPrice: 0,
             categoriesIds: [],
             categoriesSlugs: [],
+            startOffset: 0,
         };
     }
 
     getSettings() {
         return { ...this.settings };
+    }
+
+    setStartOffset(value) {
+        this.settings.startOffset = value;
     }
 }

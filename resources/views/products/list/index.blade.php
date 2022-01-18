@@ -39,7 +39,7 @@
 
             @if($currentPage === 1)
                 <div class="pagination_and_view_more__view_more">
-                    <button class="pagination_and_view_more__view_more__button">
+                    <button id="viewMoreButton" class="pagination_and_view_more__view_more__button">
                         Показать еще
                     </button>
                 </div>

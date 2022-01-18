@@ -9,7 +9,7 @@ import AbsoluteFlashMessage from "./absoluteFlashMessage";
 import PasswordTypeChanger from "./auth/passwordTypeChanger";
 
 import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoriteProductsIndicationByPageLoad";
-import FavoriteProductsTotal from "./favoriteProducts/favoriteProductsTotal"
+import FavoriteProductsTotalCountIndication from "./favoriteProducts/favoriteProductsTotalCountIndication"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
 import ProductCache from "./productSource/productCache";
@@ -18,6 +18,19 @@ import SingleProductQuickViewer from "./productQuickViewer/singleProductQuickVie
 import singleProductKit from "./productSingle/singleProductKit";
 
 import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMaker";
+
+
+
+
+import SearchSettingsStore from "./productSource/searchSettingsStore";
+import SearchUrlMaker from "./productSource/searchUrlMaker";
+import PublicUrlMaker from "./productSource/publicUrlMaker";
+import CachedProductsFilter from "./productSource/cachedProductsFilter";
+import FilteredProductsSource from "./productSource/filteredProductsSource";
+
+import RendererOfProductsByViewMoreButton from "./productList/rendererByViewMore";
+
+
 
 
 new CsrfUpdater();
@@ -47,7 +60,7 @@ if (el('#productList') || el('#singleProduct')) {
     new FavoriteProductsIndicationByPageLoad();
     new FavoriteProductsSwitcher();
 }
-new FavoriteProductsTotal();
+new FavoriteProductsTotalCountIndication();
 
 
 
@@ -56,10 +69,8 @@ if (el('#singleProduct')) {
 }
 
 
-import SearchSettingsStore from "./productSource/searchSettingsStore";
-import SearchUrlMaker from "./productSource/searchUrlMaker";
-import PublicUrlMaker from "./productSource/publicUrlMaker";
-import FilteredProductsSource from "./productSource/filteredProductsSource";
+
+
 
 const limitForCachingOfProductEntireList = 100;
 
@@ -79,17 +90,21 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
         const searchSettingsStore = new SearchSettingsStore();
         const searchUrlMaker = new SearchUrlMaker(searchSettingsStore);
         const publicUrlMaker = new PublicUrlMaker(searchSettingsStore);
+        const cachedProductsFilter = new CachedProductsFilter(searchSettingsStore);
+
         const filteredProductsSource = new FilteredProductsSource({
             productCache,
+            cachedProductsFilter,
             searchUrlMaker,
-            publicUrlMaker,
             limitForCachingOfProductEntireList,
         });
 
+        new RendererOfProductsByViewMoreButton({
+            filteredProductsSource,
+            searchSettingsStore,
+            publicUrlMaker
+        });
     }
-
-
-
 }
 
 

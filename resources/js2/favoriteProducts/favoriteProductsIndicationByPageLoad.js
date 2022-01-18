@@ -26,7 +26,9 @@ export default class FavoriteProductsIndicationByPageLoad {
                 el(imgSelector).src = this.iconSrc.inFavorites;
 
                 const wrapperSelector = this._getIconWrapperSelector(productId);
-                el(wrapperSelector).classList.toggle("set-opacity");
+                if (!el(wrapperSelector).classList.contains("set-opacity")) {
+                    el(wrapperSelector).classList.add("set-opacity");
+                }
 
                 const textSelector = this._getIconTextSelector(productId);
                 if (el(textSelector)) {

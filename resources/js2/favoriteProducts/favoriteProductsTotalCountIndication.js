@@ -1,7 +1,7 @@
 import el from '../el';
 import getCookie from '../cookie/getCookie';
 
-export default class FavoriteProductsTotal {
+export default class FavoriteProductsTotalCountIndication {
 
     constructor() {
         // рендер при загрузке страницы
