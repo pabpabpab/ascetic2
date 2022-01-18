@@ -1,4 +1,4 @@
-export default function getViewedProductItemHtml(product) {
+export default function getViewedProductsItemHtml(product) {
     //console.log(product);
 
     return `<div class="product_item__wrapper">
