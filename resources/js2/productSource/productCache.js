@@ -1,5 +1,7 @@
 import getJson from "../http/getJson";
 import AbsoluteFlashMessage from "../absoluteFlashMessage";
+import el from "../el";
+import allProductsMustBeCached from "../allProductsMustBeCached";
 
 export default class ProductCache {
 
@@ -10,6 +12,13 @@ export default class ProductCache {
         this.entireListUrl = '/public-js/entire-product-list';
         this.oneDescriptionUrl = '/public-js/one-product-description/';
         this.oneProductUrl = '/public-js/one-product/';
+
+        this.productsWereCachedOnPageLoading = false;
+        if (el('#productList') && allProductsMustBeCached()) {
+            el('body').addEventListener('mouseover', (e) => {
+                this._loadEntireListOnPageLoading();
+            });
+        }
     }
 
     getEntireList() {
@@ -19,12 +28,12 @@ export default class ProductCache {
             );
         }
 
-        return this.loadEntireList()
+        return this._loadEntireList()
             .then((data) => {
                 return [...data];
             });
     }
-    loadEntireList() {
+    _loadEntireList() {
         return getJson(this.entireListUrl)
             .then((data) => {
                 //console.log(data);
@@ -33,6 +42,17 @@ export default class ProductCache {
             })
             .catch(() => {
                 new AbsoluteFlashMessage(`Не удалось загрузить товары`);
+            });
+    }
+    _loadEntireListOnPageLoading() {
+        if (this.productsWereCachedOnPageLoading) {
+            return;
+        }
+        this.productsWereCachedOnPageLoading = true;
+        getJson(this.entireListUrl)
+            .then((data) => {
+                //console.log(data);
+                this.entireList = [ ...data.products ];
             });
     }
 
@@ -45,12 +65,12 @@ export default class ProductCache {
             }
         }
 
-        return this.loadOneDescription(productId)
+        return this._loadOneDescription(productId)
             .then((data) => {
                 return { ...data };
             });
     }
-    loadOneDescription(productId) {
+    _loadOneDescription(productId) {
         return getJson(this.oneDescriptionUrl + productId)
             .then((data) => {
                 //console.log(data);
@@ -72,13 +92,12 @@ export default class ProductCache {
             }
         }
 
-        return this.loadOneProduct(productId)
+        return this._loadOneProduct(productId)
             .then((data) => {
                 return { ...data };
             });
     }
-
-    loadOneProduct(productId) {
+    _loadOneProduct(productId) {
         return getJson(this.oneProductUrl + productId)
             .then((data) => {
                 //console.log(data.product);
@@ -89,7 +108,4 @@ export default class ProductCache {
                 new AbsoluteFlashMessage(`Не удалось загрузить товар`);
             });
     }
-
-
-
 }

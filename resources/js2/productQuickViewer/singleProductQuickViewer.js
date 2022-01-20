@@ -1,5 +1,5 @@
 import el from './../el';
-import areAllProductsCached from "./../areAllProductsCached";
+import allProductsMustBeCached from "../allProductsMustBeCached";
 import getProductObject from "./../productObject/getProductObject";
 import getSingleProductHtml from "./../html/singleProduct/index-getSingleProductHtml";
 import singleProductKit from "./../productSingle/singleProductKit";
@@ -29,7 +29,7 @@ export default class SingleProductQuickViewer {
         }
 
         // на страницах где есть список товаров
-        if (areAllProductsCached()) {
+        if (allProductsMustBeCached()) {
             this._showOneFromCache(productId);
         } else {
             this._showOneFromServer(productId);

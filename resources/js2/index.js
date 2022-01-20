@@ -76,8 +76,10 @@ if (el('#singleProduct')) {
 
 const viewedProductsSummaryMaker = new ViewedProductsSummaryMaker();
 if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
+
     const productCache = new ProductCache();
     const viewedProductsAppender = new ViewedProductsAppender();
+
     new SingleProductQuickViewer({
         productCache,
         viewedProductsAppender,

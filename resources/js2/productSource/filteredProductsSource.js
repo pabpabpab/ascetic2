@@ -1,6 +1,6 @@
 import getJson from "./../http/getJson";
 import AbsoluteFlashMessage from "./../absoluteFlashMessage";
-import areAllProductsCached from "./../areAllProductsCached";
+import allProductsMustBeCached from "../allProductsMustBeCached";
 
 export default class FilteredProductsSource {
 
@@ -11,7 +11,7 @@ export default class FilteredProductsSource {
     }
 
     getFiltered() {
-        if (areAllProductsCached()) {
+        if (allProductsMustBeCached()) {
             return this._getFilteredProductsFromCache();
         } else {
             return this._getFilteredProductsFromServer();
