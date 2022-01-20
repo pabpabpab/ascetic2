@@ -229,6 +229,26 @@ var AbsoluteMessageWithCloseIcon = /*#__PURE__*/function (_VisibleBlock) {
 
 /***/ }),
 
+/***/ "./resources/js2/areAllProductsCached.js":
+/*!***********************************************!*\
+  !*** ./resources/js2/areAllProductsCached.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return areAllProductsCached; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
+
+function areAllProductsCached() {
+  var limitForCachingOfProductEntireList = 100;
+  var totalProductsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount);
+  return totalProductsCount < limitForCachingOfProductEntireList;
+}
+
+/***/ }),
+
 /***/ "./resources/js2/auth/authAbsoluteMenu.js":
 /*!************************************************!*\
   !*** ./resources/js2/auth/authAbsoluteMenu.js ***!
@@ -1406,33 +1426,8 @@ function getDropMenuHtml(innerHtml) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getFavoriteIconBlockHtml; });
 function getFavoriteIconBlockHtml(productId) {
-  return "<div id=\"favIcon-wrapper-".concat(productId, "\" class=\"product_item__favorite_icon__wrapper\">\n                <img id=\"favIcon-img-").concat(productId, "\" alt=\"\"\n                    src=\"images/favoriteIcon.svg\"\n                    class=\"product_item__favorite_icon__img\">\n            </div>");
+  return "<div id=\"favIcon-wrapper-".concat(productId, "\" class=\"product_item__favorite_icon__wrapper\">\n                <img id=\"favIcon-img-").concat(productId, "\" alt=\"\"\n                    src=\"/images/favoriteIcon.svg\"\n                    class=\"product_item__favorite_icon__img\">\n            </div>");
 }
-/*
-import getCookie from './../../../cookie/getCookie';
-
-export default function getFavoriteIconBlockHtml(productId) {
-    const idsStr = getCookie('favoriteIds');
-    const idsArr = Boolean(idsStr) ? idsStr.split(',') : [];
-
-    let imgName, setOpacityClass;
-    if (idsArr.includes(String(productId))) {
-        imgName = 'filledFavoriteIcon.svg';
-        setOpacityClass = 'set-opacity';
-    } else {
-        imgName = 'favoriteIcon.svg';
-        setOpacityClass = '';
-    }
-
-
-
-    return `<div id="favIcon-wrapper-${productId}" class="product_item__favorite_icon__wrapper ${setOpacityClass}">
-                <img id="favIcon-img-${productId}" alt=""
-                    src="images/${imgName}"
-                    class="product_item__favorite_icon__img">
-            </div>`;
-}
-*/
 
 /***/ }),
 
@@ -1963,17 +1958,15 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
   Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_12__["default"])();
 }
 
-var limitForCachingOfProductEntireList = 100;
 var viewedProductsSummaryMaker = new _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_13__["default"]();
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper')) {
-  var viewedProductsAppender = new _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_10__["default"]();
   var productCache = new _productSource_productCache__WEBPACK_IMPORTED_MODULE_9__["default"]();
+  var viewedProductsAppender = new _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_10__["default"]();
   new _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__["default"]({
     productCache: productCache,
     viewedProductsAppender: viewedProductsAppender,
-    viewedProductsSummaryMaker: viewedProductsSummaryMaker,
-    limitForCachingOfProductEntireList: limitForCachingOfProductEntireList
+    viewedProductsSummaryMaker: viewedProductsSummaryMaker
   });
 
   if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList')) {
@@ -1984,13 +1977,12 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Objec
     var filteredProductsSource = new _productSource_filteredProductsSource__WEBPACK_IMPORTED_MODULE_18__["default"]({
       productCache: productCache,
       cachedProductsFilter: cachedProductsFilter,
-      searchUrlMaker: searchUrlMaker,
-      limitForCachingOfProductEntireList: limitForCachingOfProductEntireList
+      searchUrlMaker: searchUrlMaker
     });
     new _productList_rendererByViewMore__WEBPACK_IMPORTED_MODULE_19__["default"]({
-      filteredProductsSource: filteredProductsSource,
       searchSettingsStore: searchSettingsStore,
-      publicUrlMaker: publicUrlMaker
+      publicUrlMaker: publicUrlMaker,
+      filteredProductsSource: filteredProductsSource
     });
   }
 }
@@ -2374,7 +2366,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../favoriteProducts/favoriteProductsIndicationByPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationByPageLoad.js");
+/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../scrollDocument */ "./resources/js2/scrollDocument.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2398,6 +2391,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var RendererByViewMore = /*#__PURE__*/function () {
   function RendererByViewMore(data) {
     var _this = this;
@@ -2409,12 +2403,10 @@ var RendererByViewMore = /*#__PURE__*/function () {
     this.publicUrlMaker = data.publicUrlMaker;
     this.productItemSelector = '[data-product-item]';
     this.container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    this.disabledRequest = false;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.id === 'viewMoreButton') {
-        // e.preventDefault();
-        var loadedProductsOffset = _this._calculateOffsetOfLoadingProducts();
-
-        _this.searchSettingsStore.setStartOffset(loadedProductsOffset);
+        _this._setSearchSettings();
 
         _this._render();
       }
@@ -2422,17 +2414,27 @@ var RendererByViewMore = /*#__PURE__*/function () {
   }
 
   _createClass(RendererByViewMore, [{
-    key: "_calculateOffsetOfLoadingProducts",
-    value: function _calculateOffsetOfLoadingProducts() {
-      var nodes = document.querySelectorAll(this.productItemSelector);
-      return nodes.length;
+    key: "_setSearchSettings",
+    value: function _setSearchSettings() {
+      this.searchSettingsStore.setProductSectionData({
+        productSectionName: this.container.dataset.productSectionName,
+        additionalData: this.container.dataset.additionalDataOfProductSection
+      });
+      var offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
+      this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
     }
   }, {
     key: "_render",
     value: function _render() {
       var _this2 = this;
 
-      return this.filteredProductsSource.getFiltered().then(function (data) {
+      if (!this._getRequestPermission()) {
+        return;
+      }
+
+      this.filteredProductsSource.getFiltered().then(function (data) {
+        _this2.disabledRequest = false;
+
         var products = _toConsumableArray(data);
 
         var itemsHtmlArr = products.map(function (product) {
@@ -2443,8 +2445,53 @@ var RendererByViewMore = /*#__PURE__*/function () {
 
         _this2.container.insertAdjacentHTML('beforeend', itemsHtml);
 
-        new _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
+        _this2._finalActions();
       });
+    }
+  }, {
+    key: "_finalActions",
+    value: function _finalActions() {
+      new _favoriteProducts_favoriteProductsIndicationByPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
+      this.publicUrlMaker.publishUrl();
+
+      this._makeInvisiblePaginationBlock();
+
+      this._makeInvisibleViewMoreButtonIfNeeded();
+
+      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(200, 'down');
+    }
+  }, {
+    key: "_makeInvisibleViewMoreButtonIfNeeded",
+    value: function _makeInvisibleViewMoreButtonIfNeeded() {
+      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
+      var sectionProductsCountFromServer = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.sectionProductsCount);
+
+      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton').classList.add("display-none");
+      }
+    }
+  }, {
+    key: "_makeInvisiblePaginationBlock",
+    value: function _makeInvisiblePaginationBlock() {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').classList.contains("display-none")) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').classList.add("display-none");
+      }
+    }
+  }, {
+    key: "_getRequestPermission",
+    value: function _getRequestPermission() {
+      var _this3 = this;
+
+      // защита от частых отправок на 15 сек (от двойного нажатия)
+      if (this.disabledRequest) {
+        return false;
+      }
+
+      this.disabledRequest = true;
+      setTimeout(function () {
+        _this3.disabledRequest = false;
+      }, 15000);
+      return true;
     }
   }]);
 
@@ -2548,9 +2595,10 @@ var quickProductDestructor = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SingleProductQuickViewer; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
-/* harmony import */ var _html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../html/singleProduct/index-getSingleProductHtml */ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js");
-/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
+/* harmony import */ var _areAllProductsCached__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../areAllProductsCached */ "./resources/js2/areAllProductsCached.js");
+/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+/* harmony import */ var _html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../html/singleProduct/index-getSingleProductHtml */ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js");
+/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2574,6 +2622,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var SingleProductQuickViewer = /*#__PURE__*/function () {
   function SingleProductQuickViewer(data) {
     var _this = this;
@@ -2583,7 +2632,6 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
     this.productCache = data.productCache;
     this.viewedProductsAppender = data.viewedProductsAppender;
     this.viewedProductsSummaryMaker = data.viewedProductsSummaryMaker;
-    this.limitForCachingOfProductEntireList = data.limitForCachingOfProductEntireList;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.quickView) {
         e.preventDefault();
@@ -2607,12 +2655,10 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
       } // на страницах где есть список товаров
 
 
-      var productsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.productsCount);
-
-      if (productsCount > this.limitForCachingOfProductEntireList) {
-        this._showOneFromServer(productId);
+      if (Object(_areAllProductsCached__WEBPACK_IMPORTED_MODULE_1__["default"])()) {
+        this._showOneFromCache(productId);
       } else {
-        this._showOneFromDownloadedList(productId);
+        this._showOneFromServer(productId);
       }
     }
   }, {
@@ -2623,14 +2669,14 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
       return this.productCache.getOneFromServer(productId).then(function (product) {
         _this2.viewedProductsSummaryMaker.remakeWith(product);
 
-        var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+        var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_2__["default"])(product);
 
         _this2._renderProduct(productObject);
       });
     }
   }, {
-    key: "_showOneFromDownloadedList",
-    value: function _showOneFromDownloadedList(productId) {
+    key: "_showOneFromCache",
+    value: function _showOneFromCache(productId) {
       var _this3 = this;
 
       return this.productCache.getEntireList().then(function (data) {
@@ -2642,7 +2688,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
 
         _this3.viewedProductsSummaryMaker.remakeWith(product);
 
-        var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+        var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_2__["default"])(product);
 
         _this3._renderProduct(productObject);
 
@@ -2654,7 +2700,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
   }, {
     key: "_renderProduct",
     value: function _renderProduct(product) {
-      var productHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product);
+      var productHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product);
 
       if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
@@ -2662,7 +2708,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function () {
 
       document.body.style.overflow = 'hidden';
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', productHtml);
-      Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_3__["default"])();
+      Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_4__["default"])();
     }
   }]);
 
@@ -3287,6 +3333,7 @@ function singleProductKit() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CachedProductsFilter; });
+/* harmony import */ var _cookie_getCookie__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../cookie/getCookie */ "./resources/js2/cookie/getCookie.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3311,6 +3358,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+
+
 var CachedProductsFilter = /*#__PURE__*/function () {
   function CachedProductsFilter(searchSettingsStore) {
     _classCallCheck(this, CachedProductsFilter);
@@ -3326,6 +3375,8 @@ var CachedProductsFilter = /*#__PURE__*/function () {
 
       var filtered = _toConsumableArray(products);
 
+      filtered = this._sectionFilter(filtered, settings);
+
       if (settings.minPrice > 0) {
         filtered = this._minPriceFilter(filtered, settings.minPrice);
       }
@@ -3340,6 +3391,64 @@ var CachedProductsFilter = /*#__PURE__*/function () {
 
       filtered = this._offsetFilter(filtered, settings.startOffset);
       return filtered;
+    }
+  }, {
+    key: "_sectionFilter",
+    value: function _sectionFilter(items, settings) {
+      if (['all', ''].indexOf(settings.productSectionName) !== -1) {
+        return items;
+      }
+
+      var func = {
+        favoriteProducts: this._favoriteProductsFilter,
+        viewedProducts: this._viewedProductsFilter,
+        productsCategory: this._singleCategoryFilter
+      };
+      var additionalFilteringParameters = settings.additionalDataOfProductSection;
+      return func[settings.productSectionName](items, additionalFilteringParameters);
+    }
+  }, {
+    key: "_favoriteProductsFilter",
+    value: function _favoriteProductsFilter(items, params) {
+      var favoriteIdsStr = Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_0__["default"])('favoriteIds');
+
+      if (!Boolean(favoriteIdsStr)) {
+        return [];
+      }
+
+      var favoriteIdsArr = favoriteIdsStr.split(',').map(function (item) {
+        return Number(item);
+      });
+      return items.filter(function (item) {
+        return favoriteIdsArr.includes(item.id);
+      });
+    }
+  }, {
+    key: "_viewedProductsFilter",
+    value: function _viewedProductsFilter(items, viewedIdsStr) {
+      if (!Boolean(viewedIdsStr)) {
+        return [];
+      }
+
+      var viewedIdsArr = viewedIdsStr.split(',').map(function (item) {
+        return Number(item);
+      });
+      return items.filter(function (item) {
+        return viewedIdsArr.includes(item.id);
+      });
+    }
+  }, {
+    key: "_singleCategoryFilter",
+    value: function _singleCategoryFilter(items, params) {
+      // params - "categoryId;categorySlug"
+      var categoryId = Number(params.split(';')[0]);
+      return items.filter(function (item) {
+        var parametersArr = JSON.parse(item.parameters);
+        var catIdsOfItem = parametersArr.categories.map(function (el) {
+          return el.id;
+        });
+        return catIdsOfItem.includes(categoryId);
+      });
     }
   }, {
     key: "_minPriceFilter",
@@ -3395,10 +3504,9 @@ var CachedProductsFilter = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FilteredProductsSource; });
-/* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../http/getJson */ "./resources/js2/http/getJson.js");
-/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
-/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+/* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
+/* harmony import */ var _areAllProductsCached__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../areAllProductsCached */ "./resources/js2/areAllProductsCached.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3421,7 +3529,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
-
 var FilteredProductsSource = /*#__PURE__*/function () {
   function FilteredProductsSource(data) {
     _classCallCheck(this, FilteredProductsSource);
@@ -3429,18 +3536,15 @@ var FilteredProductsSource = /*#__PURE__*/function () {
     this.productCache = data.productCache;
     this.searchUrlMaker = data.searchUrlMaker;
     this.productsFilter = data.cachedProductsFilter;
-    this.limitForCachingOfProductEntireList = data.limitForCachingOfProductEntireList;
   }
 
   _createClass(FilteredProductsSource, [{
     key: "getFiltered",
     value: function getFiltered() {
-      var productsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#productList').dataset.productsCount);
-
-      if (productsCount > this.limitForCachingOfProductEntireList) {
-        return this._getFilteredProductsFromServer();
-      } else {
+      if (Object(_areAllProductsCached__WEBPACK_IMPORTED_MODULE_2__["default"])()) {
         return this._getFilteredProductsFromCache();
+      } else {
+        return this._getFilteredProductsFromServer();
       }
     }
   }, {
@@ -3668,8 +3772,25 @@ var PublicUrlMaker = /*#__PURE__*/function () {
     value: function _getUrl() {
       var settings = this.searchSettingsStore.getSettings();
 
-      if (this._isItSingleCategoryUrl()) {
-        return "products/".concat(settings.categoriesSlugs[0]);
+      if (this._isUrlOfMainPage()) {
+        return '/';
+      }
+
+      if (this._isSingleCategoryUrl()) {
+        // additionalDataOfProductSection - "categoryId;categorySlug"
+        return "/products/".concat(settings.additionalDataOfProductSection.split(';')[1]);
+      }
+
+      if (this._isSingleCategoryUrl2()) {
+        return "/products/".concat(settings.categoriesSlugs[0]);
+      }
+
+      if (this._isUrlOfFavoriteProducts()) {
+        return '/favorite-products';
+      }
+
+      if (this._isUrlOfViewedProducts()) {
+        return '/viewed-products';
       }
 
       var totalUrl = [this.startUrl, this._getMinPriceUrl(settings), this._getMaxPriceUrl(settings), this._getCategoriesUrl(settings)];
@@ -3688,13 +3809,53 @@ var PublicUrlMaker = /*#__PURE__*/function () {
   }, {
     key: "_getCategoriesUrl",
     value: function _getCategoriesUrl(settings) {
-      return "/categories/".concat(settings.categories.join('-'));
+      if (settings.categoriesIds.length === 0) {
+        return '/categories/0';
+      }
+
+      return "/categories/".concat(settings.categoriesIds.join('-'));
     }
   }, {
-    key: "_isItSingleCategoryUrl",
-    value: function _isItSingleCategoryUrl() {
+    key: "_isUrlOfMainPage",
+    value: function _isUrlOfMainPage() {
+      var settings = this.searchSettingsStore.getSettings();
+      var logicalConditions = [['all', ''].indexOf(settings.productSectionName) !== -1, settings.categoriesSlugs.length === 0, settings.minPrice === 0, settings.maxPrice === 0];
+      return logicalConditions.every(function (item) {
+        return item === true;
+      });
+    }
+  }, {
+    key: "_isSingleCategoryUrl",
+    value: function _isSingleCategoryUrl() {
+      var settings = this.searchSettingsStore.getSettings();
+      var logicalConditions = [settings.productSectionName === 'productsCategory'];
+      return logicalConditions.every(function (item) {
+        return item === true;
+      });
+    }
+  }, {
+    key: "_isSingleCategoryUrl2",
+    value: function _isSingleCategoryUrl2() {
       var settings = this.searchSettingsStore.getSettings();
       var logicalConditions = [settings.categoriesSlugs.length === 1, settings.minPrice === 0, settings.maxPrice === 0];
+      return logicalConditions.every(function (item) {
+        return item === true;
+      });
+    }
+  }, {
+    key: "_isUrlOfFavoriteProducts",
+    value: function _isUrlOfFavoriteProducts() {
+      var settings = this.searchSettingsStore.getSettings();
+      var logicalConditions = [settings.productSectionName === 'favoriteProducts'];
+      return logicalConditions.every(function (item) {
+        return item === true;
+      });
+    }
+  }, {
+    key: "_isUrlOfViewedProducts",
+    value: function _isUrlOfViewedProducts() {
+      var settings = this.searchSettingsStore.getSettings();
+      var logicalConditions = [settings.productSectionName === 'viewedProducts'];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -3735,6 +3896,8 @@ var SearchSettingsStore = /*#__PURE__*/function () {
     _classCallCheck(this, SearchSettingsStore);
 
     this.settings = {
+      productSectionName: '',
+      additionalDataOfProductSection: '',
       minPrice: 0,
       maxPrice: 0,
       categoriesIds: [],
@@ -3747,6 +3910,14 @@ var SearchSettingsStore = /*#__PURE__*/function () {
     key: "getSettings",
     value: function getSettings() {
       return _objectSpread({}, this.settings);
+    }
+  }, {
+    key: "setProductSectionData",
+    value: function setProductSectionData(_ref) {
+      var productSectionName = _ref.productSectionName,
+          additionalData = _ref.additionalData;
+      this.settings.productSectionName = productSectionName;
+      this.settings.additionalDataOfProductSection = additionalData;
     }
   }, {
     key: "setStartOffset",
@@ -3807,12 +3978,16 @@ var SearchUrlMaker = /*#__PURE__*/function () {
   }, {
     key: "_getCategoriesUrl",
     value: function _getCategoriesUrl(settings) {
-      return "/categories/".concat(settings.categories.join('-'));
+      if (settings.categoriesIds.length === 0) {
+        return '/categories/0';
+      }
+
+      return "/categories/".concat(settings.categoriesIds.join('-'));
     }
   }, {
     key: "_getOffsetUrl",
     value: function _getOffsetUrl(settings) {
-      return "/startOffset/".concat(settings.startOffset);
+      return "/offset/".concat(settings.startOffset);
     }
   }]);
 
@@ -3820,6 +3995,43 @@ var SearchUrlMaker = /*#__PURE__*/function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "./resources/js2/scrollDocument.js":
+/*!*****************************************!*\
+  !*** ./resources/js2/scrollDocument.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return scrollDocument; });
+function scrollDocument(distance, direction) {
+  var coveredDistance = 0; // пройденное расстояние
+
+  _scrollDocument(distance, coveredDistance, direction);
+}
+
+function _scrollDocument(distance, coveredDistance, direction) {
+  if (coveredDistance > distance) {
+    return;
+  }
+
+  var step = 3; // px
+
+  if (direction === 'down') {
+    window.scrollBy(0, step);
+  } else {
+    window.scrollBy(0, -step);
+  }
+
+  coveredDistance += step;
+  setTimeout(function () {
+    _scrollDocument(distance, coveredDistance, direction);
+  }, 1);
+}
 
 /***/ }),
 

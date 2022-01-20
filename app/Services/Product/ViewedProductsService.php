@@ -45,6 +45,12 @@ class ViewedProductsService
         return Product::whereRaw("id IN ($viewedStr)")->orderByRaw("FIELD(id, $viewedStr)");
     }
 
+    public function getAllViewedIdsStr(): string
+    {
+        $frontIdsArr = $this->_getFrontIdsArr();
+        return count($frontIdsArr) > 0 ? implode(',', $frontIdsArr) : '0';
+    }
+
     public function getSummaryOfViewed()
     {
         $itemCountOfSummary = 8;

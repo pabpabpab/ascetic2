@@ -1,7 +1,6 @@
-import getJson from "../http/getJson";
-import AbsoluteFlashMessage from "../absoluteFlashMessage";
-import el from "../el";
-import getProductObject from "../productObject/getProductObject";
+import getJson from "./../http/getJson";
+import AbsoluteFlashMessage from "./../absoluteFlashMessage";
+import areAllProductsCached from "./../areAllProductsCached";
 
 export default class FilteredProductsSource {
 
@@ -9,18 +8,15 @@ export default class FilteredProductsSource {
         this.productCache = data.productCache;
         this.searchUrlMaker = data.searchUrlMaker;
         this.productsFilter = data.cachedProductsFilter;
-        this.limitForCachingOfProductEntireList = data.limitForCachingOfProductEntireList;
     }
 
     getFiltered() {
-        const productsCount = Number(el('#productList').dataset.productsCount);
-        if (productsCount > this.limitForCachingOfProductEntireList) {
-            return this._getFilteredProductsFromServer();
-        } else {
+        if (areAllProductsCached()) {
             return this._getFilteredProductsFromCache();
+        } else {
+            return this._getFilteredProductsFromServer();
         }
     }
-
 
     _getFilteredProductsFromCache() {
         return this.productCache.getEntireList()

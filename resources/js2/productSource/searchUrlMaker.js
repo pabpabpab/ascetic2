@@ -31,10 +31,13 @@ export default class SearchUrlMaker {
     }
 
     _getCategoriesUrl(settings) {
-        return `/categories/${settings.categories.join('-')}`;
+        if (settings.categoriesIds.length === 0) {
+            return '/categories/0';
+        }
+        return `/categories/${settings.categoriesIds.join('-')}`;
     }
 
     _getOffsetUrl(settings) {
-        return `/startOffset/${settings.startOffset}`;
+        return `/offset/${settings.startOffset}`;
     }
 }

@@ -1,3 +1,5 @@
+import getCookie from "../cookie/getCookie";
+
 export default class CachedProductsFilter {
 
     constructor(searchSettingsStore) {
@@ -9,6 +11,8 @@ export default class CachedProductsFilter {
         const settings = { ...this.searchSettingsStore.getSettings() };
 
         let filtered = [ ...products ];
+
+        filtered = this._sectionFilter(filtered, settings);
 
         if (settings.minPrice > 0) {
             filtered = this._minPriceFilter(filtered, settings.minPrice);
@@ -24,6 +28,51 @@ export default class CachedProductsFilter {
 
         return filtered;
     }
+
+
+    _sectionFilter(items, settings) {
+        if (['all', ''].indexOf(settings.productSectionName) !== -1) {
+            return items;
+        }
+
+        const func = {
+            favoriteProducts: this._favoriteProductsFilter,
+            viewedProducts: this._viewedProductsFilter,
+            productsCategory: this._singleCategoryFilter,
+        }
+        const additionalFilteringParameters = settings.additionalDataOfProductSection;
+        return func[settings.productSectionName](items, additionalFilteringParameters);
+    }
+
+    _favoriteProductsFilter(items, params) {
+        const favoriteIdsStr = getCookie('favoriteIds');
+        if (!Boolean(favoriteIdsStr)) {
+            return [];
+        }
+        const favoriteIdsArr = favoriteIdsStr.split(',').map(item => Number(item));
+        return items.filter((item) => {
+            return favoriteIdsArr.includes(item.id)
+        });
+    }
+    _viewedProductsFilter(items, viewedIdsStr) {
+        if (!Boolean(viewedIdsStr)) {
+            return [];
+        }
+        const viewedIdsArr = viewedIdsStr.split(',').map(item => Number(item));
+        return items.filter((item) => {
+            return viewedIdsArr.includes(item.id)
+        });
+    }
+    _singleCategoryFilter(items, params) {
+        // params - "categoryId;categorySlug"
+        const categoryId = Number(params.split(';')[0]);
+        return items.filter((item) => {
+            const parametersArr = JSON.parse(item.parameters);
+            const catIdsOfItem = parametersArr.categories.map(el => el.id);
+            return catIdsOfItem.includes(categoryId);
+        });
+    }
+
 
 
 

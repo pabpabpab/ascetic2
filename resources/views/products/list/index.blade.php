@@ -28,7 +28,12 @@
     <section>
         <h1 class="products__h1">{{ $pageTitle }}</h1>
 
-        <div id="productList" data-products-count="{{ $productsCount }}" class="products">
+        <div id="productList"
+             data-total-products-count="{{ $totalProductsCount }}"
+             data-section-products-count="{{ $sectionProductsCount }}"
+             data-product-section-name="{{ $productSectionName }}"
+             data-additional-data-of-product-section="{{ $additionalDataOfProductSection }}"
+             class="products">
             @each('products.list.product-item', $products, 'product')
         </div>
     </section>
@@ -45,17 +50,19 @@
                 </div>
             @endif
 
-            <nav class="pagination_and_view_more__pagination_nav @if($currentPage > 1) w100 @endif">
-                @if (in_array($currentRouteName, ['mainPage', 'products.list']))
-                    {{ $products->links('pagination.all-products-pagination') }}
-                @elseif (in_array($currentRouteName, ['products.byCategory']))
-                    {{ $products->links('pagination.products-by-category-pagination', ['category' => $category]) }}
-                @elseif (in_array($currentRouteName, ['products.viewed']))
-                    {{ $products->links('pagination.viewed-products-pagination') }}
-                @elseif (in_array($currentRouteName, ['products.favorites']))
-                    {{ $products->links('pagination.favorite-products-pagination') }}
-                @endif
-            </nav>
+                <nav class="pagination_and_view_more__pagination_nav @if($currentPage > 1) w100 @endif">
+                    <div id="paginationContent" class="pagination_nav__content">
+                        @if (in_array($currentRouteName, ['mainPage', 'products.list']))
+                            {{ $products->links('pagination.all-products-pagination') }}
+                        @elseif (in_array($currentRouteName, ['products.byCategory']))
+                            {{ $products->links('pagination.products-by-category-pagination', ['category' => $category]) }}
+                        @elseif (in_array($currentRouteName, ['products.viewed']))
+                            {{ $products->links('pagination.viewed-products-pagination') }}
+                        @elseif (in_array($currentRouteName, ['products.favorites']))
+                            {{ $products->links('pagination.favorite-products-pagination') }}
+                        @endif
+                    </div>
+                </nav>
         </div>
     @endif
 

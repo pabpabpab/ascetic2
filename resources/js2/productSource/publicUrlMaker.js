@@ -15,9 +15,23 @@ export default class PublicUrlMaker {
     _getUrl() {
         const settings = this.searchSettingsStore.getSettings();
 
-        if (this._isItSingleCategoryUrl()) {
-            return `products/${settings.categoriesSlugs[0]}`;
+        if (this._isUrlOfMainPage()) {
+            return '/';
         }
+        if (this._isSingleCategoryUrl()) {
+            // additionalDataOfProductSection - "categoryId;categorySlug"
+            return `/products/${settings.additionalDataOfProductSection.split(';')[1]}`;
+        }
+        if (this._isSingleCategoryUrl2()) {
+            return `/products/${settings.categoriesSlugs[0]}`;
+        }
+        if (this._isUrlOfFavoriteProducts()) {
+            return '/favorite-products';
+        }
+        if (this._isUrlOfViewedProducts()) {
+            return '/viewed-products';
+        }
+
 
         const totalUrl = [
             this.startUrl,
@@ -39,17 +53,55 @@ export default class PublicUrlMaker {
     }
 
     _getCategoriesUrl(settings) {
-        return `/categories/${settings.categories.join('-')}`;
+        if (settings.categoriesIds.length === 0) {
+            return '/categories/0';
+        }
+        return `/categories/${settings.categoriesIds.join('-')}`;
     }
 
-    _isItSingleCategoryUrl() {
+
+    _isUrlOfMainPage() {
+        const settings = this.searchSettingsStore.getSettings();
+        const logicalConditions = [
+            ['all', ''].indexOf(settings.productSectionName) !== -1,
+            settings.categoriesSlugs.length === 0,
+            settings.minPrice === 0,
+            settings.maxPrice === 0
+        ];
+        return logicalConditions.every(item => item === true);
+    }
+
+    _isSingleCategoryUrl() {
+        const settings = this.searchSettingsStore.getSettings();
+        const logicalConditions = [
+            settings.productSectionName === 'productsCategory',
+        ];
+        return logicalConditions.every(item => item === true);
+    }
+
+    _isSingleCategoryUrl2() {
         const settings = this.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.categoriesSlugs.length === 1,
             settings.minPrice === 0,
             settings.maxPrice === 0
         ];
+        return logicalConditions.every(item => item === true);
+    }
 
+    _isUrlOfFavoriteProducts() {
+        const settings = this.searchSettingsStore.getSettings();
+        const logicalConditions = [
+            settings.productSectionName === 'favoriteProducts',
+        ];
+        return logicalConditions.every(item => item === true);
+    }
+
+    _isUrlOfViewedProducts() {
+        const settings = this.searchSettingsStore.getSettings();
+        const logicalConditions = [
+            settings.productSectionName === 'viewedProducts',
+        ];
         return logicalConditions.every(item => item === true);
     }
 }

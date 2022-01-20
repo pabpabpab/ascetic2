@@ -1,4 +1,5 @@
 import el from './../el';
+import areAllProductsCached from "./../areAllProductsCached";
 import getProductObject from "./../productObject/getProductObject";
 import getSingleProductHtml from "./../html/singleProduct/index-getSingleProductHtml";
 import singleProductKit from "./../productSingle/singleProductKit";
@@ -9,7 +10,6 @@ export default class SingleProductQuickViewer {
         this.productCache = data.productCache;
         this.viewedProductsAppender = data.viewedProductsAppender;
         this.viewedProductsSummaryMaker = data.viewedProductsSummaryMaker;
-        this.limitForCachingOfProductEntireList = data.limitForCachingOfProductEntireList;
 
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.quickView) {
@@ -29,11 +29,10 @@ export default class SingleProductQuickViewer {
         }
 
         // на страницах где есть список товаров
-        const productsCount = Number(el('#productList').dataset.productsCount);
-        if (productsCount > this.limitForCachingOfProductEntireList) {
-            this._showOneFromServer(productId);
+        if (areAllProductsCached()) {
+            this._showOneFromCache(productId);
         } else {
-            this._showOneFromDownloadedList(productId);
+            this._showOneFromServer(productId);
         }
     }
 
@@ -48,7 +47,7 @@ export default class SingleProductQuickViewer {
     }
 
 
-    _showOneFromDownloadedList(productId) {
+    _showOneFromCache(productId) {
         return this.productCache.getEntireList()
             .then((data) => {
                 const list = [...data];

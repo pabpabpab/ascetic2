@@ -72,17 +72,16 @@ if (el('#singleProduct')) {
 
 
 
-const limitForCachingOfProductEntireList = 100;
+
 
 const viewedProductsSummaryMaker = new ViewedProductsSummaryMaker();
 if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
-    const viewedProductsAppender = new ViewedProductsAppender();
     const productCache = new ProductCache();
+    const viewedProductsAppender = new ViewedProductsAppender();
     new SingleProductQuickViewer({
         productCache,
         viewedProductsAppender,
         viewedProductsSummaryMaker,
-        limitForCachingOfProductEntireList,
     });
 
 
@@ -96,13 +95,12 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             productCache,
             cachedProductsFilter,
             searchUrlMaker,
-            limitForCachingOfProductEntireList,
         });
 
         new RendererOfProductsByViewMoreButton({
-            filteredProductsSource,
             searchSettingsStore,
-            publicUrlMaker
+            publicUrlMaker,
+            filteredProductsSource,
         });
     }
 }

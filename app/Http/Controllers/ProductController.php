@@ -25,15 +25,18 @@ class ProductController extends Controller
             return $currentPage;
         });
 
-        $productsCount = Product::count();
+        $totalProductsCount = Product::count();
         $perPage = 3;
         $products = $service->getAll('active')
             ->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
+            'productSectionName' => 'all',
+            'additionalDataOfProductSection' => '',
             'currentPage' => $currentPage,
-            'productsCount' => $productsCount,
-            'pageCount' => ceil($productsCount/$perPage)
+            'totalProductsCount' => $totalProductsCount,
+            'sectionProductsCount' => $totalProductsCount,
+            'pageCount' => ceil($totalProductsCount/$perPage)
         ]);
     }
 
@@ -46,15 +49,18 @@ class ProductController extends Controller
             return $currentPage;
         });
 
-        $productsCount = Product::count();
+        $totalProductsCount = Product::count();
         $perPage = 3;
         $products = $service->getAll('active')
             ->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
+            'productSectionName' => 'all',
+            'additionalDataOfProductSection' => '',
             'currentPage' => $currentPage,
-            'productsCount' => $productsCount,
-            'pageCount' => ceil($productsCount/$perPage)
+            'totalProductsCount' => $totalProductsCount,
+            'sectionProductsCount' => $totalProductsCount,
+            'pageCount' => ceil($totalProductsCount/$perPage)
         ]);
     }
 
@@ -68,15 +74,19 @@ class ProductController extends Controller
             return $currentPage;
         });
 
+        $totalProductsCount = Product::count();
         $productsCount = $category->products()->count();
         $perPage = 3;
         // $category определена в роуте как {category:slug}
         return view('products.list.index', [
             'category' => $category,
+            'productSectionName' => 'productsCategory',
+            'additionalDataOfProductSection' => "{$category->id};{$category->slug}",
             'categorySeo' => $category->seoText,
             'products' => $category->products()->paginate($perPage),
             'currentPage' => $currentPage,
-            'productsCount' => $productsCount,
+            'totalProductsCount' => $totalProductsCount,
+            'sectionProductsCount' => $productsCount,
             'pageCount' => ceil($productsCount/$perPage)
         ]);
     }
@@ -90,13 +100,17 @@ class ProductController extends Controller
         });
 
 
+        $totalProductsCount = Product::count();
         $productsCount = $service->getAllViewed()->count();
-        $perPage = 30;
+        $perPage = 3;
         $products = $service->getAllViewed()->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
+            'productSectionName' => 'viewedProducts',
+            'additionalDataOfProductSection' => $service->getAllViewedIdsStr(),
             'currentPage' => $currentPage,
-            'productsCount' => $productsCount,
+            'totalProductsCount' => $totalProductsCount,
+            'sectionProductsCount' => $productsCount,
             'pageCount' => ceil($productsCount/$perPage)
         ]);
     }
@@ -109,13 +123,17 @@ class ProductController extends Controller
             return $currentPage;
         });
 
+        $totalProductsCount = Product::count();
         $productsCount = $service->getList()->count();
         $perPage = 3;
         $products = $service->getList()->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
+            'productSectionName' => 'favoriteProducts',
+            'additionalDataOfProductSection' => '',
             'currentPage' => $currentPage,
-            'productsCount' => $productsCount,
+            'totalProductsCount' => $totalProductsCount,
+            'sectionProductsCount' => $productsCount,
             'pageCount' => ceil($productsCount/$perPage)
         ]);
     }

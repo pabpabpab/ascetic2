@@ -20,7 +20,7 @@
     @endphp
 
 
-    <div class="pagination_nav__content">
+
         @if ($prevRoute)
             <a href="{{ $prevRoute }}" class="pagination__link pagination__link__arrow_left"></a>
         @endif
@@ -45,6 +45,5 @@
         @if ($nextRoute)
             <a href="{{ $nextRoute }}" class="pagination__link pagination__link__arrow_right"></a>
         @endif
-    </div>
 
 @endif

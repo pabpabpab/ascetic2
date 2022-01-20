@@ -22,6 +22,6 @@ Route::get('/one-product/{product}', [ProductController::class, 'getOneProduct']
 Route::get('/viewed-product-summary-list', [ViewedProductController::class, 'getSummaryList']);
 
 
-Route::get('/product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}/startOffset/{startOffset}',
+Route::get('/product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}/offset/{startOffset}',
     [ProductSearchController::class, 'search']
 )->where(['minPrice' => '[0-9]+', 'maxPrice' => '[0-9]+', 'categories' => '[0-9-]+', 'startIndex' => '[0-9]+']);
