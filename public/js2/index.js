@@ -1720,7 +1720,7 @@ function getSingleProductHtml(product) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getViewedProductHeaderHtml; });
 function getViewedProductHeaderHtml(product) {
-  return "<div class=\"viewed_products__aside__header\">\n                <h2 class=\"viewed_products__aside__h2\">\u0412\u044B \u043D\u0435\u0434\u0430\u0432\u043D\u043E \u0441\u043C\u043E\u0442\u0440\u0435\u043B\u0438</h2>\n                <a href=\"/viewed-products\" class=\"viewed_products__link\">\n                    \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0432\u0441\u0435\n                </a>\n           </div>";
+  return "<div id=\"viewedProductsSummaryHeader\" class=\"viewed_products__aside__header\">\n                <h2 class=\"viewed_products__aside__h2\">\u0412\u044B \u043D\u0435\u0434\u0430\u0432\u043D\u043E \u0441\u043C\u043E\u0442\u0440\u0435\u043B\u0438</h2>\n                <a href=\"/viewed-products\" class=\"viewed_products__link\">\n                    \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0432\u0441\u0435\n                </a>\n           </div>";
 }
 
 /***/ }),
@@ -4435,9 +4435,11 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function () {
         var products = _toConsumableArray(data); //console.log(products);
 
 
-        _this2._renderHeader();
+        if (products.length > 0) {
+          _this2._renderHeader();
 
-        _this2._renderBody(products);
+          _this2._renderBody(products);
+        }
       });
     }
   }, {
@@ -4457,11 +4459,17 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function () {
 
       this.summaryList = [product].concat(_toConsumableArray(this.summaryList));
 
+      this._renderHeader();
+
       this._renderBody(this.summaryList);
     }
   }, {
     key: "_renderHeader",
     value: function _renderHeader() {
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryHeader')) {
+        return;
+      }
+
       var html = Object(_html_viewedProductsSummary_getViewedProductsHeaderHtml__WEBPACK_IMPORTED_MODULE_3__["default"])();
       this.wrapperOfSummary.insertAdjacentHTML('afterbegin', html);
     }

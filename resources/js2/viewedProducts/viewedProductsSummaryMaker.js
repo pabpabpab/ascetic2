@@ -33,8 +33,10 @@ export default class ViewedProductsSummaryMaker {
             .then((data) => {
                 const products = [...data];
                 //console.log(products);
-                this._renderHeader();
-                this._renderBody(products);
+                if (products.length > 0) {
+                    this._renderHeader();
+                    this._renderBody(products);
+                }
             });
     }
 
@@ -47,10 +49,14 @@ export default class ViewedProductsSummaryMaker {
             this.summaryList.splice(index, 1);
         }
         this.summaryList = [ ...[product], ...this.summaryList ];
+        this._renderHeader();
         this._renderBody(this.summaryList);
     }
 
     _renderHeader() {
+        if (el('#viewedProductsSummaryHeader')) {
+            return;
+        }
         const html = getViewedProductsHeaderHtml();
         this.wrapperOfSummary.insertAdjacentHTML('afterbegin', html);
     }
