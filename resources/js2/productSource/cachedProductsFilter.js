@@ -4,7 +4,6 @@ export default class CachedProductsFilter {
 
     constructor(searchSettingsStore) {
         this.searchSettingsStore = searchSettingsStore;
-        this.perPage = 3;
     }
 
     doFilter(products) {
@@ -21,10 +20,10 @@ export default class CachedProductsFilter {
             filtered = this._maxPriceFilter(filtered, settings.maxPrice);
         }
         if (settings.categoriesIds.length > 0) {
-            filtered = this._categoryFilter(filtered, settings.categoriesIds);
+            filtered = this._categoriesFilter(filtered, settings.categoriesIds);
         }
 
-        filtered = this._offsetFilter(filtered, settings.startOffset);
+        filtered = this._offsetFilter(filtered, settings.startOffset, settings.perPage);
 
         return filtered;
     }
@@ -82,16 +81,16 @@ export default class CachedProductsFilter {
     _maxPriceFilter(items, maxPrice) {
         return items.filter(item => Number(item.price) <= maxPrice);
     }
-    _categoryFilter(items, searchedIds) {
+    _categoriesFilter(items, searchedIds) {
         return items.filter((item) => {
             const parametersArr = JSON.parse(item.parameters);
             const catIdsOfItem = parametersArr.categories.map(el => el.id);
             return searchedIds.some(el => catIdsOfItem.includes(el))
         });
     }
-    _offsetFilter(items, startOffset) {
+    _offsetFilter(items, startOffset, perPage) {
         const startIndex = startOffset;
-        const endIndex = startOffset + this.perPage; // елемент с endIndex не будет включен в рез-тат
+        const endIndex = startOffset + perPage; // елемент с endIndex не будет включен в рез-тат
         return items.slice(startIndex, endIndex);
     }
 }

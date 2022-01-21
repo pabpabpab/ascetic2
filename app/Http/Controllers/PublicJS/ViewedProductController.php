@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Services\Product\ViewedProductsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 
 class ViewedProductController extends Controller
 {
@@ -29,6 +28,18 @@ class ViewedProductController extends Controller
             'products' => $service->getSummaryOfViewed()
         ]);
     }
+
+
+    // /public-js/viewed-products/offset/${settings.startOffset}
+    public function getViewedProductsForJS(ViewedProductsService $service, int $startOffset): JsonResponse
+    {
+        $perPage = 3;
+        $products = $service->getAllViewed()->offset($startOffset)->limit($perPage)->get();
+        return response()->json([
+            'products' => $products
+        ]);
+    }
+
 }
 
 // php artisan make:controller PublicJS/ViewedProductController

@@ -28,4 +28,13 @@ class ListService
             //->get() вынесено в контроллер (т.к. paginate() не работает после get())
     }
 
+    public function getEntireListForJSCache()
+    {
+        // указаны поля для экономии трафика
+        return Product::query()
+            ->select('id', 'name', 'price', 'parameters', 'photo_set', 'slug')
+            ->orderBy('position', 'desc')
+            ->get();
+    }
+
 }

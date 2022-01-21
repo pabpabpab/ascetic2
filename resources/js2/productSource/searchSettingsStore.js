@@ -9,6 +9,7 @@ export default class SearchSettingsStore {
             categoriesIds: [],
             categoriesSlugs: [],
             startOffset: 0,
+            perPage: 3,
         };
     }
 

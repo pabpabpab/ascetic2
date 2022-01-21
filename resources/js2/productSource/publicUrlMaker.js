@@ -18,11 +18,11 @@ export default class PublicUrlMaker {
         if (this._isUrlOfMainPage()) {
             return '/';
         }
-        if (this._isSingleCategoryUrl()) {
+        if (this._isSingleCategoryUrlBasedOnSectionName()) {
             // additionalDataOfProductSection - "categoryId;categorySlug"
             return `/products/${settings.additionalDataOfProductSection.split(';')[1]}`;
         }
-        if (this._isSingleCategoryUrl2()) {
+        if (this._isSingleCategoryUrl()) {
             return `/products/${settings.categoriesSlugs[0]}`;
         }
         if (this._isUrlOfFavoriteProducts()) {
@@ -71,15 +71,16 @@ export default class PublicUrlMaker {
         return logicalConditions.every(item => item === true);
     }
 
-    _isSingleCategoryUrl() {
+    _isSingleCategoryUrlBasedOnSectionName() {
         const settings = this.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.productSectionName === 'productsCategory',
+            settings.categoriesIds.length === 0,
         ];
         return logicalConditions.every(item => item === true);
     }
 
-    _isSingleCategoryUrl2() {
+    _isSingleCategoryUrl() {
         const settings = this.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.categoriesSlugs.length === 1,

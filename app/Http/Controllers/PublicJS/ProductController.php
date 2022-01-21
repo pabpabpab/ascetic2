@@ -14,10 +14,8 @@ class ProductController extends Controller
 
     public function getEntireList(ListService $service): JsonResponse
     {
-        $products = $service->getAll('active')->get();
-
         return response()->json([
-            'products' => $products
+            'products' => $service->getEntireListForJSCache()
         ]);
     }
 
@@ -37,7 +35,5 @@ class ProductController extends Controller
     }
 }
 
-
-
 // php artisan make:controller PublicJS/ProductController
-// php artisan make:controller PublicJS/ProductSearchController
+

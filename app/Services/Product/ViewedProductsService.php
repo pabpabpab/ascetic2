@@ -42,7 +42,8 @@ class ViewedProductsService
     {
         $frontIdsArr = $this->_getFrontIdsArr();
         $viewedStr = count($frontIdsArr) > 0 ? implode(',', $frontIdsArr) : '0';
-        return Product::whereRaw("id IN ($viewedStr)")->orderByRaw("FIELD(id, $viewedStr)");
+        return Product::select('id', 'name', 'price', 'parameters', 'photo_set', 'slug')
+            ->whereRaw("id IN ($viewedStr)")->orderByRaw("FIELD(id, $viewedStr)");
     }
 
     public function getAllViewedIdsStr(): string
@@ -57,7 +58,8 @@ class ViewedProductsService
         $frontIdsArr = $this->_getFrontIdsArr();
         $summaryIdsArr = array_slice($frontIdsArr, 0, $itemCountOfSummary);
         $summaryIdsStr = count($summaryIdsArr) > 0 ? implode(',', $summaryIdsArr) : '0';
-        return Product::whereRaw("id IN ($summaryIdsStr)")->orderByRaw("FIELD(id, $summaryIdsStr)")->get();
+        return Product::select('id', 'name', 'price', 'parameters', 'photo_set', 'slug')
+            ->whereRaw("id IN ($summaryIdsStr)")->orderByRaw("FIELD(id, $summaryIdsStr)")->get();
     }
 
 

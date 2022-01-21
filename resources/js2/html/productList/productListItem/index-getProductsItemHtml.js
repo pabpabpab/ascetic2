@@ -14,7 +14,7 @@ export default function getProductsItemHtml(product) {
 
                       <div class="product_item__quick_view_link__wrapper">
                          <a data-quick-view="${product.id}"
-                            href='product/${product.slug}-${product.id}'
+                            href='/product/${product.slug}-${product.id}'
                             class="product_item__quick_view_link">
                             Быстрый просмотр
                          </a>
@@ -30,7 +30,7 @@ export default function getProductsItemHtml(product) {
 
                       <div>
                           <div class="product_item__name">
-                              <a href='product/${product.slug}-${product.id}'
+                              <a href='/product/${product.slug}-${product.id}'
                                   class="product_item__name__link product_item__name__link__in_viewed_summary">
                                   ${product.name}
                               </a>
