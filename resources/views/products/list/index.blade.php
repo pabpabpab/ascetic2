@@ -53,7 +53,7 @@
                 </div>
             @endif
 
-                <nav class="pagination_and_view_more__pagination_nav @if($currentPage > 1) w100 @endif">
+                <nav id="paginationWrapper" class="pagination_and_view_more__pagination_nav @if($currentPage > 1) w100 @endif">
                     <div id="paginationContent" class="pagination_nav__content">
                         @if (in_array($currentRouteName, ['mainPage', 'products.list']))
                             {{ $products->links('pagination.all-products-pagination') }}

@@ -30,7 +30,7 @@ import SourceOfFilteredProducts from "./productSource/SourceOfFilteredProducts";
 
 import RendererOfProductsByViewMoreButton from "./productList/rendererByViewMoreButton";
 import RendererOfProductsByPaginationButton from "./productList/rendererByPaginationButton";
-
+import RendererOfPaginationBlock from "./productList/rendererOfPaginationBlock";
 
 
 new CsrfUpdater();
@@ -105,10 +105,16 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             sourceOfFilteredProducts,
         });
 
+        const rendererOfPaginationBlock = new RendererOfPaginationBlock({
+            searchSettingsStore,
+            publicUrlMaker,
+        });
+
         new RendererOfProductsByPaginationButton({
             searchSettingsStore,
             publicUrlMaker,
             sourceOfFilteredProducts,
+            rendererOfPaginationBlock,
         });
     }
 }

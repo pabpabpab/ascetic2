@@ -10,6 +10,7 @@ export default class RendererByPaginationButton {
         this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
         this.searchSettingsStore = data.searchSettingsStore;
         this.publicUrlMaker = data.publicUrlMaker;
+        this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
         this.disabledRequest = false;
@@ -17,13 +18,13 @@ export default class RendererByPaginationButton {
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.paginatorPageNumber) {
                 e.preventDefault();
-                this._setSearchSettings(Number(e.target.dataset.paginatorPageNumber));
+                this._setSearchSettings(e);
                 this._render();
             }
         });
     }
 
-    _setSearchSettings(pageNumber) {
+    _setSearchSettings(e) {
         this.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
@@ -31,9 +32,14 @@ export default class RendererByPaginationButton {
 
         const settings = { ...this.searchSettingsStore.getSettings() };
 
+        const pageNumber = Number(e.target.dataset.paginatorPageNumber);
+        this.searchSettingsStore.setPageNumber(pageNumber);
+
         const offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
         this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
-        this.searchSettingsStore.setPageNumber(pageNumber);
+
+        const pageCount = Number(this.wrapper.dataset.sectionPageCount);
+        this.searchSettingsStore.setPageCount(pageCount);
     }
 
 
@@ -63,6 +69,7 @@ export default class RendererByPaginationButton {
         new FavoriteProductsIndicationByPageLoad();
         this.publicUrlMaker.publishUrl();
         this._makeInvisibleViewMoreButton();
+        this.rendererOfPaginationBlock.remake();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
@@ -74,13 +81,6 @@ export default class RendererByPaginationButton {
             el('#viewMoreButton').classList.add("display-none");
         }
     }
-/*
-    _makeInvisiblePaginationBlock() {
-        if (!el('#paginationContent').classList.contains("display-none")) {
-            el('#paginationContent').classList.add("display-none");
-        }
-    }
-*/
 
     _getRequestPermission() {
         // защита от частых отправок на 10 сек (от двойного нажатия)

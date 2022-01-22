@@ -11,6 +11,7 @@ export default class SearchSettingsStore {
             startOffset: 0,
             perPage: 3,
             pageNumber: 0,
+            pageCount: 0,
         };
     }
 
@@ -26,8 +27,10 @@ export default class SearchSettingsStore {
     setStartOffset(value) {
         this.settings.startOffset = value;
     }
-
     setPageNumber(value) {
         this.settings.pageNumber = value;
+    }
+    setPageCount(value) {
+        this.settings.pageCount = value;
     }
 }

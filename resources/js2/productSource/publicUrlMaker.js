@@ -8,59 +8,62 @@ export default class PublicUrlMaker {
     // /product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}
 
     publishUrl() {
-        const url = this._getUrl();
+        const url = this.getUrl();
         history.replaceState(null,null, url);
     }
 
-    _getUrl() {
+    getUrl() {
         const settings = this.searchSettingsStore.getSettings();
         const pageNumber = settings.pageNumber;
 
         if (this._isUrlOfMainPage()) {
             return pageNumber > 1 ? `/products/${pageNumber}`: `/`;
+        } else {
+            return `${this.getFirstPageUrl()}/${pageNumber}`;
+        }
+    }
+
+    getFirstPageUrl() {
+        const settings = this.searchSettingsStore.getSettings();
+
+        if (this._isUrlOfMainPage()) {
+            return `/`;
         }
         if (this._isSingleCategoryUrlBasedOnSectionName()) {
             // additionalDataOfProductSection - "categoryId;categorySlug"
             const slug = settings.additionalDataOfProductSection.split(';')[1];
-            return pageNumber > 1 ? `/products/${slug}/${pageNumber}` : `/products/${slug}`;
+            return `/products/${slug}`;
         }
         if (this._isSingleCategoryUrl()) {
             const slug = settings.categoriesSlugs[0];
-            return pageNumber > 1 ? `/products/${slug}/${pageNumber}` : `/products/${slug}`;
+            return `/products/${slug}`;
         }
         if (this._isUrlOfFavoriteProducts()) {
-            return pageNumber > 1 ? `/favorite-products/${pageNumber}` : `/favorite-products`;
+            return `/favorite-products`;
         }
         if (this._isUrlOfViewedProducts()) {
-            return pageNumber > 1 ? `/viewed-products/${pageNumber}` : `/viewed-products`;
+            return `/viewed-products`;
         }
 
+        return this._getComplexSearchUrl(settings);
+    }
 
+
+    _getComplexSearchUrl(settings) {
         const totalUrl = [
             this.startUrl,
             this._getMinPriceUrl(settings),
             this._getMaxPriceUrl(settings),
             this._getCategoriesUrl(settings),
+            this._getOffsetUrl(settings),
         ];
-
         return totalUrl.join('');
+        // вида /product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}/page/
     }
 
 
-    _getMinPriceUrl(settings) {
-        return `/min-price/${settings.minPrice}`;
-    }
 
-    _getMaxPriceUrl(settings) {
-        return `/max-price/${settings.maxPrice}`;
-    }
 
-    _getCategoriesUrl(settings) {
-        if (settings.categoriesIds.length === 0) {
-            return '/categories/0';
-        }
-        return `/categories/${settings.categoriesIds.join('-')}`;
-    }
 
 
     _isUrlOfMainPage() {
@@ -107,5 +110,25 @@ export default class PublicUrlMaker {
             settings.productSectionName === 'viewedProducts',
         ];
         return logicalConditions.every(item => item === true);
+    }
+
+
+
+
+
+    _getMinPriceUrl(settings) {
+        return `/min-price/${settings.minPrice}`;
+    }
+    _getMaxPriceUrl(settings) {
+        return `/max-price/${settings.maxPrice}`;
+    }
+    _getCategoriesUrl(settings) {
+        if (settings.categoriesIds.length === 0) {
+            return '/categories/0';
+        }
+        return `/categories/${settings.categoriesIds.join('-')}`;
+    }
+    _getOffsetUrl(settings) {
+        return `/page`; // return `/page/${settings.pageNumber}`;
     }
 }
