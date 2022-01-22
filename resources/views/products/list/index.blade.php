@@ -31,10 +31,13 @@
         <div id="productList"
              data-total-products-count="{{ $totalProductsCount }}"
              data-section-products-count="{{ $sectionProductsCount }}"
+             data-section-page-count="{{ $pageCount }}"
              data-product-section-name="{{ $productSectionName }}"
              data-additional-data-of-product-section="{{ $additionalDataOfProductSection }}"
              class="products">
-            @each('products.list.product-item', $products, 'product')
+            <div id="productListContent">
+                @each('products.list.product-item', $products, 'product')
+            </div>
         </div>
     </section>
 

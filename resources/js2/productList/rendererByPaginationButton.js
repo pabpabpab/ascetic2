@@ -4,32 +4,36 @@ import getProductsItemHtml from "./../html/productList/productListItem/index-get
 import FavoriteProductsIndicationByPageLoad from "./../favoriteProducts/favoriteProductsIndicationByPageLoad";
 import scrollDocument from "./../scrollDocument";
 
-export default class RendererByViewMore {
+export default class RendererByPaginationButton {
 
     constructor(data) {
-        this.filteredProductsSource = data.filteredProductsSource;
+        this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
         this.searchSettingsStore = data.searchSettingsStore;
         this.publicUrlMaker = data.publicUrlMaker;
         this.productItemSelector = '[data-product-item]';
-        this.container = el('#productList');
+        this.wrapper = el('#productList');
         this.disabledRequest = false;
 
         el('body').addEventListener('click', (e) => {
-            if (e.target.id === 'viewMoreButton') {
-                this._setSearchSettings();
+            if (e.target.dataset.paginatorPageNumber) {
+                e.preventDefault();
+                this._setSearchSettings(Number(e.target.dataset.paginatorPageNumber));
                 this._render();
             }
         });
     }
 
-    _setSearchSettings() {
+    _setSearchSettings(pageNumber) {
         this.searchSettingsStore.setProductSectionData({
-            productSectionName: this.container.dataset.productSectionName,
-            additionalData: this.container.dataset.additionalDataOfProductSection,
+            productSectionName: this.wrapper.dataset.productSectionName,
+            additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
 
-        const offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
+        const settings = { ...this.searchSettingsStore.getSettings() };
+
+        const offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
         this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
+        this.searchSettingsStore.setPageNumber(pageNumber);
     }
 
 
@@ -38,7 +42,7 @@ export default class RendererByViewMore {
             return;
         }
 
-        this.filteredProductsSource.getFiltered()
+        this.sourceOfFilteredProducts.getFiltered()
             .then((data) => {
                 this.disabledRequest = false;
                 const products = [...data];
@@ -46,8 +50,11 @@ export default class RendererByViewMore {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
                 });
-                const itemsHtml = itemsHtmlArr.join('');
-                this.container.insertAdjacentHTML('beforeend', itemsHtml);
+                const itemsHtml = `<div id="productListContent">${ itemsHtmlArr.join('') }</div>`;
+                if (el('#productListContent')) {
+                    el('#productListContent').remove();
+                }
+                this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
                 this._finalActions();
             });
     }
@@ -55,35 +62,35 @@ export default class RendererByViewMore {
     _finalActions() {
         new FavoriteProductsIndicationByPageLoad();
         this.publicUrlMaker.publishUrl();
-        this._makeInvisiblePaginationBlock();
-        this._makeInvisibleViewMoreButtonIfNeeded();
-        scrollDocument(200, 'down');
+        this._makeInvisibleViewMoreButton();
+
+        const distance = window.pageYOffset;
+        scrollDocument(distance, 'up');
     }
 
-    _makeInvisibleViewMoreButtonIfNeeded() {
-        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCountFromServer = Number(el('#productList').dataset.sectionProductsCount);
-        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+    _makeInvisibleViewMoreButton() {
+        const viewMoreButton = el('#viewMoreButton');
+        if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
             el('#viewMoreButton').classList.add("display-none");
         }
     }
-
+/*
     _makeInvisiblePaginationBlock() {
         if (!el('#paginationContent').classList.contains("display-none")) {
             el('#paginationContent').classList.add("display-none");
         }
     }
-
+*/
 
     _getRequestPermission() {
-        // защита от частых отправок на 15 сек (от двойного нажатия)
+        // защита от частых отправок на 10 сек (от двойного нажатия)
         if (this.disabledRequest) {
             return false;
         }
         this.disabledRequest = true;
         setTimeout(() => {
             this.disabledRequest = false;
-        }, 15000);
+        }, 10000);
 
         return true;
     }

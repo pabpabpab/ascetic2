@@ -23,27 +23,27 @@
 
 
         @if ($prevRoute)
-            <a href="{{ $prevRoute }}" class="pagination__link pagination__link__arrow_left"></a>
+            <a href="{{ $prevRoute }}" data-paginator-page-number="{{$prevPageNumber}}" class="pagination__link pagination__link__arrow_left"></a>
         @endif
 
         @for ($i = 1; $i <= $paginator->lastPage(); $i++)
             @if ($paginator->currentPage() === $i)
-                <span class="pagination__link_active">
-                        {{ $i }}
-                    </span>
+                <span data-paginator-page-number="{{ $i }}" class="pagination__link_active">
+                    {{ $i }}
+                </span>
             @elseif ($i === 1)
-                <a href="{{ route('mainPage') }}" class="pagination__link">
+                <a href="{{ route('mainPage') }}" data-paginator-page-number="1" class="pagination__link">
                     1
                 </a>
             @else
-                <a href="{{ route($routeName, ['pageNumber' => $i]) }}" class="pagination__link">
+                <a href="{{ route($routeName, ['pageNumber' => $i]) }}" data-paginator-page-number="{{ $i }}" class="pagination__link">
                     {{ $i }}
                 </a>
             @endif
         @endfor
 
         @if ($nextRoute)
-            <a href="{{ $nextRoute }}" class="pagination__link pagination__link__arrow_right"></a>
+            <a href="{{ $nextRoute }}" data-paginator-page-number="{{$nextPageNumber}}" class="pagination__link pagination__link__arrow_right"></a>
         @endif
 
 @endif

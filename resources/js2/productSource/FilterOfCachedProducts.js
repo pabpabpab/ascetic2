@@ -1,6 +1,6 @@
 import getCookie from "../cookie/getCookie";
 
-export default class CachedProductsFilter {
+export default class FilterOfCachedProducts {
 
     constructor(searchSettingsStore) {
         this.searchSettingsStore = searchSettingsStore;

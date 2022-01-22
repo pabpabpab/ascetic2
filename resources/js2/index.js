@@ -25,11 +25,11 @@ import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMa
 import SearchSettingsStore from "./productSource/searchSettingsStore";
 import SearchUrlMaker from "./productSource/searchUrlMaker";
 import PublicUrlMaker from "./productSource/publicUrlMaker";
-import CachedProductsFilter from "./productSource/cachedProductsFilter";
-import FilteredProductsSource from "./productSource/filteredProductsSource";
+import FilterOfCachedProducts from "./productSource/FilterOfCachedProducts";
+import SourceOfFilteredProducts from "./productSource/SourceOfFilteredProducts";
 
-import RendererOfProductsByViewMoreButton from "./productList/rendererByViewMore";
-
+import RendererOfProductsByViewMoreButton from "./productList/rendererByViewMoreButton";
+import RendererOfProductsByPaginationButton from "./productList/rendererByPaginationButton";
 
 
 
@@ -91,9 +91,9 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
         const searchSettingsStore = new SearchSettingsStore();
         const searchUrlMaker = new SearchUrlMaker(searchSettingsStore);
         const publicUrlMaker = new PublicUrlMaker(searchSettingsStore);
-        const cachedProductsFilter = new CachedProductsFilter(searchSettingsStore);
+        const cachedProductsFilter = new FilterOfCachedProducts(searchSettingsStore);
 
-        const filteredProductsSource = new FilteredProductsSource({
+        const sourceOfFilteredProducts = new SourceOfFilteredProducts({
             productCache,
             cachedProductsFilter,
             searchUrlMaker,
@@ -102,7 +102,13 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
         new RendererOfProductsByViewMoreButton({
             searchSettingsStore,
             publicUrlMaker,
-            filteredProductsSource,
+            sourceOfFilteredProducts,
+        });
+
+        new RendererOfProductsByPaginationButton({
+            searchSettingsStore,
+            publicUrlMaker,
+            sourceOfFilteredProducts,
         });
     }
 }

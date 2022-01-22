@@ -2,7 +2,7 @@ import getJson from "./../http/getJson";
 import AbsoluteFlashMessage from "./../absoluteFlashMessage";
 import allProductsMustBeCached from "../allProductsMustBeCached";
 
-export default class FilteredProductsSource {
+export default class SourceOfFilteredProducts {
 
     constructor(data) {
         this.productCache = data.productCache;

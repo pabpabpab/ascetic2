@@ -402,6 +402,12 @@ h2 {
 .products {
   width: 100%;
   padding: 0;
+}
+
+#productListContent {
+  width: 100%;
+  padding: 0;
+  margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

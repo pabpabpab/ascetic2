@@ -14,22 +14,25 @@ export default class PublicUrlMaker {
 
     _getUrl() {
         const settings = this.searchSettingsStore.getSettings();
+        const pageNumber = settings.pageNumber;
 
         if (this._isUrlOfMainPage()) {
-            return '/';
+            return pageNumber > 1 ? `/products/${pageNumber}`: `/`;
         }
         if (this._isSingleCategoryUrlBasedOnSectionName()) {
             // additionalDataOfProductSection - "categoryId;categorySlug"
-            return `/products/${settings.additionalDataOfProductSection.split(';')[1]}`;
+            const slug = settings.additionalDataOfProductSection.split(';')[1];
+            return pageNumber > 1 ? `/products/${slug}/${pageNumber}` : `/products/${slug}`;
         }
         if (this._isSingleCategoryUrl()) {
-            return `/products/${settings.categoriesSlugs[0]}`;
+            const slug = settings.categoriesSlugs[0];
+            return pageNumber > 1 ? `/products/${slug}/${pageNumber}` : `/products/${slug}`;
         }
         if (this._isUrlOfFavoriteProducts()) {
-            return '/favorite-products';
+            return pageNumber > 1 ? `/favorite-products/${pageNumber}` : `/favorite-products`;
         }
         if (this._isUrlOfViewedProducts()) {
-            return '/viewed-products';
+            return pageNumber > 1 ? `/viewed-products/${pageNumber}` : `/viewed-products`;
         }
 
 

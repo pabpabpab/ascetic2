@@ -10,6 +10,7 @@ export default class SearchSettingsStore {
             categoriesSlugs: [],
             startOffset: 0,
             perPage: 3,
+            pageNumber: 0,
         };
     }
 
@@ -24,5 +25,9 @@ export default class SearchSettingsStore {
 
     setStartOffset(value) {
         this.settings.startOffset = value;
+    }
+
+    setPageNumber(value) {
+        this.settings.pageNumber = value;
     }
 }
