@@ -4,7 +4,7 @@ import getProductsItemHtml from "./../html/productList/productListItem/index-get
 import FavoriteProductsIndicationByPageLoad from "./../favoriteProducts/favoriteProductsIndicationByPageLoad";
 import scrollDocument from "./../scrollDocument";
 
-export default class RendererByPaginationButton {
+export default class RendererByCategoryLink {
 
     constructor(data) {
         this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
@@ -13,15 +13,27 @@ export default class RendererByPaginationButton {
         this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
+        this.header = el('#productsH1');
         this.disabledRequest = false;
 
         el('body').addEventListener('click', (e) => {
-            if (e.target.dataset.paginatorPageNumber) {
+            if (e.target.dataset.menuLinkCategoryId) {
                 e.preventDefault();
+                this._setDataAttributes(e);
                 this._setSearchSettings(e);
                 this._render();
             }
         });
+    }
+
+
+    _setDataAttributes(e) {
+        const categoryId = e.target.dataset.menuLinkCategoryId;
+        const categorySlug = e.target.dataset.menuLinkCategorySlug;
+        const categoryName = e.target.dataset.menuLinkCategoryName;
+
+        this.wrapper.dataset.productSectionName = 'productCategory';
+        this.wrapper.dataset.additionalDataOfProductSection = `${categoryId};${categorySlug};${categoryName}`;
     }
 
     _setSearchSettings(e) {
@@ -29,17 +41,8 @@ export default class RendererByPaginationButton {
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
-
-        const settings = { ...this.searchSettingsStore.getSettings() };
-
-        const pageNumber = Number(e.target.dataset.paginatorPageNumber);
-        this.searchSettingsStore.setPageNumber(pageNumber);
-
-        const offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
-        this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
-
-        const pageCount = Number(this.wrapper.dataset.sectionPageCount);
-        this.searchSettingsStore.setPageCount(pageCount);
+        this.searchSettingsStore.setPageNumber(1);
+        this.searchSettingsStore.setStartOffset(0);
     }
 
 
@@ -68,17 +71,43 @@ export default class RendererByPaginationButton {
     _finalActions() {
         new FavoriteProductsIndicationByPageLoad();
         this.publicUrlMaker.publishUrl();
-        this._makeInvisibleViewMoreButton();
-        this.rendererOfPaginationBlock.remake();
+        this._renderHeader();
+        this._makeVisibleViewMoreButton();
+        this._makeInvisibleViewMoreButtonIfNeeded();
+        this._makeInvisiblePaginationBlock();
+        //this.rendererOfPaginationBlock.remake();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
     }
 
-    _makeInvisibleViewMoreButton() {
+    _renderHeader() {
+        const headerText = this.wrapper.dataset.additionalDataOfProductSection.split(';')[2];
+        this.header.innerText = headerText;
+    }
+
+    _makeVisibleViewMoreButton() {
         const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.add("display-none");
+        if (viewMoreButton && viewMoreButton.classList.contains("display-none")) {
+            viewMoreButton.classList.remove("display-none");
+        }
+    }
+
+    _makeInvisibleViewMoreButtonIfNeeded() {
+        const viewMoreButton = el('#viewMoreButton');
+        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
+        const sectionProductsCount = Number(this.wrapper.dataset.sectionProductsCount);
+        if (numberOfDisplayedProducts >= sectionProductsCount) {
+            if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
+                viewMoreButton.classList.add("display-none");
+            }
+        }
+    }
+
+    _makeInvisiblePaginationBlock() {
+        const paginationBlock = el('#paginationContent');
+        if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
+            paginationBlock.classList.add("display-none");
         }
     }
 

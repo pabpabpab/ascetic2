@@ -80,7 +80,7 @@ class ProductController extends Controller
         // $category определена в роуте как {category:slug}
         return view('products.list.index', [
             'category' => $category,
-            'productSectionName' => 'productsCategory',
+            'productSectionName' => 'productCategory',
             'additionalDataOfProductSection' => "{$category->id};{$category->slug}",
             'categorySeo' => $category->seoText,
             'products' => $category->products()->paginate($perPage),

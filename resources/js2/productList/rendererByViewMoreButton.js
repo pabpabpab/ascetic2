@@ -12,7 +12,7 @@ export default class RendererByViewMoreButton {
         this.publicUrlMaker = data.publicUrlMaker;
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
-        this.container = el('#productListContent');
+        //this.container = el('#productListContent'); // не делать указатель
         this.disabledRequest = false;
 
         el('body').addEventListener('click', (e) => {
@@ -48,7 +48,8 @@ export default class RendererByViewMoreButton {
                     return getProductsItemHtml(productObject);
                 });
                 const itemsHtml = itemsHtmlArr.join('');
-                this.container.insertAdjacentHTML('beforeend', itemsHtml);
+                // получать элемент только без ранее созданного указателя
+                el('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
                 this._finalActions();
             });
     }
@@ -63,7 +64,7 @@ export default class RendererByViewMoreButton {
 
     _makeInvisibleViewMoreButtonIfNeeded() {
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCountFromServer = Number(el('#productList').dataset.sectionProductsCount);
+        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
         if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
             el('#viewMoreButton').classList.add("display-none");
         }

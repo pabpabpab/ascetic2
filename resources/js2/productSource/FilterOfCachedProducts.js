@@ -40,7 +40,7 @@ export default class FilterOfCachedProducts {
         const func = {
             favoriteProducts: this._favoriteProductsFilter,
             viewedProducts: this._viewedProductsFilter,
-            productsCategory: this._singleCategoryFilter,
+            productCategory: this._singleCategoryFilter,
         }
         const additionalFilteringParameters = settings.additionalDataOfProductSection;
         return func[settings.productSectionName](items, additionalFilteringParameters);

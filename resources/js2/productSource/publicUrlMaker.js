@@ -80,7 +80,7 @@ export default class PublicUrlMaker {
     _isSingleCategoryUrlBasedOnSectionName() {
         const settings = this.searchSettingsStore.getSettings();
         const logicalConditions = [
-            settings.productSectionName === 'productsCategory',
+            settings.productSectionName === 'productCategory',
             settings.categoriesIds.length === 0,
         ];
         return logicalConditions.every(item => item === true);

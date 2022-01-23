@@ -9,6 +9,7 @@ export default class SourceOfFilteredProducts {
         this.productCache = data.productCache;
         this.searchUrlMaker = data.searchUrlMaker;
         this.productsFilter = data.filterOfCachedProducts;
+        this.searchSettingsStore = data.searchSettingsStore;
         this.productsWrapper = el('#productList');
     }
 
@@ -25,7 +26,7 @@ export default class SourceOfFilteredProducts {
             .then((data) => {
                 const products = [...data];
                 const {filtered, sectionProductsCount} = this.productsFilter.doFilter(products);
-                this.productsWrapper.dataset.sectionProductsCount = sectionProductsCount;
+                this._setDataAttributesAndSearchSettings(sectionProductsCount);
                 return filtered;
             });
     }
@@ -35,12 +36,21 @@ export default class SourceOfFilteredProducts {
         return getJson(url)
             .then((data) => {
                 //console.log(data);
-                this.productsWrapper.dataset.sectionProductsCount = data.sectionProductsCount;
+                this._setDataAttributesAndSearchSettings(data.sectionProductsCount);
                 return [ ...data.products ];
             })
             .catch(() => {
                 new AbsoluteFlashMessage(`Не удалось загрузить товары`);
             });
     }
+
+    _setDataAttributesAndSearchSettings(sectionProductsCount) {
+        this.productsWrapper.dataset.sectionProductsCount = sectionProductsCount;
+        const settings = { ...this.searchSettingsStore.getSettings() };
+        const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
+        this.productsWrapper.dataset.sectionPageCount = sectionPageCount;
+        this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+
 
 }

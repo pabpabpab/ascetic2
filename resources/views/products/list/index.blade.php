@@ -26,7 +26,7 @@
 
 @section('content')
     <section>
-        <h1 class="products__h1">{{ $pageTitle }}</h1>
+        <h1 id="productsH1" class="products__h1">{{ $pageTitle }}</h1>
 
         <div id="productList"
              data-total-products-count="{{ $totalProductsCount }}"

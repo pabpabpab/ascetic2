@@ -41,7 +41,7 @@ export default class SearchUrlMaker {
         if (settings.categoriesIds.length > 0) {
             return `/categories/${settings.categoriesIds.join('-')}`;
         }
-        if (settings.productSectionName === 'productsCategory') {
+        if (settings.productSectionName === 'productCategory') {
             return `/categories/${settings.additionalDataOfProductSection.split(';')[0]}`;
         }
         return '/categories/0';

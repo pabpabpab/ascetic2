@@ -7,7 +7,7 @@
 
         <div data-menu="left" class="top_menu__ul">
 
-            <div class="top_menu__li">
+            <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
                 <a href="#" class="top_menu__link easy_top_menu__link_with_drop_menu">
                     &#9776;
                 </a>
@@ -36,6 +36,9 @@
 
 
     <div data-menu="right" class="top_menu__ul">
+        <div class="top_menu__li_auth">
+            @include('menu.fav-icon')
+        </div>
         <div class="top_menu__li_auth">
             @include('menu.auth-menu')
         </div>

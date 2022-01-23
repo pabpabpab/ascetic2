@@ -23,7 +23,6 @@ export default class SearchSettingsStore {
         this.settings.productSectionName = productSectionName;
         this.settings.additionalDataOfProductSection = additionalData;
     }
-
     setStartOffset(value) {
         this.settings.startOffset = value;
     }

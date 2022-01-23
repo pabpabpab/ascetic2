@@ -19,15 +19,19 @@
                         'category' => $category->slug
                     ]);
                 @endphp
-                <div data-menu-category="{{ $i }}" class="top_menu__li">
-                    <a href='{{ $catUrl }}' class="top_menu__link">
+                <div data-menu-link-category="{{ $i }}" class="top_menu__li">
+                    <a href='{{ $catUrl }}'
+                       data-menu-link-category-id="{{ $category->id }}"
+                       data-menu-link-category-slug="{{ $category->slug }}"
+                       data-menu-link-category-name="{{ $category->name }}"
+                       class="top_menu__link">
                         {{ $category->name }}
                         {{-- $category->products_count --}}
                     </a>
                 </div>
             @endfor
 
-            <div id="topMenu-dropMenuContainer" class="top_menu__li">
+            <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
                 <a href="/" class="top_menu__link top_menu__link_with_drop_menu nowrap">
                     Все
                 </a>
