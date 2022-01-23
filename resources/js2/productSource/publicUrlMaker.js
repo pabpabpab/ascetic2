@@ -17,9 +17,9 @@ export default class PublicUrlMaker {
         const pageNumber = settings.pageNumber;
 
         if (this._isUrlOfMainPage()) {
-            return pageNumber > 1 ? `/products/${pageNumber}`: `/`;
+            return pageNumber > 1 ? `/products/${pageNumber}` : `/`;
         } else {
-            return `${this.getFirstPageUrl()}/${pageNumber}`;
+            return pageNumber > 1 ? `${this.getFirstPageUrl()}/${pageNumber}` : `${this.getFirstPageUrl()}`
         }
     }
 

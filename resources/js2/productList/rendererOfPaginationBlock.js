@@ -1,5 +1,4 @@
 import el from './../el';
-import getPaginationBlockHtml from "../html/paginationBlock/getPaginationBlockHtml";
 
 
 export default class RendererOfPaginationBlock {
@@ -15,26 +14,27 @@ export default class RendererOfPaginationBlock {
             el('#paginationContent').remove();
         }
 
-        const settings = this.searchSettingsStore.getSettings();
-        const pageNumber = settings.pageNumber;
-        const pageCount = settings.pageCount;
-        const firstPageUrl = this.publicUrlMaker.getFirstPageUrl();
-        const pageUrl = firstPageUrl === '/' ? `/products` : firstPageUrl;
-
-        const data = {
-            firstPageUrl,
-            pageUrl,
-            pageNumber,
-            pageCount,
-        }
-
-        const contentHtml = this._getPaginationBlockHtml(data);
-        const html = `<div id="paginationContent" class="pagination_nav__content">${ contentHtml }</div>`;
-        this.wrapper.insertAdjacentHTML('afterbegin', html);
+        const data = this._getPaginationData();
+        const contentHtml = data.pageCount > 7
+            ? this._getComplexPaginationBlockHtml(data)
+            : this._getSimplePaginationBlockHtml(data)
+        const totalHtml = `<div id="paginationContent" class="pagination_nav__content">
+                              ${ contentHtml }
+                           </div>`;
+        this.wrapper.insertAdjacentHTML('afterbegin', totalHtml);
     }
 
 
-    _getPaginationBlockHtml({firstPageUrl, pageUrl, pageNumber, pageCount}) {
+    _getPaginationData() {
+        const settings = this.searchSettingsStore.getSettings();
+
+        const pageNumber = settings.pageNumber;
+        const pageCount = settings.pageCount;
+
+        const firstPageUrl = this.publicUrlMaker.getFirstPageUrl();
+        const pageUrl = firstPageUrl === '/' ? `/products` : firstPageUrl;
+        const lastPageUrl = `${pageUrl}/${pageCount}`;
+
         const prevPageNumber = pageNumber - 1;
         const nextPageNumber = pageNumber + 1;
 
@@ -50,16 +50,59 @@ export default class RendererOfPaginationBlock {
             nextRoute = `${pageUrl}/${nextPageNumber}`;
         }
 
-        const items = [];
+        return {
+            firstPageUrl,
+            pageUrl,
+            lastPageUrl,
+            currentPageNumber: pageNumber,
+            pageCount,
+            prevRoute,
+            prevPageNumber,
+            nextRoute,
+            nextPageNumber,
+        };
+    }
 
+
+    _getComplexPaginationBlockHtml({firstPageUrl, pageUrl, lastPageUrl, currentPageNumber, pageCount, prevRoute, prevPageNumber, nextRoute, nextPageNumber}) {
+        const items = [];
         if (prevRoute) {
             items.push(
                 `<a href="${prevRoute}" data-paginator-page-number="${prevPageNumber}" class="pagination__link pagination__link__arrow_left"></a>`
             );
         }
+        if (currentPageNumber > 1) {
+            items.push(
+                `<a href="${firstPageUrl}" data-paginator-page-number="1" class="pagination__link">
+                    1
+                </a>`
+            );
+        }
+        items.push(
+            `<span data-paginator-page-number="${currentPageNumber}" class="pagination__link_active">
+                ${currentPageNumber}
+            </span>`
+        );
+        if (currentPageNumber < pageCount) {
+            items.push(
+                `<a href="${lastPageUrl}" data-paginator-page-number="${pageCount}" class="pagination__link">
+                    ${pageCount}
+                </a>`
+            );
+        }
+        if (nextRoute) {
+            items.push(
+                `<a href="${nextRoute}" data-paginator-page-number="${nextPageNumber}" class="pagination__link pagination__link__arrow_right"></a>`
+            );
+        }
+        return items.join('');
+    }
 
+
+    _getSimplePaginationBlockHtml({firstPageUrl, pageUrl, currentPageNumber, pageCount}) {
+        const items = [];
         for (let i = 1; i <= pageCount; i++) {
-            if (pageNumber === i) {
+            if (currentPageNumber === i) {
                 items.push(
                     `<span data-paginator-page-number="${i}" class="pagination__link_active">${i}</span>`
                 );
@@ -73,16 +116,7 @@ export default class RendererOfPaginationBlock {
                 );
             }
         }
-
-        if (nextRoute) {
-            items.push(
-                `<a href="${nextRoute}" data-paginator-page-number="${nextPageNumber}" class="pagination__link pagination__link__arrow_right"></a>`
-            );
-        }
-
         return items.join('');
     }
-
-
 
 }

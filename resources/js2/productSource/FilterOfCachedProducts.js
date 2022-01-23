@@ -23,9 +23,12 @@ export default class FilterOfCachedProducts {
             filtered = this._categoriesFilter(filtered, settings.categoriesIds);
         }
 
+
+        const sectionProductsCount = filtered.length;
+
         filtered = this._offsetFilter(filtered, settings.startOffset, settings.perPage);
 
-        return filtered;
+        return {filtered, sectionProductsCount};
     }
 
 

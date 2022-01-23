@@ -45,10 +45,14 @@ class FavoriteProductController extends Controller
     {
         $perPage = 3;
         $products = $service->getList()->offset($startOffset)->limit($perPage)->get();
+        $sectionProductsCount = $service->getList()->count();
+
         return response()->json([
-            'products' => $products
+            'products' => $products,
+            'sectionProductsCount' => $sectionProductsCount
         ]);
     }
+
 }
 
 // php artisan make:controller PublicJS/FavoriteProductController

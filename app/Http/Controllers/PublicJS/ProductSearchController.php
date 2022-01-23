@@ -17,7 +17,7 @@ class ProductSearchController extends Controller
     public function search(SearchService $service, int $minPrice, int $maxPrice, string $categoriesIds, int $startOffset): JsonResponse
     {
         $perPage = 3;
-        $products = $service->getSearched([
+        $result = $service->getSearched([
             'minPrice' => $minPrice,
             'maxPrice' => $maxPrice,
             'categoriesIds' => $categoriesIds,
@@ -26,7 +26,8 @@ class ProductSearchController extends Controller
         ]);
 
         return response()->json([
-            'products' => $products
+            'products' => $result['products'],
+            'sectionProductsCount' => $result['sectionProductsCount'],
         ]);
     }
 

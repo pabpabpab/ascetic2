@@ -91,11 +91,11 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
         const searchSettingsStore = new SearchSettingsStore();
         const searchUrlMaker = new SearchUrlMaker(searchSettingsStore);
         const publicUrlMaker = new PublicUrlMaker(searchSettingsStore);
-        const cachedProductsFilter = new FilterOfCachedProducts(searchSettingsStore);
+        const filterOfCachedProducts = new FilterOfCachedProducts(searchSettingsStore);
 
         const sourceOfFilteredProducts = new SourceOfFilteredProducts({
             productCache,
-            cachedProductsFilter,
+            filterOfCachedProducts,
             searchUrlMaker,
         });
 

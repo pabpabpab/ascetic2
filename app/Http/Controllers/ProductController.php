@@ -76,7 +76,7 @@ class ProductController extends Controller
 
         $totalProductsCount = Product::count();
         $productsCount = $category->products()->count();
-        $perPage = 1;
+        $perPage = 3;
         // $category определена в роуте как {category:slug}
         return view('products.list.index', [
             'category' => $category,

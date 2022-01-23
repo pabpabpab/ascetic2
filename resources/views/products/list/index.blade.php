@@ -42,10 +42,10 @@
     </section>
 
 
-    @if($pageCount > 1)
+    @if ($pageCount > 1)
         <div class="pagination_and_view_more">
 
-            @if($currentPage === 1)
+            @if ($currentPage === 1)
                 <div class="pagination_and_view_more__view_more">
                     <button id="viewMoreButton" class="pagination_and_view_more__view_more__button">
                         Показать еще

@@ -2,9 +2,16 @@
 
     @php
         $routeName = 'products.list';
+        $firstPageUrl = route('mainPage');
 
-        $prevPageNumber = $paginator->currentPage() - 1;
-        $nextPageNumber = $paginator->currentPage() + 1;
+
+        $pageCount = $paginator->lastPage();
+        $lastPageUrl = route($routeName, ['pageNumber' => $pageCount]);
+
+        $currentPageNumber = $paginator->currentPage();
+
+        $prevPageNumber = $currentPageNumber - 1;
+        $nextPageNumber = $currentPageNumber + 1;
 
         $prevRoute = '';
         if ($prevPageNumber === 1) {
@@ -14,36 +21,28 @@
         }
 
         $nextRoute = '';
-        if ($nextPageNumber <= $paginator->lastPage()) {
+        if ($nextPageNumber <= $pageCount) {
             $nextRoute = route($routeName, ['pageNumber' => $nextPageNumber]);
         }
+
+        $paginationData = [
+            'routeName' => $routeName,
+            'firstPageUrl' => $firstPageUrl,
+            'lastPageUrl' => $lastPageUrl,
+            'currentPageNumber' => $currentPageNumber,
+            'pageCount' => $pageCount,
+            'prevRoute' => $prevRoute,
+            'prevPageNumber' => $prevPageNumber,
+            'nextRoute' => $nextRoute,
+            'nextPageNumber' => $nextPageNumber,
+            'categorySlug' => ''
+        ];
     @endphp
 
-
-
-
-        @if ($prevRoute)
-            <a href="{{ $prevRoute }}" data-paginator-page-number="{{$prevPageNumber}}" class="pagination__link pagination__link__arrow_left"></a>
-        @endif
-
-        @for ($i = 1; $i <= $paginator->lastPage(); $i++)
-            @if ($paginator->currentPage() === $i)
-                <span data-paginator-page-number="{{ $i }}" class="pagination__link_active">
-                    {{ $i }}
-                </span>
-            @elseif ($i === 1)
-                <a href="{{ route('mainPage') }}" data-paginator-page-number="1" class="pagination__link">
-                    1
-                </a>
-            @else
-                <a href="{{ route($routeName, ['pageNumber' => $i]) }}" data-paginator-page-number="{{ $i }}" class="pagination__link">
-                    {{ $i }}
-                </a>
-            @endif
-        @endfor
-
-        @if ($nextRoute)
-            <a href="{{ $nextRoute }}" data-paginator-page-number="{{$nextPageNumber}}" class="pagination__link pagination__link__arrow_right"></a>
-        @endif
+    @if ($pageCount > 7)
+        @include('pagination.complex-pagination-block', $paginationData)
+    @else
+        @include('pagination.simple-pagination-block', $paginationData)
+    @endif
 
 @endif

@@ -1415,22 +1415,6 @@ function getDropMenuHtml(innerHtml) {
 
 /***/ }),
 
-/***/ "./resources/js2/html/paginationBlock/getPaginationBlockHtml.js":
-/*!**********************************************************************!*\
-  !*** ./resources/js2/html/paginationBlock/getPaginationBlockHtml.js ***!
-  \**********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getPaginationBlockHtml; });
-function getPaginationBlockHtml(data) {
-  return "";
-}
-
-/***/ }),
-
 /***/ "./resources/js2/html/productList/productListItem/getFavoriteIconBlockHtml.js":
 /*!************************************************************************************!*\
   !*** ./resources/js2/html/productList/productListItem/getFavoriteIconBlockHtml.js ***!
@@ -1993,10 +1977,10 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Objec
     var searchSettingsStore = new _productSource_searchSettingsStore__WEBPACK_IMPORTED_MODULE_14__["default"]();
     var searchUrlMaker = new _productSource_searchUrlMaker__WEBPACK_IMPORTED_MODULE_15__["default"](searchSettingsStore);
     var publicUrlMaker = new _productSource_publicUrlMaker__WEBPACK_IMPORTED_MODULE_16__["default"](searchSettingsStore);
-    var cachedProductsFilter = new _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_17__["default"](searchSettingsStore);
+    var filterOfCachedProducts = new _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_17__["default"](searchSettingsStore);
     var sourceOfFilteredProducts = new _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_18__["default"]({
       productCache: productCache,
-      cachedProductsFilter: cachedProductsFilter,
+      filterOfCachedProducts: filterOfCachedProducts,
       searchUrlMaker: searchUrlMaker
     });
     new _productList_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_19__["default"]({
@@ -2705,13 +2689,11 @@ var RendererByViewMoreButton = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererOfPaginationBlock; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _html_paginationBlock_getPaginationBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/paginationBlock/getPaginationBlockHtml */ "./resources/js2/html/paginationBlock/getPaginationBlockHtml.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 
 
 
@@ -2734,30 +2716,21 @@ var RendererOfPaginationBlock = /*#__PURE__*/function () {
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').remove();
       }
 
+      var data = this._getPaginationData();
+
+      var contentHtml = data.pageCount > 7 ? this._getComplexPaginationBlockHtml(data) : this._getSimplePaginationBlockHtml(data);
+      var totalHtml = "<div id=\"paginationContent\" class=\"pagination_nav__content\">\n                              ".concat(contentHtml, "\n                           </div>");
+      this.wrapper.insertAdjacentHTML('afterbegin', totalHtml);
+    }
+  }, {
+    key: "_getPaginationData",
+    value: function _getPaginationData() {
       var settings = this.searchSettingsStore.getSettings();
       var pageNumber = settings.pageNumber;
       var pageCount = settings.pageCount;
       var firstPageUrl = this.publicUrlMaker.getFirstPageUrl();
       var pageUrl = firstPageUrl === '/' ? "/products" : firstPageUrl;
-      var data = {
-        firstPageUrl: firstPageUrl,
-        pageUrl: pageUrl,
-        pageNumber: pageNumber,
-        pageCount: pageCount
-      };
-
-      var contentHtml = this._getPaginationBlockHtml(data);
-
-      var html = "<div id=\"paginationContent\" class=\"pagination_nav__content\">".concat(contentHtml, "</div>");
-      this.wrapper.insertAdjacentHTML('afterbegin', html);
-    }
-  }, {
-    key: "_getPaginationBlockHtml",
-    value: function _getPaginationBlockHtml(_ref2) {
-      var firstPageUrl = _ref2.firstPageUrl,
-          pageUrl = _ref2.pageUrl,
-          pageNumber = _ref2.pageNumber,
-          pageCount = _ref2.pageCount;
+      var lastPageUrl = "".concat(pageUrl, "/").concat(pageCount);
       var prevPageNumber = pageNumber - 1;
       var nextPageNumber = pageNumber + 1;
       var prevRoute = '';
@@ -2774,24 +2747,69 @@ var RendererOfPaginationBlock = /*#__PURE__*/function () {
         nextRoute = "".concat(pageUrl, "/").concat(nextPageNumber);
       }
 
+      return {
+        firstPageUrl: firstPageUrl,
+        pageUrl: pageUrl,
+        lastPageUrl: lastPageUrl,
+        currentPageNumber: pageNumber,
+        pageCount: pageCount,
+        prevRoute: prevRoute,
+        prevPageNumber: prevPageNumber,
+        nextRoute: nextRoute,
+        nextPageNumber: nextPageNumber
+      };
+    }
+  }, {
+    key: "_getComplexPaginationBlockHtml",
+    value: function _getComplexPaginationBlockHtml(_ref2) {
+      var firstPageUrl = _ref2.firstPageUrl,
+          pageUrl = _ref2.pageUrl,
+          lastPageUrl = _ref2.lastPageUrl,
+          currentPageNumber = _ref2.currentPageNumber,
+          pageCount = _ref2.pageCount,
+          prevRoute = _ref2.prevRoute,
+          prevPageNumber = _ref2.prevPageNumber,
+          nextRoute = _ref2.nextRoute,
+          nextPageNumber = _ref2.nextPageNumber;
       var items = [];
 
       if (prevRoute) {
         items.push("<a href=\"".concat(prevRoute, "\" data-paginator-page-number=\"").concat(prevPageNumber, "\" class=\"pagination__link pagination__link__arrow_left\"></a>"));
       }
 
+      if (currentPageNumber > 1) {
+        items.push("<a href=\"".concat(firstPageUrl, "\" data-paginator-page-number=\"1\" class=\"pagination__link\">\n                    1\n                </a>"));
+      }
+
+      items.push("<span data-paginator-page-number=\"".concat(currentPageNumber, "\" class=\"pagination__link_active\">\n                ").concat(currentPageNumber, "\n            </span>"));
+
+      if (currentPageNumber < pageCount) {
+        items.push("<a href=\"".concat(lastPageUrl, "\" data-paginator-page-number=\"").concat(pageCount, "\" class=\"pagination__link\">\n                    ").concat(pageCount, "\n                </a>"));
+      }
+
+      if (nextRoute) {
+        items.push("<a href=\"".concat(nextRoute, "\" data-paginator-page-number=\"").concat(nextPageNumber, "\" class=\"pagination__link pagination__link__arrow_right\"></a>"));
+      }
+
+      return items.join('');
+    }
+  }, {
+    key: "_getSimplePaginationBlockHtml",
+    value: function _getSimplePaginationBlockHtml(_ref3) {
+      var firstPageUrl = _ref3.firstPageUrl,
+          pageUrl = _ref3.pageUrl,
+          currentPageNumber = _ref3.currentPageNumber,
+          pageCount = _ref3.pageCount;
+      var items = [];
+
       for (var i = 1; i <= pageCount; i++) {
-        if (pageNumber === i) {
+        if (currentPageNumber === i) {
           items.push("<span data-paginator-page-number=\"".concat(i, "\" class=\"pagination__link_active\">").concat(i, "</span>"));
         } else if (i === 1) {
           items.push("<a href=\"".concat(firstPageUrl, "\" data-paginator-page-number=\"1\" class=\"pagination__link\">1</a>"));
         } else {
           items.push("<a href=\"".concat(pageUrl, "/").concat(i, "\" data-paginator-page-number=\"").concat(i, "\" class=\"pagination__link\">").concat(i, "</a>"));
         }
-      }
-
-      if (nextRoute) {
-        items.push("<a href=\"".concat(nextRoute, "\" data-paginator-page-number=\"").concat(nextPageNumber, "\" class=\"pagination__link pagination__link__arrow_right\"></a>"));
       }
 
       return items.join('');
@@ -3691,8 +3709,12 @@ var FilterOfCachedProducts = /*#__PURE__*/function () {
         filtered = this._categoriesFilter(filtered, settings.categoriesIds);
       }
 
+      var sectionProductsCount = filtered.length;
       filtered = this._offsetFilter(filtered, settings.startOffset, settings.perPage);
-      return filtered;
+      return {
+        filtered: filtered,
+        sectionProductsCount: sectionProductsCount
+      };
     }
   }, {
     key: "_sectionFilter",
@@ -3809,6 +3831,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
 /* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
 /* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3831,13 +3854,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var SourceOfFilteredProducts = /*#__PURE__*/function () {
   function SourceOfFilteredProducts(data) {
     _classCallCheck(this, SourceOfFilteredProducts);
 
     this.productCache = data.productCache;
     this.searchUrlMaker = data.searchUrlMaker;
-    this.productsFilter = data.cachedProductsFilter;
+    this.productsFilter = data.filterOfCachedProducts;
+    this.productsWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productList');
   }
 
   _createClass(SourceOfFilteredProducts, [{
@@ -3857,7 +3882,12 @@ var SourceOfFilteredProducts = /*#__PURE__*/function () {
       return this.productCache.getEntireList().then(function (data) {
         var products = _toConsumableArray(data);
 
-        return _this.productsFilter.doFilter(products);
+        var _this$productsFilter$ = _this.productsFilter.doFilter(products),
+            filtered = _this$productsFilter$.filtered,
+            sectionProductsCount = _this$productsFilter$.sectionProductsCount;
+
+        _this.productsWrapper.dataset.sectionProductsCount = sectionProductsCount;
+        return filtered;
       });
     }
   }, {
@@ -3868,7 +3898,7 @@ var SourceOfFilteredProducts = /*#__PURE__*/function () {
       var url = this.searchUrlMaker.getUrl();
       return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(url).then(function (data) {
         //console.log(data);
-        _this2.filtered = _toConsumableArray(data.products);
+        _this2.productsWrapper.dataset.sectionProductsCount = data.sectionProductsCount;
         return _toConsumableArray(data.products);
       })["catch"](function () {
         new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B");
@@ -4105,7 +4135,7 @@ var PublicUrlMaker = /*#__PURE__*/function () {
       if (this._isUrlOfMainPage()) {
         return pageNumber > 1 ? "/products/".concat(pageNumber) : "/";
       } else {
-        return "".concat(this.getFirstPageUrl(), "/").concat(pageNumber);
+        return pageNumber > 1 ? "".concat(this.getFirstPageUrl(), "/").concat(pageNumber) : "".concat(this.getFirstPageUrl());
       }
     }
   }, {

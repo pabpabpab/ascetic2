@@ -44,10 +44,15 @@ class SearchService
             $queryBuilder = $queryBuilder->where('price', '<=', $maxPrice);
         }
 
+        $productsCount = $queryBuilder->count();
+
         $queryBuilder = $queryBuilder->orderBy('position', 'desc');
         $queryBuilder = $queryBuilder->offset($startOffset)->limit($perPage);
 
-        return $queryBuilder->get();
+        return [
+            'products' => $queryBuilder->get(),
+            'sectionProductsCount' => $productsCount
+        ];
     }
 
 
