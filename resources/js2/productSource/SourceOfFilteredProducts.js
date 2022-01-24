@@ -42,4 +42,20 @@ export default class SourceOfFilteredProducts {
     }
 
 
+    getViewedProductsFromServer() {
+        const url = this.searchUrlMaker.getUrl();
+        return getJson(url)
+            .then((data) => {
+                //console.log(data);
+                return {
+                    filteredProducts: data.products,
+                    sectionProductsCount: data.sectionProductsCount,
+                    allViewedIdsStr: data.allViewedIdsStr
+                };
+            })
+            .catch(() => {
+                new AbsoluteFlashMessage(`Не удалось загрузить товары`);
+            });
+    }
+
 }

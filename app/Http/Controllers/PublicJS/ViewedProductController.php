@@ -35,11 +35,15 @@ class ViewedProductController extends Controller
     {
         $perPage = 3;
         $products = $service->getAllViewed()->offset($startOffset)->limit($perPage)->get();
-        $sectionProductsCount = $service->getAllViewed()->count();
+
+        $allViewedIdsStr = $service->getAllViewedIdsStr();
+
+        //$sectionProductsCount = $service->getAllViewed()->count();
 
         return response()->json([
             'products' => $products,
-            'sectionProductsCount' => $sectionProductsCount
+            'sectionProductsCount' => count(explode(",", $allViewedIdsStr)),
+            'allViewedIdsStr' => $allViewedIdsStr
         ]);
     }
 

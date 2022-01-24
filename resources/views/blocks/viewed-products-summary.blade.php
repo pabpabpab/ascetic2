@@ -2,13 +2,12 @@
 @php
    $viewedIdsStr = request()->cookie('viewedIds') ?? '';
    $excludedRoutes = [
-       'products.viewed',
+       // 'products.viewed',
        'products.singlePhotoPage',
        'my'
    ];
    $isAccountRoute = explode(".", $currentRouteName)[0] === 'account';
 @endphp
-
 
 @if (in_array($currentRouteName, $excludedRoutes))
     {{-- --}}

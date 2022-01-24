@@ -61,9 +61,16 @@ export default class FilterOfCachedProducts {
             return [];
         }
         const viewedIdsArr = viewedIdsStr.split(',').map(item => Number(item));
-        return items.filter((item) => {
-            return viewedIdsArr.includes(item.id)
+
+        // товары в массиве будут в том порядке в каком и в строке
+        const viewed = [];
+        viewedIdsArr.forEach((id) => {
+            const found = items.find(item => item.id === id);
+            if (found) {
+                viewed.push(found);
+            }
         });
+        return viewed;
     }
     _singleCategoryFilter(items, params) {
         // params - "categoryId;categorySlug"

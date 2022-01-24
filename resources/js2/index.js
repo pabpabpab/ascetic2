@@ -31,6 +31,7 @@ import SourceOfFilteredProducts from "./productSource/SourceOfFilteredProducts";
 import RendererOfProductsByViewMoreButton from "./productList/rendererByViewMoreButton";
 import RendererOfProductsByPaginationButton from "./productList/rendererByPaginationButton";
 import RendererOfProductsByMenuLink from "./productList/rendererByMenuLink";
+import RendererOfViewedProductsByLink from "./productList/rendererOfViewedProductsByLink";
 import RendererOfPaginationBlock from "./productList/rendererOfPaginationBlock";
 
 
@@ -108,6 +109,14 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             publicUrlMaker,
             rendererOfPaginationBlock,
         });
+
+        new RendererOfViewedProductsByLink({
+            sourceOfFilteredProducts,
+            searchSettingsStore,
+            publicUrlMaker,
+            rendererOfPaginationBlock,
+        });
+
     }
 }
 
