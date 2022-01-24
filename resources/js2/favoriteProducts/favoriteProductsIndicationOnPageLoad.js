@@ -1,7 +1,7 @@
 import el from '../el';
 import getCookie from '../cookie/getCookie';
 
-export default class FavoriteProductsIndicationByPageLoad {
+export default class FavoriteProductsIndicationOnPageLoad {
 
     constructor() {
         this.iconSrc = {

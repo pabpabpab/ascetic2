@@ -1,7 +1,7 @@
 import el from './../el';
 import getProductObject from "./../productObject/getProductObject";
 import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationByPageLoad from "./../favoriteProducts/favoriteProductsIndicationByPageLoad";
+import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "./../scrollDocument";
 
 export default class RendererByViewMoreButton {
@@ -40,28 +40,62 @@ export default class RendererByViewMoreButton {
         }
 
         this.sourceOfFilteredProducts.getFiltered()
-            .then((data) => {
+            .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
-                const products = [...data];
-                const itemsHtmlArr = products.map((product) => {
+                const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
                 });
                 const itemsHtml = itemsHtmlArr.join('');
                 // получать элемент только без ранее созданного указателя
                 el('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
+                this._setSectionProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
 
+
+    _setSectionProductsCount(sectionProductsCount) {
+        this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+        const settings = { ...this.searchSettingsStore.getSettings() };
+        const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
+        this.wrapper.dataset.sectionPageCount = sectionPageCount;
+        this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+
+
     _finalActions() {
-        new FavoriteProductsIndicationByPageLoad();
+        new FavoriteProductsIndicationOnPageLoad();
         this.publicUrlMaker.publishUrl();
         this._makeInvisiblePaginationBlock();
-        this._makeInvisibleViewMoreButtonIfNeeded();
+        this._switchVisibilityOfViewMoreButton();
         scrollDocument(200, 'down');
     }
 
+    _switchVisibilityOfViewMoreButton() {
+        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
+        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+            this._turnOffViewMoreButton();
+        } else {
+            this._turnOnViewMoreButton();
+        }
+    }
+
+    _turnOnViewMoreButton() {
+        const viewMoreButton = el('#viewMoreButton');
+        if (viewMoreButton.classList.contains("display-none")) {
+            viewMoreButton.classList.remove("display-none");
+        }
+    }
+    _turnOffViewMoreButton() {
+        const viewMoreButton = el('#viewMoreButton');
+        if (!viewMoreButton.classList.contains("display-none")) {
+            viewMoreButton.classList.add("display-none");
+        }
+    }
+
+    /*
     _makeInvisibleViewMoreButtonIfNeeded() {
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
         const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
@@ -69,7 +103,7 @@ export default class RendererByViewMoreButton {
             el('#viewMoreButton').classList.add("display-none");
         }
     }
-
+*/
     _makeInvisiblePaginationBlock() {
         if (!el('#paginationContent').classList.contains("display-none")) {
             el('#paginationContent').classList.add("display-none");

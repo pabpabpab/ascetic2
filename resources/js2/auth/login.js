@@ -9,7 +9,7 @@ import ForgotPassword from "./forgotPassword";
 import PasswordTypeChanger from "./passwordTypeChanger";
 import getCookie from "../cookie/getCookie";
 import setCookie from '../cookie/setCookie';
-import FavoriteProductsIndicationByPageLoad from "../favoriteProducts/favoriteProductsIndicationByPageLoad";
+import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 
 export default class Login extends AbsoluteForm {
 
@@ -101,7 +101,7 @@ export default class Login extends AbsoluteForm {
     }
 
     _indicateFavoriteProductsAfterLogin() {
-        new FavoriteProductsIndicationByPageLoad();
+        new FavoriteProductsIndicationOnPageLoad();
         const idsStr = getCookie('favoriteIds');
         const total = Boolean(idsStr) ? idsStr.split(',').length : 0;
         el('.topMenu-favIcon-total').innerText = total;

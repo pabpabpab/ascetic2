@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
         $categoryModelClassName = "App\Models\Category";
         View::share([
+            'mainPageTitle' => 'Товары из дерева',
             'categories' => $categoryService->getAll($categoryModelClassName),
         ]);
     }

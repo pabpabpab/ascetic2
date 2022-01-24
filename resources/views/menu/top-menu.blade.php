@@ -1,7 +1,11 @@
 <header class="top_menu">
     <div class="top_menu__left">
 
-        <a href="/" data-logo="link" class="logo__link">
+        <a href="/"
+           data-logo="link"
+           data-menu-link-section-name="all"
+           data-menu-link-title-text="{{ $mainPageTitle }}"
+           class="logo__link">
             AsceticShop.ru
         </a>
 
@@ -21,6 +25,7 @@
                 @endphp
                 <div data-menu-link-category="{{ $i }}" class="top_menu__li">
                     <a href='{{ $catUrl }}'
+                       data-menu-link-section-name="productCategory"
                        data-menu-link-category-id="{{ $category->id }}"
                        data-menu-link-category-slug="{{ $category->slug }}"
                        data-menu-link-category-name="{{ $category->name }}"
@@ -32,7 +37,10 @@
             @endfor
 
             <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
-                <a href="/" class="top_menu__link top_menu__link_with_drop_menu nowrap">
+                <a href="/"
+                   data-menu-link-section-name="all"
+                   data-menu-link-title-text="{{ $mainPageTitle }}"
+                   class="top_menu__link top_menu__link_with_drop_menu nowrap">
                     Все
                 </a>
             </div>

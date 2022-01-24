@@ -8,7 +8,7 @@ import AuthAbsoluteMenu from "./auth/authAbsoluteMenu";
 import AbsoluteFlashMessage from "./absoluteFlashMessage";
 import PasswordTypeChanger from "./auth/passwordTypeChanger";
 
-import FavoriteProductsIndicationByPageLoad from "./favoriteProducts/favoriteProductsIndicationByPageLoad";
+import FavoriteProductsIndicationOnPageLoad from "./favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import FavoriteProductsTotalCountIndication from "./favoriteProducts/favoriteProductsTotalCountIndication"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
@@ -30,7 +30,7 @@ import SourceOfFilteredProducts from "./productSource/SourceOfFilteredProducts";
 
 import RendererOfProductsByViewMoreButton from "./productList/rendererByViewMoreButton";
 import RendererOfProductsByPaginationButton from "./productList/rendererByPaginationButton";
-import RendererOfProductsByCategoryLink from "./productList/rendererByCategoryLink";
+import RendererOfProductsByMenuLink from "./productList/rendererByMenuLink";
 import RendererOfPaginationBlock from "./productList/rendererOfPaginationBlock";
 
 
@@ -38,40 +38,23 @@ new CsrfUpdater();
 
 new TopDropMenuFiller();
 
-if (el('.personal_account__icon')) {
-    new AuthAbsoluteMenu({ clickSourceSelector: '.personal_account__icon' });
-}
-
-if (el('#flashMessage')) {
-    new AbsoluteFlashMessage(el('#flashMessage').innerText);
-}
-
-if (el('.auth_page__change_password_type__wrapper')) {
-    new PasswordTypeChanger({
-        closedEyeSelector: ".auth_page__closed_eye_img",
-        openedEyeSelector: ".auth_page__opened_eye_img",
-        passwordInputSelector: "#password",
-    });
-}
 
 
 
-
-if (el('#productList') || el('#singleProduct')) {
-    new FavoriteProductsIndicationByPageLoad();
-    new FavoriteProductsSwitcher();
-}
 new FavoriteProductsTotalCountIndication();
 
+
+// const indicatorOfFavoriteProducts = new FavoriteProductsIndicationOnPageLoad();
+
+if (el('#productList') || el('#singleProduct')) {
+    new FavoriteProductsIndicationOnPageLoad();
+    new FavoriteProductsSwitcher();
+}
 
 
 if (el('#singleProduct')) {
     singleProductKit();
 }
-
-
-
-
 
 
 
@@ -119,7 +102,7 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             rendererOfPaginationBlock,
         });
 
-        new RendererOfProductsByCategoryLink({
+        new RendererOfProductsByMenuLink({
             sourceOfFilteredProducts,
             searchSettingsStore,
             publicUrlMaker,
@@ -133,3 +116,18 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
 
 
 
+if (el('.personal_account__icon')) {
+    new AuthAbsoluteMenu({ clickSourceSelector: '.personal_account__icon' });
+}
+
+if (el('#flashMessage')) {
+    new AbsoluteFlashMessage(el('#flashMessage').innerText);
+}
+
+if (el('.auth_page__change_password_type__wrapper')) {
+    new PasswordTypeChanger({
+        closedEyeSelector: ".auth_page__closed_eye_img",
+        openedEyeSelector: ".auth_page__opened_eye_img",
+        passwordInputSelector: "#password",
+    });
+}

@@ -3,7 +3,7 @@
 @php
     $currentRouteName = \Illuminate\Support\Facades\Route::currentRouteName();
 
-    $pageTitle = 'Товары из дерева';
+    $pageTitle = $mainPageTitle; // в AppServiceProvider
     $pageDescription = 'Товары из дерева на заказ';
 
     if ($currentRouteName === 'products.byCategory') {
@@ -41,32 +41,6 @@
         </div>
     </section>
 
-
-    @if ($pageCount > 1)
-        <div class="pagination_and_view_more">
-
-            @if ($currentPage === 1)
-                <div class="pagination_and_view_more__view_more">
-                    <button id="viewMoreButton" class="pagination_and_view_more__view_more__button">
-                        Показать еще
-                    </button>
-                </div>
-            @endif
-
-                <nav id="paginationWrapper" class="pagination_and_view_more__pagination_nav @if($currentPage > 1) w100 @endif">
-                    <div id="paginationContent" class="pagination_nav__content">
-                        @if (in_array($currentRouteName, ['mainPage', 'products.list']))
-                            {{ $products->links('pagination.all-products-pagination') }}
-                        @elseif (in_array($currentRouteName, ['products.byCategory']))
-                            {{ $products->links('pagination.products-by-category-pagination', ['category' => $category]) }}
-                        @elseif (in_array($currentRouteName, ['products.viewed']))
-                            {{ $products->links('pagination.viewed-products-pagination') }}
-                        @elseif (in_array($currentRouteName, ['products.favorites']))
-                            {{ $products->links('pagination.favorite-products-pagination') }}
-                        @endif
-                    </div>
-                </nav>
-        </div>
-    @endif
+    @include('pagination.pagination-and-view-more-section')
 
 @endsection

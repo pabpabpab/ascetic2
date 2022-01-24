@@ -28,7 +28,7 @@ export default class FilterOfCachedProducts {
 
         filtered = this._offsetFilter(filtered, settings.startOffset, settings.perPage);
 
-        return {filtered, sectionProductsCount};
+        return {filteredProducts: filtered, sectionProductsCount};
     }
 
 

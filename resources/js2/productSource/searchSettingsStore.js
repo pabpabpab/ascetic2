@@ -13,6 +13,7 @@ export default class SearchSettingsStore {
             pageNumber: 0,
             pageCount: 0,
         };
+        this.initialSettings = { ...this.settings };
     }
 
     getSettings() {
@@ -31,5 +32,9 @@ export default class SearchSettingsStore {
     }
     setPageCount(value) {
         this.settings.pageCount = value;
+    }
+
+    resetSettings() {
+        this.settings = { ...this.initialSettings };
     }
 }

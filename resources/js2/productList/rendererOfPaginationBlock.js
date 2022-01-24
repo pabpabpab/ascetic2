@@ -10,6 +10,7 @@ export default class RendererOfPaginationBlock {
     }
 
     remake() {
+
         if (el('#paginationContent')) {
             el('#paginationContent').remove();
         }
@@ -100,6 +101,10 @@ export default class RendererOfPaginationBlock {
 
 
     _getSimplePaginationBlockHtml({firstPageUrl, pageUrl, currentPageNumber, pageCount}) {
+        if (pageCount < 2) {
+            return '';
+        }
+
         const items = [];
         for (let i = 1; i <= pageCount; i++) {
             if (currentPageNumber === i) {

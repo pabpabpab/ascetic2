@@ -1,7 +1,7 @@
 import el from './../el';
 import getProductObject from "./../productObject/getProductObject";
 import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationByPageLoad from "./../favoriteProducts/favoriteProductsIndicationByPageLoad";
+import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "./../scrollDocument";
 
 export default class RendererByPaginationButton {
@@ -49,10 +49,9 @@ export default class RendererByPaginationButton {
         }
 
         this.sourceOfFilteredProducts.getFiltered()
-            .then((data) => {
+            .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
-                const products = [...data];
-                const itemsHtmlArr = products.map((product) => {
+                const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
                 });
@@ -61,12 +60,23 @@ export default class RendererByPaginationButton {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+                this._setSectionProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
 
+
+    _setSectionProductsCount(sectionProductsCount) {
+        this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+        const settings = { ...this.searchSettingsStore.getSettings() };
+        const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
+        this.wrapper.dataset.sectionPageCount = sectionPageCount;
+        this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+
+
     _finalActions() {
-        new FavoriteProductsIndicationByPageLoad();
+        new FavoriteProductsIndicationOnPageLoad();
         this.publicUrlMaker.publishUrl();
         this._makeInvisibleViewMoreButton();
         this.rendererOfPaginationBlock.remake();

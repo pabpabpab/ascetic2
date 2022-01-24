@@ -10,7 +10,6 @@ export default class SourceOfFilteredProducts {
         this.searchUrlMaker = data.searchUrlMaker;
         this.productsFilter = data.filterOfCachedProducts;
         this.searchSettingsStore = data.searchSettingsStore;
-        this.productsWrapper = el('#productList');
     }
 
     getFiltered() {
@@ -25,9 +24,8 @@ export default class SourceOfFilteredProducts {
         return this.productCache.getEntireList()
             .then((data) => {
                 const products = [...data];
-                const {filtered, sectionProductsCount} = this.productsFilter.doFilter(products);
-                this._setDataAttributesAndSearchSettings(sectionProductsCount);
-                return filtered;
+                const {filteredProducts, sectionProductsCount} = this.productsFilter.doFilter(products);
+                return {filteredProducts, sectionProductsCount};
             });
     }
 
@@ -36,20 +34,11 @@ export default class SourceOfFilteredProducts {
         return getJson(url)
             .then((data) => {
                 //console.log(data);
-                this._setDataAttributesAndSearchSettings(data.sectionProductsCount);
-                return [ ...data.products ];
+                return {filteredProducts: data.products, sectionProductsCount: data.sectionProductsCount}
             })
             .catch(() => {
                 new AbsoluteFlashMessage(`Не удалось загрузить товары`);
             });
-    }
-
-    _setDataAttributesAndSearchSettings(sectionProductsCount) {
-        this.productsWrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = { ...this.searchSettingsStore.getSettings() };
-        const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
-        this.productsWrapper.dataset.sectionPageCount = sectionPageCount;
-        this.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
 

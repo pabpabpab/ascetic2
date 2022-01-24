@@ -1,10 +1,10 @@
 import el from './../el';
 import getProductObject from "./../productObject/getProductObject";
 import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationByPageLoad from "./../favoriteProducts/favoriteProductsIndicationByPageLoad";
+import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "./../scrollDocument";
 
-export default class RendererByCategoryLink {
+export default class RendererByMenuLink {
 
     constructor(data) {
         this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
@@ -17,7 +17,7 @@ export default class RendererByCategoryLink {
         this.disabledRequest = false;
 
         el('body').addEventListener('click', (e) => {
-            if (e.target.dataset.menuLinkCategoryId) {
+            if (e.target.dataset.menuLinkSectionName) {
                 e.preventDefault();
                 this._setDataAttributes(e);
                 this._setSearchSettings(e);
@@ -28,15 +28,29 @@ export default class RendererByCategoryLink {
 
 
     _setDataAttributes(e) {
-        const categoryId = e.target.dataset.menuLinkCategoryId;
-        const categorySlug = e.target.dataset.menuLinkCategorySlug;
-        const categoryName = e.target.dataset.menuLinkCategoryName;
-
-        this.wrapper.dataset.productSectionName = 'productCategory';
-        this.wrapper.dataset.additionalDataOfProductSection = `${categoryId};${categorySlug};${categoryName}`;
+        const sectionName = e.target.dataset.menuLinkSectionName;
+        this.wrapper.dataset.productSectionName = sectionName;
+        if (sectionName === 'all') {
+            const h1Text = e.target.dataset.menuLinkTitleText;
+            this.wrapper.dataset.additionalDataOfProductSection = `;;${h1Text}`;
+            return;
+        }
+        if (sectionName === 'favoriteProducts') {
+            const h1Text = e.target.dataset.menuLinkTitleText;
+            this.wrapper.dataset.additionalDataOfProductSection = `;;${h1Text}`;
+            return;
+        }
+        if (sectionName === 'productCategory') {
+            const categoryId = e.target.dataset.menuLinkCategoryId;
+            const categorySlug = e.target.dataset.menuLinkCategorySlug;
+            const categoryName = e.target.dataset.menuLinkCategoryName;
+            this.wrapper.dataset.additionalDataOfProductSection = `${categoryId};${categorySlug};${categoryName}`;
+            return;
+        }
     }
 
     _setSearchSettings(e) {
+        this.searchSettingsStore.resetSettings();
         this.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
@@ -52,10 +66,9 @@ export default class RendererByCategoryLink {
         }
 
         this.sourceOfFilteredProducts.getFiltered()
-            .then((data) => {
+            .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
-                const products = [...data];
-                const itemsHtmlArr = products.map((product) => {
+                const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
                 });
@@ -64,18 +77,27 @@ export default class RendererByCategoryLink {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+                this._setSectionProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
 
+    _setSectionProductsCount(sectionProductsCount) {
+        this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+        const settings = { ...this.searchSettingsStore.getSettings() };
+        const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
+        this.wrapper.dataset.sectionPageCount = sectionPageCount;
+        this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+
+
     _finalActions() {
-        new FavoriteProductsIndicationByPageLoad();
+        new FavoriteProductsIndicationOnPageLoad();
         this.publicUrlMaker.publishUrl();
         this._renderHeader();
-        this._makeVisibleViewMoreButton();
-        this._makeInvisibleViewMoreButtonIfNeeded();
-        this._makeInvisiblePaginationBlock();
-        //this.rendererOfPaginationBlock.remake();
+        this._switchVisibilityOfViewMoreButton();
+        // this._makeInvisiblePaginationBlock();
+        this.rendererOfPaginationBlock.remake();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
@@ -86,30 +108,39 @@ export default class RendererByCategoryLink {
         this.header.innerText = headerText;
     }
 
-    _makeVisibleViewMoreButton() {
+
+    _switchVisibilityOfViewMoreButton() {
+        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
+        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+            this._turnOffViewMoreButton();
+        } else {
+            this._turnOnViewMoreButton();
+        }
+    }
+    _turnOnViewMoreButton() {
         const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton && viewMoreButton.classList.contains("display-none")) {
+        if (viewMoreButton.classList.contains("display-none")) {
             viewMoreButton.classList.remove("display-none");
         }
     }
-
-    _makeInvisibleViewMoreButtonIfNeeded() {
+    _turnOffViewMoreButton() {
         const viewMoreButton = el('#viewMoreButton');
-        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCount = Number(this.wrapper.dataset.sectionProductsCount);
-        if (numberOfDisplayedProducts >= sectionProductsCount) {
-            if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
-                viewMoreButton.classList.add("display-none");
-            }
+        if (!viewMoreButton.classList.contains("display-none")) {
+            viewMoreButton.classList.add("display-none");
         }
     }
 
+
+
+    /*
     _makeInvisiblePaginationBlock() {
         const paginationBlock = el('#paginationContent');
         if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
             paginationBlock.classList.add("display-none");
         }
     }
+*/
 
     _getRequestPermission() {
         // защита от частых отправок на 10 сек (от двойного нажатия)

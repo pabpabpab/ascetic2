@@ -9,6 +9,7 @@
                 @endphp
                 <li class="bottom_menu__li">
                     <a href='{{ $catUrl }}'
+                       data-menu-link-section-name="productCategory"
                        data-menu-link-category-id="{{ $category->id }}"
                        data-menu-link-category-slug="{{ $category->slug }}"
                        data-menu-link-category-name="{{ $category->name }}"
