@@ -7,8 +7,14 @@
     $pageDescription = 'Товары из дерева на заказ';
 
     if ($currentRouteName === 'products.byCategory') {
-        $pageTitle = $categorySeo->page_title ?? 'Товары категории ' . $category->name;
-        $pageDescription = $categorySeo->page_description ?? 'Список товаров категории ' . $category->name;
+        $pageTitle = 'Товары категории ' . $category->name;
+        $pageDescription = 'Список товаров категории ' . $category->name;
+        if ((isset($categorySeo->page_title)) && (strlen(trim($categorySeo->page_title)) > 0)) {
+            $pageTitle = trim($categorySeo->page_title);
+        }
+        if ((isset($categorySeo->page_description)) && (strlen(trim($categorySeo->page_description)) > 0)) {
+            $pageDescription = trim($categorySeo->page_description);
+        }
     } elseif ($currentRouteName === 'products.viewed') {
         $pageTitle = 'Вы смотрели';
         $pageDescription = 'Товары которые вы смотрели. ';
@@ -16,7 +22,6 @@
         $pageTitle = 'Избранные товары';
         $pageDescription = 'Товары которые вам понравились. ';
     }
-
 @endphp
 
 

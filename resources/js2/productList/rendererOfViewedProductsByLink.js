@@ -87,10 +87,12 @@ export default class RendererOfViewedProductsByLink {
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
         this.rendererOfPaginationBlock.remake();
+        this._resetMenuLinkCss();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
     }
+
 
     _renderHeader() {
         this.header.innerText = 'Вы смотрели';
@@ -117,6 +119,20 @@ export default class RendererOfViewedProductsByLink {
             viewMoreButton.classList.add("display-none");
         }
     }
+
+
+    _resetMenuLinkCss() {
+        let nodes = el('.top_menu').querySelectorAll('.top_menu__link');
+        for (let node of nodes) {
+            node.classList.remove('top_menu__link_active');
+        }
+        nodes = el('.bottom_menu').querySelectorAll('.bottom_menu__link');
+        for (let node of nodes) {
+            node.classList.remove('bottom_menu__link_active');
+        }
+        el('.logo__link').classList.remove('logo__link_active');
+    }
+
 
     _getRequestPermission() {
         // защита от частых отправок на 10 сек (от двойного нажатия)

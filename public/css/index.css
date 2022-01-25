@@ -162,10 +162,16 @@ a {
 }
 
 .top_menu__link:hover {
-  border-bottom: 2px solid #000;
+  background-color: #f9f9f8;
+  border-bottom: 2px solid #f9f9f8;
 }
 
 .top_menu__link_active {
+  border-bottom: 2px solid #000;
+}
+
+.top_menu__link_active:hover {
+  background-color: #fff;
   border-bottom: 2px solid #000;
 }
 
@@ -280,6 +286,16 @@ a {
 }
 
 .logo__link:hover {
+  background-color: #f9f9f8;
+  border-bottom: 2px solid #f9f9f8;
+}
+
+.logo__link_active {
+  border-bottom: 2px solid #000;
+}
+
+.logo__link_active:hover {
+  background-color: #fff;
   border-bottom: 2px solid #000;
 }
 
@@ -358,10 +374,19 @@ a {
   font-weight: 400;
   display: block;
   padding: 20px 20px;
+  border-bottom: 2px solid #000;
 }
 
 .bottom_menu__link:hover {
   color: #1976d5;
+}
+
+.bottom_menu__link_active {
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.bottom_menu__link_active:hover {
+  color: #fff;
 }
 
 h1 {
@@ -2123,6 +2148,25 @@ h2 {
   font-weight: 100;
 }
 
+.screen_404 {
+  height: 50vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 22px;
+  color: #000;
+  font-weight: 700;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 1px;
+}
+
 .display-none {
   display: none;
 }
@@ -2135,6 +2179,10 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .nowrap {
@@ -2176,6 +2224,10 @@ h2 {
 
 .mauto {
   margin: 0 auto;
+}
+
+.m0 {
+  margin: 0;
 }
 
 .ml7 {

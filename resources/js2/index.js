@@ -42,15 +42,14 @@ new TopDropMenuFiller();
 
 
 
-new FavoriteProductsTotalCountIndication();
-
-
 // const indicatorOfFavoriteProducts = new FavoriteProductsIndicationOnPageLoad();
 
 if (el('#productList') || el('#singleProduct')) {
     new FavoriteProductsIndicationOnPageLoad();
     new FavoriteProductsSwitcher();
 }
+new FavoriteProductsTotalCountIndication(); // не менять порядок
+
 
 
 if (el('#singleProduct')) {

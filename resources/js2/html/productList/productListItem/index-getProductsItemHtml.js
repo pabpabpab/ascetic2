@@ -31,11 +31,11 @@ export default function getProductsItemHtml(product) {
                       <div>
                           <div class="product_item__name">
                               <a href='/product/${product.slug}-${product.id}'
-                                  class="product_item__name__link product_item__name__link__in_viewed_summary">
+                                  class="product_item__name__link">
                                   ${product.name}
                               </a>
                           </div>
-                          <div class="product_item__price product_item__price__in_viewed_summary">
+                          <div class="product_item__price">
                               ${product.price} ₽
                           </div>
                       </div>

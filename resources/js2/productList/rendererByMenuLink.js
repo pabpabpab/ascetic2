@@ -99,6 +99,9 @@ export default class RendererByMenuLink {
         // this._makeInvisiblePaginationBlock();
         this.rendererOfPaginationBlock.remake();
 
+        this._resetMenuLinkCss();
+        this._markActiveMenuLink();
+
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
     }
@@ -131,8 +134,6 @@ export default class RendererByMenuLink {
         }
     }
 
-
-
     /*
     _makeInvisiblePaginationBlock() {
         const paginationBlock = el('#paginationContent');
@@ -140,7 +141,50 @@ export default class RendererByMenuLink {
             paginationBlock.classList.add("display-none");
         }
     }
-*/
+   */
+
+
+    _resetMenuLinkCss() {
+        let nodes = el('.top_menu').querySelectorAll('.top_menu__link');
+        for (let node of nodes) {
+            node.classList.remove('top_menu__link_active');
+        }
+        nodes = el('.bottom_menu').querySelectorAll('.bottom_menu__link');
+        for (let node of nodes) {
+            node.classList.remove('bottom_menu__link_active');
+        }
+        el('.logo__link').classList.remove('logo__link_active');
+    }
+
+    _markActiveMenuLink() {
+        const settings = { ...this.searchSettingsStore.getSettings() };
+        const sectionName = settings.productSectionName;
+        const additionalData = settings.additionalDataOfProductSection;
+
+        if (sectionName === 'productCategory') {
+            const categorySlug = additionalData.split(';')[1];
+            const topLink = el(`.top_menu [data-menu-link-category-slug=${categorySlug}]`);
+            const bottomLink = el(`.bottom_menu [data-menu-link-category-slug=${categorySlug}]`);
+            if (topLink) {
+                topLink.classList.add('top_menu__link_active');
+            }
+            if (bottomLink) {
+                bottomLink.classList.add('bottom_menu__link_active');
+            }
+        }
+
+        if (sectionName === 'favoriteProducts') {
+            const favIconLink = el(`.top_menu__link_fav_icon`);
+            if (favIconLink) {
+                favIconLink.classList.add('top_menu__link_active');
+            }
+        }
+
+        if (sectionName === 'all') {
+            const logoLink = el(`.logo__link`);
+            logoLink.classList.add('logo__link_active');
+        }
+    }
 
     _getRequestPermission() {
         // защита от частых отправок на 10 сек (от двойного нажатия)

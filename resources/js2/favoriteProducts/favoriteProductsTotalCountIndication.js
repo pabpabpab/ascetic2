@@ -21,7 +21,7 @@ export default class FavoriteProductsTotalCountIndication {
 
     _renderFavoriteTotal() {
         const idsStr = getCookie('favoriteIds');
-        const total = Boolean(idsStr) ? idsStr.split(',').length : 0;
-        el('.topMenu-favIcon-total').innerText = total;
+        const totalCount = Boolean(idsStr) ? idsStr.split(',').length : 0;
+        el('.topMenu-favIcon-total').innerText = totalCount;
     }
 }

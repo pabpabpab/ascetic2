@@ -2,11 +2,19 @@
 
 @php
     //dd(session('viewedProductsIds'));
-
     //dd($product);
 
-    $pageTitle = $seo->page_title ?? $product->name;
-    $pageDescription = $seo->page_description ?? 'Товары из дерева ' . $product->name;
+
+    $pageTitle = $product->name;
+    if ((isset($seo->page_title)) && (strlen(trim($seo->page_title)) > 0)) {
+        $pageTitle = trim($seo->page_title);
+    }
+
+    $pageDescription = "Товар из дерева " . $product->name;
+    if ((isset($seo->page_description)) && (strlen(trim($seo->page_description)) > 0)) {
+        $pageDescription = trim($seo->page_description);
+    }
+
 
     $photoSet = json_decode($product->photo_set);
     $photoCount = count($photoSet);

@@ -15,6 +15,8 @@ export default class RendererByPaginationButton {
         this.wrapper = el('#productList');
         this.disabledRequest = false;
 
+        this.currentPageNumber = 0;
+
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.paginatorPageNumber) {
                 e.preventDefault();
@@ -34,6 +36,8 @@ export default class RendererByPaginationButton {
 
         const pageNumber = Number(e.target.dataset.paginatorPageNumber);
         this.searchSettingsStore.setPageNumber(pageNumber);
+
+        this.currentPageNumber = pageNumber;
 
         const offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
         this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
@@ -78,11 +82,21 @@ export default class RendererByPaginationButton {
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
         this.publicUrlMaker.publishUrl();
-        this._makeInvisibleViewMoreButton();
+        if (this.currentPageNumber === 1) {
+            this._makeVisibleViewMoreButton();
+        } else {
+            this._makeInvisibleViewMoreButton();
+        }
         this.rendererOfPaginationBlock.remake();
-
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
+    }
+
+    _makeVisibleViewMoreButton() {
+        const viewMoreButton = el('#viewMoreButton');
+        if (viewMoreButton && viewMoreButton.classList.contains("display-none")) {
+            viewMoreButton.classList.remove("display-none");
+        }
     }
 
     _makeInvisibleViewMoreButton() {

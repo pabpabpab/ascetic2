@@ -40,7 +40,6 @@ class ProductController extends Controller
         ]);
     }
 
-
     public function list(ListService $service, $pageNumber)
     {
         // установить стартовую страницу для пагинатора
@@ -63,8 +62,6 @@ class ProductController extends Controller
             'pageCount' => ceil($totalProductsCount/$perPage)
         ]);
     }
-
-
 
     public function getByCategory(ListService $service, Category $category, $pageNumber = 1)
     {
@@ -155,9 +152,14 @@ class ProductController extends Controller
     {
         (new ViewedProductsService())->addToViewed($product->id);
 
+        $photoSeo = $service->getProductPhotoSeoByPhotoId($photoId);
+        if (!trim($photoSeo->toArray()[0]->page_title)) {
+            abort(404);
+        }
+
         return view('products.single.single-photo', [
             'product' => $product,
-            'photoSeo' => $service->getProductPhotoSeoByPhotoId($photoId),
+            'photoSeo' => $photoSeo,
         ]);
     }
 
