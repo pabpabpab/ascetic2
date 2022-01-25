@@ -23,10 +23,12 @@ import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMa
 
 
 import SearchSettingsStore from "./productSource/searchSettingsStore";
-import SearchUrlMaker from "./productSource/searchUrlMaker";
-import PublicUrlMaker from "./productSource/publicUrlMaker";
+import SearchUrlMaker from "./urlMaker/searchUrlMaker";
+import PublicUrlMaker from "./urlMaker/publicUrlMaker";
 import FilterOfCachedProducts from "./productSource/FilterOfCachedProducts";
 import SourceOfFilteredProducts from "./productSource/SourceOfFilteredProducts";
+
+import MenuLinkCssMaker from "./menu/menuLinkCssMaker";
 
 import RendererOfProductsByViewMoreButton from "./productList/rendererByViewMoreButton";
 import RendererOfProductsByPaginationButton from "./productList/rendererByPaginationButton";
@@ -102,11 +104,17 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             rendererOfPaginationBlock,
         });
 
+
+        const menuLinkCssMaker = new MenuLinkCssMaker({
+            searchSettingsStore,
+        });
+
         new RendererOfProductsByMenuLink({
             sourceOfFilteredProducts,
             searchSettingsStore,
             publicUrlMaker,
             rendererOfPaginationBlock,
+            menuLinkCssMaker,
         });
 
         new RendererOfViewedProductsByLink({
@@ -114,6 +122,7 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             searchSettingsStore,
             publicUrlMaker,
             rendererOfPaginationBlock,
+            menuLinkCssMaker,
         });
 
     }
