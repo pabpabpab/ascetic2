@@ -5,7 +5,7 @@
        data-menu-link-title-text="Избранное"
        class="top_menu__link top_menu__link_fav_icon">
         <img id="topMenu-favIcon-img" alt=""
-             src="{{ asset('images/favoriteIcon.svg') }}"
+             src="{{ asset('/images/favoriteIcon.svg') }}"
              data-menu-link-section-name="favoriteProducts"
              data-menu-link-title-text="Избранное"
              class="top_menu__favorite_icon__img">

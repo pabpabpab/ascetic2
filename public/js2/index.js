@@ -4622,9 +4622,12 @@ var ProductCache = /*#__PURE__*/function () {
     this.entireList = [];
     this.descriptionsCache = [];
     this.singlesCache = [];
+    this.minPrice = 0;
+    this.maxPrice = 0;
     this.entireListUrl = '/public-js/entire-product-list';
     this.oneDescriptionUrl = '/public-js/one-product-description/';
     this.oneProductUrl = '/public-js/one-product/';
+    this.priceRangeUrl = '/public-js/product-price-range';
     this.productsWereCachedOnPageLoading = false;
 
     if (Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#productList') && Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
@@ -4635,13 +4638,58 @@ var ProductCache = /*#__PURE__*/function () {
   }
 
   _createClass(ProductCache, [{
-    key: "getEntireList",
-    value: function getEntireList() {
+    key: "getPriceRange",
+    value: function getPriceRange() {
       var _this2 = this;
+
+      if (this.maxPrice > 0) {
+        return new Promise(function (resolve) {
+          return resolve({
+            minPrice: _this2.minPrice,
+            maxPrice: _this2.maxPrice
+          });
+        });
+      }
 
       if (this.entireList.length > 0) {
         return new Promise(function (resolve) {
-          return resolve(_toConsumableArray(_this2.entireList));
+          return resolve(_this2._getPriceRangeFromCachedProducts());
+        });
+      }
+
+      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.priceRangeUrl).then(function (data) {
+        //console.log(data);
+        _this2.minPrice = data.minPrice;
+        _this2.maxPrice = data.maxPrice;
+        return data;
+      });
+    }
+  }, {
+    key: "_getPriceRangeFromCachedProducts",
+    value: function _getPriceRangeFromCachedProducts() {
+      var minPrice = this.entireList.reduce(function (minPrice, item) {
+        return minPrice < item.price ? minPrice : item.price;
+      });
+      var integerMinPrice = Math.floor(minPrice);
+      this.minPrice = integerMinPrice;
+      var maxPrice = this.entireList.reduce(function (maxPrice, item) {
+        return maxPrice > item.price ? maxPrice : item.price;
+      });
+      var integerMaxPrice = Math.floor(maxPrice);
+      this.maxPrice = integerMaxPrice;
+      return {
+        minPrice: integerMinPrice,
+        maxPrice: integerMaxPrice
+      };
+    }
+  }, {
+    key: "getEntireList",
+    value: function getEntireList() {
+      var _this3 = this;
+
+      if (this.entireList.length > 0) {
+        return new Promise(function (resolve) {
+          return resolve(_toConsumableArray(_this3.entireList));
         });
       }
 
@@ -4652,11 +4700,11 @@ var ProductCache = /*#__PURE__*/function () {
   }, {
     key: "_loadEntireList",
     value: function _loadEntireList() {
-      var _this3 = this;
+      var _this4 = this;
 
       return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.entireListUrl).then(function (data) {
         //console.log(data);
-        _this3.entireList = _toConsumableArray(data.products);
+        _this4.entireList = _toConsumableArray(data.products);
         return _toConsumableArray(data.products);
       })["catch"](function () {
         new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B");
@@ -4665,7 +4713,7 @@ var ProductCache = /*#__PURE__*/function () {
   }, {
     key: "_loadEntireListOnPageLoading",
     value: function _loadEntireListOnPageLoading() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.productsWereCachedOnPageLoading) {
         return;
@@ -4674,7 +4722,7 @@ var ProductCache = /*#__PURE__*/function () {
       this.productsWereCachedOnPageLoading = true;
       Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.entireListUrl).then(function (data) {
         //console.log(data);
-        _this4.entireList = _toConsumableArray(data.products);
+        _this5.entireList = _toConsumableArray(data.products);
       });
     }
   }, {
@@ -4699,11 +4747,11 @@ var ProductCache = /*#__PURE__*/function () {
   }, {
     key: "_loadOneDescription",
     value: function _loadOneDescription(productId) {
-      var _this5 = this;
+      var _this6 = this;
 
       return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.oneDescriptionUrl + productId).then(function (data) {
         //console.log(data);
-        _this5.descriptionsCache.push(data.description);
+        _this6.descriptionsCache.push(data.description);
 
         return _objectSpread({}, data.description);
       })["catch"](function () {
@@ -4732,11 +4780,11 @@ var ProductCache = /*#__PURE__*/function () {
   }, {
     key: "_loadOneProduct",
     value: function _loadOneProduct(productId) {
-      var _this6 = this;
+      var _this7 = this;
 
       return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(this.oneProductUrl + productId).then(function (data) {
         //console.log(data.product);
-        _this6.singlesCache.push(data.product);
+        _this7.singlesCache.push(data.product);
 
         return _objectSpread({}, data.product);
       })["catch"](function () {

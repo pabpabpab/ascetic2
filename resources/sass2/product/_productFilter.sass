@@ -1,5 +1,4 @@
-
-.product_filters
+.product_filter
     position: fixed
     z-index: $product_filters__z-index
     top: 0
@@ -9,12 +8,12 @@
     border-radius: 7px 0 0 7px
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3)
     //visibility: hidden
+    //animation: showProductFilters .5s
 
-
-.product_filters-enter-active
+//.product_filter-enter-active
     animation: showProductFilters .5s //forwards
 
-.product_filters-leave-active
+//.product_filter-leave-active
     animation: hideProductFilters .3s //forwards
 
 @keyframes showProductFilters
@@ -34,16 +33,14 @@
         visibility: hidden
 
 
-
-
-.product_filters__content
+.product_filter__content
     position: relative
     padding: 10px 25px 150px 25px
     width: 350px
     height: 100%
     box-sizing: border-box
     background-color: $basicBackgroundColor
-    +font(18px, rgb(80, 70, 70), 400)
+    +font(17px, #000, 400)
     text-align: left
     border-radius: 7px
     overflow-y: auto
@@ -52,58 +49,136 @@
         background-color: #f8f8f8
         padding: 0 15px
     &::-webkit-scrollbar-thumb
-        background-color: #aaa
+        background-color: #ccc
         border: 4px solid #f8f8f8
         border-radius: 10px
 
 
-
-
-.button__filter_product
-    +font(15px, #fff, 400)
-    padding: 20px
-    width: 300px
-    border-radius: 7px
+.product_filter__button
+    display: block
+    +font(16px, #fff, 400)
+    font-family: $h1_font_family
+    background-color: #000
     border: 0
-    background-color: rgb(25, 118, 210)
+    padding: 13px 20px
+    width: 150px
+    //border-radius: 7px
     cursor: pointer
+    transition: box-shadow .2s
     &:hover
-        background-color: rgb(10, 65, 134)
+        box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.9)
+    &:active
+        box-shadow: unset
 
 
-.product_filters__collapse_icon
+.product_filter__collapse_icon
     position: absolute
     top: 4px
     right: 4px
     width: 25px
-    height: 25px
-    padding: 0 0 3px 0
-    +font(45px, rgb(78, 110, 131), 100)
+    height: 20px
+    padding: 0 0 7px 0
+    +font(45px, #000, 100)
     cursor: pointer
     border-radius: 3px
     display: flex
-    flex-direction: column
     justify-content: center
     align-items: center
     &:hover
-        background-color: rgb(176, 199, 214)
+        background-color: #000
         color: #fff
 
 
-.product_filters__selectedCategories__wrapper
-    width: 100%
+.product_filter__property_header
+    +font(15px, #000, 400)
+    text-align: left
+    padding: 0
+    margin: 30px 0 20px 0
 
-.product_filters__checkbox_input__item
-    //height: 25px
+
+
+.product_filter__checkboxes_list
+    width: 100%
+    box-sizing: border-box
+    height: 200px
+    overflow-y: auto
+    padding: 0 10px 0 15px
+    //border: 1px solid #000
+    border-radius: 5px
+    &::-webkit-scrollbar
+        width: 15px
+        background-color: #f8f8f8
+        padding: 0 15px
+    &::-webkit-scrollbar-thumb
+        background-color: #ccc
+        border: 4px solid #f8f8f8
+        border-radius: 10px
+
+.product_filter__checkbox_input__item
+    text-align: left
+    margin: 0
+    padding: 0 0 0 12px
+    //border: 1px solid #003cff
+    &:nth-child(1)
+        margin-top: -12px
+.product_filter__checkbox_input
+    visibility: hidden
+
+.product_filter__checkbox_label
+    position: relative
+    display: block
+    +font(15px, rgb(80, 70, 70), 400)
+    line-height: 13px
+    margin: 0 0 0 20px
+    cursor: pointer
+    &:hover
+        color: #000
+.product_filter__checkbox_label::before
+    position: absolute
+    top: -6px
+    left: -31px
+    width: 19px
+    height: 19px
+    border: 1px solid rgb(180, 170, 170)
+    border-radius: 3px
+    background-color: #f8f8f8
+    content: ''
+.product_filter__checkbox_input:checked + .product_filter__checkbox_label::after
+    position: absolute
+    content: ''
+    left: -23.5px
+    top: 2px
+    width: 4px
+    height: 9px
+    background-color: #f8f8f8
+    border: solid #000
+    border-width: 0 3px 3px 0
+    transform: rotate(45deg)
+
+
 
 
 .filter_price__text_input__wrapper
     display: flex
     align-items: center
     justify-content: space-between
+
 .filter_price__text_input
     padding: 13px 8px
     width: 100px
+    background-color: #fff
+    border: 1px solid #cdd1d4
+    border-radius: 5px
+    box-sizing: border-box
+    +font(17px, #000, 400)
+    line-height: 17px
+    outline: 0
+    &:focus, &:hover
+        border: 1px solid rgba(20, 121, 252, 0.6)
+        box-shadow: 0 0 5px rgba(16, 126, 248, 0.4)
+
+
+
 
 
 
@@ -122,12 +197,12 @@
     position: absolute
     z-index: $filter_price__range_input__kernel__z-index
     left: 0
-    top: 6.7px
+    top: 6px
     padding: 0
     margin: 0
     height: 4px
     width: 100%
-    background-color: #505050
+    background-color: #000
 
 .filter_price__range_input
     position: absolute
@@ -145,20 +220,20 @@
         //border-radius: 3px
         height: 15px
         width: 10px
-        background-color: #505050
+        background-color: #000
         cursor: pointer
         margin-top: 5px /* значение для поля в Chrome */
     /* Ползунок: Тоже самое для Firefox */
     &::-moz-range-thumb
         height: 15px
         width: 10px
-        background: #505050
+        background: #000
         cursor: pointer
     /* Ползунок: Тоже самое для IE */
     &::-ms-thumb
         height: 15px
         width: 10px
-        background: #505050
+        background: #000
         cursor: pointer
 
 
@@ -195,10 +270,10 @@
 
 .filter_price__range_input_min
     &::-webkit-slider-thumb
-        box-shadow:  -150px 160px 0 150px #f4f9fc, -150px 156px 0 150px #ccc
+        box-shadow:  -150px 159px 0 150px $basicBackgroundColor, -150px 155px 0 150px #ccc
 .filter_price__range_input_max
     &::-webkit-slider-thumb
-        box-shadow: 150px 160px 0 150px #f4f9fc, 150px 156px 0 150px #ccc
+        box-shadow: 150px 159px 0 150px #f4f9fc, 150px 155px 0 150px #ccc
 // <сдвиг по x> <сдвиг по y> <радиус размытия> <растяжение> <цвет> / первая тень слоем выше второй
 
 

@@ -9,9 +9,12 @@ export default class ProductCache {
         this.entireList = [];
         this.descriptionsCache = [];
         this.singlesCache = [];
+        this.minPrice = 0;
+        this.maxPrice = 0;
         this.entireListUrl = '/public-js/entire-product-list';
         this.oneDescriptionUrl = '/public-js/one-product-description/';
         this.oneProductUrl = '/public-js/one-product/';
+        this.priceRangeUrl = '/public-js/product-price-range';
 
         this.productsWereCachedOnPageLoading = false;
         if (el('#productList') && allProductsMustBeCached()) {
@@ -20,6 +23,65 @@ export default class ProductCache {
             });
         }
     }
+
+
+
+    getPriceRange() {
+        if (this.maxPrice > 0) {
+            return new Promise(resolve =>
+                resolve({
+                    minPrice: this.minPrice,
+                    maxPrice: this.maxPrice,
+                })
+            );
+        }
+        if (this.entireList.length > 0) {
+            return new Promise(resolve =>
+                resolve(this._getPriceRangeFromCachedProducts())
+            );
+        }
+        return getJson(this.priceRangeUrl)
+            .then((data) => {
+                //console.log(data);
+                this.minPrice = data.minPrice;
+                this.maxPrice = data.maxPrice;
+                return data;
+            });
+    }
+    _getPriceRangeFromCachedProducts() {
+        const minPrice = this.entireList.reduce((minPrice, item) => {
+            return minPrice < item.price ? minPrice : item.price;
+        });
+        const integerMinPrice = Math.floor(minPrice);
+        this.minPrice = integerMinPrice;
+
+        const maxPrice = this.entireList.reduce((maxPrice, item) => {
+            return maxPrice > item.price ? maxPrice : item.price;
+        });
+        const integerMaxPrice = Math.floor(maxPrice);
+        this.maxPrice = integerMaxPrice;
+
+        return {
+            minPrice: integerMinPrice,
+            maxPrice: integerMaxPrice,
+        };
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     getEntireList() {
         if (this.entireList.length > 0) {

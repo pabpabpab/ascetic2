@@ -1,0 +1,37 @@
+.absolute_filters_message_div
+    position: fixed
+    z-index: $absolute_filters_message_div__z-index
+    top: 10px
+    right: 20px
+    width: 270px
+    min-height: 60px
+    padding: 15px
+    border-radius: 10px
+    background-color: rgba(0, 0, 0, 0.9)
+    +font(17px, #fff, 400)
+    display: flex
+    justify-content: center
+    align-items: center
+    opacity: 0
+    animation: showAbsoluteFiltersMessage 2s
+
+@keyframes showAbsoluteFiltersMessage
+    from, to
+        opacity: 0
+    15%, 85%
+        opacity: 1
+    100%
+        opacity: 0
+
+
+
+@media screen and (max-width: 400px)
+    .absolute_filters_message_div
+        right: 10px
+        width: 250px
+@media screen and (max-width: 350px)
+    .absolute_filters_message_div
+        width: 220px
+@media screen and (max-width: 300px)
+    .absolute_filters_message_div
+        width: 70%

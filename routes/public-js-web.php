@@ -5,6 +5,7 @@ use \App\Http\Controllers\PublicJS\ProductController;
 use \App\Http\Controllers\PublicJS\FavoriteProductController;
 use \App\Http\Controllers\PublicJS\ViewedProductController;
 use \App\Http\Controllers\PublicJS\ProductSearchController;
+use \App\Http\Controllers\PublicJS\ProductAggregateValuesController;
 
 // csrf-updater
 Route::get('/csrf', function () { return response()->json(csrf_token()); });
@@ -34,3 +35,4 @@ Route::get('/favorite-products/offset/{startOffset}', [FavoriteProductController
 Route::get('/viewed-products/offset/{startOffset}', [ViewedProductController::class, 'getViewedProductsForJS'])
     ->where(['startOffset' => '[0-9]+']);
 
+Route::get('/product-price-range', [ProductAggregateValuesController::class, 'getPriceRange']);

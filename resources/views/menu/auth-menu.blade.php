@@ -1,7 +1,7 @@
 @guest
     <div id="authMenu">
         <div id="authMenuContent">
-            <img alt="" src="{{ asset('images/accountIcon.svg') }}" class="personal_account__icon">
+            <img alt="" src="{{ asset('/images/accountIcon.svg') }}" class="personal_account__icon">
         </div>
     </div>
 @else
@@ -17,6 +17,6 @@
     </a>
 
     <a href="{{ route('account.logout') }}" title="Выйти из аккаунта" class="top_menu__link top_menu__link_account_exit">
-        <img alt="" src="{{ asset('images/accountExitIcon.svg') }}" class="account_exit__icon mr15">
+        <img alt="" src="{{ asset('/images/accountExitIcon.svg') }}" class="account_exit__icon mr15">
     </a>
 @endguest

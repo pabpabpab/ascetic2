@@ -34,3 +34,5 @@ class ProductSearchController extends Controller
 }
 
 // php artisan make:controller PublicJS/ProductSearchController
+
+

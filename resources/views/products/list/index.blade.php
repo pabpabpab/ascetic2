@@ -31,7 +31,9 @@
 
 @section('content')
     <section>
-        <h1 id="productsH1" class="products__h1">{{ $pageTitle }}</h1>
+        <h1 id="productsH1" class="products__h1 mb0">{{ $pageTitle }}</h1>
+
+        @include('products.list.top-viewing-sorting-filtering')
 
         <div id="productList"
              data-total-products-count="{{ $totalProductsCount }}"
@@ -48,4 +50,5 @@
 
     @include('pagination.pagination-and-view-more-section')
 
+    {{--@include('products.list.filter-block')--}}
 @endsection

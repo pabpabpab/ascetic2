@@ -3280,7 +3280,6 @@ h1 {
   font-size: 15px;
   color: #1976d5;
   font-weight: 300;
-  border-bottom: 1px dashed rgba(25, 118, 213, 0.5);
 }
 
 .products_sorting_modes__link_inactive {
@@ -3289,7 +3288,6 @@ h1 {
   font-size: 15px;
   color: #786e6e;
   font-weight: 300;
-  border-bottom: 1px dashed rgba(120, 110, 110, 0.5);
 }
 
 .sorting_modes_for_mobile__wrapper {
@@ -3581,10 +3579,6 @@ h1 {
 
 .product_filters__selectedCategories__wrapper {
   width: 100%;
-}
-
-.product_filters__checkbox_input__item {
-  height: 25px;
 }
 
 .filter_price__text_input__wrapper {

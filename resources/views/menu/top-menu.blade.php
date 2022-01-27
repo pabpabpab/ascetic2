@@ -1,6 +1,4 @@
 @php
-    $mainPageUrl = route('mainPage');
-
     $currentCategorySlug = \Illuminate\Support\Facades\Route::current()->category->slug ?? '';
 @endphp
 
@@ -12,7 +10,7 @@
             <p data-logo="link"
                data-menu-link-section-name="all"
                data-menu-link-title-text="{{ $mainPageTitle }}"
-               class="logo__link m0 cursor-pointer logo__link_active">
+               class="logo__link logo__link_active m0 cursor-pointer">
                 AsceticShop.ru
             </p>
         @else
@@ -65,12 +63,12 @@
             @endfor
 
             <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
-                <a href="/"
+                <p
                    data-menu-link-section-name="all"
                    data-menu-link-title-text="{{ $mainPageTitle }}"
-                   class="top_menu__link top_menu__link_with_drop_menu nowrap">
+                   class="top_menu__link top_menu__link_with_drop_menu nowrap m0 cursor-pointer">
                     Все
-                </a>
+                </p>
             </div>
 
         </nav>
