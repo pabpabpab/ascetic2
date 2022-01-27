@@ -1,5 +1,5 @@
-export default function getAuthAbsoluteMenuHtml(css) {
-    return `<div id="authAbsoluteMenu" class="${css.basicCss} ${css.showCss}">
+export default function getAuthAbsoluteMenuHtml() {
+    return `<div id="authAbsoluteMenu">
                 <div class="auth_absolute_menu__header">
                     Личный кабинет
                 </div>

@@ -1,0 +1,25 @@
+.icon_with_hint
+    cursor: pointer
+    position: relative
+    &:hover::after
+        content: attr(data-title)
+        position: absolute
+        z-index: $icon_with_hint__attr_title__z-index
+        width: 210px
+        +font(16px, #787070, 300)
+        text-align: left
+        background-color: $basicBackgroundColor
+        padding: 15px
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.5)
+
+.icon_with_right_hint
+    &:hover::after
+        left: 22px
+        top: 32px
+        border-radius: 0 8px 8px 8px
+
+.icon_with_left_hint
+    &:hover::after
+        right: 15px
+        top: 32px
+        border-radius: 8px 0 8px 8px

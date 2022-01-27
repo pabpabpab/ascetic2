@@ -311,11 +311,7 @@ var AuthAbsoluteMenu = /*#__PURE__*/function (_VisibleBlockByClick) {
   _createClass(AuthAbsoluteMenu, [{
     key: "_getHtml",
     value: function _getHtml() {
-      var css = {
-        basicCss: this.basicCss,
-        showCss: this.showCss
-      };
-      return Object(_html_auth_getAuthAbsoluteMenuHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(css);
+      return Object(_html_auth_getAuthAbsoluteMenuHtml__WEBPACK_IMPORTED_MODULE_1__["default"])();
     }
   }, {
     key: "_additionalFirstRenderActions",
@@ -410,10 +406,7 @@ var ForgotPassword = /*#__PURE__*/function (_AbsoluteForm) {
   }, {
     key: "_getHtml",
     value: function _getHtml() {
-      return Object(_html_auth_getForgotPasswordFormHtml__WEBPACK_IMPORTED_MODULE_3__["default"])({
-        basicCss: this.basicCss,
-        showCss: this.showCss
-      });
+      return Object(_html_auth_getForgotPasswordFormHtml__WEBPACK_IMPORTED_MODULE_3__["default"])();
     }
   }, {
     key: "_ultimateSuccess",
@@ -555,10 +548,7 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
   }, {
     key: "_getHtml",
     value: function _getHtml() {
-      return Object(_html_auth_getLoginFormHtml__WEBPACK_IMPORTED_MODULE_2__["default"])({
-        basicCss: this.basicCss,
-        showCss: this.showCss
-      });
+      return Object(_html_auth_getLoginFormHtml__WEBPACK_IMPORTED_MODULE_2__["default"])();
     }
   }, {
     key: "_ultimateSuccess",
@@ -784,10 +774,7 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
   }, {
     key: "_getHtml",
     value: function _getHtml(data) {
-      return Object(_html_auth_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__["default"])({
-        basicCss: this.basicCss,
-        showCss: this.showCss
-      });
+      return Object(_html_auth_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
     }
   }, {
     key: "_ultimateSuccess",
@@ -1259,8 +1246,8 @@ var FavoriteProductsTotalCountIndication = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getAuthAbsoluteMenuHtml; });
-function getAuthAbsoluteMenuHtml(css) {
-  return "<div id=\"authAbsoluteMenu\" class=\"".concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"auth_absolute_menu__header\">\n                    \u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442\n                </div>\n                <div class=\"auth_absolute_menu__content\">\n                    <a id=\"loginLink\" href=\"/login\" class=\"auth_absolute_menu__link mr7\">\n                        \u0412\u043E\u0439\u0442\u0438\n                    </a>\n                    \u0438\u043B\u0438\n                    <a id=\"registerLink\" href=\"/register\" class=\"auth_absolute_menu__link ml7\">\n                        \u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F\n                    </a>\n                </div>\n            <div>");
+function getAuthAbsoluteMenuHtml() {
+  return "<div id=\"authAbsoluteMenu\">\n                <div class=\"auth_absolute_menu__header\">\n                    \u041B\u0438\u0447\u043D\u044B\u0439 \u043A\u0430\u0431\u0438\u043D\u0435\u0442\n                </div>\n                <div class=\"auth_absolute_menu__content\">\n                    <a id=\"loginLink\" href=\"/login\" class=\"auth_absolute_menu__link mr7\">\n                        \u0412\u043E\u0439\u0442\u0438\n                    </a>\n                    \u0438\u043B\u0438\n                    <a id=\"registerLink\" href=\"/register\" class=\"auth_absolute_menu__link ml7\">\n                        \u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F\n                    </a>\n                </div>\n            <div>";
 }
 
 /***/ }),
@@ -1308,8 +1295,8 @@ function getFailedLoginHtml() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getForgotPasswordFormHtml; });
-function getForgotPasswordFormHtml(css) {
-  return "<div id=\"forgotPasswordForm\" class=\"".concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"js_reg_form__header\">\n                    \u0417\u0430\u0431\u044B\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C?\n                    <div class='js_reg_form__close'>&#215;</div>\n                </div>\n\n                <div id=\"sendResetLinkReply\" class=\"mt10\"></div>\n\n                <label for=\"forgotPasswordEmail\" class=\"js_reg_form__input__label\">\n                    \u0412\u0432\u0435\u0434\u0438\u0442\u0435 e-mail, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0412\u044B \u0443\u043A\u0430\u0437\u0430\u043B\u0438 \u043F\u0440\u0438 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438,\n                    \u043E\u0442\u043F\u0440\u0430\u0432\u0438\u043C \u0412\u0430\u043C \u0441\u0441\u044B\u043B\u043A\u0443 \u0434\u043B\u044F \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u043D\u043E\u0432\u043E\u0433\u043E \u043F\u0430\u0440\u043E\u043B\u044F.\n                </label>\n                <input type='email' name='email' id='forgotPasswordEmail' required class=\"js_reg_form__input__text_input\">\n                <div id=\"forgotPasswordEmailErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <button type=\"submit\" id='sendResetLinkSubmit' class=\"js_reg_form__submit_button mt18\">\n                    \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C\n                </button>\n            <div>");
+function getForgotPasswordFormHtml() {
+  return "<div id=\"forgotPasswordForm\">\n                <div class=\"js_reg_form__header\">\n                    \u0417\u0430\u0431\u044B\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C?\n                    <div class='js_reg_form__close'>&#215;</div>\n                </div>\n\n                <div id=\"sendResetLinkReply\" class=\"mt10\"></div>\n\n                <label for=\"forgotPasswordEmail\" class=\"js_reg_form__input__label\">\n                    \u0412\u0432\u0435\u0434\u0438\u0442\u0435 e-mail, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0412\u044B \u0443\u043A\u0430\u0437\u0430\u043B\u0438 \u043F\u0440\u0438 \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u0438,\n                    \u043E\u0442\u043F\u0440\u0430\u0432\u0438\u043C \u0412\u0430\u043C \u0441\u0441\u044B\u043B\u043A\u0443 \u0434\u043B\u044F \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u043D\u043E\u0432\u043E\u0433\u043E \u043F\u0430\u0440\u043E\u043B\u044F.\n                </label>\n                <input type='email' name='email' id='forgotPasswordEmail' required class=\"js_reg_form__input__text_input\">\n                <div id=\"forgotPasswordEmailErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <button type=\"submit\" id='sendResetLinkSubmit' class=\"js_reg_form__submit_button mt18\">\n                    \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C\n                </button>\n            <div>";
 }
 
 /***/ }),
@@ -1326,8 +1313,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getLoginFormHtml; });
 /* harmony import */ var _getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getULoginWidgetHtml.js */ "./resources/js2/html/auth/getULoginWidgetHtml.js");
 
-function getLoginFormHtml(css) {
-  return "<div id=\"loginForm\" class=\"".concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"js_reg_form__header\">\n                    \u0412\u0445\u043E\u0434 \u0434\u043B\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F\n                    <div class='js_reg_form__close'>&#215;</div>\n                </div>\n\n                <div id=\"failedLoginErr\" class=\"mt10\"></div>\n\n                <label for=\"loginEmail\" class=\"js_reg_form__input__label\">E-mail</label>\n                <input type='email' name='email' id='loginEmail' required class=\"js_reg_form__input__text_input\">\n                <div id=\"loginEmailErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n\n                <label for=\"loginPassword\" class=\"js_reg_form__input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password' id='loginPassword' required class=\"js_reg_form__input__text_input\">\n                <div class=\"height0 relative\">\n                    <img alt=\"\" src=\"images/closedEye.svg\" id=\"closedEyeImg\" class=\"js_reg_form__closed_eye_img\">\n                    <img alt=\"\" src=\"images/openedEye.svg\" id=\"openedEyeImg\" class=\"js_reg_form__opened_eye_img\">\n                </div>\n                <div id=\"loginPasswordErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n\n\n                <input type=\"checkbox\" name=\"remember\" id=\"loginRemember\" value=\"1\" class=\"js_reg_form__checkbox_input\">\n                <label for=\"loginRemember\" class=\"js_reg_form__checkbox_label\">\u0417\u0430\u043F\u043E\u043C\u043D\u0438\u0442\u044C \u043C\u0435\u043D\u044F</label>\n\n                <div class=\"js_reg_form__submit_and_forgot_flex mt18\">\n                    <button type=\"submit\" id='loginSubmit' class=\"js_reg_form__submit_button\">\n                        \u0412\u043E\u0439\u0442\u0438\n                    </button>\n                    <a href=\"/forgot-password\" id=\"forgotPasswordLink\" class=\"js_reg_form__forgot_password_link\">\n                        \u0417\u0430\u0431\u044B\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C?\n                    </a>\n                </div>\n\n                <div class=\"js_reg_form__header mt30\">\n                    \u0412\u043E\u0439\u0442\u0438 \u0447\u0435\u0440\u0435\u0437\n                </div>\n                ").concat(Object(_getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__["default"])(), "\n            <div>");
+function getLoginFormHtml() {
+  return "<div id=\"loginForm\">\n                <div class=\"js_reg_form__header\">\n                    \u0412\u0445\u043E\u0434 \u0434\u043B\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F\n                    <div class='js_reg_form__close'>&#215;</div>\n                </div>\n\n                <div id=\"failedLoginErr\" class=\"mt10\"></div>\n\n                <label for=\"loginEmail\" class=\"js_reg_form__input__label\">E-mail</label>\n                <input type='email' name='email' id='loginEmail' required class=\"js_reg_form__input__text_input\">\n                <div id=\"loginEmailErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n\n                <label for=\"loginPassword\" class=\"js_reg_form__input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password' id='loginPassword' required class=\"js_reg_form__input__text_input\">\n                <div class=\"height0 relative\">\n                    <img alt=\"\" src=\"images/closedEye.svg\" id=\"closedEyeImg\" class=\"js_reg_form__closed_eye_img\">\n                    <img alt=\"\" src=\"images/openedEye.svg\" id=\"openedEyeImg\" class=\"js_reg_form__opened_eye_img\">\n                </div>\n                <div id=\"loginPasswordErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n\n\n                <input type=\"checkbox\" name=\"remember\" id=\"loginRemember\" value=\"1\" class=\"js_reg_form__checkbox_input\">\n                <label for=\"loginRemember\" class=\"js_reg_form__checkbox_label\">\u0417\u0430\u043F\u043E\u043C\u043D\u0438\u0442\u044C \u043C\u0435\u043D\u044F</label>\n\n                <div class=\"js_reg_form__submit_and_forgot_flex mt18\">\n                    <button type=\"submit\" id='loginSubmit' class=\"js_reg_form__submit_button\">\n                        \u0412\u043E\u0439\u0442\u0438\n                    </button>\n                    <a href=\"/forgot-password\" id=\"forgotPasswordLink\" class=\"js_reg_form__forgot_password_link\">\n                        \u0417\u0430\u0431\u044B\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C?\n                    </a>\n                </div>\n\n                <div class=\"js_reg_form__header mt30\">\n                    \u0412\u043E\u0439\u0442\u0438 \u0447\u0435\u0440\u0435\u0437\n                </div>\n                ".concat(Object(_getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__["default"])(), "\n            <div>");
 }
 
 /***/ }),
@@ -1344,8 +1331,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getRegisterFormHtml; });
 /* harmony import */ var _getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getULoginWidgetHtml.js */ "./resources/js2/html/auth/getULoginWidgetHtml.js");
 
-function getRegisterFormHtml(css) {
-  return "<div id=\"regForm\" class=\"".concat(css.basicCss, " ").concat(css.showCss, "\">\n                <div class=\"js_reg_form__header\">\n                    \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F\n                    <div class='js_reg_form__close'>&#215;</div>\n                </div>\n                <label for=\"regName\" class=\"js_reg_form__input__label\">\u0412\u0430\u0448\u0435 \u0438\u043C\u044F</label>\n                <input type='text' name='name' id='regName' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regNameErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regEmail\" class=\"js_reg_form__input__label\">E-mail</label>\n                <input type='email' name='email' id='regEmail' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regEmailErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regPassword\" class=\"js_reg_form__input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password' id='regPassword' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regPasswordErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regPassword_confirmation\" class=\"js_reg_form__input__label\">\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password_confirmation' id='regPassword_confirmation' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regPasswordConfirmationErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <button type=\"submit\" id='regSubmit' class=\"js_reg_form__submit_button mt18\">\n                   \u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F\n                </button>\n\n                <div class=\"js_reg_form__header mt30\">\n                    \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F \u0447\u0435\u0440\u0435\u0437\n                </div>\n                ").concat(Object(_getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__["default"])(), "\n            <div>");
+function getRegisterFormHtml() {
+  return "<div id=\"regForm\">\n                <div class=\"js_reg_form__header\">\n                    \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F\n                    <div class='js_reg_form__close'>&#215;</div>\n                </div>\n                <label for=\"regName\" class=\"js_reg_form__input__label\">\u0412\u0430\u0448\u0435 \u0438\u043C\u044F</label>\n                <input type='text' name='name' id='regName' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regNameErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regEmail\" class=\"js_reg_form__input__label\">E-mail</label>\n                <input type='email' name='email' id='regEmail' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regEmailErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regPassword\" class=\"js_reg_form__input__label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password' id='regPassword' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regPasswordErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <label for=\"regPassword_confirmation\" class=\"js_reg_form__input__label\">\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 \u043F\u0430\u0440\u043E\u043B\u044C</label>\n                <input type='password' name='password_confirmation' id='regPassword_confirmation' required class=\"js_reg_form__input__text_input\">\n                <div id=\"regPasswordConfirmationErr\" class=\"js_reg_form__input__validation_message\"></div>\n\n                <button type=\"submit\" id='regSubmit' class=\"js_reg_form__submit_button mt18\">\n                   \u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F\n                </button>\n\n                <div class=\"js_reg_form__header mt30\">\n                    \u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F \u0447\u0435\u0440\u0435\u0437\n                </div>\n                ".concat(Object(_getULoginWidgetHtml_js__WEBPACK_IMPORTED_MODULE_0__["default"])(), "\n            <div>");
 }
 
 /***/ }),
@@ -1411,6 +1398,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getDropMenuHtml; });
 function getDropMenuHtml(innerHtml) {
   return "<div id=\"topMenu-dropMenuWrapper\" class=\"top_menu__drop_menu show_block\">\n                <ul id=\"topMenu-dropMenuContent\" class=\"top_menu__drop_menu__ul\">\n                    ".concat(innerHtml, "\n                </ul>\n            </div>");
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/productList/filterBlock/getFilterBlockHtml.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js2/html/productList/filterBlock/getFilterBlockHtml.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getFilterBlockHtml; });
+function getFilterBlockHtml() {
+  return "<div id=\"productFilterWrapper\">\n                <div class=\"product_filter__content\">\n\n                    <p class=\"product_filter__property_header\">\n                        \u0426\u0435\u043D\u0430, \u0440\u0443\u0431.\n                    </p>\n\n                    <div class=\"product_filter__price__text_input__wrapper\">\n                        <input class=\"product_filter__price__text_input\"\n                            type=\"text\" maxlength=\"6\" value=\"\">\n                        <input class=\"product_filter__price__text_input\"\n                            type=\"text\" maxlength=\"6\" value=\"\">\n                    </div>\n\n                    <div class=\"product_filter__price__range_input__wrapper\">\n                        <div class=\"product_filter__price__range_input__kernel\">&nbsp;</div>\n\n                        <input type=\"range\" class=\"product_filter__price__range_input product_filter__price__range_input_min\"\n                            min=\"0\"\n                            step=\"100\"\n                            max=\"9999999\"\n                            value=\"0\"><br>\n                        <input type=\"range\" class=\"product_filter__price__range_input product_filter__price__range_input_max\"\n                            min=\"productsMinPrice\"\n                            step=\"100\"\n                            max=\"1000000\"\n                            value=\"1000000\">\n                    </div>\n\n                    <div class=\"product_filter__selectedCategories__wrapper\">\n                        <p class=\"product_filter__property_header mt50\">\n                            \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\n                        </p>\n\n                        <div class=\"product_filter__checkboxes_list\">\n\n                            <p class=\"product_filter__checkbox_input__item\">\n                                <input type=\"checkbox\"\n                                    id=\"cat7\"\n                                    value=\"7\"\n                                    class=\"product_filter__checkbox_input\">\n                                <label for=\"cat7\" class=\"product_filter__checkbox_label\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F 7\n                                </label>\n                            </p>\n\n                            <p class=\"product_filter__checkbox_input__item\">\n                                <input type=\"checkbox\"\n                                    id=\"cat8\"\n                                    value=\"8\"\n                                    class=\"product_filter__checkbox_input\">\n                                <label for=\"cat8\" class=\"product_filter__checkbox_label\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F 8\n                                </label>\n                            </p>\n\n                        </div>\n                    </div>\n\n                    <button class=\"product_filter__button mauto mt30\">\n                        \u0413\u043E\u0442\u043E\u0432\u043E\n                    </button>\n\n                    <div class='product_filter__collapse_icon'>\n                        &#215;\n                    </div>\n                </div>\n            </div>";
 }
 
 /***/ }),
@@ -1911,6 +1914,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _productList_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productList/rendererByMenuLink */ "./resources/js2/productList/rendererByMenuLink.js");
 /* harmony import */ var _productList_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productList/rendererOfViewedProductsByLink */ "./resources/js2/productList/rendererOfViewedProductsByLink.js");
 /* harmony import */ var _productList_rendererOfPaginationBlock__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productList/rendererOfPaginationBlock */ "./resources/js2/productList/rendererOfPaginationBlock.js");
+/* harmony import */ var _productList_productFilter_absoluteProductFilter__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productList/productFilter/absoluteProductFilter */ "./resources/js2/productList/productFilter/absoluteProductFilter.js");
 
 
 
@@ -2005,6 +2009,14 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Objec
       menuLinkCssMaker: menuLinkCssMaker
     });
   }
+}
+
+
+
+if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__wrapper')) {
+  new _productList_productFilter_absoluteProductFilter__WEBPACK_IMPORTED_MODULE_25__["default"]({
+    clickSourceSelector: '.filter_icon__wrapper'
+  });
 }
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
@@ -2363,8 +2375,9 @@ var VisibleBlock = /*#__PURE__*/function () {
       this._preRenderActions();
 
       if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
-        this._firstRender(); // and set the visibility to true
+        this._firstRender();
 
+        this._justSetVisibilityToTrue();
 
         return;
       }
@@ -2506,6 +2519,134 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
   return VisibleBlockByClick;
 }(_visibleBlock__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/productFilter/absoluteProductFilter.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js2/productList/productFilter/absoluteProductFilter.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbsoluteProductFilter; });
+/* harmony import */ var _parentClasses_visibleBlockByClick__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../parentClasses/visibleBlockByClick */ "./resources/js2/parentClasses/visibleBlockByClick.js");
+/* harmony import */ var _html_productList_filterBlock_getFilterBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../html/productList/filterBlock/getFilterBlockHtml */ "./resources/js2/html/productList/filterBlock/getFilterBlockHtml.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+var AbsoluteProductFilter = /*#__PURE__*/function () {
+  function AbsoluteProductFilter(data) {
+    var _this = this;
+
+    _classCallCheck(this, AbsoluteProductFilter);
+
+    this.wrapSelector = "#productFilterWrapper";
+    this.basicCss = 'product_filter';
+    this.showCss = 'show_product_filter';
+    this.hideCss = 'hide_product_filter';
+    Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])(data.clickSourceSelector).addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      _this._render();
+    });
+  }
+
+  _createClass(AbsoluteProductFilter, [{
+    key: "_render",
+    value: function _render() {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])(this.wrapSelector)) {
+        this._firstRender();
+
+        this._justSetVisibilityToTrue();
+
+        return;
+      }
+
+      this._justSetVisibilityToTrue();
+    }
+  }, {
+    key: "_firstRender",
+    value: function _firstRender() {
+      var html = Object(_html_productList_filterBlock_getFilterBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])();
+      Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('body').insertAdjacentHTML('beforeend', html);
+
+      this._listenBodyTag();
+
+      this._listenThisBlock();
+    }
+  }, {
+    key: "_listenBodyTag",
+    value: function _listenBodyTag() {
+      var _this2 = this;
+
+      Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('body').addEventListener('click', function (e) {
+        _this2._setVisibilityToFalse(e);
+      });
+    }
+  }, {
+    key: "_listenThisBlock",
+    value: function _listenThisBlock() {
+      var _this3 = this;
+
+      Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('.product_filter__collapse_icon').addEventListener('click', function () {
+        _this3._setVisibilityToFalse2();
+      });
+    }
+  }, {
+    key: "_justSetVisibilityToTrue",
+    value: function _justSetVisibilityToTrue() {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])(this.wrapSelector)) {
+        return;
+      } //const distance = window.pageYOffset;
+      //scrollDocument(distance, 'up');
+
+
+      document.body.style.overflow = 'hidden';
+      Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
+    }
+  }, {
+    key: "_setVisibilityToFalse",
+    value: function _setVisibilityToFalse(e) {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      if (e.target === Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      if (e.target.className.includes('product_filter')) {
+        return;
+      }
+
+      this._setVisibilityToFalse2();
+    }
+  }, {
+    key: "_setVisibilityToFalse2",
+    value: function _setVisibilityToFalse2() {
+      Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      document.body.style.overflow = 'auto';
+    }
+  }]);
+
+  return AbsoluteProductFilter;
+}();
 
 
 

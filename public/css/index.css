@@ -836,6 +836,16 @@ h2 {
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
+.show_product_filter {
+  -webkit-animation: showProductFilters 0.5s;
+          animation: showProductFilters 0.5s;
+}
+
+.hide_product_filter {
+  -webkit-animation: hideProductFilters 0.3s forwards;
+          animation: hideProductFilters 0.3s forwards;
+}
+
 @-webkit-keyframes showProductFilters {
   from, to {
     right: -370px;
@@ -1035,7 +1045,7 @@ h2 {
   height: 19px;
   border: 1px solid #b4aaaa;
   border-radius: 3px;
-  background-color: #f8f8f8;
+  background-color: #fff;
   content: "";
 }
 
@@ -1043,7 +1053,7 @@ h2 {
   position: absolute;
   content: "";
   left: -23.5px;
-  top: 2px;
+  top: -3px;
   width: 4px;
   height: 9px;
   background-color: #f8f8f8;
@@ -1053,7 +1063,7 @@ h2 {
           transform: rotate(45deg);
 }
 
-.filter_price__text_input__wrapper {
+.product_filter__price__text_input__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1065,7 +1075,7 @@ h2 {
           justify-content: space-between;
 }
 
-.filter_price__text_input {
+.product_filter__price__text_input {
   padding: 13px 8px;
   width: 100px;
   background-color: #fff;
@@ -1080,14 +1090,14 @@ h2 {
   outline: 0;
 }
 
-.filter_price__text_input:focus,
-.filter_price__text_input:hover {
+.product_filter__price__text_input:focus,
+.product_filter__price__text_input:hover {
   border: 1px solid rgba(20, 121, 252, 0.6);
   -webkit-box-shadow: 0 0 5px rgba(16, 126, 248, 0.4);
           box-shadow: 0 0 5px rgba(16, 126, 248, 0.4);
 }
 
-.filter_price__range_input__wrapper {
+.product_filter__price__range_input__wrapper {
   position: relative;
   padding: 0;
   margin: 10px 0;
@@ -1096,7 +1106,7 @@ h2 {
   background-color: #f4f9fc;
 }
 
-.filter_price__range_input__kernel {
+.product_filter__price__range_input__kernel {
   position: absolute;
   z-index: 34;
   left: 0;
@@ -1108,7 +1118,7 @@ h2 {
   background-color: #000;
 }
 
-.filter_price__range_input {
+.product_filter__price__range_input {
   position: absolute;
   z-index: 35;
   top: -7px;
@@ -1124,7 +1134,7 @@ h2 {
   /* Оформление полосы диапазона */
 }
 
-.filter_price__range_input::-webkit-slider-thumb {
+.product_filter__price__range_input::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 15px;
   width: 10px;
@@ -1133,39 +1143,39 @@ h2 {
   margin-top: 5px;
 }
 
-.filter_price__range_input::-moz-range-thumb {
+.product_filter__price__range_input::-moz-range-thumb {
   height: 15px;
   width: 10px;
   background: #000;
   cursor: pointer;
 }
 
-.filter_price__range_input::-ms-thumb {
+.product_filter__price__range_input::-ms-thumb {
   height: 15px;
   width: 10px;
   background: #000;
   cursor: pointer;
 }
 
-.filter_price__range_input::-webkit-slider-runnable-track {
+.product_filter__price__range_input::-webkit-slider-runnable-track {
   width: 100%;
   height: 2px;
   cursor: pointer;
   background: transparent;
 }
 
-.filter_price__range_input::-moz-range-progress {
+.product_filter__price__range_input::-moz-range-progress {
   background-color: transparent;
 }
 
-.filter_price__range_input::-moz-range-track {
+.product_filter__price__range_input::-moz-range-track {
   width: 100%;
   height: 2px;
   cursor: pointer;
   background: transparent;
 }
 
-.filter_price__range_input::-ms-track {
+.product_filter__price__range_input::-ms-track {
   width: 100%;
   height: 2px;
   cursor: pointer;
@@ -1174,20 +1184,20 @@ h2 {
   color: transparent;
 }
 
-.filter_price__range_input::-ms-fill-lower {
+.product_filter__price__range_input::-ms-fill-lower {
   background: transparent;
 }
 
-.filter_price__range_input::-ms-fill-upper {
+.product_filter__price__range_input::-ms-fill-upper {
   background: transparent;
 }
 
-.filter_price__range_input_min::-webkit-slider-thumb {
+.product_filter__price__range_input_min::-webkit-slider-thumb {
   -webkit-box-shadow: -150px 159px 0 150px #f9f9f8, -150px 155px 0 150px #ccc;
           box-shadow: -150px 159px 0 150px #f9f9f8, -150px 155px 0 150px #ccc;
 }
 
-.filter_price__range_input_max::-webkit-slider-thumb {
+.product_filter__price__range_input_max::-webkit-slider-thumb {
   -webkit-box-shadow: 150px 159px 0 150px #f4f9fc, 150px 155px 0 150px #ccc;
           box-shadow: 150px 159px 0 150px #f4f9fc, 150px 155px 0 150px #ccc;
 }

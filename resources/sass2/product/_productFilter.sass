@@ -10,11 +10,11 @@
     //visibility: hidden
     //animation: showProductFilters .5s
 
-//.product_filter-enter-active
+.show_product_filter
     animation: showProductFilters .5s //forwards
 
-//.product_filter-leave-active
-    animation: hideProductFilters .3s //forwards
+.hide_product_filter
+    animation: hideProductFilters .3s forwards
 
 @keyframes showProductFilters
     from, to
@@ -31,6 +31,8 @@
     100%
         right: -370px
         visibility: hidden
+
+
 
 
 .product_filter__content
@@ -141,13 +143,13 @@
     height: 19px
     border: 1px solid rgb(180, 170, 170)
     border-radius: 3px
-    background-color: #f8f8f8
+    background-color: #fff
     content: ''
 .product_filter__checkbox_input:checked + .product_filter__checkbox_label::after
     position: absolute
     content: ''
     left: -23.5px
-    top: 2px
+    top: -3px
     width: 4px
     height: 9px
     background-color: #f8f8f8
@@ -158,12 +160,12 @@
 
 
 
-.filter_price__text_input__wrapper
+.product_filter__price__text_input__wrapper
     display: flex
     align-items: center
     justify-content: space-between
 
-.filter_price__text_input
+.product_filter__price__text_input
     padding: 13px 8px
     width: 100px
     background-color: #fff
@@ -183,7 +185,7 @@
 
 
 
-.filter_price__range_input__wrapper
+.product_filter__price__range_input__wrapper
     position: relative
     padding: 0
     margin: 10px 0
@@ -193,7 +195,7 @@
     //border: 1px solid #909090
 
 
-.filter_price__range_input__kernel
+.product_filter__price__range_input__kernel
     position: absolute
     z-index: $filter_price__range_input__kernel__z-index
     left: 0
@@ -204,7 +206,7 @@
     width: 100%
     background-color: #000
 
-.filter_price__range_input
+.product_filter__price__range_input
     position: absolute
     z-index: $filter_price__range_input__z-index
     top: -7px
@@ -268,10 +270,10 @@
         background: transparent
 
 
-.filter_price__range_input_min
+.product_filter__price__range_input_min
     &::-webkit-slider-thumb
         box-shadow:  -150px 159px 0 150px $basicBackgroundColor, -150px 155px 0 150px #ccc
-.filter_price__range_input_max
+.product_filter__price__range_input_max
     &::-webkit-slider-thumb
         box-shadow: 150px 159px 0 150px #f4f9fc, 150px 155px 0 150px #ccc
 // <сдвиг по x> <сдвиг по y> <радиус размытия> <растяжение> <цвет> / первая тень слоем выше второй

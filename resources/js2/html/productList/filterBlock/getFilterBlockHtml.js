@@ -1,27 +1,27 @@
 export default function getFilterBlockHtml() {
-    return `<div class="product_filter">
+    return `<div id="productFilterWrapper">
                 <div class="product_filter__content">
 
                     <p class="product_filter__property_header">
                         Цена, руб.
                     </p>
 
-                    <div class="filter_price__text_input__wrapper">
-                        <input class="input_text filter_price__text_input"
+                    <div class="product_filter__price__text_input__wrapper">
+                        <input class="product_filter__price__text_input"
                             type="text" maxlength="6" value="">
-                        <input class="input_text filter_price__text_input"
+                        <input class="product_filter__price__text_input"
                             type="text" maxlength="6" value="">
                     </div>
 
-                    <div class="filter_price__range_input__wrapper">
-                        <div class="filter_price__range_input__kernel">&nbsp;</div>
+                    <div class="product_filter__price__range_input__wrapper">
+                        <div class="product_filter__price__range_input__kernel">&nbsp;</div>
 
-                        <input type="range" class="filter_price__range_input filter_price__range_input_min"
+                        <input type="range" class="product_filter__price__range_input product_filter__price__range_input_min"
                             min="0"
                             step="100"
                             max="9999999"
                             value="0"><br>
-                        <input type="range" class="filter_price__range_input filter_price__range_input_max"
+                        <input type="range" class="product_filter__price__range_input product_filter__price__range_input_max"
                             min="productsMinPrice"
                             step="100"
                             max="1000000"

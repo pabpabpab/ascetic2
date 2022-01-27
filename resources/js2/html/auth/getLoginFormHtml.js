@@ -1,7 +1,7 @@
 import getULoginWidgetHtml from './getULoginWidgetHtml.js';
 
-export default function getLoginFormHtml(css) {
-    return `<div id="loginForm" class="${css.basicCss} ${css.showCss}">
+export default function getLoginFormHtml() {
+    return `<div id="loginForm">
                 <div class="js_reg_form__header">
                     Вход для пользователя
                     <div class='js_reg_form__close'>&#215;</div>

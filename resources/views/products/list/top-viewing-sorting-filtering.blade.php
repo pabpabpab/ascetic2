@@ -20,8 +20,7 @@
         {{--:class="{sorting_modes_for_mobile__arrow_up: selectIsVisible}"--}}
     </div>
 
-    <div data-title="Открыть фильтр товаров"
-         class="icon_with_hint icon_with_left_hint filter_icon__wrapper">
+    <div class="filter_icon__wrapper">
         <img src="{{ asset('/images/filterIcon.svg') }}" alt="" class="filter_icon__img">
         <div class="filter_icon__total_indicator">0</div>
     </div>

@@ -24,10 +24,7 @@ export default class Register extends AbsoluteForm {
     }
 
     _getHtml(data) {
-        return getRegisterFormHtml({
-            basicCss: this.basicCss,
-            showCss: this.showCss,
-        });
+        return getRegisterFormHtml();
     }
 
     _ultimateSuccess() {

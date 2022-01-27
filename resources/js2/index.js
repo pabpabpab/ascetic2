@@ -128,8 +128,11 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
     }
 }
 
+import AbsoluteProductFilter from "./productList/productFilter/absoluteProductFilter";
 
-
+if (el('.filter_icon__wrapper')) {
+   new AbsoluteProductFilter({ clickSourceSelector: '.filter_icon__wrapper' });
+}
 
 
 

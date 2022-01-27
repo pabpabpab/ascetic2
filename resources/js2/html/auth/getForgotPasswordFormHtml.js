@@ -1,5 +1,5 @@
-export default function getForgotPasswordFormHtml(css) {
-    return `<div id="forgotPasswordForm" class="${css.basicCss} ${css.showCss}">
+export default function getForgotPasswordFormHtml() {
+    return `<div id="forgotPasswordForm">
                 <div class="js_reg_form__header">
                     Забыли пароль?
                     <div class='js_reg_form__close'>&#215;</div>

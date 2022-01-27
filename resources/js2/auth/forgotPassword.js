@@ -23,10 +23,7 @@ export default class ForgotPassword extends AbsoluteForm {
     }
 
     _getHtml() {
-        return getForgotPasswordFormHtml({
-            basicCss: this.basicCss,
-            showCss: this.showCss,
-        });
+        return getForgotPasswordFormHtml();
     }
 
     _ultimateSuccess() {

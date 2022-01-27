@@ -16,11 +16,7 @@ export default class AuthAbsoluteMenu extends VisibleBlockByClick {
     }
 
     _getHtml() {
-        const css = {
-            basicCss: this.basicCss,
-            showCss: this.showCss
-        }
-        return getAuthAbsoluteMenuHtml(css);
+        return getAuthAbsoluteMenuHtml();
     }
 
     _additionalFirstRenderActions() {

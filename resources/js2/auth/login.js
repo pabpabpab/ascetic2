@@ -44,10 +44,7 @@ export default class Login extends AbsoluteForm {
 
 
     _getHtml() {
-        return getLoginFormHtml({
-            basicCss: this.basicCss,
-            showCss: this.showCss,
-        });
+        return getLoginFormHtml();
     }
 
 

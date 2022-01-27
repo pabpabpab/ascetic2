@@ -1,7 +1,7 @@
 import getULoginWidgetHtml from './getULoginWidgetHtml.js';
 
-export default function getRegisterFormHtml(css) {
-    return `<div id="regForm" class="${css.basicCss} ${css.showCss}">
+export default function getRegisterFormHtml() {
+    return `<div id="regForm">
                 <div class="js_reg_form__header">
                     Регистрация
                     <div class='js_reg_form__close'>&#215;</div>

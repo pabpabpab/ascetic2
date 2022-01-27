@@ -14,7 +14,8 @@ export default class VisibleBlock {
     _render() {
         this._preRenderActions();
         if (!el(this.wrapSelector)) {
-            this._firstRender(); // and set the visibility to true
+            this._firstRender();
+            this._justSetVisibilityToTrue();
             return;
         }
         this._justSetVisibilityToTrue();
