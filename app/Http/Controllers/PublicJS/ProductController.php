@@ -37,3 +37,4 @@ class ProductController extends Controller
 
 // php artisan make:controller PublicJS/ProductController
 
+

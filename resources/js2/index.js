@@ -12,6 +12,7 @@ import FavoriteProductsIndicationOnPageLoad from "./favoriteProducts/favoritePro
 import FavoriteProductsTotalCountIndication from "./favoriteProducts/favoriteProductsTotalCountIndication"
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 
+import CategoryCache from "./categorySource/categoryCache";
 import ProductCache from "./productSource/productCache";
 import ViewedProductsAppender from "./viewedProducts/viewedProductsAppender";
 import SingleProductQuickViewer from "./productQuickViewer/singleProductQuickViewer";
@@ -35,6 +36,9 @@ import RendererOfProductsByPaginationButton from "./productList/rendererByPagina
 import RendererOfProductsByMenuLink from "./productList/rendererByMenuLink";
 import RendererOfViewedProductsByLink from "./productList/rendererOfViewedProductsByLink";
 import RendererOfPaginationBlock from "./productList/rendererOfPaginationBlock";
+
+
+import ProductFilter from "./productList/productFilter/absoluteProductFilter";
 
 
 new CsrfUpdater();
@@ -125,14 +129,20 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             menuLinkCssMaker,
         });
 
+        if (el('.filter_icon__wrapper')) {
+            const categoryCache = new CategoryCache();
+            new ProductFilter({
+                productCache,
+                categoryCache,
+            });
+        }
+
     }
 }
 
-import AbsoluteProductFilter from "./productList/productFilter/absoluteProductFilter";
 
-if (el('.filter_icon__wrapper')) {
-   new AbsoluteProductFilter({ clickSourceSelector: '.filter_icon__wrapper' });
-}
+
+
 
 
 

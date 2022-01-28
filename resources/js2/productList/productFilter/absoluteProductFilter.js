@@ -1,5 +1,5 @@
-import VisibleBlockByClick from "../../parentClasses/visibleBlockByClick";
-import getFilterBlockHtml from "../../html/productList/filterBlock/getFilterBlockHtml";
+import getFilterBlockHtml from "./../../html/productList/filterBlock/getFilterBlockHtml";
+import getCategoriesBlockHtmlForFilter from "./../../html/productList/filterBlock/getCategoriesBlockHtmlForFilter";
 import el from "../../el";
 import scrollDocument from "../../scrollDocument";
 
@@ -7,12 +7,15 @@ import scrollDocument from "../../scrollDocument";
 export default class AbsoluteProductFilter {
 
     constructor(data) {
+        this.productCache = data.productCache;
+        this.categoryCache = data.categoryCache;
+
         this.wrapSelector = `#productFilterWrapper`;
         this.basicCss = 'product_filter';
         this.showCss = 'show_product_filter';
         this.hideCss = 'hide_product_filter';
 
-        el(data.clickSourceSelector).addEventListener('click', (e) => {
+        el('.filter_icon__wrapper').addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             this._render();
@@ -31,6 +34,7 @@ export default class AbsoluteProductFilter {
     _firstRender() {
         const html = getFilterBlockHtml();
         el('body').insertAdjacentHTML('beforeend', html);
+        this._setInitialDataForFilter();
         this._listenBodyTag();
         this._listenThisBlock();
     }
@@ -72,6 +76,28 @@ export default class AbsoluteProductFilter {
     _setVisibilityToFalse2() {
         el(this.wrapSelector).className = `${this.basicCss} ${this.hideCss}`;
         document.body.style.overflow = 'auto';
+    }
+
+    _setInitialDataForFilter() {
+        this.productCache.getPriceRange()
+            .then(({minPrice, maxPrice}) => {
+                el('#minPriceTextInput').value = minPrice;
+                el('#maxPriceTextInput').value = maxPrice;
+
+                el('#minPriceRangeInput').min = minPrice;
+                el('#minPriceRangeInput').max = maxPrice;
+                el('#minPriceRangeInput').value = minPrice;
+
+                el('#maxPriceRangeInput').min = minPrice;
+                el('#maxPriceRangeInput').max = maxPrice;
+                el('#maxPriceRangeInput').value = maxPrice;
+            });
+
+        this.categoryCache.getEntireList()
+            .then((categories) => {
+                const html = getCategoriesBlockHtmlForFilter(categories);
+                el('#productFilterCategoriesWrapper').insertAdjacentHTML('afterbegin', html);
+            });
     }
 
 }

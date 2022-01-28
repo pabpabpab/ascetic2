@@ -7,54 +7,36 @@ export default function getFilterBlockHtml() {
                     </p>
 
                     <div class="product_filter__price__text_input__wrapper">
-                        <input class="product_filter__price__text_input"
+                        <input id="minPriceTextInput" class="product_filter__price__text_input"
                             type="text" maxlength="6" value="">
-                        <input class="product_filter__price__text_input"
+                        <input id="maxPriceTextInput" class="product_filter__price__text_input"
                             type="text" maxlength="6" value="">
                     </div>
 
                     <div class="product_filter__price__range_input__wrapper">
                         <div class="product_filter__price__range_input__kernel">&nbsp;</div>
 
-                        <input type="range" class="product_filter__price__range_input product_filter__price__range_input_min"
-                            min="0"
+                        <input id="minPriceRangeInput"
+                            type="range"
+                            class="product_filter__price__range_input product_filter__price__range_input_min"
+                            min=""
                             step="100"
-                            max="9999999"
-                            value="0"><br>
-                        <input type="range" class="product_filter__price__range_input product_filter__price__range_input_max"
-                            min="productsMinPrice"
+                            max=""
+                            value=""><br>
+                        <input id="maxPriceRangeInput"
+                            type="range"
+                            class="product_filter__price__range_input product_filter__price__range_input_max"
+                            min=""
                             step="100"
-                            max="1000000"
-                            value="1000000">
+                            max=""
+                            value="">
                     </div>
 
                     <div class="product_filter__selectedCategories__wrapper">
                         <p class="product_filter__property_header mt50">
                             Категория
                         </p>
-
-                        <div class="product_filter__checkboxes_list">
-
-                            <p class="product_filter__checkbox_input__item">
-                                <input type="checkbox"
-                                    id="cat7"
-                                    value="7"
-                                    class="product_filter__checkbox_input">
-                                <label for="cat7" class="product_filter__checkbox_label">
-                                    Категория 7
-                                </label>
-                            </p>
-
-                            <p class="product_filter__checkbox_input__item">
-                                <input type="checkbox"
-                                    id="cat8"
-                                    value="8"
-                                    class="product_filter__checkbox_input">
-                                <label for="cat8" class="product_filter__checkbox_label">
-                                    Категория 8
-                                </label>
-                            </p>
-
+                        <div id="productFilterCategoriesWrapper" class="product_filter__checkboxes_list">
                         </div>
                     </div>
 

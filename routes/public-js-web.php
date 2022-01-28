@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\PublicJS\CategoryController;
 use \App\Http\Controllers\PublicJS\ProductController;
 use \App\Http\Controllers\PublicJS\FavoriteProductController;
 use \App\Http\Controllers\PublicJS\ViewedProductController;
@@ -10,6 +11,8 @@ use \App\Http\Controllers\PublicJS\ProductAggregateValuesController;
 // csrf-updater
 Route::get('/csrf', function () { return response()->json(csrf_token()); });
 
+
+Route::get('/entire-category-list', [CategoryController::class, 'getEntireList']);
 
 // js-post-реквест добавить удалить товар в/из избранных у пользователя
 Route::post('/favorite-products/post', [FavoriteProductController::class, 'synchronizeUserFavorites']);
