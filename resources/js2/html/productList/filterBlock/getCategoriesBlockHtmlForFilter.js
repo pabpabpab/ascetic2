@@ -6,6 +6,7 @@ export default function getCategoriesBlockHtmlForFilter(categories) {
 function _getCategoryItemHTML(category) {
     return `<p class="product_filter__checkbox_input__item">
                 <input type="checkbox"
+                    data-product-filter-category-checkbox-input
                     id="filterCategory${category.id}"
                     value="${category.id}"
                     class="product_filter__checkbox_input">

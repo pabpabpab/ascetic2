@@ -1,14 +1,22 @@
 import getFilterBlockHtml from "./../../html/productList/filterBlock/getFilterBlockHtml";
+import getPriceBlockHtmlForFilter from "./../../html/productList/filterBlock/getPriceBlockHtmlForFilter";
 import getCategoriesBlockHtmlForFilter from "./../../html/productList/filterBlock/getCategoriesBlockHtmlForFilter";
 import el from "../../el";
-import scrollDocument from "../../scrollDocument";
+import getJson from "../../http/getJson";
+import ProductFilterHandler from "./productFilterHandler";
 
 
-export default class AbsoluteProductFilter {
+export default class ProductFilterRenderer {
 
     constructor(data) {
         this.productCache = data.productCache;
         this.categoryCache = data.categoryCache;
+        this.searchSettingsStore = data.searchSettingsStore;
+
+        this.priceRangeUrl = '/public-js/product-price-range';
+        this.minPriceLimit = 0;
+        this.maxPriceLimit = 0;
+
 
         this.wrapSelector = `#productFilterWrapper`;
         this.basicCss = 'product_filter';
@@ -49,6 +57,10 @@ export default class AbsoluteProductFilter {
         el('.product_filter__collapse_icon').addEventListener('click', () => {
             this._setVisibilityToFalse2();
         });
+        new ProductFilterHandler({
+            filterBlock: this,
+            searchSettingsStore: this.searchSettingsStore,
+        });
     }
 
     _justSetVisibilityToTrue() {
@@ -79,8 +91,15 @@ export default class AbsoluteProductFilter {
     }
 
     _setInitialDataForFilter() {
-        this.productCache.getPriceRange()
+        this._getPriceRange()
             .then(({minPrice, maxPrice}) => {
+                const spinner = el('#productFilterPriceSectionSpinner');
+                if (spinner) {
+                    spinner.remove();
+                }
+                const html = getPriceBlockHtmlForFilter();
+                el('#productFilterPriceSectionWrapper').insertAdjacentHTML('afterbegin', html);
+
                 el('#minPriceTextInput').value = minPrice;
                 el('#maxPriceTextInput').value = maxPrice;
 
@@ -95,9 +114,46 @@ export default class AbsoluteProductFilter {
 
         this.categoryCache.getEntireList()
             .then((categories) => {
+                const spinner = el('#productFilterCategoriesSpinner');
+                if (spinner) {
+                    spinner.remove();
+                }
                 const html = getCategoriesBlockHtmlForFilter(categories);
                 el('#productFilterCategoriesWrapper').insertAdjacentHTML('afterbegin', html);
             });
+    }
+
+
+    _getPriceRange() {
+        if (this.productCache.entireList.length > 0) {
+            return new Promise(resolve =>
+                resolve(this._getPriceRangeFromCachedProducts())
+            );
+        }
+        return getJson(this.priceRangeUrl)
+            .then((data) => {
+                this.minPriceLimit = Number(data.minPrice);
+                this.maxPriceLimit = Number(data.maxPrice);
+                return data;
+            });
+    }
+    _getPriceRangeFromCachedProducts() {
+        const minPrice = this.productCache.entireList.reduce((minPrice, item) => {
+            return minPrice < item.price ? minPrice : item.price;
+        }, 100000000000000000);
+        const integerMinPrice = Math.floor(minPrice);
+        this.minPriceLimit = integerMinPrice;
+
+        const maxPrice = this.productCache.entireList.reduce((maxPrice, item) => {
+            return maxPrice > item.price ? maxPrice : item.price;
+        }, 0);
+        const integerMaxPrice = Math.ceil(maxPrice);
+        this.maxPriceLimit = integerMaxPrice;
+
+        return {
+            minPrice: integerMinPrice,
+            maxPrice: integerMaxPrice,
+        };
     }
 
 }

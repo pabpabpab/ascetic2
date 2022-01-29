@@ -32,4 +32,7 @@ export default class CategoryCache {
             });
     }
 
+    getCachedCategories() {
+        return [ ...this.entireList ];
+    }
 }

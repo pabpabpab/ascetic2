@@ -31,9 +31,17 @@
 
 @section('content')
     <section>
-        <h1 id="productsH1" class="products__h1 mb0">{{ $pageTitle }}</h1>
 
-        @include('products.list.top-viewing-sorting-filtering')
+        <div class="h1_viewing_sorting_filtering_container">
+            <h1 id="productsH1" class="products__h1 mb0">
+                {{ $pageTitle }}
+            </h1>
+
+            <div class="viewing_sorting_filtering_container">
+                @include('products.list.top-viewing-sorting-filtering')
+            </div>
+        </div>
+
 
         <div id="productList"
              data-total-products-count="{{ $totalProductsCount }}"

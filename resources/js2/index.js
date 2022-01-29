@@ -38,7 +38,10 @@ import RendererOfViewedProductsByLink from "./productList/rendererOfViewedProduc
 import RendererOfPaginationBlock from "./productList/rendererOfPaginationBlock";
 
 
-import ProductFilter from "./productList/productFilter/absoluteProductFilter";
+import ProductFilterRenderer from "./productList/productFilter/productFilterRenderer";
+import TotalIndicatorOfFilterParameters from "./productList/productFilter/totalIndicatorOfFilterParameters";
+import TopTotalSearchParametersRenderer from "./productList/productFilter/topTotalSearchParametersRenderer";
+import SearchSettingsObserverForProductFilterRenderer from "./productList/productFilter/searchSettingsObserverForProductFilterRenderer";
 
 
 new CsrfUpdater();
@@ -48,7 +51,6 @@ new TopDropMenuFiller();
 
 
 
-// const indicatorOfFavoriteProducts = new FavoriteProductsIndicationOnPageLoad();
 
 if (el('#productList') || el('#singleProduct')) {
     new FavoriteProductsIndicationOnPageLoad();
@@ -131,10 +133,28 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
 
         if (el('.filter_icon__wrapper')) {
             const categoryCache = new CategoryCache();
-            new ProductFilter({
+            new ProductFilterRenderer({
                 productCache,
                 categoryCache,
+                searchSettingsStore,
             });
+
+            const totalIndicatorOfFilterParameters = new TotalIndicatorOfFilterParameters({
+                searchSettingsStore
+            });
+            searchSettingsStore.addObserver(totalIndicatorOfFilterParameters);
+
+            const topTotalSearchParametersRenderer = new TopTotalSearchParametersRenderer({
+                searchSettingsStore,
+                categoryCache
+            });
+            searchSettingsStore.addObserver(topTotalSearchParametersRenderer);
+
+            const searchSettingsObserverForFilterRenderer = new SearchSettingsObserverForProductFilterRenderer({
+                searchSettingsStore,
+                categoryCache
+            });
+            searchSettingsStore.addObserver(searchSettingsObserverForFilterRenderer);
         }
 
     }
