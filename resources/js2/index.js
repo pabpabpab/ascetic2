@@ -35,7 +35,8 @@ import RendererOfProductsByViewMoreButton from "./productList/rendererByViewMore
 import RendererOfProductsByPaginationButton from "./productList/rendererByPaginationButton";
 import RendererOfProductsByMenuLink from "./productList/rendererByMenuLink";
 import RendererOfViewedProductsByLink from "./productList/rendererOfViewedProductsByLink";
-import RendererOfPaginationBlock from "./productList/rendererOfPaginationBlock";
+import RendererBySearchSettings from "./productList/rendererBySearchSettings";
+import PaginationBlockRenderer from "./productList/paginationBlockRenderer";
 
 
 import ProductFilterRenderer from "./productList/productFilter/productFilterRenderer";
@@ -98,7 +99,7 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             sourceOfFilteredProducts,
         });
 
-        const rendererOfPaginationBlock = new RendererOfPaginationBlock({
+        const rendererOfPaginationBlock = new PaginationBlockRenderer({
             searchSettingsStore,
             publicUrlMaker,
         });
@@ -133,6 +134,7 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
 
         if (el('.filter_icon__wrapper')) {
             const categoryCache = new CategoryCache();
+
             new ProductFilterRenderer({
                 productCache,
                 categoryCache,
@@ -150,11 +152,21 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             });
             searchSettingsStore.addObserver(topTotalSearchParametersRenderer);
 
+
             const searchSettingsObserverForFilterRenderer = new SearchSettingsObserverForProductFilterRenderer({
                 searchSettingsStore,
                 categoryCache
             });
             searchSettingsStore.addObserver(searchSettingsObserverForFilterRenderer);
+
+            const rendererBySearchSettings = new RendererBySearchSettings({
+                sourceOfFilteredProducts,
+                searchSettingsStore,
+                publicUrlMaker,
+                //rendererOfPaginationBlock,
+                menuLinkCssMaker,
+            });
+            searchSettingsStore.addObserver(rendererBySearchSettings);
         }
 
     }

@@ -1,7 +1,7 @@
 import el from './../el';
 
 
-export default class RendererOfPaginationBlock {
+export default class PaginationBlockRenderer {
 
     constructor({searchSettingsStore, publicUrlMaker}) {
         this.searchSettingsStore = searchSettingsStore;

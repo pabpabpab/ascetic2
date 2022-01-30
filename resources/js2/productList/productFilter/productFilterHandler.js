@@ -1,5 +1,4 @@
 import el from "../../el";
-import allProductsMustBeCached from "./../../allProductsMustBeCached";
 
 export default class ProductFilterHandler {
 
@@ -10,6 +9,9 @@ export default class ProductFilterHandler {
         this.currentMaxPrice = null;
 
         el('#productFilterWrapper').addEventListener('input', (e) => {
+
+            this._resetProductSectionData();
+
             let initiator = e.target.id;
             if (initiator.includes('filterCategory')) {
                 initiator = 'filterCategory';
@@ -24,6 +26,16 @@ export default class ProductFilterHandler {
             if (initiator && handlers[initiator]) {
                 handlers[initiator](Number(e.target.value));
             }
+        });
+    }
+
+    _resetProductSectionData() {
+        this.wrapper = el('#productList');
+        this.wrapper.dataset.productSectionName = '';
+        this.wrapper.dataset.additionalDataOfProductSection = '';
+        this.searchSettingsStore.setProductSectionData({
+            productSectionName: '',
+            additionalData: '',
         });
     }
 

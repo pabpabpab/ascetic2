@@ -57,6 +57,9 @@ export default class ProductFilterRenderer {
         el('.product_filter__collapse_icon').addEventListener('click', () => {
             this._setVisibilityToFalse2();
         });
+        el('.product_filter__ready_button').addEventListener('click', () => {
+            this._setVisibilityToFalse2();
+        });
         new ProductFilterHandler({
             filterBlock: this,
             searchSettingsStore: this.searchSettingsStore,

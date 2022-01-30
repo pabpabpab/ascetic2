@@ -8,14 +8,12 @@ export default class SearchSettingsStore {
             minPrice: 0,
             maxPrice: 0,
             categoriesIds: [],
-            categoriesSlugs: [],
 
             startOffset: 0,
             pageNumber: 0,
             pageCount: 0,
             perPage: 3,
         };
-        this.initialSettings = { ...this.settings };
         this.observers = [];
     }
 
@@ -45,6 +43,15 @@ export default class SearchSettingsStore {
         this._resetPaginationSettings();
         this._notifyObservers();
     }
+    resetSettingsRelatedToSearchFilter() {
+        this.settings.minPrice = 0;
+        this.settings.maxPrice = 0;
+        this.settings.categoriesIds = [];
+        this._notifyObservers();
+    }
+
+
+
     setStartOffset(value) {
         this.settings.startOffset = value;
     }
@@ -55,14 +62,12 @@ export default class SearchSettingsStore {
         this.settings.pageCount = value;
     }
 
-    resetSettings() {
-        this.settings = { ...this.initialSettings };
-    }
 
     _resetSettingsNotRelatedToSearchFilter() {
         this.settings.productSectionName = '';
         this.settings.additionalDataOfProductSection = '';
     }
+
     _resetPaginationSettings() {
         this.settings.startOffset = 0;
         this.settings.pageNumber = 1;
@@ -86,6 +91,9 @@ export default class SearchSettingsStore {
         this.observers.push(observer);
     }
     _notifyObservers() {
+
+        //console.log(this.settings.categoriesIds);
+
         this.observers.forEach(observer => observer.checkSearchSettings());
     }
 }

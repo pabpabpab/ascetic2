@@ -1,16 +1,17 @@
-import el from './../el';
-import getProductObject from "./../productObject/getProductObject";
-import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
+import el from "../el";
+import getProductObject from "../productObject/getProductObject";
+import getProductsItemHtml from "../html/productList/productListItem/index-getProductsItemHtml";
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
-import scrollDocument from "./../scrollDocument";
+import scrollDocument from "../scrollDocument";
+import AbsoluteFlashMessage from "../absoluteFlashMessage";
 
-export default class RendererOfViewedProductsByLink {
+export default class RendererBySearchSettings {
 
     constructor(data) {
         this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
         this.searchSettingsStore = data.searchSettingsStore;
         this.publicUrlMaker = data.publicUrlMaker;
-        this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
+        //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
         this.menuLinkCssMaker = data.menuLinkCssMaker;
 
         this.productItemSelector = '[data-product-item]';
@@ -18,30 +19,15 @@ export default class RendererOfViewedProductsByLink {
         this.header = el('#productsH1');
 
         this.disabledRequest = false;
-
-        el('body').addEventListener('click', (e) => {
-            if (e.target.dataset.viewedProductsLink) {
-                e.preventDefault();
-                this._setDataAttributes();
-                this._setSearchSettings();
-                this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
-                this._render();
-            }
-        });
     }
 
-
-    _setDataAttributes() {
-        this.wrapper.dataset.productSectionName = 'viewedProducts';
-    }
-
-    _setSearchSettings(e) {
-        this.searchSettingsStore.setProductSectionData({
-            productSectionName: this.wrapper.dataset.productSectionName,
-            additionalData: '',
-        });
-        this.searchSettingsStore.setPageNumber(1);
-        this.searchSettingsStore.setStartOffset(0);
+    checkSearchSettings() {
+        const settings = this.searchSettingsStore.getSettings();
+        if (settings.productSectionName.length > 0) {
+            return;
+        }
+        this._render();
+        // const totalCount = this.searchSettingsStore.getTotalCountOfSetFilterParameters();
     }
 
 
@@ -50,8 +36,8 @@ export default class RendererOfViewedProductsByLink {
             return;
         }
 
-        this.sourceOfFilteredProducts.getViewedProductsFromServer()
-            .then(({filteredProducts, sectionProductsCount, allViewedIdsStr}) => {
+        this.sourceOfFilteredProducts.getFiltered()
+            .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
@@ -62,44 +48,39 @@ export default class RendererOfViewedProductsByLink {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+                new AbsoluteFlashMessage(`Показано ${sectionProductsCount}`);
                 this._setSectionProductsCount(sectionProductsCount);
-                this._setAllViewedIds(allViewedIdsStr);
                 this._finalActions();
             });
     }
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = { ...this.searchSettingsStore.getSettings() };
+        const settings = this.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
         this.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
-    _setAllViewedIds(allViewedIdsStr) {
-        this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
-        this.searchSettingsStore.setProductSectionData({
-            productSectionName: this.wrapper.dataset.productSectionName,
-            additionalData: allViewedIdsStr,
-        });
-    }
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
         this.publicUrlMaker.publishUrl();
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
-        this.rendererOfPaginationBlock.remake();
+        this._makeInvisiblePaginationBlock();
+        //this.rendererOfPaginationBlock.remake();
         this.menuLinkCssMaker.resetMenuLinksCss();
+        //this.menuLinkCssMaker.markActiveMenuLink();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
     }
 
-
     _renderHeader() {
-        this.header.innerText = 'Вы смотрели';
+        this.header.innerText = 'Поиск товаров';
     }
+
 
     _switchVisibilityOfViewMoreButton() {
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
@@ -123,15 +104,23 @@ export default class RendererOfViewedProductsByLink {
         }
     }
 
+
+    _makeInvisiblePaginationBlock() {
+        const paginationBlock = el('#paginationContent');
+        if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
+            paginationBlock.classList.add("display-none");
+        }
+    }
+
     _getRequestPermission() {
-        // защита от частых отправок на 10 сек (от двойного нажатия)
+        // защита от частых отправок на 3 сек
         if (this.disabledRequest) {
             return false;
         }
         this.disabledRequest = true;
         setTimeout(() => {
             this.disabledRequest = false;
-        }, 10000);
+        }, 3000);
 
         return true;
     }

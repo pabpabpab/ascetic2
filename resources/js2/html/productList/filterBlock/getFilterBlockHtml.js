@@ -24,7 +24,7 @@ export default function getFilterBlockHtml() {
                         </div>
                     </div>
 
-                    <button class="product_filter__button mauto mt30">
+                    <button class="product_filter__ready_button mauto mt30">
                         Готово
                     </button>
 

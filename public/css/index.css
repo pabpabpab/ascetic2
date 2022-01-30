@@ -622,9 +622,8 @@ h2 {
   font-weight: 400;
   line-height: 25px;
   padding: 0 5px 0 10px;
-  background-color: #a8a0a0;
-  border-radius: 15px;
-  margin: 3px 10px 3px 0;
+  background-color: #000;
+  margin: 10px 10px 15px 0;
   display: inline-block;
   white-space: nowrap;
 }
@@ -740,7 +739,7 @@ h2 {
   border-radius: 10px;
 }
 
-.product_filter__button {
+.product_filter__ready_button {
   display: block;
   font-size: 16px;
   color: #fff;
@@ -757,12 +756,12 @@ h2 {
   transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
 }
 
-.product_filter__button:hover {
+.product_filter__ready_button:hover {
   -webkit-box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.9);
           box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.9);
 }
 
-.product_filter__button:active {
+.product_filter__ready_button:active {
   -webkit-box-shadow: unset;
           box-shadow: unset;
 }
@@ -2744,11 +2743,12 @@ h2 {
   width: 300px;
   min-height: 80px;
   padding: 20px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: black;
   font-size: 17px;
   color: #fff;
   font-weight: 100;
+  -webkit-box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.9);
+          box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.9);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

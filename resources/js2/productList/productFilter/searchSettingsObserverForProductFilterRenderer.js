@@ -14,6 +14,9 @@ export default class SearchSettingsObserverForProductFilterRenderer {
     }
 
     _renderMinPrice() {
+        if (!el('#minPriceTextInput')) {
+            return;
+        }
         const settings = this.searchSettingsStore.getSettings();
         if (settings.minPrice === 0) {
             el('#minPriceTextInput').value = el('#minPriceRangeInput').min;
@@ -21,6 +24,9 @@ export default class SearchSettingsObserverForProductFilterRenderer {
         }
     }
     _renderMaxPrice() {
+        if (!el('#maxPriceTextInput')) {
+            return;
+        }
         const settings = this.searchSettingsStore.getSettings();
         if (settings.maxPrice === 0) {
             el('#maxPriceTextInput').value = el('#maxPriceRangeInput').max;
@@ -28,6 +34,9 @@ export default class SearchSettingsObserverForProductFilterRenderer {
         }
     }
     _renderCategoryCheckboxes() {
+        if (!el('#productFilterCategoriesWrapper')) {
+            return;
+        }
         const settings = this.searchSettingsStore.getSettings();
         const categoriesIds = settings.categoriesIds;
         const wrapper = el('#productFilterCategoriesWrapper')

@@ -24,6 +24,7 @@ export default class RendererByMenuLink {
                 e.preventDefault();
                 this._setDataAttributes(e);
                 this._setSearchSettings(e);
+                this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
                 this._render();
             }
         });
@@ -53,7 +54,6 @@ export default class RendererByMenuLink {
     }
 
     _setSearchSettings(e) {
-        this.searchSettingsStore.resetSettings();
         this.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,

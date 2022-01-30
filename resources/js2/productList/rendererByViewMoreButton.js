@@ -95,15 +95,6 @@ export default class RendererByViewMoreButton {
         }
     }
 
-    /*
-    _makeInvisibleViewMoreButtonIfNeeded() {
-        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
-            el('#viewMoreButton').classList.add("display-none");
-        }
-    }
-*/
     _makeInvisiblePaginationBlock() {
         if (!el('#paginationContent').classList.contains("display-none")) {
             el('#paginationContent').classList.add("display-none");

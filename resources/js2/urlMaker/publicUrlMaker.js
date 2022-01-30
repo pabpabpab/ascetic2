@@ -34,10 +34,6 @@ export default class PublicUrlMaker {
             const slug = settings.additionalDataOfProductSection.split(';')[1];
             return `/products/${slug}`;
         }
-        if (this._isSingleCategoryUrl()) {
-            const slug = settings.categoriesSlugs[0];
-            return `/products/${slug}`;
-        }
         if (this._isUrlOfFavoriteProducts()) {
             return `/favorite-products`;
         }
@@ -70,7 +66,7 @@ export default class PublicUrlMaker {
         const settings = this.searchSettingsStore.getSettings();
         const logicalConditions = [
             ['all', ''].indexOf(settings.productSectionName) !== -1,
-            settings.categoriesSlugs.length === 0,
+            settings.categoriesIds.length === 0,
             settings.minPrice === 0,
             settings.maxPrice === 0
         ];
@@ -82,16 +78,6 @@ export default class PublicUrlMaker {
         const logicalConditions = [
             settings.productSectionName === 'productCategory',
             settings.categoriesIds.length === 0,
-        ];
-        return logicalConditions.every(item => item === true);
-    }
-
-    _isSingleCategoryUrl() {
-        const settings = this.searchSettingsStore.getSettings();
-        const logicalConditions = [
-            settings.categoriesSlugs.length === 1,
-            settings.minPrice === 0,
-            settings.maxPrice === 0
         ];
         return logicalConditions.every(item => item === true);
     }
