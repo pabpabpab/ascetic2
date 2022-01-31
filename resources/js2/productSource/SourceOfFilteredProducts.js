@@ -1,7 +1,6 @@
 import getJson from "./../http/getJson";
 import AbsoluteFlashMessage from "./../absoluteFlashMessage";
 import allProductsMustBeCached from "../allProductsMustBeCached";
-import el from "../el";
 
 export default class SourceOfFilteredProducts {
 
@@ -31,12 +30,10 @@ export default class SourceOfFilteredProducts {
 
     _getFilteredProductsFromServer() {
         const url = this.searchUrlMaker.getUrl();
-
         //console.log(url);
-
         return getJson(url)
             .then((data) => {
-                //console.log(data);
+                // console.log(data);
                 return {filteredProducts: data.products, sectionProductsCount: data.sectionProductsCount}
             })
             .catch(() => {

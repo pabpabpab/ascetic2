@@ -249,7 +249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
 
 function allProductsMustBeCached() {
-  var limitForCachingOfProductEntireList = 1;
+  var limitForCachingOfProductEntireList = 100;
   var totalProductsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount);
   return totalProductsCount < limitForCachingOfProductEntireList;
 }
@@ -3926,11 +3926,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
 /* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../scrollDocument */ "./resources/js2/scrollDocument.js");
 /* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -3951,7 +3953,9 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
     this.productItemSelector = '[data-product-item]';
     this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
-    this.disabledRequest = false;
+    this.timeWhenSearchSettingsWereLastChanged = 0;
+    this.timeWhenLastRequestWasSent = 0;
+    this.timerId = 0;
   }
 
   _createClass(RendererBySearchSettings, [{
@@ -3963,21 +3967,44 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
         return;
       }
 
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
+        this._render();
+      } else {
+        this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
+
+        this._renderWithDelay();
+      }
+    }
+  }, {
+    key: "_renderWithDelay",
+    value: function _renderWithDelay() {
+      var _this = this;
+
+      var currentTime = new Date().getTime();
+      var settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
+      var requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
+
+      if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 1000) {
+        clearTimeout(this.timerId);
+        this.timerId = setTimeout(function () {
+          _this._renderWithDelay();
+        }, 1000);
+        return;
+      }
+
+      this.timeWhenLastRequestWasSent = new Date().getTime();
+
       this._render();
     }
   }, {
     key: "_render",
     value: function _render() {
-      var _this = this;
-
-      if (!this._getRequestPermission()) {
-        return;
-      }
+      var _this2 = this;
 
       this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
         var filteredProducts = _ref.filteredProducts,
             sectionProductsCount = _ref.sectionProductsCount;
-        _this.disabledRequest = false;
+        _this2.disabledRequest = false;
         var itemsHtmlArr = filteredProducts.map(function (product) {
           var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
           return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
@@ -3988,13 +4015,13 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
           Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
         }
 
-        _this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
 
         new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]("\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount));
 
-        _this._setSectionProductsCount(sectionProductsCount);
+        _this2._setSectionProductsCount(sectionProductsCount);
 
-        _this._finalActions();
+        _this2._finalActions();
       });
     }
   }, {
@@ -4019,8 +4046,7 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
       this._makeInvisiblePaginationBlock(); //this.rendererOfPaginationBlock.remake();
 
 
-      this.menuLinkCssMaker.resetMenuLinksCss(); //this.menuLinkCssMaker.markActiveMenuLink();
-
+      this.menuLinkCssMaker.resetMenuLinksCss();
       var distance = window.pageYOffset;
       Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
     }
@@ -4067,22 +4093,6 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
       if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
         paginationBlock.classList.add("display-none");
       }
-    }
-  }, {
-    key: "_getRequestPermission",
-    value: function _getRequestPermission() {
-      var _this2 = this;
-
-      // защита от частых отправок на 3 сек
-      if (this.disabledRequest) {
-        return false;
-      }
-
-      this.disabledRequest = true;
-      setTimeout(function () {
-        _this2.disabledRequest = false;
-      }, 3000);
-      return true;
     }
   }]);
 
@@ -5492,7 +5502,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
 /* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
 /* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5510,7 +5519,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
 
 
 
@@ -5559,7 +5567,7 @@ var SourceOfFilteredProducts = /*#__PURE__*/function () {
       var url = this.searchUrlMaker.getUrl(); //console.log(url);
 
       return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(url).then(function (data) {
-        //console.log(data);
+        // console.log(data);
         return {
           filteredProducts: data.products,
           sectionProductsCount: data.sectionProductsCount

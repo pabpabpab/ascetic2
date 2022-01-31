@@ -11,6 +11,8 @@ use App\Services\PhotoManager\PhotoSeoService;
 use App\Services\Product\FavoriteProductsListService;
 use App\Services\Product\ListService;
 use App\Services\Product\ViewedProductsService;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;

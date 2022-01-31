@@ -4,6 +4,7 @@ import getProductsItemHtml from "../html/productList/productListItem/index-getPr
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "../scrollDocument";
 import AbsoluteFlashMessage from "../absoluteFlashMessage";
+import allProductsMustBeCached from "../allProductsMustBeCached";
 
 export default class RendererBySearchSettings {
 
@@ -18,7 +19,9 @@ export default class RendererBySearchSettings {
         this.wrapper = el('#productList');
         this.header = el('#productsH1');
 
-        this.disabledRequest = false;
+        this.timeWhenSearchSettingsWereLastChanged = 0;
+        this.timeWhenLastRequestWasSent = 0;
+        this.timerId = 0;
     }
 
     checkSearchSettings() {
@@ -26,15 +29,31 @@ export default class RendererBySearchSettings {
         if (settings.productSectionName.length > 0) {
             return;
         }
+
+        if (allProductsMustBeCached()) {
+            this._render();
+        } else {
+            this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
+            this._renderWithDelay();
+        }
+    }
+
+    _renderWithDelay() {
+        const currentTime = new Date().getTime();
+        const settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
+        const requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
+        if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 1000) {
+            clearTimeout(this.timerId);
+            this.timerId = setTimeout(() => {
+                this._renderWithDelay();
+            }, 1000);
+            return;
+        }
+        this.timeWhenLastRequestWasSent = new Date().getTime();
         this._render();
     }
 
-
     _render() {
-        if (! this._getRequestPermission()) {
-            return;
-        }
-
         this.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
@@ -70,7 +89,6 @@ export default class RendererBySearchSettings {
         this._makeInvisiblePaginationBlock();
         //this.rendererOfPaginationBlock.remake();
         this.menuLinkCssMaker.resetMenuLinksCss();
-        //this.menuLinkCssMaker.markActiveMenuLink();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
@@ -111,16 +129,4 @@ export default class RendererBySearchSettings {
         }
     }
 
-    _getRequestPermission() {
-        // защита от частых отправок на 3 сек
-        if (this.disabledRequest) {
-            return false;
-        }
-        this.disabledRequest = true;
-        setTimeout(() => {
-            this.disabledRequest = false;
-        }, 3000);
-
-        return true;
-    }
 }
