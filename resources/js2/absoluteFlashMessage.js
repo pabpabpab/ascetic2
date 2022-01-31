@@ -2,8 +2,9 @@ import el from './el';
 
 export default class AbsoluteFlashMessage {
 
-    constructor(text) {
-        this.text = text;
+    constructor(data) {
+        this.text = data.text;
+        this.duration = data.duration;
         //this.id = `absoluteMessage${new Date().getTime()}`;
         this.id = `absoluteMessage`;
         this._render();
@@ -26,7 +27,7 @@ export default class AbsoluteFlashMessage {
                 message.remove();
             }
             //this._removeHtml();
-        }, 3500);
+        }, this.duration); // 3500
     }
 
     _removeHtml() {

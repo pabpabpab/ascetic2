@@ -56,7 +56,10 @@ export default class Login extends AbsoluteForm {
         setTimeout(() => {
             el(this.wrapSelector).remove();
         }, 3000); // чтобы успел отработать hideCss
-        new AbsoluteFlashMessage(`Добро пожаловать, ${data.userName}`);
+        new AbsoluteFlashMessage({
+            text: `Добро пожаловать, ${data.userName}`,
+            duration: 3500
+        });
 
         setCookie('favoriteIds', String(data.mixedFavoriteIds), {'max-age': this.cookieLifetime});
         this._indicateFavoriteProductsAfterLogin();

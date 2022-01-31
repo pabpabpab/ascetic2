@@ -106,10 +106,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var AbsoluteFlashMessage = /*#__PURE__*/function () {
-  function AbsoluteFlashMessage(text) {
+  function AbsoluteFlashMessage(data) {
     _classCallCheck(this, AbsoluteFlashMessage);
 
-    this.text = text; //this.id = `absoluteMessage${new Date().getTime()}`;
+    this.text = data.text;
+    this.duration = data.duration; //this.id = `absoluteMessage${new Date().getTime()}`;
 
     this.id = "absoluteMessage";
 
@@ -129,7 +130,7 @@ var AbsoluteFlashMessage = /*#__PURE__*/function () {
           message.remove();
         } //this._removeHtml();
 
-      }, 3500);
+      }, this.duration); // 3500
     }
   }, {
     key: "_removeHtml",
@@ -249,7 +250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
 
 function allProductsMustBeCached() {
-  var limitForCachingOfProductEntireList = 100;
+  var limitForCachingOfProductEntireList = 1;
   var totalProductsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount);
   return totalProductsCount < limitForCachingOfProductEntireList;
 }
@@ -570,7 +571,10 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(_this2.wrapSelector).remove();
       }, 3000); // чтобы успел отработать hideCss
 
-      new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]("\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C, ".concat(data.userName));
+      new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]({
+        text: "\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C, ".concat(data.userName),
+        duration: 3500
+      });
       Object(_cookie_setCookie__WEBPACK_IMPORTED_MODULE_10__["default"])('favoriteIds', String(data.mixedFavoriteIds), {
         'max-age': this.cookieLifetime
       });
@@ -788,7 +792,10 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
     value: function _ultimateSuccess() {
       var _this2 = this;
 
-      new _absoluteFlashMessage_js__WEBPACK_IMPORTED_MODULE_4__["default"]('Регистрация создана.');
+      new _absoluteFlashMessage_js__WEBPACK_IMPORTED_MODULE_4__["default"]({
+        text: 'Регистрация создана',
+        duration: 3500
+      });
       setTimeout(function () {
         document.location.href = _this2.successUrl;
       }, 2000);
@@ -796,7 +803,10 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
   }, {
     key: "_ultimateFail",
     value: function _ultimateFail() {
-      new _absoluteFlashMessage_js__WEBPACK_IMPORTED_MODULE_4__["default"]('Не удалось создать регистрацию.');
+      new _absoluteFlashMessage_js__WEBPACK_IMPORTED_MODULE_4__["default"]({
+        text: 'Не удалось создать регистрацию',
+        duration: 3500
+      });
     }
   }, {
     key: "_getUserData",
@@ -894,7 +904,10 @@ var CategoryCache = /*#__PURE__*/function () {
         _this2.entireList = _toConsumableArray(data.categories);
         return _toConsumableArray(data.categories);
       })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438");
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]({
+          text: 'Не удалось загрузить категории',
+          duration: 3500
+        });
       });
     }
   }, {
@@ -1098,7 +1111,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
- // import AbsoluteFlashMessage from "./absoluteFlashMessage";
+
 
 var FavoriteProductsSwitcher = /*#__PURE__*/function () {
   function FavoriteProductsSwitcher() {
@@ -2189,7 +2202,10 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon
 }
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage')) {
-  new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__["default"](Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage').innerText);
+  new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__["default"]({
+    text: Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage').innerText,
+    duration: 3500
+  });
 }
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_password_type__wrapper')) {
@@ -3984,7 +4000,7 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
       var settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
       var requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
 
-      if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 1000) {
+      if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
         clearTimeout(this.timerId);
         this.timerId = setTimeout(function () {
           _this._renderWithDelay();
@@ -3993,6 +4009,10 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
       }
 
       this.timeWhenLastRequestWasSent = new Date().getTime();
+      new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]({
+        text: 'Загрузка...',
+        duration: 7000
+      });
 
       this._render();
     }
@@ -4004,7 +4024,9 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
       this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
         var filteredProducts = _ref.filteredProducts,
             sectionProductsCount = _ref.sectionProductsCount;
-        _this2.disabledRequest = false;
+
+        _this2._removeAbsoluteMessage();
+
         var itemsHtmlArr = filteredProducts.map(function (product) {
           var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
           return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
@@ -4017,12 +4039,22 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
 
         _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
 
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]("\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount));
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]({
+          text: "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount),
+          duration: 3500
+        });
 
         _this2._setSectionProductsCount(sectionProductsCount);
 
         _this2._finalActions();
       });
+    }
+  }, {
+    key: "_removeAbsoluteMessage",
+    value: function _removeAbsoluteMessage() {
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.absolute_message__wrapper')) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.absolute_message__wrapper').remove();
+      }
     }
   }, {
     key: "_setSectionProductsCount",
@@ -5573,7 +5605,10 @@ var SourceOfFilteredProducts = /*#__PURE__*/function () {
           sectionProductsCount: data.sectionProductsCount
         };
       })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B");
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]({
+          text: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B",
+          duration: 3500
+        });
       });
     }
   }, {
@@ -5588,7 +5623,10 @@ var SourceOfFilteredProducts = /*#__PURE__*/function () {
           allViewedIdsStr: data.allViewedIdsStr
         };
       })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B");
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]({
+          text: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B",
+          duration: 3500
+        });
       });
     }
   }]);
@@ -5689,7 +5727,10 @@ var ProductCache = /*#__PURE__*/function () {
         _this3.entireList = _toConsumableArray(data.products);
         return _toConsumableArray(data.products);
       })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440\u044B");
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]({
+          text: 'Не удалось загрузить товары',
+          duration: 3500
+        });
       });
     }
   }, {
@@ -5737,7 +5778,10 @@ var ProductCache = /*#__PURE__*/function () {
 
         return _objectSpread({}, data.description);
       })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u0442\u043E\u0432\u0430\u0440\u0430");
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]({
+          text: 'Не удалось загрузить описание товара',
+          duration: 3500
+        });
       });
     }
   }, {
@@ -5770,7 +5814,10 @@ var ProductCache = /*#__PURE__*/function () {
 
         return _objectSpread({}, data.product);
       })["catch"](function () {
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]("\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440");
+        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__["default"]({
+          text: 'Не удалось загрузить товар',
+          duration: 3500
+        });
       });
     }
   }]);

@@ -2747,8 +2747,8 @@ h2 {
   font-size: 17px;
   color: #fff;
   font-weight: 100;
-  -webkit-box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.9);
-          box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.9);
+  -webkit-box-shadow: 25px 25px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 25px 25px 5px rgba(0, 0, 0, 0.5);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -28,7 +28,10 @@ export default class CategoryCache {
                 return [ ...data.categories ];
             })
             .catch(() => {
-                new AbsoluteFlashMessage(`Не удалось загрузить категории`);
+                new AbsoluteFlashMessage({
+                    text: 'Не удалось загрузить категории',
+                    duration: 3500
+                });
             });
     }
 

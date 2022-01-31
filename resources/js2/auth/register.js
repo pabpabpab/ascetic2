@@ -28,14 +28,20 @@ export default class Register extends AbsoluteForm {
     }
 
     _ultimateSuccess() {
-        new AbsoluteFlashMessage('Регистрация создана.');
+        new AbsoluteFlashMessage({
+            text: 'Регистрация создана',
+            duration: 3500
+        });
         setTimeout(() => {
             document.location.href = this.successUrl;
         }, 2000);
     }
 
     _ultimateFail() {
-        new AbsoluteFlashMessage('Не удалось создать регистрацию.');
+        new AbsoluteFlashMessage({
+            text: 'Не удалось создать регистрацию',
+            duration: 3500
+        });
     }
 
     _getUserData() {

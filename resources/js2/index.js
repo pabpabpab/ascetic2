@@ -183,7 +183,10 @@ if (el('.personal_account__icon')) {
 }
 
 if (el('#flashMessage')) {
-    new AbsoluteFlashMessage(el('#flashMessage').innerText);
+    new AbsoluteFlashMessage({
+        text: el('#flashMessage').innerText,
+        duration: 3500
+    });
 }
 
 if (el('.auth_page__change_password_type__wrapper')) {

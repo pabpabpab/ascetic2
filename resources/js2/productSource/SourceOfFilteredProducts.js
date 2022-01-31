@@ -37,7 +37,10 @@ export default class SourceOfFilteredProducts {
                 return {filteredProducts: data.products, sectionProductsCount: data.sectionProductsCount}
             })
             .catch(() => {
-                new AbsoluteFlashMessage(`Не удалось загрузить товары`);
+                new AbsoluteFlashMessage({
+                    text: `Не удалось загрузить товары`,
+                    duration: 3500
+                });
             });
     }
 
@@ -54,7 +57,10 @@ export default class SourceOfFilteredProducts {
                 };
             })
             .catch(() => {
-                new AbsoluteFlashMessage(`Не удалось загрузить товары`);
+                new AbsoluteFlashMessage({
+                    text: `Не удалось загрузить товары`,
+                    duration: 3500
+                });
             });
     }
 

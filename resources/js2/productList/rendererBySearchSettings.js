@@ -42,7 +42,7 @@ export default class RendererBySearchSettings {
         const currentTime = new Date().getTime();
         const settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
         const requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
-        if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 1000) {
+        if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
             clearTimeout(this.timerId);
             this.timerId = setTimeout(() => {
                 this._renderWithDelay();
@@ -50,13 +50,17 @@ export default class RendererBySearchSettings {
             return;
         }
         this.timeWhenLastRequestWasSent = new Date().getTime();
+        new AbsoluteFlashMessage({
+            text: 'Загрузка...',
+            duration: 7000
+        });
         this._render();
     }
 
     _render() {
         this.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
-                this.disabledRequest = false;
+                this._removeAbsoluteMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
@@ -66,11 +70,21 @@ export default class RendererBySearchSettings {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-                new AbsoluteFlashMessage(`Показано ${sectionProductsCount}`);
+                new AbsoluteFlashMessage({
+                    text: `Показано ${sectionProductsCount}`,
+                    duration: 3500
+                });
                 this._setSectionProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
+
+    _removeAbsoluteMessage() {
+        if (el('.absolute_message__wrapper')) {
+            el('.absolute_message__wrapper').remove();
+        }
+    }
+
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;

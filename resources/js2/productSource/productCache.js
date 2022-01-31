@@ -42,7 +42,10 @@ export default class ProductCache {
                 return [ ...data.products ];
             })
             .catch(() => {
-                new AbsoluteFlashMessage(`Не удалось загрузить товары`);
+                new AbsoluteFlashMessage({
+                    text: 'Не удалось загрузить товары',
+                    duration: 3500
+                });
             });
     }
     _loadEntireListOnPageLoading() {
@@ -79,7 +82,10 @@ export default class ProductCache {
                 return { ...data.description };
             })
             .catch(() => {
-                new AbsoluteFlashMessage(`Не удалось загрузить описание товара`);
+                new AbsoluteFlashMessage({
+                    text: 'Не удалось загрузить описание товара',
+                    duration: 3500
+                });
             });
     }
 
@@ -106,7 +112,10 @@ export default class ProductCache {
                 return { ...data.product };
             })
             .catch(() => {
-                new AbsoluteFlashMessage(`Не удалось загрузить товар`);
+                new AbsoluteFlashMessage({
+                    text: 'Не удалось загрузить товар',
+                    duration: 3500
+                });
             });
     }
 
