@@ -21,6 +21,14 @@ class SearchService
 
         $queryBuilder = DB::table('products');
 
+        if ($minPrice > 0) {
+            $queryBuilder = $queryBuilder->where('price', '>=', $minPrice);
+        }
+        if ($maxPrice > 0) {
+            $queryBuilder = $queryBuilder->where('price', '<=', $maxPrice);
+        }
+
+        $productsCount = 0;
         if ($this->_isThereCategoriesIds($categoriesIdsArr)) {
             $categoriesIdsStr = implode(",", $categoriesIdsArr);
             $queryBuilder = $queryBuilder->join(
@@ -29,22 +37,18 @@ class SearchService
                 '=',
                 'products_categories.product_id')
             // указаны поля для экономии трафика (для js) и однозначности id
-            ->select('products.id', 'name', 'price', 'parameters', 'photo_set', 'slug', 'products_categories.category_id')
+            ->select('products.id', 'name', 'price', 'parameters', 'photo_set', 'slug')
+            ->groupBy('products.id')
             ->whereRaw("products_categories.category_id IN ($categoriesIdsStr)");
+
+            $countQuery = "select count(*) as myRowCount from ({$queryBuilder->toSql()}) as q";
+            $productsCount = collect(DB::select($countQuery, $queryBuilder->getBindings()))->pluck('myRowCount')->first();
+
         } else {
             // указаны поля для экономии трафика (для js)
-            $queryBuilder = $queryBuilder->select('id', 'name', 'price', 'parameters', 'photo_set', 'slug');
+            $queryBuilder = $queryBuilder->select('products.id', 'name', 'price', 'parameters', 'photo_set', 'slug');
+            $productsCount = $queryBuilder->count();
         }
-
-        if ($minPrice > 0) {
-            $queryBuilder = $queryBuilder->where('price', '>=', $minPrice);
-        }
-
-        if ($maxPrice > 0) {
-            $queryBuilder = $queryBuilder->where('price', '<=', $maxPrice);
-        }
-
-        $productsCount = $queryBuilder->count();
 
         $queryBuilder = $queryBuilder->orderBy('position', 'desc');
         $queryBuilder = $queryBuilder->offset($startOffset)->limit($perPage);

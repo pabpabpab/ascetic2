@@ -25,17 +25,17 @@ export default class SearchUrlMaker {
             this._getOffsetUrl(settings),
         ];
         return totalUrl.join('');
-        // вида /public-js/product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}/offset/{startOffset}
+        // вида /public-js/product-search/price/{minPrice}-{maxPrice}/categories/{categories}/offset/{startOffset}
     }
 
 
 
 
     _getMinPriceUrl(settings) {
-        return `/min-price/${settings.minPrice}`;
+        return `/price/${settings.minPrice}-`;
     }
     _getMaxPriceUrl(settings) {
-        return `/max-price/${settings.maxPrice}`;
+        return `${settings.maxPrice}`;
     }
     _getCategoriesUrl(settings) {
         if (settings.categoriesIds.length > 0) {

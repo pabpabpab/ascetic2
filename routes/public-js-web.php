@@ -26,10 +26,10 @@ Route::get('/one-product/{product}', [ProductController::class, 'getOneProduct']
 Route::get('/viewed-product-summary-list', [ViewedProductController::class, 'getSummaryList']);
 
 
-Route::get('/product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categoriesIds}/offset/{startOffset}',
+
+Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesIds}/offset/{startOffset}',
     [ProductSearchController::class, 'search']
 )->where(['minPrice' => '[0-9]+', 'maxPrice' => '[0-9]+', 'categoriesIds' => '[0-9-]+', 'startOffset' => '[0-9]+']);
-
 
 
 Route::get('/favorite-products/offset/{startOffset}', [FavoriteProductController::class, 'getFavoriteProductsForJS'])

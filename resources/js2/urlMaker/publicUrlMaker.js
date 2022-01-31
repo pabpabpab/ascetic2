@@ -5,7 +5,7 @@ export default class PublicUrlMaker {
         this.startUrl = '/product-search';
     }
 
-    // /product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}
+    // /product-search/price/{minPrice}-{maxPrice}/categories/{categories}
 
     publishUrl() {
         const url = this.getUrl();
@@ -54,7 +54,7 @@ export default class PublicUrlMaker {
             this._getOffsetUrl(settings),
         ];
         return totalUrl.join('');
-        // вида /product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}/page/
+        // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/page/
     }
 
 
@@ -103,10 +103,10 @@ export default class PublicUrlMaker {
 
 
     _getMinPriceUrl(settings) {
-        return `/min-price/${settings.minPrice}`;
+        return `/price/${settings.minPrice}-`;
     }
     _getMaxPriceUrl(settings) {
-        return `/max-price/${settings.maxPrice}`;
+        return `${settings.maxPrice}`;
     }
     _getCategoriesUrl(settings) {
         if (settings.categoriesIds.length === 0) {
@@ -115,6 +115,6 @@ export default class PublicUrlMaker {
         return `/categories/${settings.categoriesIds.join('-')}`;
     }
     _getOffsetUrl(settings) {
-        return `/page`; // return `/page/${settings.pageNumber}`;
+        return `/page/${settings.pageNumber}`;
     }
 }

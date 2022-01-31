@@ -27,7 +27,6 @@ export default class RendererBySearchSettings {
             return;
         }
         this._render();
-        // const totalCount = this.searchSettingsStore.getTotalCountOfSetFilterParameters();
     }
 
 

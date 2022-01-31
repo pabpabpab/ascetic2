@@ -249,7 +249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
 
 function allProductsMustBeCached() {
-  var limitForCachingOfProductEntireList = 100;
+  var limitForCachingOfProductEntireList = 1;
   var totalProductsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount);
   return totalProductsCount < limitForCachingOfProductEntireList;
 }
@@ -3963,8 +3963,7 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
         return;
       }
 
-      this._render(); // const totalCount = this.searchSettingsStore.getTotalCountOfSetFilterParameters();
-
+      this._render();
     }
   }, {
     key: "_render",
@@ -5557,7 +5556,8 @@ var SourceOfFilteredProducts = /*#__PURE__*/function () {
   }, {
     key: "_getFilteredProductsFromServer",
     value: function _getFilteredProductsFromServer() {
-      var url = this.searchUrlMaker.getUrl();
+      var url = this.searchUrlMaker.getUrl(); //console.log(url);
+
       return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(url).then(function (data) {
         //console.log(data);
         return {
@@ -6079,7 +6079,7 @@ var PublicUrlMaker = /*#__PURE__*/function () {
 
     this.searchSettingsStore = searchSettingsStore;
     this.startUrl = '/product-search';
-  } // /product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}
+  } // /product-search/price/{minPrice}-{maxPrice}/categories/{categories}
 
 
   _createClass(PublicUrlMaker, [{
@@ -6129,7 +6129,7 @@ var PublicUrlMaker = /*#__PURE__*/function () {
     key: "_getComplexSearchUrl",
     value: function _getComplexSearchUrl(settings) {
       var totalUrl = [this.startUrl, this._getMinPriceUrl(settings), this._getMaxPriceUrl(settings), this._getCategoriesUrl(settings), this._getOffsetUrl(settings)];
-      return totalUrl.join(''); // вида /product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}/page/
+      return totalUrl.join(''); // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/page/
     }
   }, {
     key: "_isUrlOfMainPage",
@@ -6170,12 +6170,12 @@ var PublicUrlMaker = /*#__PURE__*/function () {
   }, {
     key: "_getMinPriceUrl",
     value: function _getMinPriceUrl(settings) {
-      return "/min-price/".concat(settings.minPrice);
+      return "/price/".concat(settings.minPrice, "-");
     }
   }, {
     key: "_getMaxPriceUrl",
     value: function _getMaxPriceUrl(settings) {
-      return "/max-price/".concat(settings.maxPrice);
+      return "".concat(settings.maxPrice);
     }
   }, {
     key: "_getCategoriesUrl",
@@ -6189,7 +6189,7 @@ var PublicUrlMaker = /*#__PURE__*/function () {
   }, {
     key: "_getOffsetUrl",
     value: function _getOffsetUrl(settings) {
-      return "/page"; // return `/page/${settings.pageNumber}`;
+      return "/page/".concat(settings.pageNumber);
     }
   }]);
 
@@ -6238,17 +6238,17 @@ var SearchUrlMaker = /*#__PURE__*/function () {
       }
 
       var totalUrl = [this.startUrl, this._getMinPriceUrl(settings), this._getMaxPriceUrl(settings), this._getCategoriesUrl(settings), this._getOffsetUrl(settings)];
-      return totalUrl.join(''); // вида /public-js/product-search/min-price/{minPrice}/max-price/{maxPrice}/categories/{categories}/offset/{startOffset}
+      return totalUrl.join(''); // вида /public-js/product-search/price/{minPrice}-{maxPrice}/categories/{categories}/offset/{startOffset}
     }
   }, {
     key: "_getMinPriceUrl",
     value: function _getMinPriceUrl(settings) {
-      return "/min-price/".concat(settings.minPrice);
+      return "/price/".concat(settings.minPrice, "-");
     }
   }, {
     key: "_getMaxPriceUrl",
     value: function _getMaxPriceUrl(settings) {
-      return "/max-price/".concat(settings.maxPrice);
+      return "".concat(settings.maxPrice);
     }
   }, {
     key: "_getCategoriesUrl",
