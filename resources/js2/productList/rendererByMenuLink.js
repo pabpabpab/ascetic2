@@ -3,6 +3,8 @@ import getProductObject from "./../productObject/getProductObject";
 import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "./../scrollDocument";
+import allProductsMustBeCached from "../allProductsMustBeCached";
+import FrequentAbsoluteFlashMessage from "../frequentAbsoluteFlashMessage";
 
 export default class RendererByMenuLink {
 
@@ -12,6 +14,7 @@ export default class RendererByMenuLink {
         this.publicUrlMaker = data.publicUrlMaker;
         this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
         this.menuLinkCssMaker = data.menuLinkCssMaker;
+        this.messenger = new FrequentAbsoluteFlashMessage();
 
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
@@ -25,11 +28,11 @@ export default class RendererByMenuLink {
                 this._setDataAttributes(e);
                 this._setSearchSettings(e);
                 this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+                this._showLoadingMessage();
                 this._render();
             }
         });
     }
-
 
     _setDataAttributes(e) {
         const sectionName = e.target.dataset.menuLinkSectionName;
@@ -62,6 +65,15 @@ export default class RendererByMenuLink {
         this.searchSettingsStore.setStartOffset(0);
     }
 
+    _showLoadingMessage() {
+        if (allProductsMustBeCached()) {
+            return;
+        }
+        this.messenger.render({
+            text: 'Загрузка...',
+            duration: 9500
+        });
+    }
 
     _render() {
         if (! this._getRequestPermission()) {
@@ -71,11 +83,12 @@ export default class RendererByMenuLink {
         this.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
+                this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
                 });
-                const itemsHtml = `<div id="productListContent">${ itemsHtmlArr.join('') }</div>`;
+                const itemsHtml = `<div id="productListContent" class="show_block">${ itemsHtmlArr.join('') }</div>`;
                 if (el('#productListContent')) {
                     el('#productListContent').remove();
                 }

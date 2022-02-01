@@ -3,6 +3,8 @@ import getProductObject from "./../productObject/getProductObject";
 import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "./../scrollDocument";
+import FrequentAbsoluteFlashMessage from "../frequentAbsoluteFlashMessage";
+import allProductsMustBeCached from "../allProductsMustBeCached";
 
 export default class RendererByViewMoreButton {
 
@@ -10,6 +12,7 @@ export default class RendererByViewMoreButton {
         this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
         this.searchSettingsStore = data.searchSettingsStore;
         this.publicUrlMaker = data.publicUrlMaker;
+        this.messenger = new FrequentAbsoluteFlashMessage();
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
         //this.container = el('#productListContent'); // не делать указатель
@@ -18,6 +21,7 @@ export default class RendererByViewMoreButton {
         el('body').addEventListener('click', (e) => {
             if (e.target.id === 'viewMoreButton') {
                 this._setSearchSettings();
+                this._showLoadingMessage();
                 this._render();
             }
         });
@@ -33,6 +37,15 @@ export default class RendererByViewMoreButton {
         this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
     }
 
+    _showLoadingMessage() {
+        if (allProductsMustBeCached()) {
+            return;
+        }
+        this.messenger.render({
+            text: 'Загрузка...',
+            duration: 9500
+        });
+    }
 
     _render() {
         if (! this._getRequestPermission()) {
@@ -42,11 +55,13 @@ export default class RendererByViewMoreButton {
         this.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
+                this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
                 });
                 const itemsHtml = itemsHtmlArr.join('');
+                //const itemsHtml = `<div class="product_list__content show_block">${ itemsHtmlArr.join('') }</div>`;
                 // получать элемент только без ранее созданного указателя
                 el('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
                 this._setSectionProductsCount(sectionProductsCount);

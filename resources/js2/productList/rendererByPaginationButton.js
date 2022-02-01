@@ -3,6 +3,8 @@ import getProductObject from "./../productObject/getProductObject";
 import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "./../scrollDocument";
+import FrequentAbsoluteFlashMessage from "../frequentAbsoluteFlashMessage";
+import allProductsMustBeCached from "../allProductsMustBeCached";
 
 export default class RendererByPaginationButton {
 
@@ -11,6 +13,7 @@ export default class RendererByPaginationButton {
         this.searchSettingsStore = data.searchSettingsStore;
         this.publicUrlMaker = data.publicUrlMaker;
         this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
+        this.messenger = new FrequentAbsoluteFlashMessage();
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
         this.disabledRequest = false;
@@ -21,6 +24,7 @@ export default class RendererByPaginationButton {
             if (e.target.dataset.paginatorPageNumber) {
                 e.preventDefault();
                 this._setSearchSettings(e);
+                this._showLoadingMessage();
                 this._render();
             }
         });
@@ -46,6 +50,15 @@ export default class RendererByPaginationButton {
         this.searchSettingsStore.setPageCount(pageCount);
     }
 
+    _showLoadingMessage() {
+        if (allProductsMustBeCached()) {
+            return;
+        }
+        this.messenger.render({
+            text: 'Загрузка...',
+            duration: 9500
+        });
+    }
 
     _render() {
         if (! this._getRequestPermission()) {
@@ -55,11 +68,12 @@ export default class RendererByPaginationButton {
         this.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
+                this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
                 });
-                const itemsHtml = `<div id="productListContent">${ itemsHtmlArr.join('') }</div>`;
+                const itemsHtml = `<div id="productListContent" class="show_block">${ itemsHtmlArr.join('') }</div>`;
                 if (el('#productListContent')) {
                     el('#productListContent').remove();
                 }
