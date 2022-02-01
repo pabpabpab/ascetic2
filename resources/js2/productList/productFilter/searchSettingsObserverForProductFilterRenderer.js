@@ -62,7 +62,9 @@ export default class SearchSettingsObserverForProductFilterRenderer {
             node.checked = false;
         }
         settings.categoriesIds.forEach(categoryId => {
-            el(`#filterCategory${categoryId}`).checked = true;
+            if (el(`#filterCategory${categoryId}`)) {
+                el(`#filterCategory${categoryId}`).checked = true;
+            }
         })
     }
 }

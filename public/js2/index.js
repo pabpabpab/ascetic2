@@ -2290,7 +2290,8 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Objec
         //rendererOfPaginationBlock,
         menuLinkCssMaker: menuLinkCssMaker
       });
-      searchSettingsStore.addObserver(rendererBySearchSettings);
+      searchSettingsStore.addObserver(rendererBySearchSettings); // при загрузке страницы с сервера с поисковыми параметрами в url
+
       var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
 
       if (wrapper.dataset.productSectionName === 'serverProductSearch') {
@@ -3435,7 +3436,9 @@ var SearchSettingsObserverForProductFilterRenderer = /*#__PURE__*/function () {
       }
 
       settings.categoriesIds.forEach(function (categoryId) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#filterCategory".concat(categoryId)).checked = true;
+        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#filterCategory".concat(categoryId))) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#filterCategory".concat(categoryId)).checked = true;
+        }
       });
     }
   }]);
@@ -3558,6 +3561,11 @@ var FilterTopTotalParametersRenderer = /*#__PURE__*/function () {
         var found = cachedCategories.find(function (item) {
           return item.id === categoryId;
         });
+
+        if (!found) {
+          return '';
+        }
+
         return _this2._getItemHtml('category', categoryId, found.name);
       });
       var categoryItemsHtml = categoryItems.join('');
@@ -4160,7 +4168,7 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
     this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_7__["default"]();
     this.locked = false;
   } // блокировать на время установки searchSettings
-  // при загрузке страницы с параетрами поиска в url
+  // при загрузке страницы с параметрами поиска в url
 
 
   _createClass(RendererBySearchSettings, [{
@@ -4248,7 +4256,7 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
 
         _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
 
-        new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]({
+        _this2.messenger.render({
           text: "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount),
           duration: 2500
         });
@@ -6271,7 +6279,6 @@ var SearchSettingsStore = /*#__PURE__*/function () {
   }, {
     key: "_notifyObservers",
     value: function _notifyObservers() {
-      //console.log(this.settings.categoriesIds);
       this.observers.forEach(function (observer) {
         return observer.checkSearchSettings();
       });
@@ -6295,6 +6302,7 @@ var SearchSettingsStore = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setSearchSettingsOnLoad; });
+// при загрузке страницы с сервера с поисковыми параметрами в url
 function setSearchSettingsOnLoad(_ref) {
   var searchSettingsStore = _ref.searchSettingsStore,
       wrapper = _ref.wrapper,
@@ -6308,7 +6316,13 @@ function setSearchSettingsOnLoad(_ref) {
   var categoriesIdsArr = categoriesIdsStr.split('-').map(function (id) {
     return Number(id);
   });
-  searchSettingsStore.setCategoriesIds(categoriesIdsArr);
+
+  if (categoriesIdsStr === '0' || categoriesIdsStr === '') {
+    searchSettingsStore.setCategoriesIds([]);
+  } else {
+    searchSettingsStore.setCategoriesIds(categoriesIdsArr);
+  }
+
   wrapper.dataset.productSectionName = '';
   wrapper.dataset.additionalDataOfProductSection = '';
   rendererBySearchSettings.unlock(); // разблокировать после установки searchSettings

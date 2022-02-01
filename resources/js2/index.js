@@ -170,6 +170,7 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             searchSettingsStore.addObserver(rendererBySearchSettings);
 
 
+            // при загрузке страницы с сервера с поисковыми параметрами в url
             const wrapper = el('#productList');
             if (wrapper.dataset.productSectionName === 'serverProductSearch') {
                 categoryCache.getEntireList()

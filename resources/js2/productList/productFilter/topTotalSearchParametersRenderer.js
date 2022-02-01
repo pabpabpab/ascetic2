@@ -69,6 +69,9 @@ export default class FilterTopTotalParametersRenderer {
         const cachedCategories = this.categoryCache.getCachedCategories();
         const categoryItems = settings.categoriesIds.map(categoryId => {
             const found = cachedCategories.find(item => item.id === categoryId);
+            if (!found) {
+                return '';
+            }
             return this._getItemHtml('category', categoryId, found.name);
         });
         const categoryItemsHtml = categoryItems.join('');

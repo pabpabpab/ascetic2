@@ -91,9 +91,6 @@ export default class SearchSettingsStore {
         this.observers.push(observer);
     }
     _notifyObservers() {
-
-        //console.log(this.settings.categoriesIds);
-
         this.observers.forEach(observer => observer.checkSearchSettings());
     }
 }

@@ -30,7 +30,7 @@ export default class RendererBySearchSettings {
     }
 
     // блокировать на время установки searchSettings
-    // при загрузке страницы с параетрами поиска в url
+    // при загрузке страницы с параметрами поиска в url
     lock() {
         this.locked = true;
     }
@@ -95,7 +95,7 @@ export default class RendererBySearchSettings {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-                new AbsoluteFlashMessage({
+                this.messenger.render({
                     text: `Показано ${sectionProductsCount}`,
                     duration: 2500
                 });

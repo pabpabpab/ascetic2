@@ -30,10 +30,7 @@ export default class SourceOfFilteredProducts {
 
     _getFilteredProductsFromServer() {
         const url = this.searchUrlMaker.getUrl();
-
         //console.log(url);
-
-
         return getJson(url)
             .then((data) => {
                 // console.log(data);

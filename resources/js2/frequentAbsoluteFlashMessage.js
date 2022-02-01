@@ -49,4 +49,5 @@ export default class FrequentAbsoluteFlashMessage {
         }
         el(this.selector).remove();
     }
+
 }
