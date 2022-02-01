@@ -5,34 +5,40 @@ export default class AbsoluteFlashMessage {
     constructor(data) {
         this.text = data.text;
         this.duration = data.duration;
-        //this.id = `absoluteMessage${new Date().getTime()}`;
         this.id = `absoluteMessage`;
+        this.selector = `#absoluteMessage`;
+        this.fadingTime = 700;
         this._render();
     }
 
     _render() {
         this._removeHtml();
 
-        const html = `<div id="${this.id}" class="absolute_message__wrapper absolute_message__show_and_hide">
+        const html = `<div id="${this.id}" class="absolute_message__wrapper show_block">
                            <div class="absolute_message__div arial_sans-serif">
                                 ${this.text}
                            </div>
                       </div>`;
         el('body').insertAdjacentHTML('beforeend', html);
 
-        const message = el(`#${this.id}`);
-
         setTimeout(() => {
-            if (message) {
-                message.remove();
-            }
-            //this._removeHtml();
-        }, this.duration); // 3500
+            this._hideHtml();
+        }, this.duration - this.fadingTime);
+    }
+
+    _hideHtml() {
+        if (el(this.selector)) {
+            el(this.selector).classList.remove('show_block');
+            el(this.selector).classList.add('hide_block');
+        }
+        setTimeout(() => {
+            this._removeHtml();
+        }, this.fadingTime);
     }
 
     _removeHtml() {
-        if (el(`#${this.id}`)) {
-            el(`#${this.id}`).remove();
+        if (el(this.selector)) {
+            el(this.selector).remove();
         }
     }
 }

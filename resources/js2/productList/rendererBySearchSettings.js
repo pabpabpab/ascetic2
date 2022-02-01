@@ -5,6 +5,7 @@ import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoritePr
 import scrollDocument from "../scrollDocument";
 import AbsoluteFlashMessage from "../absoluteFlashMessage";
 import allProductsMustBeCached from "../allProductsMustBeCached";
+import FrequentAbsoluteFlashMessage from "../frequentAbsoluteFlashMessage";
 
 export default class RendererBySearchSettings {
 
@@ -22,6 +23,8 @@ export default class RendererBySearchSettings {
         this.timeWhenSearchSettingsWereLastChanged = 0;
         this.timeWhenLastRequestWasSent = 0;
         this.timerId = 0;
+
+        this.messenger = new FrequentAbsoluteFlashMessage();
     }
 
     checkSearchSettings() {
@@ -50,9 +53,9 @@ export default class RendererBySearchSettings {
             return;
         }
         this.timeWhenLastRequestWasSent = new Date().getTime();
-        new AbsoluteFlashMessage({
+        this.messenger.render({
             text: 'Загрузка...',
-            duration: 7000
+            duration: 9500
         });
         this._render();
     }
@@ -60,7 +63,7 @@ export default class RendererBySearchSettings {
     _render() {
         this.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
-                this._removeAbsoluteMessage();
+                this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
@@ -77,12 +80,6 @@ export default class RendererBySearchSettings {
                 this._setSectionProductsCount(sectionProductsCount);
                 this._finalActions();
             });
-    }
-
-    _removeAbsoluteMessage() {
-        if (el('.absolute_message__wrapper')) {
-            el('.absolute_message__wrapper').remove();
-        }
     }
 
 
