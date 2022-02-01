@@ -21,6 +21,9 @@
     } elseif ($currentRouteName === 'products.favorites') {
         $pageTitle = 'Избранные товары';
         $pageDescription = 'Товары которые вам понравились. ';
+    } elseif ($currentRouteName === 'products.search') {
+        $pageTitle = $mainPageTitle; // в AppServiceProvider
+        $pageDescription = 'Товары из дерева на заказ';
     }
 @endphp
 

@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ProductController;
+use \App\Http\Controllers\ProductSearchController;
+use \App\Http\Controllers\ProductFavoriteController;
+use \App\Http\Controllers\ProductViewedController;
+use \App\Http\Controllers\ProductByCategoryController;
 
 
 Route::get('/', [ProductController::class, 'index'])
@@ -11,7 +15,7 @@ Route::get('/products/{pageNumber}', [ProductController::class, 'list'])
     ->where('pageNumber', '[0-9]+')
     ->name('products.list');
 
-Route::get('/products/{category:slug}/{pageNumber?}', [ProductController::class, 'getByCategory'])
+Route::get('/products/{category:slug}/{pageNumber?}', [ProductByCategoryController::class, 'getByCategory'])
     ->where('pageNumber', '[0-9]+')
     ->name('products.byCategory');
 
@@ -23,12 +27,22 @@ Route::get('/product/{product}/photo/{photoSlug}-{photoId}', [ProductController:
     ->name('products.singlePhotoPage');
 
 
-Route::get('/viewed-products/{pageNumber?}', [ProductController::class, 'getViewedProducts'])
+Route::get('/viewed-products/{pageNumber?}', [ProductViewedController::class, 'getViewedProducts'])
     ->where('pageNumber', '[0-9]+')
     ->name('products.viewed');
-Route::get('/favorite-products/{pageNumber?}', [ProductController::class, 'getFavoriteProducts'])
+Route::get('/favorite-products/{pageNumber?}', [ProductFavoriteController::class, 'getFavoriteProducts'])
     ->where('pageNumber', '[0-9]+')
     ->name('products.favorites');
+
+
+
+Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesIds}/page/{pageNumber}',
+    [ProductSearchController::class, 'search']
+)->where(['minPrice' => '[0-9]+', 'maxPrice' => '[0-9]+', 'categoriesIds' => '[0-9-]+', 'pageNumber' => '[0-9]+'])
+    ->name('products.search');
+
+
+
 
 
 

@@ -46,10 +46,6 @@ export default class RendererBySearchSettings {
         const settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
         const requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
 
-        if (settingsWereLastChangedAgo > 300) {
-            this._showLoadingMessage();
-        }
-
         if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
             clearTimeout(this.timerId);
             this.timerId = setTimeout(() => {
@@ -58,7 +54,9 @@ export default class RendererBySearchSettings {
             return;
         }
 
+        this._showLoadingMessage();
         this.timeWhenLastRequestWasSent = new Date().getTime();
+        //setTimeout(() => {this._render();}, 2000);
         this._render();
     }
 
@@ -84,7 +82,7 @@ export default class RendererBySearchSettings {
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
                 new AbsoluteFlashMessage({
                     text: `Показано ${sectionProductsCount}`,
-                    duration: 2000
+                    duration: 2500
                 });
                 this._setSectionProductsCount(sectionProductsCount);
                 this._finalActions();

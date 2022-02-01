@@ -2,19 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Color;
-use App\Models\Material;
 use App\Models\Product;
-use App\Models\ProductSEOText;
 use App\Services\PhotoManager\PhotoSeoService;
-use App\Services\Product\FavoriteProductsListService;
 use App\Services\Product\ListService;
 use App\Services\Product\ViewedProductsService;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
@@ -64,79 +55,6 @@ class ProductController extends Controller
             'pageCount' => ceil($totalProductsCount/$perPage)
         ]);
     }
-
-    public function getByCategory(ListService $service, Category $category, $pageNumber = 1)
-    {
-        // установить стартовую страницу для пагинатора
-        $currentPage = $pageNumber;
-        Paginator::currentPageResolver(function () use ($currentPage) {
-            return $currentPage;
-        });
-
-        $totalProductsCount = Product::count();
-        $productsCount = $category->products()->count();
-        $perPage = 3;
-        // $category определена в роуте как {category:slug}
-        return view('products.list.index', [
-            'category' => $category,
-            'productSectionName' => 'productCategory',
-            'additionalDataOfProductSection' => "{$category->id};{$category->slug}",
-            'categorySeo' => $category->seoText,
-            'products' => $category->products()->paginate($perPage),
-            'currentPage' => $currentPage,
-            'totalProductsCount' => $totalProductsCount,
-            'sectionProductsCount' => $productsCount,
-            'pageCount' => ceil($productsCount/$perPage)
-        ]);
-    }
-
-    public function getViewedProducts(ViewedProductsService $service, $pageNumber = 1)
-    {
-        // установить стартовую страницу для пагинатора
-        $currentPage = $pageNumber;
-        Paginator::currentPageResolver(function () use ($currentPage) {
-            return $currentPage;
-        });
-
-
-        $totalProductsCount = Product::count();
-        $productsCount = $service->getAllViewed()->count();
-        $perPage = 3;
-        $products = $service->getAllViewed()->paginate($perPage);
-        return view('products.list.index', [
-            'products' => $products,
-            'productSectionName' => 'viewedProducts',
-            'additionalDataOfProductSection' => $service->getAllViewedIdsStr(),
-            'currentPage' => $currentPage,
-            'totalProductsCount' => $totalProductsCount,
-            'sectionProductsCount' => $productsCount,
-            'pageCount' => ceil($productsCount/$perPage)
-        ]);
-    }
-
-    public function getFavoriteProducts(FavoriteProductsListService $service, $pageNumber = 1)
-    {
-        // установить стартовую страницу для пагинатора
-        $currentPage = $pageNumber;
-        Paginator::currentPageResolver(function () use ($currentPage) {
-            return $currentPage;
-        });
-
-        $totalProductsCount = Product::count();
-        $productsCount = $service->getList()->count();
-        $perPage = 3;
-        $products = $service->getList()->paginate($perPage);
-        return view('products.list.index', [
-            'products' => $products,
-            'productSectionName' => 'favoriteProducts',
-            'additionalDataOfProductSection' => '',
-            'currentPage' => $currentPage,
-            'totalProductsCount' => $totalProductsCount,
-            'sectionProductsCount' => $productsCount,
-            'pageCount' => ceil($productsCount/$perPage)
-        ]);
-    }
-
 
     public function getOne(PhotoSeoService $service, $slug, Product $product)
     {
