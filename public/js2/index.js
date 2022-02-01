@@ -4143,6 +4143,10 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
       var settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
       var requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
 
+      if (settingsWereLastChangedAgo > 300) {
+        this._showLoadingMessage();
+      }
+
       if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
         clearTimeout(this.timerId);
         this.timerId = setTimeout(function () {
@@ -4152,12 +4156,16 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
       }
 
       this.timeWhenLastRequestWasSent = new Date().getTime();
+
+      this._render();
+    }
+  }, {
+    key: "_showLoadingMessage",
+    value: function _showLoadingMessage() {
       this.messenger.render({
         text: 'Загрузка...',
         duration: 9500
       });
-
-      this._render();
     }
   }, {
     key: "_render",
@@ -4184,7 +4192,7 @@ var RendererBySearchSettings = /*#__PURE__*/function () {
 
         new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]({
           text: "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount),
-          duration: 3500
+          duration: 2000
         });
 
         _this2._setSectionProductsCount(sectionProductsCount);
