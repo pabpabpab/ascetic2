@@ -7,7 +7,7 @@ export default class FilterOfCachedProducts {
     }
 
     doFilter(products) {
-        const settings = { ...this.searchSettingsStore.getSettings() };
+        const settings = this.searchSettingsStore.getSettings();
 
         let filtered = [ ...products ];
 
@@ -45,6 +45,9 @@ export default class FilterOfCachedProducts {
         return func[settings.productSectionName](items, additionalFilteringParameters);
     }
 
+
+
+    // section filter
     _favoriteProductsFilter(items, params) {
         const favoriteIdsStr = getCookie('favoriteIds');
         if (!Boolean(favoriteIdsStr)) {
@@ -55,6 +58,7 @@ export default class FilterOfCachedProducts {
             return favoriteIdsArr.includes(item.id)
         });
     }
+    // section filter
     _viewedProductsFilter(items, viewedIdsStr) {
         if (!Boolean(viewedIdsStr)) {
             return [];
@@ -71,6 +75,7 @@ export default class FilterOfCachedProducts {
         });
         return viewed;
     }
+    // section filter
     _singleCategoryFilter(items, params) {
         // params - "categoryId;categorySlug"
         const categoryId = Number(params.split(';')[0]);

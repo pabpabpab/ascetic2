@@ -81,7 +81,7 @@ export default class RendererByViewMoreButton {
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.publicUrlMaker.publishUrl();
+        // this.publicUrlMaker.publishUrl(); // не применять
         this._makeInvisiblePaginationBlock();
         this._switchVisibilityOfViewMoreButton();
         scrollDocument(200, 'down');
@@ -111,6 +111,9 @@ export default class RendererByViewMoreButton {
     }
 
     _makeInvisiblePaginationBlock() {
+        if (!el('#paginationContent')) {
+            return;
+        }
         if (!el('#paginationContent').classList.contains("display-none")) {
             el('#paginationContent').classList.add("display-none");
         }

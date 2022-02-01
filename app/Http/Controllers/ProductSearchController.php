@@ -29,8 +29,8 @@ class ProductSearchController extends Controller
 
         return view('products.list.index', [
             'products' => $result['products'],
-            'productSectionName' => 'productSearch',
-            'additionalDataOfProductSection' => '',
+            'productSectionName' => 'serverProductSearch',
+            'additionalDataOfProductSection' => "{$minPrice};{$maxPrice};{$categoriesIds}",
             'currentPage' => $currentPage,
             'totalProductsCount' => Product::count(),
             'sectionProductsCount' => $result['sectionProductsCount'],

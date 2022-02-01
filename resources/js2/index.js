@@ -23,7 +23,7 @@ import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMa
 
 
 
-import SearchSettingsStore from "./productSource/searchSettingsStore";
+import SearchSettingsStore from "./searchSettings/searchSettingsStore";
 import SearchUrlMaker from "./urlMaker/searchUrlMaker";
 import PublicUrlMaker from "./urlMaker/publicUrlMaker";
 import FilterOfCachedProducts from "./productSource/FilterOfCachedProducts";
@@ -43,6 +43,7 @@ import ProductFilterRenderer from "./productList/productFilter/productFilterRend
 import TotalIndicatorOfFilterParameters from "./productList/productFilter/totalIndicatorOfFilterParameters";
 import TopTotalSearchParametersRenderer from "./productList/productFilter/topTotalSearchParametersRenderer";
 import SearchSettingsObserverForProductFilterRenderer from "./productList/productFilter/searchSettingsObserverForProductFilterRenderer";
+import setSearchSettingsOnLoad from "./searchSettings/setSearchSettingsOnLoad";
 
 
 new CsrfUpdater();
@@ -81,6 +82,7 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
 
 
     if (el('#productList')) {
+        const categoryCache = new CategoryCache(); // оставить здесь
         const searchSettingsStore = new SearchSettingsStore();
         const searchUrlMaker = new SearchUrlMaker(searchSettingsStore);
         const publicUrlMaker = new PublicUrlMaker(searchSettingsStore);
@@ -133,12 +135,17 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
         });
 
         if (el('.filter_icon__wrapper')) {
-            const categoryCache = new CategoryCache();
+            const searchSettingsObserverForFilterRenderer = new SearchSettingsObserverForProductFilterRenderer({
+                searchSettingsStore,
+                categoryCache
+            });
+            searchSettingsStore.addObserver(searchSettingsObserverForFilterRenderer);
 
             new ProductFilterRenderer({
                 productCache,
                 categoryCache,
                 searchSettingsStore,
+                searchSettingsObserver: searchSettingsObserverForFilterRenderer,
             });
 
             const totalIndicatorOfFilterParameters = new TotalIndicatorOfFilterParameters({
@@ -153,12 +160,6 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
             searchSettingsStore.addObserver(topTotalSearchParametersRenderer);
 
 
-            const searchSettingsObserverForFilterRenderer = new SearchSettingsObserverForProductFilterRenderer({
-                searchSettingsStore,
-                categoryCache
-            });
-            searchSettingsStore.addObserver(searchSettingsObserverForFilterRenderer);
-
             const rendererBySearchSettings = new RendererBySearchSettings({
                 sourceOfFilteredProducts,
                 searchSettingsStore,
@@ -167,7 +168,23 @@ if (el('#productList') || el('#viewedProductsSummaryWrapper'))  {
                 menuLinkCssMaker,
             });
             searchSettingsStore.addObserver(rendererBySearchSettings);
+
+
+            const wrapper = el('#productList');
+            if (wrapper.dataset.productSectionName === 'serverProductSearch') {
+                categoryCache.getEntireList()
+                    .then(() => {
+                        setSearchSettingsOnLoad({
+                            searchSettingsStore,
+                            wrapper,
+                            rendererBySearchSettings,
+                        });
+                    });
+            }
         }
+
+
+
 
     }
 }

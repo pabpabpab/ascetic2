@@ -10,7 +10,7 @@ export default class SearchSettingsObserverForProductFilterRenderer {
     checkSearchSettings() {
         this._renderMinPrice();
         this._renderMaxPrice();
-        this._renderCategoryCheckboxes();
+        this.renderCategoryCheckboxes();
     }
 
     _renderMinPrice() {
@@ -33,7 +33,24 @@ export default class SearchSettingsObserverForProductFilterRenderer {
             el('#maxPriceRangeInput').value = el('#maxPriceRangeInput').max;
         }
     }
-    _renderCategoryCheckboxes() {
+
+    // при загрузке страницы с сервера с поисковыми параметрами
+    renderPriceOnLoad() {
+        if (!el('#minPriceTextInput')) {
+            return;
+        }
+        const settings = this.searchSettingsStore.getSettings();
+        if (settings.minPrice > 0) {
+            el('#minPriceTextInput').value = settings.minPrice;
+            el('#minPriceRangeInput').value = settings.minPrice;
+        }
+        if (settings.maxPrice > 0) {
+            el('#maxPriceTextInput').value = settings.maxPrice;
+            el('#maxPriceRangeInput').value = settings.maxPrice;
+        }
+    }
+
+    renderCategoryCheckboxes() {
         if (!el('#productFilterCategoriesWrapper')) {
             return;
         }

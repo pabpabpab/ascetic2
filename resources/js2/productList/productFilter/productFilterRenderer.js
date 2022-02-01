@@ -13,6 +13,9 @@ export default class ProductFilterRenderer {
         this.categoryCache = data.categoryCache;
         this.searchSettingsStore = data.searchSettingsStore;
 
+        // для использовани при загрузке страницы с сервера с поисковыми параметрами в url
+        this.searchSettingsObserver = data.searchSettingsObserver;
+
         this.priceRangeUrl = '/public-js/product-price-range';
         this.minPriceLimit = 0;
         this.maxPriceLimit = 0;
@@ -113,6 +116,9 @@ export default class ProductFilterRenderer {
                 el('#maxPriceRangeInput').min = minPrice;
                 el('#maxPriceRangeInput').max = maxPrice;
                 el('#maxPriceRangeInput').value = maxPrice;
+
+                // при загрузке страницы с сервера с поисковыми параметрами
+                this.searchSettingsObserver.renderPriceOnLoad();
             });
 
         this.categoryCache.getEntireList()
@@ -123,6 +129,9 @@ export default class ProductFilterRenderer {
                 }
                 const html = getCategoriesBlockHtmlForFilter(categories);
                 el('#productFilterCategoriesWrapper').insertAdjacentHTML('afterbegin', html);
+
+                // при загрузке страницы с сервера с поисковыми параметрами
+                this.searchSettingsObserver.renderCategoryCheckboxes();
             });
     }
 

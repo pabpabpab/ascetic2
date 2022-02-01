@@ -25,9 +25,24 @@ export default class RendererBySearchSettings {
         this.timerId = 0;
 
         this.messenger = new FrequentAbsoluteFlashMessage();
+
+        this.locked = false;
+    }
+
+    // блокировать на время установки searchSettings
+    // при загрузке страницы с параетрами поиска в url
+    lock() {
+        this.locked = true;
+    }
+    unlock() {
+        this.locked = false;
     }
 
     checkSearchSettings() {
+        if (this.locked) {
+            return;
+        }
+
         const settings = this.searchSettingsStore.getSettings();
         if (settings.productSectionName.length > 0) {
             return;
