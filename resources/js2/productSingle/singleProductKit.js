@@ -38,7 +38,6 @@ export default function singleProductKit() {
         if (el('.quick_view_manager__collapse_icon')) {
             new QuickProductDestructor();
         }
-
 }
 
 

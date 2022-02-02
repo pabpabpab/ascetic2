@@ -1,10 +1,10 @@
-import el from './../el';
-import getProductObject from "./../productObject/getProductObject";
-import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
-import scrollDocument from "./../scrollDocument";
-import FrequentAbsoluteFlashMessage from "../frequentAbsoluteFlashMessage";
-import allProductsMustBeCached from "../allProductsMustBeCached";
+import el from '../../el';
+import getProductObject from "../../productObject/getProductObject";
+import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
+import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
+import scrollDocument from "../../scrollDocument";
+import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
+import allProductsMustBeCached from "../../allProductsMustBeCached";
 
 export default class RendererByPaginationButton {
 

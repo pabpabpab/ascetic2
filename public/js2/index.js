@@ -353,6 +353,40 @@ var AuthAbsoluteMenu = /*#__PURE__*/function (_VisibleBlockByClick) {
 
 /***/ }),
 
+/***/ "./resources/js2/auth/authKit.js":
+/*!***************************************!*\
+  !*** ./resources/js2/auth/authKit.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return authKit; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authAbsoluteMenu */ "./resources/js2/auth/authAbsoluteMenu.js");
+/* harmony import */ var _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./passwordTypeChanger */ "./resources/js2/auth/passwordTypeChanger.js");
+
+
+
+function authKit() {
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
+    new _authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_1__["default"]({
+      clickSourceSelector: '.personal_account__icon'
+    });
+  }
+
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_password_type__wrapper')) {
+    new _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      closedEyeSelector: ".auth_page__closed_eye_img",
+      openedEyeSelector: ".auth_page__opened_eye_img",
+      passwordInputSelector: "#password"
+    });
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js2/auth/forgotPassword.js":
 /*!**********************************************!*\
   !*** ./resources/js2/auth/forgotPassword.js ***!
@@ -2130,35 +2164,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
 /* harmony import */ var _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./http/csrfUpdater */ "./resources/js2/http/csrfUpdater.js");
 /* harmony import */ var _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./topDropMenuFiller */ "./resources/js2/topDropMenuFiller.js");
-/* harmony import */ var _auth_authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth/authAbsoluteMenu */ "./resources/js2/auth/authAbsoluteMenu.js");
-/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
-/* harmony import */ var _auth_passwordTypeChanger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth/passwordTypeChanger */ "./resources/js2/auth/passwordTypeChanger.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotalCountIndication */ "./resources/js2/favoriteProducts/favoriteProductsTotalCountIndication.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
-/* harmony import */ var _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./categorySource/categoryCache */ "./resources/js2/categorySource/categoryCache.js");
-/* harmony import */ var _productSource_productCache__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./productSource/productCache */ "./resources/js2/productSource/productCache.js");
-/* harmony import */ var _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./viewedProducts/viewedProductsAppender */ "./resources/js2/viewedProducts/viewedProductsAppender.js");
-/* harmony import */ var _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./productQuickViewer/singleProductQuickViewer */ "./resources/js2/productQuickViewer/singleProductQuickViewer.js");
-/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
-/* harmony import */ var _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./viewedProducts/viewedProductsSummaryMaker */ "./resources/js2/viewedProducts/viewedProductsSummaryMaker.js");
-/* harmony import */ var _searchSettings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./searchSettings/searchSettingsStore */ "./resources/js2/searchSettings/searchSettingsStore.js");
-/* harmony import */ var _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./urlMaker/searchUrlMaker */ "./resources/js2/urlMaker/searchUrlMaker.js");
-/* harmony import */ var _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./urlMaker/publicUrlMaker */ "./resources/js2/urlMaker/publicUrlMaker.js");
-/* harmony import */ var _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./productSource/FilterOfCachedProducts */ "./resources/js2/productSource/FilterOfCachedProducts.js");
-/* harmony import */ var _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./productSource/SourceOfFilteredProducts */ "./resources/js2/productSource/SourceOfFilteredProducts.js");
-/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
-/* harmony import */ var _productList_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./productList/rendererByViewMoreButton */ "./resources/js2/productList/rendererByViewMoreButton.js");
-/* harmony import */ var _productList_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productList/rendererByPaginationButton */ "./resources/js2/productList/rendererByPaginationButton.js");
-/* harmony import */ var _productList_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productList/rendererByMenuLink */ "./resources/js2/productList/rendererByMenuLink.js");
-/* harmony import */ var _productList_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productList/rendererOfViewedProductsByLink */ "./resources/js2/productList/rendererOfViewedProductsByLink.js");
-/* harmony import */ var _productList_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productList/rendererBySearchSettings */ "./resources/js2/productList/rendererBySearchSettings.js");
-/* harmony import */ var _productList_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./productList/paginationBlockRenderer */ "./resources/js2/productList/paginationBlockRenderer.js");
-/* harmony import */ var _productList_productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./productList/productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
-/* harmony import */ var _productList_productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./productList/productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
-/* harmony import */ var _productList_productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./productList/productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
-/* harmony import */ var _productList_productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./productList/productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
-/* harmony import */ var _searchSettings_setSearchSettingsOnLoad__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./searchSettings/setSearchSettingsOnLoad */ "./resources/js2/searchSettings/setSearchSettingsOnLoad.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
+/* harmony import */ var _auth_authKit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth/authKit */ "./resources/js2/auth/authKit.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotalCountIndication */ "./resources/js2/favoriteProducts/favoriteProductsTotalCountIndication.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
+/* harmony import */ var _productSource_productCache__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./productSource/productCache */ "./resources/js2/productSource/productCache.js");
+/* harmony import */ var _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./viewedProducts/viewedProductsAppender */ "./resources/js2/viewedProducts/viewedProductsAppender.js");
+/* harmony import */ var _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./productQuickViewer/singleProductQuickViewer */ "./resources/js2/productQuickViewer/singleProductQuickViewer.js");
+/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
+/* harmony import */ var _productList_productListKit__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./productList/productListKit */ "./resources/js2/productList/productListKit.js");
+/* harmony import */ var _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./viewedProducts/viewedProductsSummaryMaker */ "./resources/js2/viewedProducts/viewedProductsSummaryMaker.js");
 
 
 
@@ -2173,160 +2189,49 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var productListWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+var singleProductWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct');
+var viewedProductsSummaryWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-new _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__["default"]();
-new _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__["default"]();
-
-if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
-  new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_6__["default"]();
-  new _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__["default"]();
+if (singleProductWrapper) {
+  Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_11__["default"])();
 }
 
-new _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_7__["default"](); // не менять порядок
+var viewedProductsSummaryMaker = new _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_13__["default"]();
+var productCache = new _productSource_productCache__WEBPACK_IMPORTED_MODULE_8__["default"]();
 
-if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
-  Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_13__["default"])();
+if (productListWrapper) {
+  Object(_productList_productListKit__WEBPACK_IMPORTED_MODULE_12__["default"])({
+    productCache: productCache
+  });
 }
 
-var viewedProductsSummaryMaker = new _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_14__["default"]();
-
-if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList') || Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper')) {
-  var productCache = new _productSource_productCache__WEBPACK_IMPORTED_MODULE_10__["default"]();
-  var viewedProductsAppender = new _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_11__["default"]();
-  new _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_12__["default"]({
+if (productListWrapper || viewedProductsSummaryWrapper) {
+  var viewedProductsAppender = new _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_9__["default"]();
+  new _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_10__["default"]({
     productCache: productCache,
     viewedProductsAppender: viewedProductsAppender,
     viewedProductsSummaryMaker: viewedProductsSummaryMaker
   });
-
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList')) {
-    var categoryCache = new _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_9__["default"](); // оставить здесь
-
-    var searchSettingsStore = new _searchSettings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_15__["default"]();
-    var searchUrlMaker = new _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_16__["default"](searchSettingsStore);
-    var publicUrlMaker = new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_17__["default"](searchSettingsStore);
-    var filterOfCachedProducts = new _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_18__["default"](searchSettingsStore);
-    var sourceOfFilteredProducts = new _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_19__["default"]({
-      productCache: productCache,
-      searchUrlMaker: searchUrlMaker,
-      filterOfCachedProducts: filterOfCachedProducts,
-      searchSettingsStore: searchSettingsStore
-    });
-    new _productList_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_21__["default"]({
-      searchSettingsStore: searchSettingsStore,
-      publicUrlMaker: publicUrlMaker,
-      sourceOfFilteredProducts: sourceOfFilteredProducts
-    });
-    var rendererOfPaginationBlock = new _productList_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_26__["default"]({
-      searchSettingsStore: searchSettingsStore,
-      publicUrlMaker: publicUrlMaker
-    });
-    new _productList_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_22__["default"]({
-      searchSettingsStore: searchSettingsStore,
-      publicUrlMaker: publicUrlMaker,
-      sourceOfFilteredProducts: sourceOfFilteredProducts,
-      rendererOfPaginationBlock: rendererOfPaginationBlock
-    });
-    var menuLinkCssMaker = new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_20__["default"]({
-      searchSettingsStore: searchSettingsStore
-    });
-    new _productList_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_23__["default"]({
-      sourceOfFilteredProducts: sourceOfFilteredProducts,
-      searchSettingsStore: searchSettingsStore,
-      publicUrlMaker: publicUrlMaker,
-      rendererOfPaginationBlock: rendererOfPaginationBlock,
-      menuLinkCssMaker: menuLinkCssMaker
-    });
-    new _productList_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_24__["default"]({
-      sourceOfFilteredProducts: sourceOfFilteredProducts,
-      searchSettingsStore: searchSettingsStore,
-      publicUrlMaker: publicUrlMaker,
-      rendererOfPaginationBlock: rendererOfPaginationBlock,
-      menuLinkCssMaker: menuLinkCssMaker
-    });
-
-    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__wrapper')) {
-      var searchSettingsObserverForFilterRenderer = new _productList_productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_30__["default"]({
-        searchSettingsStore: searchSettingsStore,
-        categoryCache: categoryCache
-      });
-      searchSettingsStore.addObserver(searchSettingsObserverForFilterRenderer);
-      new _productList_productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_27__["default"]({
-        productCache: productCache,
-        categoryCache: categoryCache,
-        searchSettingsStore: searchSettingsStore,
-        searchSettingsObserver: searchSettingsObserverForFilterRenderer
-      });
-      var totalIndicatorOfFilterParameters = new _productList_productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_28__["default"]({
-        searchSettingsStore: searchSettingsStore
-      });
-      searchSettingsStore.addObserver(totalIndicatorOfFilterParameters);
-      var topTotalSearchParametersRenderer = new _productList_productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_29__["default"]({
-        searchSettingsStore: searchSettingsStore,
-        categoryCache: categoryCache
-      });
-      searchSettingsStore.addObserver(topTotalSearchParametersRenderer);
-      var rendererBySearchSettings = new _productList_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_25__["default"]({
-        sourceOfFilteredProducts: sourceOfFilteredProducts,
-        searchSettingsStore: searchSettingsStore,
-        publicUrlMaker: publicUrlMaker,
-        //rendererOfPaginationBlock,
-        menuLinkCssMaker: menuLinkCssMaker
-      });
-      searchSettingsStore.addObserver(rendererBySearchSettings); // при загрузке страницы с сервера с поисковыми параметрами в url
-
-      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
-
-      if (wrapper.dataset.productSectionName === 'serverProductSearch') {
-        categoryCache.getEntireList().then(function () {
-          Object(_searchSettings_setSearchSettingsOnLoad__WEBPACK_IMPORTED_MODULE_31__["default"])({
-            searchSettingsStore: searchSettingsStore,
-            wrapper: wrapper,
-            rendererBySearchSettings: rendererBySearchSettings
-          });
-        });
-      }
-    }
-  }
 }
 
-if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
-  new _auth_authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_3__["default"]({
-    clickSourceSelector: '.personal_account__icon'
-  });
+if (productListWrapper || singleProductWrapper) {
+  new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_5__["default"]();
+  new _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_7__["default"]();
 }
+
+new _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_6__["default"](); // не менять порядок
 
 if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage')) {
-  new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__["default"]({
+  new _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__["default"]({
     text: Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage').innerText,
     duration: 3500
   });
 }
 
-if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_password_type__wrapper')) {
-  new _auth_passwordTypeChanger__WEBPACK_IMPORTED_MODULE_5__["default"]({
-    closedEyeSelector: ".auth_page__closed_eye_img",
-    openedEyeSelector: ".auth_page__opened_eye_img",
-    passwordInputSelector: "#password"
-  });
-}
+new _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__["default"]();
+new _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__["default"]();
+Object(_auth_authKit__WEBPACK_IMPORTED_MODULE_4__["default"])();
 
 /***/ }),
 
@@ -2815,17 +2720,1122 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
 /***/ }),
 
-/***/ "./resources/js2/productList/paginationBlockRenderer.js":
-/*!**************************************************************!*\
-  !*** ./resources/js2/productList/paginationBlockRenderer.js ***!
-  \**************************************************************/
+/***/ "./resources/js2/productList/listRenderers/rendererByMenuLink.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js2/productList/listRenderers/rendererByMenuLink.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByMenuLink; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
+
+
+var RendererByMenuLink = /*#__PURE__*/function () {
+  function RendererByMenuLink(data) {
+    var _this = this;
+
+    _classCallCheck(this, RendererByMenuLink);
+
+    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+    this.searchSettingsStore = data.searchSettingsStore;
+    this.publicUrlMaker = data.publicUrlMaker;
+    this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
+    this.menuLinkCssMaker = data.menuLinkCssMaker;
+    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]();
+    this.productItemSelector = '[data-product-item]';
+    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
+    this.disabledRequest = false;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+      if (e.target.dataset.menuLinkSectionName) {
+        e.preventDefault();
+
+        _this._setDataAttributes(e);
+
+        _this._setSearchSettings(e);
+
+        _this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+
+        _this._showLoadingMessage();
+
+        _this._render();
+      }
+    });
+  }
+
+  _createClass(RendererByMenuLink, [{
+    key: "_setDataAttributes",
+    value: function _setDataAttributes(e) {
+      var sectionName = e.target.dataset.menuLinkSectionName;
+      this.wrapper.dataset.productSectionName = sectionName;
+
+      if (sectionName === 'all') {
+        var h1Text = e.target.dataset.menuLinkTitleText;
+        this.wrapper.dataset.additionalDataOfProductSection = ";;".concat(h1Text);
+        return;
+      }
+
+      if (sectionName === 'favoriteProducts') {
+        var _h1Text = e.target.dataset.menuLinkTitleText;
+        this.wrapper.dataset.additionalDataOfProductSection = ";;".concat(_h1Text);
+        return;
+      }
+
+      if (sectionName === 'productCategory') {
+        var categoryId = e.target.dataset.menuLinkCategoryId;
+        var categorySlug = e.target.dataset.menuLinkCategorySlug;
+        var categoryName = e.target.dataset.menuLinkCategoryName;
+        this.wrapper.dataset.additionalDataOfProductSection = "".concat(categoryId, ";").concat(categorySlug, ";").concat(categoryName);
+        return;
+      }
+    }
+  }, {
+    key: "_setSearchSettings",
+    value: function _setSearchSettings(e) {
+      this.searchSettingsStore.setProductSectionData({
+        productSectionName: this.wrapper.dataset.productSectionName,
+        additionalData: this.wrapper.dataset.additionalDataOfProductSection
+      });
+      this.searchSettingsStore.setPageNumber(1);
+      this.searchSettingsStore.setStartOffset(0);
+    }
+  }, {
+    key: "_showLoadingMessage",
+    value: function _showLoadingMessage() {
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
+        return;
+      }
+
+      this.messenger.render({
+        text: 'Загрузка...',
+        duration: 9500
+      });
+    }
+  }, {
+    key: "_render",
+    value: function _render() {
+      var _this2 = this;
+
+      if (!this._getRequestPermission()) {
+        return;
+      }
+
+      this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
+        var filteredProducts = _ref.filteredProducts,
+            sectionProductsCount = _ref.sectionProductsCount;
+        _this2.disabledRequest = false;
+
+        _this2.messenger.hideMessage();
+
+        var itemsHtmlArr = filteredProducts.map(function (product) {
+          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
+        });
+        var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
+
+        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        }
+
+        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+
+        _this2._setSectionProductsCount(sectionProductsCount);
+
+        _this2._finalActions();
+      });
+    }
+  }, {
+    key: "_setSectionProductsCount",
+    value: function _setSectionProductsCount(sectionProductsCount) {
+      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+
+      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
+
+      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
+      this.wrapper.dataset.sectionPageCount = sectionPageCount;
+      this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+  }, {
+    key: "_finalActions",
+    value: function _finalActions() {
+      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
+      this.publicUrlMaker.publishUrl();
+
+      this._renderHeader();
+
+      this._switchVisibilityOfViewMoreButton(); // this._makeInvisiblePaginationBlock();
+
+
+      this.rendererOfPaginationBlock.remake();
+      this.menuLinkCssMaker.resetMenuLinksCss();
+      this.menuLinkCssMaker.markActiveMenuLink();
+      var distance = window.pageYOffset;
+      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
+    }
+  }, {
+    key: "_renderHeader",
+    value: function _renderHeader() {
+      var headerText = this.wrapper.dataset.additionalDataOfProductSection.split(';')[2];
+      this.header.innerText = headerText;
+    }
+  }, {
+    key: "_switchVisibilityOfViewMoreButton",
+    value: function _switchVisibilityOfViewMoreButton() {
+      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
+      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+
+      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        this._turnOffViewMoreButton();
+      } else {
+        this._turnOnViewMoreButton();
+      }
+    }
+  }, {
+    key: "_turnOnViewMoreButton",
+    value: function _turnOnViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.remove("display-none");
+      }
+    }
+  }, {
+    key: "_turnOffViewMoreButton",
+    value: function _turnOffViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (!viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.add("display-none");
+      }
+    }
+    /*
+    _makeInvisiblePaginationBlock() {
+        const paginationBlock = el('#paginationContent');
+        if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
+            paginationBlock.classList.add("display-none");
+        }
+    }
+    */
+
+  }, {
+    key: "_getRequestPermission",
+    value: function _getRequestPermission() {
+      var _this3 = this;
+
+      // защита от частых отправок на 10 сек (от двойного нажатия)
+      if (this.disabledRequest) {
+        return false;
+      }
+
+      this.disabledRequest = true;
+      setTimeout(function () {
+        _this3.disabledRequest = false;
+      }, 10000);
+      return true;
+    }
+  }]);
+
+  return RendererByMenuLink;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/listRenderers/rendererByPaginationButton.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js2/productList/listRenderers/rendererByPaginationButton.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByPaginationButton; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
+
+
+var RendererByPaginationButton = /*#__PURE__*/function () {
+  function RendererByPaginationButton(data) {
+    var _this = this;
+
+    _classCallCheck(this, RendererByPaginationButton);
+
+    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+    this.searchSettingsStore = data.searchSettingsStore;
+    this.publicUrlMaker = data.publicUrlMaker;
+    this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
+    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    this.productItemSelector = '[data-product-item]';
+    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    this.disabledRequest = false;
+    this.currentPageNumber = 0;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+      if (e.target.dataset.paginatorPageNumber) {
+        e.preventDefault();
+
+        _this._setSearchSettings(e);
+
+        _this._showLoadingMessage();
+
+        _this._render();
+      }
+    });
+  }
+
+  _createClass(RendererByPaginationButton, [{
+    key: "_setSearchSettings",
+    value: function _setSearchSettings(e) {
+      this.searchSettingsStore.setProductSectionData({
+        productSectionName: this.wrapper.dataset.productSectionName,
+        additionalData: this.wrapper.dataset.additionalDataOfProductSection
+      });
+
+      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
+
+      var pageNumber = Number(e.target.dataset.paginatorPageNumber);
+      this.searchSettingsStore.setPageNumber(pageNumber);
+      this.currentPageNumber = pageNumber;
+      var offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
+      this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
+      var pageCount = Number(this.wrapper.dataset.sectionPageCount);
+      this.searchSettingsStore.setPageCount(pageCount);
+    }
+  }, {
+    key: "_showLoadingMessage",
+    value: function _showLoadingMessage() {
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
+        return;
+      }
+
+      this.messenger.render({
+        text: 'Загрузка...',
+        duration: 9500
+      });
+    }
+  }, {
+    key: "_render",
+    value: function _render() {
+      var _this2 = this;
+
+      if (!this._getRequestPermission()) {
+        return;
+      }
+
+      this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
+        var filteredProducts = _ref.filteredProducts,
+            sectionProductsCount = _ref.sectionProductsCount;
+        _this2.disabledRequest = false;
+
+        _this2.messenger.hideMessage();
+
+        var itemsHtmlArr = filteredProducts.map(function (product) {
+          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
+        });
+        var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
+
+        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        }
+
+        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+
+        _this2._setSectionProductsCount(sectionProductsCount);
+
+        _this2._finalActions();
+      });
+    }
+  }, {
+    key: "_setSectionProductsCount",
+    value: function _setSectionProductsCount(sectionProductsCount) {
+      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+
+      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
+
+      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
+      this.wrapper.dataset.sectionPageCount = sectionPageCount;
+      this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+  }, {
+    key: "_finalActions",
+    value: function _finalActions() {
+      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
+      this.publicUrlMaker.publishUrl();
+
+      if (this.currentPageNumber === 1) {
+        this._makeVisibleViewMoreButton();
+      } else {
+        this._makeInvisibleViewMoreButton();
+      }
+
+      this.rendererOfPaginationBlock.remake();
+      var distance = window.pageYOffset;
+      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
+    }
+  }, {
+    key: "_makeVisibleViewMoreButton",
+    value: function _makeVisibleViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (viewMoreButton && viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.remove("display-none");
+      }
+    }
+  }, {
+    key: "_makeInvisibleViewMoreButton",
+    value: function _makeInvisibleViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.add("display-none");
+      }
+    }
+  }, {
+    key: "_getRequestPermission",
+    value: function _getRequestPermission() {
+      var _this3 = this;
+
+      // защита от частых отправок на 10 сек (от двойного нажатия)
+      if (this.disabledRequest) {
+        return false;
+      }
+
+      this.disabledRequest = true;
+      setTimeout(function () {
+        _this3.disabledRequest = false;
+      }, 10000);
+      return true;
+    }
+  }]);
+
+  return RendererByPaginationButton;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/listRenderers/rendererBySearchSettings.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js2/productList/listRenderers/rendererBySearchSettings.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererBySearchSettings; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
+
+
+
+var RendererBySearchSettings = /*#__PURE__*/function () {
+  function RendererBySearchSettings(data) {
+    _classCallCheck(this, RendererBySearchSettings);
+
+    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+    this.searchSettingsStore = data.searchSettingsStore;
+    this.publicUrlMaker = data.publicUrlMaker; //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
+
+    this.menuLinkCssMaker = data.menuLinkCssMaker;
+    this.productItemSelector = '[data-product-item]';
+    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
+    this.timeWhenSearchSettingsWereLastChanged = 0;
+    this.timeWhenLastRequestWasSent = 0;
+    this.timerId = 0;
+    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_7__["default"]();
+    this.locked = false;
+  } // блокировать на время установки searchSettings
+  // при загрузке страницы с параметрами поиска в url
+
+
+  _createClass(RendererBySearchSettings, [{
+    key: "lock",
+    value: function lock() {
+      this.locked = true;
+    }
+  }, {
+    key: "unlock",
+    value: function unlock() {
+      this.locked = false;
+    }
+  }, {
+    key: "checkSearchSettings",
+    value: function checkSearchSettings() {
+      if (this.locked) {
+        return;
+      }
+
+      var settings = this.searchSettingsStore.getSettings();
+
+      if (settings.productSectionName.length > 0) {
+        return;
+      }
+
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
+        this._render();
+      } else {
+        this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
+
+        this._renderWithDelay();
+      }
+    }
+  }, {
+    key: "_renderWithDelay",
+    value: function _renderWithDelay() {
+      var _this = this;
+
+      var currentTime = new Date().getTime();
+      var settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
+      var requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
+
+      if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
+        clearTimeout(this.timerId);
+        this.timerId = setTimeout(function () {
+          _this._renderWithDelay();
+        }, 1000);
+        return;
+      }
+
+      this._showLoadingMessage();
+
+      this.timeWhenLastRequestWasSent = new Date().getTime(); //setTimeout(() => {this._render();}, 2000);
+
+      this._render();
+    }
+  }, {
+    key: "_showLoadingMessage",
+    value: function _showLoadingMessage() {
+      this.messenger.render({
+        text: 'Загрузка...',
+        duration: 9500
+      });
+    }
+  }, {
+    key: "_render",
+    value: function _render() {
+      var _this2 = this;
+
+      this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
+        var filteredProducts = _ref.filteredProducts,
+            sectionProductsCount = _ref.sectionProductsCount;
+
+        _this2.messenger.hideMessage();
+
+        var itemsHtmlArr = filteredProducts.map(function (product) {
+          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
+        });
+        var itemsHtml = "<div id=\"productListContent\">".concat(itemsHtmlArr.join(''), "</div>");
+
+        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        }
+
+        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+
+        _this2.messenger.render({
+          text: "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount),
+          duration: 2500
+        });
+
+        _this2._setSectionProductsCount(sectionProductsCount);
+
+        _this2._finalActions();
+      });
+    }
+  }, {
+    key: "_setSectionProductsCount",
+    value: function _setSectionProductsCount(sectionProductsCount) {
+      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+      var settings = this.searchSettingsStore.getSettings();
+      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
+      this.wrapper.dataset.sectionPageCount = sectionPageCount;
+      this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+  }, {
+    key: "_finalActions",
+    value: function _finalActions() {
+      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
+      this.publicUrlMaker.publishUrl();
+
+      this._renderHeader();
+
+      this._switchVisibilityOfViewMoreButton();
+
+      this._makeInvisiblePaginationBlock(); //this.rendererOfPaginationBlock.remake();
+
+
+      this.menuLinkCssMaker.resetMenuLinksCss();
+      var distance = window.pageYOffset;
+      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
+    }
+  }, {
+    key: "_renderHeader",
+    value: function _renderHeader() {
+      this.header.innerText = 'Поиск товаров';
+    }
+  }, {
+    key: "_switchVisibilityOfViewMoreButton",
+    value: function _switchVisibilityOfViewMoreButton() {
+      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
+      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+
+      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        this._turnOffViewMoreButton();
+      } else {
+        this._turnOnViewMoreButton();
+      }
+    }
+  }, {
+    key: "_turnOnViewMoreButton",
+    value: function _turnOnViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.remove("display-none");
+      }
+    }
+  }, {
+    key: "_turnOffViewMoreButton",
+    value: function _turnOffViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (!viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.add("display-none");
+      }
+    }
+  }, {
+    key: "_makeInvisiblePaginationBlock",
+    value: function _makeInvisiblePaginationBlock() {
+      var paginationBlock = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
+
+      if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
+        paginationBlock.classList.add("display-none");
+      }
+    }
+  }]);
+
+  return RendererBySearchSettings;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/listRenderers/rendererByViewMoreButton.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js2/productList/listRenderers/rendererByViewMoreButton.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByViewMoreButton; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
+
+
+var RendererByViewMoreButton = /*#__PURE__*/function () {
+  function RendererByViewMoreButton(data) {
+    var _this = this;
+
+    _classCallCheck(this, RendererByViewMoreButton);
+
+    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+    this.searchSettingsStore = data.searchSettingsStore;
+    this.publicUrlMaker = data.publicUrlMaker;
+    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    this.productItemSelector = '[data-product-item]';
+    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); //this.container = el('#productListContent'); // не делать указатель
+
+    this.disabledRequest = false;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+      if (e.target.id === 'viewMoreButton') {
+        _this._setSearchSettings();
+
+        _this._showLoadingMessage();
+
+        _this._render();
+      }
+    });
+  }
+
+  _createClass(RendererByViewMoreButton, [{
+    key: "_setSearchSettings",
+    value: function _setSearchSettings() {
+      this.searchSettingsStore.setProductSectionData({
+        productSectionName: this.wrapper.dataset.productSectionName,
+        additionalData: this.wrapper.dataset.additionalDataOfProductSection
+      });
+      var offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
+      this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
+    }
+  }, {
+    key: "_showLoadingMessage",
+    value: function _showLoadingMessage() {
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
+        return;
+      }
+
+      this.messenger.render({
+        text: 'Загрузка...',
+        duration: 9500
+      });
+    }
+  }, {
+    key: "_render",
+    value: function _render() {
+      var _this2 = this;
+
+      if (!this._getRequestPermission()) {
+        return;
+      }
+
+      this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
+        var filteredProducts = _ref.filteredProducts,
+            sectionProductsCount = _ref.sectionProductsCount;
+        _this2.disabledRequest = false;
+
+        _this2.messenger.hideMessage();
+
+        var itemsHtmlArr = filteredProducts.map(function (product) {
+          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
+        });
+        var itemsHtml = itemsHtmlArr.join(''); //const itemsHtml = `<div class="product_list__content show_block">${ itemsHtmlArr.join('') }</div>`;
+        // получать элемент только без ранее созданного указателя
+
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
+
+        _this2._setSectionProductsCount(sectionProductsCount);
+
+        _this2._finalActions();
+      });
+    }
+  }, {
+    key: "_setSectionProductsCount",
+    value: function _setSectionProductsCount(sectionProductsCount) {
+      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+
+      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
+
+      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
+      this.wrapper.dataset.sectionPageCount = sectionPageCount;
+      this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+  }, {
+    key: "_finalActions",
+    value: function _finalActions() {
+      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"](); // this.publicUrlMaker.publishUrl(); // не применять
+
+      this._makeInvisiblePaginationBlock();
+
+      this._switchVisibilityOfViewMoreButton();
+
+      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(200, 'down');
+    }
+  }, {
+    key: "_switchVisibilityOfViewMoreButton",
+    value: function _switchVisibilityOfViewMoreButton() {
+      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
+      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+
+      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        this._turnOffViewMoreButton();
+      } else {
+        this._turnOnViewMoreButton();
+      }
+    }
+  }, {
+    key: "_turnOnViewMoreButton",
+    value: function _turnOnViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.remove("display-none");
+      }
+    }
+  }, {
+    key: "_turnOffViewMoreButton",
+    value: function _turnOffViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (!viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.add("display-none");
+      }
+    }
+  }, {
+    key: "_makeInvisiblePaginationBlock",
+    value: function _makeInvisiblePaginationBlock() {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent')) {
+        return;
+      }
+
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').classList.contains("display-none")) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').classList.add("display-none");
+      }
+    }
+  }, {
+    key: "_getRequestPermission",
+    value: function _getRequestPermission() {
+      var _this3 = this;
+
+      // защита от частых отправок на 15 сек (от двойного нажатия)
+      if (this.disabledRequest) {
+        return false;
+      }
+
+      this.disabledRequest = true;
+      setTimeout(function () {
+        _this3.disabledRequest = false;
+      }, 15000);
+      return true;
+    }
+  }]);
+
+  return RendererByViewMoreButton;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/listRenderers/rendererOfViewedProductsByLink.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/js2/productList/listRenderers/rendererOfViewedProductsByLink.js ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererOfViewedProductsByLink; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
+
+
+var RendererOfViewedProductsByLink = /*#__PURE__*/function () {
+  function RendererOfViewedProductsByLink(data) {
+    var _this = this;
+
+    _classCallCheck(this, RendererOfViewedProductsByLink);
+
+    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+    this.searchSettingsStore = data.searchSettingsStore;
+    this.publicUrlMaker = data.publicUrlMaker;
+    this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
+    this.menuLinkCssMaker = data.menuLinkCssMaker;
+    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    this.productItemSelector = '[data-product-item]';
+    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
+    this.disabledRequest = false;
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+      if (e.target.dataset.viewedProductsLink) {
+        e.preventDefault();
+
+        _this._setDataAttributes();
+
+        _this._setSearchSettings();
+
+        _this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+
+        _this._showLoadingMessage();
+
+        _this._render();
+      }
+    });
+  }
+
+  _createClass(RendererOfViewedProductsByLink, [{
+    key: "_setDataAttributes",
+    value: function _setDataAttributes() {
+      this.wrapper.dataset.productSectionName = 'viewedProducts';
+    }
+  }, {
+    key: "_setSearchSettings",
+    value: function _setSearchSettings(e) {
+      this.searchSettingsStore.setProductSectionData({
+        productSectionName: this.wrapper.dataset.productSectionName,
+        additionalData: ''
+      });
+      this.searchSettingsStore.setPageNumber(1);
+      this.searchSettingsStore.setStartOffset(0);
+    }
+  }, {
+    key: "_showLoadingMessage",
+    value: function _showLoadingMessage() {
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
+        return;
+      }
+
+      this.messenger.render({
+        text: 'Загрузка...',
+        duration: 9500
+      });
+    }
+  }, {
+    key: "_render",
+    value: function _render() {
+      var _this2 = this;
+
+      if (!this._getRequestPermission()) {
+        return;
+      }
+
+      this.sourceOfFilteredProducts.getViewedProductsFromServer().then(function (_ref) {
+        var filteredProducts = _ref.filteredProducts,
+            sectionProductsCount = _ref.sectionProductsCount,
+            allViewedIdsStr = _ref.allViewedIdsStr;
+        _this2.disabledRequest = false;
+
+        _this2.messenger.hideMessage();
+
+        var itemsHtmlArr = filteredProducts.map(function (product) {
+          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
+          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
+        });
+        var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
+
+        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        }
+
+        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+
+        _this2._setSectionProductsCount(sectionProductsCount);
+
+        _this2._setAllViewedIds(allViewedIdsStr);
+
+        _this2._finalActions();
+      });
+    }
+  }, {
+    key: "_setSectionProductsCount",
+    value: function _setSectionProductsCount(sectionProductsCount) {
+      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+
+      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
+
+      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
+      this.wrapper.dataset.sectionPageCount = sectionPageCount;
+      this.searchSettingsStore.setPageCount(sectionPageCount);
+    }
+  }, {
+    key: "_setAllViewedIds",
+    value: function _setAllViewedIds(allViewedIdsStr) {
+      this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
+      this.searchSettingsStore.setProductSectionData({
+        productSectionName: this.wrapper.dataset.productSectionName,
+        additionalData: allViewedIdsStr
+      });
+    }
+  }, {
+    key: "_finalActions",
+    value: function _finalActions() {
+      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
+      this.publicUrlMaker.publishUrl();
+
+      this._renderHeader();
+
+      this._switchVisibilityOfViewMoreButton();
+
+      this.rendererOfPaginationBlock.remake();
+      this.menuLinkCssMaker.resetMenuLinksCss();
+      var distance = window.pageYOffset;
+      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
+    }
+  }, {
+    key: "_renderHeader",
+    value: function _renderHeader() {
+      this.header.innerText = 'Вы смотрели';
+    }
+  }, {
+    key: "_switchVisibilityOfViewMoreButton",
+    value: function _switchVisibilityOfViewMoreButton() {
+      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
+      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+
+      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        this._turnOffViewMoreButton();
+      } else {
+        this._turnOnViewMoreButton();
+      }
+    }
+  }, {
+    key: "_turnOnViewMoreButton",
+    value: function _turnOnViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.remove("display-none");
+      }
+    }
+  }, {
+    key: "_turnOffViewMoreButton",
+    value: function _turnOffViewMoreButton() {
+      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+
+      if (!viewMoreButton.classList.contains("display-none")) {
+        viewMoreButton.classList.add("display-none");
+      }
+    }
+  }, {
+    key: "_getRequestPermission",
+    value: function _getRequestPermission() {
+      var _this3 = this;
+
+      // защита от частых отправок на 10 сек (от двойного нажатия)
+      if (this.disabledRequest) {
+        return false;
+      }
+
+      this.disabledRequest = true;
+      setTimeout(function () {
+        _this3.disabledRequest = false;
+      }, 10000);
+      return true;
+    }
+  }]);
+
+  return RendererOfViewedProductsByLink;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/paginationRenderer/paginationBlockRenderer.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js2/productList/paginationRenderer/paginationBlockRenderer.js ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PaginationBlockRenderer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -3670,1108 +4680,144 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/productList/rendererByMenuLink.js":
-/*!*********************************************************!*\
-  !*** ./resources/js2/productList/rendererByMenuLink.js ***!
-  \*********************************************************/
+/***/ "./resources/js2/productList/productListKit.js":
+/*!*****************************************************!*\
+  !*** ./resources/js2/productList/productListKit.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByMenuLink; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
-/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
-/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return productListKit; });
+/* harmony import */ var _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../categorySource/categoryCache */ "./resources/js2/categorySource/categoryCache.js");
+/* harmony import */ var _searchSettings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../searchSettings/searchSettingsStore */ "./resources/js2/searchSettings/searchSettingsStore.js");
+/* harmony import */ var _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../urlMaker/searchUrlMaker */ "./resources/js2/urlMaker/searchUrlMaker.js");
+/* harmony import */ var _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../urlMaker/publicUrlMaker */ "./resources/js2/urlMaker/publicUrlMaker.js");
+/* harmony import */ var _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../productSource/FilterOfCachedProducts */ "./resources/js2/productSource/FilterOfCachedProducts.js");
+/* harmony import */ var _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../productSource/SourceOfFilteredProducts */ "./resources/js2/productSource/SourceOfFilteredProducts.js");
+/* harmony import */ var _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./listRenderers/rendererByViewMoreButton */ "./resources/js2/productList/listRenderers/rendererByViewMoreButton.js");
+/* harmony import */ var _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./paginationRenderer/paginationBlockRenderer */ "./resources/js2/productList/paginationRenderer/paginationBlockRenderer.js");
+/* harmony import */ var _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./listRenderers/rendererByPaginationButton */ "./resources/js2/productList/listRenderers/rendererByPaginationButton.js");
+/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
+/* harmony import */ var _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./listRenderers/rendererByMenuLink */ "./resources/js2/productList/listRenderers/rendererByMenuLink.js");
+/* harmony import */ var _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./listRenderers/rendererOfViewedProductsByLink */ "./resources/js2/productList/listRenderers/rendererOfViewedProductsByLink.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
+/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
+/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
+/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
+/* harmony import */ var _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./listRenderers/rendererBySearchSettings */ "./resources/js2/productList/listRenderers/rendererBySearchSettings.js");
+/* harmony import */ var _searchSettings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../searchSettings/setSearchSettingsOnPageLoad */ "./resources/js2/searchSettings/setSearchSettingsOnPageLoad.js");
 
 
 
 
 
 
-var RendererByMenuLink = /*#__PURE__*/function () {
-  function RendererByMenuLink(data) {
-    var _this = this;
 
-    _classCallCheck(this, RendererByMenuLink);
 
-    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    this.searchSettingsStore = data.searchSettingsStore;
-    this.publicUrlMaker = data.publicUrlMaker;
-    this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-    this.menuLinkCssMaker = data.menuLinkCssMaker;
-    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]();
-    this.productItemSelector = '[data-product-item]';
-    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
-    this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
-    this.disabledRequest = false;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
-      if (e.target.dataset.menuLinkSectionName) {
-        e.preventDefault();
 
-        _this._setDataAttributes(e);
 
-        _this._setSearchSettings(e);
 
-        _this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
 
-        _this._showLoadingMessage();
 
-        _this._render();
-      }
+
+
+
+
+
+
+function productListKit(_ref) {
+  var productCache = _ref.productCache;
+  var categoryCache = new _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_0__["default"](); // оставить здесь
+
+  var searchSettingsStore = new _searchSettings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  var searchUrlMaker = new _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_2__["default"](searchSettingsStore);
+  var publicUrlMaker = new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_3__["default"](searchSettingsStore);
+  var filterOfCachedProducts = new _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_4__["default"](searchSettingsStore);
+  var sourceOfFilteredProducts = new _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_5__["default"]({
+    productCache: productCache,
+    searchUrlMaker: searchUrlMaker,
+    filterOfCachedProducts: filterOfCachedProducts,
+    searchSettingsStore: searchSettingsStore
+  });
+  new _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_6__["default"]({
+    searchSettingsStore: searchSettingsStore,
+    publicUrlMaker: publicUrlMaker,
+    sourceOfFilteredProducts: sourceOfFilteredProducts
+  });
+  var rendererOfPaginationBlock = new _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_7__["default"]({
+    searchSettingsStore: searchSettingsStore,
+    publicUrlMaker: publicUrlMaker
+  });
+  new _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_8__["default"]({
+    searchSettingsStore: searchSettingsStore,
+    publicUrlMaker: publicUrlMaker,
+    sourceOfFilteredProducts: sourceOfFilteredProducts,
+    rendererOfPaginationBlock: rendererOfPaginationBlock
+  });
+  var menuLinkCssMaker = new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_9__["default"]({
+    searchSettingsStore: searchSettingsStore
+  });
+  new _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_10__["default"]({
+    sourceOfFilteredProducts: sourceOfFilteredProducts,
+    searchSettingsStore: searchSettingsStore,
+    publicUrlMaker: publicUrlMaker,
+    rendererOfPaginationBlock: rendererOfPaginationBlock,
+    menuLinkCssMaker: menuLinkCssMaker
+  });
+  new _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_11__["default"]({
+    sourceOfFilteredProducts: sourceOfFilteredProducts,
+    searchSettingsStore: searchSettingsStore,
+    publicUrlMaker: publicUrlMaker,
+    rendererOfPaginationBlock: rendererOfPaginationBlock,
+    menuLinkCssMaker: menuLinkCssMaker
+  });
+
+  if (!Object(_el__WEBPACK_IMPORTED_MODULE_12__["default"])('.filter_icon__wrapper')) {
+    return;
+  } // ----------------------------<при наличии .filter_icon__wrapper>--------------------------
+
+
+  var searchSettingsObserverForFilterRenderer = new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_13__["default"]({
+    searchSettingsStore: searchSettingsStore,
+    categoryCache: categoryCache
+  });
+  searchSettingsStore.addObserver(searchSettingsObserverForFilterRenderer);
+  new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_14__["default"]({
+    productCache: productCache,
+    categoryCache: categoryCache,
+    searchSettingsStore: searchSettingsStore,
+    searchSettingsObserver: searchSettingsObserverForFilterRenderer
+  });
+  var totalIndicatorOfFilterParameters = new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_15__["default"]({
+    searchSettingsStore: searchSettingsStore
+  });
+  searchSettingsStore.addObserver(totalIndicatorOfFilterParameters);
+  var topTotalSearchParametersRenderer = new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_16__["default"]({
+    searchSettingsStore: searchSettingsStore,
+    categoryCache: categoryCache
+  });
+  searchSettingsStore.addObserver(topTotalSearchParametersRenderer);
+  var rendererBySearchSettings = new _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_17__["default"]({
+    sourceOfFilteredProducts: sourceOfFilteredProducts,
+    searchSettingsStore: searchSettingsStore,
+    publicUrlMaker: publicUrlMaker,
+    //rendererOfPaginationBlock,
+    menuLinkCssMaker: menuLinkCssMaker
+  });
+  searchSettingsStore.addObserver(rendererBySearchSettings); // при загрузке страницы с сервера с поисковыми параметрами в url
+
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_12__["default"])('#productList').dataset.productSectionName === 'serverProductSearch') {
+    Object(_searchSettings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_18__["default"])({
+      categoryCache: categoryCache,
+      searchSettingsStore: searchSettingsStore,
+      rendererBySearchSettings: rendererBySearchSettings
     });
-  }
+  } // ---------------------------</при наличии .filter_icon__wrapper>--------------------------
 
-  _createClass(RendererByMenuLink, [{
-    key: "_setDataAttributes",
-    value: function _setDataAttributes(e) {
-      var sectionName = e.target.dataset.menuLinkSectionName;
-      this.wrapper.dataset.productSectionName = sectionName;
-
-      if (sectionName === 'all') {
-        var h1Text = e.target.dataset.menuLinkTitleText;
-        this.wrapper.dataset.additionalDataOfProductSection = ";;".concat(h1Text);
-        return;
-      }
-
-      if (sectionName === 'favoriteProducts') {
-        var _h1Text = e.target.dataset.menuLinkTitleText;
-        this.wrapper.dataset.additionalDataOfProductSection = ";;".concat(_h1Text);
-        return;
-      }
-
-      if (sectionName === 'productCategory') {
-        var categoryId = e.target.dataset.menuLinkCategoryId;
-        var categorySlug = e.target.dataset.menuLinkCategorySlug;
-        var categoryName = e.target.dataset.menuLinkCategoryName;
-        this.wrapper.dataset.additionalDataOfProductSection = "".concat(categoryId, ";").concat(categorySlug, ";").concat(categoryName);
-        return;
-      }
-    }
-  }, {
-    key: "_setSearchSettings",
-    value: function _setSearchSettings(e) {
-      this.searchSettingsStore.setProductSectionData({
-        productSectionName: this.wrapper.dataset.productSectionName,
-        additionalData: this.wrapper.dataset.additionalDataOfProductSection
-      });
-      this.searchSettingsStore.setPageNumber(1);
-      this.searchSettingsStore.setStartOffset(0);
-    }
-  }, {
-    key: "_showLoadingMessage",
-    value: function _showLoadingMessage() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
-        return;
-      }
-
-      this.messenger.render({
-        text: 'Загрузка...',
-        duration: 9500
-      });
-    }
-  }, {
-    key: "_render",
-    value: function _render() {
-      var _this2 = this;
-
-      if (!this._getRequestPermission()) {
-        return;
-      }
-
-      this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
-        var filteredProducts = _ref.filteredProducts,
-            sectionProductsCount = _ref.sectionProductsCount;
-        _this2.disabledRequest = false;
-
-        _this2.messenger.hideMessage();
-
-        var itemsHtmlArr = filteredProducts.map(function (product) {
-          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
-          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
-        });
-        var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
-
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
-        }
-
-        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-
-        _this2._setSectionProductsCount(sectionProductsCount);
-
-        _this2._finalActions();
-      });
-    }
-  }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-
-      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
-
-      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
-      this.searchSettingsStore.setPageCount(sectionPageCount);
-    }
-  }, {
-    key: "_finalActions",
-    value: function _finalActions() {
-      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
-      this.publicUrlMaker.publishUrl();
-
-      this._renderHeader();
-
-      this._switchVisibilityOfViewMoreButton(); // this._makeInvisiblePaginationBlock();
-
-
-      this.rendererOfPaginationBlock.remake();
-      this.menuLinkCssMaker.resetMenuLinksCss();
-      this.menuLinkCssMaker.markActiveMenuLink();
-      var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
-    }
-  }, {
-    key: "_renderHeader",
-    value: function _renderHeader() {
-      var headerText = this.wrapper.dataset.additionalDataOfProductSection.split(';')[2];
-      this.header.innerText = headerText;
-    }
-  }, {
-    key: "_switchVisibilityOfViewMoreButton",
-    value: function _switchVisibilityOfViewMoreButton() {
-      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-
-      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
-        this._turnOffViewMoreButton();
-      } else {
-        this._turnOnViewMoreButton();
-      }
-    }
-  }, {
-    key: "_turnOnViewMoreButton",
-    value: function _turnOnViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.remove("display-none");
-      }
-    }
-  }, {
-    key: "_turnOffViewMoreButton",
-    value: function _turnOffViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (!viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.add("display-none");
-      }
-    }
-    /*
-    _makeInvisiblePaginationBlock() {
-        const paginationBlock = el('#paginationContent');
-        if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
-            paginationBlock.classList.add("display-none");
-        }
-    }
-    */
-
-  }, {
-    key: "_getRequestPermission",
-    value: function _getRequestPermission() {
-      var _this3 = this;
-
-      // защита от частых отправок на 10 сек (от двойного нажатия)
-      if (this.disabledRequest) {
-        return false;
-      }
-
-      this.disabledRequest = true;
-      setTimeout(function () {
-        _this3.disabledRequest = false;
-      }, 10000);
-      return true;
-    }
-  }]);
-
-  return RendererByMenuLink;
-}();
-
-
-
-/***/ }),
-
-/***/ "./resources/js2/productList/rendererByPaginationButton.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js2/productList/rendererByPaginationButton.js ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByPaginationButton; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
-/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-
-
-
-var RendererByPaginationButton = /*#__PURE__*/function () {
-  function RendererByPaginationButton(data) {
-    var _this = this;
-
-    _classCallCheck(this, RendererByPaginationButton);
-
-    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    this.searchSettingsStore = data.searchSettingsStore;
-    this.publicUrlMaker = data.publicUrlMaker;
-    this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
-    this.productItemSelector = '[data-product-item]';
-    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
-    this.disabledRequest = false;
-    this.currentPageNumber = 0;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
-      if (e.target.dataset.paginatorPageNumber) {
-        e.preventDefault();
-
-        _this._setSearchSettings(e);
-
-        _this._showLoadingMessage();
-
-        _this._render();
-      }
-    });
-  }
-
-  _createClass(RendererByPaginationButton, [{
-    key: "_setSearchSettings",
-    value: function _setSearchSettings(e) {
-      this.searchSettingsStore.setProductSectionData({
-        productSectionName: this.wrapper.dataset.productSectionName,
-        additionalData: this.wrapper.dataset.additionalDataOfProductSection
-      });
-
-      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
-
-      var pageNumber = Number(e.target.dataset.paginatorPageNumber);
-      this.searchSettingsStore.setPageNumber(pageNumber);
-      this.currentPageNumber = pageNumber;
-      var offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
-      this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
-      var pageCount = Number(this.wrapper.dataset.sectionPageCount);
-      this.searchSettingsStore.setPageCount(pageCount);
-    }
-  }, {
-    key: "_showLoadingMessage",
-    value: function _showLoadingMessage() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
-        return;
-      }
-
-      this.messenger.render({
-        text: 'Загрузка...',
-        duration: 9500
-      });
-    }
-  }, {
-    key: "_render",
-    value: function _render() {
-      var _this2 = this;
-
-      if (!this._getRequestPermission()) {
-        return;
-      }
-
-      this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
-        var filteredProducts = _ref.filteredProducts,
-            sectionProductsCount = _ref.sectionProductsCount;
-        _this2.disabledRequest = false;
-
-        _this2.messenger.hideMessage();
-
-        var itemsHtmlArr = filteredProducts.map(function (product) {
-          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
-          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
-        });
-        var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
-
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
-        }
-
-        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-
-        _this2._setSectionProductsCount(sectionProductsCount);
-
-        _this2._finalActions();
-      });
-    }
-  }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-
-      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
-
-      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
-      this.searchSettingsStore.setPageCount(sectionPageCount);
-    }
-  }, {
-    key: "_finalActions",
-    value: function _finalActions() {
-      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
-      this.publicUrlMaker.publishUrl();
-
-      if (this.currentPageNumber === 1) {
-        this._makeVisibleViewMoreButton();
-      } else {
-        this._makeInvisibleViewMoreButton();
-      }
-
-      this.rendererOfPaginationBlock.remake();
-      var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
-    }
-  }, {
-    key: "_makeVisibleViewMoreButton",
-    value: function _makeVisibleViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (viewMoreButton && viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.remove("display-none");
-      }
-    }
-  }, {
-    key: "_makeInvisibleViewMoreButton",
-    value: function _makeInvisibleViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.add("display-none");
-      }
-    }
-  }, {
-    key: "_getRequestPermission",
-    value: function _getRequestPermission() {
-      var _this3 = this;
-
-      // защита от частых отправок на 10 сек (от двойного нажатия)
-      if (this.disabledRequest) {
-        return false;
-      }
-
-      this.disabledRequest = true;
-      setTimeout(function () {
-        _this3.disabledRequest = false;
-      }, 10000);
-      return true;
-    }
-  }]);
-
-  return RendererByPaginationButton;
-}();
-
-
-
-/***/ }),
-
-/***/ "./resources/js2/productList/rendererBySearchSettings.js":
-/*!***************************************************************!*\
-  !*** ./resources/js2/productList/rendererBySearchSettings.js ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererBySearchSettings; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
-/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
-/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
-/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-
-
-
-
-var RendererBySearchSettings = /*#__PURE__*/function () {
-  function RendererBySearchSettings(data) {
-    _classCallCheck(this, RendererBySearchSettings);
-
-    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    this.searchSettingsStore = data.searchSettingsStore;
-    this.publicUrlMaker = data.publicUrlMaker; //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-
-    this.menuLinkCssMaker = data.menuLinkCssMaker;
-    this.productItemSelector = '[data-product-item]';
-    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
-    this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
-    this.timeWhenSearchSettingsWereLastChanged = 0;
-    this.timeWhenLastRequestWasSent = 0;
-    this.timerId = 0;
-    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_7__["default"]();
-    this.locked = false;
-  } // блокировать на время установки searchSettings
-  // при загрузке страницы с параметрами поиска в url
-
-
-  _createClass(RendererBySearchSettings, [{
-    key: "lock",
-    value: function lock() {
-      this.locked = true;
-    }
-  }, {
-    key: "unlock",
-    value: function unlock() {
-      this.locked = false;
-    }
-  }, {
-    key: "checkSearchSettings",
-    value: function checkSearchSettings() {
-      if (this.locked) {
-        return;
-      }
-
-      var settings = this.searchSettingsStore.getSettings();
-
-      if (settings.productSectionName.length > 0) {
-        return;
-      }
-
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
-        this._render();
-      } else {
-        this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
-
-        this._renderWithDelay();
-      }
-    }
-  }, {
-    key: "_renderWithDelay",
-    value: function _renderWithDelay() {
-      var _this = this;
-
-      var currentTime = new Date().getTime();
-      var settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
-      var requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
-
-      if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
-        clearTimeout(this.timerId);
-        this.timerId = setTimeout(function () {
-          _this._renderWithDelay();
-        }, 1000);
-        return;
-      }
-
-      this._showLoadingMessage();
-
-      this.timeWhenLastRequestWasSent = new Date().getTime(); //setTimeout(() => {this._render();}, 2000);
-
-      this._render();
-    }
-  }, {
-    key: "_showLoadingMessage",
-    value: function _showLoadingMessage() {
-      this.messenger.render({
-        text: 'Загрузка...',
-        duration: 9500
-      });
-    }
-  }, {
-    key: "_render",
-    value: function _render() {
-      var _this2 = this;
-
-      this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
-        var filteredProducts = _ref.filteredProducts,
-            sectionProductsCount = _ref.sectionProductsCount;
-
-        _this2.messenger.hideMessage();
-
-        var itemsHtmlArr = filteredProducts.map(function (product) {
-          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
-          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
-        });
-        var itemsHtml = "<div id=\"productListContent\">".concat(itemsHtmlArr.join(''), "</div>");
-
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
-        }
-
-        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-
-        _this2.messenger.render({
-          text: "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount),
-          duration: 2500
-        });
-
-        _this2._setSectionProductsCount(sectionProductsCount);
-
-        _this2._finalActions();
-      });
-    }
-  }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-      var settings = this.searchSettingsStore.getSettings();
-      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
-      this.searchSettingsStore.setPageCount(sectionPageCount);
-    }
-  }, {
-    key: "_finalActions",
-    value: function _finalActions() {
-      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
-      this.publicUrlMaker.publishUrl();
-
-      this._renderHeader();
-
-      this._switchVisibilityOfViewMoreButton();
-
-      this._makeInvisiblePaginationBlock(); //this.rendererOfPaginationBlock.remake();
-
-
-      this.menuLinkCssMaker.resetMenuLinksCss();
-      var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
-    }
-  }, {
-    key: "_renderHeader",
-    value: function _renderHeader() {
-      this.header.innerText = 'Поиск товаров';
-    }
-  }, {
-    key: "_switchVisibilityOfViewMoreButton",
-    value: function _switchVisibilityOfViewMoreButton() {
-      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-
-      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
-        this._turnOffViewMoreButton();
-      } else {
-        this._turnOnViewMoreButton();
-      }
-    }
-  }, {
-    key: "_turnOnViewMoreButton",
-    value: function _turnOnViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.remove("display-none");
-      }
-    }
-  }, {
-    key: "_turnOffViewMoreButton",
-    value: function _turnOffViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (!viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.add("display-none");
-      }
-    }
-  }, {
-    key: "_makeInvisiblePaginationBlock",
-    value: function _makeInvisiblePaginationBlock() {
-      var paginationBlock = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
-
-      if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
-        paginationBlock.classList.add("display-none");
-      }
-    }
-  }]);
-
-  return RendererBySearchSettings;
-}();
-
-
-
-/***/ }),
-
-/***/ "./resources/js2/productList/rendererByViewMoreButton.js":
-/*!***************************************************************!*\
-  !*** ./resources/js2/productList/rendererByViewMoreButton.js ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByViewMoreButton; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
-/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-
-
-
-var RendererByViewMoreButton = /*#__PURE__*/function () {
-  function RendererByViewMoreButton(data) {
-    var _this = this;
-
-    _classCallCheck(this, RendererByViewMoreButton);
-
-    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    this.searchSettingsStore = data.searchSettingsStore;
-    this.publicUrlMaker = data.publicUrlMaker;
-    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
-    this.productItemSelector = '[data-product-item]';
-    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); //this.container = el('#productListContent'); // не делать указатель
-
-    this.disabledRequest = false;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
-      if (e.target.id === 'viewMoreButton') {
-        _this._setSearchSettings();
-
-        _this._showLoadingMessage();
-
-        _this._render();
-      }
-    });
-  }
-
-  _createClass(RendererByViewMoreButton, [{
-    key: "_setSearchSettings",
-    value: function _setSearchSettings() {
-      this.searchSettingsStore.setProductSectionData({
-        productSectionName: this.wrapper.dataset.productSectionName,
-        additionalData: this.wrapper.dataset.additionalDataOfProductSection
-      });
-      var offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
-      this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
-    }
-  }, {
-    key: "_showLoadingMessage",
-    value: function _showLoadingMessage() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
-        return;
-      }
-
-      this.messenger.render({
-        text: 'Загрузка...',
-        duration: 9500
-      });
-    }
-  }, {
-    key: "_render",
-    value: function _render() {
-      var _this2 = this;
-
-      if (!this._getRequestPermission()) {
-        return;
-      }
-
-      this.sourceOfFilteredProducts.getFiltered().then(function (_ref) {
-        var filteredProducts = _ref.filteredProducts,
-            sectionProductsCount = _ref.sectionProductsCount;
-        _this2.disabledRequest = false;
-
-        _this2.messenger.hideMessage();
-
-        var itemsHtmlArr = filteredProducts.map(function (product) {
-          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
-          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
-        });
-        var itemsHtml = itemsHtmlArr.join(''); //const itemsHtml = `<div class="product_list__content show_block">${ itemsHtmlArr.join('') }</div>`;
-        // получать элемент только без ранее созданного указателя
-
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
-
-        _this2._setSectionProductsCount(sectionProductsCount);
-
-        _this2._finalActions();
-      });
-    }
-  }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-
-      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
-
-      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
-      this.searchSettingsStore.setPageCount(sectionPageCount);
-    }
-  }, {
-    key: "_finalActions",
-    value: function _finalActions() {
-      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"](); // this.publicUrlMaker.publishUrl(); // не применять
-
-      this._makeInvisiblePaginationBlock();
-
-      this._switchVisibilityOfViewMoreButton();
-
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(200, 'down');
-    }
-  }, {
-    key: "_switchVisibilityOfViewMoreButton",
-    value: function _switchVisibilityOfViewMoreButton() {
-      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-
-      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
-        this._turnOffViewMoreButton();
-      } else {
-        this._turnOnViewMoreButton();
-      }
-    }
-  }, {
-    key: "_turnOnViewMoreButton",
-    value: function _turnOnViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.remove("display-none");
-      }
-    }
-  }, {
-    key: "_turnOffViewMoreButton",
-    value: function _turnOffViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (!viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.add("display-none");
-      }
-    }
-  }, {
-    key: "_makeInvisiblePaginationBlock",
-    value: function _makeInvisiblePaginationBlock() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent')) {
-        return;
-      }
-
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').classList.contains("display-none")) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').classList.add("display-none");
-      }
-    }
-  }, {
-    key: "_getRequestPermission",
-    value: function _getRequestPermission() {
-      var _this3 = this;
-
-      // защита от частых отправок на 15 сек (от двойного нажатия)
-      if (this.disabledRequest) {
-        return false;
-      }
-
-      this.disabledRequest = true;
-      setTimeout(function () {
-        _this3.disabledRequest = false;
-      }, 15000);
-      return true;
-    }
-  }]);
-
-  return RendererByViewMoreButton;
-}();
-
-
-
-/***/ }),
-
-/***/ "./resources/js2/productList/rendererOfViewedProductsByLink.js":
-/*!*********************************************************************!*\
-  !*** ./resources/js2/productList/rendererOfViewedProductsByLink.js ***!
-  \*********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererOfViewedProductsByLink; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
-/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-
-
-
-
-var RendererOfViewedProductsByLink = /*#__PURE__*/function () {
-  function RendererOfViewedProductsByLink(data) {
-    var _this = this;
-
-    _classCallCheck(this, RendererOfViewedProductsByLink);
-
-    this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    this.searchSettingsStore = data.searchSettingsStore;
-    this.publicUrlMaker = data.publicUrlMaker;
-    this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-    this.menuLinkCssMaker = data.menuLinkCssMaker;
-    this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
-    this.productItemSelector = '[data-product-item]';
-    this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
-    this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
-    this.disabledRequest = false;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
-      if (e.target.dataset.viewedProductsLink) {
-        e.preventDefault();
-
-        _this._setDataAttributes();
-
-        _this._setSearchSettings();
-
-        _this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
-
-        _this._showLoadingMessage();
-
-        _this._render();
-      }
-    });
-  }
-
-  _createClass(RendererOfViewedProductsByLink, [{
-    key: "_setDataAttributes",
-    value: function _setDataAttributes() {
-      this.wrapper.dataset.productSectionName = 'viewedProducts';
-    }
-  }, {
-    key: "_setSearchSettings",
-    value: function _setSearchSettings(e) {
-      this.searchSettingsStore.setProductSectionData({
-        productSectionName: this.wrapper.dataset.productSectionName,
-        additionalData: ''
-      });
-      this.searchSettingsStore.setPageNumber(1);
-      this.searchSettingsStore.setStartOffset(0);
-    }
-  }, {
-    key: "_showLoadingMessage",
-    value: function _showLoadingMessage() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
-        return;
-      }
-
-      this.messenger.render({
-        text: 'Загрузка...',
-        duration: 9500
-      });
-    }
-  }, {
-    key: "_render",
-    value: function _render() {
-      var _this2 = this;
-
-      if (!this._getRequestPermission()) {
-        return;
-      }
-
-      this.sourceOfFilteredProducts.getViewedProductsFromServer().then(function (_ref) {
-        var filteredProducts = _ref.filteredProducts,
-            sectionProductsCount = _ref.sectionProductsCount,
-            allViewedIdsStr = _ref.allViewedIdsStr;
-        _this2.disabledRequest = false;
-
-        _this2.messenger.hideMessage();
-
-        var itemsHtmlArr = filteredProducts.map(function (product) {
-          var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__["default"])(product);
-          return Object(_html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject);
-        });
-        var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
-
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
-        }
-
-        _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-
-        _this2._setSectionProductsCount(sectionProductsCount);
-
-        _this2._setAllViewedIds(allViewedIdsStr);
-
-        _this2._finalActions();
-      });
-    }
-  }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-
-      var settings = _objectSpread({}, this.searchSettingsStore.getSettings());
-
-      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
-      this.searchSettingsStore.setPageCount(sectionPageCount);
-    }
-  }, {
-    key: "_setAllViewedIds",
-    value: function _setAllViewedIds(allViewedIdsStr) {
-      this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
-      this.searchSettingsStore.setProductSectionData({
-        productSectionName: this.wrapper.dataset.productSectionName,
-        additionalData: allViewedIdsStr
-      });
-    }
-  }, {
-    key: "_finalActions",
-    value: function _finalActions() {
-      new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]();
-      this.publicUrlMaker.publishUrl();
-
-      this._renderHeader();
-
-      this._switchVisibilityOfViewMoreButton();
-
-      this.rendererOfPaginationBlock.remake();
-      this.menuLinkCssMaker.resetMenuLinksCss();
-      var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_4__["default"])(distance, 'up');
-    }
-  }, {
-    key: "_renderHeader",
-    value: function _renderHeader() {
-      this.header.innerText = 'Вы смотрели';
-    }
-  }, {
-    key: "_switchVisibilityOfViewMoreButton",
-    value: function _switchVisibilityOfViewMoreButton() {
-      var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-
-      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
-        this._turnOffViewMoreButton();
-      } else {
-        this._turnOnViewMoreButton();
-      }
-    }
-  }, {
-    key: "_turnOnViewMoreButton",
-    value: function _turnOnViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.remove("display-none");
-      }
-    }
-  }, {
-    key: "_turnOffViewMoreButton",
-    value: function _turnOffViewMoreButton() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
-
-      if (!viewMoreButton.classList.contains("display-none")) {
-        viewMoreButton.classList.add("display-none");
-      }
-    }
-  }, {
-    key: "_getRequestPermission",
-    value: function _getRequestPermission() {
-      var _this3 = this;
-
-      // защита от частых отправок на 10 сек (от двойного нажатия)
-      if (this.disabledRequest) {
-        return false;
-      }
-
-      this.disabledRequest = true;
-      setTimeout(function () {
-        _this3.disabledRequest = false;
-      }, 10000);
-      return true;
-    }
-  }]);
-
-  return RendererOfViewedProductsByLink;
-}();
-
-
+}
 
 /***/ }),
 
@@ -5942,6 +5988,13 @@ var ProductCache = /*#__PURE__*/function () {
 
     _classCallCheck(this, ProductCache);
 
+    var productListWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#productList');
+    var viewedProductsSummaryWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#viewedProductsSummaryWrapper');
+
+    if (!productListWrapper && !viewedProductsSummaryWrapper) {
+      return;
+    }
+
     this.entireList = [];
     this.descriptionsCache = [];
     this.singlesCache = [];
@@ -5950,7 +6003,7 @@ var ProductCache = /*#__PURE__*/function () {
     this.oneProductUrl = '/public-js/one-product/';
     this.productsWereCachedOnPageLoading = false;
 
-    if (Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#productList') && Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
+    if (productListWrapper && Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
       Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('body').addEventListener('mouseover', function (e) {
         _this._loadEntireListOnPageLoading();
       });
@@ -6292,40 +6345,46 @@ var SearchSettingsStore = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js2/searchSettings/setSearchSettingsOnLoad.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js2/searchSettings/setSearchSettingsOnLoad.js ***!
-  \*****************************************************************/
+/***/ "./resources/js2/searchSettings/setSearchSettingsOnPageLoad.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js2/searchSettings/setSearchSettingsOnPageLoad.js ***!
+  \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setSearchSettingsOnLoad; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setSearchSettingsOnPageLoad; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
 // при загрузке страницы с сервера с поисковыми параметрами в url
-function setSearchSettingsOnLoad(_ref) {
-  var searchSettingsStore = _ref.searchSettingsStore,
-      wrapper = _ref.wrapper,
+
+function setSearchSettingsOnPageLoad(_ref) {
+  var categoryCache = _ref.categoryCache,
+      searchSettingsStore = _ref.searchSettingsStore,
       rendererBySearchSettings = _ref.rendererBySearchSettings;
-  rendererBySearchSettings.lock(); // заблокировать на время установки searchSettings
+  categoryCache.getEntireList().then(function () {
+    // заблокировать на время установки searchSettings
+    rendererBySearchSettings.lock();
+    var listWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    var paramsArr = listWrapper.dataset.additionalDataOfProductSection.split(';');
+    searchSettingsStore.setMinPrice(Number(paramsArr[0]));
+    searchSettingsStore.setMaxPrice(Number(paramsArr[1]));
+    var categoriesIdsStr = paramsArr[2];
+    var categoriesIdsArr = categoriesIdsStr.split('-').map(function (id) {
+      return Number(id);
+    });
 
-  var paramsArr = wrapper.dataset.additionalDataOfProductSection.split(';');
-  searchSettingsStore.setMinPrice(Number(paramsArr[0]));
-  searchSettingsStore.setMaxPrice(Number(paramsArr[1]));
-  var categoriesIdsStr = paramsArr[2];
-  var categoriesIdsArr = categoriesIdsStr.split('-').map(function (id) {
-    return Number(id);
+    if (categoriesIdsStr === '0' || categoriesIdsStr === '') {
+      searchSettingsStore.setCategoriesIds([]);
+    } else {
+      searchSettingsStore.setCategoriesIds(categoriesIdsArr);
+    }
+
+    listWrapper.dataset.productSectionName = '';
+    listWrapper.dataset.additionalDataOfProductSection = ''; // разблокировать после установки searchSettings
+
+    rendererBySearchSettings.unlock();
   });
-
-  if (categoriesIdsStr === '0' || categoriesIdsStr === '') {
-    searchSettingsStore.setCategoriesIds([]);
-  } else {
-    searchSettingsStore.setCategoriesIds(categoriesIdsArr);
-  }
-
-  wrapper.dataset.productSectionName = '';
-  wrapper.dataset.additionalDataOfProductSection = '';
-  rendererBySearchSettings.unlock(); // разблокировать после установки searchSettings
 }
 
 /***/ }),

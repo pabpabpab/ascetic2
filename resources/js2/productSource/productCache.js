@@ -6,6 +6,12 @@ import allProductsMustBeCached from "./../allProductsMustBeCached";
 export default class ProductCache {
 
     constructor() {
+        const productListWrapper = el('#productList');
+        const viewedProductsSummaryWrapper = el('#viewedProductsSummaryWrapper')
+        if (!productListWrapper && !viewedProductsSummaryWrapper) {
+            return;
+        }
+
         this.entireList = [];
         this.descriptionsCache = [];
         this.singlesCache = [];
@@ -14,7 +20,7 @@ export default class ProductCache {
         this.oneProductUrl = '/public-js/one-product/';
 
         this.productsWereCachedOnPageLoading = false;
-        if (el('#productList') && allProductsMustBeCached()) {
+        if (productListWrapper && allProductsMustBeCached()) {
             el('body').addEventListener('mouseover', (e) => {
                 this._loadEntireListOnPageLoading();
             });

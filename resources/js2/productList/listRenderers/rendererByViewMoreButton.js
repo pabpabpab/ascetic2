@@ -1,51 +1,40 @@
-import el from './../el';
-import getProductObject from "./../productObject/getProductObject";
-import getProductsItemHtml from "./../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
-import scrollDocument from "./../scrollDocument";
-import FrequentAbsoluteFlashMessage from "../frequentAbsoluteFlashMessage";
-import allProductsMustBeCached from "../allProductsMustBeCached";
+import el from '../../el';
+import getProductObject from "../../productObject/getProductObject";
+import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
+import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
+import scrollDocument from "../../scrollDocument";
+import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
+import allProductsMustBeCached from "../../allProductsMustBeCached";
 
-export default class RendererOfViewedProductsByLink {
+export default class RendererByViewMoreButton {
 
     constructor(data) {
         this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
         this.searchSettingsStore = data.searchSettingsStore;
         this.publicUrlMaker = data.publicUrlMaker;
-        this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-        this.menuLinkCssMaker = data.menuLinkCssMaker;
         this.messenger = new FrequentAbsoluteFlashMessage();
-
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
-        this.header = el('#productsH1');
-
+        //this.container = el('#productListContent'); // не делать указатель
         this.disabledRequest = false;
 
         el('body').addEventListener('click', (e) => {
-            if (e.target.dataset.viewedProductsLink) {
-                e.preventDefault();
-                this._setDataAttributes();
+            if (e.target.id === 'viewMoreButton') {
                 this._setSearchSettings();
-                this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
-
-    _setDataAttributes() {
-        this.wrapper.dataset.productSectionName = 'viewedProducts';
-    }
-
-    _setSearchSettings(e) {
+    _setSearchSettings() {
         this.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
-            additionalData: '',
+            additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
-        this.searchSettingsStore.setPageNumber(1);
-        this.searchSettingsStore.setStartOffset(0);
+
+        const offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
+        this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
     }
 
     _showLoadingMessage() {
@@ -63,24 +52,23 @@ export default class RendererOfViewedProductsByLink {
             return;
         }
 
-        this.sourceOfFilteredProducts.getViewedProductsFromServer()
-            .then(({filteredProducts, sectionProductsCount, allViewedIdsStr}) => {
+        this.sourceOfFilteredProducts.getFiltered()
+            .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
                     return getProductsItemHtml(productObject);
                 });
-                const itemsHtml = `<div id="productListContent" class="show_block">${ itemsHtmlArr.join('') }</div>`;
-                if (el('#productListContent')) {
-                    el('#productListContent').remove();
-                }
-                this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+                const itemsHtml = itemsHtmlArr.join('');
+                //const itemsHtml = `<div class="product_list__content show_block">${ itemsHtmlArr.join('') }</div>`;
+                // получать элемент только без ранее созданного указателя
+                el('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
                 this._setSectionProductsCount(sectionProductsCount);
-                this._setAllViewedIds(allViewedIdsStr);
                 this._finalActions();
             });
     }
+
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
@@ -90,29 +78,13 @@ export default class RendererOfViewedProductsByLink {
         this.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
-    _setAllViewedIds(allViewedIdsStr) {
-        this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
-        this.searchSettingsStore.setProductSectionData({
-            productSectionName: this.wrapper.dataset.productSectionName,
-            additionalData: allViewedIdsStr,
-        });
-    }
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.publicUrlMaker.publishUrl();
-        this._renderHeader();
+        // this.publicUrlMaker.publishUrl(); // не применять
+        this._makeInvisiblePaginationBlock();
         this._switchVisibilityOfViewMoreButton();
-        this.rendererOfPaginationBlock.remake();
-        this.menuLinkCssMaker.resetMenuLinksCss();
-
-        const distance = window.pageYOffset;
-        scrollDocument(distance, 'up');
-    }
-
-
-    _renderHeader() {
-        this.header.innerText = 'Вы смотрели';
+        scrollDocument(200, 'down');
     }
 
     _switchVisibilityOfViewMoreButton() {
@@ -124,6 +96,7 @@ export default class RendererOfViewedProductsByLink {
             this._turnOnViewMoreButton();
         }
     }
+
     _turnOnViewMoreButton() {
         const viewMoreButton = el('#viewMoreButton');
         if (viewMoreButton.classList.contains("display-none")) {
@@ -137,15 +110,25 @@ export default class RendererOfViewedProductsByLink {
         }
     }
 
+    _makeInvisiblePaginationBlock() {
+        if (!el('#paginationContent')) {
+            return;
+        }
+        if (!el('#paginationContent').classList.contains("display-none")) {
+            el('#paginationContent').classList.add("display-none");
+        }
+    }
+
+
     _getRequestPermission() {
-        // защита от частых отправок на 10 сек (от двойного нажатия)
+        // защита от частых отправок на 15 сек (от двойного нажатия)
         if (this.disabledRequest) {
             return false;
         }
         this.disabledRequest = true;
         setTimeout(() => {
             this.disabledRequest = false;
-        }, 10000);
+        }, 15000);
 
         return true;
     }

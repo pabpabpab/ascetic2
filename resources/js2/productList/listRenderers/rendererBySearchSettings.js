@@ -1,11 +1,11 @@
-import el from "../el";
-import getProductObject from "../productObject/getProductObject";
-import getProductsItemHtml from "../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
-import scrollDocument from "../scrollDocument";
-import AbsoluteFlashMessage from "../absoluteFlashMessage";
-import allProductsMustBeCached from "../allProductsMustBeCached";
-import FrequentAbsoluteFlashMessage from "../frequentAbsoluteFlashMessage";
+import el from "../../el";
+import getProductObject from "../../productObject/getProductObject";
+import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
+import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
+import scrollDocument from "../../scrollDocument";
+import AbsoluteFlashMessage from "../../absoluteFlashMessage";
+import allProductsMustBeCached from "../../allProductsMustBeCached";
+import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
 
 export default class RendererBySearchSettings {
 
