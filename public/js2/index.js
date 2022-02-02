@@ -353,40 +353,6 @@ var AuthAbsoluteMenu = /*#__PURE__*/function (_VisibleBlockByClick) {
 
 /***/ }),
 
-/***/ "./resources/js2/auth/authKit.js":
-/*!***************************************!*\
-  !*** ./resources/js2/auth/authKit.js ***!
-  \***************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return authKit; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
-/* harmony import */ var _authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authAbsoluteMenu */ "./resources/js2/auth/authAbsoluteMenu.js");
-/* harmony import */ var _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./passwordTypeChanger */ "./resources/js2/auth/passwordTypeChanger.js");
-
-
-
-function authKit() {
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
-    new _authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_1__["default"]({
-      clickSourceSelector: '.personal_account__icon'
-    });
-  }
-
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_password_type__wrapper')) {
-    new _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_2__["default"]({
-      closedEyeSelector: ".auth_page__closed_eye_img",
-      openedEyeSelector: ".auth_page__opened_eye_img",
-      passwordInputSelector: "#password"
-    });
-  }
-}
-
-/***/ }),
-
 /***/ "./resources/js2/auth/forgotPassword.js":
 /*!**********************************************!*\
   !*** ./resources/js2/auth/forgotPassword.js ***!
@@ -498,6 +464,41 @@ var ForgotPassword = /*#__PURE__*/function (_AbsoluteForm) {
 }(_parentClasses_absoluteForm__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
+
+/***/ }),
+
+/***/ "./resources/js2/auth/index-authKit.js":
+/*!*********************************************!*\
+  !*** ./resources/js2/auth/index-authKit.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return authKit; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authAbsoluteMenu */ "./resources/js2/auth/authAbsoluteMenu.js");
+/* harmony import */ var _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./passwordTypeChanger */ "./resources/js2/auth/passwordTypeChanger.js");
+
+
+
+function authKit() {
+  // Register() и Login() инициализируются в AuthAbsoluteMenu()
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
+    new _authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_1__["default"]({
+      clickSourceSelector: '.personal_account__icon'
+    });
+  }
+
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_password_type__wrapper')) {
+    new _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      closedEyeSelector: ".auth_page__closed_eye_img",
+      openedEyeSelector: ".auth_page__opened_eye_img",
+      passwordInputSelector: "#password"
+    });
+  }
+}
 
 /***/ }),
 
@@ -2165,7 +2166,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./http/csrfUpdater */ "./resources/js2/http/csrfUpdater.js");
 /* harmony import */ var _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./topDropMenuFiller */ "./resources/js2/topDropMenuFiller.js");
 /* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
-/* harmony import */ var _auth_authKit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth/authKit */ "./resources/js2/auth/authKit.js");
+/* harmony import */ var _auth_index_authKit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth/index-authKit */ "./resources/js2/auth/index-authKit.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotalCountIndication */ "./resources/js2/favoriteProducts/favoriteProductsTotalCountIndication.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
@@ -2231,7 +2232,7 @@ if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage')) {
 
 new _topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__["default"]();
 new _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_1__["default"]();
-Object(_auth_authKit__WEBPACK_IMPORTED_MODULE_4__["default"])();
+Object(_auth_index_authKit__WEBPACK_IMPORTED_MODULE_4__["default"])();
 
 /***/ }),
 
@@ -6356,7 +6357,7 @@ var SearchSettingsStore = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return setSearchSettingsOnPageLoad; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
-// при загрузке страницы с сервера с поисковыми параметрами в url
+ // запускается при загрузке страницы с сервера с поисковыми параметрами в url
 
 function setSearchSettingsOnPageLoad(_ref) {
   var categoryCache = _ref.categoryCache,

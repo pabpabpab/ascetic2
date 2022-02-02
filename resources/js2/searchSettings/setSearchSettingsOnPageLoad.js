@@ -1,6 +1,6 @@
-// при загрузке страницы с сервера с поисковыми параметрами в url
 import el from "../el";
 
+// запускается при загрузке страницы с сервера с поисковыми параметрами в url
 export default function setSearchSettingsOnPageLoad({categoryCache, searchSettingsStore, rendererBySearchSettings}) {
     categoryCache.getEntireList()
         .then(() => {
@@ -25,5 +25,4 @@ export default function setSearchSettingsOnPageLoad({categoryCache, searchSettin
             // разблокировать после установки searchSettings
             rendererBySearchSettings.unlock();
         })
-
 }

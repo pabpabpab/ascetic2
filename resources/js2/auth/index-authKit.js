@@ -3,6 +3,7 @@ import AuthAbsoluteMenu from "./authAbsoluteMenu";
 import PasswordTypeChanger from "./passwordTypeChanger";
 
 export default function authKit() {
+    // Register() и Login() инициализируются в AuthAbsoluteMenu()
     if (el('.personal_account__icon')) {
         new AuthAbsoluteMenu({ clickSourceSelector: '.personal_account__icon' });
     }

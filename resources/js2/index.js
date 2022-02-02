@@ -2,7 +2,7 @@ import el from "./el";
 import CsrfUpdater from "./http/csrfUpdater";
 import TopDropMenuFiller from "./topDropMenuFiller";
 import AbsoluteFlashMessage from "./absoluteFlashMessage";
-import authKit from "./auth/authKit";
+import authKit from "./auth/index-authKit";
 
 import FavoriteProductsIndicationOnPageLoad from "./favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import FavoriteProductsTotalCountIndication from "./favoriteProducts/favoriteProductsTotalCountIndication"
