@@ -30,9 +30,9 @@ export default class ProductFilterHandler {
     }
 
     _resetProductSectionData() {
-        this.wrapper = el('#productList');
-        this.wrapper.dataset.productSectionName = '';
-        this.wrapper.dataset.additionalDataOfProductSection = '';
+        const wrapper = el('#productList');
+        wrapper.dataset.productSectionName = '';
+        wrapper.dataset.additionalDataOfProductSection = '';
         this.searchSettingsStore.setProductSectionData({
             productSectionName: '',
             additionalData: '',

@@ -1808,6 +1808,22 @@ function getProductsItemHtml(product) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/productList/sorterBlock/getSorterBlockHtml.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js2/html/productList/sorterBlock/getSorterBlockHtml.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getSorterBlockHtml; });
+function getSorterBlockHtml() {
+  return "<div class=\"sorting_modes__relative_wrapper_for_drop_menu\">\n                <div id=\"absoluteListOfSortingValues\" class=\"sorting_modes__absolute_list\">\n                    <p data-sort-value=\"position\" class=\"sorting_modes__absolute_list__item\">\n                        \u041F\u043E \u043F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u043E\u0441\u0442\u0438\n                    </p>\n                    <p data-sort-value=\"priceUp\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u043D\u0435\u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                    <p data-sort-value=\"priceDown\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                </div>\n            </div>";
+}
+
+/***/ }),
+
 /***/ "./resources/js2/html/singleProduct/getBigPhotoBlockHtml.js":
 /*!******************************************************************!*\
   !*** ./resources/js2/html/singleProduct/getBigPhotoBlockHtml.js ***!
@@ -4031,9 +4047,9 @@ var ProductFilterHandler = /*#__PURE__*/function () {
   _createClass(ProductFilterHandler, [{
     key: "_resetProductSectionData",
     value: function _resetProductSectionData() {
-      this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
-      this.wrapper.dataset.productSectionName = '';
-      this.wrapper.dataset.additionalDataOfProductSection = '';
+      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+      wrapper.dataset.productSectionName = '';
+      wrapper.dataset.additionalDataOfProductSection = '';
       this.searchSettingsStore.setProductSectionData({
         productSectionName: '',
         additionalData: ''
@@ -4153,7 +4169,6 @@ var ProductFilterRenderer = /*#__PURE__*/function () {
     this.showCss = 'show_product_filter';
     this.hideCss = 'hide_product_filter';
     Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.filter_icon__wrapper').addEventListener('click', function (e) {
-      e.preventDefault();
       e.stopPropagation();
 
       _this._render();
@@ -4693,23 +4708,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return productListKit; });
 /* harmony import */ var _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../categorySource/categoryCache */ "./resources/js2/categorySource/categoryCache.js");
 /* harmony import */ var _searchSettings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../searchSettings/searchSettingsStore */ "./resources/js2/searchSettings/searchSettingsStore.js");
-/* harmony import */ var _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../urlMaker/searchUrlMaker */ "./resources/js2/urlMaker/searchUrlMaker.js");
-/* harmony import */ var _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../urlMaker/publicUrlMaker */ "./resources/js2/urlMaker/publicUrlMaker.js");
-/* harmony import */ var _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../productSource/FilterOfCachedProducts */ "./resources/js2/productSource/FilterOfCachedProducts.js");
-/* harmony import */ var _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../productSource/SourceOfFilteredProducts */ "./resources/js2/productSource/SourceOfFilteredProducts.js");
-/* harmony import */ var _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./listRenderers/rendererByViewMoreButton */ "./resources/js2/productList/listRenderers/rendererByViewMoreButton.js");
-/* harmony import */ var _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./paginationRenderer/paginationBlockRenderer */ "./resources/js2/productList/paginationRenderer/paginationBlockRenderer.js");
-/* harmony import */ var _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./listRenderers/rendererByPaginationButton */ "./resources/js2/productList/listRenderers/rendererByPaginationButton.js");
-/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
-/* harmony import */ var _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./listRenderers/rendererByMenuLink */ "./resources/js2/productList/listRenderers/rendererByMenuLink.js");
-/* harmony import */ var _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./listRenderers/rendererOfViewedProductsByLink */ "./resources/js2/productList/listRenderers/rendererOfViewedProductsByLink.js");
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
-/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
-/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
-/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
-/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
-/* harmony import */ var _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./listRenderers/rendererBySearchSettings */ "./resources/js2/productList/listRenderers/rendererBySearchSettings.js");
-/* harmony import */ var _searchSettings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../searchSettings/setSearchSettingsOnPageLoad */ "./resources/js2/searchSettings/setSearchSettingsOnPageLoad.js");
+/* harmony import */ var _sortSettings_sortSettingsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sortSettings/sortSettingsStore */ "./resources/js2/sortSettings/sortSettingsStore.js");
+/* harmony import */ var _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../urlMaker/searchUrlMaker */ "./resources/js2/urlMaker/searchUrlMaker.js");
+/* harmony import */ var _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../urlMaker/publicUrlMaker */ "./resources/js2/urlMaker/publicUrlMaker.js");
+/* harmony import */ var _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../productSource/FilterOfCachedProducts */ "./resources/js2/productSource/FilterOfCachedProducts.js");
+/* harmony import */ var _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../productSource/SourceOfFilteredProducts */ "./resources/js2/productSource/SourceOfFilteredProducts.js");
+/* harmony import */ var _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./listRenderers/rendererByViewMoreButton */ "./resources/js2/productList/listRenderers/rendererByViewMoreButton.js");
+/* harmony import */ var _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./paginationRenderer/paginationBlockRenderer */ "./resources/js2/productList/paginationRenderer/paginationBlockRenderer.js");
+/* harmony import */ var _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./listRenderers/rendererByPaginationButton */ "./resources/js2/productList/listRenderers/rendererByPaginationButton.js");
+/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
+/* harmony import */ var _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./listRenderers/rendererByMenuLink */ "./resources/js2/productList/listRenderers/rendererByMenuLink.js");
+/* harmony import */ var _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./listRenderers/rendererOfViewedProductsByLink */ "./resources/js2/productList/listRenderers/rendererOfViewedProductsByLink.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
+/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
+/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
+/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
+/* harmony import */ var _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./listRenderers/rendererBySearchSettings */ "./resources/js2/productList/listRenderers/rendererBySearchSettings.js");
+/* harmony import */ var _searchSettings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../searchSettings/setSearchSettingsOnPageLoad */ "./resources/js2/searchSettings/setSearchSettingsOnPageLoad.js");
+/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
+
+
 
 
 
@@ -4734,41 +4753,42 @@ function productListKit(_ref) {
   var categoryCache = new _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_0__["default"](); // оставить здесь
 
   var searchSettingsStore = new _searchSettings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_1__["default"]();
-  var searchUrlMaker = new _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_2__["default"](searchSettingsStore);
-  var publicUrlMaker = new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_3__["default"](searchSettingsStore);
-  var filterOfCachedProducts = new _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_4__["default"](searchSettingsStore);
-  var sourceOfFilteredProducts = new _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_5__["default"]({
+  var sortSettingsStore = new _sortSettings_sortSettingsStore__WEBPACK_IMPORTED_MODULE_2__["default"]();
+  var searchUrlMaker = new _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_3__["default"](searchSettingsStore);
+  var publicUrlMaker = new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_4__["default"](searchSettingsStore);
+  var filterOfCachedProducts = new _productSource_FilterOfCachedProducts__WEBPACK_IMPORTED_MODULE_5__["default"](searchSettingsStore);
+  var sourceOfFilteredProducts = new _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_6__["default"]({
     productCache: productCache,
     searchUrlMaker: searchUrlMaker,
     filterOfCachedProducts: filterOfCachedProducts,
     searchSettingsStore: searchSettingsStore
   });
-  new _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_6__["default"]({
+  new _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_7__["default"]({
     searchSettingsStore: searchSettingsStore,
     publicUrlMaker: publicUrlMaker,
     sourceOfFilteredProducts: sourceOfFilteredProducts
   });
-  var rendererOfPaginationBlock = new _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_7__["default"]({
+  var rendererOfPaginationBlock = new _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_8__["default"]({
     searchSettingsStore: searchSettingsStore,
     publicUrlMaker: publicUrlMaker
   });
-  new _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_8__["default"]({
+  new _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_9__["default"]({
     searchSettingsStore: searchSettingsStore,
     publicUrlMaker: publicUrlMaker,
     sourceOfFilteredProducts: sourceOfFilteredProducts,
     rendererOfPaginationBlock: rendererOfPaginationBlock
   });
-  var menuLinkCssMaker = new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_9__["default"]({
+  var menuLinkCssMaker = new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_10__["default"]({
     searchSettingsStore: searchSettingsStore
   });
-  new _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_10__["default"]({
+  new _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_11__["default"]({
     sourceOfFilteredProducts: sourceOfFilteredProducts,
     searchSettingsStore: searchSettingsStore,
     publicUrlMaker: publicUrlMaker,
     rendererOfPaginationBlock: rendererOfPaginationBlock,
     menuLinkCssMaker: menuLinkCssMaker
   });
-  new _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_11__["default"]({
+  new _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_12__["default"]({
     sourceOfFilteredProducts: sourceOfFilteredProducts,
     searchSettingsStore: searchSettingsStore,
     publicUrlMaker: publicUrlMaker,
@@ -4776,32 +4796,38 @@ function productListKit(_ref) {
     menuLinkCssMaker: menuLinkCssMaker
   });
 
-  if (!Object(_el__WEBPACK_IMPORTED_MODULE_12__["default"])('.filter_icon__wrapper')) {
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_13__["default"])('.sorting_modes__wrapper')) {
+    new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_20__["default"]({
+      sortSettingsStore: sortSettingsStore
+    });
+  }
+
+  if (!Object(_el__WEBPACK_IMPORTED_MODULE_13__["default"])('.filter_icon__wrapper')) {
     return;
   } // ----------------------------<при наличии .filter_icon__wrapper>--------------------------
 
 
-  var searchSettingsObserverForFilterRenderer = new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_13__["default"]({
+  var searchSettingsObserverForFilterRenderer = new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_14__["default"]({
     searchSettingsStore: searchSettingsStore,
     categoryCache: categoryCache
   });
   searchSettingsStore.addObserver(searchSettingsObserverForFilterRenderer);
-  new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_14__["default"]({
+  new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_15__["default"]({
     productCache: productCache,
     categoryCache: categoryCache,
     searchSettingsStore: searchSettingsStore,
     searchSettingsObserver: searchSettingsObserverForFilterRenderer
   });
-  var totalIndicatorOfFilterParameters = new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_15__["default"]({
+  var totalIndicatorOfFilterParameters = new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_16__["default"]({
     searchSettingsStore: searchSettingsStore
   });
   searchSettingsStore.addObserver(totalIndicatorOfFilterParameters);
-  var topTotalSearchParametersRenderer = new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_16__["default"]({
+  var topTotalSearchParametersRenderer = new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_17__["default"]({
     searchSettingsStore: searchSettingsStore,
     categoryCache: categoryCache
   });
   searchSettingsStore.addObserver(topTotalSearchParametersRenderer);
-  var rendererBySearchSettings = new _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_17__["default"]({
+  var rendererBySearchSettings = new _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_18__["default"]({
     sourceOfFilteredProducts: sourceOfFilteredProducts,
     searchSettingsStore: searchSettingsStore,
     publicUrlMaker: publicUrlMaker,
@@ -4810,8 +4836,8 @@ function productListKit(_ref) {
   });
   searchSettingsStore.addObserver(rendererBySearchSettings); // при загрузке страницы с сервера с поисковыми параметрами в url
 
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_12__["default"])('#productList').dataset.productSectionName === 'serverProductSearch') {
-    Object(_searchSettings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_18__["default"])({
+  if (Object(_el__WEBPACK_IMPORTED_MODULE_13__["default"])('#productList').dataset.productSectionName === 'serverProductSearch') {
+    Object(_searchSettings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_19__["default"])({
       categoryCache: categoryCache,
       searchSettingsStore: searchSettingsStore,
       rendererBySearchSettings: rendererBySearchSettings
@@ -4819,6 +4845,157 @@ function productListKit(_ref) {
   } // ---------------------------</при наличии .filter_icon__wrapper>--------------------------
 
 }
+
+/***/ }),
+
+/***/ "./resources/js2/productList/productSorter/productSortMenuRenderer.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js2/productList/productSorter/productSortMenuRenderer.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductSortMenuRenderer; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _html_productList_sorterBlock_getSorterBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../html/productList/sorterBlock/getSorterBlockHtml */ "./resources/js2/html/productList/sorterBlock/getSorterBlockHtml.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var ProductSortMenuRenderer = /*#__PURE__*/function () {
+  function ProductSortMenuRenderer(data) {
+    var _this = this;
+
+    _classCallCheck(this, ProductSortMenuRenderer);
+
+    this.sortSettingsStore = data.sortSettingsStore;
+    this.wrapSelector = "#absoluteListOfSortingValues";
+    this.showCss = 'show_sorting_block';
+    this.hideCss = 'hide_sorting_block';
+    this.arrowSelector = '.sorting_modes__arrow';
+    this.arrowUpCss = 'sorting_modes__arrow_up';
+    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper').addEventListener('click', function (e) {
+      _this._render();
+    });
+  }
+
+  _createClass(ProductSortMenuRenderer, [{
+    key: "_render",
+    value: function _render() {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        this._firstRender();
+
+        this._justSetVisibilityToTrue();
+
+        return;
+      }
+
+      this._switchVisibility();
+    }
+  }, {
+    key: "_firstRender",
+    value: function _firstRender() {
+      var html = Object(_html_productList_sorterBlock_getSorterBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])();
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper').insertAdjacentHTML('beforeend', html);
+
+      this._listenBodyTag();
+
+      this._listenThisBlock();
+    }
+  }, {
+    key: "_listenBodyTag",
+    value: function _listenBodyTag() {
+      var _this2 = this;
+
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+        _this2._setVisibilityToFalse(e);
+      });
+    }
+  }, {
+    key: "_listenThisBlock",
+    value: function _listenThisBlock() {
+      var _this3 = this;
+
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        if (!e.target.dataset.sortValue) {
+          return;
+        }
+
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer').innerText = e.target.innerText;
+
+        _this3.sortSettingsStore.setSortingMode({
+          selectedValue: e.target.dataset.sortValue,
+          selectedText: e.target.innerText
+        });
+
+        _this3._setVisibilityToFalse2();
+      });
+    }
+  }, {
+    key: "_switchVisibility",
+    value: function _switchVisibility() {
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.contains(this.hideCss)) {
+        this._justSetVisibilityToTrue();
+      } else {
+        this._setVisibilityToFalse2();
+      }
+    }
+  }, {
+    key: "_justSetVisibilityToTrue",
+    value: function _justSetVisibilityToTrue() {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.hideCss);
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.add(this.showCss);
+
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.contains(this.arrowUpCss)) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.add(this.arrowUpCss);
+      }
+    }
+  }, {
+    key: "_setVisibilityToFalse",
+    value: function _setVisibilityToFalse(e) {
+      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      if (e.target === Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        return;
+      }
+
+      if (e.target.className.includes('sorting_modes')) {
+        return;
+      }
+
+      this._setVisibilityToFalse2();
+    }
+  }, {
+    key: "_setVisibilityToFalse2",
+    value: function _setVisibilityToFalse2() {
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.showCss);
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.add(this.hideCss);
+
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.contains(this.arrowUpCss)) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.remove(this.arrowUpCss);
+      }
+    }
+  }]);
+
+  return ProductSortMenuRenderer;
+}();
+
+
 
 /***/ }),
 
@@ -6387,6 +6564,75 @@ function setSearchSettingsOnPageLoad(_ref) {
     rendererBySearchSettings.unlock();
   });
 }
+
+/***/ }),
+
+/***/ "./resources/js2/sortSettings/sortSettingsStore.js":
+/*!*********************************************************!*\
+  !*** ./resources/js2/sortSettings/sortSettingsStore.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SortSettingsStore; });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var SortSettingsStore = /*#__PURE__*/function () {
+  function SortSettingsStore() {
+    _classCallCheck(this, SortSettingsStore);
+
+    this.settings = {
+      selectedValue: 'position',
+      selectedText: 'По умолчанию'
+    };
+    this.observers = [];
+  }
+
+  _createClass(SortSettingsStore, [{
+    key: "getSettings",
+    value: function getSettings() {
+      return _objectSpread({}, this.settings);
+    }
+  }, {
+    key: "setSortingMode",
+    value: function setSortingMode(_ref) {
+      var selectedValue = _ref.selectedValue,
+          selectedText = _ref.selectedText;
+      this.settings.selectedValue = selectedValue;
+      this.settings.selectedText = selectedText;
+
+      this._notifyObservers();
+    }
+  }, {
+    key: "addObserver",
+    value: function addObserver(observer) {
+      this.observers.push(observer);
+    }
+  }, {
+    key: "_notifyObservers",
+    value: function _notifyObservers() {
+      this.observers.forEach(function (observer) {
+        return observer.checkSortSettings();
+      });
+    }
+  }]);
+
+  return SortSettingsStore;
+}();
+
+
 
 /***/ }),
 

@@ -1,5 +1,6 @@
 import CategoryCache from "../categorySource/categoryCache";
 import SearchSettingsStore from "../searchSettings/searchSettingsStore";
+import SortSettingsStore from "../sortSettings/sortSettingsStore";
 import SearchUrlMaker from "../urlMaker/searchUrlMaker";
 import PublicUrlMaker from "../urlMaker/publicUrlMaker";
 import FilterOfCachedProducts from "../productSource/FilterOfCachedProducts";
@@ -19,9 +20,13 @@ import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchPara
 import RendererBySearchSettings from "./listRenderers/rendererBySearchSettings";
 import setSearchSettingsOnPageLoad from "../searchSettings/setSearchSettingsOnPageLoad";
 
+import ProductSortMenuRenderer from "./productSorter/productSortMenuRenderer";
+
+
 export default function productListKit({productCache}) {
     const categoryCache = new CategoryCache(); // оставить здесь
     const searchSettingsStore = new SearchSettingsStore();
+    const sortSettingsStore = new SortSettingsStore();
     const searchUrlMaker = new SearchUrlMaker(searchSettingsStore);
     const publicUrlMaker = new PublicUrlMaker(searchSettingsStore);
     const filterOfCachedProducts = new FilterOfCachedProducts(searchSettingsStore);
@@ -71,6 +76,11 @@ export default function productListKit({productCache}) {
         rendererOfPaginationBlock,
         menuLinkCssMaker,
     });
+
+    if (el('.sorting_modes__wrapper')) {
+        new ProductSortMenuRenderer({sortSettingsStore});
+    }
+
 
     if (!el('.filter_icon__wrapper')) {
         return;

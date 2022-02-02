@@ -27,7 +27,6 @@ export default class ProductFilterRenderer {
         this.hideCss = 'hide_product_filter';
 
         el('.filter_icon__wrapper').addEventListener('click', (e) => {
-            e.preventDefault();
             e.stopPropagation();
             this._render();
         });

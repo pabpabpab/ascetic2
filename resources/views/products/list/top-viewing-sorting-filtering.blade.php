@@ -4,18 +4,16 @@
 </div>
 
 
-<div class="sorting_modes_for_mobile__wrapper">
-
-    <div class="sorting_modes_for_mobile__selected_mode__wrapper">
-        <div class="sorting_modes_for_mobile__selected_mode">
-            selectedMode
+<div class="sorting_modes__wrapper">
+    <div class="sorting_modes__selected_mode__wrapper">
+        <div id="sortingModeValueContainer" class="sorting_modes__selected_mode">
+            По популярности
         </div>
         <div
-            class="sorting_modes_for_mobile__arrow sorting_modes_for_mobile__arrow_up">
+            class="sorting_modes__arrow">
             &#9660;
         </div>
     </div>
-    {{--:class="{sorting_modes_for_mobile__arrow_up: selectIsVisible}"--}}
 </div>
 
 <div class="filter_icon__wrapper">
