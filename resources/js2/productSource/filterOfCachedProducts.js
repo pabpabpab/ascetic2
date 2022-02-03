@@ -3,9 +3,8 @@ import AppAncestor from "../appAncestor";
 
 export default class FilterOfCachedProducts extends AppAncestor {
 
-    constructor(searchSettingsStore) {
+    constructor() {
         super();
-        //this.searchSettingsStore = searchSettingsStore;
     }
 
     doFilter(products) {

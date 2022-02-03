@@ -3,9 +3,8 @@ import AppAncestor from "../../appAncestor";
 
 export default class TotalIndicatorOfFilterParameters extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.searchSettingsStore = data.searchSettingsStore;
         this._render();
     }
 

@@ -4,10 +4,8 @@ import AppAncestor from "../../appAncestor";
 
 export default class ProductSortMenuRenderer extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.sortSettingsStore = data.sortSettingsStore;
-
         this.wrapSelector = `#absoluteListOfSortingValues`;
         this.showCss = 'show_sorting_block';
         this.hideCss = 'hide_sorting_block';

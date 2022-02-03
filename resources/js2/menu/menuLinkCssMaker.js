@@ -3,9 +3,8 @@ import AppAncestor from "../appAncestor";
 
 export default class MenuLinkCssMaker extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.searchSettingsStore = data.searchSettingsStore;
     }
 
     resetMenuLinksCss() {

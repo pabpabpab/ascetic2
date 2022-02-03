@@ -9,20 +9,11 @@ import AppAncestor from "../../appAncestor";
 
 export default class ProductFilterRenderer extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.productCache = data.productCache;
-        //this.categoryCache = data.categoryCache;
-        //this.searchSettingsStore = data.searchSettingsStore;
-
-        // для использовани при загрузке страницы с сервера с поисковыми параметрами в url
-        //this.searchSettingsObserver = data.searchSettingsObserver;
-
         this.priceRangeUrl = '/public-js/product-price-range';
         this.minPriceLimit = 0;
         this.maxPriceLimit = 0;
-
-
         this.wrapSelector = `#productFilterWrapper`;
         this.basicCss = 'product_filter';
         this.showCss = 'show_product_filter';
@@ -119,7 +110,6 @@ export default class ProductFilterRenderer extends AppAncestor {
                 el('#maxPriceRangeInput').value = maxPrice;
 
                 // при загрузке страницы с сервера с поисковыми параметрами
-                //this.searchSettingsObserver.renderPriceOnLoad();
                 this.app.searchSettingsObserverForFilterRenderer.renderPriceOnLoad();
             });
 
@@ -133,7 +123,6 @@ export default class ProductFilterRenderer extends AppAncestor {
                 el('#productFilterCategoriesWrapper').insertAdjacentHTML('afterbegin', html);
 
                 // при загрузке страницы с сервера с поисковыми параметрами
-                //this.searchSettingsObserver.renderCategoryCheckboxes();
                 this.app.searchSettingsObserverForFilterRenderer.renderCategoryCheckboxes();
             });
     }

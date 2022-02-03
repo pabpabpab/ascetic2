@@ -4,10 +4,8 @@ import AppAncestor from "../../appAncestor";
 
 export default class PaginationBlockRenderer extends AppAncestor {
 
-    constructor({searchSettingsStore, publicUrlMaker}) {
+    constructor() {
         super();
-        //this.searchSettingsStore = searchSettingsStore;
-        //this.publicUrlMaker = publicUrlMaker;
         this.wrapper = el('#paginationWrapper');
     }
 

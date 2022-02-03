@@ -2,9 +2,8 @@ import AppAncestor from "../appAncestor";
 
 export default class SorterOfCachedProducts extends AppAncestor {
 
-    constructor(sortSettingsStore) {
+    constructor() {
         super();
-        //this.sortSettingsStore = sortSettingsStore;
     }
 
     doSort(products) {

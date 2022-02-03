@@ -5,13 +5,8 @@ import AppAncestor from "../appAncestor";
 
 export default class SourceOfFilteredProducts extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.productCache = data.productCache;
-        //this.searchUrlMaker = data.searchUrlMaker;
-        //this.sorterOfCachedProducts = data.sorterOfCachedProducts;
-        //this.filterOfCachedProducts = data.filterOfCachedProducts;
-        //this.searchSettingsStore = data.searchSettingsStore;
     }
 
     getFiltered() {

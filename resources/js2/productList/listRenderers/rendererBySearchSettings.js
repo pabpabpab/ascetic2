@@ -3,20 +3,14 @@ import getProductObject from "../../productObject/getProductObject";
 import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
 import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "../../scrollDocument";
-import AbsoluteFlashMessage from "../../absoluteFlashMessage";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
 import AppAncestor from "../../appAncestor";
 
 export default class RendererBySearchSettings extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        //this.searchSettingsStore = data.searchSettingsStore;
-        //this.publicUrlMaker = data.publicUrlMaker;
-        //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-        //this.menuLinkCssMaker = data.menuLinkCssMaker;
 
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');

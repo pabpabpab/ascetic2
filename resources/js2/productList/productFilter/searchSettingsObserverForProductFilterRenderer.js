@@ -3,10 +3,8 @@ import AppAncestor from "../../appAncestor";
 
 export default class SearchSettingsObserverForProductFilterRenderer extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.categoryCache = data.categoryCache;
-        //this.searchSettingsStore = data.searchSettingsStore;
     }
 
     checkSearchSettings() {

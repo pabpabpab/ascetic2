@@ -4,13 +4,10 @@ import AppAncestor from "../../appAncestor";
 
 export default class TopTotalSearchParametersRenderer extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.searchSettingsStore = data.searchSettingsStore;
-        //this.categoryCache = data.categoryCache;
         this._render();
     }
-
 
     _render() {
         const html = `<div class="top_total_parameters_of_search"></div>`;

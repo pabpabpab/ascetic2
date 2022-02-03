@@ -9,15 +9,8 @@ import AppAncestor from "../../appAncestor";
 
 export default class RendererBySortSettings extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        //this.sortSettingsStore = data.sortSettingsStore;
-        //this.searchSettingsStore = data.searchSettingsStore;
-        //this.publicUrlMaker = data.publicUrlMaker;
-        //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-        //this.menuLinkCssMaker = data.menuLinkCssMaker;
-
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
         //this.header = el('#productsH1');
@@ -27,7 +20,6 @@ export default class RendererBySortSettings extends AppAncestor {
         this.timerId = 0;
 
         this.messenger = new FrequentAbsoluteFlashMessage();
-
         this.locked = false;
     }
 
@@ -134,7 +126,6 @@ export default class RendererBySortSettings extends AppAncestor {
             viewMoreButton.classList.add("display-none");
         }
     }
-
 
     _makeInvisiblePaginationBlock() {
         const paginationBlock = el('#paginationContent');

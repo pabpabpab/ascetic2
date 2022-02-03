@@ -9,14 +9,8 @@ import AppAncestor from "../../appAncestor";
 
 export default class RendererByPaginationButton extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        //this.searchSettingsStore = data.searchSettingsStore;
-        //this.publicUrlMaker = data.publicUrlMaker;
-        //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-
-
         this.messenger = new FrequentAbsoluteFlashMessage();
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');

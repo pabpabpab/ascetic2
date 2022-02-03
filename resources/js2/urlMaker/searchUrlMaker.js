@@ -2,10 +2,8 @@ import AppAncestor from "../appAncestor";
 
 export default class SearchUrlMaker extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.searchSettingsStore = data.searchSettingsStore;
-        //this.sortSettingsStore = data.sortSettingsStore;
         this.startUrl = '/public-js/product-search';
     }
 

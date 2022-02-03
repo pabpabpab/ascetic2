@@ -9,19 +9,12 @@ import AppAncestor from "../../appAncestor";
 
 export default class RendererOfViewedProductsByLink extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        //this.searchSettingsStore = data.searchSettingsStore;
-        //this.publicUrlMaker = data.publicUrlMaker;
-        //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-        //this.menuLinkCssMaker = data.menuLinkCssMaker;
-        this.messenger = new FrequentAbsoluteFlashMessage();
-
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
         this.header = el('#productsH1');
-
+        this.messenger = new FrequentAbsoluteFlashMessage();
         this.disabledRequest = false;
 
         el('body').addEventListener('click', (e) => {

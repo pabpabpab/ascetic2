@@ -4,17 +4,11 @@ import AppAncestor from "../appAncestor";
 // запускается при загрузке страницы с сервера с поисковыми параметрами в url
 export default class SetSearchSettingsOnPageLoad extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-
         if (el('#productList').dataset.productSectionName !== 'serverProductSearch') {
             return;
         }
-
-        //this.categoryCache = data.categoryCache;
-        //this.searchSettingsStore = data.searchSettingsStore;
-        //this.rendererBySearchSettings = data.rendererBySearchSettings;
-
         // задержка для дать время установить указатель на app при загрузке
         setTimeout(() => {
             this._initSettings();
@@ -49,38 +43,3 @@ export default class SetSearchSettingsOnPageLoad extends AppAncestor {
 
 }
 
-
-
-
-
-
-
-
-
-
-/*
-export default function setSearchSettingsOnPageLoad({categoryCache, searchSettingsStore, rendererBySearchSettings}) {
-    categoryCache.getEntireList()
-        .then(() => {
-            rendererBySearchSettings.lock();
-            const listWrapper = el('#productList');
-            const paramsArr = listWrapper.dataset.additionalDataOfProductSection.split(';');
-            searchSettingsStore.setMinPrice(Number(paramsArr[0]));
-            searchSettingsStore.setMaxPrice(Number(paramsArr[1]));
-
-            const categoriesIdsStr = paramsArr[2];
-            const categoriesIdsArr = categoriesIdsStr.split('-').map(id => Number(id));
-
-            if (categoriesIdsStr === '0' || categoriesIdsStr === '') {
-                searchSettingsStore.setCategoriesIds([]);
-            } else {
-                searchSettingsStore.setCategoriesIds(categoriesIdsArr);
-            }
-
-            listWrapper.dataset.productSectionName = '';
-            listWrapper.dataset.additionalDataOfProductSection = '';
-
-            rendererBySearchSettings.unlock();
-        })
-}
-*/

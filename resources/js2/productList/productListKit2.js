@@ -1,5 +1,3 @@
-import el from "../el";
-
 import CategoryCache from "../categorySource/categoryCache";
 import SearchSettingsStore from "../settings/searchSettingsStore";
 import SortSettingsStore from "../settings/sortSettingsStore";
@@ -37,128 +35,48 @@ export default function productListKit2() {
         searchSettingsStore: new SearchSettingsStore(),
         sortSettingsStore: new SortSettingsStore(),
 
-        searchUrlMaker: new SearchUrlMaker({searchSettingsStore: null, sortSettingsStore: null}),
-        publicUrlMaker: new PublicUrlMaker({searchSettingsStore: null, sortSettingsStore: null}),
+        searchUrlMaker: new SearchUrlMaker(),
+        publicUrlMaker: new PublicUrlMaker(),
 
-        sorterOfCachedProducts: new SorterOfCachedProducts(null),
-        filterOfCachedProducts: new FilterOfCachedProducts(null),
+        sorterOfCachedProducts: new SorterOfCachedProducts(),
+        filterOfCachedProducts: new FilterOfCachedProducts(),
         // -------------------------------------------------------
 
         viewedProductsSummaryMaker: new ViewedProductsSummaryMaker(),
         viewedProductsAppender: new ViewedProductsAppender(),
-        singleProductQuickViewer: new SingleProductQuickViewer({
-            productCache: null,
-            viewedProductsAppender: null,
-            viewedProductsSummaryMaker: null,
-        }),
+        singleProductQuickViewer: new SingleProductQuickViewer(),
         // -------------------------------------------------------
 
-        sourceOfFilteredProducts: new SourceOfFilteredProducts({
-            productCache: null,
-            searchUrlMaker: null,
-            sorterOfCachedProducts: null,
-            filterOfCachedProducts: null,
-            searchSettingsStore: null,
-        }),
+        sourceOfFilteredProducts: new SourceOfFilteredProducts(),
 
-        rendererOfProductsByViewMoreButton: new RendererOfProductsByViewMoreButton({
-            searchSettingsStore: null,
-            publicUrlMaker: null,
-            sourceOfFilteredProducts: null,
-        }),
+        rendererOfProductsByViewMoreButton: new RendererOfProductsByViewMoreButton(),
+        rendererOfPaginationBlock: new PaginationBlockRenderer(),
+        rendererOfProductsByPaginationButton: new RendererOfProductsByPaginationButton(),
+        rendererOfProductsByMenuLink: new RendererOfProductsByMenuLink(),
+        rendererOfViewedProductsByLink: new RendererOfViewedProductsByLink(),
+        rendererBySearchSettings: new RendererBySearchSettings(),
+        rendererBySortSettings: new RendererBySortSettings(),
 
-
-        rendererOfPaginationBlock: new PaginationBlockRenderer({
-            searchSettingsStore: null,
-            publicUrlMaker: null,
-        }),
-
-
-        rendererOfProductsByPaginationButton: new RendererOfProductsByPaginationButton({
-            searchSettingsStore: null,
-            publicUrlMaker: null,
-            sourceOfFilteredProducts: null,
-            rendererOfPaginationBlock: null,
-        }),
-
-        menuLinkCssMaker: new MenuLinkCssMaker({
-            searchSettingsStore: null,
-        }),
-
-
-        rendererOfProductsByMenuLink: new RendererOfProductsByMenuLink({
-            sourceOfFilteredProducts: null,
-            searchSettingsStore: null,
-            publicUrlMaker: null,
-            rendererOfPaginationBlock: null,
-            menuLinkCssMaker: null,
-        }),
-
-        rendererOfViewedProductsByLink: new RendererOfViewedProductsByLink({
-            sourceOfFilteredProducts: null,
-            searchSettingsStore: null,
-            publicUrlMaker: null,
-            rendererOfPaginationBlock: null,
-            menuLinkCssMaker: null,
-        }),
-
+        menuLinkCssMaker: new MenuLinkCssMaker(),
         // -----------------------------------------
 
-        sortMenuRenderer: new SortMenuRenderer({sortSettingsStore: null}),
-
-        rendererBySortSettings: new RendererBySortSettings({
-            sourceOfFilteredProducts: null,
-            sortSettingsStore: null,
-            searchSettingsStore: null,
-            publicUrlMaker: null,
-        }),
+        sortMenuRenderer: new SortMenuRenderer(),
         // -----------------------------------------
 
-        searchSettingsObserverForFilterRenderer: new SearchSettingsObserverForProductFilterRenderer({
-            searchSettingsStore: null,
-            categoryCache: null,
-        }),
-
-
-        productFilterRenderer: new ProductFilterRenderer({
-            productCache: null,
-            categoryCache: null,
-            searchSettingsStore: null,
-            searchSettingsObserver: null, //searchSettingsObserverForFilterRenderer,
-        }),
-
-        totalIndicatorOfFilterParameters: new TotalIndicatorOfFilterParameters({
-            searchSettingsStore: null,
-        }),
-
-        topTotalSearchParametersRenderer: new TopTotalSearchParametersRenderer({
-            searchSettingsStore: null,
-            categoryCache: null,
-        }),
-
-        rendererBySearchSettings: new RendererBySearchSettings({
-            sourceOfFilteredProducts: null,
-            searchSettingsStore: null,
-            publicUrlMaker: null,
-            menuLinkCssMaker: null,
-        }),
-
+        productFilterRenderer: new ProductFilterRenderer(),
+        searchSettingsObserverForFilterRenderer: new SearchSettingsObserverForProductFilterRenderer(),
+        totalIndicatorOfFilterParameters: new TotalIndicatorOfFilterParameters(),
+        topTotalSearchParametersRenderer: new TopTotalSearchParametersRenderer(),
 
         // при загрузке страницы с сервера с поисковыми параметрами в url
-        searchSettingsSetterOnPageLoad: new SearchSettingsSetterOnPageLoad({
-            categoryCache: null,
-            searchSettingsStore: null,
-            rendererBySearchSettings: null,
-        }),
+        searchSettingsSetterOnPageLoad: new SearchSettingsSetterOnPageLoad(),
     };
-
 
     for (let prop in app) {
         if (app.hasOwnProperty(prop)) {
             app[prop].setAppRef(app);
         }
     }
-
 
     app.sortSettingsStore.addObserver(app.rendererBySortSettings);
     app.searchSettingsStore.addObserver(app.searchSettingsObserverForFilterRenderer);

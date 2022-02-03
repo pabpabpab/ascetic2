@@ -7,12 +7,8 @@ import AppAncestor from "../appAncestor";
 
 export default class SingleProductQuickViewer extends AppAncestor {
 
-    constructor(data) {
+    constructor() {
         super();
-        //this.productCache = data.productCache;
-        //this.viewedProductsAppender = data.viewedProductsAppender;
-        //this.viewedProductsSummaryMaker = data.viewedProductsSummaryMaker;
-
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.quickView) {
                 e.preventDefault();
@@ -38,7 +34,6 @@ export default class SingleProductQuickViewer extends AppAncestor {
         }
     }
 
-
     _showOneFromServer(productId) {
         return this.app.productCache.getOneFromServer(productId)
             .then((product) => {
@@ -47,7 +42,6 @@ export default class SingleProductQuickViewer extends AppAncestor {
                 this._renderProduct(productObject);
             });
     }
-
 
     _showOneFromCache(productId) {
         return this.app.productCache.getEntireList()
@@ -63,7 +57,6 @@ export default class SingleProductQuickViewer extends AppAncestor {
                     });
             });
     }
-
 
     _renderProduct(product) {
         const productHtml = getSingleProductHtml(product);

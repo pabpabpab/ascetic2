@@ -2358,10 +2358,10 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(MenuLinkCssMaker);
 
-  function MenuLinkCssMaker(data) {
+  function MenuLinkCssMaker() {
     _classCallCheck(this, MenuLinkCssMaker);
 
-    return _super.call(this); //this.searchSettingsStore = data.searchSettingsStore;
+    return _super.call(this);
   }
 
   _createClass(MenuLinkCssMaker, [{
@@ -2864,21 +2864,16 @@ var RendererByMenuLink = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(RendererByMenuLink);
 
-  function RendererByMenuLink(data) {
+  function RendererByMenuLink() {
     var _this;
 
     _classCallCheck(this, RendererByMenuLink);
 
-    _this = _super.call(this); //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    //this.searchSettingsStore = data.searchSettingsStore;
-    //this.publicUrlMaker = data.publicUrlMaker;
-    //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-    //this.menuLinkCssMaker = data.menuLinkCssMaker;
-
-    _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]();
+    _this = _super.call(this);
     _this.productItemSelector = '[data-product-item]';
     _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     _this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
+    _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]();
     _this.disabledRequest = false;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.menuLinkSectionName) {
@@ -3129,16 +3124,12 @@ var RendererByPaginationButton = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(RendererByPaginationButton);
 
-  function RendererByPaginationButton(data) {
+  function RendererByPaginationButton() {
     var _this;
 
     _classCallCheck(this, RendererByPaginationButton);
 
-    _this = _super.call(this); //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    //this.searchSettingsStore = data.searchSettingsStore;
-    //this.publicUrlMaker = data.publicUrlMaker;
-    //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-
+    _this = _super.call(this);
     _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
     _this.productItemSelector = '[data-product-item]';
     _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
@@ -3302,10 +3293,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
 /* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../absoluteFlashMessage */ "./resources/js2/absoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
-/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _appAncestor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../appAncestor */ "./resources/js2/appAncestor.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
+/* harmony import */ var _appAncestor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../appAncestor */ "./resources/js2/appAncestor.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3337,30 +3327,24 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var RendererBySearchSettings = /*#__PURE__*/function (_AppAncestor) {
   _inherits(RendererBySearchSettings, _AppAncestor);
 
   var _super = _createSuper(RendererBySearchSettings);
 
-  function RendererBySearchSettings(data) {
+  function RendererBySearchSettings() {
     var _this;
 
     _classCallCheck(this, RendererBySearchSettings);
 
-    _this = _super.call(this); //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    //this.searchSettingsStore = data.searchSettingsStore;
-    //this.publicUrlMaker = data.publicUrlMaker;
-    //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-    //this.menuLinkCssMaker = data.menuLinkCssMaker;
-
+    _this = _super.call(this);
     _this.productItemSelector = '[data-product-item]';
     _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     _this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
     _this.timeWhenSearchSettingsWereLastChanged = 0;
     _this.timeWhenLastRequestWasSent = 0;
     _this.timerId = 0;
-    _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_7__["default"]();
+    _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]();
     _this.locked = false;
     return _this;
   } // блокировать на время установки searchSettings
@@ -3390,7 +3374,7 @@ var RendererBySearchSettings = /*#__PURE__*/function (_AppAncestor) {
         return;
       }
 
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_6__["default"])()) {
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
         this._render();
       } else {
         this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
@@ -3535,7 +3519,7 @@ var RendererBySearchSettings = /*#__PURE__*/function (_AppAncestor) {
   }]);
 
   return RendererBySearchSettings;
-}(_appAncestor__WEBPACK_IMPORTED_MODULE_8__["default"]);
+}(_appAncestor__WEBPACK_IMPORTED_MODULE_7__["default"]);
 
 
 
@@ -3595,18 +3579,12 @@ var RendererBySortSettings = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(RendererBySortSettings);
 
-  function RendererBySortSettings(data) {
+  function RendererBySortSettings() {
     var _this;
 
     _classCallCheck(this, RendererBySortSettings);
 
-    _this = _super.call(this); //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    //this.sortSettingsStore = data.sortSettingsStore;
-    //this.searchSettingsStore = data.searchSettingsStore;
-    //this.publicUrlMaker = data.publicUrlMaker;
-    //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-    //this.menuLinkCssMaker = data.menuLinkCssMaker;
-
+    _this = _super.call(this);
     _this.productItemSelector = '[data-product-item]';
     _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); //this.header = el('#productsH1');
 
@@ -3823,15 +3801,12 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(RendererByViewMoreButton);
 
-  function RendererByViewMoreButton(data) {
+  function RendererByViewMoreButton() {
     var _this;
 
     _classCallCheck(this, RendererByViewMoreButton);
 
-    _this = _super.call(this); //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    //this.searchSettingsStore = data.searchSettingsStore;
-    //this.publicUrlMaker = data.publicUrlMaker;
-
+    _this = _super.call(this);
     _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
     _this.productItemSelector = '[data-product-item]';
     _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); //this.container = el('#productListContent'); // не делать указатель
@@ -4041,21 +4016,16 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(RendererOfViewedProductsByLink);
 
-  function RendererOfViewedProductsByLink(data) {
+  function RendererOfViewedProductsByLink() {
     var _this;
 
     _classCallCheck(this, RendererOfViewedProductsByLink);
 
-    _this = _super.call(this); //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-    //this.searchSettingsStore = data.searchSettingsStore;
-    //this.publicUrlMaker = data.publicUrlMaker;
-    //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-    //this.menuLinkCssMaker = data.menuLinkCssMaker;
-
-    _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    _this = _super.call(this);
     _this.productItemSelector = '[data-product-item]';
     _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     _this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
+    _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
     _this.disabledRequest = false;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.viewedProductsLink) {
@@ -4273,17 +4243,12 @@ var PaginationBlockRenderer = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(PaginationBlockRenderer);
 
-  function PaginationBlockRenderer(_ref) {
+  function PaginationBlockRenderer() {
     var _this;
-
-    var searchSettingsStore = _ref.searchSettingsStore,
-        publicUrlMaker = _ref.publicUrlMaker;
 
     _classCallCheck(this, PaginationBlockRenderer);
 
-    _this = _super.call(this); //this.searchSettingsStore = searchSettingsStore;
-    //this.publicUrlMaker = publicUrlMaker;
-
+    _this = _super.call(this);
     _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationWrapper');
     return _this;
   }
@@ -4340,16 +4305,16 @@ var PaginationBlockRenderer = /*#__PURE__*/function (_AppAncestor) {
     }
   }, {
     key: "_getComplexPaginationBlockHtml",
-    value: function _getComplexPaginationBlockHtml(_ref2) {
-      var firstPageUrl = _ref2.firstPageUrl,
-          pageUrl = _ref2.pageUrl,
-          lastPageUrl = _ref2.lastPageUrl,
-          currentPageNumber = _ref2.currentPageNumber,
-          pageCount = _ref2.pageCount,
-          prevRoute = _ref2.prevRoute,
-          prevPageNumber = _ref2.prevPageNumber,
-          nextRoute = _ref2.nextRoute,
-          nextPageNumber = _ref2.nextPageNumber;
+    value: function _getComplexPaginationBlockHtml(_ref) {
+      var firstPageUrl = _ref.firstPageUrl,
+          pageUrl = _ref.pageUrl,
+          lastPageUrl = _ref.lastPageUrl,
+          currentPageNumber = _ref.currentPageNumber,
+          pageCount = _ref.pageCount,
+          prevRoute = _ref.prevRoute,
+          prevPageNumber = _ref.prevPageNumber,
+          nextRoute = _ref.nextRoute,
+          nextPageNumber = _ref.nextPageNumber;
       var items = [];
 
       if (prevRoute) {
@@ -4374,11 +4339,11 @@ var PaginationBlockRenderer = /*#__PURE__*/function (_AppAncestor) {
     }
   }, {
     key: "_getSimplePaginationBlockHtml",
-    value: function _getSimplePaginationBlockHtml(_ref3) {
-      var firstPageUrl = _ref3.firstPageUrl,
-          pageUrl = _ref3.pageUrl,
-          currentPageNumber = _ref3.currentPageNumber,
-          pageCount = _ref3.pageCount;
+    value: function _getSimplePaginationBlockHtml(_ref2) {
+      var firstPageUrl = _ref2.firstPageUrl,
+          pageUrl = _ref2.pageUrl,
+          currentPageNumber = _ref2.currentPageNumber,
+          pageCount = _ref2.pageCount;
 
       if (pageCount < 2) {
         return '';
@@ -4588,17 +4553,12 @@ var ProductFilterRenderer = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(ProductFilterRenderer);
 
-  function ProductFilterRenderer(data) {
+  function ProductFilterRenderer() {
     var _this;
 
     _classCallCheck(this, ProductFilterRenderer);
 
-    _this = _super.call(this); //this.productCache = data.productCache;
-    //this.categoryCache = data.categoryCache;
-    //this.searchSettingsStore = data.searchSettingsStore;
-    // для использовани при загрузке страницы с сервера с поисковыми параметрами в url
-    //this.searchSettingsObserver = data.searchSettingsObserver;
-
+    _this = _super.call(this);
     _this.priceRangeUrl = '/public-js/product-price-range';
     _this.minPriceLimit = 0;
     _this.maxPriceLimit = 0;
@@ -4723,7 +4683,6 @@ var ProductFilterRenderer = /*#__PURE__*/function (_AppAncestor) {
         Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').min = minPrice;
         Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').max = maxPrice;
         Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').value = maxPrice; // при загрузке страницы с сервера с поисковыми параметрами
-        //this.searchSettingsObserver.renderPriceOnLoad();
 
         _this4.app.searchSettingsObserverForFilterRenderer.renderPriceOnLoad();
       });
@@ -4737,7 +4696,6 @@ var ProductFilterRenderer = /*#__PURE__*/function (_AppAncestor) {
 
         var html = Object(_html_productList_filterBlock_getCategoriesBlockHtmlForFilter__WEBPACK_IMPORTED_MODULE_2__["default"])(categories);
         Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterCategoriesWrapper').insertAdjacentHTML('afterbegin', html); // при загрузке страницы с сервера с поисковыми параметрами
-        //this.searchSettingsObserver.renderCategoryCheckboxes();
 
         _this4.app.searchSettingsObserverForFilterRenderer.renderCategoryCheckboxes();
       });
@@ -4834,11 +4792,10 @@ var SearchSettingsObserverForProductFilterRenderer = /*#__PURE__*/function (_App
 
   var _super = _createSuper(SearchSettingsObserverForProductFilterRenderer);
 
-  function SearchSettingsObserverForProductFilterRenderer(data) {
+  function SearchSettingsObserverForProductFilterRenderer() {
     _classCallCheck(this, SearchSettingsObserverForProductFilterRenderer);
 
-    return _super.call(this); //this.categoryCache = data.categoryCache;
-    //this.searchSettingsStore = data.searchSettingsStore;
+    return _super.call(this);
   }
 
   _createClass(SearchSettingsObserverForProductFilterRenderer, [{
@@ -4981,13 +4938,12 @@ var TopTotalSearchParametersRenderer = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(TopTotalSearchParametersRenderer);
 
-  function TopTotalSearchParametersRenderer(data) {
+  function TopTotalSearchParametersRenderer() {
     var _this;
 
     _classCallCheck(this, TopTotalSearchParametersRenderer);
 
-    _this = _super.call(this); //this.searchSettingsStore = data.searchSettingsStore;
-    //this.categoryCache = data.categoryCache;
+    _this = _super.call(this);
 
     _this._render();
 
@@ -5149,12 +5105,12 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(TotalIndicatorOfFilterParameters);
 
-  function TotalIndicatorOfFilterParameters(data) {
+  function TotalIndicatorOfFilterParameters() {
     var _this;
 
     _classCallCheck(this, TotalIndicatorOfFilterParameters);
 
-    _this = _super.call(this); //this.searchSettingsStore = data.searchSettingsStore;
+    _this = _super.call(this);
 
     _this._render();
 
@@ -5219,34 +5175,32 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function (_AppAncestor) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return productListKit2; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
-/* harmony import */ var _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../categorySource/categoryCache */ "./resources/js2/categorySource/categoryCache.js");
-/* harmony import */ var _settings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../settings/searchSettingsStore */ "./resources/js2/settings/searchSettingsStore.js");
-/* harmony import */ var _settings_sortSettingsStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../settings/sortSettingsStore */ "./resources/js2/settings/sortSettingsStore.js");
-/* harmony import */ var _settings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../settings/setSearchSettingsOnPageLoad */ "./resources/js2/settings/setSearchSettingsOnPageLoad.js");
-/* harmony import */ var _productSource_productCache__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../productSource/productCache */ "./resources/js2/productSource/productCache.js");
-/* harmony import */ var _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../urlMaker/searchUrlMaker */ "./resources/js2/urlMaker/searchUrlMaker.js");
-/* harmony import */ var _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../urlMaker/publicUrlMaker */ "./resources/js2/urlMaker/publicUrlMaker.js");
-/* harmony import */ var _productSource_sorterOfCachedProducts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../productSource/sorterOfCachedProducts */ "./resources/js2/productSource/sorterOfCachedProducts.js");
-/* harmony import */ var _productSource_filterOfCachedProducts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../productSource/filterOfCachedProducts */ "./resources/js2/productSource/filterOfCachedProducts.js");
-/* harmony import */ var _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../viewedProducts/viewedProductsSummaryMaker */ "./resources/js2/viewedProducts/viewedProductsSummaryMaker.js");
-/* harmony import */ var _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../viewedProducts/viewedProductsAppender */ "./resources/js2/viewedProducts/viewedProductsAppender.js");
-/* harmony import */ var _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../productQuickViewer/singleProductQuickViewer */ "./resources/js2/productQuickViewer/singleProductQuickViewer.js");
-/* harmony import */ var _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../productSource/SourceOfFilteredProducts */ "./resources/js2/productSource/SourceOfFilteredProducts.js");
-/* harmony import */ var _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./listRenderers/rendererByViewMoreButton */ "./resources/js2/productList/listRenderers/rendererByViewMoreButton.js");
-/* harmony import */ var _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./paginationRenderer/paginationBlockRenderer */ "./resources/js2/productList/paginationRenderer/paginationBlockRenderer.js");
-/* harmony import */ var _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./listRenderers/rendererByPaginationButton */ "./resources/js2/productList/listRenderers/rendererByPaginationButton.js");
-/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
-/* harmony import */ var _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./listRenderers/rendererByMenuLink */ "./resources/js2/productList/listRenderers/rendererByMenuLink.js");
-/* harmony import */ var _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./listRenderers/rendererOfViewedProductsByLink */ "./resources/js2/productList/listRenderers/rendererOfViewedProductsByLink.js");
-/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
-/* harmony import */ var _listRenderers_rendererBySortSettings__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./listRenderers/rendererBySortSettings */ "./resources/js2/productList/listRenderers/rendererBySortSettings.js");
-/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
-/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
-/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
-/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
-/* harmony import */ var _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./listRenderers/rendererBySearchSettings */ "./resources/js2/productList/listRenderers/rendererBySearchSettings.js");
-
+/* harmony import */ var _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../categorySource/categoryCache */ "./resources/js2/categorySource/categoryCache.js");
+/* harmony import */ var _settings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../settings/searchSettingsStore */ "./resources/js2/settings/searchSettingsStore.js");
+/* harmony import */ var _settings_sortSettingsStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../settings/sortSettingsStore */ "./resources/js2/settings/sortSettingsStore.js");
+/* harmony import */ var _settings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../settings/setSearchSettingsOnPageLoad */ "./resources/js2/settings/setSearchSettingsOnPageLoad.js");
+/* harmony import */ var _productSource_productCache__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../productSource/productCache */ "./resources/js2/productSource/productCache.js");
+/* harmony import */ var _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../urlMaker/searchUrlMaker */ "./resources/js2/urlMaker/searchUrlMaker.js");
+/* harmony import */ var _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../urlMaker/publicUrlMaker */ "./resources/js2/urlMaker/publicUrlMaker.js");
+/* harmony import */ var _productSource_sorterOfCachedProducts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../productSource/sorterOfCachedProducts */ "./resources/js2/productSource/sorterOfCachedProducts.js");
+/* harmony import */ var _productSource_filterOfCachedProducts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../productSource/filterOfCachedProducts */ "./resources/js2/productSource/filterOfCachedProducts.js");
+/* harmony import */ var _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../viewedProducts/viewedProductsSummaryMaker */ "./resources/js2/viewedProducts/viewedProductsSummaryMaker.js");
+/* harmony import */ var _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../viewedProducts/viewedProductsAppender */ "./resources/js2/viewedProducts/viewedProductsAppender.js");
+/* harmony import */ var _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../productQuickViewer/singleProductQuickViewer */ "./resources/js2/productQuickViewer/singleProductQuickViewer.js");
+/* harmony import */ var _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../productSource/SourceOfFilteredProducts */ "./resources/js2/productSource/SourceOfFilteredProducts.js");
+/* harmony import */ var _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./listRenderers/rendererByViewMoreButton */ "./resources/js2/productList/listRenderers/rendererByViewMoreButton.js");
+/* harmony import */ var _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./paginationRenderer/paginationBlockRenderer */ "./resources/js2/productList/paginationRenderer/paginationBlockRenderer.js");
+/* harmony import */ var _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./listRenderers/rendererByPaginationButton */ "./resources/js2/productList/listRenderers/rendererByPaginationButton.js");
+/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
+/* harmony import */ var _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./listRenderers/rendererByMenuLink */ "./resources/js2/productList/listRenderers/rendererByMenuLink.js");
+/* harmony import */ var _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./listRenderers/rendererOfViewedProductsByLink */ "./resources/js2/productList/listRenderers/rendererOfViewedProductsByLink.js");
+/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
+/* harmony import */ var _listRenderers_rendererBySortSettings__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./listRenderers/rendererBySortSettings */ "./resources/js2/productList/listRenderers/rendererBySortSettings.js");
+/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
+/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
+/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
+/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
+/* harmony import */ var _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./listRenderers/rendererBySearchSettings */ "./resources/js2/productList/listRenderers/rendererBySearchSettings.js");
 
 
 
@@ -5275,109 +5229,37 @@ __webpack_require__.r(__webpack_exports__);
 
 function productListKit2() {
   var app = {
-    categoryCache: new _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_1__["default"](),
-    productCache: new _productSource_productCache__WEBPACK_IMPORTED_MODULE_5__["default"](),
-    searchSettingsStore: new _settings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_2__["default"](),
-    sortSettingsStore: new _settings_sortSettingsStore__WEBPACK_IMPORTED_MODULE_3__["default"](),
-    searchUrlMaker: new _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_6__["default"]({
-      searchSettingsStore: null,
-      sortSettingsStore: null
-    }),
-    publicUrlMaker: new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_7__["default"]({
-      searchSettingsStore: null,
-      sortSettingsStore: null
-    }),
-    sorterOfCachedProducts: new _productSource_sorterOfCachedProducts__WEBPACK_IMPORTED_MODULE_8__["default"](null),
-    filterOfCachedProducts: new _productSource_filterOfCachedProducts__WEBPACK_IMPORTED_MODULE_9__["default"](null),
+    categoryCache: new _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_0__["default"](),
+    productCache: new _productSource_productCache__WEBPACK_IMPORTED_MODULE_4__["default"](),
+    searchSettingsStore: new _settings_searchSettingsStore__WEBPACK_IMPORTED_MODULE_1__["default"](),
+    sortSettingsStore: new _settings_sortSettingsStore__WEBPACK_IMPORTED_MODULE_2__["default"](),
+    searchUrlMaker: new _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_5__["default"](),
+    publicUrlMaker: new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_6__["default"](),
+    sorterOfCachedProducts: new _productSource_sorterOfCachedProducts__WEBPACK_IMPORTED_MODULE_7__["default"](),
+    filterOfCachedProducts: new _productSource_filterOfCachedProducts__WEBPACK_IMPORTED_MODULE_8__["default"](),
     // -------------------------------------------------------
-    viewedProductsSummaryMaker: new _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_10__["default"](),
-    viewedProductsAppender: new _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_11__["default"](),
-    singleProductQuickViewer: new _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_12__["default"]({
-      productCache: null,
-      viewedProductsAppender: null,
-      viewedProductsSummaryMaker: null
-    }),
+    viewedProductsSummaryMaker: new _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_9__["default"](),
+    viewedProductsAppender: new _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_10__["default"](),
+    singleProductQuickViewer: new _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_11__["default"](),
     // -------------------------------------------------------
-    sourceOfFilteredProducts: new _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_13__["default"]({
-      productCache: null,
-      searchUrlMaker: null,
-      sorterOfCachedProducts: null,
-      filterOfCachedProducts: null,
-      searchSettingsStore: null
-    }),
-    rendererOfProductsByViewMoreButton: new _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_14__["default"]({
-      searchSettingsStore: null,
-      publicUrlMaker: null,
-      sourceOfFilteredProducts: null
-    }),
-    rendererOfPaginationBlock: new _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_15__["default"]({
-      searchSettingsStore: null,
-      publicUrlMaker: null
-    }),
-    rendererOfProductsByPaginationButton: new _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_16__["default"]({
-      searchSettingsStore: null,
-      publicUrlMaker: null,
-      sourceOfFilteredProducts: null,
-      rendererOfPaginationBlock: null
-    }),
-    menuLinkCssMaker: new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_17__["default"]({
-      searchSettingsStore: null
-    }),
-    rendererOfProductsByMenuLink: new _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_18__["default"]({
-      sourceOfFilteredProducts: null,
-      searchSettingsStore: null,
-      publicUrlMaker: null,
-      rendererOfPaginationBlock: null,
-      menuLinkCssMaker: null
-    }),
-    rendererOfViewedProductsByLink: new _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_19__["default"]({
-      sourceOfFilteredProducts: null,
-      searchSettingsStore: null,
-      publicUrlMaker: null,
-      rendererOfPaginationBlock: null,
-      menuLinkCssMaker: null
-    }),
+    sourceOfFilteredProducts: new _productSource_SourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_12__["default"](),
+    rendererOfProductsByViewMoreButton: new _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_13__["default"](),
+    rendererOfPaginationBlock: new _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_14__["default"](),
+    rendererOfProductsByPaginationButton: new _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_15__["default"](),
+    rendererOfProductsByMenuLink: new _listRenderers_rendererByMenuLink__WEBPACK_IMPORTED_MODULE_17__["default"](),
+    rendererOfViewedProductsByLink: new _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_18__["default"](),
+    rendererBySearchSettings: new _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_25__["default"](),
+    rendererBySortSettings: new _listRenderers_rendererBySortSettings__WEBPACK_IMPORTED_MODULE_20__["default"](),
+    menuLinkCssMaker: new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_16__["default"](),
     // -----------------------------------------
-    sortMenuRenderer: new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_20__["default"]({
-      sortSettingsStore: null
-    }),
-    rendererBySortSettings: new _listRenderers_rendererBySortSettings__WEBPACK_IMPORTED_MODULE_21__["default"]({
-      sourceOfFilteredProducts: null,
-      sortSettingsStore: null,
-      searchSettingsStore: null,
-      publicUrlMaker: null
-    }),
+    sortMenuRenderer: new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_19__["default"](),
     // -----------------------------------------
-    searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_22__["default"]({
-      searchSettingsStore: null,
-      categoryCache: null
-    }),
-    productFilterRenderer: new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_23__["default"]({
-      productCache: null,
-      categoryCache: null,
-      searchSettingsStore: null,
-      searchSettingsObserver: null //searchSettingsObserverForFilterRenderer,
-
-    }),
-    totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_24__["default"]({
-      searchSettingsStore: null
-    }),
-    topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_25__["default"]({
-      searchSettingsStore: null,
-      categoryCache: null
-    }),
-    rendererBySearchSettings: new _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_26__["default"]({
-      sourceOfFilteredProducts: null,
-      searchSettingsStore: null,
-      publicUrlMaker: null,
-      menuLinkCssMaker: null
-    }),
+    productFilterRenderer: new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_22__["default"](),
+    searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_21__["default"](),
+    totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_23__["default"](),
+    topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_24__["default"](),
     // при загрузке страницы с сервера с поисковыми параметрами в url
-    searchSettingsSetterOnPageLoad: new _settings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_4__["default"]({
-      categoryCache: null,
-      searchSettingsStore: null,
-      rendererBySearchSettings: null
-    })
+    searchSettingsSetterOnPageLoad: new _settings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_3__["default"]()
   };
 
   for (var prop in app) {
@@ -5439,13 +5321,12 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(ProductSortMenuRenderer);
 
-  function ProductSortMenuRenderer(data) {
+  function ProductSortMenuRenderer() {
     var _this;
 
     _classCallCheck(this, ProductSortMenuRenderer);
 
-    _this = _super.call(this); //this.sortSettingsStore = data.sortSettingsStore;
-
+    _this = _super.call(this);
     _this.wrapSelector = "#absoluteListOfSortingValues";
     _this.showCss = 'show_sorting_block';
     _this.hideCss = 'hide_sorting_block';
@@ -5719,15 +5600,12 @@ var SingleProductQuickViewer = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(SingleProductQuickViewer);
 
-  function SingleProductQuickViewer(data) {
+  function SingleProductQuickViewer() {
     var _this;
 
     _classCallCheck(this, SingleProductQuickViewer);
 
-    _this = _super.call(this); //this.productCache = data.productCache;
-    //this.viewedProductsAppender = data.viewedProductsAppender;
-    //this.viewedProductsSummaryMaker = data.viewedProductsSummaryMaker;
-
+    _this = _super.call(this);
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.quickView) {
         e.preventDefault();
@@ -6478,14 +6356,10 @@ var SourceOfFilteredProducts = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(SourceOfFilteredProducts);
 
-  function SourceOfFilteredProducts(data) {
+  function SourceOfFilteredProducts() {
     _classCallCheck(this, SourceOfFilteredProducts);
 
-    return _super.call(this); //this.productCache = data.productCache;
-    //this.searchUrlMaker = data.searchUrlMaker;
-    //this.sorterOfCachedProducts = data.sorterOfCachedProducts;
-    //this.filterOfCachedProducts = data.filterOfCachedProducts;
-    //this.searchSettingsStore = data.searchSettingsStore;
+    return _super.call(this);
   }
 
   _createClass(SourceOfFilteredProducts, [{
@@ -6616,10 +6490,10 @@ var FilterOfCachedProducts = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(FilterOfCachedProducts);
 
-  function FilterOfCachedProducts(searchSettingsStore) {
+  function FilterOfCachedProducts() {
     _classCallCheck(this, FilterOfCachedProducts);
 
-    return _super.call(this); //this.searchSettingsStore = searchSettingsStore;
+    return _super.call(this);
   }
 
   _createClass(FilterOfCachedProducts, [{
@@ -7027,10 +6901,10 @@ var SorterOfCachedProducts = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(SorterOfCachedProducts);
 
-  function SorterOfCachedProducts(sortSettingsStore) {
+  function SorterOfCachedProducts() {
     _classCallCheck(this, SorterOfCachedProducts);
 
-    return _super.call(this); //this.sortSettingsStore = sortSettingsStore;
+    return _super.call(this);
   }
 
   _createClass(SorterOfCachedProducts, [{
@@ -7351,7 +7225,7 @@ var SetSearchSettingsOnPageLoad = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(SetSearchSettingsOnPageLoad);
 
-  function SetSearchSettingsOnPageLoad(data) {
+  function SetSearchSettingsOnPageLoad() {
     var _this;
 
     _classCallCheck(this, SetSearchSettingsOnPageLoad);
@@ -7360,10 +7234,7 @@ var SetSearchSettingsOnPageLoad = /*#__PURE__*/function (_AppAncestor) {
 
     if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.productSectionName !== 'serverProductSearch') {
       return _possibleConstructorReturn(_this);
-    } //this.categoryCache = data.categoryCache;
-    //this.searchSettingsStore = data.searchSettingsStore;
-    //this.rendererBySearchSettings = data.rendererBySearchSettings;
-    // задержка для дать время установить указатель на app при загрузке
+    } // задержка для дать время установить указатель на app при загрузке
 
 
     setTimeout(function () {
@@ -7409,33 +7280,6 @@ var SetSearchSettingsOnPageLoad = /*#__PURE__*/function (_AppAncestor) {
 
   return SetSearchSettingsOnPageLoad;
 }(_appAncestor__WEBPACK_IMPORTED_MODULE_1__["default"]);
-/*
-export default function setSearchSettingsOnPageLoad({categoryCache, searchSettingsStore, rendererBySearchSettings}) {
-    categoryCache.getEntireList()
-        .then(() => {
-            rendererBySearchSettings.lock();
-            const listWrapper = el('#productList');
-            const paramsArr = listWrapper.dataset.additionalDataOfProductSection.split(';');
-            searchSettingsStore.setMinPrice(Number(paramsArr[0]));
-            searchSettingsStore.setMaxPrice(Number(paramsArr[1]));
-
-            const categoriesIdsStr = paramsArr[2];
-            const categoriesIdsArr = categoriesIdsStr.split('-').map(id => Number(id));
-
-            if (categoriesIdsStr === '0' || categoriesIdsStr === '') {
-                searchSettingsStore.setCategoriesIds([]);
-            } else {
-                searchSettingsStore.setCategoriesIds(categoriesIdsArr);
-            }
-
-            listWrapper.dataset.productSectionName = '';
-            listWrapper.dataset.additionalDataOfProductSection = '';
-
-            rendererBySearchSettings.unlock();
-        })
-}
-*/
-
 
 
 
@@ -7654,14 +7498,12 @@ var PublicUrlMaker = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(PublicUrlMaker);
 
-  function PublicUrlMaker(data) {
+  function PublicUrlMaker() {
     var _this;
 
     _classCallCheck(this, PublicUrlMaker);
 
-    _this = _super.call(this); //this.searchSettingsStore = data.searchSettingsStore;
-    //this.sortSettingsStore = data.sortSettingsStore;
-
+    _this = _super.call(this);
     _this.startUrl = '/product-search';
     return _this;
   } // /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
@@ -7833,14 +7675,12 @@ var SearchUrlMaker = /*#__PURE__*/function (_AppAncestor) {
 
   var _super = _createSuper(SearchUrlMaker);
 
-  function SearchUrlMaker(data) {
+  function SearchUrlMaker() {
     var _this;
 
     _classCallCheck(this, SearchUrlMaker);
 
-    _this = _super.call(this); //this.searchSettingsStore = data.searchSettingsStore;
-    //this.sortSettingsStore = data.sortSettingsStore;
-
+    _this = _super.call(this);
     _this.startUrl = '/public-js/product-search';
     return _this;
   }
