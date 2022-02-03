@@ -13,9 +13,12 @@ export default class SortSettingsStore {
     }
 
     setSortingMode({selectedValue, selectedText}) {
+        const previousValue = this.settings.selectedValue;
         this.settings.selectedValue = selectedValue;
         this.settings.selectedText = selectedText;
-        this._notifyObservers();
+        if (previousValue !== selectedValue) {
+            this._notifyObservers();
+        }
     }
 
     addObserver(observer) {

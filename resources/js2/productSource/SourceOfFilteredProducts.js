@@ -7,7 +7,8 @@ export default class SourceOfFilteredProducts {
     constructor(data) {
         this.productCache = data.productCache;
         this.searchUrlMaker = data.searchUrlMaker;
-        this.productsFilter = data.filterOfCachedProducts;
+        this.productSorter = data.sorterOfCachedProducts;
+        this.productFilter = data.filterOfCachedProducts;
         this.searchSettingsStore = data.searchSettingsStore;
     }
 
@@ -23,7 +24,8 @@ export default class SourceOfFilteredProducts {
         return this.productCache.getEntireList()
             .then((data) => {
                 const products = [...data];
-                const {filteredProducts, sectionProductsCount} = this.productsFilter.doFilter(products);
+                const sorted = this.productSorter.doSort(products);
+                const {filteredProducts, sectionProductsCount} = this.productFilter.doFilter(sorted);
                 return {filteredProducts, sectionProductsCount};
             });
     }

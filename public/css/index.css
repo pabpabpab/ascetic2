@@ -496,6 +496,9 @@ h2 {
   padding: 3px 20px;
   border-radius: 20px;
   background-color: #f3f3f3;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .sorting_modes__selected_mode__wrapper {

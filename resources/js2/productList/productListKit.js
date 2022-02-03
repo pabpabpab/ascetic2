@@ -3,6 +3,7 @@ import SearchSettingsStore from "../searchSettings/searchSettingsStore";
 import SortSettingsStore from "../sortSettings/sortSettingsStore";
 import SearchUrlMaker from "../urlMaker/searchUrlMaker";
 import PublicUrlMaker from "../urlMaker/publicUrlMaker";
+import SorterOfCachedProducts from "../productSource/SorterOfCachedProducts";
 import FilterOfCachedProducts from "../productSource/FilterOfCachedProducts";
 import SourceOfFilteredProducts from "../productSource/SourceOfFilteredProducts";
 import RendererOfProductsByViewMoreButton from "./listRenderers/rendererByViewMoreButton";
@@ -20,20 +21,23 @@ import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchPara
 import RendererBySearchSettings from "./listRenderers/rendererBySearchSettings";
 import setSearchSettingsOnPageLoad from "../searchSettings/setSearchSettingsOnPageLoad";
 
-import ProductSortMenuRenderer from "./productSorter/productSortMenuRenderer";
+import SortMenuRenderer from "./productSorter/productSortMenuRenderer";
+import RendererBySortSettings from "./listRenderers/rendererBySortSettings";
 
 
 export default function productListKit({productCache}) {
     const categoryCache = new CategoryCache(); // оставить здесь
     const searchSettingsStore = new SearchSettingsStore();
     const sortSettingsStore = new SortSettingsStore();
-    const searchUrlMaker = new SearchUrlMaker(searchSettingsStore);
-    const publicUrlMaker = new PublicUrlMaker(searchSettingsStore);
+    const searchUrlMaker = new SearchUrlMaker({searchSettingsStore, sortSettingsStore});
+    const publicUrlMaker = new PublicUrlMaker({searchSettingsStore, sortSettingsStore});
+    const sorterOfCachedProducts = new SorterOfCachedProducts(sortSettingsStore);
     const filterOfCachedProducts = new FilterOfCachedProducts(searchSettingsStore);
 
     const sourceOfFilteredProducts = new SourceOfFilteredProducts({
         productCache,
         searchUrlMaker,
+        sorterOfCachedProducts,
         filterOfCachedProducts,
         searchSettingsStore,
     });
@@ -78,7 +82,18 @@ export default function productListKit({productCache}) {
     });
 
     if (el('.sorting_modes__wrapper')) {
-        new ProductSortMenuRenderer({sortSettingsStore});
+        new SortMenuRenderer({sortSettingsStore});
+
+        const rendererBySortSettings = new RendererBySortSettings({
+            sourceOfFilteredProducts,
+            //searchSettingsStore,
+            sortSettingsStore,
+            searchSettingsStore,
+            publicUrlMaker,
+            //rendererOfPaginationBlock,
+            //menuLinkCssMaker,
+        });
+        sortSettingsStore.addObserver(rendererBySortSettings);
     }
 
 

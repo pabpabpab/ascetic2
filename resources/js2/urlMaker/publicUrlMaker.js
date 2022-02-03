@@ -1,11 +1,12 @@
 export default class PublicUrlMaker {
 
-    constructor(searchSettingsStore) {
-        this.searchSettingsStore = searchSettingsStore;
+    constructor(data) {
+        this.searchSettingsStore = data.searchSettingsStore;
+        this.sortSettingsStore = data.sortSettingsStore;
         this.startUrl = '/product-search';
     }
 
-    // /product-search/price/{minPrice}-{maxPrice}/categories/{categories}
+    // /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
 
     publishUrl() {
         const url = this.getUrl();
@@ -41,20 +42,23 @@ export default class PublicUrlMaker {
             return `/viewed-products`;
         }
 
-        return this._getComplexSearchUrl(settings);
+        return this._getComplexSearchUrl();
     }
 
 
-    _getComplexSearchUrl(settings) {
+    _getComplexSearchUrl() {
+        const searchSettings = this.searchSettingsStore.getSettings();
+        const sortSettings = this.sortSettingsStore.getSettings();
         const totalUrl = [
             this.startUrl,
-            this._getMinPriceUrl(settings),
-            this._getMaxPriceUrl(settings),
-            this._getCategoriesUrl(settings),
-            this._getOffsetUrl(settings),
+            this._getMinPriceUrl(searchSettings),
+            this._getMaxPriceUrl(searchSettings),
+            this._getCategoriesUrl(searchSettings),
+            this._getSortUrl(sortSettings),
+            this._getOffsetUrl(searchSettings),
         ];
         return totalUrl.join('');
-        // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/page/
+        // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
     }
 
 
@@ -113,6 +117,9 @@ export default class PublicUrlMaker {
             return '/categories/0';
         }
         return `/categories/${settings.categoriesIds.join('-')}`;
+    }
+    _getSortUrl(settings) {
+        return `/sort/${settings.selectedValue}`;
     }
     _getOffsetUrl(settings) {
         return `/page/${settings.pageNumber}`;

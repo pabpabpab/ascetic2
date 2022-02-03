@@ -32,7 +32,7 @@ class ListService
     {
         // указаны поля для экономии трафика
         return Product::query()
-            ->select('id', 'name', 'price', 'parameters', 'photo_set', 'slug')
+            ->select('id', 'name', 'price', 'parameters', 'photo_set', 'slug', 'position')
             ->orderBy('position', 'desc')
             ->get();
     }
