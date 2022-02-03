@@ -5,15 +5,17 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
+import AppAncestor from "../../appAncestor";
 
-export default class RendererOfViewedProductsByLink {
+export default class RendererOfViewedProductsByLink extends AppAncestor {
 
     constructor(data) {
-        this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        this.searchSettingsStore = data.searchSettingsStore;
-        this.publicUrlMaker = data.publicUrlMaker;
-        this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-        this.menuLinkCssMaker = data.menuLinkCssMaker;
+        super();
+        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+        //this.searchSettingsStore = data.searchSettingsStore;
+        //this.publicUrlMaker = data.publicUrlMaker;
+        //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
+        //this.menuLinkCssMaker = data.menuLinkCssMaker;
         this.messenger = new FrequentAbsoluteFlashMessage();
 
         this.productItemSelector = '[data-product-item]';
@@ -27,7 +29,7 @@ export default class RendererOfViewedProductsByLink {
                 e.preventDefault();
                 this._setDataAttributes();
                 this._setSearchSettings();
-                this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+                this.app.searchSettingsStore.resetSettingsRelatedToSearchFilter();
                 this._showLoadingMessage();
                 this._render();
             }
@@ -40,12 +42,12 @@ export default class RendererOfViewedProductsByLink {
     }
 
     _setSearchSettings(e) {
-        this.searchSettingsStore.setProductSectionData({
+        this.app.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: '',
         });
-        this.searchSettingsStore.setPageNumber(1);
-        this.searchSettingsStore.setStartOffset(0);
+        this.app.searchSettingsStore.setPageNumber(1);
+        this.app.searchSettingsStore.setStartOffset(0);
     }
 
     _showLoadingMessage() {
@@ -63,7 +65,7 @@ export default class RendererOfViewedProductsByLink {
             return;
         }
 
-        this.sourceOfFilteredProducts.getViewedProductsFromServer()
+        this.app.sourceOfFilteredProducts.getViewedProductsFromServer()
             .then(({filteredProducts, sectionProductsCount, allViewedIdsStr}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
@@ -84,15 +86,15 @@ export default class RendererOfViewedProductsByLink {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = { ...this.searchSettingsStore.getSettings() };
+        const settings = this.app.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.searchSettingsStore.setPageCount(sectionPageCount);
+        this.app.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
     _setAllViewedIds(allViewedIdsStr) {
         this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
-        this.searchSettingsStore.setProductSectionData({
+        this.app.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: allViewedIdsStr,
         });
@@ -100,11 +102,11 @@ export default class RendererOfViewedProductsByLink {
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.publicUrlMaker.publishUrl();
+        this.app.publicUrlMaker.publishUrl();
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
-        this.rendererOfPaginationBlock.remake();
-        this.menuLinkCssMaker.resetMenuLinksCss();
+        this.app.rendererOfPaginationBlock.remake();
+        this.app.menuLinkCssMaker.resetMenuLinksCss();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

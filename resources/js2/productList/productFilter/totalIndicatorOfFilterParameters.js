@@ -1,9 +1,11 @@
 import el from "../../el";
+import AppAncestor from "../../appAncestor";
 
-export default class TotalIndicatorOfFilterParameters {
+export default class TotalIndicatorOfFilterParameters extends AppAncestor {
 
     constructor(data) {
-        this.searchSettingsStore = data.searchSettingsStore;
+        super();
+        //this.searchSettingsStore = data.searchSettingsStore;
         this._render();
     }
 
@@ -13,7 +15,7 @@ export default class TotalIndicatorOfFilterParameters {
     }
 
     checkSearchSettings() {
-        const totalCount = this.searchSettingsStore.getTotalCountOfSetFilterParameters();
+        const totalCount = this.app.searchSettingsStore.getTotalCountOfSetFilterParameters();
         if (totalCount > 0) {
             this._setVisibilityToTrue();
             el('.filter_icon__total_indicator').innerText = totalCount;

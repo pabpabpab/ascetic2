@@ -5,14 +5,16 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
+import AppAncestor from "../../appAncestor";
 
-export default class RendererBySortSettings {
+export default class RendererBySortSettings extends AppAncestor {
 
     constructor(data) {
-        this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        this.sortSettingsStore = data.sortSettingsStore;
-        this.searchSettingsStore = data.searchSettingsStore;
-        this.publicUrlMaker = data.publicUrlMaker;
+        super();
+        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+        //this.sortSettingsStore = data.sortSettingsStore;
+        //this.searchSettingsStore = data.searchSettingsStore;
+        //this.publicUrlMaker = data.publicUrlMaker;
         //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
         //this.menuLinkCssMaker = data.menuLinkCssMaker;
 
@@ -43,8 +45,8 @@ export default class RendererBySortSettings {
             return;
         }
 
-        this.searchSettingsStore.setStartOffset(0);
-        this.searchSettingsStore.setPageNumber(1);
+        this.app.searchSettingsStore.setStartOffset(0);
+        this.app.searchSettingsStore.setPageNumber(1);
 
         if (allProductsMustBeCached()) {
             this._render();
@@ -81,7 +83,7 @@ export default class RendererBySortSettings {
     }
 
     _render() {
-        this.sourceOfFilteredProducts.getFiltered()
+        this.app.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
@@ -104,10 +106,10 @@ export default class RendererBySortSettings {
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.publicUrlMaker.publishUrl();
+        this.app.publicUrlMaker.publishUrl();
         this._switchVisibilityOfViewMoreButton();
         this._makeInvisiblePaginationBlock();
-        //this.rendererOfPaginationBlock.remake();
+        //this.app.rendererOfPaginationBlock.remake();
     }
 
 

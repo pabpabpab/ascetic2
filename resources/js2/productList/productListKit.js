@@ -1,38 +1,61 @@
+import el from "../el";
+
 import CategoryCache from "../categorySource/categoryCache";
-import SearchSettingsStore from "../searchSettings/searchSettingsStore";
-import SortSettingsStore from "../sortSettings/sortSettingsStore";
+import SearchSettingsStore from "../settings/searchSettingsStore";
+import SortSettingsStore from "../settings/sortSettingsStore";
+import setSearchSettingsOnPageLoad from "../settings/setSearchSettingsOnPageLoad";
+
 import SearchUrlMaker from "../urlMaker/searchUrlMaker";
 import PublicUrlMaker from "../urlMaker/publicUrlMaker";
+
+import ProductCache from "../productSource/productCache";
 import SorterOfCachedProducts from "../productSource/SorterOfCachedProducts";
-import FilterOfCachedProducts from "../productSource/FilterOfCachedProducts";
+import FilterOfCachedProducts from "../productSource/filterOfCachedProducts";
 import SourceOfFilteredProducts from "../productSource/SourceOfFilteredProducts";
+
 import RendererOfProductsByViewMoreButton from "./listRenderers/rendererByViewMoreButton";
-import PaginationBlockRenderer from "./paginationRenderer/paginationBlockRenderer";
 import RendererOfProductsByPaginationButton from "./listRenderers/rendererByPaginationButton";
-import MenuLinkCssMaker from "../menu/menuLinkCssMaker";
 import RendererOfProductsByMenuLink from "./listRenderers/rendererByMenuLink";
 import RendererOfViewedProductsByLink from "./listRenderers/rendererOfViewedProductsByLink";
-import el from "../el";
-import SearchSettingsObserverForProductFilterRenderer
-    from "./productFilter/searchSettingsObserverForProductFilterRenderer";
-import ProductFilterRenderer from "./productFilter/productFilterRenderer";
-import TotalIndicatorOfFilterParameters from "./productFilter/totalIndicatorOfFilterParameters";
-import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchParametersRenderer";
 import RendererBySearchSettings from "./listRenderers/rendererBySearchSettings";
-import setSearchSettingsOnPageLoad from "../searchSettings/setSearchSettingsOnPageLoad";
-
-import SortMenuRenderer from "./productSorter/productSortMenuRenderer";
 import RendererBySortSettings from "./listRenderers/rendererBySortSettings";
 
+import PaginationBlockRenderer from "./paginationRenderer/paginationBlockRenderer";
+import MenuLinkCssMaker from "../menu/menuLinkCssMaker";
 
-export default function productListKit({productCache}) {
+
+import ProductFilterRenderer from "./productFilter/productFilterRenderer";
+import SearchSettingsObserverForProductFilterRenderer from "./productFilter/searchSettingsObserverForProductFilterRenderer";
+import TotalIndicatorOfFilterParameters from "./productFilter/totalIndicatorOfFilterParameters";
+import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchParametersRenderer";
+
+import SortMenuRenderer from "./productSorter/productSortMenuRenderer";
+
+import ViewedProductsSummaryMaker from "../viewedProducts/viewedProductsSummaryMaker";
+import ViewedProductsAppender from "../viewedProducts/viewedProductsAppender";
+
+import SingleProductQuickViewer from "../productQuickViewer/singleProductQuickViewer";
+
+
+export default function productListKit() {
     const categoryCache = new CategoryCache(); // оставить здесь
+    const productCache = new ProductCache();
     const searchSettingsStore = new SearchSettingsStore();
     const sortSettingsStore = new SortSettingsStore();
     const searchUrlMaker = new SearchUrlMaker({searchSettingsStore, sortSettingsStore});
     const publicUrlMaker = new PublicUrlMaker({searchSettingsStore, sortSettingsStore});
     const sorterOfCachedProducts = new SorterOfCachedProducts(sortSettingsStore);
     const filterOfCachedProducts = new FilterOfCachedProducts(searchSettingsStore);
+
+
+    const viewedProductsSummaryMaker = new ViewedProductsSummaryMaker();
+    const viewedProductsAppender = new ViewedProductsAppender();
+    new SingleProductQuickViewer({
+        productCache,
+        viewedProductsAppender,
+        viewedProductsSummaryMaker,
+    });
+
 
     const sourceOfFilteredProducts = new SourceOfFilteredProducts({
         productCache,
@@ -81,6 +104,10 @@ export default function productListKit({productCache}) {
         menuLinkCssMaker,
     });
 
+
+    // --------------------------------------------
+
+
     if (el('.sorting_modes__wrapper')) {
         new SortMenuRenderer({sortSettingsStore});
 
@@ -93,6 +120,7 @@ export default function productListKit({productCache}) {
             //rendererOfPaginationBlock,
             //menuLinkCssMaker,
         });
+
         sortSettingsStore.addObserver(rendererBySortSettings);
     }
 

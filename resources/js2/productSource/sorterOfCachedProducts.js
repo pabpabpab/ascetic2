@@ -1,11 +1,14 @@
-export default class SorterOfCachedProducts {
+import AppAncestor from "../appAncestor";
+
+export default class SorterOfCachedProducts extends AppAncestor {
 
     constructor(sortSettingsStore) {
-        this.sortSettingsStore = sortSettingsStore;
+        super();
+        //this.sortSettingsStore = sortSettingsStore;
     }
 
     doSort(products) {
-        const settings = this.sortSettingsStore.getSettings();
+        const settings = this.app.sortSettingsStore.getSettings();
 
         const func = {
             position: this._sortByPosition,

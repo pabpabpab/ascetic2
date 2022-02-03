@@ -1,11 +1,13 @@
 import el from '../../el';
+import AppAncestor from "../../appAncestor";
 
 
-export default class PaginationBlockRenderer {
+export default class PaginationBlockRenderer extends AppAncestor {
 
     constructor({searchSettingsStore, publicUrlMaker}) {
-        this.searchSettingsStore = searchSettingsStore;
-        this.publicUrlMaker = publicUrlMaker;
+        super();
+        //this.searchSettingsStore = searchSettingsStore;
+        //this.publicUrlMaker = publicUrlMaker;
         this.wrapper = el('#paginationWrapper');
     }
 
@@ -27,12 +29,12 @@ export default class PaginationBlockRenderer {
 
 
     _getPaginationData() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
 
         const pageNumber = settings.pageNumber;
         const pageCount = settings.pageCount;
 
-        const firstPageUrl = this.publicUrlMaker.getFirstPageUrl();
+        const firstPageUrl = this.app.publicUrlMaker.getFirstPageUrl();
         const pageUrl = firstPageUrl === '/' ? `/products` : firstPageUrl;
         const lastPageUrl = `${pageUrl}/${pageCount}`;
 

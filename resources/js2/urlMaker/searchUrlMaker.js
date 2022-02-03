@@ -1,13 +1,17 @@
-export default class SearchUrlMaker {
+import AppAncestor from "../appAncestor";
 
-    constructor(searchSettingsStore) {
-        this.searchSettingsStore = searchSettingsStore;
+export default class SearchUrlMaker extends AppAncestor {
+
+    constructor(data) {
+        super();
+        //this.searchSettingsStore = data.searchSettingsStore;
+        //this.sortSettingsStore = data.sortSettingsStore;
         this.startUrl = '/public-js/product-search';
     }
 
 
     getUrl() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
 
         if (this._isUrlOfFavoriteProducts()) {
             return `/public-js/favorite-products/offset/${settings.startOffset}`;
@@ -54,7 +58,7 @@ export default class SearchUrlMaker {
 
 
     _isUrlOfFavoriteProducts() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.productSectionName === 'favoriteProducts',
         ];
@@ -62,7 +66,7 @@ export default class SearchUrlMaker {
     }
 
     _isUrlOfViewedProducts() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.productSectionName === 'viewedProducts',
         ];

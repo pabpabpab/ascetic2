@@ -1,11 +1,13 @@
 import el from "../../el";
-import getCategoriesBlockHtmlForFilter from "../../html/productList/filterBlock/getCategoriesBlockHtmlForFilter";
+import AppAncestor from "../../appAncestor";
 
-export default class FilterTopTotalParametersRenderer {
+
+export default class TopTotalSearchParametersRenderer extends AppAncestor {
 
     constructor(data) {
-        this.searchSettingsStore = data.searchSettingsStore;
-        this.categoryCache = data.categoryCache;
+        super();
+        //this.searchSettingsStore = data.searchSettingsStore;
+        //this.categoryCache = data.categoryCache;
         this._render();
     }
 
@@ -27,33 +29,33 @@ export default class FilterTopTotalParametersRenderer {
         const entityValue = e.target.dataset.topSearchParameterValue;
 
         if (entity === 'minPrice') {
-            this.searchSettingsStore.setMinPrice(0);
+            this.app.searchSettingsStore.setMinPrice(0);
         }
         if (entity === 'maxPrice') {
-            this.searchSettingsStore.setMaxPrice(0);
+            this.app.searchSettingsStore.setMaxPrice(0);
         }
         if (entity === 'category') {
             const categoryId = Number(entityValue);
-            const settings = this.searchSettingsStore.getSettings();
+            const settings = this.app.searchSettingsStore.getSettings();
             const categoryIds = settings.categoriesIds;
             const index = categoryIds.indexOf(categoryId);
             if (index > -1) {
                 categoryIds.splice(index, 1);
             }
-            this.searchSettingsStore.setCategoriesIds(categoryIds) ;
+            this.app.searchSettingsStore.setCategoriesIds(categoryIds) ;
         }
     }
 
     checkSearchSettings() {
         this._removeAllItems();
-        const totalCount = this.searchSettingsStore.getTotalCountOfSetFilterParameters();
+        const totalCount = this.app.searchSettingsStore.getTotalCountOfSetFilterParameters();
         if (totalCount > 0) {
             this._renderItems();
         }
     }
 
     _renderItems() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const container = el('.top_total_parameters_of_search');
         if (settings.minPrice > 0) {
             const minPrice = settings.minPrice;
@@ -66,7 +68,7 @@ export default class FilterTopTotalParametersRenderer {
             container.insertAdjacentHTML('beforeend', this._getItemHtml('maxPrice', maxPrice, text));
         }
 
-        const cachedCategories = this.categoryCache.getCachedCategories();
+        const cachedCategories = this.app.categoryCache.getCachedCategories();
         const categoryItems = settings.categoriesIds.map(categoryId => {
             const found = cachedCategories.find(item => item.id === categoryId);
             if (!found) {

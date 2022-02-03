@@ -4,17 +4,19 @@ import getCategoriesBlockHtmlForFilter from "./../../html/productList/filterBloc
 import el from "../../el";
 import getJson from "../../http/getJson";
 import ProductFilterHandler from "./productFilterHandler";
+import AppAncestor from "../../appAncestor";
 
 
-export default class ProductFilterRenderer {
+export default class ProductFilterRenderer extends AppAncestor {
 
     constructor(data) {
-        this.productCache = data.productCache;
-        this.categoryCache = data.categoryCache;
-        this.searchSettingsStore = data.searchSettingsStore;
+        super();
+        //this.productCache = data.productCache;
+        //this.categoryCache = data.categoryCache;
+        //this.searchSettingsStore = data.searchSettingsStore;
 
         // для использовани при загрузке страницы с сервера с поисковыми параметрами в url
-        this.searchSettingsObserver = data.searchSettingsObserver;
+        //this.searchSettingsObserver = data.searchSettingsObserver;
 
         this.priceRangeUrl = '/public-js/product-price-range';
         this.minPriceLimit = 0;
@@ -64,7 +66,7 @@ export default class ProductFilterRenderer {
         });
         new ProductFilterHandler({
             filterBlock: this,
-            searchSettingsStore: this.searchSettingsStore,
+            searchSettingsStore: this.app.searchSettingsStore,
         });
     }
 
@@ -117,10 +119,11 @@ export default class ProductFilterRenderer {
                 el('#maxPriceRangeInput').value = maxPrice;
 
                 // при загрузке страницы с сервера с поисковыми параметрами
-                this.searchSettingsObserver.renderPriceOnLoad();
+                //this.searchSettingsObserver.renderPriceOnLoad();
+                this.app.searchSettingsObserverForFilterRenderer.renderPriceOnLoad();
             });
 
-        this.categoryCache.getEntireList()
+        this.app.categoryCache.getEntireList()
             .then((categories) => {
                 const spinner = el('#productFilterCategoriesSpinner');
                 if (spinner) {
@@ -130,13 +133,14 @@ export default class ProductFilterRenderer {
                 el('#productFilterCategoriesWrapper').insertAdjacentHTML('afterbegin', html);
 
                 // при загрузке страницы с сервера с поисковыми параметрами
-                this.searchSettingsObserver.renderCategoryCheckboxes();
+                //this.searchSettingsObserver.renderCategoryCheckboxes();
+                this.app.searchSettingsObserverForFilterRenderer.renderCategoryCheckboxes();
             });
     }
 
 
     _getPriceRange() {
-        if (this.productCache.entireList.length > 0) {
+        if (this.app.productCache.entireList.length > 0) {
             return new Promise(resolve =>
                 resolve(this._getPriceRangeFromCachedProducts())
             );
@@ -149,13 +153,13 @@ export default class ProductFilterRenderer {
             });
     }
     _getPriceRangeFromCachedProducts() {
-        const minPrice = this.productCache.entireList.reduce((minPrice, item) => {
+        const minPrice = this.app.productCache.entireList.reduce((minPrice, item) => {
             return minPrice < item.price ? minPrice : item.price;
         }, 100000000000000000);
         const integerMinPrice = Math.floor(minPrice);
         this.minPriceLimit = integerMinPrice;
 
-        const maxPrice = this.productCache.entireList.reduce((maxPrice, item) => {
+        const maxPrice = this.app.productCache.entireList.reduce((maxPrice, item) => {
             return maxPrice > item.price ? maxPrice : item.price;
         }, 0);
         const integerMaxPrice = Math.ceil(maxPrice);

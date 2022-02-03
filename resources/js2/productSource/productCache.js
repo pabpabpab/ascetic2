@@ -2,10 +2,12 @@ import getJson from "./../http/getJson";
 import AbsoluteFlashMessage from "./../absoluteFlashMessage";
 import el from "./../el";
 import allProductsMustBeCached from "./../allProductsMustBeCached";
+import AppAncestor from "../appAncestor";
 
-export default class ProductCache {
+export default class ProductCache extends AppAncestor {
 
     constructor() {
+        super();
         const productListWrapper = el('#productList');
         const viewedProductsSummaryWrapper = el('#viewedProductsSummaryWrapper')
         if (!productListWrapper && !viewedProductsSummaryWrapper) {

@@ -5,15 +5,17 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
+import AppAncestor from "../../appAncestor";
 
-export default class RendererByMenuLink {
+export default class RendererByMenuLink extends AppAncestor {
 
     constructor(data) {
-        this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        this.searchSettingsStore = data.searchSettingsStore;
-        this.publicUrlMaker = data.publicUrlMaker;
-        this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-        this.menuLinkCssMaker = data.menuLinkCssMaker;
+        super();
+        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+        //this.searchSettingsStore = data.searchSettingsStore;
+        //this.publicUrlMaker = data.publicUrlMaker;
+        //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
+        //this.menuLinkCssMaker = data.menuLinkCssMaker;
         this.messenger = new FrequentAbsoluteFlashMessage();
 
         this.productItemSelector = '[data-product-item]';
@@ -27,7 +29,7 @@ export default class RendererByMenuLink {
                 e.preventDefault();
                 this._setDataAttributes(e);
                 this._setSearchSettings(e);
-                this.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+                this.app.searchSettingsStore.resetSettingsRelatedToSearchFilter();
                 this._showLoadingMessage();
                 this._render();
             }
@@ -57,12 +59,12 @@ export default class RendererByMenuLink {
     }
 
     _setSearchSettings(e) {
-        this.searchSettingsStore.setProductSectionData({
+        this.app.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
-        this.searchSettingsStore.setPageNumber(1);
-        this.searchSettingsStore.setStartOffset(0);
+        this.app.searchSettingsStore.setPageNumber(1);
+        this.app.searchSettingsStore.setStartOffset(0);
     }
 
     _showLoadingMessage() {
@@ -80,7 +82,7 @@ export default class RendererByMenuLink {
             return;
         }
 
-        this.sourceOfFilteredProducts.getFiltered()
+        this.app.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
@@ -100,22 +102,22 @@ export default class RendererByMenuLink {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = { ...this.searchSettingsStore.getSettings() };
+        const settings = this.app.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.searchSettingsStore.setPageCount(sectionPageCount);
+        this.app.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.publicUrlMaker.publishUrl();
+        this.app.publicUrlMaker.publishUrl();
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
         // this._makeInvisiblePaginationBlock();
-        this.rendererOfPaginationBlock.remake();
-        this.menuLinkCssMaker.resetMenuLinksCss();
-        this.menuLinkCssMaker.markActiveMenuLink();
+        this.app.rendererOfPaginationBlock.remake();
+        this.app.menuLinkCssMaker.resetMenuLinksCss();
+        this.app.menuLinkCssMaker.markActiveMenuLink();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

@@ -1,8 +1,11 @@
-export default class PublicUrlMaker {
+import AppAncestor from "../appAncestor";
+
+export default class PublicUrlMaker extends AppAncestor {
 
     constructor(data) {
-        this.searchSettingsStore = data.searchSettingsStore;
-        this.sortSettingsStore = data.sortSettingsStore;
+        super();
+        //this.searchSettingsStore = data.searchSettingsStore;
+        //this.sortSettingsStore = data.sortSettingsStore;
         this.startUrl = '/product-search';
     }
 
@@ -14,7 +17,7 @@ export default class PublicUrlMaker {
     }
 
     getUrl() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const pageNumber = settings.pageNumber;
 
         if (this._isUrlOfMainPage()) {
@@ -25,7 +28,7 @@ export default class PublicUrlMaker {
     }
 
     getFirstPageUrl() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
 
         if (this._isUrlOfMainPage()) {
             return `/`;
@@ -47,14 +50,14 @@ export default class PublicUrlMaker {
 
 
     _getComplexSearchUrl() {
-        const searchSettings = this.searchSettingsStore.getSettings();
-        const sortSettings = this.sortSettingsStore.getSettings();
+        const searchSettings = this.app.searchSettingsStore.getSettings();
+        const sortSettings = this.app.sortSettingsStore.getSettings();
         const totalUrl = [
             this.startUrl,
             this._getMinPriceUrl(searchSettings),
             this._getMaxPriceUrl(searchSettings),
             this._getCategoriesUrl(searchSettings),
-            this._getSortUrl(sortSettings),
+            //this._getSortUrl(sortSettings),
             this._getOffsetUrl(searchSettings),
         ];
         return totalUrl.join('');
@@ -67,7 +70,7 @@ export default class PublicUrlMaker {
 
 
     _isUrlOfMainPage() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const logicalConditions = [
             ['all', ''].indexOf(settings.productSectionName) !== -1,
             settings.categoriesIds.length === 0,
@@ -78,7 +81,7 @@ export default class PublicUrlMaker {
     }
 
     _isSingleCategoryUrlBasedOnSectionName() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.productSectionName === 'productCategory',
             settings.categoriesIds.length === 0,
@@ -87,7 +90,7 @@ export default class PublicUrlMaker {
     }
 
     _isUrlOfFavoriteProducts() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.productSectionName === 'favoriteProducts',
         ];
@@ -95,7 +98,7 @@ export default class PublicUrlMaker {
     }
 
     _isUrlOfViewedProducts() {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.productSectionName === 'viewedProducts',
         ];

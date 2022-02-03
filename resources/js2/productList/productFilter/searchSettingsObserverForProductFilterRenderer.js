@@ -1,10 +1,12 @@
 import el from "../../el";
+import AppAncestor from "../../appAncestor";
 
-export default class SearchSettingsObserverForProductFilterRenderer {
+export default class SearchSettingsObserverForProductFilterRenderer extends AppAncestor {
 
     constructor(data) {
-        this.categoryCache = data.categoryCache;
-        this.searchSettingsStore = data.searchSettingsStore;
+        super();
+        //this.categoryCache = data.categoryCache;
+        //this.searchSettingsStore = data.searchSettingsStore;
     }
 
     checkSearchSettings() {
@@ -17,7 +19,7 @@ export default class SearchSettingsObserverForProductFilterRenderer {
         if (!el('#minPriceTextInput')) {
             return;
         }
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         if (settings.minPrice === 0) {
             el('#minPriceTextInput').value = el('#minPriceRangeInput').min;
             el('#minPriceRangeInput').value = el('#minPriceRangeInput').min;
@@ -27,7 +29,7 @@ export default class SearchSettingsObserverForProductFilterRenderer {
         if (!el('#maxPriceTextInput')) {
             return;
         }
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         if (settings.maxPrice === 0) {
             el('#maxPriceTextInput').value = el('#maxPriceRangeInput').max;
             el('#maxPriceRangeInput').value = el('#maxPriceRangeInput').max;
@@ -39,7 +41,8 @@ export default class SearchSettingsObserverForProductFilterRenderer {
         if (!el('#minPriceTextInput')) {
             return;
         }
-        const settings = this.searchSettingsStore.getSettings();
+
+        const settings = this.app.searchSettingsStore.getSettings();
         if (settings.minPrice > 0) {
             el('#minPriceTextInput').value = settings.minPrice;
             el('#minPriceRangeInput').value = settings.minPrice;
@@ -54,7 +57,7 @@ export default class SearchSettingsObserverForProductFilterRenderer {
         if (!el('#productFilterCategoriesWrapper')) {
             return;
         }
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const categoriesIds = settings.categoriesIds;
         const wrapper = el('#productFilterCategoriesWrapper')
         const nodes = wrapper.querySelectorAll('[data-product-filter-category-checkbox-input]');

@@ -12,8 +12,12 @@ import ProductCache from "./productSource/productCache";
 import ViewedProductsAppender from "./viewedProducts/viewedProductsAppender";
 import SingleProductQuickViewer from "./productQuickViewer/singleProductQuickViewer";
 import singleProductKit from "./productSingle/singleProductKit";
-import productListKit from "./productList/productListKit";
+import productListKit2 from "./productList/productListKit2";
+
 import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMaker";
+
+
+
 
 const productListWrapper = el('#productList');
 const singleProductWrapper = el('#singleProduct');
@@ -23,14 +27,15 @@ if (singleProductWrapper) {
     singleProductKit();
 }
 
-const viewedProductsSummaryMaker = new ViewedProductsSummaryMaker();
 
-const productCache = new ProductCache();
+
 if (productListWrapper) {
-    productListKit({productCache});
+    productListKit2();
 }
-
-if (productListWrapper || viewedProductsSummaryWrapper)  {
+else
+if (viewedProductsSummaryWrapper)  {
+    const productCache = new ProductCache();
+    const viewedProductsSummaryMaker = new ViewedProductsSummaryMaker();
     const viewedProductsAppender = new ViewedProductsAppender();
     new SingleProductQuickViewer({
         productCache,

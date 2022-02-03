@@ -1,8 +1,10 @@
 import postJson from "./../http/postJson";
+import AppAncestor from "../appAncestor";
 
-export default class ViewedProductsAppender {
+export default class ViewedProductsAppender extends AppAncestor {
 
     constructor() {
+        super();
         this.postUrl = '/public-js/viewed-products/post';
         this.disabledSubmit = false;
     }

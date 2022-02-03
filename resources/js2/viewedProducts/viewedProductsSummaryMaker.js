@@ -3,10 +3,12 @@ import getJson from "./../http/getJson";
 import getViewedProductsItemHtml from "./../html/viewedProductsSummary/getViewedProductsItemHtml";
 import getViewedProductsHeaderHtml from "./../html/viewedProductsSummary/getViewedProductsHeaderHtml";
 import getProductObject from "./../productObject/getProductObject";
+import AppAncestor from "../appAncestor";
 
 
-export default class ViewedProductsSummaryMaker {
+export default class ViewedProductsSummaryMaker extends AppAncestor {
     constructor() {
+        super();
         this.wrapperOfSummary = el('#viewedProductsSummaryWrapper');
         if (!this.wrapperOfSummary) {
             return;

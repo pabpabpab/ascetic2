@@ -1,9 +1,12 @@
+import AppAncestor from "../appAncestor";
 import getJson from "../http/getJson";
 import AbsoluteFlashMessage from "../absoluteFlashMessage";
 
-export default class CategoryCache {
+
+export default class CategoryCache extends AppAncestor {
 
     constructor() {
+        super();
         this.entireList = [];
         this.entireListUrl = '/public-js/entire-category-list';
     }

@@ -3,20 +3,22 @@ import allProductsMustBeCached from "../allProductsMustBeCached";
 import getProductObject from "./../productObject/getProductObject";
 import getSingleProductHtml from "./../html/singleProduct/index-getSingleProductHtml";
 import singleProductKit from "./../productSingle/singleProductKit";
+import AppAncestor from "../appAncestor";
 
-export default class SingleProductQuickViewer {
+export default class SingleProductQuickViewer extends AppAncestor {
 
     constructor(data) {
-        this.productCache = data.productCache;
-        this.viewedProductsAppender = data.viewedProductsAppender;
-        this.viewedProductsSummaryMaker = data.viewedProductsSummaryMaker;
+        super();
+        //this.productCache = data.productCache;
+        //this.viewedProductsAppender = data.viewedProductsAppender;
+        //this.viewedProductsSummaryMaker = data.viewedProductsSummaryMaker;
 
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.quickView) {
                 e.preventDefault();
                 const productId = Number(e.target.dataset.quickView);
                 this._showOneProduct(productId);
-                this.viewedProductsAppender.post(productId);
+                this.app.viewedProductsAppender.post(productId);
             }
         });
     }
@@ -38,9 +40,9 @@ export default class SingleProductQuickViewer {
 
 
     _showOneFromServer(productId) {
-        return this.productCache.getOneFromServer(productId)
+        return this.app.productCache.getOneFromServer(productId)
             .then((product) => {
-                this.viewedProductsSummaryMaker.remakeWith(product);
+                this.app.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = getProductObject(product);
                 this._renderProduct(productObject);
             });
@@ -48,14 +50,14 @@ export default class SingleProductQuickViewer {
 
 
     _showOneFromCache(productId) {
-        return this.productCache.getEntireList()
+        return this.app.productCache.getEntireList()
             .then((data) => {
                 const list = [...data];
                 const product = list.filter(item => item.id === productId)[0];
-                this.viewedProductsSummaryMaker.remakeWith(product);
+                this.app.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = getProductObject(product);
                 this._renderProduct(productObject);
-                this.productCache.getOneDescription(productId)
+                this.app.productCache.getOneDescription(productId)
                     .then((data) => {
                         el('#productDescriptionContainer').innerText = data.description;
                     });

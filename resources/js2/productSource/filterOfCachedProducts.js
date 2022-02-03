@@ -1,13 +1,15 @@
 import getCookie from "../cookie/getCookie";
+import AppAncestor from "../appAncestor";
 
-export default class FilterOfCachedProducts {
+export default class FilterOfCachedProducts extends AppAncestor {
 
     constructor(searchSettingsStore) {
-        this.searchSettingsStore = searchSettingsStore;
+        super();
+        //this.searchSettingsStore = searchSettingsStore;
     }
 
     doFilter(products) {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
 
         let filtered = [ ...products ];
 

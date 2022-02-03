@@ -5,13 +5,15 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
+import AppAncestor from "../../appAncestor";
 
-export default class RendererByViewMoreButton {
+export default class RendererByViewMoreButton extends AppAncestor {
 
     constructor(data) {
-        this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        this.searchSettingsStore = data.searchSettingsStore;
-        this.publicUrlMaker = data.publicUrlMaker;
+        super();
+        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+        //this.searchSettingsStore = data.searchSettingsStore;
+        //this.publicUrlMaker = data.publicUrlMaker;
         this.messenger = new FrequentAbsoluteFlashMessage();
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
@@ -28,13 +30,13 @@ export default class RendererByViewMoreButton {
     }
 
     _setSearchSettings() {
-        this.searchSettingsStore.setProductSectionData({
+        this.app.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
 
         const offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
-        this.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
+        this.app.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
     }
 
     _showLoadingMessage() {
@@ -52,7 +54,7 @@ export default class RendererByViewMoreButton {
             return;
         }
 
-        this.sourceOfFilteredProducts.getFiltered()
+        this.app.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
@@ -72,16 +74,16 @@ export default class RendererByViewMoreButton {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = { ...this.searchSettingsStore.getSettings() };
+        const settings = this.app.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.searchSettingsStore.setPageCount(sectionPageCount);
+        this.app.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        // this.publicUrlMaker.publishUrl(); // не применять
+        // this.app.publicUrlMaker.publishUrl(); // не применять
         this._makeInvisiblePaginationBlock();
         this._switchVisibilityOfViewMoreButton();
         scrollDocument(200, 'down');

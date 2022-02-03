@@ -6,15 +6,17 @@ import scrollDocument from "../../scrollDocument";
 import AbsoluteFlashMessage from "../../absoluteFlashMessage";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
+import AppAncestor from "../../appAncestor";
 
-export default class RendererBySearchSettings {
+export default class RendererBySearchSettings extends AppAncestor {
 
     constructor(data) {
-        this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
-        this.searchSettingsStore = data.searchSettingsStore;
-        this.publicUrlMaker = data.publicUrlMaker;
+        super();
+        //this.sourceOfFilteredProducts = data.sourceOfFilteredProducts;
+        //this.searchSettingsStore = data.searchSettingsStore;
+        //this.publicUrlMaker = data.publicUrlMaker;
         //this.rendererOfPaginationBlock = data.rendererOfPaginationBlock;
-        this.menuLinkCssMaker = data.menuLinkCssMaker;
+        //this.menuLinkCssMaker = data.menuLinkCssMaker;
 
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
@@ -43,7 +45,7 @@ export default class RendererBySearchSettings {
             return;
         }
 
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         if (settings.productSectionName.length > 0) {
             return;
         }
@@ -83,7 +85,7 @@ export default class RendererBySearchSettings {
     }
 
     _render() {
-        this.sourceOfFilteredProducts.getFiltered()
+        this.app.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
@@ -107,21 +109,21 @@ export default class RendererBySearchSettings {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.app.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.searchSettingsStore.setPageCount(sectionPageCount);
+        this.app.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.publicUrlMaker.publishUrl();
+        this.app.publicUrlMaker.publishUrl();
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
         this._makeInvisiblePaginationBlock();
-        //this.rendererOfPaginationBlock.remake();
-        this.menuLinkCssMaker.resetMenuLinksCss();
+        //this.app.rendererOfPaginationBlock.remake();
+        this.app.menuLinkCssMaker.resetMenuLinksCss();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

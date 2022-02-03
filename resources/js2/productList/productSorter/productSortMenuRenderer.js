@@ -1,10 +1,12 @@
 import el from "../../el";
 import getSorterBlockHtml from "../../html/productList/sorterBlock/getSorterBlockHtml";
+import AppAncestor from "../../appAncestor";
 
-export default class ProductSortMenuRenderer {
+export default class ProductSortMenuRenderer extends AppAncestor {
 
     constructor(data) {
-        this.sortSettingsStore = data.sortSettingsStore;
+        super();
+        //this.sortSettingsStore = data.sortSettingsStore;
 
         this.wrapSelector = `#absoluteListOfSortingValues`;
         this.showCss = 'show_sorting_block';
@@ -47,7 +49,7 @@ export default class ProductSortMenuRenderer {
                 return;
             }
             el('#sortingModeValueContainer').innerText = e.target.innerText;
-            this.sortSettingsStore.setSortingMode({
+            this.app.sortSettingsStore.setSortingMode({
                 selectedValue: e.target.dataset.sortValue,
                 selectedText: e.target.innerText,
             });
@@ -67,6 +69,10 @@ export default class ProductSortMenuRenderer {
         if (!el(this.wrapSelector)) {
             return;
         }
+        /*
+        if (el('#productList').dataset.productSectionName === 'viewedProducts') {
+            return;
+        }*/
         el(this.wrapSelector).classList.remove(this.hideCss);
         el(this.wrapSelector).classList.add(this.showCss);
 

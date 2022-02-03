@@ -1,6 +1,9 @@
-export default class SearchSettingsStore {
+import AppAncestor from "../appAncestor";
+
+export default class SearchSettingsStore extends AppAncestor {
 
     constructor() {
+        super();
         this.settings = {
             productSectionName: '',
             additionalDataOfProductSection: '',

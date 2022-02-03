@@ -1,6 +1,9 @@
-export default class SortSettingsStore {
+import AppAncestor from "../appAncestor";
+
+export default class SortSettingsStore extends AppAncestor {
 
     constructor() {
+        super();
         this.settings = {
             selectedValue: 'position',
             selectedText: 'По умолчанию',

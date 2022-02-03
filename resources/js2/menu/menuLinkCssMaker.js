@@ -1,9 +1,11 @@
 import el from './../el';
+import AppAncestor from "../appAncestor";
 
-export default class MenuLinkCssMaker {
+export default class MenuLinkCssMaker extends AppAncestor {
 
     constructor(data) {
-        this.searchSettingsStore = data.searchSettingsStore;
+        super();
+        //this.searchSettingsStore = data.searchSettingsStore;
     }
 
     resetMenuLinksCss() {
@@ -19,7 +21,7 @@ export default class MenuLinkCssMaker {
     }
 
     markActiveMenuLink() {
-        const settings = { ...this.searchSettingsStore.getSettings() };
+        const settings = this.app.searchSettingsStore.getSettings();
         const sectionName = settings.productSectionName;
         const additionalData = settings.additionalDataOfProductSection;
 
