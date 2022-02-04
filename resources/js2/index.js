@@ -12,7 +12,7 @@ import ProductCache from "./productSource/productCache";
 import ViewedProductsAppender from "./viewedProducts/viewedProductsAppender";
 import SingleProductQuickViewer from "./productQuickViewer/singleProductQuickViewer";
 import singleProductKit from "./productSingle/singleProductKit";
-import productListKit2 from "./productList/productListKit2";
+import listApp from "./productList/listApp";
 
 import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMaker";
 
@@ -30,7 +30,7 @@ if (singleProductWrapper) {
 
 
 if (productListWrapper) {
-    productListKit2();
+    listApp();
 }
 else
 if (viewedProductsSummaryWrapper)  {

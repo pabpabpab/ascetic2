@@ -1,8 +1,8 @@
 import el from "../el";
-import AppAncestor from "../appAncestor";
+import Aware from "../parentClasses/app/aware";
 
 // запускается при загрузке страницы с сервера с поисковыми параметрами в url
-export default class SetSearchSettingsOnPageLoad extends AppAncestor {
+export default class SetSearchSettingsOnPageLoad extends Aware {
 
     constructor() {
         super();
@@ -16,28 +16,28 @@ export default class SetSearchSettingsOnPageLoad extends AppAncestor {
     }
 
     _initSettings() {
-        this.app.categoryCache.getEntireList()
+        this.components.categoryCache.getEntireList()
             .then(() => {
                 // заблокировать на время установки searchSettings
-                this.app.rendererBySearchSettings.lock();
+                this.components.rendererBySearchSettings.lock();
                 const listWrapper = el('#productList');
                 const paramsArr = listWrapper.dataset.additionalDataOfProductSection.split(';');
-                this.app.searchSettingsStore.setMinPrice(Number(paramsArr[0]));
-                this.app.searchSettingsStore.setMaxPrice(Number(paramsArr[1]));
+                this.components.searchSettingsStore.setMinPrice(Number(paramsArr[0]));
+                this.components.searchSettingsStore.setMaxPrice(Number(paramsArr[1]));
 
                 const categoriesIdsStr = paramsArr[2];
                 const categoriesIdsArr = categoriesIdsStr.split('-').map(id => Number(id));
 
                 if (categoriesIdsStr === '0' || categoriesIdsStr === '') {
-                    this.app.searchSettingsStore.setCategoriesIds([]);
+                    this.components.searchSettingsStore.setCategoriesIds([]);
                 } else {
-                    this.app.searchSettingsStore.setCategoriesIds(categoriesIdsArr);
+                    this.components.searchSettingsStore.setCategoriesIds(categoriesIdsArr);
                 }
 
                 listWrapper.dataset.productSectionName = '';
                 listWrapper.dataset.additionalDataOfProductSection = '';
                 // разблокировать после установки searchSettings
-                this.app.rendererBySearchSettings.unlock();
+                this.components.rendererBySearchSettings.unlock();
             })
     }
 

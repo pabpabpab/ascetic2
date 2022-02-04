@@ -1,9 +1,9 @@
 import getJson from "./../http/getJson";
 import AbsoluteFlashMessage from "./../absoluteFlashMessage";
 import allProductsMustBeCached from "../allProductsMustBeCached";
-import AppAncestor from "../appAncestor";
+import Aware from "../parentClasses/app/aware";
 
-export default class SourceOfFilteredProducts extends AppAncestor {
+export default class SourceOfFilteredProducts extends Aware {
 
     constructor() {
         super();
@@ -18,17 +18,17 @@ export default class SourceOfFilteredProducts extends AppAncestor {
     }
 
     _getFilteredProductsFromCache() {
-        return this.app.productCache.getEntireList()
+        return this.components.productCache.getEntireList()
             .then((data) => {
                 const products = [...data];
-                const sorted = this.app.sorterOfCachedProducts.doSort(products);
-                const {filteredProducts, sectionProductsCount} = this.app.filterOfCachedProducts.doFilter(sorted);
+                const sorted = this.components.sorterOfCachedProducts.doSort(products);
+                const {filteredProducts, sectionProductsCount} = this.components.filterOfCachedProducts.doFilter(sorted);
                 return {filteredProducts, sectionProductsCount};
             });
     }
 
     _getFilteredProductsFromServer() {
-        const url = this.app.searchUrlMaker.getUrl();
+        const url = this.components.searchUrlMaker.getUrl();
         //console.log(url);
         return getJson(url)
             .then((data) => {
@@ -45,7 +45,7 @@ export default class SourceOfFilteredProducts extends AppAncestor {
 
 
     getViewedProductsFromServer() {
-        const url = this.app.searchUrlMaker.getUrl();
+        const url = this.components.searchUrlMaker.getUrl();
         return getJson(url)
             .then((data) => {
                 //console.log(data);

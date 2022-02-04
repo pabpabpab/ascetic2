@@ -1,13 +1,13 @@
-import AppAncestor from "../appAncestor";
+import Aware from "../parentClasses/app/aware";
 
-export default class SorterOfCachedProducts extends AppAncestor {
+export default class SorterOfCachedProducts extends Aware {
 
     constructor() {
         super();
     }
 
     doSort(products) {
-        const settings = this.app.sortSettingsStore.getSettings();
+        const settings = this.components.sortSettingsStore.getSettings();
 
         const func = {
             position: this._sortByPosition,

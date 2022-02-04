@@ -1,7 +1,7 @@
 import el from "../../el";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class SearchSettingsObserverForProductFilterRenderer extends AppAncestor {
+export default class SearchSettingsObserverForProductFilterRenderer extends Aware {
 
     constructor() {
         super();
@@ -17,7 +17,7 @@ export default class SearchSettingsObserverForProductFilterRenderer extends AppA
         if (!el('#minPriceTextInput')) {
             return;
         }
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         if (settings.minPrice === 0) {
             el('#minPriceTextInput').value = el('#minPriceRangeInput').min;
             el('#minPriceRangeInput').value = el('#minPriceRangeInput').min;
@@ -27,7 +27,7 @@ export default class SearchSettingsObserverForProductFilterRenderer extends AppA
         if (!el('#maxPriceTextInput')) {
             return;
         }
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         if (settings.maxPrice === 0) {
             el('#maxPriceTextInput').value = el('#maxPriceRangeInput').max;
             el('#maxPriceRangeInput').value = el('#maxPriceRangeInput').max;
@@ -40,7 +40,7 @@ export default class SearchSettingsObserverForProductFilterRenderer extends AppA
             return;
         }
 
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         if (settings.minPrice > 0) {
             el('#minPriceTextInput').value = settings.minPrice;
             el('#minPriceRangeInput').value = settings.minPrice;
@@ -55,7 +55,7 @@ export default class SearchSettingsObserverForProductFilterRenderer extends AppA
         if (!el('#productFilterCategoriesWrapper')) {
             return;
         }
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const categoriesIds = settings.categoriesIds;
         const wrapper = el('#productFilterCategoriesWrapper')
         const nodes = wrapper.querySelectorAll('[data-product-filter-category-checkbox-input]');

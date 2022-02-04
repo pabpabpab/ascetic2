@@ -5,9 +5,9 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class RendererOfViewedProductsByLink extends AppAncestor {
+export default class RendererOfViewedProductsByLink extends Aware {
 
     constructor() {
         super();
@@ -22,7 +22,7 @@ export default class RendererOfViewedProductsByLink extends AppAncestor {
                 e.preventDefault();
                 this._setDataAttributes();
                 this._setSearchSettings();
-                this.app.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+                this.components.searchSettingsStore.resetSettingsRelatedToSearchFilter();
                 this._showLoadingMessage();
                 this._render();
             }
@@ -35,12 +35,12 @@ export default class RendererOfViewedProductsByLink extends AppAncestor {
     }
 
     _setSearchSettings(e) {
-        this.app.searchSettingsStore.setProductSectionData({
+        this.components.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: '',
         });
-        this.app.searchSettingsStore.setPageNumber(1);
-        this.app.searchSettingsStore.setStartOffset(0);
+        this.components.searchSettingsStore.setPageNumber(1);
+        this.components.searchSettingsStore.setStartOffset(0);
     }
 
     _showLoadingMessage() {
@@ -58,7 +58,7 @@ export default class RendererOfViewedProductsByLink extends AppAncestor {
             return;
         }
 
-        this.app.sourceOfFilteredProducts.getViewedProductsFromServer()
+        this.components.sourceOfFilteredProducts.getViewedProductsFromServer()
             .then(({filteredProducts, sectionProductsCount, allViewedIdsStr}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
@@ -79,15 +79,15 @@ export default class RendererOfViewedProductsByLink extends AppAncestor {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.app.searchSettingsStore.setPageCount(sectionPageCount);
+        this.components.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
     _setAllViewedIds(allViewedIdsStr) {
         this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
-        this.app.searchSettingsStore.setProductSectionData({
+        this.components.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: allViewedIdsStr,
         });
@@ -95,11 +95,11 @@ export default class RendererOfViewedProductsByLink extends AppAncestor {
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.app.publicUrlMaker.publishUrl();
+        this.components.publicUrlMaker.publishUrl();
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
-        this.app.rendererOfPaginationBlock.remake();
-        this.app.menuLinkCssMaker.resetMenuLinksCss();
+        this.components.rendererOfPaginationBlock.remake();
+        this.components.menuLinkCssMaker.resetMenuLinksCss();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

@@ -1,14 +1,14 @@
 import getCookie from "../cookie/getCookie";
-import AppAncestor from "../appAncestor";
+import Aware from "../parentClasses/app/aware";
 
-export default class FilterOfCachedProducts extends AppAncestor {
+export default class FilterOfCachedProducts extends Aware {
 
     constructor() {
         super();
     }
 
     doFilter(products) {
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
 
         let filtered = [ ...products ];
 

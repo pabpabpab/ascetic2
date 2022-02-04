@@ -5,9 +5,9 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class RendererBySearchSettings extends AppAncestor {
+export default class RendererBySearchSettings extends Aware {
 
     constructor() {
         super();
@@ -39,7 +39,7 @@ export default class RendererBySearchSettings extends AppAncestor {
             return;
         }
 
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         if (settings.productSectionName.length > 0) {
             return;
         }
@@ -79,7 +79,7 @@ export default class RendererBySearchSettings extends AppAncestor {
     }
 
     _render() {
-        this.app.sourceOfFilteredProducts.getFiltered()
+        this.components.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
@@ -103,21 +103,21 @@ export default class RendererBySearchSettings extends AppAncestor {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.app.searchSettingsStore.setPageCount(sectionPageCount);
+        this.components.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.app.publicUrlMaker.publishUrl();
+        this.components.publicUrlMaker.publishUrl();
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
         this._makeInvisiblePaginationBlock();
-        //this.app.rendererOfPaginationBlock.remake();
-        this.app.menuLinkCssMaker.resetMenuLinksCss();
+        //this.components.rendererOfPaginationBlock.remake();
+        this.components.menuLinkCssMaker.resetMenuLinksCss();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

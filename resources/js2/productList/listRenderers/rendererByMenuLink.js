@@ -5,9 +5,9 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class RendererByMenuLink extends AppAncestor {
+export default class RendererByMenuLink extends Aware {
 
     constructor() {
         super();
@@ -22,14 +22,27 @@ export default class RendererByMenuLink extends AppAncestor {
                 e.preventDefault();
                 this._setDataAttributes(e);
                 this._setSearchSettings(e);
-                this.app.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+                this.components.searchSettingsStore.resetSettingsRelatedToSearchFilter();
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
+    checkState() {
+        console.log(this.app.state.sortSettings);
+    }
+
+
     _setDataAttributes(e) {
+        //this.commit();
+
+        this.commit('setSortMode', 'priceDown');
+
+
+
+
+
         const sectionName = e.target.dataset.menuLinkSectionName;
         this.wrapper.dataset.productSectionName = sectionName;
         if (sectionName === 'all') {
@@ -52,12 +65,12 @@ export default class RendererByMenuLink extends AppAncestor {
     }
 
     _setSearchSettings(e) {
-        this.app.searchSettingsStore.setProductSectionData({
+        this.components.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
-        this.app.searchSettingsStore.setPageNumber(1);
-        this.app.searchSettingsStore.setStartOffset(0);
+        this.components.searchSettingsStore.setPageNumber(1);
+        this.components.searchSettingsStore.setStartOffset(0);
     }
 
     _showLoadingMessage() {
@@ -75,7 +88,7 @@ export default class RendererByMenuLink extends AppAncestor {
             return;
         }
 
-        this.app.sourceOfFilteredProducts.getFiltered()
+        this.components.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
@@ -95,22 +108,22 @@ export default class RendererByMenuLink extends AppAncestor {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.app.searchSettingsStore.setPageCount(sectionPageCount);
+        this.components.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.app.publicUrlMaker.publishUrl();
+        this.components.publicUrlMaker.publishUrl();
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
         // this._makeInvisiblePaginationBlock();
-        this.app.rendererOfPaginationBlock.remake();
-        this.app.menuLinkCssMaker.resetMenuLinksCss();
-        this.app.menuLinkCssMaker.markActiveMenuLink();
+        this.components.rendererOfPaginationBlock.remake();
+        this.components.menuLinkCssMaker.resetMenuLinksCss();
+        this.components.menuLinkCssMaker.markActiveMenuLink();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

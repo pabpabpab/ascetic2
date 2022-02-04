@@ -1,8 +1,8 @@
 import el from "../../el";
 import getSorterBlockHtml from "../../html/productList/sorterBlock/getSorterBlockHtml";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class ProductSortMenuRenderer extends AppAncestor {
+export default class ProductSortMenuRenderer extends Aware {
 
     constructor() {
         super();
@@ -12,6 +12,10 @@ export default class ProductSortMenuRenderer extends AppAncestor {
 
         this.arrowSelector = '.sorting_modes__arrow'
         this.arrowUpCss = 'sorting_modes__arrow_up';
+
+        if (!el('.sorting_modes__wrapper')) {
+            return;
+        }
 
         el('.sorting_modes__wrapper').addEventListener('click', (e) => {
             this._render();
@@ -47,7 +51,7 @@ export default class ProductSortMenuRenderer extends AppAncestor {
                 return;
             }
             el('#sortingModeValueContainer').innerText = e.target.innerText;
-            this.app.sortSettingsStore.setSortingMode({
+            this.components.sortSettingsStore.setSortingMode({
                 selectedValue: e.target.dataset.sortValue,
                 selectedText: e.target.innerText,
             });

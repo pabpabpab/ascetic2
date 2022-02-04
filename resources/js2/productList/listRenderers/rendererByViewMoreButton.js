@@ -5,9 +5,9 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class RendererByViewMoreButton extends AppAncestor {
+export default class RendererByViewMoreButton extends Aware {
 
     constructor() {
         super();
@@ -27,13 +27,13 @@ export default class RendererByViewMoreButton extends AppAncestor {
     }
 
     _setSearchSettings() {
-        this.app.searchSettingsStore.setProductSectionData({
+        this.components.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
 
         const offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
-        this.app.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
+        this.components.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
     }
 
     _showLoadingMessage() {
@@ -51,7 +51,7 @@ export default class RendererByViewMoreButton extends AppAncestor {
             return;
         }
 
-        this.app.sourceOfFilteredProducts.getFiltered()
+        this.components.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
@@ -71,16 +71,16 @@ export default class RendererByViewMoreButton extends AppAncestor {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.app.searchSettingsStore.setPageCount(sectionPageCount);
+        this.components.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        // this.app.publicUrlMaker.publishUrl(); // не применять
+        // this.components.publicUrlMaker.publishUrl(); // не применять
         this._makeInvisiblePaginationBlock();
         this._switchVisibilityOfViewMoreButton();
         scrollDocument(200, 'down');

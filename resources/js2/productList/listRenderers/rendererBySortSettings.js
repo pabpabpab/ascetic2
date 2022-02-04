@@ -5,9 +5,9 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class RendererBySortSettings extends AppAncestor {
+export default class RendererBySortSettings extends Aware {
 
     constructor() {
         super();
@@ -37,8 +37,8 @@ export default class RendererBySortSettings extends AppAncestor {
             return;
         }
 
-        this.app.searchSettingsStore.setStartOffset(0);
-        this.app.searchSettingsStore.setPageNumber(1);
+        this.components.searchSettingsStore.setStartOffset(0);
+        this.components.searchSettingsStore.setPageNumber(1);
 
         if (allProductsMustBeCached()) {
             this._render();
@@ -75,7 +75,7 @@ export default class RendererBySortSettings extends AppAncestor {
     }
 
     _render() {
-        this.app.sourceOfFilteredProducts.getFiltered()
+        this.components.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.messenger.hideMessage();
                 const itemsHtmlArr = filteredProducts.map((product) => {
@@ -98,10 +98,10 @@ export default class RendererBySortSettings extends AppAncestor {
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.app.publicUrlMaker.publishUrl();
+        this.components.publicUrlMaker.publishUrl();
         this._switchVisibilityOfViewMoreButton();
         this._makeInvisiblePaginationBlock();
-        //this.app.rendererOfPaginationBlock.remake();
+        //this.components.rendererOfPaginationBlock.remake();
     }
 
 

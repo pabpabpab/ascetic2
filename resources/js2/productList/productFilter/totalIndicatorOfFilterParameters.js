@@ -1,10 +1,13 @@
 import el from "../../el";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class TotalIndicatorOfFilterParameters extends AppAncestor {
+export default class TotalIndicatorOfFilterParameters extends Aware {
 
     constructor() {
         super();
+        if (!el('.filter_icon__wrapper')) {
+            return;
+        }
         this._render();
     }
 
@@ -14,7 +17,7 @@ export default class TotalIndicatorOfFilterParameters extends AppAncestor {
     }
 
     checkSearchSettings() {
-        const totalCount = this.app.searchSettingsStore.getTotalCountOfSetFilterParameters();
+        const totalCount = this.components.searchSettingsStore.getTotalCountOfSetFilterParameters();
         if (totalCount > 0) {
             this._setVisibilityToTrue();
             el('.filter_icon__total_indicator').innerText = totalCount;

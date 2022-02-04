@@ -1,8 +1,8 @@
 import el from "../../el";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
 
-export default class TopTotalSearchParametersRenderer extends AppAncestor {
+export default class TopTotalSearchParametersRenderer extends Aware {
 
     constructor() {
         super();
@@ -26,33 +26,33 @@ export default class TopTotalSearchParametersRenderer extends AppAncestor {
         const entityValue = e.target.dataset.topSearchParameterValue;
 
         if (entity === 'minPrice') {
-            this.app.searchSettingsStore.setMinPrice(0);
+            this.components.searchSettingsStore.setMinPrice(0);
         }
         if (entity === 'maxPrice') {
-            this.app.searchSettingsStore.setMaxPrice(0);
+            this.components.searchSettingsStore.setMaxPrice(0);
         }
         if (entity === 'category') {
             const categoryId = Number(entityValue);
-            const settings = this.app.searchSettingsStore.getSettings();
+            const settings = this.components.searchSettingsStore.getSettings();
             const categoryIds = settings.categoriesIds;
             const index = categoryIds.indexOf(categoryId);
             if (index > -1) {
                 categoryIds.splice(index, 1);
             }
-            this.app.searchSettingsStore.setCategoriesIds(categoryIds) ;
+            this.components.searchSettingsStore.setCategoriesIds(categoryIds) ;
         }
     }
 
     checkSearchSettings() {
         this._removeAllItems();
-        const totalCount = this.app.searchSettingsStore.getTotalCountOfSetFilterParameters();
+        const totalCount = this.components.searchSettingsStore.getTotalCountOfSetFilterParameters();
         if (totalCount > 0) {
             this._renderItems();
         }
     }
 
     _renderItems() {
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const container = el('.top_total_parameters_of_search');
         if (settings.minPrice > 0) {
             const minPrice = settings.minPrice;
@@ -65,7 +65,7 @@ export default class TopTotalSearchParametersRenderer extends AppAncestor {
             container.insertAdjacentHTML('beforeend', this._getItemHtml('maxPrice', maxPrice, text));
         }
 
-        const cachedCategories = this.app.categoryCache.getCachedCategories();
+        const cachedCategories = this.components.categoryCache.getCachedCategories();
         const categoryItems = settings.categoriesIds.map(categoryId => {
             const found = cachedCategories.find(item => item.id === categoryId);
             if (!found) {

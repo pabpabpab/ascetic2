@@ -1,6 +1,6 @@
-import AppAncestor from "../appAncestor";
+import Aware from "../parentClasses/app/aware";
 
-export default class SearchUrlMaker extends AppAncestor {
+export default class SearchUrlMaker extends Aware {
 
     constructor() {
         super();
@@ -9,7 +9,7 @@ export default class SearchUrlMaker extends AppAncestor {
 
 
     getUrl() {
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
 
         if (this._isUrlOfFavoriteProducts()) {
             return `/public-js/favorite-products/offset/${settings.startOffset}`;
@@ -56,7 +56,7 @@ export default class SearchUrlMaker extends AppAncestor {
 
 
     _isUrlOfFavoriteProducts() {
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.productSectionName === 'favoriteProducts',
         ];
@@ -64,7 +64,7 @@ export default class SearchUrlMaker extends AppAncestor {
     }
 
     _isUrlOfViewedProducts() {
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const logicalConditions = [
             settings.productSectionName === 'viewedProducts',
         ];

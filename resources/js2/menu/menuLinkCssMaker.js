@@ -1,7 +1,7 @@
 import el from './../el';
-import AppAncestor from "../appAncestor";
+import Aware from "../parentClasses/app/aware";
 
-export default class MenuLinkCssMaker extends AppAncestor {
+export default class MenuLinkCssMaker extends Aware {
 
     constructor() {
         super();
@@ -20,7 +20,7 @@ export default class MenuLinkCssMaker extends AppAncestor {
     }
 
     markActiveMenuLink() {
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const sectionName = settings.productSectionName;
         const additionalData = settings.additionalDataOfProductSection;
 

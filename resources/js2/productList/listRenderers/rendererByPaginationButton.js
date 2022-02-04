@@ -5,9 +5,9 @@ import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favorit
 import scrollDocument from "../../scrollDocument";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
-export default class RendererByPaginationButton extends AppAncestor {
+export default class RendererByPaginationButton extends Aware {
 
     constructor() {
         super();
@@ -29,23 +29,23 @@ export default class RendererByPaginationButton extends AppAncestor {
     }
 
     _setSearchSettings(e) {
-        this.app.searchSettingsStore.setProductSectionData({
+        this.components.searchSettingsStore.setProductSectionData({
             productSectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
 
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
 
         const pageNumber = Number(e.target.dataset.paginatorPageNumber);
-        this.app.searchSettingsStore.setPageNumber(pageNumber);
+        this.components.searchSettingsStore.setPageNumber(pageNumber);
 
         this.currentPageNumber = pageNumber;
 
         const offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
-        this.app.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
+        this.components.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
 
         const pageCount = Number(this.wrapper.dataset.sectionPageCount);
-        this.app.searchSettingsStore.setPageCount(pageCount);
+        this.components.searchSettingsStore.setPageCount(pageCount);
     }
 
     _showLoadingMessage() {
@@ -63,7 +63,7 @@ export default class RendererByPaginationButton extends AppAncestor {
             return;
         }
 
-        this.app.sourceOfFilteredProducts.getFiltered()
+        this.components.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
@@ -84,22 +84,22 @@ export default class RendererByPaginationButton extends AppAncestor {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.app.searchSettingsStore.setPageCount(sectionPageCount);
+        this.components.searchSettingsStore.setPageCount(sectionPageCount);
     }
 
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this.app.publicUrlMaker.publishUrl();
+        this.components.publicUrlMaker.publishUrl();
         if (this.currentPageNumber === 1) {
             this._makeVisibleViewMoreButton();
         } else {
             this._makeInvisibleViewMoreButton();
         }
-        this.app.rendererOfPaginationBlock.remake();
+        this.components.rendererOfPaginationBlock.remake();
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
     }

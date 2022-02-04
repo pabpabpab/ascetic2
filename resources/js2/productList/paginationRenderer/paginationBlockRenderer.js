@@ -1,8 +1,8 @@
 import el from '../../el';
-import AppAncestor from "../../appAncestor";
+import Aware from "../../parentClasses/app/aware";
 
 
-export default class PaginationBlockRenderer extends AppAncestor {
+export default class PaginationBlockRenderer extends Aware {
 
     constructor() {
         super();
@@ -27,12 +27,12 @@ export default class PaginationBlockRenderer extends AppAncestor {
 
 
     _getPaginationData() {
-        const settings = this.app.searchSettingsStore.getSettings();
+        const settings = this.components.searchSettingsStore.getSettings();
 
         const pageNumber = settings.pageNumber;
         const pageCount = settings.pageCount;
 
-        const firstPageUrl = this.app.publicUrlMaker.getFirstPageUrl();
+        const firstPageUrl = this.components.publicUrlMaker.getFirstPageUrl();
         const pageUrl = firstPageUrl === '/' ? `/products` : firstPageUrl;
         const lastPageUrl = `${pageUrl}/${pageCount}`;
 

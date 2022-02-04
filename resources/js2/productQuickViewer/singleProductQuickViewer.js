@@ -3,9 +3,9 @@ import allProductsMustBeCached from "../allProductsMustBeCached";
 import getProductObject from "./../productObject/getProductObject";
 import getSingleProductHtml from "./../html/singleProduct/index-getSingleProductHtml";
 import singleProductKit from "./../productSingle/singleProductKit";
-import AppAncestor from "../appAncestor";
+import Aware from "../parentClasses/app/aware";
 
-export default class SingleProductQuickViewer extends AppAncestor {
+export default class SingleProductQuickViewer extends Aware {
 
     constructor() {
         super();
@@ -14,7 +14,7 @@ export default class SingleProductQuickViewer extends AppAncestor {
                 e.preventDefault();
                 const productId = Number(e.target.dataset.quickView);
                 this._showOneProduct(productId);
-                this.app.viewedProductsAppender.post(productId);
+                this.components.viewedProductsAppender.post(productId);
             }
         });
     }
@@ -35,23 +35,23 @@ export default class SingleProductQuickViewer extends AppAncestor {
     }
 
     _showOneFromServer(productId) {
-        return this.app.productCache.getOneFromServer(productId)
+        return this.components.productCache.getOneFromServer(productId)
             .then((product) => {
-                this.app.viewedProductsSummaryMaker.remakeWith(product);
+                this.components.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = getProductObject(product);
                 this._renderProduct(productObject);
             });
     }
 
     _showOneFromCache(productId) {
-        return this.app.productCache.getEntireList()
+        return this.components.productCache.getEntireList()
             .then((data) => {
                 const list = [...data];
                 const product = list.filter(item => item.id === productId)[0];
-                this.app.viewedProductsSummaryMaker.remakeWith(product);
+                this.components.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = getProductObject(product);
                 this._renderProduct(productObject);
-                this.app.productCache.getOneDescription(productId)
+                this.components.productCache.getOneDescription(productId)
                     .then((data) => {
                         el('#productDescriptionContainer').innerText = data.description;
                     });
