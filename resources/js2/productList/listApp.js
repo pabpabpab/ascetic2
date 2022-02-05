@@ -28,12 +28,5 @@ export default function listApp() {
         }
     }
 
-/*
-    app.components.sortSettingsStore.addObserver(app.components.rendererBySortSettings);
-    app.components.searchSettingsStore.addObserver(app.components.searchSettingsObserverForFilterRenderer);
-    app.components.searchSettingsStore.addObserver(app.components.totalIndicatorOfFilterParameters);
-    app.components.searchSettingsStore.addObserver(app.components.topTotalSearchParametersRenderer);
-    app.components.searchSettingsStore.addObserver(app.components.rendererBySearchSettings);
-*/
 }
 

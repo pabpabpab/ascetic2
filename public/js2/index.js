@@ -2878,65 +2878,38 @@ var Commiter = /*#__PURE__*/function (_Aware) {
     key: "commit",
     value: function commit(mutationName, data) {
       this.app.mutations[mutationName](this.app.state, data);
+
+      this.app.commiter._notifyObservers(mutationName);
+    }
+  }, {
+    key: "_notifyObservers",
+    value: function _notifyObservers(mutationName) {
+      var _this = this;
+
       var checkMethods = {
-        setSortMode: 'checkSortSettings',
-        setSectionData: 'checkSectionSettings',
-        setMinPrice: 'checkSearchSettings',
-        setMaxPrice: 'checkSearchSettings',
-        setCategoriesIds: 'checkSearchSettings',
-        resetSearchSettings: 'checkSearchSettings',
-        setStartOffset: 'checkPaginatorSettings',
-        setPageNumber: 'checkPaginatorSettings',
-        setPageCount: 'checkPaginatorSettings'
+        setSortMode: ['checkSortSettings'],
+        setSectionData: ['checkSectionSettings'],
+        setMinPrice: ['checkSearchSettings'],
+        setMaxPrice: ['checkSearchSettings'],
+        setCategoriesIds: ['checkSearchSettings'],
+        resetSearchSettings: ['checkSearchSettings'],
+        setStartOffset: ['checkPaginatorSettings'],
+        setPageNumber: ['checkPaginatorSettings'],
+        setPageCount: ['checkPaginatorSettings']
       };
-      var checkMethod = checkMethods[mutationName];
+      var checkMethodList = checkMethods[mutationName];
+
+      var _loop = function _loop(item) {
+        if (_this.app.components.hasOwnProperty(item)) {
+          checkMethodList.forEach(function (checkMethod) {
+            _this.app.components[item][checkMethod]();
+          });
+        }
+      };
 
       for (var item in this.app.components) {
-        if (this.app.components.hasOwnProperty(item)) {
-          this.app.components[item][checkMethod]();
-        }
+        _loop(item);
       }
-      /*
-              const sortMutations = [
-                  'setSortMode',
-              ];
-              const sectionMutations = [
-                  'setSectionData',
-              ];
-              const searchMutations = [
-                  'setMinPrice',
-                  'setMaxPrice',
-                  'setCategoriesIds',
-                  'resetSearchSettings'
-              ];
-              const paginatorMutations = [
-                  'setStartOffset',
-                  'setPageNumber',
-                  'setPageCount',
-              ];
-              let checkMethod = null;
-              if (searchMutations.includes(mutationName)) {
-                  checkMethod = 'checkSearchSettings';
-              }
-      */
-
-      /*
-      const func = {
-          favoriteProducts: this._favoriteProductsFilter,
-          viewedProducts: this._viewedProductsFilter,
-          productCategory: this._singleCategoryFilter,
-      }
-      const additionalFilteringParameters = settings.additionalData;
-      return func[settings.productSectionName](items, additionalFilteringParameters);
-       */
-
-      /*
-              for (let item in this.app.components) {
-                  if (this.app.components.hasOwnProperty(item)) {
-                      this.app.components[item].checkState();
-                  }
-              }*/
-
     }
   }]);
 
@@ -2985,14 +2958,6 @@ function listApp() {
       app.components[item].commit = app.commiter.commit;
     }
   }
-  /*
-      app.components.sortSettingsStore.addObserver(app.components.rendererBySortSettings);
-      app.components.searchSettingsStore.addObserver(app.components.searchSettingsObserverForFilterRenderer);
-      app.components.searchSettingsStore.addObserver(app.components.totalIndicatorOfFilterParameters);
-      app.components.searchSettingsStore.addObserver(app.components.topTotalSearchParametersRenderer);
-      app.components.searchSettingsStore.addObserver(app.components.rendererBySearchSettings);
-  */
-
 }
 
 /***/ }),
