@@ -1,16 +1,20 @@
 import el from "../../el";
+import Aware from "../../parentClasses/app/aware";
 
-export default class ProductFilterHandler {
+export default class ProductFilterHandler extends Aware {
 
-    constructor(data) {
-        this.filterBlock = data.filterBlock;
-        this.searchSettingsStore = data.searchSettingsStore;
+    constructor() {
+        super();
         this.currentMinPrice = null;
         this.currentMaxPrice = null;
 
-        el('#productFilterWrapper').addEventListener('input', (e) => {
-
-            this._resetProductSectionData();
+        el('body').addEventListener('input', (e) => {
+            if (!el('#productFilterWrapper')) {
+                return;
+            }
+            if (!e.target.id) {
+                return;
+            }
 
             let initiator = e.target.id;
             if (initiator.includes('filterCategory')) {
@@ -24,6 +28,7 @@ export default class ProductFilterHandler {
                 filterCategory: this._categoriesHandler.bind(this),
             };
             if (initiator && handlers[initiator]) {
+                this._resetProductSectionData();
                 handlers[initiator](Number(e.target.value));
             }
         });
@@ -33,44 +38,48 @@ export default class ProductFilterHandler {
         const wrapper = el('#productList');
         wrapper.dataset.productSectionName = '';
         wrapper.dataset.additionalDataOfProductSection = '';
-        this.searchSettingsStore.setProductSectionData({
-            productSectionName: '',
+
+        this.commit('setSectionData', {
+            sectionName: '',
             additionalData: '',
         });
     }
 
     _minPriceHandler(value) {
         this._checkCurrentMinMaxPrice();
-        let validValue = value < this.filterBlock.minPriceLimit ? this.filterBlock.minPriceLimit : value;
+        const filterBlock = this.components.productFilterRenderer;
+        let validValue = value < filterBlock.minPriceLimit ? filterBlock.minPriceLimit : value;
         validValue = validValue >= this.currentMaxPrice ? this.currentMaxPrice - 100 : validValue;
         el('#minPriceTextInput').value = validValue;
         el('#minPriceRangeInput').value = validValue;
         this.currentMinPrice = validValue;
-        if (validValue <= this.filterBlock.minPriceLimit) {
+        if (validValue <= filterBlock.minPriceLimit) {
             validValue = 0;
         }
-        this.searchSettingsStore.setMinPrice(validValue);
+        this.commit('setMinPrice', validValue);
     }
     _maxPriceHandler(value) {
         this._checkCurrentMinMaxPrice();
-        let validValue = value > this.filterBlock.maxPriceLimit ? this.filterBlock.maxPriceLimit : value;
+        const filterBlock = this.components.productFilterRenderer;
+        let validValue = value > filterBlock.maxPriceLimit ? filterBlock.maxPriceLimit : value;
         validValue = validValue <= this.currentMinPrice ? this.currentMinPrice + 100 : validValue;
         el('#maxPriceTextInput').value = validValue;
         el('#maxPriceRangeInput').value = validValue;
         this.currentMaxPrice = validValue;
-        if (validValue >= this.filterBlock.maxPriceLimit) {
+        if (validValue >= filterBlock.maxPriceLimit) {
             validValue = 0;
         }
-        this.searchSettingsStore.setMaxPrice(validValue);
+        this.commit('setMaxPrice', validValue);
     }
 
     _checkCurrentMinMaxPrice() {
-        this.currentMinPrice = this.currentMinPrice ?? this.filterBlock.minPriceLimit;
-        this.currentMaxPrice = this.currentMaxPrice ?? this.filterBlock.maxPriceLimit;
+        const filterBlock = this.components.productFilterRenderer;
+        this.currentMinPrice = this.currentMinPrice ?? filterBlock.minPriceLimit;
+        this.currentMaxPrice = this.currentMaxPrice ?? filterBlock.maxPriceLimit;
     }
 
     _categoriesHandler(value) {
-        const settings = this.searchSettingsStore.getSettings();
+        const settings = this.state.searchSettings;
         const idsArr = settings.categoriesIds;
         const index = idsArr.indexOf(value);
         if (index === -1) {
@@ -78,8 +87,6 @@ export default class ProductFilterHandler {
         } else {
             idsArr.splice(index, 1);
         }
-        this.searchSettingsStore.setCategoriesIds(idsArr);
-
-        // console.log(this.searchSettingsStore.settings);
+        this.commit('setCategoriesIds', idsArr);
     }
 }

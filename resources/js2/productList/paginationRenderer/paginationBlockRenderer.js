@@ -27,7 +27,7 @@ export default class PaginationBlockRenderer extends Aware {
 
 
     _getPaginationData() {
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.paginatorSettings;
 
         const pageNumber = settings.pageNumber;
         const pageCount = settings.pageCount;

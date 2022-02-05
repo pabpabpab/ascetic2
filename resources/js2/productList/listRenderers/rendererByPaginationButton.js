@@ -21,32 +21,31 @@ export default class RendererByPaginationButton extends Aware {
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.paginatorPageNumber) {
                 e.preventDefault();
-                this._setSearchSettings(e);
+                this._setStateSettings(e);
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
-    _setSearchSettings(e) {
-        this.components.searchSettingsStore.setProductSectionData({
-            productSectionName: this.wrapper.dataset.productSectionName,
+    _setStateSettings(e) {
+        this.commit('setSectionData', {
+            sectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
 
-        const settings = this.components.searchSettingsStore.getSettings();
-
+        const settings = this.state.paginatorSettings;
         const pageNumber = Number(e.target.dataset.paginatorPageNumber);
-        this.components.searchSettingsStore.setPageNumber(pageNumber);
-
+        this.commit('setPageNumber', pageNumber);
         this.currentPageNumber = pageNumber;
-
         const offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
-        this.components.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
+        this.commit('setStartOffset', offsetOfProductsToLoad);
 
         const pageCount = Number(this.wrapper.dataset.sectionPageCount);
-        this.components.searchSettingsStore.setPageCount(pageCount);
+        this.commit('setPageCount', pageCount);
     }
+
+
 
     _showLoadingMessage() {
         if (allProductsMustBeCached()) {
@@ -84,10 +83,10 @@ export default class RendererByPaginationButton extends Aware {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.components.searchSettingsStore.setPageCount(sectionPageCount);
+        this.commit('setPageCount', sectionPageCount);
     }
 
 

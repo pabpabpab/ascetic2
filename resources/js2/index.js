@@ -28,7 +28,6 @@ if (singleProductWrapper) {
 }
 
 
-
 if (productListWrapper) {
     listApp();
 }

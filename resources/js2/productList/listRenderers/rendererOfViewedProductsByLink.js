@@ -21,8 +21,8 @@ export default class RendererOfViewedProductsByLink extends Aware {
             if (e.target.dataset.viewedProductsLink) {
                 e.preventDefault();
                 this._setDataAttributes();
-                this._setSearchSettings();
-                this.components.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+                this.commit('resetSearchSettings');
+                this._setSectionSettings();
                 this._showLoadingMessage();
                 this._render();
             }
@@ -34,13 +34,13 @@ export default class RendererOfViewedProductsByLink extends Aware {
         this.wrapper.dataset.productSectionName = 'viewedProducts';
     }
 
-    _setSearchSettings(e) {
-        this.components.searchSettingsStore.setProductSectionData({
-            productSectionName: this.wrapper.dataset.productSectionName,
+    _setSectionSettings(e) {
+        this.commit('setSectionData', {
+            sectionName: this.wrapper.dataset.productSectionName,
             additionalData: '',
         });
-        this.components.searchSettingsStore.setPageNumber(1);
-        this.components.searchSettingsStore.setStartOffset(0);
+        this.commit('setPageNumber', 1);
+        this.commit('setStartOffset', 0);
     }
 
     _showLoadingMessage() {
@@ -77,18 +77,19 @@ export default class RendererOfViewedProductsByLink extends Aware {
             });
     }
 
+
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.components.searchSettingsStore.setPageCount(sectionPageCount);
+        this.commit('setPageCount', sectionPageCount);
     }
 
     _setAllViewedIds(allViewedIdsStr) {
         this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
-        this.components.searchSettingsStore.setProductSectionData({
-            productSectionName: this.wrapper.dataset.productSectionName,
+        this.commit('setSectionData', {
+            sectionName: this.wrapper.dataset.productSectionName,
             additionalData: allViewedIdsStr,
         });
     }
@@ -99,7 +100,6 @@ export default class RendererOfViewedProductsByLink extends Aware {
         this._renderHeader();
         this._switchVisibilityOfViewMoreButton();
         this.components.rendererOfPaginationBlock.remake();
-        this.components.menuLinkCssMaker.resetMenuLinksCss();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

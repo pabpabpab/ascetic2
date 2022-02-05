@@ -1,7 +1,5 @@
 import CategoryCache from "../categorySource/categoryCache";
 import ProductCache from "../productSource/productCache";
-import SearchSettingsStore from "../settings/searchSettingsStore";
-import SortSettingsStore from "../settings/sortSettingsStore";
 import SearchUrlMaker from "../urlMaker/searchUrlMaker";
 import PublicUrlMaker from "../urlMaker/publicUrlMaker";
 import SorterOfCachedProducts from "../productSource/sorterOfCachedProducts";
@@ -9,7 +7,7 @@ import FilterOfCachedProducts from "../productSource/filterOfCachedProducts";
 import ViewedProductsSummaryMaker from "../viewedProducts/viewedProductsSummaryMaker";
 import ViewedProductsAppender from "../viewedProducts/viewedProductsAppender";
 import SingleProductQuickViewer from "../productQuickViewer/singleProductQuickViewer";
-import SourceOfFilteredProducts from "../productSource/SourceOfFilteredProducts";
+import SourceOfFilteredProducts from "../productSource/sourceOfFilteredProducts";
 import RendererOfProductsByViewMoreButton from "./listRenderers/rendererByViewMoreButton";
 import PaginationBlockRenderer from "./paginationRenderer/paginationBlockRenderer";
 import RendererOfProductsByPaginationButton from "./listRenderers/rendererByPaginationButton";
@@ -20,18 +18,20 @@ import RendererBySortSettings from "./listRenderers/rendererBySortSettings";
 import MenuLinkCssMaker from "../menu/menuLinkCssMaker";
 import SortMenuRenderer from "./productSorter/productSortMenuRenderer";
 import ProductFilterRenderer from "./productFilter/productFilterRenderer";
+import ProductFilterHandler from "./productFilter/productFilterHandler";
 import SearchSettingsObserverForProductFilterRenderer
     from "./productFilter/searchSettingsObserverForProductFilterRenderer";
 import TotalIndicatorOfFilterParameters from "./productFilter/totalIndicatorOfFilterParameters";
 import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchParametersRenderer";
 import SearchSettingsSetterOnPageLoad from "../settings/setSearchSettingsOnPageLoad";
 
+
 export default {
     categoryCache: new CategoryCache(),
     productCache: new ProductCache(),
 
-    searchSettingsStore: new SearchSettingsStore(),
-    sortSettingsStore: new SortSettingsStore(),
+    //searchSettingsStore: new SearchSettingsStore(),
+    //sortSettingsStore: new SortSettingsStore(),
 
     searchUrlMaker: new SearchUrlMaker(),
     publicUrlMaker: new PublicUrlMaker(),
@@ -62,6 +62,7 @@ export default {
     // -----------------------------------------
 
     productFilterRenderer: new ProductFilterRenderer(),
+    productFilterHandler: new ProductFilterHandler(),
     searchSettingsObserverForFilterRenderer: new SearchSettingsObserverForProductFilterRenderer(),
     totalIndicatorOfFilterParameters: new TotalIndicatorOfFilterParameters(),
     topTotalSearchParametersRenderer: new TopTotalSearchParametersRenderer(),

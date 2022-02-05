@@ -20,6 +20,11 @@ export default {
     setCategoriesIds:  (state, value) => {
         state.searchSettings.categoriesIds = [ ...value ];
     },
+    resetSearchSettings: (state) => {
+        state.searchSettings.minPrice = 0;
+        state.searchSettings.maxPrice = 0;
+        state.searchSettings.categoriesIds = [ ...[] ];
+    },
 
 
     setStartOffset: (state, value) => {

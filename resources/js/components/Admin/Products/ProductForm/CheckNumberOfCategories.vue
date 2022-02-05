@@ -44,6 +44,7 @@ export default {
             }
         },
     },
+
     mounted() {
         if (this.categories['categories'].length === 0) {
             this.$store.dispatch('categories/loadCategories', 'categories');

@@ -22,16 +22,17 @@ export default class SetSearchSettingsOnPageLoad extends Aware {
                 this.components.rendererBySearchSettings.lock();
                 const listWrapper = el('#productList');
                 const paramsArr = listWrapper.dataset.additionalDataOfProductSection.split(';');
-                this.components.searchSettingsStore.setMinPrice(Number(paramsArr[0]));
-                this.components.searchSettingsStore.setMaxPrice(Number(paramsArr[1]));
+
+                this.commit('setMinPrice', Number(paramsArr[0]));
+                this.commit('setMaxPrice', Number(paramsArr[1]));
 
                 const categoriesIdsStr = paramsArr[2];
                 const categoriesIdsArr = categoriesIdsStr.split('-').map(id => Number(id));
 
                 if (categoriesIdsStr === '0' || categoriesIdsStr === '') {
-                    this.components.searchSettingsStore.setCategoriesIds([]);
+                    this.commit('setCategoriesIds', []);
                 } else {
-                    this.components.searchSettingsStore.setCategoriesIds(categoriesIdsArr);
+                    this.commit('setCategoriesIds', categoriesIdsArr);
                 }
 
                 listWrapper.dataset.productSectionName = '';

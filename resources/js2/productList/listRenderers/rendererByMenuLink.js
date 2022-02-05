@@ -21,28 +21,15 @@ export default class RendererByMenuLink extends Aware {
             if (e.target.dataset.menuLinkSectionName) {
                 e.preventDefault();
                 this._setDataAttributes(e);
-                this._setSearchSettings(e);
-                this.components.searchSettingsStore.resetSettingsRelatedToSearchFilter();
+                this.commit('resetSearchSettings');
+                this._setSectionSettings(e);
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
-    checkState() {
-        console.log(this.app.state.sortSettings);
-    }
-
-
     _setDataAttributes(e) {
-        //this.commit();
-
-        this.commit('setSortMode', 'priceDown');
-
-
-
-
-
         const sectionName = e.target.dataset.menuLinkSectionName;
         this.wrapper.dataset.productSectionName = sectionName;
         if (sectionName === 'all') {
@@ -64,13 +51,13 @@ export default class RendererByMenuLink extends Aware {
         }
     }
 
-    _setSearchSettings(e) {
-        this.components.searchSettingsStore.setProductSectionData({
-            productSectionName: this.wrapper.dataset.productSectionName,
+    _setSectionSettings(e) {
+        this.commit('setSectionData', {
+            sectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
-        this.components.searchSettingsStore.setPageNumber(1);
-        this.components.searchSettingsStore.setStartOffset(0);
+        this.commit('setPageNumber', 1);
+        this.commit('setStartOffset', 0);
     }
 
     _showLoadingMessage() {
@@ -108,10 +95,10 @@ export default class RendererByMenuLink extends Aware {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.components.searchSettingsStore.setPageCount(sectionPageCount);
+        this.commit('setPageCount', sectionPageCount);
     }
 
 
@@ -122,8 +109,6 @@ export default class RendererByMenuLink extends Aware {
         this._switchVisibilityOfViewMoreButton();
         // this._makeInvisiblePaginationBlock();
         this.components.rendererOfPaginationBlock.remake();
-        this.components.menuLinkCssMaker.resetMenuLinksCss();
-        this.components.menuLinkCssMaker.markActiveMenuLink();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

@@ -19,22 +19,23 @@ export default class RendererByViewMoreButton extends Aware {
 
         el('body').addEventListener('click', (e) => {
             if (e.target.id === 'viewMoreButton') {
-                this._setSearchSettings();
+                this._setSectionSettings();
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
-    _setSearchSettings() {
-        this.components.searchSettingsStore.setProductSectionData({
-            productSectionName: this.wrapper.dataset.productSectionName,
+
+    _setSectionSettings(e) {
+        this.commit('setSectionData', {
+            sectionName: this.wrapper.dataset.productSectionName,
             additionalData: this.wrapper.dataset.additionalDataOfProductSection,
         });
-
         const offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
-        this.components.searchSettingsStore.setStartOffset(offsetOfProductsToLoad);
+        this.commit('setStartOffset', offsetOfProductsToLoad);
     }
+
 
     _showLoadingMessage() {
         if (allProductsMustBeCached()) {
@@ -71,16 +72,16 @@ export default class RendererByViewMoreButton extends Aware {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.components.searchSettingsStore.setPageCount(sectionPageCount);
+        this.commit('setPageCount', sectionPageCount);
     }
+
 
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        // this.components.publicUrlMaker.publishUrl(); // не применять
         this._makeInvisiblePaginationBlock();
         this._switchVisibilityOfViewMoreButton();
         scrollDocument(200, 'down');

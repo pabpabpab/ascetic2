@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">-->
 
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?t=@php echo time(); @endphp" />
 
 <!--<title>{{env('APP_ADMIN_NAME')}}</title>-->
     <title>Admin panel</title>
@@ -23,6 +23,6 @@
     <app></app>
 </div>
 
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}?t=@php echo time(); @endphp"></script>
 </body>
 </html>

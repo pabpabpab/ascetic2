@@ -51,10 +51,7 @@ export default class ProductSortMenuRenderer extends Aware {
                 return;
             }
             el('#sortingModeValueContainer').innerText = e.target.innerText;
-            this.components.sortSettingsStore.setSortingMode({
-                selectedValue: e.target.dataset.sortValue,
-                selectedText: e.target.innerText,
-            });
+            this.commit('setSortMode', e.target.dataset.sortValue);
             this._setVisibilityToFalse2();
         });
     }

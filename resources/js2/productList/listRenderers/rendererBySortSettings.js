@@ -37,8 +37,8 @@ export default class RendererBySortSettings extends Aware {
             return;
         }
 
-        this.components.searchSettingsStore.setStartOffset(0);
-        this.components.searchSettingsStore.setPageNumber(1);
+        this.commit('setStartOffset', 0);
+        this.commit('setPageNumber', 1);
 
         if (allProductsMustBeCached()) {
             this._render();

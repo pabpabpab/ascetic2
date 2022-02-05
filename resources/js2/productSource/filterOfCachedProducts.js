@@ -8,31 +8,35 @@ export default class FilterOfCachedProducts extends Aware {
     }
 
     doFilter(products) {
-        const settings = this.components.searchSettingsStore.getSettings();
-
         let filtered = [ ...products ];
 
-        filtered = this._sectionFilter(filtered, settings);
+        filtered = this._sectionFilter(filtered);
 
-        if (settings.minPrice > 0) {
-            filtered = this._minPriceFilter(filtered, settings.minPrice);
+        const minPrice = this.state.searchSettings.minPrice;
+        if (minPrice > 0) {
+            filtered = this._minPriceFilter(filtered, minPrice);
         }
-        if (settings.maxPrice > 0) {
-            filtered = this._maxPriceFilter(filtered, settings.maxPrice);
+
+        const maxPrice = this.state.searchSettings.maxPrice;
+        if (maxPrice > 0) {
+            filtered = this._maxPriceFilter(filtered, maxPrice);
         }
-        if (settings.categoriesIds.length > 0) {
-            filtered = this._categoriesFilter(filtered, settings.categoriesIds);
+
+        const categoriesIds = this.state.searchSettings.categoriesIds;
+        if (categoriesIds.length > 0) {
+            filtered = this._categoriesFilter(filtered, categoriesIds);
         }
 
         const sectionProductsCount = filtered.length;
 
-        filtered = this._offsetFilter(filtered, settings.startOffset, settings.perPage);
+        filtered = this._offsetFilter(filtered);
 
         return {filteredProducts: filtered, sectionProductsCount};
     }
 
 
-    _sectionFilter(items, settings) {
+    _sectionFilter(items) {
+        const settings = this.state.sectionSettings;
         if (['all', ''].indexOf(settings.productSectionName) !== -1) {
             return items;
         }
@@ -42,7 +46,7 @@ export default class FilterOfCachedProducts extends Aware {
             viewedProducts: this._viewedProductsFilter,
             productCategory: this._singleCategoryFilter,
         }
-        const additionalFilteringParameters = settings.additionalDataOfProductSection;
+        const additionalFilteringParameters = settings.additionalData;
         return func[settings.productSectionName](items, additionalFilteringParameters);
     }
 
@@ -103,9 +107,10 @@ export default class FilterOfCachedProducts extends Aware {
             return searchedIds.some(el => catIdsOfItem.includes(el))
         });
     }
-    _offsetFilter(items, startOffset, perPage) {
-        const startIndex = startOffset;
-        const endIndex = startOffset + perPage; // елемент с endIndex не будет включен в рез-тат
+    _offsetFilter(items) {
+        const startIndex = this.state.paginatorSettings.startOffset;
+        const perPage = this.state.paginatorSettings.perPage;
+        const endIndex = startIndex + perPage; // елемент с endIndex не будет включен в рез-тат
         return items.slice(startIndex, endIndex);
     }
 }

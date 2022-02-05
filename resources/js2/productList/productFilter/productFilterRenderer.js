@@ -3,7 +3,6 @@ import getPriceBlockHtmlForFilter from "./../../html/productList/filterBlock/get
 import getCategoriesBlockHtmlForFilter from "./../../html/productList/filterBlock/getCategoriesBlockHtmlForFilter";
 import el from "../../el";
 import getJson from "../../http/getJson";
-import ProductFilterHandler from "./productFilterHandler";
 import Aware from "../../parentClasses/app/aware";
 
 
@@ -57,10 +56,12 @@ export default class ProductFilterRenderer extends Aware {
         el('.product_filter__ready_button').addEventListener('click', () => {
             this._setVisibilityToFalse2();
         });
+        /*
         new ProductFilterHandler({
             filterBlock: this,
-            searchSettingsStore: this.components.searchSettingsStore,
-        });
+            state: this.state,
+            commit: this.commit,
+        });*/
     }
 
     _justSetVisibilityToTrue() {

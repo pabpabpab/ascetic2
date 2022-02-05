@@ -26,33 +26,33 @@ export default class TopTotalSearchParametersRenderer extends Aware {
         const entityValue = e.target.dataset.topSearchParameterValue;
 
         if (entity === 'minPrice') {
-            this.components.searchSettingsStore.setMinPrice(0);
+            this.commit('setMinPrice', 0);
         }
         if (entity === 'maxPrice') {
-            this.components.searchSettingsStore.setMaxPrice(0);
+            this.commit('setMaxPrice', 0);
         }
         if (entity === 'category') {
             const categoryId = Number(entityValue);
-            const settings = this.components.searchSettingsStore.getSettings();
-            const categoryIds = settings.categoriesIds;
+            const categoryIds = this.state.searchSettings.categoriesIds;
             const index = categoryIds.indexOf(categoryId);
             if (index > -1) {
                 categoryIds.splice(index, 1);
             }
-            this.components.searchSettingsStore.setCategoriesIds(categoryIds) ;
+            this.commit('setCategoriesIds', categoryIds);
         }
     }
 
     checkSearchSettings() {
         this._removeAllItems();
-        const totalCount = this.components.searchSettingsStore.getTotalCountOfSetFilterParameters();
+        const totalCount = this._getTotalCountOfSetFilterParameters();
         if (totalCount > 0) {
             this._renderItems();
         }
     }
 
     _renderItems() {
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.searchSettings;
+
         const container = el('.top_total_parameters_of_search');
         if (settings.minPrice > 0) {
             const minPrice = settings.minPrice;
@@ -94,5 +94,17 @@ export default class TopTotalSearchParametersRenderer extends Aware {
         while (container.firstChild) {
             container.removeChild(container.lastChild);
         }
+    }
+
+    _getTotalCountOfSetFilterParameters() {
+        const settings = this.state.searchSettings;
+        let totalCount = settings.categoriesIds.length;
+        if (settings.minPrice > 0) {
+            totalCount += 1;
+        }
+        if (settings.maxPrice > 0) {
+            totalCount += 1;
+        }
+        return totalCount;
     }
 }

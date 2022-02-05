@@ -7,6 +7,11 @@ export default class MenuLinkCssMaker extends Aware {
         super();
     }
 
+    checkSectionSettings() {
+        this.resetMenuLinksCss();
+        this.markActiveMenuLink();
+    }
+
     resetMenuLinksCss() {
         let nodes = el('.top_menu').querySelectorAll('.top_menu__link');
         for (let node of nodes) {
@@ -20,9 +25,9 @@ export default class MenuLinkCssMaker extends Aware {
     }
 
     markActiveMenuLink() {
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.sectionSettings;
         const sectionName = settings.productSectionName;
-        const additionalData = settings.additionalDataOfProductSection;
+        const additionalData = settings.additionalData;
 
         if (sectionName === 'productCategory') {
             const categorySlug = additionalData.split(';')[1];

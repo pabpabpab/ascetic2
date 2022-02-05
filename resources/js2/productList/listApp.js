@@ -1,6 +1,6 @@
-import state from './state';
-import mutations from "./mutations";
-import components from './components';
+import state from './myState';
+import mutations from "./myMutations";
+import components from './myComponents';
 import Commiter from "./commiter";
 
 
@@ -28,12 +28,12 @@ export default function listApp() {
         }
     }
 
-
+/*
     app.components.sortSettingsStore.addObserver(app.components.rendererBySortSettings);
     app.components.searchSettingsStore.addObserver(app.components.searchSettingsObserverForFilterRenderer);
     app.components.searchSettingsStore.addObserver(app.components.totalIndicatorOfFilterParameters);
     app.components.searchSettingsStore.addObserver(app.components.topTotalSearchParametersRenderer);
     app.components.searchSettingsStore.addObserver(app.components.rendererBySearchSettings);
-
+*/
 }
 

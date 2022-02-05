@@ -39,7 +39,7 @@ export default class RendererBySearchSettings extends Aware {
             return;
         }
 
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.sectionSettings;
         if (settings.productSectionName.length > 0) {
             return;
         }
@@ -103,10 +103,10 @@ export default class RendererBySearchSettings extends Aware {
 
     _setSectionProductsCount(sectionProductsCount) {
         this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
         this.wrapper.dataset.sectionPageCount = sectionPageCount;
-        this.components.searchSettingsStore.setPageCount(sectionPageCount);
+        this.commit('setPageCount', sectionPageCount);
     }
 
 
@@ -117,7 +117,8 @@ export default class RendererBySearchSettings extends Aware {
         this._switchVisibilityOfViewMoreButton();
         this._makeInvisiblePaginationBlock();
         //this.components.rendererOfPaginationBlock.remake();
-        this.components.menuLinkCssMaker.resetMenuLinksCss();
+
+        //this.components.menuLinkCssMaker.resetMenuLinksCss();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

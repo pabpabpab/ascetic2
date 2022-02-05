@@ -9,22 +9,21 @@ export default class SearchUrlMaker extends Aware {
 
 
     getUrl() {
-        const settings = this.components.searchSettingsStore.getSettings();
 
         if (this._isUrlOfFavoriteProducts()) {
-            return `/public-js/favorite-products/offset/${settings.startOffset}`;
+            return `/public-js/favorite-products/offset/${this.state.paginatorSettings.startOffset}`;
         }
         if (this._isUrlOfViewedProducts()) {
-            return `/public-js/viewed-products/offset/${settings.startOffset}`;
+            return `/public-js/viewed-products/offset/${this.state.paginatorSettings.startOffset}`;
         }
 
 
         const totalUrl = [
             this.startUrl,
-            this._getMinPriceUrl(settings),
-            this._getMaxPriceUrl(settings),
-            this._getCategoriesUrl(settings),
-            this._getOffsetUrl(settings),
+            this._getMinPriceUrl(),
+            this._getMaxPriceUrl(),
+            this._getCategoriesUrl(),
+            this._getOffsetUrl(),
         ];
         return totalUrl.join('');
         // вида /public-js/product-search/price/{minPrice}-{maxPrice}/categories/{categories}/offset/{startOffset}
@@ -33,40 +32,38 @@ export default class SearchUrlMaker extends Aware {
 
 
 
-    _getMinPriceUrl(settings) {
-        return `/price/${settings.minPrice}-`;
+    _getMinPriceUrl() {
+        return `/price/${this.state.searchSettings.minPrice}-`;
     }
-    _getMaxPriceUrl(settings) {
-        return `${settings.maxPrice}`;
+    _getMaxPriceUrl() {
+        return `${this.state.searchSettings.maxPrice}`;
     }
-    _getCategoriesUrl(settings) {
-        if (settings.categoriesIds.length > 0) {
-            return `/categories/${settings.categoriesIds.join('-')}`;
+    _getCategoriesUrl() {
+        if (this.state.searchSettings.categoriesIds.length > 0) {
+            return `/categories/${this.state.searchSettings.categoriesIds.join('-')}`;
         }
-        if (settings.productSectionName === 'productCategory') {
-            return `/categories/${settings.additionalDataOfProductSection.split(';')[0]}`;
+        if (this.state.sectionSettings.productSectionName === 'productCategory') {
+            return `/categories/${this.state.sectionSettings.additionalData.split(';')[0]}`;
         }
         return '/categories/0';
     }
-    _getOffsetUrl(settings) {
-        return `/offset/${settings.startOffset}`;
+    _getOffsetUrl() {
+        return `/offset/${this.state.paginatorSettings.startOffset}`;
     }
 
 
 
 
     _isUrlOfFavoriteProducts() {
-        const settings = this.components.searchSettingsStore.getSettings();
         const logicalConditions = [
-            settings.productSectionName === 'favoriteProducts',
+            this.state.sectionSettings.productSectionName === 'favoriteProducts',
         ];
         return logicalConditions.every(item => item === true);
     }
 
     _isUrlOfViewedProducts() {
-        const settings = this.components.searchSettingsStore.getSettings();
         const logicalConditions = [
-            settings.productSectionName === 'viewedProducts',
+            this.state.sectionSettings.productSectionName === 'viewedProducts',
         ];
         return logicalConditions.every(item => item === true);
     }

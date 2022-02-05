@@ -17,7 +17,7 @@ export default class SearchSettingsObserverForProductFilterRenderer extends Awar
         if (!el('#minPriceTextInput')) {
             return;
         }
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.searchSettings;
         if (settings.minPrice === 0) {
             el('#minPriceTextInput').value = el('#minPriceRangeInput').min;
             el('#minPriceRangeInput').value = el('#minPriceRangeInput').min;
@@ -27,7 +27,7 @@ export default class SearchSettingsObserverForProductFilterRenderer extends Awar
         if (!el('#maxPriceTextInput')) {
             return;
         }
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.searchSettings;
         if (settings.maxPrice === 0) {
             el('#maxPriceTextInput').value = el('#maxPriceRangeInput').max;
             el('#maxPriceRangeInput').value = el('#maxPriceRangeInput').max;
@@ -40,7 +40,7 @@ export default class SearchSettingsObserverForProductFilterRenderer extends Awar
             return;
         }
 
-        const settings = this.components.searchSettingsStore.getSettings();
+        const settings = this.state.searchSettings;
         if (settings.minPrice > 0) {
             el('#minPriceTextInput').value = settings.minPrice;
             el('#minPriceRangeInput').value = settings.minPrice;
@@ -55,8 +55,7 @@ export default class SearchSettingsObserverForProductFilterRenderer extends Awar
         if (!el('#productFilterCategoriesWrapper')) {
             return;
         }
-        const settings = this.components.searchSettingsStore.getSettings();
-        const categoriesIds = settings.categoriesIds;
+        const settings = this.state.searchSettings;
         const wrapper = el('#productFilterCategoriesWrapper')
         const nodes = wrapper.querySelectorAll('[data-product-filter-category-checkbox-input]');
         for (let node of nodes) {
