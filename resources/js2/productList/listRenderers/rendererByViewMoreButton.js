@@ -19,23 +19,17 @@ export default class RendererByViewMoreButton extends Aware {
 
         el('body').addEventListener('click', (e) => {
             if (e.target.id === 'viewMoreButton') {
-                this._setSectionSettings();
+                this._setPaginatorSettings();
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
-
-    _setSectionSettings(e) {
-        this.commit('setSectionData', {
-            sectionName: this.wrapper.dataset.productSectionName,
-            additionalData: this.wrapper.dataset.additionalSectionData,
-        });
+    _setPaginatorSettings() {
         const offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
         this.commit('setStartOffset', offsetOfProductsToLoad);
     }
-
 
     _showLoadingMessage() {
         if (allProductsMustBeCached()) {
@@ -64,21 +58,17 @@ export default class RendererByViewMoreButton extends Aware {
                 //const itemsHtml = `<div class="product_list__content show_block">${ itemsHtmlArr.join('') }</div>`;
                 // получать элемент только без ранее созданного указателя
                 el('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
-                this._setSectionProductsCount(sectionProductsCount);
+                this._setProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
 
-
-    _setSectionProductsCount(sectionProductsCount) {
-        this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    _setProductsCount(sectionProductsCount) {
+        this.commit('setSectionProductsCount', sectionProductsCount);
         const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
-        this.wrapper.dataset.sectionPageCount = sectionPageCount;
         this.commit('setPageCount', sectionPageCount);
     }
-
-
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
@@ -89,14 +79,13 @@ export default class RendererByViewMoreButton extends Aware {
 
     _switchVisibilityOfViewMoreButton() {
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        const sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
+        if (numberOfDisplayedProducts >= sectionProductsCount) {
             this._turnOffViewMoreButton();
         } else {
             this._turnOnViewMoreButton();
         }
     }
-
     _turnOnViewMoreButton() {
         const viewMoreButton = el('#viewMoreButton');
         if (viewMoreButton.classList.contains("display-none")) {
@@ -111,14 +100,14 @@ export default class RendererByViewMoreButton extends Aware {
     }
 
     _makeInvisiblePaginationBlock() {
-        if (!el('#paginationContent')) {
+        const paginationBlock = el('#paginationContent');
+        if (!paginationBlock) {
             return;
         }
-        if (!el('#paginationContent').classList.contains("display-none")) {
-            el('#paginationContent').classList.add("display-none");
+        if (!paginationBlock.classList.contains("display-none")) {
+            paginationBlock.classList.add("display-none");
         }
     }
-
 
     _getRequestPermission() {
         // защита от частых отправок на 15 сек (от двойного нажатия)

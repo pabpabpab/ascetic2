@@ -3969,7 +3969,7 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
     _this.disabledRequest = false;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.id === 'viewMoreButton') {
-        _this._setSectionSettings();
+        _this._setPaginatorSettings();
 
         _this._showLoadingMessage();
 
@@ -3980,12 +3980,8 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
   }
 
   _createClass(RendererByViewMoreButton, [{
-    key: "_setSectionSettings",
-    value: function _setSectionSettings(e) {
-      this.commit('setSectionData', {
-        sectionName: this.wrapper.dataset.productSectionName,
-        additionalData: this.wrapper.dataset.additionalSectionData
-      });
+    key: "_setPaginatorSettings",
+    value: function _setPaginatorSettings() {
       var offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
       this.commit('setStartOffset', offsetOfProductsToLoad);
     }
@@ -4026,18 +4022,17 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
 
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
 
-        _this2._setSectionProductsCount(sectionProductsCount);
+        _this2._setProductsCount(sectionProductsCount);
 
         _this2._finalActions();
       });
     }
   }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    key: "_setProductsCount",
+    value: function _setProductsCount(sectionProductsCount) {
+      this.commit('setSectionProductsCount', sectionProductsCount);
       var settings = this.state.paginatorSettings;
       var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
       this.commit('setPageCount', sectionPageCount);
     }
   }, {
@@ -4055,9 +4050,9 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
     key: "_switchVisibilityOfViewMoreButton",
     value: function _switchVisibilityOfViewMoreButton() {
       var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+      var sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
 
-      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+      if (numberOfDisplayedProducts >= sectionProductsCount) {
         this._turnOffViewMoreButton();
       } else {
         this._turnOnViewMoreButton();
@@ -4084,12 +4079,14 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_makeInvisiblePaginationBlock",
     value: function _makeInvisiblePaginationBlock() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent')) {
+      var paginationBlock = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
+
+      if (!paginationBlock) {
         return;
       }
 
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').classList.contains("display-none")) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').classList.add("display-none");
+      if (!paginationBlock.classList.contains("display-none")) {
+        paginationBlock.classList.add("display-none");
       }
     }
   }, {
