@@ -18,9 +18,9 @@ export default {
 
     paginatorSettings: {
         sectionProductsCount: 0,
-        startOffset: 0,
+        perPage: 3,
         pageCount: 0,
         pageNumber: 0,
-        perPage: 3,
+        startOffset: 0,
     }
 }

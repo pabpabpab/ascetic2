@@ -3307,7 +3307,7 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
       if (e.target.dataset.paginatorPageNumber) {
         e.preventDefault();
 
-        _this._setStateSettings(e);
+        _this._setPaginatorSettings(e);
 
         _this._showLoadingMessage();
 
@@ -3318,20 +3318,14 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
   }
 
   _createClass(RendererByPaginationButton, [{
-    key: "_setStateSettings",
-    value: function _setStateSettings(e) {
-      this.commit('setSectionData', {
-        sectionName: this.wrapper.dataset.productSectionName,
-        additionalData: this.wrapper.dataset.additionalSectionData
-      });
+    key: "_setPaginatorSettings",
+    value: function _setPaginatorSettings(e) {
       var settings = this.state.paginatorSettings;
       var pageNumber = Number(e.target.dataset.paginatorPageNumber);
       this.commit('setPageNumber', pageNumber);
       this.currentPageNumber = pageNumber;
       var offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
       this.commit('setStartOffset', offsetOfProductsToLoad);
-      var pageCount = Number(this.wrapper.dataset.sectionPageCount);
-      this.commit('setPageCount', pageCount);
     }
   }, {
     key: "_showLoadingMessage",
@@ -3373,18 +3367,17 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
 
         _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
 
-        _this2._setSectionProductsCount(sectionProductsCount);
+        _this2._setProductsCount(sectionProductsCount);
 
         _this2._finalActions();
       });
     }
   }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    key: "_setProductsCount",
+    value: function _setProductsCount(sectionProductsCount) {
+      this.commit('setSectionProductsCount', sectionProductsCount);
       var settings = this.state.paginatorSettings;
       var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
       this.commit('setPageCount', sectionPageCount);
     }
   }, {
@@ -4532,10 +4525,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   paginatorSettings: {
     sectionProductsCount: 0,
-    startOffset: 0,
+    perPage: 3,
     pageCount: 0,
     pageNumber: 0,
-    perPage: 3
+    startOffset: 0
   }
 });
 

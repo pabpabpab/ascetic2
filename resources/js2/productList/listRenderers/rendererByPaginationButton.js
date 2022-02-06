@@ -21,31 +21,21 @@ export default class RendererByPaginationButton extends Aware {
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.paginatorPageNumber) {
                 e.preventDefault();
-                this._setStateSettings(e);
+                this._setPaginatorSettings(e);
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
-    _setStateSettings(e) {
-        this.commit('setSectionData', {
-            sectionName: this.wrapper.dataset.productSectionName,
-            additionalData: this.wrapper.dataset.additionalSectionData,
-        });
-
+    _setPaginatorSettings(e) {
         const settings = this.state.paginatorSettings;
         const pageNumber = Number(e.target.dataset.paginatorPageNumber);
         this.commit('setPageNumber', pageNumber);
         this.currentPageNumber = pageNumber;
         const offsetOfProductsToLoad = (pageNumber - 1) * settings.perPage;
         this.commit('setStartOffset', offsetOfProductsToLoad);
-
-        const pageCount = Number(this.wrapper.dataset.sectionPageCount);
-        this.commit('setPageCount', pageCount);
     }
-
-
 
     _showLoadingMessage() {
         if (allProductsMustBeCached()) {
@@ -75,20 +65,17 @@ export default class RendererByPaginationButton extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-                this._setSectionProductsCount(sectionProductsCount);
+                this._setProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
 
-
-    _setSectionProductsCount(sectionProductsCount) {
-        this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    _setProductsCount(sectionProductsCount) {
+        this.commit('setSectionProductsCount', sectionProductsCount);
         const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
-        this.wrapper.dataset.sectionPageCount = sectionPageCount;
         this.commit('setPageCount', sectionPageCount);
     }
-
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
