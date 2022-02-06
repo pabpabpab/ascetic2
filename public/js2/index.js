@@ -3694,10 +3694,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
-/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../frequentAbsoluteFlashMessage */ "./resources/js2/frequentAbsoluteFlashMessage.js");
+/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3728,7 +3727,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
   _inherits(RendererBySortSettings, _Aware);
 
@@ -3746,40 +3744,32 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
     _this.timeWhenSearchSettingsWereLastChanged = 0;
     _this.timeWhenLastRequestWasSent = 0;
     _this.timerId = 0;
-    _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]();
-    _this.locked = false;
+    _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
     return _this;
-  } // блокировать на время установки sortSettings
-  // при загрузке страницы с параметрами сортировки в url
-
+  }
 
   _createClass(RendererBySortSettings, [{
-    key: "lock",
-    value: function lock() {
-      this.locked = true;
-    }
-  }, {
-    key: "unlock",
-    value: function unlock() {
-      this.locked = false;
-    }
-  }, {
     key: "checkSortSettings",
     value: function checkSortSettings() {
       if (this.locked) {
         return;
       }
 
-      this.commit('setStartOffset', 0);
-      this.commit('setPageNumber', 1);
+      this._setPaginatorSettings();
 
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__["default"])()) {
         this._render();
       } else {
         this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
 
         this._renderWithDelay();
       }
+    }
+  }, {
+    key: "_setPaginatorSettings",
+    value: function _setPaginatorSettings() {
+      this.commit('setStartOffset', 0);
+      this.commit('setPageNumber', 1);
     }
   }, {
     key: "_renderWithDelay",
@@ -3837,11 +3827,21 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
 
         _this3.messenger.render({
           text: "\u041E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E",
-          duration: 2500
+          duration: 1500
         });
+
+        _this3._setProductsCount(sectionProductsCount);
 
         _this3._finalActions();
       });
+    }
+  }, {
+    key: "_setProductsCount",
+    value: function _setProductsCount(sectionProductsCount) {
+      this.commit('setSectionProductsCount', sectionProductsCount);
+      var settings = this.state.paginatorSettings;
+      var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
+      this.commit('setPageCount', sectionPageCount);
     }
   }, {
     key: "_finalActions",
@@ -3858,9 +3858,9 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
     key: "_switchVisibilityOfViewMoreButton",
     value: function _switchVisibilityOfViewMoreButton() {
       var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+      var sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
 
-      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+      if (numberOfDisplayedProducts >= sectionProductsCount) {
         this._turnOffViewMoreButton();
       } else {
         this._turnOnViewMoreButton();
@@ -3896,7 +3896,7 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
   }]);
 
   return RendererBySortSettings;
-}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_7__["default"]);
+}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_6__["default"]);
 
 
 

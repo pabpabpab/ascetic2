@@ -2,7 +2,6 @@ import el from "../../el";
 import getProductObject from "../../productObject/getProductObject";
 import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
 import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
-import scrollDocument from "../../scrollDocument";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
 import Aware from "../../parentClasses/app/aware";
@@ -20,16 +19,6 @@ export default class RendererBySortSettings extends Aware {
         this.timerId = 0;
 
         this.messenger = new FrequentAbsoluteFlashMessage();
-        this.locked = false;
-    }
-
-    // блокировать на время установки sortSettings
-    // при загрузке страницы с параметрами сортировки в url
-    lock() {
-        this.locked = true;
-    }
-    unlock() {
-        this.locked = false;
     }
 
     checkSortSettings() {
@@ -37,8 +26,7 @@ export default class RendererBySortSettings extends Aware {
             return;
         }
 
-        this.commit('setStartOffset', 0);
-        this.commit('setPageNumber', 1);
+        this._setPaginatorSettings();
 
         if (allProductsMustBeCached()) {
             this._render();
@@ -46,6 +34,11 @@ export default class RendererBySortSettings extends Aware {
             this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
             this._renderWithDelay();
         }
+    }
+
+    _setPaginatorSettings() {
+        this.commit('setStartOffset', 0);
+        this.commit('setPageNumber', 1);
     }
 
     _renderWithDelay() {
@@ -89,12 +82,19 @@ export default class RendererBySortSettings extends Aware {
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
                 this.messenger.render({
                     text: `Отсортировано`,
-                    duration: 2500
+                    duration: 1500
                 });
+                this._setProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
 
+    _setProductsCount(sectionProductsCount) {
+        this.commit('setSectionProductsCount', sectionProductsCount);
+        const settings = this.state.paginatorSettings;
+        const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
+        this.commit('setPageCount', sectionPageCount);
+    }
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
@@ -104,11 +104,10 @@ export default class RendererBySortSettings extends Aware {
         //this.components.rendererOfPaginationBlock.remake();
     }
 
-
     _switchVisibilityOfViewMoreButton() {
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        const sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
+        if (numberOfDisplayedProducts >= sectionProductsCount) {
             this._turnOffViewMoreButton();
         } else {
             this._turnOnViewMoreButton();
@@ -133,5 +132,4 @@ export default class RendererBySortSettings extends Aware {
             paginationBlock.classList.add("display-none");
         }
     }
-
 }
