@@ -1,5 +1,5 @@
-import el from './el';
-import getDropMenuHtml from './html/getDropMenuHtml.js';
+import el from '../el';
+import getDropMenuHtml from '../html/getDropMenuHtml.js';
 
 export default class TopDropMenuFiller {
     constructor() {

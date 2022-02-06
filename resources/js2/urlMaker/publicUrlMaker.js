@@ -59,9 +59,6 @@ export default class PublicUrlMaker extends Aware {
 
 
 
-
-
-
     _isUrlOfMainPage() {
         const logicalConditions = [
             ['allProducts', ''].indexOf(this.state.sectionSettings.productSectionName) !== -1,
@@ -93,8 +90,6 @@ export default class PublicUrlMaker extends Aware {
         ];
         return logicalConditions.every(item => item === true);
     }
-
-
 
 
 

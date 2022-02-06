@@ -3,7 +3,7 @@ import getProductObject from "../../productObject/getProductObject";
 import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
 import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "../../scrollDocument";
-import FrequentAbsoluteFlashMessage from "../../frequentAbsoluteFlashMessage";
+import FrequentAbsoluteFlashMessage from "../../message/frequentAbsoluteFlashMessage";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import Aware from "../../parentClasses/app/aware";
 

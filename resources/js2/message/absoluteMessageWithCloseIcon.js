@@ -1,6 +1,6 @@
-import el from './el';
-import VisibleBlock from "./parentClasses/visibleBlock";
-import getAbsoluteMessageWithCloseIconHtml from "./html/getAbsoluteMessageWithCloseIconHtml";
+import el from '../el';
+import VisibleBlock from "../parentClasses/visibleBlock";
+import getAbsoluteMessageWithCloseIconHtml from "../html/getAbsoluteMessageWithCloseIconHtml";
 
 
 export default class AbsoluteMessageWithCloseIcon extends VisibleBlock {

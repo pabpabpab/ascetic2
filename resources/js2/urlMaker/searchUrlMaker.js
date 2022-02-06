@@ -9,14 +9,12 @@ export default class SearchUrlMaker extends Aware {
 
 
     getUrl() {
-
         if (this._isUrlOfFavoriteProducts()) {
             return `/public-js/favorite-products/offset/${this.state.paginatorSettings.startOffset}`;
         }
         if (this._isUrlOfViewedProducts()) {
             return `/public-js/viewed-products/offset/${this.state.paginatorSettings.startOffset}`;
         }
-
 
         const totalUrl = [
             this.startUrl,
@@ -28,8 +26,6 @@ export default class SearchUrlMaker extends Aware {
         return totalUrl.join('');
         // вида /public-js/product-search/price/{minPrice}-{maxPrice}/categories/{categories}/offset/{startOffset}
     }
-
-
 
 
     _getMinPriceUrl() {
@@ -50,8 +46,6 @@ export default class SearchUrlMaker extends Aware {
     _getOffsetUrl() {
         return `/offset/${this.state.paginatorSettings.startOffset}`;
     }
-
-
 
 
     _isUrlOfFavoriteProducts() {

@@ -1,6 +1,6 @@
 import Aware from "../parentClasses/app/aware";
 import getJson from "../http/getJson";
-import AbsoluteFlashMessage from "../absoluteFlashMessage";
+import AbsoluteFlashMessage from "../message/absoluteFlashMessage";
 
 
 export default class CategoryCache extends Aware {

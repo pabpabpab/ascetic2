@@ -30,9 +30,6 @@ export default {
     categoryCache: new CategoryCache(),
     productCache: new ProductCache(),
 
-    //searchSettingsStore: new SearchSettingsStore(),
-    //sortSettingsStore: new SortSettingsStore(),
-
     searchUrlMaker: new SearchUrlMaker(),
     publicUrlMaker: new PublicUrlMaker(),
 

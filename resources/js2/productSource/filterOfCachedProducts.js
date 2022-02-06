@@ -93,7 +93,6 @@ export default class FilterOfCachedProducts extends Aware {
 
 
 
-
     _minPriceFilter(items, minPrice) {
         return items.filter(item => Number(item.price) >= minPrice);
     }

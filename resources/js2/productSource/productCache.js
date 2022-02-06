@@ -1,5 +1,5 @@
 import getJson from "./../http/getJson";
-import AbsoluteFlashMessage from "./../absoluteFlashMessage";
+import AbsoluteFlashMessage from "../message/absoluteFlashMessage";
 import el from "./../el";
 import allProductsMustBeCached from "./../allProductsMustBeCached";
 import Aware from "../parentClasses/app/aware";

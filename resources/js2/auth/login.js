@@ -4,7 +4,7 @@ import getLoginFormHtml from '../html/auth/getLoginFormHtml';
 import getFailedLoginHtml from '../html/auth/getFailedLoginHtml';
 import getAuthenticatedMenuHtml from '../html/auth/getAuthenticatedMenuHtml';
 import loginValidation from "../validation/loginValidation";
-import AbsoluteFlashMessage from "../absoluteFlashMessage";
+import AbsoluteFlashMessage from "../message/absoluteFlashMessage";
 import ForgotPassword from "./forgotPassword";
 import PasswordTypeChanger from "./passwordTypeChanger";
 import getCookie from "../cookie/getCookie";

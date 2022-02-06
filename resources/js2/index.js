@@ -1,7 +1,7 @@
 import el from "./el";
 import CsrfUpdater from "./http/csrfUpdater";
-import TopDropMenuFiller from "./topDropMenuFiller";
-import AbsoluteFlashMessage from "./absoluteFlashMessage";
+import TopDropMenuFiller from "./menu/topDropMenuFiller";
+import AbsoluteFlashMessage from "./message/absoluteFlashMessage";
 import authKit from "./auth/index-authKit";
 
 import FavoriteProductsIndicationOnPageLoad from "./favoriteProducts/favoriteProductsIndicationOnPageLoad";

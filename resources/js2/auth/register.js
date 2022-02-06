@@ -2,7 +2,7 @@ import el from '../el.js';
 import AbsoluteForm from "../parentClasses/absoluteForm.js";
 import getRegisterFormHtml from '../html/auth/getRegisterFormHtml.js';
 import registerValidation from "../validation/registerValidation.js";
-import AbsoluteFlashMessage from "../absoluteFlashMessage.js";
+import AbsoluteFlashMessage from "../message/absoluteFlashMessage.js";
 import getCookie from "../cookie/getCookie";
 
 export default class Register extends AbsoluteForm {
