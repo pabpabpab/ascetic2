@@ -20,27 +20,26 @@ export default class RendererOfViewedProductsByLink extends Aware {
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.viewedProductsLink) {
                 e.preventDefault();
-                this._setDataAttributes();
                 this.commit('resetSearchSettings');
                 this._setSectionSettings();
+                this._setPaginatorSettings();
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
-
-    _setDataAttributes() {
-        this.wrapper.dataset.productSectionName = 'viewedProducts';
+    _setSectionSettings() {
+        this.commit('setSectionData', {
+            sectionName: 'viewedProducts',
+            additionalData: '',
+            h1Text: 'Вы смотрели',
+        });
     }
 
-    _setSectionSettings(e) {
-        this.commit('setSectionData', {
-            sectionName: this.wrapper.dataset.productSectionName,
-            additionalData: '',
-        });
-        this.commit('setPageNumber', 1);
+    _setPaginatorSettings() {
         this.commit('setStartOffset', 0);
+        this.commit('setPageNumber', 1);
     }
 
     _showLoadingMessage() {
@@ -71,26 +70,24 @@ export default class RendererOfViewedProductsByLink extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-                this._setSectionProductsCount(sectionProductsCount);
+                this._setProductsCount(sectionProductsCount);
                 this._setAllViewedIds(allViewedIdsStr);
                 this._finalActions();
             });
     }
 
-
-    _setSectionProductsCount(sectionProductsCount) {
-        this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    _setProductsCount(sectionProductsCount) {
+        this.commit('setSectionProductsCount', sectionProductsCount);
         const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
-        this.wrapper.dataset.sectionPageCount = sectionPageCount;
         this.commit('setPageCount', sectionPageCount);
     }
 
     _setAllViewedIds(allViewedIdsStr) {
-        this.wrapper.dataset.additionalSectionData = allViewedIdsStr;
         this.commit('setSectionData', {
-            sectionName: this.wrapper.dataset.productSectionName,
+            sectionName: 'viewedProducts',
             additionalData: allViewedIdsStr,
+            h1Text: 'Вы смотрели',
         });
     }
 
@@ -105,15 +102,14 @@ export default class RendererOfViewedProductsByLink extends Aware {
         scrollDocument(distance, 'up');
     }
 
-
     _renderHeader() {
         this.header.innerText = 'Вы смотрели';
     }
 
     _switchVisibilityOfViewMoreButton() {
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        const sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
+        if (numberOfDisplayedProducts >= sectionProductsCount) {
             this._turnOffViewMoreButton();
         } else {
             this._turnOnViewMoreButton();

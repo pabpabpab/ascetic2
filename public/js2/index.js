@@ -4186,11 +4186,11 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
       if (e.target.dataset.viewedProductsLink) {
         e.preventDefault();
 
-        _this._setDataAttributes();
-
         _this.commit('resetSearchSettings');
 
         _this._setSectionSettings();
+
+        _this._setPaginatorSettings();
 
         _this._showLoadingMessage();
 
@@ -4201,19 +4201,19 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
   }
 
   _createClass(RendererOfViewedProductsByLink, [{
-    key: "_setDataAttributes",
-    value: function _setDataAttributes() {
-      this.wrapper.dataset.productSectionName = 'viewedProducts';
+    key: "_setSectionSettings",
+    value: function _setSectionSettings() {
+      this.commit('setSectionData', {
+        sectionName: 'viewedProducts',
+        additionalData: '',
+        h1Text: 'Вы смотрели'
+      });
     }
   }, {
-    key: "_setSectionSettings",
-    value: function _setSectionSettings(e) {
-      this.commit('setSectionData', {
-        sectionName: this.wrapper.dataset.productSectionName,
-        additionalData: ''
-      });
-      this.commit('setPageNumber', 1);
+    key: "_setPaginatorSettings",
+    value: function _setPaginatorSettings() {
       this.commit('setStartOffset', 0);
+      this.commit('setPageNumber', 1);
     }
   }, {
     key: "_showLoadingMessage",
@@ -4256,7 +4256,7 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
 
         _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
 
-        _this2._setSectionProductsCount(sectionProductsCount);
+        _this2._setProductsCount(sectionProductsCount);
 
         _this2._setAllViewedIds(allViewedIdsStr);
 
@@ -4264,21 +4264,20 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
       });
     }
   }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    key: "_setProductsCount",
+    value: function _setProductsCount(sectionProductsCount) {
+      this.commit('setSectionProductsCount', sectionProductsCount);
       var settings = this.state.paginatorSettings;
       var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
       this.commit('setPageCount', sectionPageCount);
     }
   }, {
     key: "_setAllViewedIds",
     value: function _setAllViewedIds(allViewedIdsStr) {
-      this.wrapper.dataset.additionalSectionData = allViewedIdsStr;
       this.commit('setSectionData', {
-        sectionName: this.wrapper.dataset.productSectionName,
-        additionalData: allViewedIdsStr
+        sectionName: 'viewedProducts',
+        additionalData: allViewedIdsStr,
+        h1Text: 'Вы смотрели'
       });
     }
   }, {
@@ -4304,9 +4303,9 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
     key: "_switchVisibilityOfViewMoreButton",
     value: function _switchVisibilityOfViewMoreButton() {
       var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+      var sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
 
-      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+      if (numberOfDisplayedProducts >= sectionProductsCount) {
         this._turnOffViewMoreButton();
       } else {
         this._turnOnViewMoreButton();
