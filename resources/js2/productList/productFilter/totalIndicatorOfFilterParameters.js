@@ -27,7 +27,6 @@ export default class TotalIndicatorOfFilterParameters extends Aware {
         }
     }
 
-
     _getTotalCountOfSetFilterParameters() {
         const settings = this.state.searchSettings;
         let totalCount = settings.categoriesIds.length;
@@ -39,7 +38,6 @@ export default class TotalIndicatorOfFilterParameters extends Aware {
         }
         return totalCount;
     }
-
 
     _setVisibilityToTrue() {
         const indicator = el('.filter_icon__total_indicator');

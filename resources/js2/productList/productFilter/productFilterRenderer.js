@@ -11,12 +11,15 @@ export default class ProductFilterRenderer extends Aware {
     constructor() {
         super();
         this.priceRangeUrl = '/public-js/product-price-range';
+
         this.minPriceLimit = 0;
         this.maxPriceLimit = 0;
+
         this.wrapSelector = `#productFilterWrapper`;
         this.basicCss = 'product_filter';
         this.showCss = 'show_product_filter';
         this.hideCss = 'hide_product_filter';
+
         if (!el('.filter_icon__wrapper')) {
             return;
         }

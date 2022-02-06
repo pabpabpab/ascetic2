@@ -33,12 +33,19 @@ export default class RendererBySearchSettings extends Aware {
             return;
         }
 
+        this._setPaginatorSettings();
+
         if (allProductsMustBeCached()) {
             this._render();
         } else {
             this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
             this._renderWithDelay();
         }
+    }
+
+    _setPaginatorSettings() {
+        this.commit('setStartOffset', 0);
+        this.commit('setPageNumber', 1);
     }
 
     _renderWithDelay() {
@@ -84,20 +91,17 @@ export default class RendererBySearchSettings extends Aware {
                     text: `Показано ${sectionProductsCount}`,
                     duration: 2500
                 });
-                this._setSectionProductsCount(sectionProductsCount);
+                this._setProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
 
-
-    _setSectionProductsCount(sectionProductsCount) {
-        this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    _setProductsCount(sectionProductsCount) {
+        this.commit('setSectionProductsCount', sectionProductsCount);
         const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
-        this.wrapper.dataset.sectionPageCount = sectionPageCount;
         this.commit('setPageCount', sectionPageCount);
     }
-
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
@@ -114,14 +118,13 @@ export default class RendererBySearchSettings extends Aware {
     }
 
     _renderHeader() {
-        this.header.innerText = 'Поиск товаров';
+        this.header.innerText = 'Поиск';
     }
-
 
     _switchVisibilityOfViewMoreButton() {
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        const sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
+        if (numberOfDisplayedProducts >= sectionProductsCount) {
             this._turnOffViewMoreButton();
         } else {
             this._turnOnViewMoreButton();
@@ -139,7 +142,6 @@ export default class RendererBySearchSettings extends Aware {
             viewMoreButton.classList.add("display-none");
         }
     }
-
 
     _makeInvisiblePaginationBlock() {
         const paginationBlock = el('#paginationContent');

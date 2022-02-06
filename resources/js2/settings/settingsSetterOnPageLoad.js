@@ -63,9 +63,6 @@ export default class SettingsSetterOnPageLoad extends Aware {
                 } else {
                     this.commit('setCategoriesIds', categoriesIdsArr);
                 }
-
-                this.wrapper.dataset.productSectionName = '';
-                this.wrapper.dataset.additionalSectionData = '';
                 // разблокировать после установки searchSettings
                 this.components.rendererBySearchSettings.unlock();
 

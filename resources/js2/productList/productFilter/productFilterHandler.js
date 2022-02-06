@@ -28,20 +28,17 @@ export default class ProductFilterHandler extends Aware {
                 filterCategory: this._categoriesHandler.bind(this),
             };
             if (initiator && handlers[initiator]) {
-                this._resetProductSectionData();
+                this._resetSectionSettings();
                 handlers[initiator](Number(e.target.value));
             }
         });
     }
 
-    _resetProductSectionData() {
-        const wrapper = el('#productList');
-        wrapper.dataset.productSectionName = '';
-        wrapper.dataset.additionalSectionData = '';
-
+    _resetSectionSettings() {
         this.commit('setSectionData', {
             sectionName: '',
             additionalData: '',
+            h1Text: 'Поиск',
         });
     }
 
