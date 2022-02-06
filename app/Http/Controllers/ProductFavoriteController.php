@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\PageTitleService;
 use App\Services\Product\FavoriteProductsListService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -11,6 +12,9 @@ class ProductFavoriteController extends Controller
 {
     public function getFavoriteProducts(FavoriteProductsListService $service, $pageNumber = 1)
     {
+
+        $pageData = (new PageTitleService())->getData('favoriteProducts', []);
+
         // установить стартовую страницу для пагинатора
         $currentPage = $pageNumber;
         Paginator::currentPageResolver(function () use ($currentPage) {
@@ -23,7 +27,9 @@ class ProductFavoriteController extends Controller
         return view('products.list.index', [
             'products' => $products,
             'productSectionName' => 'favoriteProducts',
-            'additionalDataOfProductSection' => '',
+            'additionalSectionData' => '',
+            'pageTitle' => $pageData['pageTitle'],
+            'pageDescription' => $pageData['pageDescription'],
             'currentPage' => $currentPage,
             'totalProductsCount' => Product::count(),
             'sectionProductsCount' => $productsCount,

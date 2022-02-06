@@ -31,8 +31,10 @@ class AppServiceProvider extends ServiceProvider
 
         $categoryModelClassName = "App\Models\Category";
         View::share([
-            'mainPageTitle' => 'Товары из дерева',
+            'currentPage' => 1,
+            'mainPageTitle' => config("my_site.mainPageTitle"),
             'categories' => $categoryService->getAll($categoryModelClassName),
         ]);
+
     }
 }

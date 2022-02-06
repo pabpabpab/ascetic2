@@ -56,20 +56,12 @@ export default class ProductFilterRenderer extends Aware {
         el('.product_filter__ready_button').addEventListener('click', () => {
             this._setVisibilityToFalse2();
         });
-        /*
-        new ProductFilterHandler({
-            filterBlock: this,
-            state: this.state,
-            commit: this.commit,
-        });*/
     }
 
     _justSetVisibilityToTrue() {
         if (!el(this.wrapSelector)) {
             return;
         }
-        //const distance = window.pageYOffset;
-        //scrollDocument(distance, 'up');
         document.body.style.overflow = 'hidden';
         el(this.wrapSelector).className = `${this.basicCss} ${this.showCss}`;
     }

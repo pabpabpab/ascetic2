@@ -23,7 +23,7 @@ import SearchSettingsObserverForProductFilterRenderer
     from "./productFilter/searchSettingsObserverForProductFilterRenderer";
 import TotalIndicatorOfFilterParameters from "./productFilter/totalIndicatorOfFilterParameters";
 import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchParametersRenderer";
-import SearchSettingsSetterOnPageLoad from "../settings/setSearchSettingsOnPageLoad";
+import SettingsSetterOnPageLoad from "../settings/settingsSetterOnPageLoad";
 
 
 export default {
@@ -68,5 +68,5 @@ export default {
     topTotalSearchParametersRenderer: new TopTotalSearchParametersRenderer(),
 
     // при загрузке страницы с сервера с поисковыми параметрами в url
-    searchSettingsSetterOnPageLoad: new SearchSettingsSetterOnPageLoad(),
+    settingsSetterOnPageLoad: new SettingsSetterOnPageLoad(),
 }

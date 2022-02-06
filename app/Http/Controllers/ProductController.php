@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\PageTitleService;
 use App\Services\PhotoManager\PhotoSeoService;
 use App\Services\Product\ListService;
 use App\Services\Product\ViewedProductsService;
@@ -12,6 +13,8 @@ class ProductController extends Controller
 {
     public function index(ListService $service)
     {
+        $pageData = (new PageTitleService())->getData('allProducts', []);
+
         // установить стартовую страницу для пагинатора
         $currentPage = 1;
         Paginator::currentPageResolver(function () use ($currentPage) {
@@ -24,8 +27,10 @@ class ProductController extends Controller
             ->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
-            'productSectionName' => 'all',
-            'additionalDataOfProductSection' => '',
+            'productSectionName' => 'allProducts',
+            'additionalSectionData' => '',
+            'pageTitle' => $pageData['pageTitle'],
+            'pageDescription' => $pageData['pageDescription'],
             'currentPage' => $currentPage,
             'totalProductsCount' => $totalProductsCount,
             'sectionProductsCount' => $totalProductsCount,
@@ -35,6 +40,8 @@ class ProductController extends Controller
 
     public function list(ListService $service, $pageNumber)
     {
+        $pageData = (new PageTitleService())->getData('allProducts', []);
+
         // установить стартовую страницу для пагинатора
         $currentPage = $pageNumber;
         Paginator::currentPageResolver(function () use ($currentPage) {
@@ -47,8 +54,10 @@ class ProductController extends Controller
             ->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,
-            'productSectionName' => 'all',
-            'additionalDataOfProductSection' => '',
+            'productSectionName' => 'allProducts',
+            'additionalSectionData' => '',
+            'pageTitle' => $pageData['pageTitle'],
+            'pageDescription' => $pageData['pageDescription'],
             'currentPage' => $currentPage,
             'totalProductsCount' => $totalProductsCount,
             'sectionProductsCount' => $totalProductsCount,
@@ -58,12 +67,19 @@ class ProductController extends Controller
 
     public function getOne(PhotoSeoService $service, $slug, Product $product)
     {
+        $pageData = (new PageTitleService())->getData('oneProduct', [
+            'product' => $product,
+            'seo' => $product->seoText,
+        ]);
+
         (new ViewedProductsService())->addToViewed($product->id);
 
         return view('products.single.single-product', [
+            'pageTitle' => $pageData['pageTitle'],
+            'pageDescription' => $pageData['pageDescription'],
             'product' => $product,
             'description' => $product->description,
-            'seo' => $product->seoText,
+            //'seo' => $product->seoText,
             'photoSeo' => $service->getProductPhotoSeoListWithFullListOfPhoto($product->id),
         ]);
     }
@@ -77,7 +93,13 @@ class ProductController extends Controller
             abort(404);
         }
 
+        $pageData = (new PageTitleService())->getData('onePhoto', [
+            'photoSeo' => $photoSeo,
+        ]);
+
         return view('products.single.single-photo', [
+            'pageTitle' => $pageData['pageTitle'],
+            'pageDescription' => $pageData['pageDescription'],
             'product' => $product,
             'photoSeo' => $photoSeo,
         ]);

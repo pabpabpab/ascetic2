@@ -22,6 +22,7 @@ export default class Commiter extends Aware {
             setCategoriesIds: ['checkSearchSettings'],
             resetSearchSettings: ['checkSearchSettings'],
 
+            setSectionProductsCount: ['checkPaginatorSettings'],
             setStartOffset: ['checkPaginatorSettings'],
             setPageNumber: ['checkPaginatorSettings'],
             setPageCount: ['checkPaginatorSettings'],

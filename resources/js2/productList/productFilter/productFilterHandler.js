@@ -37,7 +37,7 @@ export default class ProductFilterHandler extends Aware {
     _resetProductSectionData() {
         const wrapper = el('#productList');
         wrapper.dataset.productSectionName = '';
-        wrapper.dataset.additionalDataOfProductSection = '';
+        wrapper.dataset.additionalSectionData = '';
 
         this.commit('setSectionData', {
             sectionName: '',

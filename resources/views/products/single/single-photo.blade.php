@@ -2,7 +2,6 @@
 
 @php
     $bigPhotoFolder = "/storage/products-photos-size5/";
-
     //dd($product);
     $singleProductUrl = route('products.single', [
                     'slug' => $product->slug,
@@ -24,16 +23,16 @@
 @endphp
 
 
-@section('title'){{ $photoSeoObj->page_title }}@endsection
-@section('description'){{ $photoSeoObj->page_description }}@endsection
+@section('title'){{ $pageTitle }}@endsection
+@section('description'){{ $pageDescription }}@endsection
 
 
 @section('content')
-    <h1>{{ $photoSeoObj->page_title }}</h1>
+    <h1>{{ $pageTitle }}</h1>
 
     <div class="single_photo_page__content_wrapper">
         <img src="{{ $bigPhotoFolder . $product->id }}s5-{{ $photoSeoObj->filename }}"
-            alt="{{ $photoSeoObj->page_title }}"
+            alt="{{ $pageTitle }}"
             class="single_photo_page__photo__img"/>
 
         <div class="single_photo_page__bottom">

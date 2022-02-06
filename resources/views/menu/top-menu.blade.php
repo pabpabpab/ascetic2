@@ -8,7 +8,7 @@
 
         @if ($currentRouteName === 'mainPage')
             <p data-logo="link"
-               data-menu-link-section-name="all"
+               data-menu-link-section-name="allProducts"
                data-menu-link-title-text="{{ $mainPageTitle }}"
                class="logo__link logo__link_active m0 cursor-pointer">
                 AsceticShop.ru
@@ -16,7 +16,7 @@
         @else
             <a href="/"
                data-logo="link"
-               data-menu-link-section-name="all"
+               data-menu-link-section-name="allProducts"
                data-menu-link-title-text="{{ $mainPageTitle }}"
                class="logo__link">
                 AsceticShop.ru
@@ -64,7 +64,7 @@
 
             <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
                 <p
-                   data-menu-link-section-name="all"
+                   data-menu-link-section-name="allProducts"
                    data-menu-link-title-text="{{ $mainPageTitle }}"
                    class="top_menu__link top_menu__link_with_drop_menu nowrap m0 cursor-pointer">
                     Все

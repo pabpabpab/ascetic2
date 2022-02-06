@@ -1,21 +1,7 @@
 @extends('layouts.main-layout')
 
 @php
-    //dd(session('viewedProductsIds'));
     //dd($product);
-
-
-    $pageTitle = $product->name;
-    if ((isset($seo->page_title)) && (strlen(trim($seo->page_title)) > 0)) {
-        $pageTitle = trim($seo->page_title);
-    }
-
-    $pageDescription = "Товар из дерева " . $product->name;
-    if ((isset($seo->page_description)) && (strlen(trim($seo->page_description)) > 0)) {
-        $pageDescription = trim($seo->page_description);
-    }
-
-
     $photoSet = json_decode($product->photo_set);
     $photoCount = count($photoSet);
 

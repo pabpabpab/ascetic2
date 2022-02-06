@@ -2,29 +2,6 @@
 
 @php
     $currentRouteName = \Illuminate\Support\Facades\Route::currentRouteName();
-
-    $pageTitle = $mainPageTitle; // в AppServiceProvider
-    $pageDescription = 'Товары из дерева на заказ';
-
-    if ($currentRouteName === 'products.byCategory') {
-        $pageTitle = 'Товары категории ' . $category->name;
-        $pageDescription = 'Список товаров категории ' . $category->name;
-        if ((isset($categorySeo->page_title)) && (strlen(trim($categorySeo->page_title)) > 0)) {
-            $pageTitle = trim($categorySeo->page_title);
-        }
-        if ((isset($categorySeo->page_description)) && (strlen(trim($categorySeo->page_description)) > 0)) {
-            $pageDescription = trim($categorySeo->page_description);
-        }
-    } elseif ($currentRouteName === 'products.viewed') {
-        $pageTitle = 'Вы смотрели';
-        $pageDescription = 'Товары которые вы смотрели. ';
-    } elseif ($currentRouteName === 'products.favorites') {
-        $pageTitle = 'Избранные товары';
-        $pageDescription = 'Товары которые вам понравились. ';
-    } elseif ($currentRouteName === 'products.search') {
-        $pageTitle = $mainPageTitle; // в AppServiceProvider
-        $pageDescription = 'Товары из дерева на заказ';
-    }
 @endphp
 
 
@@ -50,8 +27,10 @@
              data-total-products-count="{{ $totalProductsCount }}"
              data-section-products-count="{{ $sectionProductsCount }}"
              data-section-page-count="{{ $pageCount }}"
+             data-current-page="{{ $currentPage }}"
              data-product-section-name="{{ $productSectionName }}"
-             data-additional-data-of-product-section="{{ $additionalDataOfProductSection }}"
+             data-additional-section-data="{{ $additionalSectionData }}"
+             data-h1-text="{{ $pageTitle }}"
              class="products">
             <div id="productListContent">
                 @each('products.list.product-item', $products, 'product')

@@ -6,7 +6,7 @@ export default class SectionSettingsStore extends Aware {
         super();
         this.settings = {
             productSectionName: '',
-            additionalDataOfProductSection: '',
+            additionalSectionData: '',
         };
         this.observers = [];
     }
@@ -17,13 +17,13 @@ export default class SectionSettingsStore extends Aware {
 
     setProductSectionData({productSectionName, additionalData}) {
         this.settings.productSectionName = productSectionName;
-        this.settings.additionalDataOfProductSection = additionalData;
+        this.settings.additionalSectionData = additionalData;
         this._notifyObservers();
     }
 
     reset() {
         this.settings.productSectionName = '';
-        this.settings.additionalDataOfProductSection = '';
+        this.settings.additionalSectionData = '';
     }
 
     addObserver(observer) {

@@ -20,44 +20,49 @@ export default class RendererByMenuLink extends Aware {
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.menuLinkSectionName) {
                 e.preventDefault();
-                this._setDataAttributes(e);
                 this.commit('resetSearchSettings');
                 this._setSectionSettings(e);
+                this._setPaginatorSettings();
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
 
-    _setDataAttributes(e) {
+    _setSectionSettings(e) {
         const sectionName = e.target.dataset.menuLinkSectionName;
-        this.wrapper.dataset.productSectionName = sectionName;
-        if (sectionName === 'all') {
-            const h1Text = e.target.dataset.menuLinkTitleText;
-            this.wrapper.dataset.additionalDataOfProductSection = `;;${h1Text}`;
+        if (sectionName === 'allProducts') {
+            this.commit('setSectionData', {
+                sectionName: sectionName,
+                additionalData: '',
+                h1Text: e.target.dataset.menuLinkTitleText,
+            });
             return;
         }
         if (sectionName === 'favoriteProducts') {
-            const h1Text = e.target.dataset.menuLinkTitleText;
-            this.wrapper.dataset.additionalDataOfProductSection = `;;${h1Text}`;
+            this.commit('setSectionData', {
+                sectionName: sectionName,
+                additionalData: '',
+                h1Text: e.target.dataset.menuLinkTitleText,
+            });
             return;
         }
         if (sectionName === 'productCategory') {
             const categoryId = e.target.dataset.menuLinkCategoryId;
             const categorySlug = e.target.dataset.menuLinkCategorySlug;
             const categoryName = e.target.dataset.menuLinkCategoryName;
-            this.wrapper.dataset.additionalDataOfProductSection = `${categoryId};${categorySlug};${categoryName}`;
+            this.commit('setSectionData', {
+                sectionName: sectionName,
+                additionalData: `${categoryId};${categorySlug};${categoryName}`,
+                h1Text: categoryName,
+            });
             return;
         }
     }
 
-    _setSectionSettings(e) {
-        this.commit('setSectionData', {
-            sectionName: this.wrapper.dataset.productSectionName,
-            additionalData: this.wrapper.dataset.additionalDataOfProductSection,
-        });
-        this.commit('setPageNumber', 1);
+    _setPaginatorSettings() {
         this.commit('setStartOffset', 0);
+        this.commit('setPageNumber', 1);
     }
 
     _showLoadingMessage() {
@@ -88,16 +93,15 @@ export default class RendererByMenuLink extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-                this._setSectionProductsCount(sectionProductsCount);
+                this._setProductsCount(sectionProductsCount);
                 this._finalActions();
             });
     }
 
-    _setSectionProductsCount(sectionProductsCount) {
-        this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    _setProductsCount(sectionProductsCount) {
+        this.commit('setSectionProductsCount', sectionProductsCount);
         const settings = this.state.paginatorSettings;
         const sectionPageCount = String(Math.ceil(sectionProductsCount/settings.perPage));
-        this.wrapper.dataset.sectionPageCount = sectionPageCount;
         this.commit('setPageCount', sectionPageCount);
     }
 
@@ -115,15 +119,14 @@ export default class RendererByMenuLink extends Aware {
     }
 
     _renderHeader() {
-        const headerText = this.wrapper.dataset.additionalDataOfProductSection.split(';')[2];
-        this.header.innerText = headerText;
+        this.header.innerText = this.state.sectionSettings.h1Text;
     }
 
 
     _switchVisibilityOfViewMoreButton() {
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
-        if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+        const sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
+        if (numberOfDisplayedProducts >= sectionProductsCount) {
             this._turnOffViewMoreButton();
         } else {
             this._turnOnViewMoreButton();

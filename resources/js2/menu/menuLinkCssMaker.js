@@ -48,7 +48,7 @@ export default class MenuLinkCssMaker extends Aware {
             }
         }
 
-        if (sectionName === 'all') {
+        if (sectionName === 'allProducts') {
             const logoLink = el(`.logo__link`);
             logoLink.classList.add('logo__link_active');
         }

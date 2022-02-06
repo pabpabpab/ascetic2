@@ -29,7 +29,7 @@ export default class PublicUrlMaker extends Aware {
             return `/`;
         }
         if (this._isSingleCategoryUrlBasedOnSectionName()) {
-            // additionalDataOfProductSection - "categoryId;categorySlug"
+            // additionalSectionData - "categoryId;categorySlug"
             const slug = this.state.sectionSettings.additionalData.split(';')[1];
             return `/products/${slug}`;
         }
@@ -64,7 +64,7 @@ export default class PublicUrlMaker extends Aware {
 
     _isUrlOfMainPage() {
         const logicalConditions = [
-            ['all', ''].indexOf(this.state.sectionSettings.productSectionName) !== -1,
+            ['allProducts', ''].indexOf(this.state.sectionSettings.productSectionName) !== -1,
             this.state.searchSettings.categoriesIds.length === 0,
             this.state.searchSettings.minPrice === 0,
             this.state.searchSettings.maxPrice === 0

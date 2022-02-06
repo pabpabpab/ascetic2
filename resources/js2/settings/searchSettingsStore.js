@@ -6,7 +6,7 @@ export default class SearchSettingsStore extends Aware {
         super();
         this.settings = {
             productSectionName: '',
-            additionalDataOfProductSection: '',
+            additionalSectionData: '',
 
             minPrice: 0,
             maxPrice: 0,
@@ -26,7 +26,7 @@ export default class SearchSettingsStore extends Aware {
 
     setProductSectionData({productSectionName, additionalData}) {
         this.settings.productSectionName = productSectionName;
-        this.settings.additionalDataOfProductSection = additionalData;
+        this.settings.additionalSectionData = additionalData;
     }
     setMinPrice(value) {
         this.settings.minPrice = value;
@@ -68,7 +68,7 @@ export default class SearchSettingsStore extends Aware {
 
     _resetSettingsNotRelatedToSearchFilter() {
         this.settings.productSectionName = '';
-        this.settings.additionalDataOfProductSection = '';
+        this.settings.additionalSectionData = '';
     }
 
     _resetPaginationSettings() {

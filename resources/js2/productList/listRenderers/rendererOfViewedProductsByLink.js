@@ -87,7 +87,7 @@ export default class RendererOfViewedProductsByLink extends Aware {
     }
 
     _setAllViewedIds(allViewedIdsStr) {
-        this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
+        this.wrapper.dataset.additionalSectionData = allViewedIdsStr;
         this.commit('setSectionData', {
             sectionName: this.wrapper.dataset.productSectionName,
             additionalData: allViewedIdsStr,

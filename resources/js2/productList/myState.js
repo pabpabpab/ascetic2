@@ -7,6 +7,7 @@ export default {
     sectionSettings: {
         productSectionName: '',
         additionalData: '',
+        h1Text: '',
     },
 
     searchSettings: {
@@ -16,9 +17,10 @@ export default {
     },
 
     paginatorSettings: {
+        sectionProductsCount: 0,
         startOffset: 0,
-        pageNumber: 0,
         pageCount: 0,
+        pageNumber: 0,
         perPage: 3,
     }
 }

@@ -21,17 +21,6 @@ export default class RendererBySearchSettings extends Aware {
         this.timerId = 0;
 
         this.messenger = new FrequentAbsoluteFlashMessage();
-
-        this.locked = false;
-    }
-
-    // блокировать на время установки searchSettings
-    // при загрузке страницы с параметрами поиска в url
-    lock() {
-        this.locked = true;
-    }
-    unlock() {
-        this.locked = false;
     }
 
     checkSearchSettings() {

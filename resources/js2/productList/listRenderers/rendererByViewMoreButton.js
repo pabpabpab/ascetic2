@@ -30,7 +30,7 @@ export default class RendererByViewMoreButton extends Aware {
     _setSectionSettings(e) {
         this.commit('setSectionData', {
             sectionName: this.wrapper.dataset.productSectionName,
-            additionalData: this.wrapper.dataset.additionalDataOfProductSection,
+            additionalData: this.wrapper.dataset.additionalSectionData,
         });
         const offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
         this.commit('setStartOffset', offsetOfProductsToLoad);

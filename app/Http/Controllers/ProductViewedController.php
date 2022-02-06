@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\PageTitleService;
 use App\Services\Product\ViewedProductsService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -11,6 +12,8 @@ class ProductViewedController extends Controller
 {
     public function getViewedProducts(ViewedProductsService $service, $pageNumber = 1)
     {
+        $pageData = (new PageTitleService())->getData('viewedProducts', []);
+
         // установить стартовую страницу для пагинатора
         $currentPage = $pageNumber;
         Paginator::currentPageResolver(function () use ($currentPage) {
@@ -23,7 +26,9 @@ class ProductViewedController extends Controller
         return view('products.list.index', [
             'products' => $products,
             'productSectionName' => 'viewedProducts',
-            'additionalDataOfProductSection' => $service->getAllViewedIdsStr(),
+            'additionalSectionData' => $service->getAllViewedIdsStr(),
+            'pageTitle' => $pageData['pageTitle'],
+            'pageDescription' => $pageData['pageDescription'],
             'currentPage' => $currentPage,
             'totalProductsCount' => Product::count(),
             'sectionProductsCount' => $productsCount,

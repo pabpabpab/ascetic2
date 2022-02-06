@@ -8,6 +8,7 @@ export default {
     setSectionData: (state, data) => {
         state.sectionSettings.productSectionName = data.sectionName;
         state.sectionSettings.additionalData = data.additionalData;
+        state.sectionSettings.h1Text = data.h1Text;
     },
 
 
@@ -27,6 +28,10 @@ export default {
     },
 
 
+
+    setSectionProductsCount: (state, value) => {
+        state.paginatorSettings.sectionProductsCount = value;
+    },
     setStartOffset: (state, value) => {
         state.paginatorSettings.startOffset = value;
     },

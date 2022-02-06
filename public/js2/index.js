@@ -2400,7 +2400,7 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_Aware) {
         }
       }
 
-      if (sectionName === 'all') {
+      if (sectionName === 'allProducts') {
         var logoLink = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".logo__link");
         logoLink.classList.add('logo__link_active');
       }
@@ -2616,13 +2616,27 @@ var Aware = /*#__PURE__*/function () {
     _classCallCheck(this, Aware);
 
     this.app = null;
+    this.locked = false;
   }
 
   _createClass(Aware, [{
     key: "setAppRef",
     value: function setAppRef(ref) {
       this.app = ref;
+    } // блокировать экземпляры (наследники) класса в settingsSetterOnPageLoad
+    // на время установки settings при загрузке страницы с сервера
+
+  }, {
+    key: "lock",
+    value: function lock() {
+      this.locked = true;
     }
+  }, {
+    key: "unlock",
+    value: function unlock() {
+      this.locked = false;
+    } // метода наблюдения вызываемые из коммитера
+
   }, {
     key: "checkSortSettings",
     value: function checkSortSettings() {}
@@ -2893,6 +2907,7 @@ var Commiter = /*#__PURE__*/function (_Aware) {
         setMaxPrice: ['checkSearchSettings'],
         setCategoriesIds: ['checkSearchSettings'],
         resetSearchSettings: ['checkSearchSettings'],
+        setSectionProductsCount: ['checkPaginatorSettings'],
         setStartOffset: ['checkPaginatorSettings'],
         setPageNumber: ['checkPaginatorSettings'],
         setPageCount: ['checkPaginatorSettings']
@@ -3031,11 +3046,11 @@ var RendererByMenuLink = /*#__PURE__*/function (_Aware) {
       if (e.target.dataset.menuLinkSectionName) {
         e.preventDefault();
 
-        _this._setDataAttributes(e);
-
         _this.commit('resetSearchSettings');
 
         _this._setSectionSettings(e);
+
+        _this._setPaginatorSettings();
 
         _this._showLoadingMessage();
 
@@ -3046,20 +3061,25 @@ var RendererByMenuLink = /*#__PURE__*/function (_Aware) {
   }
 
   _createClass(RendererByMenuLink, [{
-    key: "_setDataAttributes",
-    value: function _setDataAttributes(e) {
+    key: "_setSectionSettings",
+    value: function _setSectionSettings(e) {
       var sectionName = e.target.dataset.menuLinkSectionName;
-      this.wrapper.dataset.productSectionName = sectionName;
 
-      if (sectionName === 'all') {
-        var h1Text = e.target.dataset.menuLinkTitleText;
-        this.wrapper.dataset.additionalDataOfProductSection = ";;".concat(h1Text);
+      if (sectionName === 'allProducts') {
+        this.commit('setSectionData', {
+          sectionName: sectionName,
+          additionalData: '',
+          h1Text: e.target.dataset.menuLinkTitleText
+        });
         return;
       }
 
       if (sectionName === 'favoriteProducts') {
-        var _h1Text = e.target.dataset.menuLinkTitleText;
-        this.wrapper.dataset.additionalDataOfProductSection = ";;".concat(_h1Text);
+        this.commit('setSectionData', {
+          sectionName: sectionName,
+          additionalData: '',
+          h1Text: e.target.dataset.menuLinkTitleText
+        });
         return;
       }
 
@@ -3067,19 +3087,19 @@ var RendererByMenuLink = /*#__PURE__*/function (_Aware) {
         var categoryId = e.target.dataset.menuLinkCategoryId;
         var categorySlug = e.target.dataset.menuLinkCategorySlug;
         var categoryName = e.target.dataset.menuLinkCategoryName;
-        this.wrapper.dataset.additionalDataOfProductSection = "".concat(categoryId, ";").concat(categorySlug, ";").concat(categoryName);
+        this.commit('setSectionData', {
+          sectionName: sectionName,
+          additionalData: "".concat(categoryId, ";").concat(categorySlug, ";").concat(categoryName),
+          h1Text: categoryName
+        });
         return;
       }
     }
   }, {
-    key: "_setSectionSettings",
-    value: function _setSectionSettings(e) {
-      this.commit('setSectionData', {
-        sectionName: this.wrapper.dataset.productSectionName,
-        additionalData: this.wrapper.dataset.additionalDataOfProductSection
-      });
-      this.commit('setPageNumber', 1);
+    key: "_setPaginatorSettings",
+    value: function _setPaginatorSettings() {
       this.commit('setStartOffset', 0);
+      this.commit('setPageNumber', 1);
     }
   }, {
     key: "_showLoadingMessage",
@@ -3121,18 +3141,17 @@ var RendererByMenuLink = /*#__PURE__*/function (_Aware) {
 
         _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
 
-        _this2._setSectionProductsCount(sectionProductsCount);
+        _this2._setProductsCount(sectionProductsCount);
 
         _this2._finalActions();
       });
     }
   }, {
-    key: "_setSectionProductsCount",
-    value: function _setSectionProductsCount(sectionProductsCount) {
-      this.wrapper.dataset.sectionProductsCount = sectionProductsCount;
+    key: "_setProductsCount",
+    value: function _setProductsCount(sectionProductsCount) {
+      this.commit('setSectionProductsCount', sectionProductsCount);
       var settings = this.state.paginatorSettings;
       var sectionPageCount = String(Math.ceil(sectionProductsCount / settings.perPage));
-      this.wrapper.dataset.sectionPageCount = sectionPageCount;
       this.commit('setPageCount', sectionPageCount);
     }
   }, {
@@ -3153,16 +3172,15 @@ var RendererByMenuLink = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_renderHeader",
     value: function _renderHeader() {
-      var headerText = this.wrapper.dataset.additionalDataOfProductSection.split(';')[2];
-      this.header.innerText = headerText;
+      this.header.innerText = this.state.sectionSettings.h1Text;
     }
   }, {
     key: "_switchVisibilityOfViewMoreButton",
     value: function _switchVisibilityOfViewMoreButton() {
       var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-      var sectionProductsCountFromServer = Number(this.wrapper.dataset.sectionProductsCount);
+      var sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
 
-      if (numberOfDisplayedProducts >= sectionProductsCountFromServer) {
+      if (numberOfDisplayedProducts >= sectionProductsCount) {
         this._turnOffViewMoreButton();
       } else {
         this._turnOnViewMoreButton();
@@ -3304,7 +3322,7 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
     value: function _setStateSettings(e) {
       this.commit('setSectionData', {
         sectionName: this.wrapper.dataset.productSectionName,
-        additionalData: this.wrapper.dataset.additionalDataOfProductSection
+        additionalData: this.wrapper.dataset.additionalSectionData
       });
       var settings = this.state.paginatorSettings;
       var pageNumber = Number(e.target.dataset.paginatorPageNumber);
@@ -3495,23 +3513,10 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
     _this.timeWhenLastRequestWasSent = 0;
     _this.timerId = 0;
     _this.messenger = new _frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]();
-    _this.locked = false;
     return _this;
-  } // блокировать на время установки searchSettings
-  // при загрузке страницы с параметрами поиска в url
-
+  }
 
   _createClass(RendererBySearchSettings, [{
-    key: "lock",
-    value: function lock() {
-      this.locked = true;
-    }
-  }, {
-    key: "unlock",
-    value: function unlock() {
-      this.locked = false;
-    }
-  }, {
     key: "checkSearchSettings",
     value: function checkSearchSettings() {
       if (this.locked) {
@@ -3979,7 +3984,7 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
     value: function _setSectionSettings(e) {
       this.commit('setSectionData', {
         sectionName: this.wrapper.dataset.productSectionName,
-        additionalData: this.wrapper.dataset.additionalDataOfProductSection
+        additionalData: this.wrapper.dataset.additionalSectionData
       });
       var offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
       this.commit('setStartOffset', offsetOfProductsToLoad);
@@ -4270,7 +4275,7 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_setAllViewedIds",
     value: function _setAllViewedIds(allViewedIdsStr) {
-      this.wrapper.dataset.additionalDataOfProductSection = allViewedIdsStr;
+      this.wrapper.dataset.additionalSectionData = allViewedIdsStr;
       this.commit('setSectionData', {
         sectionName: this.wrapper.dataset.productSectionName,
         additionalData: allViewedIdsStr
@@ -4383,7 +4388,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
 /* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
 /* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
-/* harmony import */ var _settings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../settings/setSearchSettingsOnPageLoad */ "./resources/js2/settings/setSearchSettingsOnPageLoad.js");
+/* harmony import */ var _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../settings/settingsSetterOnPageLoad */ "./resources/js2/settings/settingsSetterOnPageLoad.js");
 
 
 
@@ -4441,7 +4446,7 @@ __webpack_require__.r(__webpack_exports__);
   totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_22__["default"](),
   topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_23__["default"](),
   // при загрузке страницы с сервера с поисковыми параметрами в url
-  searchSettingsSetterOnPageLoad: new _settings_setSearchSettingsOnPageLoad__WEBPACK_IMPORTED_MODULE_24__["default"]()
+  settingsSetterOnPageLoad: new _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_24__["default"]()
 });
 
 /***/ }),
@@ -4474,6 +4479,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   setSectionData: function setSectionData(state, data) {
     state.sectionSettings.productSectionName = data.sectionName;
     state.sectionSettings.additionalData = data.additionalData;
+    state.sectionSettings.h1Text = data.h1Text;
   },
   setMinPrice: function setMinPrice(state, value) {
     state.searchSettings.minPrice = value;
@@ -4488,6 +4494,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     state.searchSettings.minPrice = 0;
     state.searchSettings.maxPrice = 0;
     state.searchSettings.categoriesIds = [].concat();
+  },
+  setSectionProductsCount: function setSectionProductsCount(state, value) {
+    state.paginatorSettings.sectionProductsCount = value;
   },
   setStartOffset: function setStartOffset(state, value) {
     state.paginatorSettings.startOffset = value;
@@ -4517,7 +4526,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   sectionSettings: {
     productSectionName: '',
-    additionalData: ''
+    additionalData: '',
+    h1Text: ''
   },
   searchSettings: {
     minPrice: 0,
@@ -4525,9 +4535,10 @@ __webpack_require__.r(__webpack_exports__);
     categoriesIds: []
   },
   paginatorSettings: {
+    sectionProductsCount: 0,
     startOffset: 0,
-    pageNumber: 0,
     pageCount: 0,
+    pageNumber: 0,
     perPage: 3
   }
 });
@@ -4792,7 +4803,7 @@ var ProductFilterHandler = /*#__PURE__*/function (_Aware) {
     value: function _resetProductSectionData() {
       var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
       wrapper.dataset.productSectionName = '';
-      wrapper.dataset.additionalDataOfProductSection = '';
+      wrapper.dataset.additionalSectionData = '';
       this.commit('setSectionData', {
         sectionName: '',
         additionalData: ''
@@ -4988,21 +4999,13 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
       Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.product_filter__ready_button').addEventListener('click', function () {
         _this3._setVisibilityToFalse2();
       });
-      /*
-      new ProductFilterHandler({
-          filterBlock: this,
-          state: this.state,
-          commit: this.commit,
-      });*/
     }
   }, {
     key: "_justSetVisibilityToTrue",
     value: function _justSetVisibilityToTrue() {
       if (!Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
         return;
-      } //const distance = window.pageYOffset;
-      //scrollDocument(distance, 'up');
-
+      }
 
       document.body.style.overflow = 'hidden';
       Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
@@ -6689,7 +6692,7 @@ var FilterOfCachedProducts = /*#__PURE__*/function (_Aware) {
     value: function _sectionFilter(items) {
       var settings = this.state.sectionSettings;
 
-      if (['all', ''].indexOf(settings.productSectionName) !== -1) {
+      if (['allProducts', ''].indexOf(settings.productSectionName) !== -1) {
         return items;
       }
 
@@ -7286,16 +7289,16 @@ function _scrollDocument(distance, coveredDistance, direction) {
 
 /***/ }),
 
-/***/ "./resources/js2/settings/setSearchSettingsOnPageLoad.js":
-/*!***************************************************************!*\
-  !*** ./resources/js2/settings/setSearchSettingsOnPageLoad.js ***!
-  \***************************************************************/
+/***/ "./resources/js2/settings/settingsSetterOnPageLoad.js":
+/*!************************************************************!*\
+  !*** ./resources/js2/settings/settingsSetterOnPageLoad.js ***!
+  \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SetSearchSettingsOnPageLoad; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SettingsSetterOnPageLoad; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7323,40 +7326,80 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
  // запускается при загрузке страницы с сервера с поисковыми параметрами в url
 
-var SetSearchSettingsOnPageLoad = /*#__PURE__*/function (_Aware) {
-  _inherits(SetSearchSettingsOnPageLoad, _Aware);
+var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
+  _inherits(SettingsSetterOnPageLoad, _Aware);
 
-  var _super = _createSuper(SetSearchSettingsOnPageLoad);
+  var _super = _createSuper(SettingsSetterOnPageLoad);
 
-  function SetSearchSettingsOnPageLoad() {
+  function SettingsSetterOnPageLoad() {
     var _this;
 
-    _classCallCheck(this, SetSearchSettingsOnPageLoad);
+    _classCallCheck(this, SettingsSetterOnPageLoad);
 
     _this = _super.call(this);
-
-    if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.productSectionName !== 'serverProductSearch') {
-      return _possibleConstructorReturn(_this);
-    } // задержка для дать время установить указатель на app при загрузке
-
+    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); // задержка для дать время установить указатель на app при загрузке
 
     setTimeout(function () {
       _this._initSettings();
+
+      _this._resetDataAttributes();
     }, 100);
     return _this;
   }
 
-  _createClass(SetSearchSettingsOnPageLoad, [{
+  _createClass(SettingsSetterOnPageLoad, [{
     key: "_initSettings",
     value: function _initSettings() {
+      var sectionName = this._ucFirst(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.productSectionName);
+
+      if (!sectionName) {
+        return;
+      }
+
+      var setter = "_setterBy".concat(sectionName);
+
+      if (this[setter]) {
+        this[setter]();
+      }
+    }
+  }, {
+    key: "_setterByAllProducts",
+    value: function _setterByAllProducts() {
+      this._setSectionSettings();
+
+      this._setPaginatorSettings();
+    }
+  }, {
+    key: "_setterByProductCategory",
+    value: function _setterByProductCategory() {
+      this._setSectionSettings();
+
+      this._setPaginatorSettings();
+    }
+  }, {
+    key: "_setterByFavoriteProducts",
+    value: function _setterByFavoriteProducts() {
+      this._setSectionSettings();
+
+      this._setPaginatorSettings();
+    }
+  }, {
+    key: "_setterByViewedProducts",
+    value: function _setterByViewedProducts() {
+      this._setSectionSettings();
+
+      this._setPaginatorSettings();
+    }
+  }, {
+    key: "_setterByProductSearchOnServer",
+    value: function _setterByProductSearchOnServer() {
       var _this2 = this;
 
       this.components.categoryCache.getEntireList().then(function () {
         // заблокировать на время установки searchSettings
         _this2.components.rendererBySearchSettings.lock();
 
-        var listWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
-        var paramsArr = listWrapper.dataset.additionalDataOfProductSection.split(';');
+        var paramsArr = _this2.wrapper.dataset.additionalSectionData.split(';');
 
         _this2.commit('setMinPrice', Number(paramsArr[0]));
 
@@ -7373,15 +7416,58 @@ var SetSearchSettingsOnPageLoad = /*#__PURE__*/function (_Aware) {
           _this2.commit('setCategoriesIds', categoriesIdsArr);
         }
 
-        listWrapper.dataset.productSectionName = '';
-        listWrapper.dataset.additionalDataOfProductSection = ''; // разблокировать после установки searchSettings
+        _this2.wrapper.dataset.productSectionName = '';
+        _this2.wrapper.dataset.additionalSectionData = ''; // разблокировать после установки searchSettings
 
         _this2.components.rendererBySearchSettings.unlock();
+
+        _this2.commit('setSectionData', {
+          sectionName: _this2.wrapper.dataset.productSectionName,
+          additionalData: '',
+          h1Text: _this2.wrapper.dataset.h1Text
+        });
+
+        _this2._setPaginatorSettings();
       });
+    }
+  }, {
+    key: "_setSectionSettings",
+    value: function _setSectionSettings() {
+      this.commit('setSectionData', {
+        sectionName: this.wrapper.dataset.productSectionName,
+        additionalData: this.wrapper.dataset.additionalSectionData,
+        h1Text: this.wrapper.dataset.h1Text
+      });
+    }
+  }, {
+    key: "_setPaginatorSettings",
+    value: function _setPaginatorSettings() {
+      var currentPage = Number(this.wrapper.dataset.currentPage);
+      var startOffset = (currentPage - 1) * this.state.paginatorSettings.perPage;
+      this.commit('setSectionProductsCount', Number(this.wrapper.dataset.sectionProductsCount));
+      this.commit('setStartOffset', startOffset);
+      this.commit('setPageCount', Number(this.wrapper.dataset.sectionPageCount));
+      this.commit('setPageNumber', currentPage);
+    }
+  }, {
+    key: "_resetDataAttributes",
+    value: function _resetDataAttributes() {
+      this.wrapper.dataset.productSectionName = '';
+      this.wrapper.dataset.additionalSectionData = '';
+      this.wrapper.dataset.h1Text = '';
+      this.wrapper.dataset.sectionProductsCount = '0';
+      this.wrapper.dataset.sectionPageCount = '0';
+      this.wrapper.dataset.currentPage = '0';
+    }
+  }, {
+    key: "_ucFirst",
+    value: function _ucFirst(str) {
+      if (!str) return str;
+      return str[0].toUpperCase() + str.slice(1);
     }
   }]);
 
-  return SetSearchSettingsOnPageLoad;
+  return SettingsSetterOnPageLoad;
 }(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
@@ -7538,7 +7624,7 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
       }
 
       if (this._isSingleCategoryUrlBasedOnSectionName()) {
-        // additionalDataOfProductSection - "categoryId;categorySlug"
+        // additionalSectionData - "categoryId;categorySlug"
         var slug = this.state.sectionSettings.additionalData.split(';')[1];
         return "/products/".concat(slug);
       }
@@ -7563,7 +7649,7 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_isUrlOfMainPage",
     value: function _isUrlOfMainPage() {
-      var logicalConditions = [['all', ''].indexOf(this.state.sectionSettings.productSectionName) !== -1, this.state.searchSettings.categoriesIds.length === 0, this.state.searchSettings.minPrice === 0, this.state.searchSettings.maxPrice === 0];
+      var logicalConditions = [['allProducts', ''].indexOf(this.state.sectionSettings.productSectionName) !== -1, this.state.searchSettings.categoriesIds.length === 0, this.state.searchSettings.minPrice === 0, this.state.searchSettings.maxPrice === 0];
       return logicalConditions.every(function (item) {
         return item === true;
       });

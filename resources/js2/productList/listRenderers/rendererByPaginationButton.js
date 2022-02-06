@@ -31,7 +31,7 @@ export default class RendererByPaginationButton extends Aware {
     _setStateSettings(e) {
         this.commit('setSectionData', {
             sectionName: this.wrapper.dataset.productSectionName,
-            additionalData: this.wrapper.dataset.additionalDataOfProductSection,
+            additionalData: this.wrapper.dataset.additionalSectionData,
         });
 
         const settings = this.state.paginatorSettings;
