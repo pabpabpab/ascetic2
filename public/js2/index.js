@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
 
 function allProductsMustBeCached() {
-  var limitForCachingOfProductEntireList = 100;
+  var limitForCachingOfProductEntireList = 1;
   var totalProductsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount);
   return totalProductsCount < limitForCachingOfProductEntireList;
 }
@@ -7650,7 +7650,7 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
     _this = _super.call(this);
     _this.startUrl = '/product-search';
     return _this;
-  } // /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
+  } // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/{pageNumber}
 
 
   _createClass(PublicUrlMaker, [{
@@ -7696,14 +7696,14 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_getComplexSearchUrl",
     value: function _getComplexSearchUrl() {
-      var totalUrl = [this.startUrl, this._getMinPriceUrl(), this._getMaxPriceUrl(), this._getCategoriesUrl(), //this._getSortUrl(),
-      this._getOffsetUrl()];
+      var totalUrl = [this.startUrl, this._getMinPriceUrl(), this._getMaxPriceUrl(), this._getCategoriesUrl(), this._getSortUrl(), this._getOffsetUrl()];
       return totalUrl.join(''); // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
     }
   }, {
     key: "_isUrlOfMainPage",
     value: function _isUrlOfMainPage() {
-      var logicalConditions = [['allProducts', ''].indexOf(this.state.sectionSettings.productSectionName) !== -1, this.state.searchSettings.categoriesIds.length === 0, this.state.searchSettings.minPrice === 0, this.state.searchSettings.maxPrice === 0];
+      var sectionName = this.state.sectionSettings.productSectionName;
+      var logicalConditions = [['allProducts', ''].includes(sectionName), this.state.sortSettings.mode === 'position', this.state.searchSettings.categoriesIds.length === 0, this.state.searchSettings.minPrice === 0, this.state.searchSettings.maxPrice === 0];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -7711,7 +7711,8 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_isSingleCategoryUrlBasedOnSectionName",
     value: function _isSingleCategoryUrlBasedOnSectionName() {
-      var logicalConditions = [this.state.sectionSettings.productSectionName === 'productCategory', this.state.searchSettings.categoriesIds.length === 0];
+      var sectionName = this.state.sectionSettings.productSectionName;
+      var logicalConditions = [sectionName === 'productCategory', this.state.sortSettings.mode === 'position', this.state.searchSettings.categoriesIds.length === 0];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -7719,7 +7720,8 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_isUrlOfFavoriteProducts",
     value: function _isUrlOfFavoriteProducts() {
-      var logicalConditions = [this.state.sectionSettings.productSectionName === 'favoriteProducts'];
+      var sectionName = this.state.sectionSettings.productSectionName;
+      var logicalConditions = [sectionName === 'favoriteProducts'];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -7727,7 +7729,8 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_isUrlOfViewedProducts",
     value: function _isUrlOfViewedProducts() {
-      var logicalConditions = [this.state.sectionSettings.productSectionName === 'viewedProducts'];
+      var sectionName = this.state.sectionSettings.productSectionName;
+      var logicalConditions = [sectionName === 'viewedProducts'];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -7745,21 +7748,35 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_getCategoriesUrl",
     value: function _getCategoriesUrl() {
-      if (this.state.searchSettings.categoriesIds.length === 0) {
+      var categoriesIds = this.state.searchSettings.categoriesIds;
+      var singleCategoryId = Number(this.state.sectionSettings.additionalData.split(';')[0]);
+
+      if (categoriesIds.length === 0 && singleCategoryId === 0) {
         return '/categories/0';
+      } else if (categoriesIds.length > 0) {
+        return "/categories/".concat(this.state.searchSettings.categoriesIds.join('-'));
+      } else if (singleCategoryId > 0) {
+        return "/categories/".concat(singleCategoryId);
       }
 
-      return "/categories/".concat(this.state.searchSettings.categoriesIds.join('-'));
+      return '/categories/0';
     }
   }, {
     key: "_getSortUrl",
     value: function _getSortUrl() {
-      return "/sort/".concat(this.state.sortSettings.mode);
+      var sortMode = this.state.sortSettings.mode;
+
+      if (sortMode === 'position') {
+        sortMode = 'default';
+      }
+
+      return "/sort/".concat(sortMode);
     }
   }, {
     key: "_getOffsetUrl",
     value: function _getOffsetUrl() {
-      return "/page/".concat(this.state.paginatorSettings.pageNumber);
+      // return `/page/${this.state.paginatorSettings.pageNumber}`;
+      return '';
     }
   }]);
 
@@ -7824,15 +7841,19 @@ var SearchUrlMaker = /*#__PURE__*/function (_Aware) {
     key: "getUrl",
     value: function getUrl() {
       if (this._isUrlOfFavoriteProducts()) {
-        return "/public-js/favorite-products/offset/".concat(this.state.paginatorSettings.startOffset);
+        var startOffset = this.state.paginatorSettings.startOffset;
+        var sortMode = this.state.paginatorSettings.startOffset;
+        return "/public-js/favorite-products/sort/".concat(sortMode, "/offset/").concat(startOffset);
       }
 
       if (this._isUrlOfViewedProducts()) {
-        return "/public-js/viewed-products/offset/".concat(this.state.paginatorSettings.startOffset);
+        var _startOffset = this.state.paginatorSettings.startOffset;
+        return "/public-js/viewed-products/offset/".concat(_startOffset);
       }
 
-      var totalUrl = [this.startUrl, this._getMinPriceUrl(), this._getMaxPriceUrl(), this._getCategoriesUrl(), this._getOffsetUrl()];
-      return totalUrl.join(''); // вида /public-js/product-search/price/{minPrice}-{maxPrice}/categories/{categories}/offset/{startOffset}
+      var totalUrl = [this.startUrl, this._getMinPriceUrl(), this._getMaxPriceUrl(), this._getCategoriesUrl(), this._getSortUrl(), this._getOffsetUrl()];
+      console.log(totalUrl.join(''));
+      return totalUrl.join(''); // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/offset/{startOffset}
     }
   }, {
     key: "_getMinPriceUrl",
@@ -7856,6 +7877,11 @@ var SearchUrlMaker = /*#__PURE__*/function (_Aware) {
       }
 
       return '/categories/0';
+    }
+  }, {
+    key: "_getSortUrl",
+    value: function _getSortUrl() {
+      return "/sort/".concat(this.state.sortSettings.mode);
     }
   }, {
     key: "_getOffsetUrl",

@@ -10,10 +10,13 @@ export default class SearchUrlMaker extends Aware {
 
     getUrl() {
         if (this._isUrlOfFavoriteProducts()) {
-            return `/public-js/favorite-products/offset/${this.state.paginatorSettings.startOffset}`;
+            const startOffset = this.state.paginatorSettings.startOffset;
+            const sortMode = this.state.paginatorSettings.startOffset;
+            return `/public-js/favorite-products/sort/${sortMode}/offset/${startOffset}`;
         }
         if (this._isUrlOfViewedProducts()) {
-            return `/public-js/viewed-products/offset/${this.state.paginatorSettings.startOffset}`;
+            const startOffset = this.state.paginatorSettings.startOffset;
+            return `/public-js/viewed-products/offset/${startOffset}`;
         }
 
         const totalUrl = [
@@ -21,10 +24,15 @@ export default class SearchUrlMaker extends Aware {
             this._getMinPriceUrl(),
             this._getMaxPriceUrl(),
             this._getCategoriesUrl(),
+            this._getSortUrl(),
             this._getOffsetUrl(),
         ];
+
+        console.log(totalUrl.join(''));
+
+
         return totalUrl.join('');
-        // вида /public-js/product-search/price/{minPrice}-{maxPrice}/categories/{categories}/offset/{startOffset}
+        // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/offset/{startOffset}
     }
 
 
@@ -43,6 +51,9 @@ export default class SearchUrlMaker extends Aware {
         }
         return '/categories/0';
     }
+    _getSortUrl() {
+        return `/sort/${this.state.sortSettings.mode}`;
+    }
     _getOffsetUrl() {
         return `/offset/${this.state.paginatorSettings.startOffset}`;
     }
@@ -54,11 +65,11 @@ export default class SearchUrlMaker extends Aware {
         ];
         return logicalConditions.every(item => item === true);
     }
-
     _isUrlOfViewedProducts() {
         const logicalConditions = [
             this.state.sectionSettings.productSectionName === 'viewedProducts',
         ];
         return logicalConditions.every(item => item === true);
     }
+
 }

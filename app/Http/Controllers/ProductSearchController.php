@@ -10,8 +10,8 @@ use Illuminate\Pagination\Paginator;
 
 class ProductSearchController extends Controller
 {
-    //product-search/price/{minPrice}-{maxPrice}/categories/{categories}/page/{pageNumber}
-    public function search(SearchService $service, int $minPrice, int $maxPrice, string $categoriesIds, int $pageNumber = 1)
+    //product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/{pageNumber}
+    public function search(SearchService $service, int $minPrice, int $maxPrice, string $categoriesIds, string $sortValue, int $pageNumber = 1)
     {
         $pageData = (new PageTitleService())->getData('productSearchOnServer', []);
 
@@ -26,6 +26,7 @@ class ProductSearchController extends Controller
             'minPrice' => $minPrice,
             'maxPrice' => $maxPrice,
             'categoriesIds' => $categoriesIds,
+            'sortValue' => $sortValue,
             'startOffset' => ($pageNumber - 1) * $perPage,
             'perPage' => $perPage,
         ]);

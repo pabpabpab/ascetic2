@@ -7,7 +7,7 @@ export default class PublicUrlMaker extends Aware {
         this.startUrl = '/product-search';
     }
 
-    // /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
+    // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/{pageNumber}
 
     publishUrl() {
         const url = this.getUrl();
@@ -51,7 +51,7 @@ export default class PublicUrlMaker extends Aware {
             this._getMinPriceUrl(),
             this._getMaxPriceUrl(),
             this._getCategoriesUrl(),
-            //this._getSortUrl(),
+            this._getSortUrl(),
             this._getOffsetUrl(),
         ];
         return totalUrl.join('');
@@ -61,33 +61,36 @@ export default class PublicUrlMaker extends Aware {
 
 
     _isUrlOfMainPage() {
+        const sectionName = this.state.sectionSettings.productSectionName;
         const logicalConditions = [
-            ['allProducts', ''].indexOf(this.state.sectionSettings.productSectionName) !== -1,
+            ['allProducts', ''].includes(sectionName),
+            this.state.sortSettings.mode === 'position',
             this.state.searchSettings.categoriesIds.length === 0,
             this.state.searchSettings.minPrice === 0,
             this.state.searchSettings.maxPrice === 0
         ];
         return logicalConditions.every(item => item === true);
     }
-
     _isSingleCategoryUrlBasedOnSectionName() {
+        const sectionName = this.state.sectionSettings.productSectionName;
         const logicalConditions = [
-            this.state.sectionSettings.productSectionName === 'productCategory',
+            sectionName === 'productCategory',
+            this.state.sortSettings.mode === 'position',
             this.state.searchSettings.categoriesIds.length === 0,
         ];
         return logicalConditions.every(item => item === true);
     }
-
     _isUrlOfFavoriteProducts() {
+        const sectionName = this.state.sectionSettings.productSectionName;
         const logicalConditions = [
-            this.state.sectionSettings.productSectionName === 'favoriteProducts',
+            sectionName === 'favoriteProducts',
         ];
         return logicalConditions.every(item => item === true);
     }
-
     _isUrlOfViewedProducts() {
+        const sectionName = this.state.sectionSettings.productSectionName;
         const logicalConditions = [
-            this.state.sectionSettings.productSectionName === 'viewedProducts',
+            sectionName === 'viewedProducts',
         ];
         return logicalConditions.every(item => item === true);
     }
@@ -101,15 +104,26 @@ export default class PublicUrlMaker extends Aware {
         return `${this.state.searchSettings.maxPrice}`;
     }
     _getCategoriesUrl() {
-        if (this.state.searchSettings.categoriesIds.length === 0) {
+        const categoriesIds = this.state.searchSettings.categoriesIds;
+        const singleCategoryId = Number(this.state.sectionSettings.additionalData.split(';')[0]);
+        if (categoriesIds.length === 0 && singleCategoryId === 0) {
             return '/categories/0';
+        } else if (categoriesIds.length > 0) {
+            return `/categories/${this.state.searchSettings.categoriesIds.join('-')}`;
+        } else if (singleCategoryId > 0) {
+            return `/categories/${singleCategoryId}`;
         }
-        return `/categories/${this.state.searchSettings.categoriesIds.join('-')}`;
+        return '/categories/0';
     }
     _getSortUrl() {
-        return `/sort/${this.state.sortSettings.mode}`;
+        let sortMode = this.state.sortSettings.mode;
+        if (sortMode === 'position') {
+            sortMode = 'default';
+        }
+        return `/sort/${sortMode}`;
     }
     _getOffsetUrl() {
-        return `/page/${this.state.paginatorSettings.pageNumber}`;
+        // return `/page/${this.state.paginatorSettings.pageNumber}`;
+        return '';
     }
 }

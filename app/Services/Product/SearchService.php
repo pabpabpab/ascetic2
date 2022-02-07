@@ -5,6 +5,7 @@ namespace App\Services\Product;
 
 
 use App\Models\Product;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 
 class SearchService
@@ -15,6 +16,7 @@ class SearchService
         $minPrice = (int) $params['minPrice'];
         $maxPrice = (int) $params['maxPrice'];
         $categoriesIdsArr = $this->_getArrayOfIntegers((string) $params['categoriesIds']);
+        $sortValue = $params['sortValue'];
         $startOffset = (int) $params['startOffset'];
         $perPage = (int) $params['perPage'];
 
@@ -55,7 +57,7 @@ class SearchService
             $productsCount = $queryBuilder->count();
         }
 
-        $queryBuilder = $queryBuilder->orderBy('position', 'desc');
+        $queryBuilder = $this->_sortBuilder($queryBuilder, $sortValue);
         $queryBuilder = $queryBuilder->offset($startOffset)->limit($perPage);
 
         return [
@@ -64,6 +66,16 @@ class SearchService
         ];
     }
 
+    protected function _sortBuilder($queryBuilder, String $sortValue)
+    {
+        if ($sortValue === 'priceUp') {
+            return $queryBuilder->orderBy('price', 'asc');
+        }
+        if ($sortValue === 'priceDown') {
+            return $queryBuilder->orderBy('price', 'desc');
+        }
+        return $queryBuilder->orderBy('position', 'desc');
+    }
 
     protected function _getArrayOfIntegers(String $dashSeparatedNumbers): array
     {

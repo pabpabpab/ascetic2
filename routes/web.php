@@ -35,10 +35,16 @@ Route::get('/favorite-products/{pageNumber?}', [ProductFavoriteController::class
     ->name('products.favorites');
 
 
-
-Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesIds}/page/{pageNumber}',
+// /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/{pageNumber}
+Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesIds}/sort/{sortValue}/{pageNumber?}',
     [ProductSearchController::class, 'search']
-)->where(['minPrice' => '[0-9]+', 'maxPrice' => '[0-9]+', 'categoriesIds' => '[0-9-]+', 'pageNumber' => '[0-9]+'])
+)->where([
+        'minPrice' => '[0-9]+',
+        'maxPrice' => '[0-9]+',
+        'categoriesIds' => '[0-9-]+',
+        'sortValue' => 'default|position|priceUp|priceDown',
+        'pageNumber' => '[0-9]+'
+    ])
     ->name('products.search');
 
 
