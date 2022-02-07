@@ -80,28 +80,9 @@ export default class RendererByPaginationButton extends Aware {
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
         this.components.publicUrlMaker.publishUrl();
-        if (this.currentPageNumber === 1) {
-            this._makeVisibleViewMoreButton();
-        } else {
-            this._makeInvisibleViewMoreButton();
-        }
         this.components.rendererOfPaginationBlock.remake();
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
-    }
-
-    _makeVisibleViewMoreButton() {
-        const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton && viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.remove("display-none");
-        }
-    }
-
-    _makeInvisibleViewMoreButton() {
-        const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.add("display-none");
-        }
     }
 
     _getRequestPermission() {

@@ -95,7 +95,6 @@ export default class RendererOfViewedProductsByLink extends Aware {
         new FavoriteProductsIndicationOnPageLoad();
         this.components.publicUrlMaker.publishUrl();
         this._renderHeader();
-        this._switchVisibilityOfViewMoreButton();
         this.components.rendererOfPaginationBlock.remake();
 
         const distance = window.pageYOffset;
@@ -106,27 +105,6 @@ export default class RendererOfViewedProductsByLink extends Aware {
         this.header.innerText = 'Вы смотрели';
     }
 
-    _switchVisibilityOfViewMoreButton() {
-        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
-        if (numberOfDisplayedProducts >= sectionProductsCount) {
-            this._turnOffViewMoreButton();
-        } else {
-            this._turnOnViewMoreButton();
-        }
-    }
-    _turnOnViewMoreButton() {
-        const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.remove("display-none");
-        }
-    }
-    _turnOffViewMoreButton() {
-        const viewMoreButton = el('#viewMoreButton');
-        if (!viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.add("display-none");
-        }
-    }
 
     _getRequestPermission() {
         // защита от частых отправок на 10 сек (от двойного нажатия)

@@ -110,7 +110,6 @@ export default class RendererByMenuLink extends Aware {
         new FavoriteProductsIndicationOnPageLoad();
         this.components.publicUrlMaker.publishUrl();
         this._renderHeader();
-        this._switchVisibilityOfViewMoreButton();
         // this._makeInvisiblePaginationBlock();
         this.components.rendererOfPaginationBlock.remake();
 
@@ -120,29 +119,6 @@ export default class RendererByMenuLink extends Aware {
 
     _renderHeader() {
         this.header.innerText = this.state.sectionSettings.h1Text;
-    }
-
-
-    _switchVisibilityOfViewMoreButton() {
-        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
-        if (numberOfDisplayedProducts >= sectionProductsCount) {
-            this._turnOffViewMoreButton();
-        } else {
-            this._turnOnViewMoreButton();
-        }
-    }
-    _turnOnViewMoreButton() {
-        const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.remove("display-none");
-        }
-    }
-    _turnOffViewMoreButton() {
-        const viewMoreButton = el('#viewMoreButton');
-        if (!viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.add("display-none");
-        }
     }
 
     /*

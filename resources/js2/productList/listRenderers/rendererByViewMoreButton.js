@@ -72,31 +72,7 @@ export default class RendererByViewMoreButton extends Aware {
 
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
-        this._makeInvisiblePaginationBlock();
-        this._switchVisibilityOfViewMoreButton();
         scrollDocument(200, 'down');
-    }
-
-    _switchVisibilityOfViewMoreButton() {
-        const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
-        const sectionProductsCount = this.state.paginatorSettings.sectionProductsCount;
-        if (numberOfDisplayedProducts >= sectionProductsCount) {
-            this._turnOffViewMoreButton();
-        } else {
-            this._turnOnViewMoreButton();
-        }
-    }
-    _turnOnViewMoreButton() {
-        const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.remove("display-none");
-        }
-    }
-    _turnOffViewMoreButton() {
-        const viewMoreButton = el('#viewMoreButton');
-        if (!viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.add("display-none");
-        }
     }
 
     _makeInvisiblePaginationBlock() {
