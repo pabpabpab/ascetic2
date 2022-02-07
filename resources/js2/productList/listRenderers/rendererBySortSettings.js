@@ -31,6 +31,7 @@ export default class RendererBySortSettings extends Aware {
             this._render();
         } else {
             this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
+            this._showLoadingMessage();
             this._renderWithDelay();
         }
     }
@@ -45,15 +46,15 @@ export default class RendererBySortSettings extends Aware {
         const settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
         const requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
 
-        if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
+        if (settingsWereLastChangedAgo < 500 || requestWasSentAgo < 2000) {
             clearTimeout(this.timerId);
             this.timerId = setTimeout(() => {
                 this._renderWithDelay();
-            }, 1000);
+            }, 500);
             return;
         }
 
-        this._showLoadingMessage();
+        //this._showLoadingMessage();
         this.timeWhenLastRequestWasSent = new Date().getTime();
         //setTimeout(() => {this._render();}, 2000);
         this._render();

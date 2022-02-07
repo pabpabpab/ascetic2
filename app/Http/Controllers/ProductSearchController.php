@@ -34,7 +34,7 @@ class ProductSearchController extends Controller
         return view('products.list.index', [
             'products' => $result['products'],
             'productSectionName' => 'productSearchOnServer',
-            'additionalSectionData' => "{$minPrice};{$maxPrice};{$categoriesIds}",
+            'additionalSectionData' => "{$minPrice};{$maxPrice};{$categoriesIds};{$sortValue}",
             'pageTitle' => $pageData['pageTitle'],
             'pageDescription' => $pageData['pageDescription'],
             'currentPage' => $currentPage,

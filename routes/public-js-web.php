@@ -37,9 +37,11 @@ Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesId
     'startOffset' => '[0-9]+'
 ]);
 
-
-Route::get('/favorite-products/offset/{startOffset}', [FavoriteProductController::class, 'getFavoriteProductsForJS'])
-    ->where(['startOffset' => '[0-9]+']);
+Route::get('/favorite-products/sort/{sortValue}/offset/{startOffset}', [FavoriteProductController::class, 'getFavoriteProductsForJS'])
+    ->where([
+        'sortValue' => 'default|position|priceUp|priceDown',
+        'startOffset' => '[0-9]+'
+    ]);
 
 Route::get('/viewed-products/offset/{startOffset}', [ViewedProductController::class, 'getViewedProductsForJS'])
     ->where(['startOffset' => '[0-9]+']);

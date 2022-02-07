@@ -68,10 +68,6 @@ export default class ProductSortMenuRenderer extends Aware {
         if (!el(this.wrapSelector)) {
             return;
         }
-        /*
-        if (el('#productList').dataset.productSectionName === 'viewedProducts') {
-            return;
-        }*/
         el(this.wrapSelector).classList.remove(this.hideCss);
         el(this.wrapSelector).classList.add(this.showCss);
 

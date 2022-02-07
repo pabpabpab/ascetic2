@@ -11,7 +11,7 @@ export default class SearchUrlMaker extends Aware {
     getUrl() {
         if (this._isUrlOfFavoriteProducts()) {
             const startOffset = this.state.paginatorSettings.startOffset;
-            const sortMode = this.state.paginatorSettings.startOffset;
+            const sortMode = this.state.sortSettings.mode;
             return `/public-js/favorite-products/sort/${sortMode}/offset/${startOffset}`;
         }
         if (this._isUrlOfViewedProducts()) {
@@ -28,8 +28,7 @@ export default class SearchUrlMaker extends Aware {
             this._getOffsetUrl(),
         ];
 
-        console.log(totalUrl.join(''));
-
+        //console.log(totalUrl.join(''));
 
         return totalUrl.join('');
         // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/offset/{startOffset}

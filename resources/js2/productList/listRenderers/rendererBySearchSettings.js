@@ -52,11 +52,11 @@ export default class RendererBySearchSettings extends Aware {
         const settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
         const requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
 
-        if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
+        if (settingsWereLastChangedAgo < 700 || requestWasSentAgo < 2000) {
             clearTimeout(this.timerId);
             this.timerId = setTimeout(() => {
                 this._renderWithDelay();
-            }, 1000);
+            }, 700);
             return;
         }
 

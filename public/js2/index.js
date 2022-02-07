@@ -3626,11 +3626,11 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
       var settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
       var requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
 
-      if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
+      if (settingsWereLastChangedAgo < 700 || requestWasSentAgo < 2000) {
         clearTimeout(this.timerId);
         this.timerId = setTimeout(function () {
           _this2._renderWithDelay();
-        }, 1000);
+        }, 700);
         return;
       }
 
@@ -3801,6 +3801,8 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
       } else {
         this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
 
+        this._showLoadingMessage();
+
         this._renderWithDelay();
       }
     }
@@ -3819,15 +3821,14 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
       var settingsWereLastChangedAgo = currentTime - this.timeWhenSearchSettingsWereLastChanged;
       var requestWasSentAgo = currentTime - this.timeWhenLastRequestWasSent;
 
-      if (settingsWereLastChangedAgo < 1000 || requestWasSentAgo < 2000) {
+      if (settingsWereLastChangedAgo < 500 || requestWasSentAgo < 2000) {
         clearTimeout(this.timerId);
         this.timerId = setTimeout(function () {
           _this2._renderWithDelay();
-        }, 1000);
+        }, 500);
         return;
-      }
+      } //this._showLoadingMessage();
 
-      this._showLoadingMessage();
 
       this.timeWhenLastRequestWasSent = new Date().getTime(); //setTimeout(() => {this._render();}, 2000);
 
@@ -5637,11 +5638,6 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
       if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
-      /*
-      if (el('#productList').dataset.productSectionName === 'viewedProducts') {
-          return;
-      }*/
-
 
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.hideCss);
       Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.add(this.showCss);
@@ -7524,8 +7520,12 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
       var _this2 = this;
 
       this.components.categoryCache.getEntireList().then(function () {
-        // заблокировать на время установки searchSettings
+        var _paramsArr$;
+
+        // заблокировать на время установки settings
         _this2.components.rendererBySearchSettings.lock();
+
+        _this2.components.rendererBySortSettings.lock();
 
         var paramsArr = _this2.wrapper.dataset.additionalSectionData.split(';');
 
@@ -7542,10 +7542,27 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
           _this2.commit('setCategoriesIds', []);
         } else {
           _this2.commit('setCategoriesIds', categoriesIdsArr);
-        } // разблокировать после установки searchSettings
+        }
+
+        var sortValue = (_paramsArr$ = paramsArr[3]) !== null && _paramsArr$ !== void 0 ? _paramsArr$ : 'position';
+
+        _this2.commit('setSortMode', sortValue);
+
+        var book = {
+          position: 'По популярности',
+          "default": 'По популярности',
+          priceUp: 'Сначала недорогие',
+          priceDown: 'Сначала дорогие'
+        };
+
+        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer')) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer').innerText = book[sortValue];
+        } // разблокировать после установки settings
 
 
         _this2.components.rendererBySearchSettings.unlock();
+
+        _this2.components.rendererBySortSettings.unlock();
 
         _this2.commit('setSectionData', {
           sectionName: 'search',
@@ -7842,7 +7859,7 @@ var SearchUrlMaker = /*#__PURE__*/function (_Aware) {
     value: function getUrl() {
       if (this._isUrlOfFavoriteProducts()) {
         var startOffset = this.state.paginatorSettings.startOffset;
-        var sortMode = this.state.paginatorSettings.startOffset;
+        var sortMode = this.state.sortSettings.mode;
         return "/public-js/favorite-products/sort/".concat(sortMode, "/offset/").concat(startOffset);
       }
 
@@ -7851,8 +7868,8 @@ var SearchUrlMaker = /*#__PURE__*/function (_Aware) {
         return "/public-js/viewed-products/offset/".concat(_startOffset);
       }
 
-      var totalUrl = [this.startUrl, this._getMinPriceUrl(), this._getMaxPriceUrl(), this._getCategoriesUrl(), this._getSortUrl(), this._getOffsetUrl()];
-      console.log(totalUrl.join(''));
+      var totalUrl = [this.startUrl, this._getMinPriceUrl(), this._getMaxPriceUrl(), this._getCategoriesUrl(), this._getSortUrl(), this._getOffsetUrl()]; //console.log(totalUrl.join(''));
+
       return totalUrl.join(''); // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/offset/{startOffset}
     }
   }, {
