@@ -10,7 +10,6 @@ export default class SettingsSetterOnPageLoad extends Aware {
         // задержка для дать время установить указатель на app при загрузке
         setTimeout(() => {
             this._initSettings();
-            this._resetDataAttributes();
         }, 100);
     }
 
@@ -31,18 +30,22 @@ export default class SettingsSetterOnPageLoad extends Aware {
     _setterByAllProducts() {
         this._setSectionSettings();
         this._setPaginatorSettings();
+        this._resetDataAttributes();
     }
     _setterByProductCategory() {
         this._setSectionSettings();
         this._setPaginatorSettings();
+        this._resetDataAttributes();
     }
     _setterByFavoriteProducts() {
         this._setSectionSettings();
         this._setPaginatorSettings();
+        this._resetDataAttributes();
     }
     _setterByViewedProducts() {
         this._setSectionSettings();
         this._setPaginatorSettings();
+        this._resetDataAttributes();
     }
 
     _setterByProductSearchOnServer() {
@@ -54,7 +57,6 @@ export default class SettingsSetterOnPageLoad extends Aware {
 
                 this.commit('setMinPrice', Number(paramsArr[0]));
                 this.commit('setMaxPrice', Number(paramsArr[1]));
-
                 const categoriesIdsStr = paramsArr[2];
                 const categoriesIdsArr = categoriesIdsStr.split('-').map(id => Number(id));
 
@@ -63,9 +65,9 @@ export default class SettingsSetterOnPageLoad extends Aware {
                 } else {
                     this.commit('setCategoriesIds', categoriesIdsArr);
                 }
+
                 // разблокировать после установки searchSettings
                 this.components.rendererBySearchSettings.unlock();
-
 
                 this.commit('setSectionData', {
                     sectionName: this.wrapper.dataset.productSectionName,
@@ -73,6 +75,7 @@ export default class SettingsSetterOnPageLoad extends Aware {
                     h1Text: this.wrapper.dataset.h1Text,
                 });
                 this._setPaginatorSettings();
+                this._resetDataAttributes();
             })
     }
 

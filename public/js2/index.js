@@ -7407,8 +7407,6 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
 
     setTimeout(function () {
       _this._initSettings();
-
-      _this._resetDataAttributes();
     }, 100);
     return _this;
   }
@@ -7434,6 +7432,8 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
       this._setSectionSettings();
 
       this._setPaginatorSettings();
+
+      this._resetDataAttributes();
     }
   }, {
     key: "_setterByProductCategory",
@@ -7441,6 +7441,8 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
       this._setSectionSettings();
 
       this._setPaginatorSettings();
+
+      this._resetDataAttributes();
     }
   }, {
     key: "_setterByFavoriteProducts",
@@ -7448,6 +7450,8 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
       this._setSectionSettings();
 
       this._setPaginatorSettings();
+
+      this._resetDataAttributes();
     }
   }, {
     key: "_setterByViewedProducts",
@@ -7455,6 +7459,8 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
       this._setSectionSettings();
 
       this._setPaginatorSettings();
+
+      this._resetDataAttributes();
     }
   }, {
     key: "_setterByProductSearchOnServer",
@@ -7492,6 +7498,8 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
         });
 
         _this2._setPaginatorSettings();
+
+        _this2._resetDataAttributes();
       });
     }
   }, {
