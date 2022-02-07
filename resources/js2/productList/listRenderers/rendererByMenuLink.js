@@ -13,7 +13,6 @@ export default class RendererByMenuLink extends Aware {
         super();
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
-        this.header = el('#productsH1');
         this.messenger = new FrequentAbsoluteFlashMessage();
         this.disabledRequest = false;
 
@@ -109,7 +108,6 @@ export default class RendererByMenuLink extends Aware {
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
         this.components.publicUrlMaker.publishUrl();
-        this._renderHeader();
         // this._makeInvisiblePaginationBlock();
         this.components.rendererOfPaginationBlock.remake();
 
@@ -117,9 +115,6 @@ export default class RendererByMenuLink extends Aware {
         scrollDocument(distance, 'up');
     }
 
-    _renderHeader() {
-        this.header.innerText = this.state.sectionSettings.h1Text;
-    }
 
     /*
     _makeInvisiblePaginationBlock() {

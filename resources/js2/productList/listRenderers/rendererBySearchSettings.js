@@ -14,7 +14,6 @@ export default class RendererBySearchSettings extends Aware {
 
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
-        this.header = el('#productsH1');
 
         this.timeWhenSearchSettingsWereLastChanged = 0;
         this.timeWhenLastRequestWasSent = 0;
@@ -106,7 +105,6 @@ export default class RendererBySearchSettings extends Aware {
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
         this.components.publicUrlMaker.publishUrl();
-        this._renderHeader();
         this._makeInvisiblePaginationBlock();
         //this.components.rendererOfPaginationBlock.remake();
 
@@ -114,10 +112,6 @@ export default class RendererBySearchSettings extends Aware {
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
-    }
-
-    _renderHeader() {
-        this.header.innerText = 'Поиск';
     }
 
     _makeInvisiblePaginationBlock() {

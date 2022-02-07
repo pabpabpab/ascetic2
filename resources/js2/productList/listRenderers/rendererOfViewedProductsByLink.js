@@ -13,7 +13,6 @@ export default class RendererOfViewedProductsByLink extends Aware {
         super();
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
-        this.header = el('#productsH1');
         this.messenger = new FrequentAbsoluteFlashMessage();
         this.disabledRequest = false;
 
@@ -94,15 +93,10 @@ export default class RendererOfViewedProductsByLink extends Aware {
     _finalActions() {
         new FavoriteProductsIndicationOnPageLoad();
         this.components.publicUrlMaker.publishUrl();
-        this._renderHeader();
         this.components.rendererOfPaginationBlock.remake();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
-    }
-
-    _renderHeader() {
-        this.header.innerText = 'Вы смотрели';
     }
 
 

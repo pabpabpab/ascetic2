@@ -38,5 +38,4 @@ export default class ViewMoreButtonManager extends Aware {
             viewMoreButton.classList.add("display-none");
         }
     }
-
 }

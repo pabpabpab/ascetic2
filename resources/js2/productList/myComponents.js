@@ -15,6 +15,7 @@ import RendererOfProductsByMenuLink from "./listRenderers/rendererByMenuLink";
 import RendererOfViewedProductsByLink from "./listRenderers/rendererOfViewedProductsByLink";
 import RendererBySearchSettings from "./listRenderers/rendererBySearchSettings";
 import RendererBySortSettings from "./listRenderers/rendererBySortSettings";
+import H1Renderer from "../h1Renderer/h1Renderer";
 import MenuLinkCssMaker from "../menu/menuLinkCssMaker";
 import ViewMoreButtonManager from "./viewMoreButton/viewMoreButtonManager";
 import SortMenuRenderer from "./productSorter/productSortMenuRenderer";
@@ -26,6 +27,7 @@ import SearchSettingsObserverForProductFilterRenderer
 import TotalIndicatorOfFilterParameters from "./productFilter/totalIndicatorOfFilterParameters";
 import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchParametersRenderer";
 import SettingsSetterOnPageLoad from "../settings/settingsSetterOnPageLoad";
+
 
 
 export default {
@@ -54,6 +56,7 @@ export default {
     rendererBySearchSettings: new RendererBySearchSettings(),
     rendererBySortSettings: new RendererBySortSettings(),
 
+    h1Renderer: new H1Renderer(),
     menuLinkCssMaker: new MenuLinkCssMaker(),
     viewMoreButtonManager: new ViewMoreButtonManager(),
     // -----------------------------------------
