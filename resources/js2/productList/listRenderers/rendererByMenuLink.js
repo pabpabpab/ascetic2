@@ -1,7 +1,6 @@
 import el from '../../el';
 import getProductObject from "../../productObject/getProductObject";
 import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "../../scrollDocument";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../message/frequentAbsoluteFlashMessage";
@@ -104,26 +103,15 @@ export default class RendererByMenuLink extends Aware {
         this.commit('setPageCount', sectionPageCount);
     }
 
-
     _finalActions() {
-        new FavoriteProductsIndicationOnPageLoad();
+        this.components.favoriteProductsIndicationOnPageLoad.displayFavoriteProducts();
         this.components.publicUrlMaker.publishUrl();
-        // this._makeInvisiblePaginationBlock();
         this.components.rendererOfPaginationBlock.remake();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');
     }
 
-
-    /*
-    _makeInvisiblePaginationBlock() {
-        const paginationBlock = el('#paginationContent');
-        if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
-            paginationBlock.classList.add("display-none");
-        }
-    }
-   */
 
     _getRequestPermission() {
         // защита от частых отправок на 10 сек (от двойного нажатия)

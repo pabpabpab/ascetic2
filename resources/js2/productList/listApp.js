@@ -6,6 +6,8 @@ import Commiter from "./commiter";
 
 export default function listApp() {
 
+
+
     const app = {
         state,
         mutations,

@@ -2,10 +2,13 @@ import el from '../el';
 import setCookie from '../cookie/setCookie';
 import getCookie from '../cookie/getCookie';
 import postJson from "../http/postJson";
+import Aware from "./../parentClasses/app/aware";
 
-export default class FavoriteProductsSwitcher {
+export default class FavoriteProductsSwitcher extends Aware {
 
     constructor() {
+        super();
+
         this.cookieLifetime = 8640000; // 100 дней
         this.postUrl = '/public-js/favorite-products/post';
         this.disabledSubmit = false;

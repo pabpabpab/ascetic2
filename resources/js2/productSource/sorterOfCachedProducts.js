@@ -10,6 +10,7 @@ export default class SorterOfCachedProducts extends Aware {
         const sortingMode = this.state.sortSettings.mode;
 
         const func = {
+            default: this._sortByPosition,
             position: this._sortByPosition,
             priceUp: this._sortByPriceUp,
             priceDown: this._sortByPriceDown,

@@ -1,7 +1,6 @@
 import el from "../../el";
 import getProductObject from "../../productObject/getProductObject";
 import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../message/frequentAbsoluteFlashMessage";
 import Aware from "../../parentClasses/app/aware";
@@ -97,7 +96,7 @@ export default class RendererBySortSettings extends Aware {
     }
 
     _finalActions() {
-        new FavoriteProductsIndicationOnPageLoad();
+        this.components.favoriteProductsIndicationOnPageLoad.displayFavoriteProducts();
         this.components.publicUrlMaker.publishUrl();
         this._makeInvisiblePaginationBlock();
         //this.components.rendererOfPaginationBlock.remake();

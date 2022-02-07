@@ -1,7 +1,6 @@
 import el from "../../el";
 import getProductObject from "../../productObject/getProductObject";
 import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
-import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import scrollDocument from "../../scrollDocument";
 import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../message/frequentAbsoluteFlashMessage";
@@ -103,12 +102,10 @@ export default class RendererBySearchSettings extends Aware {
     }
 
     _finalActions() {
-        new FavoriteProductsIndicationOnPageLoad();
+        this.components.favoriteProductsIndicationOnPageLoad.displayFavoriteProducts();
         this.components.publicUrlMaker.publishUrl();
         this._makeInvisiblePaginationBlock();
         //this.components.rendererOfPaginationBlock.remake();
-
-        //this.components.menuLinkCssMaker.resetMenuLinksCss();
 
         const distance = window.pageYOffset;
         scrollDocument(distance, 'up');

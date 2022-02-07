@@ -4,9 +4,9 @@ import TopDropMenuFiller from "./menu/topDropMenuFiller";
 import AbsoluteFlashMessage from "./message/absoluteFlashMessage";
 import authKit from "./auth/index-authKit";
 
-import FavoriteProductsIndicationOnPageLoad from "./favoriteProducts/favoriteProductsIndicationOnPageLoad";
+
 import FavoriteProductsTotalCountIndication from "./favoriteProducts/favoriteProductsTotalCountIndication"
-import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
+
 
 import ProductCache from "./productSource/productCache";
 import ViewedProductsAppender from "./viewedProducts/viewedProductsAppender";
@@ -18,10 +18,13 @@ import ViewedProductsSummaryMaker from "./viewedProducts/viewedProductsSummaryMa
 
 
 
-
 const productListWrapper = el('#productList');
 const singleProductWrapper = el('#singleProduct');
 const viewedProductsSummaryWrapper = el('#viewedProductsSummaryWrapper');
+
+
+
+
 
 if (singleProductWrapper) {
     singleProductKit();
@@ -43,10 +46,7 @@ if (viewedProductsSummaryWrapper)  {
     });
 }
 
-if (productListWrapper || singleProductWrapper) {
-    new FavoriteProductsIndicationOnPageLoad();
-    new FavoriteProductsSwitcher();
-}
+
 new FavoriteProductsTotalCountIndication(); // не менять порядок
 
 

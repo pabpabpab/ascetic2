@@ -10,8 +10,12 @@ export default class TopTotalSearchParametersRenderer extends Aware {
     }
 
     _render() {
+        const h1Wrapper = el('.h1_viewing_sorting_filtering_container');
+        if (!h1Wrapper) {
+            return;
+        }
         const html = `<div class="top_total_parameters_of_search"></div>`;
-        el('.h1_viewing_sorting_filtering_container').insertAdjacentHTML('afterend', html);
+        h1Wrapper.insertAdjacentHTML('afterend', html);
         el('.top_total_parameters_of_search').addEventListener('click', (e) => {
             this._collapseIconHandler(e);
         });

@@ -6,6 +6,8 @@ import DesktopSmallPhotoScroller from "./desktop/smallPhotoScroller";
 import MobileLargePhotoMaker from "./mobile/mobileLargePhotoMaker";
 import MobileLargePhotoScroller from "./mobile/mobileLargePhotoScroller";
 import QuickProductDestructor from "../productQuickViewer/quickProductDestructor";
+import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
+import FavoriteProductsSwitcher from "../favoriteProducts/favoriteProductsSwitcher";
 
 export default function singleProductKit() {
 
@@ -38,6 +40,9 @@ export default function singleProductKit() {
         if (el('.quick_view_manager__collapse_icon')) {
             new QuickProductDestructor();
         }
+
+        new FavoriteProductsIndicationOnPageLoad();
+        new FavoriteProductsSwitcher();
 }
 
 

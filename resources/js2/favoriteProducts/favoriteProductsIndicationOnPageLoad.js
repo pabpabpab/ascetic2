@@ -1,19 +1,22 @@
 import el from '../el';
 import getCookie from '../cookie/getCookie';
+import Aware from "./../parentClasses/app/aware";
 
-export default class FavoriteProductsIndicationOnPageLoad {
+export default class FavoriteProductsIndicationOnPageLoad extends Aware {
 
     constructor() {
+        super();
+
         this.iconSrc = {
             notInFavorites: '/images/favoriteIcon.svg',
             inFavorites: '/images/filledFavoriteIcon.svg',
         }
 
-        this._displayFavoriteProducts();
+        this.displayFavoriteProducts();
     }
 
 
-    _displayFavoriteProducts() {
+    displayFavoriteProducts() {
         const idsStr = getCookie('favoriteIds');
         if (!Boolean(idsStr)) {
             return;

@@ -27,6 +27,8 @@ import SearchSettingsObserverForProductFilterRenderer
 import TotalIndicatorOfFilterParameters from "./productFilter/totalIndicatorOfFilterParameters";
 import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchParametersRenderer";
 import SettingsSetterOnPageLoad from "../settings/settingsSetterOnPageLoad";
+import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
+import FavoriteProductsSwitcher from "../favoriteProducts/favoriteProductsSwitcher";
 
 
 
@@ -73,4 +75,7 @@ export default {
 
     // при загрузке страницы с сервера с поисковыми параметрами в url
     settingsSetterOnPageLoad: new SettingsSetterOnPageLoad(),
+
+    favoriteProductsIndicationOnPageLoad: new FavoriteProductsIndicationOnPageLoad(),
+    favoriteProductsSwitcher: new FavoriteProductsSwitcher(),
 }
