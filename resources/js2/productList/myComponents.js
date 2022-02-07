@@ -17,6 +17,7 @@ import RendererBySearchSettings from "./listRenderers/rendererBySearchSettings";
 import RendererBySortSettings from "./listRenderers/rendererBySortSettings";
 import MenuLinkCssMaker from "../menu/menuLinkCssMaker";
 import SortMenuRenderer from "./productSorter/productSortMenuRenderer";
+import SortMenuVisibilityManager from "./productSorter/sortMenuVisibilityManager";
 import ProductFilterRenderer from "./productFilter/productFilterRenderer";
 import ProductFilterHandler from "./productFilter/productFilterHandler";
 import SearchSettingsObserverForProductFilterRenderer
@@ -56,6 +57,7 @@ export default {
     // -----------------------------------------
 
     sortMenuRenderer: new SortMenuRenderer(),
+    sortMenuVisibilityManager: new SortMenuVisibilityManager(),
     // -----------------------------------------
 
     productFilterRenderer: new ProductFilterRenderer(),

@@ -12,6 +12,7 @@ export default class PublicUrlMaker extends Aware {
     publishUrl() {
         const url = this.getUrl();
         history.replaceState(null,null, url);
+        //history.pushState(null,null, url);
     }
 
     getUrl() {

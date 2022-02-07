@@ -37,7 +37,7 @@ export default class FilterOfCachedProducts extends Aware {
 
     _sectionFilter(items) {
         const settings = this.state.sectionSettings;
-        if (['allProducts', ''].indexOf(settings.productSectionName) !== -1) {
+        if (['allProducts', 'search', ''].indexOf(settings.productSectionName) !== -1) {
             return items;
         }
 

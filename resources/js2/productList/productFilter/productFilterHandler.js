@@ -28,15 +28,15 @@ export default class ProductFilterHandler extends Aware {
                 filterCategory: this._categoriesHandler.bind(this),
             };
             if (initiator && handlers[initiator]) {
-                this._resetSectionSettings();
+                this._setSectionSettings();
                 handlers[initiator](Number(e.target.value));
             }
         });
     }
 
-    _resetSectionSettings() {
+    _setSectionSettings() {
         this.commit('setSectionData', {
-            sectionName: '',
+            sectionName: 'search',
             additionalData: '',
             h1Text: 'Поиск',
         });

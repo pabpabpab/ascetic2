@@ -70,7 +70,7 @@ export default class SettingsSetterOnPageLoad extends Aware {
                 this.components.rendererBySearchSettings.unlock();
 
                 this.commit('setSectionData', {
-                    sectionName: this.wrapper.dataset.productSectionName,
+                    sectionName: 'search',
                     additionalData: '',
                     h1Text: this.wrapper.dataset.h1Text,
                 });

@@ -12,7 +12,6 @@ export default class RendererBySortSettings extends Aware {
         super();
         this.productItemSelector = '[data-product-item]';
         this.wrapper = el('#productList');
-        //this.header = el('#productsH1');
 
         this.timeWhenSearchSettingsWereLastChanged = 0;
         this.timeWhenLastRequestWasSent = 0;

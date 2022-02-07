@@ -29,7 +29,7 @@ export default class RendererBySearchSettings extends Aware {
         }
 
         const settings = this.state.sectionSettings;
-        if (settings.productSectionName.length > 0) {
+        if (settings.productSectionName !== 'search') {
             return;
         }
 
