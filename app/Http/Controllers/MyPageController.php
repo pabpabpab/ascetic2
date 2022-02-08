@@ -36,6 +36,6 @@ class MyPageController extends Controller
             return redirect('/');
         }
 
-        return view('auth.my-page');
+        return view('auth.my-page', ['jsAppName' => 'menuApp.js']);
     }
 }

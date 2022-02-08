@@ -3,6 +3,9 @@ import el from '../el';
 export default class quickProductDestructor {
 
     constructor() {
+        if (!el('.quick_view_manager__collapse_icon')) {
+            return;
+        }
         el('.quick_view_manager__collapse_icon').addEventListener('click', (e) => {
             this._removeQuickProduct();
         });

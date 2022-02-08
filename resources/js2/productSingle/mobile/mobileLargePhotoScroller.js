@@ -2,6 +2,9 @@ import el from '../../el';
 
 export default class MobileLargePhotoScroller {
     constructor() {
+        if (!el('#smallPhotos')) {
+            return;
+        }
         this.container = el('#mainPhotoContainer');
         this.buttonLeft = el('#largePhotoScrollLeftButton');
         this.buttonRight = el('#largePhotoScrollRightButton');

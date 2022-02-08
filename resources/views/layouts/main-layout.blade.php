@@ -1,3 +1,11 @@
+@php
+    $currentRouteName = \Illuminate\Support\Facades\Route::currentRouteName();
+    $jsAppName = "js2/".$jsAppName;
+    $accountRoute = explode(".", $currentRouteName)[0] === 'account';
+    if ($accountRoute) {
+        $jsAppName = "js2/menuApp.js";
+    }
+@endphp
 <!doctype html>
 <html lang="ru">
 <head>
@@ -16,15 +24,9 @@
 
     <link rel="stylesheet" href="{{ asset('css/fonts2.css') }}" />
     <link rel="stylesheet" href="{{ mix('css/index.css') }}?t=@php echo time(); @endphp">
-    <script src="{{ mix('js2/index.js') }}?t=@php echo time(); @endphp" defer></script>
-
+    <script src="{{ mix($jsAppName) }}?t=@php echo time(); @endphp" defer></script>
 </head>
 <body>
-
-@php
-    $currentRouteName = \Illuminate\Support\Facades\Route::currentRouteName();
-@endphp
-
 @if ($currentRouteName === 'products.singlePhotoPage')
     @include('menu.easy-top-menu')
 @else

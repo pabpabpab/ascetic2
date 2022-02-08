@@ -14,11 +14,11 @@ export default function getFavoriteIconBlockHtml(productId) {
         imgName = 'favoriteIcon.svg';
     }
 
-    return `<div id="favIcon-wrapper-${productId}" class="single_product__favorite_icon__wrapper">
-                <img id="quickProduct-favIcon-img-${productId}" alt=""
+    return `<div id="quickProductFavIcon-wrapper-${productId}" class="single_product__favorite_icon__wrapper">
+                <img id="quickProductFavIcon-img-${productId}" alt=""
                     src="/images/${imgName}"
                     class="single_product__favorite_icon__img">
-                <span id="favIcon-text-${productId}" class="single_product__favorite_icon__text">
+                <span id="quickProductFavIcon-text-${productId}" class="single_product__favorite_icon__text">
                     ${text}
                 </span>
             </div>`;

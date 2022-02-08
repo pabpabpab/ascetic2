@@ -17,8 +17,8 @@ export default function getLoginFormHtml() {
                 <label for="loginPassword" class="js_reg_form__input__label">Пароль</label>
                 <input type='password' name='password' id='loginPassword' required class="js_reg_form__input__text_input">
                 <div class="height0 relative">
-                    <img alt="" src="images/closedEye.svg" id="closedEyeImg" class="js_reg_form__closed_eye_img">
-                    <img alt="" src="images/openedEye.svg" id="openedEyeImg" class="js_reg_form__opened_eye_img">
+                    <img alt="" src="/images/closedEye.svg" id="closedEyeImg" class="js_reg_form__closed_eye_img">
+                    <img alt="" src="/images/openedEye.svg" id="openedEyeImg" class="js_reg_form__opened_eye_img">
                 </div>
                 <div id="loginPasswordErr" class="js_reg_form__input__validation_message"></div>
 

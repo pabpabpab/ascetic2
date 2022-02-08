@@ -1366,7 +1366,7 @@ h2 {
 .single_product__all_photo_wrapper {
   position: sticky;
   top: 80px;
-  height: 515px;
+  height: 565px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1393,7 +1393,7 @@ h2 {
   position: relative;
   max-width: 100px;
   margin-right: 20px;
-  height: 450px;
+  height: 500px;
 }
 
 .single_product__small_photos__scroll_button {
@@ -1463,14 +1463,14 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 450px;
+  height: 500px;
   overflow: hidden;
 }
 
 .single_product__big_photo__wrapper {
   position: relative;
   width: 700px;
-  height: 450px;
+  height: 500px;
   padding: 0;
   overflow: hidden;
 }
@@ -1478,7 +1478,7 @@ h2 {
 .single_product__big_photo__content {
   position: relative;
   width: 700px;
-  height: 450px;
+  height: 500px;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -1512,7 +1512,7 @@ h2 {
 .single_product__big_photo__scroll_button {
   display: none;
   position: absolute;
-  top: 195px;
+  top: 220px;
   background-color: rgba(0, 0, 0, 0.2);
   width: 30px;
   height: 60px;

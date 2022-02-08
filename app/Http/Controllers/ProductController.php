@@ -79,8 +79,8 @@ class ProductController extends Controller
             'pageDescription' => $pageData['pageDescription'],
             'product' => $product,
             'description' => $product->description,
-            //'seo' => $product->seoText,
             'photoSeo' => $service->getProductPhotoSeoListWithFullListOfPhoto($product->id),
+            'jsAppName' => 'singleProductApp.js'
         ]);
     }
 
@@ -102,6 +102,7 @@ class ProductController extends Controller
             'pageDescription' => $pageData['pageDescription'],
             'product' => $product,
             'photoSeo' => $photoSeo,
+            'jsAppName' => 'menuApp.js'
         ]);
     }
 

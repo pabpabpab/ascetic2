@@ -1,6 +1,7 @@
 import el from "../el";
 import AuthAbsoluteMenu from "./authAbsoluteMenu";
 import PasswordTypeChanger from "./passwordTypeChanger";
+import AbsoluteFlashMessage from "../message/absoluteFlashMessage";
 
 export default function authKit() {
     // Register() и Login() инициализируются в AuthAbsoluteMenu()
@@ -12,6 +13,14 @@ export default function authKit() {
             closedEyeSelector: ".auth_page__closed_eye_img",
             openedEyeSelector: ".auth_page__opened_eye_img",
             passwordInputSelector: "#password",
+        });
+    }
+
+
+    if (el('#flashMessage')) {
+        new AbsoluteFlashMessage({
+            text: el('#flashMessage').innerText,
+            duration: 3500
         });
     }
 }

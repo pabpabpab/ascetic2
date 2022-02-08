@@ -1,7 +1,12 @@
 import el from '../../el';
+import needMobileVersion from "../needMobileVersionOfSingleProductKit";
 
-export default class LargePhotoViewer {
+export default class DesktopLargePhotoViewer {
     constructor() {
+        if (!el('#mainPhotoContainer')) {
+            return;
+        }
+
         this.mainPhotoRatio = 0;
         this.photoContainer = el('#mainPhotoContainer');
 
@@ -50,7 +55,6 @@ export default class LargePhotoViewer {
 
     _finishViewLargePhoto() {
         el('#mainPhoto').className = 'photo__size4';
-
         this.photoContainer.scrollLeft = 0;
         this.photoContainer.scrollTop = 0;
     }

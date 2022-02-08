@@ -1,5 +1,6 @@
 import el from '../el';
 import getCookie from '../cookie/getCookie';
+import Aware from "../parentClasses/app/aware";
 
 export default class FavoriteProductsTotalCountIndication {
 
@@ -12,7 +13,7 @@ export default class FavoriteProductsTotalCountIndication {
             if (!e.target.id) {
                 return;
             }
-            if (e.target.id.split('-')[0] !== 'favIcon') {
+            if (!['favIcon', 'quickProductFavIcon'].includes(e.target.id.split('-')[0])) {
                 return;
             }
             this._renderFavoriteTotal();

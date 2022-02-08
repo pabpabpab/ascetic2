@@ -7,7 +7,7 @@ export default function getAuthenticatedMenuHtml(userName, isAdmin) {
     return `<div id="authMenuContent" class="display-flex">
                 ${userLink}
                 <a href="/logout" title="Выйти из аккаунта" class="top_menu__link top_menu__link_account_exit">
-                    <img alt="" src="images/accountExitIcon.svg" class="account_exit__icon mr15">
+                    <img alt="" src="/images/accountExitIcon.svg" class="account_exit__icon mr15">
                 </a>
             </div>`;
 }

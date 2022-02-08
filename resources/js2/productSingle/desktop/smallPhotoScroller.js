@@ -2,15 +2,19 @@ import el from '../../el';
 
 export default class SmallPhotoScroller {
     constructor() {
+        if (!el('#smallPhotos-scrollButtonDown')) {
+            return;
+        }
+
         this.container = el('#smallPhotos');
         this.buttonDown = el('#smallPhotos-scrollButtonDown');
         this.buttonUp = el('#smallPhotos-scrollButtonUp');
 
         this.buttonDown.addEventListener('click', (e) => {
-            this.scrollSmallPhoto(300,'down');
+            this.scrollSmallPhoto(350,'down');
         });
         this.buttonUp.addEventListener('click', (e) => {
-            this.scrollSmallPhoto(300,'up');
+            this.scrollSmallPhoto(350,'up');
         });
     }
 

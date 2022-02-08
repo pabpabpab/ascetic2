@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $categoryModelClassName = "App\Models\Category";
         View::share([
             'currentPage' => 1,
+            'jsAppName' => 'productListApp.js',
             'mainPageTitle' => config("my_site.mainPageTitle"),
             'categories' => $categoryService->getAll($categoryModelClassName),
         ]);

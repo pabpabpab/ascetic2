@@ -44,7 +44,10 @@ mix.js('resources/js2/index.js', 'public/js2')
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.sass', 'public/css')
-   .js('resources/js2/index.js', 'public/js2')
+   //.js('resources/js2/index.js', 'public/js2')
+   .js('resources/js2/productListApp.js', 'public/js2')
+   .js('resources/js2/singleProductApp.js', 'public/js2')
+   .js('resources/js2/menuApp.js', 'public/js2')
    .sass('resources/sass2/index.sass', 'public/css')
     .webpackConfig({
         watch: true,

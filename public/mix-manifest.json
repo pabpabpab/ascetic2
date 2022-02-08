@@ -2,5 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/index.css": "/css/index.css",
-    "/js2/index.js": "/js2/index.js"
+    "/js2/menuApp.js": "/js2/menuApp.js",
+    "/js2/productListApp.js": "/js2/productListApp.js",
+    "/js2/singleProductApp.js": "/js2/singleProductApp.js"
 }

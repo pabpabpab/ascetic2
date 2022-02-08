@@ -2,6 +2,9 @@ import el from './../../el';
 
 export default class MobileLargePhotoMaker {
     constructor() {
+        if (!el('#smallPhotos')) {
+            return;
+        }
         this.largePhotosHtmlWasDone = false;
         el('#singleProduct').addEventListener('touchstart', (e) => {
             e.preventDefault();
@@ -13,9 +16,6 @@ export default class MobileLargePhotoMaker {
     }
 
     _makeLargePhotos() {
-        if (!el('#smallPhotos')) {
-            return;
-        }
         if (this.largePhotosHtmlWasDone) {
             return;
         }

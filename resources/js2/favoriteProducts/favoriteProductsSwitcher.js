@@ -4,11 +4,9 @@ import getCookie from '../cookie/getCookie';
 import postJson from "../http/postJson";
 import Aware from "./../parentClasses/app/aware";
 
-export default class FavoriteProductsSwitcher extends Aware {
+export default class FavoriteProductsSwitcher {
 
     constructor() {
-        super();
-
         this.cookieLifetime = 8640000; // 100 дней
         this.postUrl = '/public-js/favorite-products/post';
         this.disabledSubmit = false;
@@ -23,7 +21,7 @@ export default class FavoriteProductsSwitcher extends Aware {
             if (!e.target.id) {
                 return;
             }
-            if (e.target.id.split('-')[0] !== 'favIcon') {
+            if (!['favIcon', 'quickProductFavIcon'].includes(e.target.id.split('-')[0])) {
                 return;
             }
             const productId = parseInt(e.target.id.split('-')[2]);
@@ -57,30 +55,57 @@ export default class FavoriteProductsSwitcher extends Aware {
     _turnOnIcon(productId) {
         const imgSelector = this._getIconImgSelector(productId);
         const imgSelectorOfQuickProduct = this._getIconImgSelectorOfQuickProduct(productId);
+
         const wrapperSelector = this._getIconWrapperSelector(productId);
+
         const textSelector = this._getIconTextSelector(productId);
-        el(imgSelector).src = this.iconSrc.inFavorites;
+        const textSelectorOfQuickProduct = this._getIconTextSelectorOfQuickProduct(productId);
+
+        if (el(imgSelector)) {
+            el(imgSelector).src = this.iconSrc.inFavorites;
+        }
         if (el(imgSelectorOfQuickProduct)) {
             el(imgSelectorOfQuickProduct).src = this.iconSrc.inFavorites;
         }
-        el(wrapperSelector).classList.toggle("set-opacity");
+
+        if (el(wrapperSelector)) {
+            el(wrapperSelector).classList.toggle("set-opacity");
+        }
+
         if (el(textSelector)) {
             el(textSelector).innerText = 'ИЗ ИЗБРАННОГО';
         }
+        if (el(textSelectorOfQuickProduct)) {
+            el(textSelectorOfQuickProduct).innerText = 'ИЗ ИЗБРАННОГО';
+        }
     }
+
 
     _turnOffIcon(productId) {
         const imgSelector = this._getIconImgSelector(productId);
         const imgSelectorOfQuickProduct = this._getIconImgSelectorOfQuickProduct(productId);
+
         const wrapperSelector = this._getIconWrapperSelector(productId);
+
         const textSelector = this._getIconTextSelector(productId);
-        el(imgSelector).src = this.iconSrc.notInFavorites;
+        const textSelectorOfQuickProduct = this._getIconTextSelectorOfQuickProduct(productId);
+
+        if (el(imgSelector)) {
+            el(imgSelector).src = this.iconSrc.notInFavorites;
+        }
         if (el(imgSelectorOfQuickProduct)) {
             el(imgSelectorOfQuickProduct).src = this.iconSrc.notInFavorites;
         }
-        el(wrapperSelector).classList.toggle("set-opacity");
+
+        if (el(wrapperSelector)) {
+            el(wrapperSelector).classList.toggle("set-opacity");
+        }
+
         if (el(textSelector)) {
             el(textSelector).innerText = 'В ИЗБРАННОЕ';
+        }
+        if (el(textSelectorOfQuickProduct)) {
+            el(textSelectorOfQuickProduct).innerText = 'В ИЗБРАННОЕ';
         }
     }
 
@@ -88,14 +113,19 @@ export default class FavoriteProductsSwitcher extends Aware {
     _getIconWrapperSelector(productId) {
         return `#favIcon-wrapper-${productId}`;
     }
+
     _getIconImgSelector(productId) {
         return `#favIcon-img-${productId}`;
     }
     _getIconImgSelectorOfQuickProduct(productId) {
-        return `#quickProduct-favIcon-img-${productId}`;
+        return `#quickProductFavIcon-img-${productId}`;
     }
+
     _getIconTextSelector(productId) {
         return `#favIcon-text-${productId}`;
+    }
+    _getIconTextSelectorOfQuickProduct(productId) {
+        return `#quickProductFavIcon-text-${productId}`;
     }
 
     _submit(dataObject) {

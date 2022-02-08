@@ -29,6 +29,7 @@ import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchPara
 import SettingsSetterOnPageLoad from "../settings/settingsSetterOnPageLoad";
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import FavoriteProductsSwitcher from "../favoriteProducts/favoriteProductsSwitcher";
+import FavoriteProductsTotalCountIndication from "../favoriteProducts/favoriteProductsTotalCountIndication";
 
 
 
@@ -77,5 +78,4 @@ export default {
     settingsSetterOnPageLoad: new SettingsSetterOnPageLoad(),
 
     favoriteProductsIndicationOnPageLoad: new FavoriteProductsIndicationOnPageLoad(),
-    favoriteProductsSwitcher: new FavoriteProductsSwitcher(),
 }
