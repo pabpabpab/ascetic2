@@ -9,7 +9,7 @@ export default class SortMenuVisibilityManager extends Aware {
 
     checkSectionSettings() {
         const sectionName = this.state.sectionSettings.productSectionName;
-        if (['viewedProducts'].includes(sectionName)) {
+        if (['viewedProducts', 'singleProduct'].includes(sectionName)) {
             this._turnOffVisibility();
         } else {
             this._turnOnVisibility();
@@ -20,6 +20,9 @@ export default class SortMenuVisibilityManager extends Aware {
         const wrapper = el('.sorting_modes__wrapper');
         if (wrapper && !wrapper.classList.contains('display-none')) {
             wrapper.classList.add('display-none');
+        }
+        if (el('#relativeWrapperOfSortingValues')) {
+            el('#relativeWrapperOfSortingValues').remove();
         }
     }
     _turnOnVisibility() {

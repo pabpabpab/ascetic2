@@ -46,7 +46,7 @@ function _getPhotoBlockHtml(product) {
                 <a href='/product/${product.slug}-${product.id}'>
                     <img src='${photoFolder}${product.id}s3-${product.photos[0]}'
                        alt=""
-                       data-product-item-link="${product.id}" 
+                       data-product-item-link="${product.id}"
                        class="photo__size3 product_item__photo__in_viewed_summary"/>
                 </a>
             </div>`;

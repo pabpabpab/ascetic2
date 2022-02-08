@@ -85,12 +85,9 @@ export default class RendererBySearchSettings extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-                this.messenger.render({
-                    text: `Показано ${sectionProductsCount}`,
-                    duration: 2500
-                });
                 this._setProductsCount(sectionProductsCount);
                 this._finalActions();
+                this._showFinalMessage(sectionProductsCount);
             });
     }
 
@@ -116,6 +113,16 @@ export default class RendererBySearchSettings extends Aware {
         if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
             paginationBlock.classList.add("display-none");
         }
+    }
+
+    _showFinalMessage(sectionProductsCount = 0) {
+        if (!allProductsMustBeCached()) {
+            return;
+        }
+        this.messenger.render({
+            text: `Показано ${sectionProductsCount}`,
+            duration: 2000
+        });
     }
 
 }

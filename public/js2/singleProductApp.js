@@ -1578,7 +1578,7 @@ function getViewedProductsItemHtml(product) {
 
 function _getPhotoBlockHtml(product) {
   var photoFolder = "/storage/products-photos-size3/";
-  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       data-product-item-link=\"").concat(product.id, "\" \n                       class=\"photo__size3 product_item__photo__in_viewed_summary\"/>\n                </a>\n            </div>");
+  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       data-product-item-link=\"").concat(product.id, "\"\n                       class=\"photo__size3 product_item__photo__in_viewed_summary\"/>\n                </a>\n            </div>");
 }
 
 /***/ }),

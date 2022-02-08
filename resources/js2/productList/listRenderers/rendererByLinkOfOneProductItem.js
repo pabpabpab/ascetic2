@@ -18,7 +18,10 @@ export default class RendererByLinkOfOneProductItem extends Aware {
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.productItemLink) {
                 e.preventDefault();
+                e.stopPropagation();
+                this.components.rendererBySearchSettings.lock();
                 this.commit('resetSearchSettings');
+                this.components.rendererBySearchSettings.unlock();
                 const productId = Number(e.target.dataset.productItemLink);
                 this._setSectionSettings(productId);
                 this._setPaginatorSettings();

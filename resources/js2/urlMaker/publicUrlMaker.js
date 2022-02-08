@@ -46,28 +46,17 @@ export default class PublicUrlMaker extends Aware {
         return this._getComplexSearchUrl();
     }
 
-
-    _getComplexSearchUrl() {
-        const totalUrl = [
-            this.startUrl,
-            this._getMinPriceUrl(),
-            this._getMaxPriceUrl(),
-            this._getCategoriesUrl(),
-            this._getSortUrl(),
-            this._getOffsetUrl(),
-        ];
-        return totalUrl.join('');
-        // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
-    }
-
-
-
     _isUrlOfMainPage() {
         const sectionName = this.state.sectionSettings.productSectionName;
+        const sortMode = this.state.sortSettings.mode;
+        let categoriesIds = this.state.searchSettings.categoriesIds;
+        if (categoriesIds.length === 1 && categoriesIds[0] === '0') {
+            categoriesIds = [];
+        }
         const logicalConditions = [
-            ['allProducts', ''].includes(sectionName),
-            this.state.sortSettings.mode === 'position',
-            this.state.searchSettings.categoriesIds.length === 0,
+            ['allProducts', 'search', ''].includes(sectionName),
+            ['position', 'default'].includes(sortMode),
+            categoriesIds.length === 0,
             this.state.searchSettings.minPrice === 0,
             this.state.searchSettings.maxPrice === 0
         ];
@@ -75,10 +64,15 @@ export default class PublicUrlMaker extends Aware {
     }
     _isSingleCategoryUrlBasedOnSectionName() {
         const sectionName = this.state.sectionSettings.productSectionName;
+        const sortMode = this.state.sortSettings.mode;
+        let categoriesIds = this.state.searchSettings.categoriesIds;
+        if (categoriesIds.length === 1 && categoriesIds[0] === '0') {
+            categoriesIds = [];
+        }
         const logicalConditions = [
-            sectionName === 'productCategory',
-            this.state.sortSettings.mode === 'position',
-            this.state.searchSettings.categoriesIds.length === 0,
+            ['productCategory'].includes(sectionName),
+            ['position', 'default'].includes(sortMode),
+            categoriesIds.length === 0,
         ];
         return logicalConditions.every(item => item === true);
     }
@@ -105,7 +99,18 @@ export default class PublicUrlMaker extends Aware {
     }
 
 
-
+    _getComplexSearchUrl() {
+        const totalUrl = [
+            this.startUrl,
+            this._getMinPriceUrl(),
+            this._getMaxPriceUrl(),
+            this._getCategoriesUrl(),
+            this._getSortUrl(),
+            this._getOffsetUrl(),
+        ];
+        return totalUrl.join('');
+        // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
+    }
     _getMinPriceUrl() {
         return `/price/${this.state.searchSettings.minPrice}-`;
     }

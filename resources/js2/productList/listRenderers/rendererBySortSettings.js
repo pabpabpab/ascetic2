@@ -79,12 +79,9 @@ export default class RendererBySortSettings extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
-                this.messenger.render({
-                    text: `Отсортировано`,
-                    duration: 1500
-                });
                 this._setProductsCount(sectionProductsCount);
                 this._finalActions();
+                this._showFinalMessage();
             });
     }
 
@@ -107,5 +104,15 @@ export default class RendererBySortSettings extends Aware {
         if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
             paginationBlock.classList.add("display-none");
         }
+    }
+
+    _showFinalMessage() {
+        if (!allProductsMustBeCached()) {
+            return;
+        }
+        this.messenger.render({
+            text: `Отсортировано`,
+            duration: 1500
+        });
     }
 }

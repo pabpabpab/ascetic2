@@ -1735,7 +1735,7 @@ function getProductsItemHtml(product) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getSorterBlockHtml; });
 function getSorterBlockHtml() {
-  return "<div class=\"sorting_modes__relative_wrapper_for_drop_menu\">\n                <div id=\"absoluteListOfSortingValues\" class=\"sorting_modes__absolute_list\">\n                    <p data-sort-value=\"position\" class=\"sorting_modes__absolute_list__item\">\n                        \u041F\u043E \u043F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u043E\u0441\u0442\u0438\n                    </p>\n                    <p data-sort-value=\"priceUp\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u043D\u0435\u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                    <p data-sort-value=\"priceDown\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                </div>\n            </div>";
+  return "<div id=\"relativeWrapperOfSortingValues\" class=\"sorting_modes__relative_wrapper_for_drop_menu\">\n                <div id=\"absoluteListOfSortingValues\" class=\"sorting_modes__absolute_list\">\n                    <p data-sort-value=\"position\" class=\"sorting_modes__absolute_list__item\">\n                        \u041F\u043E \u043F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u043E\u0441\u0442\u0438\n                    </p>\n                    <p data-sort-value=\"priceUp\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u043D\u0435\u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                    <p data-sort-value=\"priceDown\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                </div>\n            </div>";
 }
 
 /***/ }),
@@ -1950,7 +1950,7 @@ function getViewedProductsItemHtml(product) {
 
 function _getPhotoBlockHtml(product) {
   var photoFolder = "/storage/products-photos-size3/";
-  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       data-product-item-link=\"").concat(product.id, "\" \n                       class=\"photo__size3 product_item__photo__in_viewed_summary\"/>\n                </a>\n            </div>");
+  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       data-product-item-link=\"").concat(product.id, "\"\n                       class=\"photo__size3 product_item__photo__in_viewed_summary\"/>\n                </a>\n            </div>");
 }
 
 /***/ }),
@@ -3233,8 +3233,13 @@ var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
     Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.productItemLink) {
         e.preventDefault();
+        e.stopPropagation();
+
+        _this.components.rendererBySearchSettings.lock();
 
         _this.commit('resetSearchSettings');
+
+        _this.components.rendererBySearchSettings.unlock();
 
         var productId = Number(e.target.dataset.productItemLink);
 
@@ -3921,14 +3926,11 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
 
         _this3.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
 
-        _this3.messenger.render({
-          text: "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount),
-          duration: 2500
-        });
-
         _this3._setProductsCount(sectionProductsCount);
 
         _this3._finalActions();
+
+        _this3._showFinalMessage(sectionProductsCount);
       });
     }
   }, {
@@ -3959,6 +3961,20 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
       if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
         paginationBlock.classList.add("display-none");
       }
+    }
+  }, {
+    key: "_showFinalMessage",
+    value: function _showFinalMessage() {
+      var sectionProductsCount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+      if (!Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__["default"])()) {
+        return;
+      }
+
+      this.messenger.render({
+        text: "\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E ".concat(sectionProductsCount),
+        duration: 2000
+      });
     }
   }]);
 
@@ -4112,14 +4128,11 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
 
         _this3.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
 
-        _this3.messenger.render({
-          text: "\u041E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E",
-          duration: 1500
-        });
-
         _this3._setProductsCount(sectionProductsCount);
 
         _this3._finalActions();
+
+        _this3._showFinalMessage();
       });
     }
   }, {
@@ -4147,6 +4160,18 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
       if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
         paginationBlock.classList.add("display-none");
       }
+    }
+  }, {
+    key: "_showFinalMessage",
+    value: function _showFinalMessage() {
+      if (!Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
+        return;
+      }
+
+      this.messenger.render({
+        text: "\u041E\u0442\u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u043E",
+        duration: 1500
+      });
     }
   }]);
 
@@ -5999,7 +6024,7 @@ var SortMenuVisibilityManager = /*#__PURE__*/function (_Aware) {
     value: function checkSectionSettings() {
       var sectionName = this.state.sectionSettings.productSectionName;
 
-      if (['viewedProducts'].includes(sectionName)) {
+      if (['viewedProducts', 'singleProduct'].includes(sectionName)) {
         this._turnOffVisibility();
       } else {
         this._turnOnVisibility();
@@ -6012,6 +6037,10 @@ var SortMenuVisibilityManager = /*#__PURE__*/function (_Aware) {
 
       if (wrapper && !wrapper.classList.contains('display-none')) {
         wrapper.classList.add('display-none');
+      }
+
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#relativeWrapperOfSortingValues')) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#relativeWrapperOfSortingValues').remove();
       }
     }
   }, {
@@ -8180,16 +8209,17 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
       return this._getComplexSearchUrl();
     }
   }, {
-    key: "_getComplexSearchUrl",
-    value: function _getComplexSearchUrl() {
-      var totalUrl = [this.startUrl, this._getMinPriceUrl(), this._getMaxPriceUrl(), this._getCategoriesUrl(), this._getSortUrl(), this._getOffsetUrl()];
-      return totalUrl.join(''); // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
-    }
-  }, {
     key: "_isUrlOfMainPage",
     value: function _isUrlOfMainPage() {
       var sectionName = this.state.sectionSettings.productSectionName;
-      var logicalConditions = [['allProducts', ''].includes(sectionName), this.state.sortSettings.mode === 'position', this.state.searchSettings.categoriesIds.length === 0, this.state.searchSettings.minPrice === 0, this.state.searchSettings.maxPrice === 0];
+      var sortMode = this.state.sortSettings.mode;
+      var categoriesIds = this.state.searchSettings.categoriesIds;
+
+      if (categoriesIds.length === 1 && categoriesIds[0] === '0') {
+        categoriesIds = [];
+      }
+
+      var logicalConditions = [['allProducts', 'search', ''].includes(sectionName), ['position', 'default'].includes(sortMode), categoriesIds.length === 0, this.state.searchSettings.minPrice === 0, this.state.searchSettings.maxPrice === 0];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -8198,7 +8228,14 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
     key: "_isSingleCategoryUrlBasedOnSectionName",
     value: function _isSingleCategoryUrlBasedOnSectionName() {
       var sectionName = this.state.sectionSettings.productSectionName;
-      var logicalConditions = [sectionName === 'productCategory', this.state.sortSettings.mode === 'position', this.state.searchSettings.categoriesIds.length === 0];
+      var sortMode = this.state.sortSettings.mode;
+      var categoriesIds = this.state.searchSettings.categoriesIds;
+
+      if (categoriesIds.length === 1 && categoriesIds[0] === '0') {
+        categoriesIds = [];
+      }
+
+      var logicalConditions = [['productCategory'].includes(sectionName), ['position', 'default'].includes(sortMode), categoriesIds.length === 0];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -8229,6 +8266,12 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
       return logicalConditions.every(function (item) {
         return item === true;
       });
+    }
+  }, {
+    key: "_getComplexSearchUrl",
+    value: function _getComplexSearchUrl() {
+      var totalUrl = [this.startUrl, this._getMinPriceUrl(), this._getMaxPriceUrl(), this._getCategoriesUrl(), this._getSortUrl(), this._getOffsetUrl()];
+      return totalUrl.join(''); // вида /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/page/{pageNumber}
     }
   }, {
     key: "_getMinPriceUrl",
