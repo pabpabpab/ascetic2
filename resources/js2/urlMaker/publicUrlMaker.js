@@ -20,9 +20,11 @@ export default class PublicUrlMaker extends Aware {
 
         if (this._isUrlOfMainPage()) {
             return pageNumber > 1 ? `/products/${pageNumber}` : `/`;
-        } else {
-            return pageNumber > 1 ? `${this.getFirstPageUrl()}/${pageNumber}` : `${this.getFirstPageUrl()}`
         }
+        if (this._isUrlOfSingleProduct()) {
+            return this._getSingleProductUrl();
+        }
+        return pageNumber > 1 ? `${this.getFirstPageUrl()}/${pageNumber}` : `${this.getFirstPageUrl()}`
     }
 
     getFirstPageUrl() {
@@ -94,6 +96,13 @@ export default class PublicUrlMaker extends Aware {
         ];
         return logicalConditions.every(item => item === true);
     }
+    _isUrlOfSingleProduct() {
+        const sectionName = this.state.sectionSettings.productSectionName;
+        const logicalConditions = [
+            sectionName === 'singleProduct',
+        ];
+        return logicalConditions.every(item => item === true);
+    }
 
 
 
@@ -125,5 +134,18 @@ export default class PublicUrlMaker extends Aware {
     _getOffsetUrl() {
         // return `/page/${this.state.paginatorSettings.pageNumber}`;
         return '';
+    }
+
+
+
+    _getSingleProductUrl() {
+        const settings = this.state.sectionSettings;
+        if (settings.productSectionName !== 'singleProduct') {
+            return '';
+        }
+        const data = settings.additionalData.split(';');
+        const productId = data[0];
+        const productSlug = data[1];
+        return `/product/${productSlug}-${productId}`;
     }
 }

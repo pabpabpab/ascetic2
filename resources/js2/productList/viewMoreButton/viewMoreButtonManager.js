@@ -8,7 +8,19 @@ export default class ViewMoreButtonManager extends Aware {
         this.productItemSelector = '[data-product-item]';
     }
 
+    checkSectionSettings() {
+        const sectionName = this.state.sectionSettings.productSectionName;
+        if (['singleProduct'].includes(sectionName)) {
+            this._turnOffVisibility();
+        }
+    }
+
     checkPaginatorSettings() {
+        const sectionName = this.state.sectionSettings.productSectionName;
+        if (['singleProduct'].includes(sectionName)) {
+            this._turnOffVisibility();
+            return;
+        }
         const numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
         if (numberOfDisplayedProducts === 0) {
             this._turnOffVisibility();

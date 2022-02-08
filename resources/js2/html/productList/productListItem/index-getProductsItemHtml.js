@@ -31,6 +31,7 @@ export default function getProductsItemHtml(product) {
                       <div>
                           <div class="product_item__name">
                               <a href='/product/${product.slug}-${product.id}'
+                                  data-product-item-link="${product.id}"
                                   class="product_item__name__link">
                                   ${product.name}
                               </a>

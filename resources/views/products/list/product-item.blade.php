@@ -30,7 +30,10 @@
             @if ($photoSrc)
                 <div>
                     <a href='{{ $singleProductUrl }}'>
-                        <img src="{{ $photoSrc }}" alt="{{ $product->name }}" class="photo__size3"/>
+                        <img src="{{ $photoSrc }}"
+                             alt="{{ $product->name }}"
+                             data-product-item-link="{{ $product->id }}"
+                             class="photo__size3"/>
                     </a>
                 </div>
             @else
@@ -42,7 +45,7 @@
 
             <div>
                 <div class="product_item__name">
-                    <a href='{{ $singleProductUrl }}' class="product_item__name__link">
+                    <a href='{{ $singleProductUrl }}' data-product-item-link="{{ $product->id }}" class="product_item__name__link">
                         {{ $product->name }}
                     </a>
                 </div>

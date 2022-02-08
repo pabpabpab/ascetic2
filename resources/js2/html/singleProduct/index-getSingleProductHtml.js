@@ -7,12 +7,7 @@ import getListOfColorsHtml from './getListOfColorsHtml';
 export default function getSingleProductHtml(product) {
     //console.log(product);
 
-    return `<div id="quickProduct" class="quick_view_manager__screen">
-                <div class="quick_view_manager__content_wrapper">
-                    <div class="quick_view_manager__content">
-
-
-                    <div id="singleProduct" class="single_product_page__content_wrapper">
+    return `<div id="singleProduct" class="single_product_page__content_wrapper">
                         <div class="single_product__content">
 
                             ${
@@ -53,14 +48,7 @@ export default function getSingleProductHtml(product) {
                             </section>
 
                         </div>
-                    </div>
-
-
-
-                    </div>
-                    <div class='quick_view_manager__collapse_icon'>&#215;</div>
-                </div>
-            </div>`;
+                    </div>`;
 }
 
 

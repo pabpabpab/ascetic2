@@ -59,13 +59,22 @@ export default class SingleProductQuickViewer extends Aware {
     }
 
     _renderProduct(product) {
-        const productHtml = getSingleProductHtml(product);
+        const singleProductHtml = getSingleProductHtml(product);
+        const quickProductHtml = `<div id="quickProduct" class="quick_view_manager__screen">
+                                      <div class="quick_view_manager__content_wrapper">
+                                          <div class="quick_view_manager__content">
+                                              ${singleProductHtml}
+                                          </div>
+                                          <div class='quick_view_manager__collapse_icon'>&#215;</div>
+                                      </div>
+                                  </div>`;
+
         if (el('#quickProduct')) {
             el('#quickProduct').remove();
         }
 
         document.body.style.overflow = 'hidden';
-        el('body').insertAdjacentHTML('beforeend', productHtml);
+        el('body').insertAdjacentHTML('beforeend', quickProductHtml);
 
         singleProductKit();
     }

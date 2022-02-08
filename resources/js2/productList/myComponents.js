@@ -15,9 +15,11 @@ import RendererOfProductsByMenuLink from "./listRenderers/rendererByMenuLink";
 import RendererOfViewedProductsByLink from "./listRenderers/rendererOfViewedProductsByLink";
 import RendererBySearchSettings from "./listRenderers/rendererBySearchSettings";
 import RendererBySortSettings from "./listRenderers/rendererBySortSettings";
+import RendererByLinkOfOneProductItem from "./listRenderers/RendererByLinkOfOneProductItem";
 import H1Renderer from "../h1Renderer/h1Renderer";
 import MenuLinkCssMaker from "../menu/menuLinkCssMaker";
 import ViewMoreButtonManager from "./viewMoreButton/viewMoreButtonManager";
+import HeaderVisibilityManager from "./headerManager/headerVisibilityManager";
 import SortMenuRenderer from "./productSorter/productSortMenuRenderer";
 import SortMenuVisibilityManager from "./productSorter/sortMenuVisibilityManager";
 import ProductFilterRenderer from "./productFilter/productFilterRenderer";
@@ -28,8 +30,6 @@ import TotalIndicatorOfFilterParameters from "./productFilter/totalIndicatorOfFi
 import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchParametersRenderer";
 import SettingsSetterOnPageLoad from "../settings/settingsSetterOnPageLoad";
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
-import FavoriteProductsSwitcher from "../favoriteProducts/favoriteProductsSwitcher";
-import FavoriteProductsTotalCountIndication from "../favoriteProducts/favoriteProductsTotalCountIndication";
 
 
 
@@ -37,19 +37,16 @@ export default {
     categoryCache: new CategoryCache(),
     productCache: new ProductCache(),
 
-    searchUrlMaker: new SearchUrlMaker(),
-    publicUrlMaker: new PublicUrlMaker(),
-
     sorterOfCachedProducts: new SorterOfCachedProducts(),
     filterOfCachedProducts: new FilterOfCachedProducts(),
+
+    sourceOfFilteredProducts: new SourceOfFilteredProducts(),
     // -------------------------------------------------------
 
     viewedProductsSummaryMaker: new ViewedProductsSummaryMaker(),
     viewedProductsAppender: new ViewedProductsAppender(),
     singleProductQuickViewer: new SingleProductQuickViewer(),
     // -------------------------------------------------------
-
-    sourceOfFilteredProducts: new SourceOfFilteredProducts(),
 
     rendererOfProductsByViewMoreButton: new RendererOfProductsByViewMoreButton(),
     rendererOfPaginationBlock: new PaginationBlockRenderer(),
@@ -58,14 +55,21 @@ export default {
     rendererOfViewedProductsByLink: new RendererOfViewedProductsByLink(),
     rendererBySearchSettings: new RendererBySearchSettings(),
     rendererBySortSettings: new RendererBySortSettings(),
+    rendererByLinkOfOneProductItem: new RendererByLinkOfOneProductItem(),
+    // -----------------------------------------
+
+    searchUrlMaker: new SearchUrlMaker(),
+    publicUrlMaker: new PublicUrlMaker(),
+    // -----------------------------------------
 
     h1Renderer: new H1Renderer(),
     menuLinkCssMaker: new MenuLinkCssMaker(),
     viewMoreButtonManager: new ViewMoreButtonManager(),
+    headerVisibilityManager: new HeaderVisibilityManager(),
+    sortMenuVisibilityManager: new SortMenuVisibilityManager(),
     // -----------------------------------------
 
     sortMenuRenderer: new SortMenuRenderer(),
-    sortMenuVisibilityManager: new SortMenuVisibilityManager(),
     // -----------------------------------------
 
     productFilterRenderer: new ProductFilterRenderer(),
@@ -73,6 +77,7 @@ export default {
     searchSettingsObserverForFilterRenderer: new SearchSettingsObserverForProductFilterRenderer(),
     totalIndicatorOfFilterParameters: new TotalIndicatorOfFilterParameters(),
     topTotalSearchParametersRenderer: new TopTotalSearchParametersRenderer(),
+    // -----------------------------------------
 
     // при загрузке страницы с сервера с поисковыми параметрами в url
     settingsSetterOnPageLoad: new SettingsSetterOnPageLoad(),

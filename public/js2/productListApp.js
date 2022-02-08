@@ -1692,7 +1692,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getPhotoBlockHtml; });
 function getPhotoBlockHtml(product) {
   var photoFolder = "/storage/products-photos-size3/";
-  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       class=\"photo__size3\"/>\n                </a>\n            </div>");
+  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       data-product-item-link=\"").concat(product.id, "\"\n                       class=\"photo__size3\"/>\n                </a>\n            </div>");
 }
 
 /***/ }),
@@ -1719,7 +1719,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getProductsItemHtml(product) {
   //console.log(product);
-  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper\">\n               <div class=\"product_item\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__quick_view_link__wrapper\">\n                         <a data-quick-view=\"").concat(product.id, "\"\n                            href='/product/").concat(product.slug, "-").concat(product.id, "'\n                            class=\"product_item__quick_view_link\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                         </a>\n                      </div>\n\n                      ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product) : "<div class=\"product_item__no_photo\">\n                                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                               </div>", "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
+  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper\">\n               <div class=\"product_item\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__quick_view_link__wrapper\">\n                         <a data-quick-view=\"").concat(product.id, "\"\n                            href='/product/").concat(product.slug, "-").concat(product.id, "'\n                            class=\"product_item__quick_view_link\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                         </a>\n                      </div>\n\n                      ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product) : "<div class=\"product_item__no_photo\">\n                                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                               </div>", "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
 }
 
 /***/ }),
@@ -1912,7 +1912,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getSingleProductHtml(product) {
   //console.log(product);
-  return "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                <div class=\"quick_view_manager__content_wrapper\">\n                    <div class=\"quick_view_manager__content\">\n\n\n                    <div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                    ").concat(product.description, "\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n                            </section>\n\n                        </div>\n                    </div>\n\n\n\n                    </div>\n                    <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
+  return "<div id=\"singleProduct\" class=\"single_product_page__content_wrapper\">\n                        <div class=\"single_product__content\">\n\n                            ".concat(product.photos.length > 0 ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product.id, product.photos) : '', "\n\n                            <section class=\"single_product__top_characteristics\n                                ").concat(product.photos.length > 0 ? 'single_product__top_characteristics__margin_left' : '', "\">\n\n                                <h1 class=\"single_product__h1\">\n                                    ").concat(product.name, "\n                                </h1>\n                                <div class=\"single_product__price\">\n                                    ").concat(product.price, " \u20BD\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F:\n                                    ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B:\n                                    ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                                </div>\n                                <div class=\"single_product__categories\">\n                                    \u0426\u0432\u0435\u0442:\n                                    ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                                </div>\n                                <div id=\"productDescriptionContainer\" class=\"single_product__description\">\n                                    ").concat(product.description, "\n                                </div>\n                                ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n                            </section>\n\n                        </div>\n                    </div>");
 }
 
 /***/ }),
@@ -1945,12 +1945,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getViewedProductsItemHtml; });
 function getViewedProductsItemHtml(product) {
   //console.log(product);
-  return "<div class=\"product_item__wrapper\">\n               <div class=\"product_item product_item__in_viewed_summary\">\n\n                  <div class=\"product_item__content\">\n                      <div class=\"product_item__quick_view_link__wrapper product_item__quick_view_link__wrapper__in_viewed_summary\">\n                         <a data-quick-view=\"".concat(product.id, "\"\n                            href='/product/").concat(product.slug, "-").concat(product.id, "'\n                            class=\"product_item__quick_view_link product_item__quick_view_link__in_viewed_summary\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                         </a>\n                      </div>\n\n                      ").concat(Boolean(product.photos) ? _getPhotoBlockHtml(product) : "<div class=\"product_item__no_photo\">\n                                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                                 </div>", "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  class=\"product_item__name__link product_item__name__link__in_viewed_summary\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price product_item__price__in_viewed_summary\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n                  </div>\n\n               </div>\n            </div>");
+  return "<div class=\"product_item__wrapper\">\n               <div class=\"product_item product_item__in_viewed_summary\">\n\n                  <div class=\"product_item__content\">\n                      <div class=\"product_item__quick_view_link__wrapper product_item__quick_view_link__wrapper__in_viewed_summary\">\n                         <a data-quick-view=\"".concat(product.id, "\"\n                            href='/product/").concat(product.slug, "-").concat(product.id, "'\n                            class=\"product_item__quick_view_link product_item__quick_view_link__in_viewed_summary\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                         </a>\n                      </div>\n\n                      ").concat(Boolean(product.photos) ? _getPhotoBlockHtml(product) : "<div class=\"product_item__no_photo\">\n                                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                                 </div>", "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link product_item__name__link__in_viewed_summary\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price product_item__price__in_viewed_summary\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n                  </div>\n\n               </div>\n            </div>");
 }
 
 function _getPhotoBlockHtml(product) {
   var photoFolder = "/storage/products-photos-size3/";
-  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       class=\"photo__size3 product_item__photo__in_viewed_summary\"/>\n                </a>\n            </div>");
+  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       data-product-item-link=\"").concat(product.id, "\" \n                       class=\"photo__size3 product_item__photo__in_viewed_summary\"/>\n                </a>\n            </div>");
 }
 
 /***/ }),
@@ -3062,6 +3062,327 @@ var Commiter = /*#__PURE__*/function (_Aware) {
   }]);
 
   return Commiter;
+}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/headerManager/headerVisibilityManager.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js2/productList/headerManager/headerVisibilityManager.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return headerVisibilityManager; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var headerVisibilityManager = /*#__PURE__*/function (_Aware) {
+  _inherits(headerVisibilityManager, _Aware);
+
+  var _super = _createSuper(headerVisibilityManager);
+
+  function headerVisibilityManager() {
+    _classCallCheck(this, headerVisibilityManager);
+
+    return _super.call(this);
+  }
+
+  _createClass(headerVisibilityManager, [{
+    key: "checkSectionSettings",
+    value: function checkSectionSettings() {
+      var sectionName = this.state.sectionSettings.productSectionName;
+
+      if (['singleProduct'].includes(sectionName)) {
+        this._turnOffVisibility();
+      } else {
+        this._turnOnVisibility();
+      }
+    }
+  }, {
+    key: "_turnOffVisibility",
+    value: function _turnOffVisibility() {
+      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.h1_viewing_sorting_filtering_container');
+
+      if (wrapper && !wrapper.classList.contains('display-none')) {
+        wrapper.classList.add('display-none');
+      }
+    }
+  }, {
+    key: "_turnOnVisibility",
+    value: function _turnOnVisibility() {
+      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.h1_viewing_sorting_filtering_container');
+
+      if (wrapper && wrapper.classList.contains('display-none')) {
+        wrapper.classList.remove('display-none');
+      }
+    }
+  }]);
+
+  return headerVisibilityManager;
+}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/listRenderers/RendererByLinkOfOneProductItem.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/js2/productList/listRenderers/RendererByLinkOfOneProductItem.js ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByLinkOfOneProductItem; });
+/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../message/frequentAbsoluteFlashMessage */ "./resources/js2/message/frequentAbsoluteFlashMessage.js");
+/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+/* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
+/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../html/singleProduct/index-getSingleProductHtml */ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js");
+/* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+
+
+
+var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
+  _inherits(RendererByLinkOfOneProductItem, _Aware);
+
+  var _super = _createSuper(RendererByLinkOfOneProductItem);
+
+  function RendererByLinkOfOneProductItem() {
+    var _this;
+
+    _classCallCheck(this, RendererByLinkOfOneProductItem);
+
+    _this = _super.call(this);
+    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList');
+    _this.messenger = new _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('body').addEventListener('click', function (e) {
+      if (e.target.dataset.productItemLink) {
+        e.preventDefault();
+
+        _this.commit('resetSearchSettings');
+
+        var productId = Number(e.target.dataset.productItemLink);
+
+        _this._setSectionSettings(productId);
+
+        _this._setPaginatorSettings();
+
+        _this._showSingleProductPage(productId);
+
+        _this.components.viewedProductsAppender.post(productId);
+      }
+    });
+    return _this;
+  }
+
+  _createClass(RendererByLinkOfOneProductItem, [{
+    key: "_setSectionSettings",
+    value: function _setSectionSettings(productId) {
+      this.commit('setSectionData', {
+        sectionName: 'singleProduct',
+        additionalData: productId,
+        h1Text: ''
+      });
+    }
+  }, {
+    key: "_setPaginatorSettings",
+    value: function _setPaginatorSettings() {
+      this.commit('setSectionProductsCount', 0);
+      this.commit('setStartOffset', 0);
+      this.commit('setPageNumber', 1);
+      this.commit('setPageCount', 0);
+    }
+  }, {
+    key: "_showSingleProductPage",
+    value: function _showSingleProductPage(productId) {
+      // на страницах где есть список товаров
+      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
+        this._showOneFromCache(productId);
+      } else {
+        this._showLoadingMessage();
+
+        this._showOneFromServer(productId);
+      }
+    }
+  }, {
+    key: "_showOneFromCache",
+    value: function _showOneFromCache(productId) {
+      var _this2 = this;
+
+      return this.components.productCache.getEntireList().then(function (data) {
+        var list = _toConsumableArray(data);
+
+        var product = list.filter(function (item) {
+          return item.id === productId;
+        })[0];
+
+        _this2.components.viewedProductsSummaryMaker.remakeWith(product);
+
+        var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_4__["default"])(product);
+
+        _this2._renderProduct(productObject);
+
+        _this2._storeSlug(productObject);
+
+        _this2._finalActions();
+
+        _this2.components.productCache.getOneDescription(productId).then(function (data) {
+          Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productDescriptionContainer').innerText = data.description;
+        });
+      });
+    }
+  }, {
+    key: "_showOneFromServer",
+    value: function _showOneFromServer(productId) {
+      var _this3 = this;
+
+      return this.components.productCache.getOneFromServer(productId).then(function (product) {
+        _this3.messenger.hideMessage();
+
+        _this3.components.viewedProductsSummaryMaker.remakeWith(product);
+
+        var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_4__["default"])(product);
+
+        _this3._renderProduct(productObject);
+
+        _this3._storeSlug(productObject);
+
+        _this3._finalActions();
+      });
+    }
+  }, {
+    key: "_renderProduct",
+    value: function _renderProduct(product) {
+      var singleProductHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_7__["default"])(product);
+      singleProductHtml = singleProductHtml.replaceAll("quickProductFavIcon", "favIcon");
+      singleProductHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(singleProductHtml, "</div>");
+
+      if (Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productListContent')) {
+        Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productListContent').remove();
+      }
+
+      this.wrapper.insertAdjacentHTML('afterbegin', singleProductHtml);
+      Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_8__["default"])();
+    }
+  }, {
+    key: "_storeSlug",
+    value: function _storeSlug(product) {
+      this.commit('setSectionData', {
+        sectionName: 'singleProduct',
+        additionalData: "".concat(product.id, ";").concat(product.slug),
+        h1Text: ''
+      });
+    }
+  }, {
+    key: "_finalActions",
+    value: function _finalActions() {
+      this.components.favoriteProductsIndicationOnPageLoad.displayFavoriteProducts();
+      this.components.publicUrlMaker.publishUrl();
+
+      this._makeInvisiblePaginationBlock();
+
+      var distance = window.pageYOffset;
+      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_6__["default"])(distance, 'up');
+    }
+  }, {
+    key: "_makeInvisiblePaginationBlock",
+    value: function _makeInvisiblePaginationBlock() {
+      var paginationBlock = Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#paginationContent');
+
+      if (!paginationBlock) {
+        return;
+      }
+
+      if (!paginationBlock.classList.contains("display-none")) {
+        paginationBlock.classList.add("display-none");
+      }
+    }
+  }, {
+    key: "_showLoadingMessage",
+    value: function _showLoadingMessage() {
+      this.messenger.render({
+        text: 'Загрузка...',
+        duration: 9500
+      });
+    }
+  }]);
+
+  return RendererByLinkOfOneProductItem;
 }(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
@@ -4234,20 +4555,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./listRenderers/rendererOfViewedProductsByLink */ "./resources/js2/productList/listRenderers/rendererOfViewedProductsByLink.js");
 /* harmony import */ var _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./listRenderers/rendererBySearchSettings */ "./resources/js2/productList/listRenderers/rendererBySearchSettings.js");
 /* harmony import */ var _listRenderers_rendererBySortSettings__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./listRenderers/rendererBySortSettings */ "./resources/js2/productList/listRenderers/rendererBySortSettings.js");
-/* harmony import */ var _h1Renderer_h1Renderer__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../h1Renderer/h1Renderer */ "./resources/js2/h1Renderer/h1Renderer.js");
-/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
-/* harmony import */ var _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./viewMoreButton/viewMoreButtonManager */ "./resources/js2/productList/viewMoreButton/viewMoreButtonManager.js");
-/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
-/* harmony import */ var _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./productSorter/sortMenuVisibilityManager */ "./resources/js2/productList/productSorter/sortMenuVisibilityManager.js");
-/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
-/* harmony import */ var _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productFilter/productFilterHandler */ "./resources/js2/productList/productFilter/productFilterHandler.js");
-/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
-/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
-/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
-/* harmony import */ var _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../settings/settingsSetterOnPageLoad */ "./resources/js2/settings/settingsSetterOnPageLoad.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsTotalCountIndication */ "./resources/js2/favoriteProducts/favoriteProductsTotalCountIndication.js");
+/* harmony import */ var _listRenderers_RendererByLinkOfOneProductItem__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./listRenderers/RendererByLinkOfOneProductItem */ "./resources/js2/productList/listRenderers/RendererByLinkOfOneProductItem.js");
+/* harmony import */ var _h1Renderer_h1Renderer__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../h1Renderer/h1Renderer */ "./resources/js2/h1Renderer/h1Renderer.js");
+/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
+/* harmony import */ var _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./viewMoreButton/viewMoreButtonManager */ "./resources/js2/productList/viewMoreButton/viewMoreButtonManager.js");
+/* harmony import */ var _headerManager_headerVisibilityManager__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./headerManager/headerVisibilityManager */ "./resources/js2/productList/headerManager/headerVisibilityManager.js");
+/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
+/* harmony import */ var _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productSorter/sortMenuVisibilityManager */ "./resources/js2/productList/productSorter/sortMenuVisibilityManager.js");
+/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
+/* harmony import */ var _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productFilter/productFilterHandler */ "./resources/js2/productList/productFilter/productFilterHandler.js");
+/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
+/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
+/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
+/* harmony import */ var _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../settings/settingsSetterOnPageLoad */ "./resources/js2/settings/settingsSetterOnPageLoad.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
 
 
 
@@ -4282,16 +4603,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   categoryCache: new _categorySource_categoryCache__WEBPACK_IMPORTED_MODULE_0__["default"](),
   productCache: new _productSource_productCache__WEBPACK_IMPORTED_MODULE_1__["default"](),
-  searchUrlMaker: new _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_2__["default"](),
-  publicUrlMaker: new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_3__["default"](),
   sorterOfCachedProducts: new _productSource_sorterOfCachedProducts__WEBPACK_IMPORTED_MODULE_4__["default"](),
   filterOfCachedProducts: new _productSource_filterOfCachedProducts__WEBPACK_IMPORTED_MODULE_5__["default"](),
+  sourceOfFilteredProducts: new _productSource_sourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_9__["default"](),
   // -------------------------------------------------------
   viewedProductsSummaryMaker: new _viewedProducts_viewedProductsSummaryMaker__WEBPACK_IMPORTED_MODULE_6__["default"](),
   viewedProductsAppender: new _viewedProducts_viewedProductsAppender__WEBPACK_IMPORTED_MODULE_7__["default"](),
   singleProductQuickViewer: new _productQuickViewer_singleProductQuickViewer__WEBPACK_IMPORTED_MODULE_8__["default"](),
   // -------------------------------------------------------
-  sourceOfFilteredProducts: new _productSource_sourceOfFilteredProducts__WEBPACK_IMPORTED_MODULE_9__["default"](),
   rendererOfProductsByViewMoreButton: new _listRenderers_rendererByViewMoreButton__WEBPACK_IMPORTED_MODULE_10__["default"](),
   rendererOfPaginationBlock: new _paginationRenderer_paginationBlockRenderer__WEBPACK_IMPORTED_MODULE_11__["default"](),
   rendererOfProductsByPaginationButton: new _listRenderers_rendererByPaginationButton__WEBPACK_IMPORTED_MODULE_12__["default"](),
@@ -4299,21 +4618,28 @@ __webpack_require__.r(__webpack_exports__);
   rendererOfViewedProductsByLink: new _listRenderers_rendererOfViewedProductsByLink__WEBPACK_IMPORTED_MODULE_14__["default"](),
   rendererBySearchSettings: new _listRenderers_rendererBySearchSettings__WEBPACK_IMPORTED_MODULE_15__["default"](),
   rendererBySortSettings: new _listRenderers_rendererBySortSettings__WEBPACK_IMPORTED_MODULE_16__["default"](),
-  h1Renderer: new _h1Renderer_h1Renderer__WEBPACK_IMPORTED_MODULE_17__["default"](),
-  menuLinkCssMaker: new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_18__["default"](),
-  viewMoreButtonManager: new _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_19__["default"](),
+  rendererByLinkOfOneProductItem: new _listRenderers_RendererByLinkOfOneProductItem__WEBPACK_IMPORTED_MODULE_17__["default"](),
   // -----------------------------------------
-  sortMenuRenderer: new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_20__["default"](),
-  sortMenuVisibilityManager: new _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_21__["default"](),
+  searchUrlMaker: new _urlMaker_searchUrlMaker__WEBPACK_IMPORTED_MODULE_2__["default"](),
+  publicUrlMaker: new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_3__["default"](),
   // -----------------------------------------
-  productFilterRenderer: new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_22__["default"](),
-  productFilterHandler: new _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_23__["default"](),
-  searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_24__["default"](),
-  totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_25__["default"](),
-  topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_26__["default"](),
+  h1Renderer: new _h1Renderer_h1Renderer__WEBPACK_IMPORTED_MODULE_18__["default"](),
+  menuLinkCssMaker: new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_19__["default"](),
+  viewMoreButtonManager: new _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_20__["default"](),
+  headerVisibilityManager: new _headerManager_headerVisibilityManager__WEBPACK_IMPORTED_MODULE_21__["default"](),
+  sortMenuVisibilityManager: new _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_23__["default"](),
+  // -----------------------------------------
+  sortMenuRenderer: new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_22__["default"](),
+  // -----------------------------------------
+  productFilterRenderer: new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_24__["default"](),
+  productFilterHandler: new _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_25__["default"](),
+  searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_26__["default"](),
+  totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_27__["default"](),
+  topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_28__["default"](),
+  // -----------------------------------------
   // при загрузке страницы с сервера с поисковыми параметрами в url
-  settingsSetterOnPageLoad: new _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_27__["default"](),
-  favoriteProductsIndicationOnPageLoad: new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_28__["default"]()
+  settingsSetterOnPageLoad: new _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_29__["default"](),
+  favoriteProductsIndicationOnPageLoad: new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_30__["default"]()
 });
 
 /***/ }),
@@ -5759,8 +6085,25 @@ var ViewMoreButtonManager = /*#__PURE__*/function (_Aware) {
   }
 
   _createClass(ViewMoreButtonManager, [{
+    key: "checkSectionSettings",
+    value: function checkSectionSettings() {
+      var sectionName = this.state.sectionSettings.productSectionName;
+
+      if (['singleProduct'].includes(sectionName)) {
+        this._turnOffVisibility();
+      }
+    }
+  }, {
     key: "checkPaginatorSettings",
     value: function checkPaginatorSettings() {
+      var sectionName = this.state.sectionSettings.productSectionName;
+
+      if (['singleProduct'].includes(sectionName)) {
+        this._turnOffVisibility();
+
+        return;
+      }
+
       var numberOfDisplayedProducts = document.querySelectorAll(this.productItemSelector).length;
 
       if (numberOfDisplayedProducts === 0) {
@@ -6088,14 +6431,15 @@ var SingleProductQuickViewer = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_renderProduct",
     value: function _renderProduct(product) {
-      var productHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product);
+      var singleProductHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product);
+      var quickProductHtml = "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                                      <div class=\"quick_view_manager__content_wrapper\">\n                                          <div class=\"quick_view_manager__content\">\n                                              ".concat(singleProductHtml, "\n                                          </div>\n                                          <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                                      </div>\n                                  </div>");
 
       if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
         Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
       }
 
       document.body.style.overflow = 'hidden';
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', productHtml);
+      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', quickProductHtml);
       Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_4__["default"])();
     }
   }]);
@@ -7804,9 +8148,13 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
 
       if (this._isUrlOfMainPage()) {
         return pageNumber > 1 ? "/products/".concat(pageNumber) : "/";
-      } else {
-        return pageNumber > 1 ? "".concat(this.getFirstPageUrl(), "/").concat(pageNumber) : "".concat(this.getFirstPageUrl());
       }
+
+      if (this._isUrlOfSingleProduct()) {
+        return this._getSingleProductUrl();
+      }
+
+      return pageNumber > 1 ? "".concat(this.getFirstPageUrl(), "/").concat(pageNumber) : "".concat(this.getFirstPageUrl());
     }
   }, {
     key: "getFirstPageUrl",
@@ -7874,6 +8222,15 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
       });
     }
   }, {
+    key: "_isUrlOfSingleProduct",
+    value: function _isUrlOfSingleProduct() {
+      var sectionName = this.state.sectionSettings.productSectionName;
+      var logicalConditions = [sectionName === 'singleProduct'];
+      return logicalConditions.every(function (item) {
+        return item === true;
+      });
+    }
+  }, {
     key: "_getMinPriceUrl",
     value: function _getMinPriceUrl() {
       return "/price/".concat(this.state.searchSettings.minPrice, "-");
@@ -7915,6 +8272,20 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
     value: function _getOffsetUrl() {
       // return `/page/${this.state.paginatorSettings.pageNumber}`;
       return '';
+    }
+  }, {
+    key: "_getSingleProductUrl",
+    value: function _getSingleProductUrl() {
+      var settings = this.state.sectionSettings;
+
+      if (settings.productSectionName !== 'singleProduct') {
+        return '';
+      }
+
+      var data = settings.additionalData.split(';');
+      var productId = data[0];
+      var productSlug = data[1];
+      return "/product/".concat(productSlug, "-").concat(productId);
     }
   }]);
 
