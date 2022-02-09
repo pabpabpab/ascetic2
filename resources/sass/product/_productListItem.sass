@@ -36,6 +36,32 @@
         background-color: #fff
         min-height: 100%
         box-sizing: border-box
+    &__photo_wrapper
+        position: relative
+    &__quick_view_link__wrapper
+        position: absolute
+        top: 0
+        left: 0
+        display: flex
+        justify-content: center
+        align-items: center
+        min-width: 150px
+        width: 100% //$photo_size3_width
+        height: 100% //185px
+        //border: 1px solid #0000ff
+        opacity: 1
+        pointer-events: none
+    &__quick_view_link
+        +font(14px, #585050, 400)
+        background-color: rgba(255, 255, 255, 0.7)
+        border-radius: 20px
+        display: flex
+        align-items: center
+        justify-content: center
+        padding: 7px 15px
+        opacity: 0
+        transition: opacity .3s
+        pointer-events: auto
     &__no_photo
         +font(20px, rgb(196, 218, 239), 300)
         font-family: 'Oswald', sans-serif
@@ -70,34 +96,7 @@
         flex-direction: row
         justify-content: flex-start
         flex-wrap: nowrap
-    &__quick_view_link__wrapper
-        position: absolute
-        top: 0
-        left: 0
-        display: flex
-        justify-content: center
-        align-items: center
-        min-width: 150px
-        width: $photo_size3_width
-        max-width: $photo_size3_width
-        height: 185px
-        //border: 1px solid #0000ff
-        opacity: 1
-        pointer-events: none
-    &__quick_view_link
-        //position: absolute
-        //top: 83px
-        //left: 52px
-        +font(14px,#585050,400)
-        background-color: rgba(255, 255, 255, 0.7)
-        border-radius: 20px
-        display: flex
-        align-items: center
-        justify-content: center
-        padding: 7px 15px
-        opacity: 0
-        transition: opacity .3s
-        pointer-events: auto
+
 
 .product_item__photo_indicator
     padding: 0
@@ -133,7 +132,7 @@
     box-sizing: border-box
     +font(17px, rgb(80, 75, 75), 400)
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.3)
-    border-radius: 0 0 5px 5px
+    //border-radius: 0 0 5px 5px
     opacity: 0
     visibility: hidden
     transition: opacity .5s

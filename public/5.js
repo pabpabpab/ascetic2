@@ -835,6 +835,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2151,117 +2155,44 @@ var render = function() {
           }
         },
         [
-          _c(
-            "div",
-            { staticClass: "product_item__content" },
-            [
-              _c(
-                "div",
-                { staticClass: "product_item__quick_view_link__wrapper" },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "product_item__quick_view_link",
-                      class: { display_none: _vm.draggingOccurs },
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.showProductQuickViewManager(_vm.product.id)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                    Быстрый просмотр\n                "
-                      )
-                    ]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm.numberOfPhotos > 0
-                ? [
+          _c("div", { staticClass: "product_item__content" }, [
+            _c(
+              "div",
+              { staticClass: "product_item__photo_wrapper" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "product_item__quick_view_link__wrapper" },
+                  [
                     _c(
-                      "router-link",
+                      "a",
                       {
-                        attrs: {
-                          to: {
-                            name: "SingleProduct",
-                            params: {
-                              slug: _vm.product.slug,
-                              id: _vm.product.id
-                            }
+                        staticClass: "product_item__quick_view_link",
+                        class: { display_none: _vm.draggingOccurs },
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.showProductQuickViewManager(
+                              _vm.product.id
+                            )
                           }
                         }
-                      },
-                      [
-                        _c("div", {
-                          ref: "mainPhotoDiv",
-                          domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
-                          on: {
-                            mousemove: function($event) {
-                              return _vm.changeMainPhoto($event)
-                            },
-                            mouseout: function($event) {
-                              return _vm.setFirstMainPhoto()
-                            }
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                : [
-                    _c(
-                      "div",
-                      {
-                        ref: "mainPhotoDiv",
-                        staticClass: "product_item__no_photo"
                       },
                       [
                         _vm._v(
-                          "\n                    НЕТ ФОТО\n                "
+                          "\n                        Быстрый просмотр\n                    "
                         )
                       ]
                     )
-                  ],
-              _vm._v(" "),
-              _vm.numberOfPhotos > 1
-                ? _c(
-                    "div",
-                    { staticClass: "product_item__photo_indicator" },
-                    _vm._l(_vm.numberOfPhotos, function(n) {
-                      return _c("span", {
-                        key: n,
-                        staticClass: "product_item__photo_indicator_item",
-                        class: {
-                          product_item__photo_indicator_inactive:
-                            _vm.indexOfMainPhoto + 1 !== n,
-                          product_item__photo_indicator_active:
-                            _vm.indexOfMainPhoto + 1 === n
-                        }
-                      })
-                    }),
-                    0
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  style: { cursor: _vm.cursorType },
-                  attrs: { "data-anchor_for_dragging": _vm.anchorForDragging }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "product_item__name" },
-                    [
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.numberOfPhotos > 0
+                  ? [
                       _c(
                         "router-link",
                         {
-                          staticClass: "product_item__name__link",
                           attrs: {
                             to: {
                               name: "SingleProduct",
@@ -2273,72 +2204,149 @@ var render = function() {
                           }
                         },
                         [
+                          _c("div", {
+                            ref: "mainPhotoDiv",
+                            domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
+                            on: {
+                              mousemove: function($event) {
+                                return _vm.changeMainPhoto($event)
+                              },
+                              mouseout: function($event) {
+                                return _vm.setFirstMainPhoto()
+                              }
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  : [
+                      _c(
+                        "div",
+                        {
+                          ref: "mainPhotoDiv",
+                          staticClass: "product_item__no_photo"
+                        },
+                        [
                           _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.product.name) +
-                              "\n                    "
+                            "\n                        НЕТ ФОТО\n                    "
                           )
                         ]
                       )
                     ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "product_item__price" }, [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.getPrice) +
-                        "\n                "
+                _vm._v(" "),
+                _vm.numberOfPhotos > 1
+                  ? _c(
+                      "div",
+                      { staticClass: "product_item__photo_indicator" },
+                      _vm._l(_vm.numberOfPhotos, function(n) {
+                        return _c("span", {
+                          key: n,
+                          staticClass: "product_item__photo_indicator_item",
+                          class: {
+                            product_item__photo_indicator_inactive:
+                              _vm.indexOfMainPhoto + 1 !== n,
+                            product_item__photo_indicator_active:
+                              _vm.indexOfMainPhoto + 1 === n
+                          }
+                        })
+                      }),
+                      0
                     )
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "product_item__small_photos",
-                domProps: { innerHTML: _vm._s(_vm.getPhotos) },
-                on: {
-                  mouseover: function($event) {
-                    return _vm.changeMainPhotoBySmallPhoto($event)
-                  },
-                  mouseout: function($event) {
-                    return _vm.setFirstMainPhoto()
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "product_item__bottom_info__relative_wrapper" },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "product_item__bottom_info__absolute" },
-                    [
-                      _c("p", {
-                        staticClass: "product_item__bottom_info__text",
-                        attrs: { title: "Категория" },
-                        domProps: { innerHTML: _vm._s(_vm.getCategories) }
-                      }),
-                      _vm._v(" "),
-                      _c("p", {
-                        staticClass: "product_item__bottom_info__text",
-                        attrs: { title: "Материал" },
-                        domProps: { innerHTML: _vm._s(_vm.getMaterials) }
-                      }),
-                      _vm._v(" "),
-                      _c("p", {
-                        staticClass: "product_item__bottom_info__text",
-                        attrs: { title: "Цвет" },
-                        domProps: { innerHTML: _vm._s(_vm.getColors) }
-                      })
-                    ]
+                  : _vm._e()
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                style: { cursor: _vm.cursorType },
+                attrs: { "data-anchor_for_dragging": _vm.anchorForDragging }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "product_item__name" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "product_item__name__link",
+                        attrs: {
+                          to: {
+                            name: "SingleProduct",
+                            params: {
+                              slug: _vm.product.slug,
+                              id: _vm.product.id
+                            }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.product.name) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "product_item__price" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.getPrice) +
+                      "\n                "
                   )
-                ]
-              )
-            ],
-            2
-          ),
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "product_item__small_photos",
+              domProps: { innerHTML: _vm._s(_vm.getPhotos) },
+              on: {
+                mouseover: function($event) {
+                  return _vm.changeMainPhotoBySmallPhoto($event)
+                },
+                mouseout: function($event) {
+                  return _vm.setFirstMainPhoto()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "product_item__bottom_info__relative_wrapper" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "product_item__bottom_info__absolute" },
+                  [
+                    _c("p", {
+                      staticClass: "product_item__bottom_info__text",
+                      attrs: { title: "Категория" },
+                      domProps: { innerHTML: _vm._s(_vm.getCategories) }
+                    }),
+                    _vm._v(" "),
+                    _c("p", {
+                      staticClass: "product_item__bottom_info__text",
+                      attrs: { title: "Материал" },
+                      domProps: { innerHTML: _vm._s(_vm.getMaterials) }
+                    }),
+                    _vm._v(" "),
+                    _c("p", {
+                      staticClass: "product_item__bottom_info__text",
+                      attrs: { title: "Цвет" },
+                      domProps: { innerHTML: _vm._s(_vm.getColors) }
+                    })
+                  ]
+                )
+              ]
+            )
+          ]),
           _vm._v(" "),
           _c(
             "span",

@@ -12,38 +12,42 @@
 
             <div class="product_item__content">
 
-                <div class="product_item__quick_view_link__wrapper">
-                    <a @click.prevent="showProductQuickViewManager(product.id)"
-                       href='#'
-                       class="product_item__quick_view_link"
-                       :class="{ display_none: draggingOccurs}">
-                        Быстрый просмотр
-                    </a>
-                </div>
+                <div class="product_item__photo_wrapper">
 
-                <template v-if="numberOfPhotos > 0">
-                    <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }">
-                        <div ref="mainPhotoDiv"
-                             @mousemove="changeMainPhoto($event)"
-                             @mouseout="setFirstMainPhoto()"
-                             v-html="getMainPhoto">
-                        </div>
-                    </router-link>
-                </template>
-                <template v-else>
-                    <div ref="mainPhotoDiv" class="product_item__no_photo">
-                        НЕТ ФОТО
+                    <div class="product_item__quick_view_link__wrapper">
+                        <a @click.prevent="showProductQuickViewManager(product.id)"
+                           href='#'
+                           class="product_item__quick_view_link"
+                           :class="{ display_none: draggingOccurs}">
+                            Быстрый просмотр
+                        </a>
                     </div>
-                </template>
 
-                <div v-if="numberOfPhotos > 1" class="product_item__photo_indicator">
-                    <span v-for="n in numberOfPhotos" :key="n"
-                        class="product_item__photo_indicator_item"
-                        :class="{
-                            product_item__photo_indicator_inactive: indexOfMainPhoto + 1 !== n,
-                            product_item__photo_indicator_active: indexOfMainPhoto + 1 === n,
-                        }">
-                    </span>
+                    <template v-if="numberOfPhotos > 0">
+                        <router-link :to="{ name: 'SingleProduct', params: { slug: product.slug, id: product.id } }">
+                            <div ref="mainPhotoDiv"
+                                 @mousemove="changeMainPhoto($event)"
+                                 @mouseout="setFirstMainPhoto()"
+                                 v-html="getMainPhoto">
+                            </div>
+                        </router-link>
+                    </template>
+                    <template v-else>
+                        <div ref="mainPhotoDiv" class="product_item__no_photo">
+                            НЕТ ФОТО
+                        </div>
+                    </template>
+
+                    <div v-if="numberOfPhotos > 1" class="product_item__photo_indicator">
+                        <span v-for="n in numberOfPhotos" :key="n"
+                            class="product_item__photo_indicator_item"
+                            :class="{
+                                product_item__photo_indicator_inactive: indexOfMainPhoto + 1 !== n,
+                                product_item__photo_indicator_active: indexOfMainPhoto + 1 === n,
+                            }">
+                        </span>
+                    </div>
+
                 </div>
 
                 <div :style="{ cursor: cursorType }" :data-anchor_for_dragging="anchorForDragging">
