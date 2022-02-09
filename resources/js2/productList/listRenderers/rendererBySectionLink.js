@@ -19,7 +19,12 @@ export default class RendererBySectionLink extends Aware {
             const dataset = e.target.dataset;
             if (dataset.menuLinkSectionName || dataset.linkSectionName) {
                 e.preventDefault();
+                this.components.rendererBySearchSettings.lock();
+                this.components.rendererBySortSettings.lock();
                 this.commit('resetSearchSettings');
+                this.commit('setSortMode', 'default');
+                this.components.rendererBySearchSettings.unlock();
+                this.components.rendererBySortSettings.unlock();
                 this._setSectionSettings(e);
                 this._setPaginatorSettings();
                 this._showLoadingMessage();

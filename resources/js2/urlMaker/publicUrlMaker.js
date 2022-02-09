@@ -55,7 +55,7 @@ export default class PublicUrlMaker extends Aware {
         }
         const logicalConditions = [
             ['allProducts', 'search', ''].includes(sectionName),
-            ['position', 'default'].includes(sortMode),
+            ['default'].includes(sortMode),
             categoriesIds.length === 0,
             this.state.searchSettings.minPrice === 0,
             this.state.searchSettings.maxPrice === 0
@@ -71,7 +71,7 @@ export default class PublicUrlMaker extends Aware {
         }
         const logicalConditions = [
             ['productCategory'].includes(sectionName),
-            ['position', 'default'].includes(sortMode),
+            ['default'].includes(sortMode),
             categoriesIds.length === 0,
         ];
         return logicalConditions.every(item => item === true);
@@ -131,9 +131,6 @@ export default class PublicUrlMaker extends Aware {
     }
     _getSortUrl() {
         let sortMode = this.state.sortSettings.mode;
-        if (sortMode === 'position') {
-            sortMode = 'default';
-        }
         return `/sort/${sortMode}`;
     }
     _getOffsetUrl() {

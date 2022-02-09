@@ -1929,7 +1929,7 @@ function getProductsItemHtml(product) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getSorterBlockHtml; });
 function getSorterBlockHtml() {
-  return "<div id=\"relativeWrapperOfSortingValues\" class=\"sorting_modes__relative_wrapper_for_drop_menu\">\n                <div id=\"absoluteListOfSortingValues\" class=\"sorting_modes__absolute_list\">\n                    <p data-sort-value=\"position\" class=\"sorting_modes__absolute_list__item\">\n                        \u041F\u043E \u043F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u043E\u0441\u0442\u0438\n                    </p>\n                    <p data-sort-value=\"priceUp\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u043D\u0435\u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                    <p data-sort-value=\"priceDown\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                </div>\n            </div>";
+  return "<div id=\"relativeWrapperOfSortingValues\" class=\"sorting_modes__relative_wrapper_for_drop_menu\">\n                <div id=\"absoluteListOfSortingValues\" class=\"sorting_modes__absolute_list\">\n                    <p data-sort-value=\"default\" class=\"sorting_modes__absolute_list__item\">\n                        \u041F\u043E \u043F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u043E\u0441\u0442\u0438\n                    </p>\n                    <p data-sort-value=\"priceUp\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u043D\u0435\u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                    <p data-sort-value=\"priceDown\" class=\"sorting_modes__absolute_list__item\">\n                        \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u0434\u043E\u0440\u043E\u0433\u0438\u0435\n                    </p>\n                </div>\n            </div>";
 }
 
 /***/ }),
@@ -4039,7 +4039,17 @@ var RendererBySectionLink = /*#__PURE__*/function (_Aware) {
       if (dataset.menuLinkSectionName || dataset.linkSectionName) {
         e.preventDefault();
 
+        _this.components.rendererBySearchSettings.lock();
+
+        _this.components.rendererBySortSettings.lock();
+
         _this.commit('resetSearchSettings');
+
+        _this.commit('setSortMode', 'default');
+
+        _this.components.rendererBySearchSettings.unlock();
+
+        _this.components.rendererBySortSettings.unlock();
 
         _this._setSectionSettings(e);
 
@@ -4941,7 +4951,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   sortSettings: {
-    mode: 'position'
+    mode: 'default'
   },
   sectionSettings: {
     productSectionName: '',
@@ -6063,6 +6073,17 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
   }
 
   _createClass(ProductSortMenuRenderer, [{
+    key: "checkSortSettings",
+    value: function checkSortSettings() {
+      var mode = this.state.sortSettings.mode;
+      var book = {
+        "default": 'По популярности',
+        priceUp: 'Сначала недорогие',
+        priceDown: 'Сначала дорогие'
+      };
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer').innerText = book[mode];
+    }
+  }, {
     key: "_render",
     value: function _render() {
       if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
@@ -7891,7 +7912,6 @@ var SorterOfCachedProducts = /*#__PURE__*/function (_Aware) {
       var sortingMode = this.state.sortSettings.mode;
       var func = {
         "default": this._sortByPosition,
-        position: this._sortByPosition,
         priceUp: this._sortByPriceUp,
         priceDown: this._sortByPriceDown
       };
@@ -8202,12 +8222,11 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
           _this2.commit('setCategoriesIds', categoriesIdsArr);
         }
 
-        var sortValue = (_paramsArr$ = paramsArr[3]) !== null && _paramsArr$ !== void 0 ? _paramsArr$ : 'position';
+        var sortValue = (_paramsArr$ = paramsArr[3]) !== null && _paramsArr$ !== void 0 ? _paramsArr$ : 'default';
 
         _this2.commit('setSortMode', sortValue);
 
         var book = {
-          position: 'По популярности',
           "default": 'По популярности',
           priceUp: 'Сначала недорогие',
           priceDown: 'Сначала дорогие'
@@ -8383,7 +8402,7 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
         categoriesIds = [];
       }
 
-      var logicalConditions = [['allProducts', 'search', ''].includes(sectionName), ['position', 'default'].includes(sortMode), categoriesIds.length === 0, this.state.searchSettings.minPrice === 0, this.state.searchSettings.maxPrice === 0];
+      var logicalConditions = [['allProducts', 'search', ''].includes(sectionName), ['default'].includes(sortMode), categoriesIds.length === 0, this.state.searchSettings.minPrice === 0, this.state.searchSettings.maxPrice === 0];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -8399,7 +8418,7 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
         categoriesIds = [];
       }
 
-      var logicalConditions = [['productCategory'].includes(sectionName), ['position', 'default'].includes(sortMode), categoriesIds.length === 0];
+      var logicalConditions = [['productCategory'].includes(sectionName), ['default'].includes(sortMode), categoriesIds.length === 0];
       return logicalConditions.every(function (item) {
         return item === true;
       });
@@ -8467,11 +8486,6 @@ var PublicUrlMaker = /*#__PURE__*/function (_Aware) {
     key: "_getSortUrl",
     value: function _getSortUrl() {
       var sortMode = this.state.sortSettings.mode;
-
-      if (sortMode === 'position') {
-        sortMode = 'default';
-      }
-
       return "/sort/".concat(sortMode);
     }
   }, {

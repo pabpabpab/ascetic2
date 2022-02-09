@@ -22,6 +22,16 @@ export default class ProductSortMenuRenderer extends Aware {
         });
     }
 
+    checkSortSettings() {
+        const mode = this.state.sortSettings.mode;
+        const book = {
+            default: 'По популярности',
+            priceUp: 'Сначала недорогие',
+            priceDown: 'Сначала дорогие',
+        };
+        el('#sortingModeValueContainer').innerText = book[mode];
+    }
+
     _render() {
         if (!el(this.wrapSelector)) {
             this._firstRender();

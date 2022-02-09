@@ -1,7 +1,7 @@
 export default {
 
     sortSettings: {
-        mode: 'position',
+        mode: 'default',
     },
 
     sectionSettings: {

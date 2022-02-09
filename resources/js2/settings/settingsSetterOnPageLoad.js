@@ -67,10 +67,9 @@ export default class SettingsSetterOnPageLoad extends Aware {
                     this.commit('setCategoriesIds', categoriesIdsArr);
                 }
 
-                const sortValue = paramsArr[3] ?? 'position';
+                const sortValue = paramsArr[3] ?? 'default';
                 this.commit('setSortMode', sortValue);
                 const book = {
-                    position: 'По популярности',
                     default: 'По популярности',
                     priceUp: 'Сначала недорогие',
                     priceDown: 'Сначала дорогие',
