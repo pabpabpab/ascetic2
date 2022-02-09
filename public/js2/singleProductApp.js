@@ -201,7 +201,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ForgotPassword; });
 /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
 /* harmony import */ var _parentClasses_absoluteForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/absoluteForm */ "./resources/js2/parentClasses/absoluteForm.js");
-/* harmony import */ var _validation_forgotPasswordValidation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../validation/forgotPasswordValidation */ "./resources/js2/validation/forgotPasswordValidation.js");
+/* harmony import */ var _validation_forgotPasswordValidation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validation/forgotPasswordValidation */ "./resources/js2/auth/validation/forgotPasswordValidation.js");
 /* harmony import */ var _html_auth_getForgotPasswordFormHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/auth/getForgotPasswordFormHtml */ "./resources/js2/html/auth/getForgotPasswordFormHtml.js");
 /* harmony import */ var _message_absoluteMessageWithCloseIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../message/absoluteMessageWithCloseIcon */ "./resources/js2/message/absoluteMessageWithCloseIcon.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -362,7 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _html_auth_getLoginFormHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/auth/getLoginFormHtml */ "./resources/js2/html/auth/getLoginFormHtml.js");
 /* harmony import */ var _html_auth_getFailedLoginHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/auth/getFailedLoginHtml */ "./resources/js2/html/auth/getFailedLoginHtml.js");
 /* harmony import */ var _html_auth_getAuthenticatedMenuHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../html/auth/getAuthenticatedMenuHtml */ "./resources/js2/html/auth/getAuthenticatedMenuHtml.js");
-/* harmony import */ var _validation_loginValidation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../validation/loginValidation */ "./resources/js2/validation/loginValidation.js");
+/* harmony import */ var _validation_loginValidation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./validation/loginValidation */ "./resources/js2/auth/validation/loginValidation.js");
 /* harmony import */ var _message_absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../message/absoluteFlashMessage */ "./resources/js2/message/absoluteFlashMessage.js");
 /* harmony import */ var _forgotPassword__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./forgotPassword */ "./resources/js2/auth/forgotPassword.js");
 /* harmony import */ var _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./passwordTypeChanger */ "./resources/js2/auth/passwordTypeChanger.js");
@@ -615,7 +615,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _el_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el.js */ "./resources/js2/el.js");
 /* harmony import */ var _parentClasses_absoluteForm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/absoluteForm.js */ "./resources/js2/parentClasses/absoluteForm.js");
 /* harmony import */ var _html_auth_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/auth/getRegisterFormHtml.js */ "./resources/js2/html/auth/getRegisterFormHtml.js");
-/* harmony import */ var _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../validation/registerValidation.js */ "./resources/js2/validation/registerValidation.js");
+/* harmony import */ var _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./validation/registerValidation.js */ "./resources/js2/auth/validation/registerValidation.js");
 /* harmony import */ var _message_absoluteFlashMessage_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../message/absoluteFlashMessage.js */ "./resources/js2/message/absoluteFlashMessage.js");
 /* harmony import */ var _cookie_getCookie__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../cookie/getCookie */ "./resources/js2/cookie/getCookie.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -728,6 +728,163 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
 }(_parentClasses_absoluteForm_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
+
+/***/ }),
+
+/***/ "./resources/js2/auth/validation/forgotPasswordValidation.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js2/auth/validation/forgotPasswordValidation.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return forgotPasswordValidation; });
+/* harmony import */ var _isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isEmailValid.js */ "./resources/js2/auth/validation/isEmailValid.js");
+
+function forgotPasswordValidation(data) {
+  var err = {};
+
+  if (data.email.length === 0) {
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Пожалуйста заполните');
+  }
+
+  if (!Object(_isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__["default"])(data.email)) {
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Некорректный email');
+  }
+
+  for (var key in err) {
+    if (err.hasOwnProperty(key)) {
+      return err;
+    }
+  }
+
+  return null;
+}
+
+/***/ }),
+
+/***/ "./resources/js2/auth/validation/isEmailValid.js":
+/*!*******************************************************!*\
+  !*** ./resources/js2/auth/validation/isEmailValid.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isEmailValid; });
+function isEmailValid(email) {
+  var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i;
+  return re.test(email);
+}
+
+/***/ }),
+
+/***/ "./resources/js2/auth/validation/loginValidation.js":
+/*!**********************************************************!*\
+  !*** ./resources/js2/auth/validation/loginValidation.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return loginValidation; });
+/* harmony import */ var _isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isEmailValid.js */ "./resources/js2/auth/validation/isEmailValid.js");
+
+function loginValidation(user) {
+  var err = {};
+
+  if (user.email.length === 0) {
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Пожалуйста заполните');
+  }
+
+  if (user.password.length === 0) {
+    if (!err.hasOwnProperty('password')) err.password = [];
+    err.password.push('Пожалуйста заполните');
+  }
+
+  if (!Object(_isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__["default"])(user.email)) {
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Некорректный email');
+  }
+
+  for (var key in err) {
+    if (err.hasOwnProperty(key)) {
+      return err;
+    }
+  }
+
+  return null;
+}
+
+/***/ }),
+
+/***/ "./resources/js2/auth/validation/registerValidation.js":
+/*!*************************************************************!*\
+  !*** ./resources/js2/auth/validation/registerValidation.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return registerValidation; });
+/* harmony import */ var _isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isEmailValid.js */ "./resources/js2/auth/validation/isEmailValid.js");
+
+function registerValidation(user) {
+  var err = {};
+
+  if (user.name.length === 0) {
+    if (!err.hasOwnProperty('name')) err.name = [];
+    err.name.push('Пожалуйста заполните');
+  }
+
+  if (user.email.length === 0) {
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Пожалуйста заполните');
+  }
+
+  if (user.password.length === 0) {
+    if (!err.hasOwnProperty('password')) err.password = [];
+    err.password.push('Пожалуйста заполните');
+  }
+
+  if (user.password_confirmation.length === 0) {
+    if (!err.hasOwnProperty('password_confirmation')) err.password_confirmation = [];
+    err.password_confirmation.push('Пожалуйста заполните');
+  }
+
+  if (!Object(_isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__["default"])(user.email)) {
+    if (!err.hasOwnProperty('email')) err.email = [];
+    err.email.push('Некорректный email');
+  }
+
+  if (user.password.length > 0 && user.password.length < 6) {
+    if (!err.hasOwnProperty('password')) err.password = [];
+    err.password.push('Не менее 6 символов');
+  }
+
+  if (user.password_confirmation.length > 0 && user.password.length > 0) {
+    if (user.password_confirmation !== user.password) {
+      if (!err.hasOwnProperty('password_confirmation')) err.password_confirmation = [];
+      err.password_confirmation.push('Подтвержден неверно');
+    }
+  }
+
+  for (var key in err) {
+    if (err.hasOwnProperty(key)) {
+      return err;
+    }
+  }
+
+  return null;
+}
 
 /***/ }),
 
@@ -3646,163 +3803,6 @@ new _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MOD
 new _menu_topDropMenuFiller__WEBPACK_IMPORTED_MODULE_2__["default"]();
 new _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_3__["default"]();
 Object(_auth_index_authKit__WEBPACK_IMPORTED_MODULE_4__["default"])();
-
-/***/ }),
-
-/***/ "./resources/js2/validation/forgotPasswordValidation.js":
-/*!**************************************************************!*\
-  !*** ./resources/js2/validation/forgotPasswordValidation.js ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return forgotPasswordValidation; });
-/* harmony import */ var _isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isEmailValid.js */ "./resources/js2/validation/isEmailValid.js");
-
-function forgotPasswordValidation(data) {
-  var err = {};
-
-  if (data.email.length === 0) {
-    if (!err.hasOwnProperty('email')) err.email = [];
-    err.email.push('Пожалуйста заполните');
-  }
-
-  if (!Object(_isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__["default"])(data.email)) {
-    if (!err.hasOwnProperty('email')) err.email = [];
-    err.email.push('Некорректный email');
-  }
-
-  for (var key in err) {
-    if (err.hasOwnProperty(key)) {
-      return err;
-    }
-  }
-
-  return null;
-}
-
-/***/ }),
-
-/***/ "./resources/js2/validation/isEmailValid.js":
-/*!**************************************************!*\
-  !*** ./resources/js2/validation/isEmailValid.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isEmailValid; });
-function isEmailValid(email) {
-  var re = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i;
-  return re.test(email);
-}
-
-/***/ }),
-
-/***/ "./resources/js2/validation/loginValidation.js":
-/*!*****************************************************!*\
-  !*** ./resources/js2/validation/loginValidation.js ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return loginValidation; });
-/* harmony import */ var _isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isEmailValid.js */ "./resources/js2/validation/isEmailValid.js");
-
-function loginValidation(user) {
-  var err = {};
-
-  if (user.email.length === 0) {
-    if (!err.hasOwnProperty('email')) err.email = [];
-    err.email.push('Пожалуйста заполните');
-  }
-
-  if (user.password.length === 0) {
-    if (!err.hasOwnProperty('password')) err.password = [];
-    err.password.push('Пожалуйста заполните');
-  }
-
-  if (!Object(_isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__["default"])(user.email)) {
-    if (!err.hasOwnProperty('email')) err.email = [];
-    err.email.push('Некорректный email');
-  }
-
-  for (var key in err) {
-    if (err.hasOwnProperty(key)) {
-      return err;
-    }
-  }
-
-  return null;
-}
-
-/***/ }),
-
-/***/ "./resources/js2/validation/registerValidation.js":
-/*!********************************************************!*\
-  !*** ./resources/js2/validation/registerValidation.js ***!
-  \********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return registerValidation; });
-/* harmony import */ var _isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isEmailValid.js */ "./resources/js2/validation/isEmailValid.js");
-
-function registerValidation(user) {
-  var err = {};
-
-  if (user.name.length === 0) {
-    if (!err.hasOwnProperty('name')) err.name = [];
-    err.name.push('Пожалуйста заполните');
-  }
-
-  if (user.email.length === 0) {
-    if (!err.hasOwnProperty('email')) err.email = [];
-    err.email.push('Пожалуйста заполните');
-  }
-
-  if (user.password.length === 0) {
-    if (!err.hasOwnProperty('password')) err.password = [];
-    err.password.push('Пожалуйста заполните');
-  }
-
-  if (user.password_confirmation.length === 0) {
-    if (!err.hasOwnProperty('password_confirmation')) err.password_confirmation = [];
-    err.password_confirmation.push('Пожалуйста заполните');
-  }
-
-  if (!Object(_isEmailValid_js__WEBPACK_IMPORTED_MODULE_0__["default"])(user.email)) {
-    if (!err.hasOwnProperty('email')) err.email = [];
-    err.email.push('Некорректный email');
-  }
-
-  if (user.password.length > 0 && user.password.length < 6) {
-    if (!err.hasOwnProperty('password')) err.password = [];
-    err.password.push('Не менее 6 символов');
-  }
-
-  if (user.password_confirmation.length > 0 && user.password.length > 0) {
-    if (user.password_confirmation !== user.password) {
-      if (!err.hasOwnProperty('password_confirmation')) err.password_confirmation = [];
-      err.password_confirmation.push('Подтвержден неверно');
-    }
-  }
-
-  for (var key in err) {
-    if (err.hasOwnProperty(key)) {
-      return err;
-    }
-  }
-
-  return null;
-}
 
 /***/ }),
 

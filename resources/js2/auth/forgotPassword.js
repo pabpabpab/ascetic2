@@ -1,6 +1,6 @@
 import el from '../el';
 import AbsoluteForm from "../parentClasses/absoluteForm";
-import forgotPasswordValidation from "../validation/forgotPasswordValidation";
+import forgotPasswordValidation from "./validation/forgotPasswordValidation";
 import getForgotPasswordFormHtml from "../html/auth/getForgotPasswordFormHtml";
 import AbsoluteMessageWithCloseIcon from "../message/absoluteMessageWithCloseIcon";
 
