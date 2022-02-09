@@ -65,6 +65,7 @@ class PhotoRotator
 
     protected function _rotateAndSaveImageVersionsToDisk($productId, $newPhotoName, $oldPhoto, $angle)
     {
+        // индекс 1 пропустить (мелкого фото нет)
         for ($i = 1; $i <= 6; $i++) {
             $newFullPath =  $this->_getPhotoPath($productId, $i, $newPhotoName);
 

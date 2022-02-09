@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import smallViewingIcon from "./../../../assets/roundViewSmallItemsIcon.svg"
+import smallViewingIcon from "../../../assets/viewingIconOfSmallItems.svg"
 export default {
     name: "HelpPage",
     data() {

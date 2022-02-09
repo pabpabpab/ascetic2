@@ -1251,10 +1251,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_roundViewBigItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../assets/roundViewBigItemsIcon.svg */ "./resources/assets/roundViewBigItemsIcon.svg");
-/* harmony import */ var _assets_roundViewBigItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_roundViewBigItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../assets/roundViewSmallItemsIcon.svg */ "./resources/assets/roundViewSmallItemsIcon.svg");
-/* harmony import */ var _assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _assets_viewingIconOfBigItems_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../assets/viewingIconOfBigItems.svg */ "./resources/assets/viewingIconOfBigItems.svg");
+/* harmony import */ var _assets_viewingIconOfBigItems_svg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_viewingIconOfBigItems_svg__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../assets/viewingIconOfSmallItems.svg */ "./resources/assets/viewingIconOfSmallItems.svg");
+/* harmony import */ var _assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -1277,13 +1277,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "ViewingIcon",
   data: function data() {
     return {
-      bigViewingIcon: _assets_roundViewBigItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0___default.a,
-      smallViewingIcon: _assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_1___default.a
+      bigViewIcon: _assets_viewingIconOfBigItems_svg__WEBPACK_IMPORTED_MODULE_0___default.a,
+      smallViewIcon: _assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_1___default.a
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('products', ['viewingMode'])), {}, {
     src: function src() {
-      return this.viewingMode === 'bigItems' ? _assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_1___default.a : _assets_roundViewBigItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0___default.a;
+      return this.viewingMode === 'bigItems' ? _assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_1___default.a : _assets_viewingIconOfBigItems_svg__WEBPACK_IMPORTED_MODULE_0___default.a;
     },
     title: function title() {
       return this.viewingMode === 'bigItems' ? 'Показать товары мелкими' : 'Показать товары крупными';
@@ -2847,25 +2847,25 @@ module.exports = "/images/filterIcon.svg?ffb310848291bf0e5cfe8455a7e00c6c";
 
 /***/ }),
 
-/***/ "./resources/assets/roundViewBigItemsIcon.svg":
+/***/ "./resources/assets/viewingIconOfBigItems.svg":
 /*!****************************************************!*\
-  !*** ./resources/assets/roundViewBigItemsIcon.svg ***!
+  !*** ./resources/assets/viewingIconOfBigItems.svg ***!
   \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/roundViewBigItemsIcon.svg?7d572e34d7fdc1c34fb4e5177b2bec4f";
+module.exports = "/images/viewingIconOfBigItems.svg?7d572e34d7fdc1c34fb4e5177b2bec4f";
 
 /***/ }),
 
-/***/ "./resources/assets/roundViewSmallItemsIcon.svg":
+/***/ "./resources/assets/viewingIconOfSmallItems.svg":
 /*!******************************************************!*\
-  !*** ./resources/assets/roundViewSmallItemsIcon.svg ***!
+  !*** ./resources/assets/viewingIconOfSmallItems.svg ***!
   \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/roundViewSmallItemsIcon.svg?6b5fb0d92a29873f530c76e4f454ed99";
+module.exports = "/images/viewingIconOfSmallItems.svg?6b5fb0d92a29873f530c76e4f454ed99";
 
 /***/ }),
 

@@ -1,5 +1,9 @@
 export default {
 
+    viewSettings: {
+        mode: 'smallView',
+    },
+
     sortSettings: {
         mode: 'default',
     },

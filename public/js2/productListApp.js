@@ -1874,6 +1874,22 @@ function getListOfMaterialsHtml(materialsArr) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/productList/productListItem/getNoPhotoBlockHtml.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js2/html/productList/productListItem/getNoPhotoBlockHtml.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getPhotoBlockHtml; });
+function getPhotoBlockHtml(product) {
+  return "<div class=\"product_item__photo_wrapper\">\n                <div class=\"product_item__quick_view_link__wrapper\">\n                    <a data-quick-view=\"".concat(product.id, "\"\n                        href='/product/").concat(product.slug, "-").concat(product.id, "'\n                        class=\"product_item__quick_view_link\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                    </a>\n                </div>\n\n                <div class=\"product_item__no_photo\">\n                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                </div>\n            </div>");
+}
+
+/***/ }),
+
 /***/ "./resources/js2/html/productList/productListItem/getPhotoBlockHtml.js":
 /*!*****************************************************************************!*\
   !*** ./resources/js2/html/productList/productListItem/getPhotoBlockHtml.js ***!
@@ -1886,7 +1902,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getPhotoBlockHtml; });
 function getPhotoBlockHtml(product) {
   var photoFolder = "/storage/products-photos-size3/";
-  return "<div>\n                <a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       data-product-item-link=\"").concat(product.id, "\"\n                       class=\"photo__size3\"/>\n                </a>\n            </div>");
+  return "<div class=\"product_item__photo_wrapper\">\n                <div class=\"product_item__quick_view_link__wrapper\">\n                    <a data-quick-view=\"".concat(product.id, "\"\n                        href='/product/").concat(product.slug, "-").concat(product.id, "'\n                        class=\"product_item__quick_view_link\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                    </a>\n                </div>\n\n                <a href='/product/").concat(product.slug, "-").concat(product.id, "'>\n                    <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                       alt=\"\"\n                       data-product-item-link=\"").concat(product.id, "\"\n                       class=\"photo__size3\"/>\n                </a>\n            </div>");
 }
 
 /***/ }),
@@ -1903,9 +1919,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getProductsItemHtml; });
 /* harmony import */ var _getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getFavoriteIconBlockHtml */ "./resources/js2/html/productList/productListItem/getFavoriteIconBlockHtml.js");
 /* harmony import */ var _getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getPhotoBlockHtml */ "./resources/js2/html/productList/productListItem/getPhotoBlockHtml.js");
-/* harmony import */ var _getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getListOfCategoriesHtml */ "./resources/js2/html/productList/productListItem/getListOfCategoriesHtml.js");
-/* harmony import */ var _getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getListOfMaterialsHtml */ "./resources/js2/html/productList/productListItem/getListOfMaterialsHtml.js");
-/* harmony import */ var _getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getListOfColorsHtml */ "./resources/js2/html/productList/productListItem/getListOfColorsHtml.js");
+/* harmony import */ var _getNoPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getNoPhotoBlockHtml */ "./resources/js2/html/productList/productListItem/getNoPhotoBlockHtml.js");
+/* harmony import */ var _getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getListOfCategoriesHtml */ "./resources/js2/html/productList/productListItem/getListOfCategoriesHtml.js");
+/* harmony import */ var _getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getListOfMaterialsHtml */ "./resources/js2/html/productList/productListItem/getListOfMaterialsHtml.js");
+/* harmony import */ var _getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getListOfColorsHtml */ "./resources/js2/html/productList/productListItem/getListOfColorsHtml.js");
+
 
 
 
@@ -1913,7 +1931,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getProductsItemHtml(product) {
   //console.log(product);
-  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper\">\n               <div class=\"product_item\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__quick_view_link__wrapper\">\n                         <a data-quick-view=\"").concat(product.id, "\"\n                            href='/product/").concat(product.slug, "-").concat(product.id, "'\n                            class=\"product_item__quick_view_link\">\n                            \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                         </a>\n                      </div>\n\n                      ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product) : "<div class=\"product_item__no_photo\">\n                                    \u041D\u0415\u0422 \u0424\u041E\u0422\u041E\n                               </div>", "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
+  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper\">\n               <div class=\"product_item\">\n\n                  <div class=\"product_item__content\">\n\n                      ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product) : Object(_getNoPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(product), "\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
 }
 
 /***/ }),
@@ -2965,6 +2983,9 @@ var Aware = /*#__PURE__*/function () {
     } // метода наблюдения вызываемые из коммитера
 
   }, {
+    key: "checkViewSettings",
+    value: function checkViewSettings() {}
+  }, {
     key: "checkSortSettings",
     value: function checkSortSettings() {}
   }, {
@@ -3228,6 +3249,7 @@ var Commiter = /*#__PURE__*/function (_Aware) {
       var _this = this;
 
       var checkMethods = {
+        setViewMode: ['checkViewSettings'],
         setSortMode: ['checkSortSettings'],
         setSectionData: ['checkSectionSettings'],
         setMinPrice: ['checkSearchSettings'],
@@ -4796,15 +4818,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
 /* harmony import */ var _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./viewMoreButton/viewMoreButtonManager */ "./resources/js2/productList/viewMoreButton/viewMoreButtonManager.js");
 /* harmony import */ var _headerManager_headerVisibilityManager__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./headerManager/headerVisibilityManager */ "./resources/js2/productList/headerManager/headerVisibilityManager.js");
-/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
-/* harmony import */ var _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productSorter/sortMenuVisibilityManager */ "./resources/js2/productList/productSorter/sortMenuVisibilityManager.js");
-/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
-/* harmony import */ var _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productFilter/productFilterHandler */ "./resources/js2/productList/productFilter/productFilterHandler.js");
-/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
-/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
-/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
-/* harmony import */ var _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../settings/settingsSetterOnPageLoad */ "./resources/js2/settings/settingsSetterOnPageLoad.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _productView_productViewSwitcher__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productView/productViewSwitcher */ "./resources/js2/productList/productView/productViewSwitcher.js");
+/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
+/* harmony import */ var _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productSorter/sortMenuVisibilityManager */ "./resources/js2/productList/productSorter/sortMenuVisibilityManager.js");
+/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
+/* harmony import */ var _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./productFilter/productFilterHandler */ "./resources/js2/productList/productFilter/productFilterHandler.js");
+/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
+/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
+/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
+/* harmony import */ var _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../settings/settingsSetterOnPageLoad */ "./resources/js2/settings/settingsSetterOnPageLoad.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+
 
 
 
@@ -4863,19 +4887,21 @@ __webpack_require__.r(__webpack_exports__);
   menuLinkCssMaker: new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_19__["default"](),
   viewMoreButtonManager: new _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_20__["default"](),
   headerVisibilityManager: new _headerManager_headerVisibilityManager__WEBPACK_IMPORTED_MODULE_21__["default"](),
-  sortMenuVisibilityManager: new _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_23__["default"](),
+  sortMenuVisibilityManager: new _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_24__["default"](),
   // -----------------------------------------
-  sortMenuRenderer: new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_22__["default"](),
+  sortMenuRenderer: new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_23__["default"](),
   // -----------------------------------------
-  productFilterRenderer: new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_24__["default"](),
-  productFilterHandler: new _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_25__["default"](),
-  searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_26__["default"](),
-  totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_27__["default"](),
-  topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_28__["default"](),
+  viewSwitcher: new _productView_productViewSwitcher__WEBPACK_IMPORTED_MODULE_22__["default"](),
+  // -----------------------------------------
+  productFilterRenderer: new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_25__["default"](),
+  productFilterHandler: new _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_26__["default"](),
+  searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_27__["default"](),
+  totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_28__["default"](),
+  topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_29__["default"](),
   // -----------------------------------------
   // при загрузке страницы с сервера с поисковыми параметрами в url
-  settingsSetterOnPageLoad: new _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_29__["default"](),
-  favoriteProductsIndicationOnPageLoad: new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_30__["default"]()
+  settingsSetterOnPageLoad: new _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_30__["default"](),
+  favoriteProductsIndicationOnPageLoad: new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_31__["default"]()
 });
 
 /***/ }),
@@ -4902,6 +4928,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  setViewMode: function setViewMode(state, value) {
+    state.viewSettings.mode = value;
+  },
   setSortMode: function setSortMode(state, value) {
     state.sortSettings.mode = value;
   },
@@ -4950,6 +4979,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  viewSettings: {
+    mode: 'smallView'
+  },
   sortSettings: {
     mode: 'default'
   },
@@ -6278,6 +6310,170 @@ var SortMenuVisibilityManager = /*#__PURE__*/function (_Aware) {
 
   return SortMenuVisibilityManager;
 }(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/productView/productViewSwitcher.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js2/productList/productView/productViewSwitcher.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductViewSwitcher; });
+/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var ProductViewSwitcher = /*#__PURE__*/function (_Aware) {
+  _inherits(ProductViewSwitcher, _Aware);
+
+  var _super = _createSuper(ProductViewSwitcher);
+
+  function ProductViewSwitcher() {
+    var _this;
+
+    _classCallCheck(this, ProductViewSwitcher);
+
+    _this = _super.call(this);
+    _this.itemSelector = '.product_item';
+    _this.photoSelector = '.photo__size3';
+    _this.iconSrc = {
+      bigView: '/images/viewingIconOfBigItems.svg',
+      smallView: '/images/viewingIconOfSmallItems.svg'
+    };
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('.viewing_icon__wrapper').addEventListener('click', function (e) {
+      _this._switch();
+    });
+    return _this;
+  }
+
+  _createClass(ProductViewSwitcher, [{
+    key: "_switch",
+    value: function _switch() {
+      var icon = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productViewIcon');
+
+      if (icon.src.includes('BigItems')) {
+        icon.src = this.iconSrc.smallView;
+        this.commit('setViewMode', 'bigView');
+
+        this._switchToBigView();
+      } else {
+        icon.src = this.iconSrc.bigView;
+        this.commit('setViewMode', 'smallView');
+
+        this._switchToSmallView();
+      }
+    }
+  }, {
+    key: "_switchToBigView",
+    value: function _switchToBigView() {
+      var nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList').querySelectorAll(this.itemSelector);
+
+      var _iterator = _createForOfIteratorHelper(nodes),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var node = _step.value;
+          node.classList.add('big_view');
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList').querySelectorAll(this.photoSelector);
+
+      var _iterator2 = _createForOfIteratorHelper(nodes),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var _node = _step2.value;
+
+          _node.classList.add('big_view');
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+    }
+  }, {
+    key: "_switchToSmallView",
+    value: function _switchToSmallView() {
+      var nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList').querySelectorAll(this.itemSelector);
+
+      var _iterator3 = _createForOfIteratorHelper(nodes),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var node = _step3.value;
+          node.classList.remove('big_view');
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+
+      nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList').querySelectorAll(this.photoSelector);
+
+      var _iterator4 = _createForOfIteratorHelper(nodes),
+          _step4;
+
+      try {
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          var _node2 = _step4.value;
+
+          _node2.classList.remove('big_view');
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+    }
+  }]);
+
+  return ProductViewSwitcher;
+}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 

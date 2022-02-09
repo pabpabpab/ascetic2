@@ -19,6 +19,7 @@ export default class Aware {
     }
 
     // метода наблюдения вызываемые из коммитера
+    checkViewSettings() {}
     checkSortSettings() {}
     checkSectionSettings() {}
     checkSearchSettings() {}

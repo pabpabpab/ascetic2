@@ -1,14 +1,17 @@
 
+
+.big_view
+    width: $photo_size3_big_width !important
+
 .product_item__wrapper
     //border: 1px solid #7a7a7a
-    width: unset
-    box-sizing: border-box
+    width: auto
 .product_item
     position: relative
     display: block
     min-width: 130px
-    width: 250px
-    max-width: 250px
+    width: $photo_size3_width
+    //max-width: $photo_size3_width
     margin: 15px 15px 30px 15px
     padding: 0
     text-align: left
@@ -47,17 +50,44 @@
         background-color: #fff
         min-height: 100%
         box-sizing: border-box
+    &__photo_wrapper
+        position: relative
+    &__quick_view_link__wrapper
+        position: absolute
+        top: 0
+        left: 0
+        display: flex
+        justify-content: center
+        align-items: center
+        min-width: 150px
+        width: 100%
+        height: 100% //185px
+        box-sizing: border-box
+        //border: 1px solid #0000ff
+        opacity: 1
+        pointer-events: none
+    &__quick_view_link
+        +font(14px, #585050, 400)
+        background-color: rgba(255, 255, 255, 0.7)
+        border-radius: 20px
+        display: flex
+        align-items: center
+        justify-content: center
+        padding: 7px 15px
+        opacity: 0
+        transition: opacity .3s
+        pointer-events: auto
     &__no_photo
-        +font(20px, rgb(196, 218, 239), 300)
+        +font(20px, rgb(145, 172, 198), 300)
         font-family: 'Oswald', sans-serif
         letter-spacing: 1px
-        background-color: rgb(250, 250, 250) // rgb(247, 251, 255)
-        box-sizing: border-box
+        background-color: #f0f0f0
         display: flex
         align-items: center
         justify-content: center
         width: 100%
         height: 187px
+        box-sizing: border-box
         //border-bottom: 1px solid rgba(233, 241, 249)
         transition: color .3s
         &:hover
@@ -73,31 +103,6 @@
     &__price
         +font(16px, #807878, 400)
         padding: 0 10px 10px 10px
-    &__quick_view_link__wrapper
-        position: absolute
-        top: 0
-        left: 0
-        display: flex
-        justify-content: center
-        align-items: center
-        min-width: 150px
-        width: 250px
-        max-width: 250px
-        height: 185px
-        //border: 1px solid #0000ff
-        opacity: 1
-        pointer-events: none
-    &__quick_view_link
-        +font(14px, #585050, 400)
-        background-color: rgba(255, 255, 255, 0.7)
-        border-radius: 20px
-        display: flex
-        align-items: center
-        justify-content: center
-        padding: 7px 15px
-        opacity: 0
-        transition: opacity .3s
-        pointer-events: auto
 
 .product_item__bottom_info__relative_wrapper
     position: relative

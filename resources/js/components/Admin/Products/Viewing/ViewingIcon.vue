@@ -7,16 +7,16 @@
 </template>
 
 <script>
-import bigViewingIcon from "../../../../../assets/roundViewBigItemsIcon.svg"
-import smallViewingIcon from "../../../../../assets/roundViewSmallItemsIcon.svg"
+import bigViewIcon from "../../../../../assets/viewingIconOfBigItems.svg"
+import smallViewIcon from "../../../../../assets/viewingIconOfSmallItems.svg"
 import {mapGetters} from "vuex";
 
 export default {
     name: "ViewingIcon",
     data() {
         return {
-            bigViewingIcon: bigViewingIcon,
-            smallViewingIcon: smallViewingIcon,
+            bigViewIcon: bigViewIcon,
+            smallViewIcon: smallViewIcon,
         };
     },
     computed: {
@@ -24,7 +24,7 @@ export default {
             'viewingMode',
         ]),
         src() {
-            return this.viewingMode === 'bigItems' ? smallViewingIcon : bigViewingIcon;
+            return this.viewingMode === 'bigItems' ? smallViewIcon : bigViewIcon;
         },
         title() {
             return this.viewingMode === 'bigItems' ? 'Показать товары мелкими' : 'Показать товары крупными';

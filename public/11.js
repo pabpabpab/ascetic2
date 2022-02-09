@@ -9,8 +9,8 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../assets/roundViewSmallItemsIcon.svg */ "./resources/assets/roundViewSmallItemsIcon.svg");
-/* harmony import */ var _assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../assets/viewingIconOfSmallItems.svg */ "./resources/assets/viewingIconOfSmallItems.svg");
+/* harmony import */ var _assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -75,7 +75,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "HelpPage",
   data: function data() {
     return {
-      smallViewingIcon: _assets_roundViewSmallItemsIcon_svg__WEBPACK_IMPORTED_MODULE_0___default.a
+      smallViewingIcon: _assets_viewingIconOfSmallItems_svg__WEBPACK_IMPORTED_MODULE_0___default.a
     };
   }
 });
@@ -218,14 +218,14 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/assets/roundViewSmallItemsIcon.svg":
+/***/ "./resources/assets/viewingIconOfSmallItems.svg":
 /*!******************************************************!*\
-  !*** ./resources/assets/roundViewSmallItemsIcon.svg ***!
+  !*** ./resources/assets/viewingIconOfSmallItems.svg ***!
   \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/roundViewSmallItemsIcon.svg?6b5fb0d92a29873f530c76e4f454ed99";
+module.exports = "/images/viewingIconOfSmallItems.svg?6b5fb0d92a29873f530c76e4f454ed99";
 
 /***/ }),
 

@@ -1,5 +1,6 @@
 import getFavoriteIconBlockHtml from './getFavoriteIconBlockHtml';
 import getPhotoBlockHtml from './getPhotoBlockHtml';
+import getNoPhotoBlockHtml from './getNoPhotoBlockHtml';
 import getListOfCategoriesHtml from './getListOfCategoriesHtml';
 import getListOfMaterialsHtml from './getListOfMaterialsHtml';
 import getListOfColorsHtml from './getListOfColorsHtml';
@@ -12,20 +13,10 @@ export default function getProductsItemHtml(product) {
 
                   <div class="product_item__content">
 
-                      <div class="product_item__quick_view_link__wrapper">
-                         <a data-quick-view="${product.id}"
-                            href='/product/${product.slug}-${product.id}'
-                            class="product_item__quick_view_link">
-                            Быстрый просмотр
-                         </a>
-                      </div>
-
                       ${
                         Boolean(product.photos)
                             ? getPhotoBlockHtml(product)
-                            : `<div class="product_item__no_photo">
-                                    НЕТ ФОТО
-                               </div>`
+                            : getNoPhotoBlockHtml(product)
                        }
 
                       <div>

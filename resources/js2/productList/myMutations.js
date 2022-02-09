@@ -1,5 +1,9 @@
 export default {
 
+    setViewMode: (state, value) => {
+        state.viewSettings.mode = value;
+    },
+
     setSortMode: (state, value) => {
         state.sortSettings.mode = value;
     },

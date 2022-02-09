@@ -20,6 +20,7 @@ import H1Renderer from "../h1Renderer/h1Renderer";
 import MenuLinkCssMaker from "../menu/menuLinkCssMaker";
 import ViewMoreButtonManager from "./viewMoreButton/viewMoreButtonManager";
 import HeaderVisibilityManager from "./headerManager/headerVisibilityManager";
+import ProductViewSwitcher from "./productView/productViewSwitcher";
 import SortMenuRenderer from "./productSorter/productSortMenuRenderer";
 import SortMenuVisibilityManager from "./productSorter/sortMenuVisibilityManager";
 import ProductFilterRenderer from "./productFilter/productFilterRenderer";
@@ -70,6 +71,9 @@ export default {
     // -----------------------------------------
 
     sortMenuRenderer: new SortMenuRenderer(),
+    // -----------------------------------------
+
+    viewSwitcher: new ProductViewSwitcher(),
     // -----------------------------------------
 
     productFilterRenderer: new ProductFilterRenderer(),

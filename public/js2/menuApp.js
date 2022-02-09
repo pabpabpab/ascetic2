@@ -1903,6 +1903,9 @@ var Aware = /*#__PURE__*/function () {
     } // метода наблюдения вызываемые из коммитера
 
   }, {
+    key: "checkViewSettings",
+    value: function checkViewSettings() {}
+  }, {
     key: "checkSortSettings",
     value: function checkSortSettings() {}
   }, {

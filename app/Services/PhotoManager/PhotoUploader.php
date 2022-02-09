@@ -28,7 +28,8 @@ class PhotoUploader
                 $timeName++;
 
                 // сохранить 6 версий разного размера этого фото, 6 - просто копия исходника
-                for ($i = 1; $i <= 6; $i++) {
+                // индекс 1 пропустить (не нужны мелкие фото)
+                for ($i = 2; $i <= 6; $i++) {
                     $newFileName = $productId."s".$i."-".$timeName.".".$ext;
                     $this->_savePhotoVersion($file, $newFileName, $i);
                 }

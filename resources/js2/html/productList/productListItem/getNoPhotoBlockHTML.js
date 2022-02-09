@@ -1,5 +1,4 @@
 export default function getPhotoBlockHtml(product) {
-    const photoFolder = "/storage/products-photos-size3/";
     return `<div class="product_item__photo_wrapper">
                 <div class="product_item__quick_view_link__wrapper">
                     <a data-quick-view="${product.id}"
@@ -9,11 +8,8 @@ export default function getPhotoBlockHtml(product) {
                     </a>
                 </div>
 
-                <a href='/product/${product.slug}-${product.id}'>
-                    <img src='${photoFolder}${product.id}s3-${product.photos[0]}'
-                       alt=""
-                       data-product-item-link="${product.id}"
-                       class="photo__size3"/>
-                </a>
+                <div class="product_item__no_photo">
+                    НЕТ ФОТО
+                </div>
             </div>`;
 }

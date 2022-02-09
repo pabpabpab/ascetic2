@@ -13,8 +13,8 @@ export default class Commiter extends Aware {
 
     _notifyObservers(mutationName) {
         const checkMethods = {
+            setViewMode: ['checkViewSettings'],
             setSortMode: ['checkSortSettings'],
-
             setSectionData: ['checkSectionSettings'],
 
             setMinPrice: ['checkSearchSettings'],

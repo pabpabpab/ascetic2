@@ -1,6 +1,6 @@
 <div data-title="Показать товары мелкими"
-     class="icon_with_hint icon_with_right_hint viewing_icon__wrapper">
-    <img src="{{ asset('/images/roundViewSmallItemsIcon.svg') }}" alt="" class="viewing_icon__img">
+     class="viewing_icon__wrapper">
+    <img src="{{ asset('/images/viewingIconOfBigItems.svg') }}" id="productViewIcon" alt="" class="viewing_icon__img">
 </div>
 
 
