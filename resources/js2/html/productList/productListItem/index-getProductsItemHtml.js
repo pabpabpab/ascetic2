@@ -6,8 +6,6 @@ import getListOfMaterialsHtml from './getListOfMaterialsHtml';
 import getListOfColorsHtml from './getListOfColorsHtml';
 
 export default function getProductsItemHtml(product, viewMode) {
-    //console.log(product);
-
     const bigView = viewMode === 'bigView' ? 'big_view' : '';
     return `<div data-product-item="${product.id}" class="product_item__wrapper">
                <div class="product_item ${bigView}">
@@ -26,7 +24,7 @@ export default function getProductsItemHtml(product, viewMode) {
                          ${
                              Boolean(product.photos)
                                 ? getPhotoBlockHtml(product, viewMode)
-                                : getNoPhotoBlockHtml(product)
+                                : getNoPhotoBlockHtml()
                          }
                       </div>
 
