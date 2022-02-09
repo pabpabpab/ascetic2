@@ -1,4 +1,4 @@
-import el from '../el';
+import el from '../auxiliaryFunctions/el';
 import getCookie from '../cookie/getCookie';
 import Aware from "../parentClasses/app/aware";
 

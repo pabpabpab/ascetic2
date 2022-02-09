@@ -86,26 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js2/allProductsMustBeCached.js":
-/*!**************************************************!*\
-  !*** ./resources/js2/allProductsMustBeCached.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return allProductsMustBeCached; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/el.js");
-
-function allProductsMustBeCached() {
-  var limitForCachingOfProductEntireList = 100;
-  var totalProductsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount);
-  return totalProductsCount < limitForCachingOfProductEntireList;
-}
-
-/***/ }),
-
 /***/ "./resources/js2/auth/authAbsoluteMenu.js":
 /*!************************************************!*\
   !*** ./resources/js2/auth/authAbsoluteMenu.js ***!
@@ -199,7 +179,7 @@ var AuthAbsoluteMenu = /*#__PURE__*/function (_VisibleBlockByClick) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ForgotPassword; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_absoluteForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/absoluteForm */ "./resources/js2/parentClasses/absoluteForm.js");
 /* harmony import */ var _validation_forgotPasswordValidation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validation/forgotPasswordValidation */ "./resources/js2/auth/validation/forgotPasswordValidation.js");
 /* harmony import */ var _html_auth_getForgotPasswordFormHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/auth/getForgotPasswordFormHtml */ "./resources/js2/html/auth/getForgotPasswordFormHtml.js");
@@ -258,7 +238,7 @@ var ForgotPassword = /*#__PURE__*/function (_AbsoluteForm) {
   _createClass(ForgotPassword, [{
     key: "_preRenderActions",
     value: function _preRenderActions() {
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginForm').className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginForm').className = "".concat(this.basicCss, " ").concat(this.hideCss);
     }
   }, {
     key: "_getHtml",
@@ -271,7 +251,7 @@ var ForgotPassword = /*#__PURE__*/function (_AbsoluteForm) {
       new _message_absoluteMessageWithCloseIcon__WEBPACK_IMPORTED_MODULE_4__["default"]({
         text: this.reply
       });
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#forgotPasswordForm').className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#forgotPasswordForm').className = "".concat(this.basicCss, " ").concat(this.hideCss);
     }
   }, {
     key: "_ultimateFail",
@@ -279,20 +259,20 @@ var ForgotPassword = /*#__PURE__*/function (_AbsoluteForm) {
       new _message_absoluteMessageWithCloseIcon__WEBPACK_IMPORTED_MODULE_4__["default"]({
         text: this.reply
       });
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#forgotPasswordForm').className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#forgotPasswordForm').className = "".concat(this.basicCss, " ").concat(this.hideCss);
     }
   }, {
     key: "_getUserData",
     value: function _getUserData() {
       return {
-        email: Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#forgotPasswordEmail').value
+        email: Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#forgotPasswordEmail').value
       };
     }
   }, {
     key: "_showErrors",
     value: function _showErrors(err) {
       if (!err) err = {};
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#forgotPasswordEmailErr').innerText = err.email ? err.email[0] : '';
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#forgotPasswordEmailErr').innerText = err.email ? err.email[0] : '';
     }
   }]);
 
@@ -313,7 +293,7 @@ var ForgotPassword = /*#__PURE__*/function (_AbsoluteForm) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return authKit; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authAbsoluteMenu */ "./resources/js2/auth/authAbsoluteMenu.js");
 /* harmony import */ var _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./passwordTypeChanger */ "./resources/js2/auth/passwordTypeChanger.js");
 /* harmony import */ var _message_absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../message/absoluteFlashMessage */ "./resources/js2/message/absoluteFlashMessage.js");
@@ -323,13 +303,13 @@ __webpack_require__.r(__webpack_exports__);
 
 function authKit() {
   // Register() и Login() инициализируются в AuthAbsoluteMenu()
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
+  if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.personal_account__icon')) {
     new _authAbsoluteMenu__WEBPACK_IMPORTED_MODULE_1__["default"]({
       clickSourceSelector: '.personal_account__icon'
     });
   }
 
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_password_type__wrapper')) {
+  if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.auth_page__change_password_type__wrapper')) {
     new _passwordTypeChanger__WEBPACK_IMPORTED_MODULE_2__["default"]({
       closedEyeSelector: ".auth_page__closed_eye_img",
       openedEyeSelector: ".auth_page__opened_eye_img",
@@ -337,9 +317,9 @@ function authKit() {
     });
   }
 
-  if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage')) {
+  if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage')) {
     new _message_absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_3__["default"]({
-      text: Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage').innerText,
+      text: Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#flashMessage').innerText,
       duration: 3500
     });
   }
@@ -357,7 +337,7 @@ function authKit() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_absoluteForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/absoluteForm */ "./resources/js2/parentClasses/absoluteForm.js");
 /* harmony import */ var _html_auth_getLoginFormHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/auth/getLoginFormHtml */ "./resources/js2/html/auth/getLoginFormHtml.js");
 /* harmony import */ var _html_auth_getFailedLoginHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../html/auth/getFailedLoginHtml */ "./resources/js2/html/auth/getFailedLoginHtml.js");
@@ -431,8 +411,8 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
   _createClass(Login, [{
     key: "_preRenderActions",
     value: function _preRenderActions() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu')) return;
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu').className = "auth_absolute_menu__wrapper hide_block";
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu')) return;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu').className = "auth_absolute_menu__wrapper hide_block";
     }
   }, {
     key: "_additionalFirstRenderActions",
@@ -456,12 +436,12 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
     value: function _ultimateSuccess(data) {
       var _this2 = this;
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authMenuContent').remove();
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authMenuContent').remove();
       var html = Object(_html_auth_getAuthenticatedMenuHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(data.userName, data.isAdmin);
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authMenu').insertAdjacentHTML('afterbegin', html);
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authMenu').insertAdjacentHTML('afterbegin', html);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
       setTimeout(function () {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(_this2.wrapSelector).remove();
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(_this2.wrapSelector).remove();
       }, 3000); // чтобы успел отработать hideCss
 
       new _message_absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_6__["default"]({
@@ -491,9 +471,9 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
     key: "_getUserData",
     value: function _getUserData() {
       return {
-        email: Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginEmail').value,
-        password: Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginPassword').value,
-        remember: Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginRemember').value,
+        email: Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginEmail').value,
+        password: Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginPassword').value,
+        remember: Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginRemember').value,
         favoriteIds: Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_9__["default"])('favoriteIds') // для слияния фронт (которые могут быть) и бэк favoriteIds
 
       };
@@ -502,16 +482,16 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
     key: "_showErrors",
     value: function _showErrors(err) {
       if (!err) err = {};
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginEmailErr').innerText = err.email ? err.email[0] : '';
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginPasswordErr').innerText = err.password ? err.password[0] : '';
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginEmailErr').innerText = err.email ? err.email[0] : '';
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#loginPasswordErr').innerText = err.password ? err.password[0] : '';
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#failedLoginErrorContent')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#failedLoginErrorContent').remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#failedLoginErrorContent')) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#failedLoginErrorContent').remove();
       }
 
       if (err.failedLogin) {
         var html = Object(_html_auth_getFailedLoginHtml__WEBPACK_IMPORTED_MODULE_3__["default"])();
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#failedLoginErr').insertAdjacentHTML('afterbegin', html);
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#failedLoginErr').insertAdjacentHTML('afterbegin', html);
       }
     }
   }, {
@@ -520,7 +500,7 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
       new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_11__["default"]();
       var idsStr = Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_9__["default"])('favoriteIds');
       var total = Boolean(idsStr) ? idsStr.split(',').length : 0;
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.topMenu-favIcon-total').innerText = total;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.topMenu-favIcon-total').innerText = total;
     }
   }]);
 
@@ -541,7 +521,7 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PasswordTypeChanger; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -560,20 +540,20 @@ var PasswordTypeChanger = /*#__PURE__*/function () {
     this.openedEyeSelector = data.openedEyeSelector;
     this.passwordInputSelector = data.passwordInputSelector;
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.closedEyeSelector)) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.closedEyeSelector)) {
       return;
     }
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.openedEyeSelector)) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.openedEyeSelector)) {
       return;
     }
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.closedEyeSelector).addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.closedEyeSelector).addEventListener('click', function (e) {
       e.stopPropagation();
 
       _this._changePasswordType('toText');
     });
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.openedEyeSelector).addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.openedEyeSelector).addEventListener('click', function (e) {
       e.stopPropagation();
 
       _this._changePasswordType('toPassword');
@@ -584,13 +564,13 @@ var PasswordTypeChanger = /*#__PURE__*/function () {
     key: "_changePasswordType",
     value: function _changePasswordType(direction) {
       if (direction === 'toText') {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.passwordInputSelector).type = 'text';
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.closedEyeSelector).style.display = 'none';
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.openedEyeSelector).style.display = 'block';
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.passwordInputSelector).type = 'text';
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.closedEyeSelector).style.display = 'none';
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.openedEyeSelector).style.display = 'block';
       } else {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.passwordInputSelector).type = 'password';
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.closedEyeSelector).style.display = 'block';
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.openedEyeSelector).style.display = 'none';
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.passwordInputSelector).type = 'password';
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.closedEyeSelector).style.display = 'block';
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.openedEyeSelector).style.display = 'none';
       }
     }
   }]);
@@ -612,7 +592,7 @@ var PasswordTypeChanger = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Register; });
-/* harmony import */ var _el_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el.js */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el.js */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_absoluteForm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/absoluteForm.js */ "./resources/js2/parentClasses/absoluteForm.js");
 /* harmony import */ var _html_auth_getRegisterFormHtml_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/auth/getRegisterFormHtml.js */ "./resources/js2/html/auth/getRegisterFormHtml.js");
 /* harmony import */ var _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./validation/registerValidation.js */ "./resources/js2/auth/validation/registerValidation.js");
@@ -672,8 +652,8 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
   _createClass(Register, [{
     key: "_preRenderActions",
     value: function _preRenderActions() {
-      if (!Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu')) return;
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu').className = "auth_absolute_menu__wrapper hide_block";
+      if (!Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu')) return;
+      Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu').className = "auth_absolute_menu__wrapper hide_block";
     }
   }, {
     key: "_getHtml",
@@ -705,10 +685,10 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
     key: "_getUserData",
     value: function _getUserData() {
       return {
-        name: Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regName').value,
-        email: Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regEmail').value,
-        password: Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPassword').value,
-        password_confirmation: Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPassword_confirmation').value,
+        name: Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regName').value,
+        email: Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regEmail').value,
+        password: Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPassword').value,
+        password_confirmation: Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPassword_confirmation').value,
         favoriteIds: Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_5__["default"])('favoriteIds') // для записи фронт (которые могут быть) в бэк favoriteIds
 
       };
@@ -717,10 +697,10 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
     key: "_showErrors",
     value: function _showErrors(err) {
       if (!err) err = {};
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regNameErr').innerText = err.name ? err.name[0] : '';
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regEmailErr').innerText = err.email ? err.email[0] : '';
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPasswordErr').innerText = err.password ? err.password[0] : '';
-      Object(_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPasswordConfirmationErr').innerText = err.password_confirmation ? err.password_confirmation[0] : '';
+      Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regNameErr').innerText = err.name ? err.name[0] : '';
+      Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regEmailErr').innerText = err.email ? err.email[0] : '';
+      Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPasswordErr').innerText = err.password ? err.password[0] : '';
+      Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#regPasswordConfirmationErr').innerText = err.password_confirmation ? err.password_confirmation[0] : '';
     }
   }]);
 
@@ -884,6 +864,79 @@ function registerValidation(user) {
   }
 
   return null;
+}
+
+/***/ }),
+
+/***/ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return allProductsMustBeCached; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/auxiliaryFunctions/el.js");
+
+function allProductsMustBeCached() {
+  var limitForCachingOfProductEntireList = 100;
+  var totalProductsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount);
+  return totalProductsCount < limitForCachingOfProductEntireList;
+}
+
+/***/ }),
+
+/***/ "./resources/js2/auxiliaryFunctions/el.js":
+/*!************************************************!*\
+  !*** ./resources/js2/auxiliaryFunctions/el.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return el; });
+function el(selector) {
+  return document.querySelector(selector);
+}
+
+/***/ }),
+
+/***/ "./resources/js2/auxiliaryFunctions/scrollDocument.js":
+/*!************************************************************!*\
+  !*** ./resources/js2/auxiliaryFunctions/scrollDocument.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return scrollDocument; });
+function scrollDocument(distance, direction) {
+  var coveredDistance = 0; // пройденное расстояние
+
+  _scrollDocument(distance, coveredDistance, direction);
+}
+
+function _scrollDocument(distance, coveredDistance, direction) {
+  if (coveredDistance > distance) {
+    return;
+  }
+
+  var step = 3; // px
+
+  if (direction === 'down') {
+    window.scrollBy(0, step);
+  } else {
+    window.scrollBy(0, -step);
+  }
+
+  coveredDistance += step;
+  setTimeout(function () {
+    _scrollDocument(distance, coveredDistance, direction);
+  }, 1);
 }
 
 /***/ }),
@@ -1059,22 +1112,6 @@ function setCookie(name, value) {
 
 /***/ }),
 
-/***/ "./resources/js2/el.js":
-/*!*****************************!*\
-  !*** ./resources/js2/el.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return el; });
-function el(selector) {
-  return document.querySelector(selector);
-}
-
-/***/ }),
-
 /***/ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js":
 /*!********************************************************************************!*\
   !*** ./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js ***!
@@ -1085,7 +1122,7 @@ function el(selector) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FavoriteProductsIndicationOnPageLoad; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _cookie_getCookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cookie/getCookie */ "./resources/js2/cookie/getCookie.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -1150,19 +1187,19 @@ var FavoriteProductsIndicationOnPageLoad = /*#__PURE__*/function (_Aware) {
       idsArr.forEach(function (productId) {
         var imgSelector = _this2._getIconImgSelector(productId);
 
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector)) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector).src = _this2.iconSrc.inFavorites;
+        if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector)) {
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector).src = _this2.iconSrc.inFavorites;
 
           var wrapperSelector = _this2._getIconWrapperSelector(productId);
 
-          if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector).classList.contains("set-opacity")) {
-            Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector).classList.add("set-opacity");
+          if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector).classList.contains("set-opacity")) {
+            Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector).classList.add("set-opacity");
           }
 
           var textSelector = _this2._getIconTextSelector(productId);
 
-          if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector)) {
-            Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector).innerText = 'ИЗ ИЗБРАННОГО';
+          if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector)) {
+            Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector).innerText = 'ИЗ ИЗБРАННОГО';
           }
         }
       });
@@ -1201,7 +1238,7 @@ var FavoriteProductsIndicationOnPageLoad = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FavoriteProductsSwitcher; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _cookie_setCookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cookie/setCookie */ "./resources/js2/cookie/setCookie.js");
 /* harmony import */ var _cookie_getCookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../cookie/getCookie */ "./resources/js2/cookie/getCookie.js");
 /* harmony import */ var _http_postJson__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../http/postJson */ "./resources/js2/http/postJson.js");
@@ -1232,7 +1269,7 @@ var FavoriteProductsSwitcher = /*#__PURE__*/function () {
       notInFavorites: '/images/favoriteIcon.svg',
       inFavorites: '/images/filledFavoriteIcon.svg'
     };
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       // id="favIcon-wrapper-$id" / id="favIcon-img-$id"
       if (!e.target.id) {
         return;
@@ -1289,24 +1326,24 @@ var FavoriteProductsSwitcher = /*#__PURE__*/function () {
 
       var textSelectorOfQuickProduct = this._getIconTextSelectorOfQuickProduct(productId);
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector).src = this.iconSrc.inFavorites;
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector).src = this.iconSrc.inFavorites;
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelectorOfQuickProduct)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelectorOfQuickProduct).src = this.iconSrc.inFavorites;
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelectorOfQuickProduct)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelectorOfQuickProduct).src = this.iconSrc.inFavorites;
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector).classList.toggle("set-opacity");
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector).classList.toggle("set-opacity");
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector).innerText = 'ИЗ ИЗБРАННОГО';
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector).innerText = 'ИЗ ИЗБРАННОГО';
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelectorOfQuickProduct)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelectorOfQuickProduct).innerText = 'ИЗ ИЗБРАННОГО';
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelectorOfQuickProduct)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelectorOfQuickProduct).innerText = 'ИЗ ИЗБРАННОГО';
       }
     }
   }, {
@@ -1322,24 +1359,24 @@ var FavoriteProductsSwitcher = /*#__PURE__*/function () {
 
       var textSelectorOfQuickProduct = this._getIconTextSelectorOfQuickProduct(productId);
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector).src = this.iconSrc.notInFavorites;
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelector).src = this.iconSrc.notInFavorites;
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelectorOfQuickProduct)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelectorOfQuickProduct).src = this.iconSrc.notInFavorites;
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelectorOfQuickProduct)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(imgSelectorOfQuickProduct).src = this.iconSrc.notInFavorites;
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector).classList.toggle("set-opacity");
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(wrapperSelector).classList.toggle("set-opacity");
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector).innerText = 'В ИЗБРАННОЕ';
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelector).innerText = 'В ИЗБРАННОЕ';
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelectorOfQuickProduct)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelectorOfQuickProduct).innerText = 'В ИЗБРАННОЕ';
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelectorOfQuickProduct)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(textSelectorOfQuickProduct).innerText = 'В ИЗБРАННОЕ';
       }
     }
   }, {
@@ -1419,7 +1456,7 @@ var FavoriteProductsSwitcher = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FavoriteProductsTotalCountIndication; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _cookie_getCookie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../cookie/getCookie */ "./resources/js2/cookie/getCookie.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1441,7 +1478,7 @@ var FavoriteProductsTotalCountIndication = /*#__PURE__*/function () {
     // рендер при загрузке страницы
     this._renderFavoriteTotal();
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       // и рендер при клике на favIcon товаров
       if (!e.target.id) {
         return;
@@ -1460,7 +1497,7 @@ var FavoriteProductsTotalCountIndication = /*#__PURE__*/function () {
     value: function _renderFavoriteTotal() {
       var idsStr = Object(_cookie_getCookie__WEBPACK_IMPORTED_MODULE_1__["default"])('favoriteIds');
       var totalCount = Boolean(idsStr) ? idsStr.split(',').length : 0;
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.topMenu-favIcon-total').innerText = totalCount;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.topMenu-favIcon-total').innerText = totalCount;
     }
   }]);
 
@@ -1481,7 +1518,7 @@ var FavoriteProductsTotalCountIndication = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return H1Renderer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1519,7 +1556,7 @@ var H1Renderer = /*#__PURE__*/function (_Aware) {
     _classCallCheck(this, H1Renderer);
 
     _this = _super.call(this);
-    _this.header = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
+    _this.header = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productsH1');
     return _this;
   }
 
@@ -1529,7 +1566,7 @@ var H1Renderer = /*#__PURE__*/function (_Aware) {
       var h1Text = this.state.sectionSettings.h1Text;
 
       if (!h1Text) {
-        h1Text = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-logo="link"]').dataset.menuLinkTitleText;
+        h1Text = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-logo="link"]').dataset.menuLinkTitleText;
       }
 
       this.header.innerText = h1Text;
@@ -2252,7 +2289,7 @@ function postJson(url, data) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MenuLinkCssMaker; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -2305,7 +2342,7 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "resetMenuLinksCss",
     value: function resetMenuLinksCss() {
-      var nodes = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.top_menu').querySelectorAll('.top_menu__link');
+      var nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.top_menu').querySelectorAll('.top_menu__link');
 
       var _iterator = _createForOfIteratorHelper(nodes),
           _step;
@@ -2321,7 +2358,7 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_Aware) {
         _iterator.f();
       }
 
-      nodes = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.bottom_menu').querySelectorAll('.bottom_menu__link');
+      nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.bottom_menu').querySelectorAll('.bottom_menu__link');
 
       var _iterator2 = _createForOfIteratorHelper(nodes),
           _step2;
@@ -2338,7 +2375,7 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_Aware) {
         _iterator2.f();
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.logo__link').classList.remove('logo__link_active');
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.logo__link').classList.remove('logo__link_active');
     }
   }, {
     key: "markActiveMenuLink",
@@ -2349,8 +2386,8 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_Aware) {
 
       if (sectionName === 'productCategory') {
         var categorySlug = additionalData.split(';')[1];
-        var topLink = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".top_menu [data-menu-link-category-slug=".concat(categorySlug, "]"));
-        var bottomLink = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".bottom_menu [data-menu-link-category-slug=".concat(categorySlug, "]"));
+        var topLink = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".top_menu [data-menu-link-category-slug=".concat(categorySlug, "]"));
+        var bottomLink = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".bottom_menu [data-menu-link-category-slug=".concat(categorySlug, "]"));
 
         if (topLink) {
           topLink.classList.add('top_menu__link_active');
@@ -2362,7 +2399,7 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_Aware) {
       }
 
       if (sectionName === 'favoriteProducts') {
-        var favIconLink = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".top_menu__link_fav_icon");
+        var favIconLink = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".top_menu__link_fav_icon");
 
         if (favIconLink) {
           favIconLink.classList.add('top_menu__link_active');
@@ -2370,7 +2407,7 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_Aware) {
       }
 
       if (sectionName === 'allProducts') {
-        var logoLink = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".logo__link");
+        var logoLink = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(".logo__link");
         logoLink.classList.add('logo__link_active');
       }
     }
@@ -2393,7 +2430,7 @@ var MenuLinkCssMaker = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TopDropMenuFiller; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _html_getDropMenuHtml_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../html/getDropMenuHtml.js */ "./resources/js2/html/getDropMenuHtml.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
@@ -2416,7 +2453,7 @@ var TopDropMenuFiller = /*#__PURE__*/function () {
 
     _classCallCheck(this, TopDropMenuFiller);
 
-    this.initiatorContainer = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuInitiatorContainer');
+    this.initiatorContainer = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuInitiatorContainer');
     this.initiatorContainer.addEventListener('mouseover', function (e) {
       _this._fillMenu();
     });
@@ -2425,11 +2462,11 @@ var TopDropMenuFiller = /*#__PURE__*/function () {
   _createClass(TopDropMenuFiller, [{
     key: "_fillMenu",
     value: function _fillMenu() {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuWrapper')) {
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuWrapper')) {
         return;
       }
 
-      var innerHtml = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#bottomMenu-allCategories').innerHTML;
+      var innerHtml = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#bottomMenu-allCategories').innerHTML;
       var dropMenuHtml = Object(_html_getDropMenuHtml_js__WEBPACK_IMPORTED_MODULE_1__["default"])(innerHtml);
       this.initiatorContainer.insertAdjacentHTML('beforeend', dropMenuHtml);
       var nodes = this.initiatorContainer.querySelectorAll('.bottom_menu__link');
@@ -2467,7 +2504,7 @@ var TopDropMenuFiller = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbsoluteFlashMessage; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2497,7 +2534,7 @@ var AbsoluteFlashMessage = /*#__PURE__*/function () {
       this._removeHtml();
 
       var html = "<div id=\"".concat(this.id, "\" class=\"absolute_message__wrapper show_block\">\n                           <div class=\"absolute_message__div arial_sans-serif\">\n                                ").concat(this.text, "\n                           </div>\n                      </div>");
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
       setTimeout(function () {
         _this._hideHtml();
       }, this.duration - this.fadingTime);
@@ -2507,9 +2544,9 @@ var AbsoluteFlashMessage = /*#__PURE__*/function () {
     value: function _hideHtml() {
       var _this2 = this;
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).classList.remove('show_block');
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).classList.add('hide_block');
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).classList.remove('show_block');
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).classList.add('hide_block');
       }
 
       setTimeout(function () {
@@ -2519,8 +2556,8 @@ var AbsoluteFlashMessage = /*#__PURE__*/function () {
   }, {
     key: "_removeHtml",
     value: function _removeHtml() {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).remove();
       }
     }
   }]);
@@ -2542,7 +2579,7 @@ var AbsoluteFlashMessage = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbsoluteMessageWithCloseIcon; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_visibleBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/visibleBlock */ "./resources/js2/parentClasses/visibleBlock.js");
 /* harmony import */ var _html_getAbsoluteMessageWithCloseIconHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/getAbsoluteMessageWithCloseIconHtml */ "./resources/js2/html/getAbsoluteMessageWithCloseIconHtml.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -2609,7 +2646,7 @@ var AbsoluteMessageWithCloseIcon = /*#__PURE__*/function (_VisibleBlock) {
       var _this2 = this;
 
       setTimeout(function () {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(_this2.wrapSelector).remove();
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(_this2.wrapSelector).remove();
       }, 1000);
     }
   }]);
@@ -2631,7 +2668,7 @@ var AbsoluteMessageWithCloseIcon = /*#__PURE__*/function (_VisibleBlock) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FrequentAbsoluteFlashMessage; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2666,7 +2703,7 @@ var FrequentAbsoluteFlashMessage = /*#__PURE__*/function () {
       this._removeMessage();
 
       var html = "<div id=\"".concat(this.id, "\" class=\"absolute_message__wrapper show_block\">\n                           <div class=\"absolute_message__div arial_sans-serif\">\n                                ").concat(this.text, "\n                           </div>\n                      </div>");
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
       this.fadeTimerId = setTimeout(function () {
         _this.hideMessage();
       }, this.duration - this.fadingTime); // 3500
@@ -2676,12 +2713,12 @@ var FrequentAbsoluteFlashMessage = /*#__PURE__*/function () {
     value: function hideMessage() {
       var _this2 = this;
 
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector)) {
         return;
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).classList.remove('show_block');
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).classList.add('hide_block');
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).classList.remove('show_block');
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).classList.add('hide_block');
       this.deleteTimerId = setTimeout(function () {
         _this2._removeMessage();
       }, this.fadingTime);
@@ -2689,11 +2726,11 @@ var FrequentAbsoluteFlashMessage = /*#__PURE__*/function () {
   }, {
     key: "_removeMessage",
     value: function _removeMessage() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector)) {
         return;
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).remove();
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.selector).remove();
     }
   }]);
 
@@ -2714,7 +2751,7 @@ var FrequentAbsoluteFlashMessage = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AbsoluteForm; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _http_postJson__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../http/postJson */ "./resources/js2/http/postJson.js");
 /* harmony import */ var _visibleBlockByClick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./visibleBlockByClick */ "./resources/js2/parentClasses/visibleBlockByClick.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -2774,11 +2811,11 @@ var AbsoluteForm = /*#__PURE__*/function (_VisibleBlockByClick) {
       var _this2 = this;
 
       // submit
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.submitSelector).addEventListener('click', function () {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.submitSelector).addEventListener('click', function () {
         _this2._submit(_this2._getUserData());
       }); // слушать keyup для запуска type-in валидации
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).addEventListener('keyup', function () {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).addEventListener('keyup', function () {
         _this2._doTypeInValidation(_this2._getUserData());
       });
     }
@@ -2869,12 +2906,12 @@ var AbsoluteForm = /*#__PURE__*/function (_VisibleBlockByClick) {
   }, {
     key: "_turnOnAlarm",
     value: function _turnOnAlarm() {
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.alarmCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.alarmCss);
     }
   }, {
     key: "_turnOffAlarm",
     value: function _turnOffAlarm() {
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.alarmCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.alarmCss);
     }
   }]);
 
@@ -2958,7 +2995,7 @@ var Aware = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return VisibleBlock; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -2982,7 +3019,7 @@ var VisibleBlock = /*#__PURE__*/function () {
     value: function _render() {
       this._preRenderActions();
 
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         this._firstRender();
 
         this._justSetVisibilityToTrue();
@@ -3000,7 +3037,7 @@ var VisibleBlock = /*#__PURE__*/function () {
     value: function _firstRender() {
       var html = this._getHtml();
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
 
       this._listenBodyTag();
 
@@ -3019,7 +3056,7 @@ var VisibleBlock = /*#__PURE__*/function () {
     value: function _listenBodyTag() {
       var _this = this;
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
         // скрыть блок при клике мимо
         _this._setVisibilityToFalse(e);
       });
@@ -3030,28 +3067,28 @@ var VisibleBlock = /*#__PURE__*/function () {
   }, {
     key: "_justSetVisibilityToTrue",
     value: function _justSetVisibilityToTrue() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
     }
   }, {
     key: "_setVisibilityToFalse",
     value: function _setVisibilityToFalse(e) {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
 
-      if (e.target.parentNode === Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (e.target.parentNode === Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
 
-      if (e.target === Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (e.target === Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
 
       this._additionalHideActions();
     }
@@ -3077,7 +3114,7 @@ var VisibleBlock = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return VisibleBlockByClick; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _visibleBlock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./visibleBlock */ "./resources/js2/parentClasses/visibleBlock.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -3112,11 +3149,11 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
     _this = _super.call(this, data);
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(data.clickSourceSelector)) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(data.clickSourceSelector)) {
       return _possibleConstructorReturn(_this);
     }
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(data.clickSourceSelector).addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(data.clickSourceSelector).addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
 
@@ -3235,7 +3272,7 @@ var Commiter = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return headerVisibilityManager; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -3287,7 +3324,7 @@ var headerVisibilityManager = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_turnOffVisibility",
     value: function _turnOffVisibility() {
-      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.h1_viewing_sorting_filtering_container');
+      var wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.h1_viewing_sorting_filtering_container');
 
       if (wrapper && !wrapper.classList.contains('display-none')) {
         wrapper.classList.add('display-none');
@@ -3296,7 +3333,7 @@ var headerVisibilityManager = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_turnOnVisibility",
     value: function _turnOnVisibility() {
-      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.h1_viewing_sorting_filtering_container');
+      var wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.h1_viewing_sorting_filtering_container');
 
       if (wrapper && wrapper.classList.contains('display-none')) {
         wrapper.classList.remove('display-none');
@@ -3322,12 +3359,12 @@ var headerVisibilityManager = /*#__PURE__*/function (_Aware) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByLinkOfOneProductItem; });
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../message/frequentAbsoluteFlashMessage */ "./resources/js2/message/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../auxiliaryFunctions/scrollDocument */ "./resources/js2/auxiliaryFunctions/scrollDocument.js");
 /* harmony import */ var _html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../html/singleProduct/index-getSingleProductHtml */ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js");
 /* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -3385,9 +3422,9 @@ var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
     _classCallCheck(this, RendererByLinkOfOneProductItem);
 
     _this = _super.call(this);
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList');
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList');
     _this.messenger = new _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_2__["default"]();
-    Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('body').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.productItemLink) {
         e.preventDefault();
         e.stopPropagation();
@@ -3433,7 +3470,7 @@ var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
     key: "_showSingleProductPage",
     value: function _showSingleProductPage(productId) {
       // на страницах где есть список товаров
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
         this._showOneFromCache(productId);
       } else {
         this._showLoadingMessage();
@@ -3464,7 +3501,7 @@ var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
         _this2._finalActions();
 
         _this2.components.productCache.getOneDescription(productId).then(function (data) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productDescriptionContainer').innerText = data.description;
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productDescriptionContainer').innerText = data.description;
         });
       });
     }
@@ -3494,8 +3531,8 @@ var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
       singleProductHtml = singleProductHtml.replaceAll("quickProductFavIcon", "favIcon");
       singleProductHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(singleProductHtml, "</div>");
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productListContent')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productListContent').remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productListContent')) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productListContent').remove();
       }
 
       this.wrapper.insertAdjacentHTML('afterbegin', singleProductHtml);
@@ -3519,12 +3556,12 @@ var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
       this._makeInvisiblePaginationBlock();
 
       var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_6__["default"])(distance, 'up');
+      Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_6__["default"])(distance, 'up');
     }
   }, {
     key: "_makeInvisiblePaginationBlock",
     value: function _makeInvisiblePaginationBlock() {
-      var paginationBlock = Object(_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#paginationContent');
+      var paginationBlock = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#paginationContent');
 
       if (!paginationBlock) {
         return;
@@ -3561,12 +3598,12 @@ var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByPaginationButton; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auxiliaryFunctions/scrollDocument */ "./resources/js2/auxiliaryFunctions/scrollDocument.js");
 /* harmony import */ var _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../message/frequentAbsoluteFlashMessage */ "./resources/js2/message/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -3611,10 +3648,10 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
     _this = _super.call(this);
     _this.messenger = new _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__["default"]();
     _this.productItemSelector = '[data-product-item]';
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     _this.disabledRequest = false;
     _this.currentPageNumber = 0;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.paginatorPageNumber) {
         e.preventDefault();
 
@@ -3641,7 +3678,7 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_showLoadingMessage",
     value: function _showLoadingMessage() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
         return;
       }
 
@@ -3672,8 +3709,8 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
         });
         var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
 
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
         }
 
         _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
@@ -3698,7 +3735,7 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
       this.components.publicUrlMaker.publishUrl();
       this.components.rendererOfPaginationBlock.remake();
       var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
+      Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
     }
   }, {
     key: "_getRequestPermission",
@@ -3735,11 +3772,11 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererBySearchSettings; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auxiliaryFunctions/scrollDocument */ "./resources/js2/auxiliaryFunctions/scrollDocument.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../message/frequentAbsoluteFlashMessage */ "./resources/js2/message/frequentAbsoluteFlashMessage.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -3784,7 +3821,7 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
 
     _this = _super.call(this);
     _this.productItemSelector = '[data-product-item]';
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     _this.timeWhenSearchSettingsWereLastChanged = 0;
     _this.timeWhenLastRequestWasSent = 0;
     _this.timerId = 0;
@@ -3807,7 +3844,7 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
 
       this._setPaginatorSettings();
 
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__["default"])()) {
         this._render();
       } else {
         this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
@@ -3869,8 +3906,8 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
         });
         var itemsHtml = "<div id=\"productListContent\">".concat(itemsHtmlArr.join(''), "</div>");
 
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
         }
 
         _this3.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
@@ -3900,12 +3937,12 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
 
 
       var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
+      Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
     }
   }, {
     key: "_makeInvisiblePaginationBlock",
     value: function _makeInvisiblePaginationBlock() {
-      var paginationBlock = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
+      var paginationBlock = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
 
       if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
         paginationBlock.classList.add("display-none");
@@ -3916,7 +3953,7 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
     value: function _showFinalMessage() {
       var sectionProductsCount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-      if (!Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__["default"])()) {
+      if (!Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__["default"])()) {
         return;
       }
 
@@ -3944,11 +3981,11 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererBySectionLink; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auxiliaryFunctions/scrollDocument */ "./resources/js2/auxiliaryFunctions/scrollDocument.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../message/frequentAbsoluteFlashMessage */ "./resources/js2/message/frequentAbsoluteFlashMessage.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -3993,10 +4030,10 @@ var RendererBySectionLink = /*#__PURE__*/function (_Aware) {
 
     _this = _super.call(this);
     _this.productItemSelector = '[data-product-item]';
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     _this.messenger = new _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
     _this.disabledRequest = false;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       var dataset = e.target.dataset;
 
       if (dataset.menuLinkSectionName || dataset.linkSectionName) {
@@ -4065,7 +4102,7 @@ var RendererBySectionLink = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_showLoadingMessage",
     value: function _showLoadingMessage() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_4__["default"])()) {
         return;
       }
 
@@ -4096,8 +4133,8 @@ var RendererBySectionLink = /*#__PURE__*/function (_Aware) {
         });
         var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
 
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
         }
 
         _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
@@ -4122,7 +4159,7 @@ var RendererBySectionLink = /*#__PURE__*/function (_Aware) {
       this.components.publicUrlMaker.publishUrl();
       this.components.rendererOfPaginationBlock.remake();
       var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
+      Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
     }
   }, {
     key: "_getRequestPermission",
@@ -4159,10 +4196,10 @@ var RendererBySectionLink = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererBySortSettings; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../message/frequentAbsoluteFlashMessage */ "./resources/js2/message/frequentAbsoluteFlashMessage.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -4206,7 +4243,7 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
 
     _this = _super.call(this);
     _this.productItemSelector = '[data-product-item]';
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     _this.timeWhenSearchSettingsWereLastChanged = 0;
     _this.timeWhenLastRequestWasSent = 0;
     _this.timerId = 0;
@@ -4223,7 +4260,7 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
 
       this._setPaginatorSettings();
 
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
         this._render();
       } else {
         this.timeWhenSearchSettingsWereLastChanged = new Date().getTime();
@@ -4286,8 +4323,8 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
         });
         var itemsHtml = "<div id=\"productListContent\">".concat(itemsHtmlArr.join(''), "</div>");
 
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
         }
 
         _this3.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
@@ -4319,7 +4356,7 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_makeInvisiblePaginationBlock",
     value: function _makeInvisiblePaginationBlock() {
-      var paginationBlock = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
+      var paginationBlock = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
 
       if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
         paginationBlock.classList.add("display-none");
@@ -4328,7 +4365,7 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_showFinalMessage",
     value: function _showFinalMessage() {
-      if (!Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
+      if (!Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
         return;
       }
 
@@ -4356,12 +4393,12 @@ var RendererBySortSettings = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererByViewMoreButton; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auxiliaryFunctions/scrollDocument */ "./resources/js2/auxiliaryFunctions/scrollDocument.js");
 /* harmony import */ var _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../message/frequentAbsoluteFlashMessage */ "./resources/js2/message/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -4406,10 +4443,10 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
     _this = _super.call(this);
     _this.messenger = new _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__["default"]();
     _this.productItemSelector = '[data-product-item]';
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); //this.container = el('#productListContent'); // не делать указатель
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); //this.container = el('#productListContent'); // не делать указатель
 
     _this.disabledRequest = false;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.id === 'viewMoreButton') {
         _this._setPaginatorSettings();
 
@@ -4430,7 +4467,7 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_showLoadingMessage",
     value: function _showLoadingMessage() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
         return;
       }
 
@@ -4462,7 +4499,7 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
         var itemsHtml = itemsHtmlArr.join(''); //const itemsHtml = `<div class="product_list__content show_block">${ itemsHtmlArr.join('') }</div>`;
         // получать элемент только без ранее созданного указателя
 
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
 
         _this2._setProductsCount(sectionProductsCount);
 
@@ -4484,12 +4521,12 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
 
       this._makeInvisiblePaginationBlock();
 
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(200, 'down');
+      Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(200, 'down');
     }
   }, {
     key: "_makeInvisiblePaginationBlock",
     value: function _makeInvisiblePaginationBlock() {
-      var paginationBlock = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
+      var paginationBlock = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent');
 
       if (!paginationBlock) {
         return;
@@ -4534,12 +4571,12 @@ var RendererByViewMoreButton = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RendererOfViewedProductsByLink; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_productList_productListItem_index_getProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../html/productList/productListItem/index-getProductsItemHtml */ "./resources/js2/html/productList/productListItem/index-getProductsItemHtml.js");
-/* harmony import */ var _scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../scrollDocument */ "./resources/js2/scrollDocument.js");
+/* harmony import */ var _auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auxiliaryFunctions/scrollDocument */ "./resources/js2/auxiliaryFunctions/scrollDocument.js");
 /* harmony import */ var _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../message/frequentAbsoluteFlashMessage */ "./resources/js2/message/frequentAbsoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -4583,10 +4620,10 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
 
     _this = _super.call(this);
     _this.productItemSelector = '[data-product-item]';
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList');
     _this.messenger = new _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_4__["default"]();
     _this.disabledRequest = false;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.viewedProductsLink) {
         e.preventDefault();
 
@@ -4622,7 +4659,7 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_showLoadingMessage",
     value: function _showLoadingMessage() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_5__["default"])()) {
         return;
       }
 
@@ -4654,8 +4691,8 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
         });
         var itemsHtml = "<div id=\"productListContent\" class=\"show_block\">".concat(itemsHtmlArr.join(''), "</div>");
 
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
+        if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent')) {
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productListContent').remove();
         }
 
         _this2.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
@@ -4691,7 +4728,7 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
       this.components.publicUrlMaker.publishUrl();
       this.components.rendererOfPaginationBlock.remake();
       var distance = window.pageYOffset;
-      Object(_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
+      Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
     }
   }, {
     key: "_getRequestPermission",
@@ -4937,7 +4974,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PaginationBlockRenderer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -4975,15 +5012,15 @@ var PaginationBlockRenderer = /*#__PURE__*/function (_Aware) {
     _classCallCheck(this, PaginationBlockRenderer);
 
     _this = _super.call(this);
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationWrapper');
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationWrapper');
     return _this;
   }
 
   _createClass(PaginationBlockRenderer, [{
     key: "remake",
     value: function remake() {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent')) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#paginationContent').remove();
       }
 
       var data = this._getPaginationData();
@@ -5108,7 +5145,7 @@ var PaginationBlockRenderer = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductFilterHandler; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5148,8 +5185,8 @@ var ProductFilterHandler = /*#__PURE__*/function (_Aware) {
     _this = _super.call(this);
     _this.currentMinPrice = null;
     _this.currentMaxPrice = null;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('input', function (e) {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productFilterWrapper')) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('input', function (e) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productFilterWrapper')) {
         return;
       }
 
@@ -5197,8 +5234,8 @@ var ProductFilterHandler = /*#__PURE__*/function (_Aware) {
       var filterBlock = this.components.productFilterRenderer;
       var validValue = value < filterBlock.minPriceLimit ? filterBlock.minPriceLimit : value;
       validValue = validValue >= this.currentMaxPrice ? this.currentMaxPrice - 100 : validValue;
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput').value = validValue;
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').value = validValue;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput').value = validValue;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').value = validValue;
       this.currentMinPrice = validValue;
 
       if (validValue <= filterBlock.minPriceLimit) {
@@ -5215,8 +5252,8 @@ var ProductFilterHandler = /*#__PURE__*/function (_Aware) {
       var filterBlock = this.components.productFilterRenderer;
       var validValue = value > filterBlock.maxPriceLimit ? filterBlock.maxPriceLimit : value;
       validValue = validValue <= this.currentMinPrice ? this.currentMinPrice + 100 : validValue;
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceTextInput').value = validValue;
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').value = validValue;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceTextInput').value = validValue;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').value = validValue;
       this.currentMaxPrice = validValue;
 
       if (validValue >= filterBlock.maxPriceLimit) {
@@ -5271,7 +5308,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _html_productList_filterBlock_getFilterBlockHtml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../html/productList/filterBlock/getFilterBlockHtml */ "./resources/js2/html/productList/filterBlock/getFilterBlockHtml.js");
 /* harmony import */ var _html_productList_filterBlock_getPriceBlockHtmlForFilter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../html/productList/filterBlock/getPriceBlockHtmlForFilter */ "./resources/js2/html/productList/filterBlock/getPriceBlockHtmlForFilter.js");
 /* harmony import */ var _html_productList_filterBlock_getCategoriesBlockHtmlForFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../html/productList/filterBlock/getCategoriesBlockHtmlForFilter */ "./resources/js2/html/productList/filterBlock/getCategoriesBlockHtmlForFilter.js");
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../http/getJson */ "./resources/js2/http/getJson.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -5322,11 +5359,11 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
     _this.showCss = 'show_product_filter';
     _this.hideCss = 'hide_product_filter';
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.filter_icon__wrapper')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.filter_icon__wrapper')) {
       return _possibleConstructorReturn(_this);
     }
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.filter_icon__wrapper').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.filter_icon__wrapper').addEventListener('click', function (e) {
       e.stopPropagation();
 
       _this._render();
@@ -5337,7 +5374,7 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
   _createClass(ProductFilterRenderer, [{
     key: "_render",
     value: function _render() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
         this._firstRender();
 
         this._justSetVisibilityToTrue();
@@ -5351,7 +5388,7 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
     key: "_firstRender",
     value: function _firstRender() {
       var html = Object(_html_productList_filterBlock_getFilterBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])();
-      Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('body').insertAdjacentHTML('beforeend', html);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('body').insertAdjacentHTML('beforeend', html);
 
       this._setInitialDataForFilter();
 
@@ -5364,7 +5401,7 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
     value: function _listenBodyTag() {
       var _this2 = this;
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('body').addEventListener('click', function (e) {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('body').addEventListener('click', function (e) {
         _this2._setVisibilityToFalse(e);
       });
     }
@@ -5373,31 +5410,31 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
     value: function _listenThisBlock() {
       var _this3 = this;
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.product_filter__collapse_icon').addEventListener('click', function () {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.product_filter__collapse_icon').addEventListener('click', function () {
         _this3._setVisibilityToFalse2();
       });
-      Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.product_filter__ready_button').addEventListener('click', function () {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('.product_filter__ready_button').addEventListener('click', function () {
         _this3._setVisibilityToFalse2();
       });
     }
   }, {
     key: "_justSetVisibilityToTrue",
     value: function _justSetVisibilityToTrue() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
         return;
       }
 
       document.body.style.overflow = 'hidden';
-      Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
     }
   }, {
     key: "_setVisibilityToFalse",
     value: function _setVisibilityToFalse(e) {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
         return;
       }
 
-      if (e.target === Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
+      if (e.target === Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector)) {
         return;
       }
 
@@ -5410,7 +5447,7 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_setVisibilityToFalse2",
     value: function _setVisibilityToFalse2() {
-      Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
       document.body.style.overflow = 'auto';
     }
   }, {
@@ -5421,35 +5458,35 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
       this._getPriceRange().then(function (_ref) {
         var minPrice = _ref.minPrice,
             maxPrice = _ref.maxPrice;
-        var spinner = Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterPriceSectionSpinner');
+        var spinner = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterPriceSectionSpinner');
 
         if (spinner) {
           spinner.remove();
         }
 
         var html = Object(_html_productList_filterBlock_getPriceBlockHtmlForFilter__WEBPACK_IMPORTED_MODULE_1__["default"])();
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterPriceSectionWrapper').insertAdjacentHTML('afterbegin', html);
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#minPriceTextInput').value = minPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceTextInput').value = maxPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#minPriceRangeInput').min = minPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#minPriceRangeInput').max = maxPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#minPriceRangeInput').value = minPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').min = minPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').max = maxPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').value = maxPrice; // при загрузке страницы с сервера с поисковыми параметрами
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterPriceSectionWrapper').insertAdjacentHTML('afterbegin', html);
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#minPriceTextInput').value = minPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceTextInput').value = maxPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#minPriceRangeInput').min = minPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#minPriceRangeInput').max = maxPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#minPriceRangeInput').value = minPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').min = minPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').max = maxPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#maxPriceRangeInput').value = maxPrice; // при загрузке страницы с сервера с поисковыми параметрами
 
         _this4.components.searchSettingsObserverForFilterRenderer.renderPriceOnLoad();
       });
 
       this.components.categoryCache.getEntireList().then(function (categories) {
-        var spinner = Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterCategoriesSpinner');
+        var spinner = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterCategoriesSpinner');
 
         if (spinner) {
           spinner.remove();
         }
 
         var html = Object(_html_productList_filterBlock_getCategoriesBlockHtmlForFilter__WEBPACK_IMPORTED_MODULE_2__["default"])(categories);
-        Object(_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterCategoriesWrapper').insertAdjacentHTML('afterbegin', html); // при загрузке страницы с сервера с поисковыми параметрами
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_3__["default"])('#productFilterCategoriesWrapper').insertAdjacentHTML('afterbegin', html); // при загрузке страницы с сервера с поисковыми параметрами
 
         _this4.components.searchSettingsObserverForFilterRenderer.renderCategoryCheckboxes();
       });
@@ -5508,7 +5545,7 @@ var ProductFilterRenderer = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SearchSettingsObserverForProductFilterRenderer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5564,60 +5601,60 @@ var SearchSettingsObserverForProductFilterRenderer = /*#__PURE__*/function (_Awa
   }, {
     key: "_renderMinPrice",
     value: function _renderMinPrice() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput')) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput')) {
         return;
       }
 
       var settings = this.state.searchSettings;
 
       if (settings.minPrice === 0) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput').value = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').min;
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').value = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').min;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput').value = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').min;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').value = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').min;
       }
     }
   }, {
     key: "_renderMaxPrice",
     value: function _renderMaxPrice() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceTextInput')) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceTextInput')) {
         return;
       }
 
       var settings = this.state.searchSettings;
 
       if (settings.maxPrice === 0) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceTextInput').value = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').max;
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').value = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').max;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceTextInput').value = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').max;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').value = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').max;
       }
     } // при загрузке страницы с сервера с поисковыми параметрами
 
   }, {
     key: "renderPriceOnLoad",
     value: function renderPriceOnLoad() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput')) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput')) {
         return;
       }
 
       var settings = this.state.searchSettings;
 
       if (settings.minPrice > 0) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput').value = settings.minPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').value = settings.minPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceTextInput').value = settings.minPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#minPriceRangeInput').value = settings.minPrice;
       }
 
       if (settings.maxPrice > 0) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceTextInput').value = settings.maxPrice;
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').value = settings.maxPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceTextInput').value = settings.maxPrice;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#maxPriceRangeInput').value = settings.maxPrice;
       }
     }
   }, {
     key: "renderCategoryCheckboxes",
     value: function renderCategoryCheckboxes() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productFilterCategoriesWrapper')) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productFilterCategoriesWrapper')) {
         return;
       }
 
       var settings = this.state.searchSettings;
-      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productFilterCategoriesWrapper');
+      var wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productFilterCategoriesWrapper');
       var nodes = wrapper.querySelectorAll('[data-product-filter-category-checkbox-input]');
 
       var _iterator = _createForOfIteratorHelper(nodes),
@@ -5635,8 +5672,8 @@ var SearchSettingsObserverForProductFilterRenderer = /*#__PURE__*/function (_Awa
       }
 
       settings.categoriesIds.forEach(function (categoryId) {
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#filterCategory".concat(categoryId))) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#filterCategory".concat(categoryId)).checked = true;
+        if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#filterCategory".concat(categoryId))) {
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#filterCategory".concat(categoryId)).checked = true;
         }
       });
     }
@@ -5659,7 +5696,7 @@ var SearchSettingsObserverForProductFilterRenderer = /*#__PURE__*/function (_Awa
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TopTotalSearchParametersRenderer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5708,7 +5745,7 @@ var TopTotalSearchParametersRenderer = /*#__PURE__*/function (_Aware) {
     value: function _render() {
       var _this2 = this;
 
-      var h1Wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.h1_viewing_sorting_filtering_container');
+      var h1Wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.h1_viewing_sorting_filtering_container');
 
       if (!h1Wrapper) {
         return;
@@ -5716,7 +5753,7 @@ var TopTotalSearchParametersRenderer = /*#__PURE__*/function (_Aware) {
 
       var html = "<div class=\"top_total_parameters_of_search\"></div>";
       h1Wrapper.insertAdjacentHTML('afterend', html);
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.top_total_parameters_of_search').addEventListener('click', function (e) {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.top_total_parameters_of_search').addEventListener('click', function (e) {
         _this2._collapseIconHandler(e);
       });
     }
@@ -5767,7 +5804,7 @@ var TopTotalSearchParametersRenderer = /*#__PURE__*/function (_Aware) {
       var _this3 = this;
 
       var settings = this.state.searchSettings;
-      var container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.top_total_parameters_of_search');
+      var container = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.top_total_parameters_of_search');
 
       if (settings.minPrice > 0) {
         var minPrice = settings.minPrice;
@@ -5806,7 +5843,7 @@ var TopTotalSearchParametersRenderer = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_removeAllItems",
     value: function _removeAllItems() {
-      var container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.top_total_parameters_of_search');
+      var container = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.top_total_parameters_of_search');
 
       while (container.firstChild) {
         container.removeChild(container.lastChild);
@@ -5847,7 +5884,7 @@ var TopTotalSearchParametersRenderer = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TotalIndicatorOfFilterParameters; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -5886,7 +5923,7 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function (_Aware) {
 
     _this = _super.call(this);
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__wrapper')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__wrapper')) {
       return _possibleConstructorReturn(_this);
     }
 
@@ -5899,7 +5936,7 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function (_Aware) {
     key: "_render",
     value: function _render() {
       var html = "<div class=\"filter_icon__total_indicator display-none\"></div>";
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__wrapper').insertAdjacentHTML('beforeend', html);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__wrapper').insertAdjacentHTML('beforeend', html);
     }
   }, {
     key: "checkSearchSettings",
@@ -5909,11 +5946,11 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function (_Aware) {
       if (totalCount > 0) {
         this._setVisibilityToTrue();
 
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__total_indicator').innerText = totalCount;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__total_indicator').innerText = totalCount;
       } else {
         this._setVisibilityToFalse();
 
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__total_indicator').innerText = '0';
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__total_indicator').innerText = '0';
       }
     }
   }, {
@@ -5935,7 +5972,7 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_setVisibilityToTrue",
     value: function _setVisibilityToTrue() {
-      var indicator = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__total_indicator');
+      var indicator = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__total_indicator');
 
       if (indicator.classList.contains('display-none')) {
         indicator.classList.remove('display-none');
@@ -5944,7 +5981,7 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_setVisibilityToFalse",
     value: function _setVisibilityToFalse() {
-      var indicator = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__total_indicator');
+      var indicator = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.filter_icon__total_indicator');
 
       if (!indicator.classList.contains('display-none')) {
         indicator.classList.add('display-none');
@@ -5969,7 +6006,7 @@ var TotalIndicatorOfFilterParameters = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductSortMenuRenderer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _html_productList_sorterBlock_getSorterBlockHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../html/productList/sorterBlock/getSorterBlockHtml */ "./resources/js2/html/productList/sorterBlock/getSorterBlockHtml.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -6015,11 +6052,11 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
     _this.arrowSelector = '.sorting_modes__arrow';
     _this.arrowUpCss = 'sorting_modes__arrow_up';
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper')) {
       return _possibleConstructorReturn(_this);
     }
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper').addEventListener('click', function (e) {
       _this._render();
     });
     return _this;
@@ -6028,7 +6065,7 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
   _createClass(ProductSortMenuRenderer, [{
     key: "_render",
     value: function _render() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         this._firstRender();
 
         this._justSetVisibilityToTrue();
@@ -6042,7 +6079,7 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
     key: "_firstRender",
     value: function _firstRender() {
       var html = Object(_html_productList_sorterBlock_getSorterBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])();
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper').insertAdjacentHTML('beforeend', html);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper').insertAdjacentHTML('beforeend', html);
 
       this._listenBodyTag();
 
@@ -6053,7 +6090,7 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
     value: function _listenBodyTag() {
       var _this2 = this;
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
         _this2._setVisibilityToFalse(e);
       });
     }
@@ -6062,14 +6099,14 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
     value: function _listenThisBlock() {
       var _this3 = this;
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).addEventListener('click', function (e) {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).addEventListener('click', function (e) {
         e.stopPropagation();
 
         if (!e.target.dataset.sortValue) {
           return;
         }
 
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer').innerText = e.target.innerText;
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer').innerText = e.target.innerText;
 
         _this3.commit('setSortMode', e.target.dataset.sortValue);
 
@@ -6079,7 +6116,7 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_switchVisibility",
     value: function _switchVisibility() {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.contains(this.hideCss)) {
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.contains(this.hideCss)) {
         this._justSetVisibilityToTrue();
       } else {
         this._setVisibilityToFalse2();
@@ -6088,25 +6125,25 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_justSetVisibilityToTrue",
     value: function _justSetVisibilityToTrue() {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.hideCss);
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.add(this.showCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.hideCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.add(this.showCss);
 
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.contains(this.arrowUpCss)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.add(this.arrowUpCss);
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.contains(this.arrowUpCss)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.add(this.arrowUpCss);
       }
     }
   }, {
     key: "_setVisibilityToFalse",
     value: function _setVisibilityToFalse(e) {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
 
-      if (e.target === Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+      if (e.target === Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
         return;
       }
 
@@ -6119,11 +6156,11 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_setVisibilityToFalse2",
     value: function _setVisibilityToFalse2() {
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.showCss);
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.add(this.hideCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.remove(this.showCss);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.add(this.hideCss);
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.contains(this.arrowUpCss)) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.remove(this.arrowUpCss);
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.contains(this.arrowUpCss)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.arrowSelector).classList.remove(this.arrowUpCss);
       }
     }
   }]);
@@ -6145,7 +6182,7 @@ var ProductSortMenuRenderer = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SortMenuVisibilityManager; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -6197,20 +6234,20 @@ var SortMenuVisibilityManager = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_turnOffVisibility",
     value: function _turnOffVisibility() {
-      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper');
+      var wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper');
 
       if (wrapper && !wrapper.classList.contains('display-none')) {
         wrapper.classList.add('display-none');
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#relativeWrapperOfSortingValues')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#relativeWrapperOfSortingValues').remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#relativeWrapperOfSortingValues')) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#relativeWrapperOfSortingValues').remove();
       }
     }
   }, {
     key: "_turnOnVisibility",
     value: function _turnOnVisibility() {
-      var wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper');
+      var wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.sorting_modes__wrapper');
 
       if (wrapper && wrapper.classList.contains('display-none')) {
         wrapper.classList.remove('display-none');
@@ -6235,7 +6272,7 @@ var SortMenuVisibilityManager = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ViewMoreButtonManager; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -6322,7 +6359,7 @@ var ViewMoreButtonManager = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_turnOnVisibility",
     value: function _turnOnVisibility() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+      var viewMoreButton = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
 
       if (viewMoreButton && viewMoreButton.classList.contains("display-none")) {
         viewMoreButton.classList.remove("display-none");
@@ -6331,7 +6368,7 @@ var ViewMoreButtonManager = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_turnOffVisibility",
     value: function _turnOffVisibility() {
-      var viewMoreButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
+      var viewMoreButton = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewMoreButton');
 
       if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
         viewMoreButton.classList.add("display-none");
@@ -6445,7 +6482,7 @@ function getProductObject(product) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return quickProductDestructor; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -6460,11 +6497,11 @@ var quickProductDestructor = /*#__PURE__*/function () {
 
     _classCallCheck(this, quickProductDestructor);
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon')) {
       return;
     }
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.quick_view_manager__collapse_icon').addEventListener('click', function (e) {
       _this._removeQuickProduct();
     });
   }
@@ -6472,8 +6509,8 @@ var quickProductDestructor = /*#__PURE__*/function () {
   _createClass(quickProductDestructor, [{
     key: "_removeQuickProduct",
     value: function _removeQuickProduct() {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
       }
 
       document.body.style.overflow = 'auto';
@@ -6497,8 +6534,8 @@ var quickProductDestructor = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SingleProductQuickViewer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
 /* harmony import */ var _html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../html/singleProduct/index-getSingleProductHtml */ "./resources/js2/html/singleProduct/index-getSingleProductHtml.js");
 /* harmony import */ var _productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../productSingle/singleProductKit */ "./resources/js2/productSingle/singleProductKit.js");
@@ -6555,7 +6592,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function (_Aware) {
     _classCallCheck(this, SingleProductQuickViewer);
 
     _this = _super.call(this);
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
       if (e.target.dataset.quickView) {
         e.preventDefault();
         var productId = Number(e.target.dataset.quickView);
@@ -6572,14 +6609,14 @@ var SingleProductQuickViewer = /*#__PURE__*/function (_Aware) {
     key: "_showOneProduct",
     value: function _showOneProduct(productId) {
       // на страницах где нет списка товаров
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList')) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList')) {
         this._showOneFromServer(productId);
 
         return;
       } // на страницах где есть список товаров
 
 
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_1__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_1__["default"])()) {
         this._showOneFromCache(productId);
       } else {
         this._showOneFromServer(productId);
@@ -6617,7 +6654,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function (_Aware) {
         _this3._renderProduct(productObject);
 
         _this3.components.productCache.getOneDescription(productId).then(function (data) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productDescriptionContainer').innerText = data.description;
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productDescriptionContainer').innerText = data.description;
         });
       });
     }
@@ -6627,12 +6664,12 @@ var SingleProductQuickViewer = /*#__PURE__*/function (_Aware) {
       var singleProductHtml = Object(_html_singleProduct_index_getSingleProductHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product);
       var quickProductHtml = "<div id=\"quickProduct\" class=\"quick_view_manager__screen\">\n                                      <div class=\"quick_view_manager__content_wrapper\">\n                                          <div class=\"quick_view_manager__content\">\n                                              ".concat(singleProductHtml, "\n                                          </div>\n                                          <div class='quick_view_manager__collapse_icon'>&#215;</div>\n                                      </div>\n                                  </div>");
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
       }
 
       document.body.style.overflow = 'hidden';
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', quickProductHtml);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', quickProductHtml);
       Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_4__["default"])();
     }
   }]);
@@ -6654,7 +6691,7 @@ var SingleProductQuickViewer = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LargePhotoMaker; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -6671,15 +6708,15 @@ var LargePhotoMaker = /*#__PURE__*/function () {
 
     this.largePhotosHtmlWasDone = false;
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
       return;
     }
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
       return;
     }
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('mouseover', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('mouseover', function (e) {
       _this._makeLargePhotos();
     });
   }
@@ -6691,17 +6728,17 @@ var LargePhotoMaker = /*#__PURE__*/function () {
         return;
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotos')) {
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotos')) {
         return;
       }
 
       this.largePhotosHtmlWasDone = true;
-      var smallPhotosHtml = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos').innerHTML;
+      var smallPhotosHtml = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos').innerHTML;
       var largePhotosHtml = smallPhotosHtml.replaceAll("products-photos-size2", "products-photos-size5");
       largePhotosHtml = largePhotosHtml.replaceAll("s2-", "s5-");
       largePhotosHtml = largePhotosHtml.replaceAll("data-small-photo", "data-large-photo");
       largePhotosHtml = "<div id=\"largePhotos\" class=\"display-none\">".concat(largePhotosHtml, "</div>");
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml); //console.log(largePhotosHtml);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml); //console.log(largePhotosHtml);
     }
   }]);
 
@@ -6764,7 +6801,7 @@ export default class DesktopLargePhotoMaker {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DesktopLargePhotoViewer; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _needMobileVersionOfSingleProductKit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../needMobileVersionOfSingleProductKit */ "./resources/js2/productSingle/needMobileVersionOfSingleProductKit.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6781,12 +6818,12 @@ var DesktopLargePhotoViewer = /*#__PURE__*/function () {
 
     _classCallCheck(this, DesktopLargePhotoViewer);
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer')) {
       return;
     }
 
     this.mainPhotoRatio = 0;
-    this.photoContainer = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
+    this.photoContainer = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
     this.photoContainer.addEventListener('touchstart', function (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -6813,8 +6850,8 @@ var DesktopLargePhotoViewer = /*#__PURE__*/function () {
   _createClass(DesktopLargePhotoViewer, [{
     key: "_startViewLargePhoto",
     value: function _startViewLargePhoto() {
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').style.display = 'block';
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').className = 'photo__size5';
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').style.display = 'block';
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').className = 'photo__size5';
       var wrapper = this.photoContainer.getBoundingClientRect();
       this.mainPhotoRatio = 1600 / (wrapper.right - wrapper.left); // 1600px ширина фото под лупой
     }
@@ -6830,7 +6867,7 @@ var DesktopLargePhotoViewer = /*#__PURE__*/function () {
   }, {
     key: "_finishViewLargePhoto",
     value: function _finishViewLargePhoto() {
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').className = 'photo__size4';
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').className = 'photo__size4';
       this.photoContainer.scrollLeft = 0;
       this.photoContainer.scrollTop = 0;
     }
@@ -6853,7 +6890,7 @@ var DesktopLargePhotoViewer = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MainPhotoChanger; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -6868,15 +6905,15 @@ var MainPhotoChanger = /*#__PURE__*/function () {
 
     _classCallCheck(this, MainPhotoChanger);
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct')) {
       return;
     }
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
       return;
     }
 
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos').addEventListener('mouseover', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos').addEventListener('mouseover', function (e) {
       if (e.target.dataset.smallPhoto) {
         _this._changeMainPhoto(e.target.dataset.smallPhoto);
       }
@@ -6888,22 +6925,22 @@ var MainPhotoChanger = /*#__PURE__*/function () {
     value: function _changeMainPhoto(photoNumber) {
       var largePhotoSelector = "[data-large-photo=\"".concat(photoNumber, "\"]");
 
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(largePhotoSelector)) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(largePhotoSelector)) {
         return;
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').src = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])(largePhotoSelector).src;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').src = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(largePhotoSelector).src;
 
       this._refreshPhotoNumberIndicator(photoNumber);
     }
   }, {
     key: "_refreshPhotoNumberIndicator",
     value: function _refreshPhotoNumberIndicator(photoNumber) {
-      if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator')) {
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator')) {
         return;
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator').innerText = photoNumber;
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator').innerText = photoNumber;
     }
   }]);
 
@@ -6965,7 +7002,7 @@ export default class DesktopMainPhotoChanger {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SmallPhotoScroller; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -6980,13 +7017,13 @@ var SmallPhotoScroller = /*#__PURE__*/function () {
 
     _classCallCheck(this, SmallPhotoScroller);
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown')) {
       return;
     }
 
-    this.container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos');
-    this.buttonDown = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown');
-    this.buttonUp = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonUp');
+    this.container = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos');
+    this.buttonDown = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonDown');
+    this.buttonUp = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos-scrollButtonUp');
     this.buttonDown.addEventListener('click', function (e) {
       _this.scrollSmallPhoto(350, 'down');
     });
@@ -7072,7 +7109,7 @@ var SmallPhotoScroller = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MobileLargePhotoMaker; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -7093,17 +7130,17 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
 
     _classCallCheck(this, MobileLargePhotoMaker);
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
       return;
     }
 
     this.largePhotosHtmlWasDone = false;
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('touchstart', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('touchstart', function (e) {
       e.preventDefault();
 
       _this._makeLargePhotos();
     });
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('mouseover', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#singleProduct').addEventListener('mouseover', function (e) {
       _this._makeLargePhotos();
     });
   }
@@ -7115,7 +7152,7 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
         return;
       }
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#tapeOfLargePhotos')) {
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#tapeOfLargePhotos')) {
         return;
       }
 
@@ -7143,11 +7180,11 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
 
       var largePhotosHtml = "<div id=\"tapeOfLargePhotos\" class=\"display-flex\">\n                                    ".concat(photoArr.join(''), "\n                                 </div>");
 
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto')) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto')) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhoto').remove();
       }
 
-      Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').insertAdjacentHTML('afterbegin', largePhotosHtml);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer').insertAdjacentHTML('afterbegin', largePhotosHtml);
     }
   }]);
 
@@ -7168,7 +7205,7 @@ var MobileLargePhotoMaker = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MobileLargePhotoScroller; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -7183,14 +7220,14 @@ var MobileLargePhotoScroller = /*#__PURE__*/function () {
 
     _classCallCheck(this, MobileLargePhotoScroller);
 
-    if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
+    if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#smallPhotos')) {
       return;
     }
 
-    this.container = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
-    this.buttonLeft = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollLeftButton');
-    this.buttonRight = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollRightButton');
-    this.photoNumberIndicator = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator');
+    this.container = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mainPhotoContainer');
+    this.buttonLeft = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollLeftButton');
+    this.buttonRight = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollRightButton');
+    this.photoNumberIndicator = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#photoNumberIndicator');
     this.indexOfMainPhoto = 0;
     this.numberOfPhotos = this._getPhotoCount();
     this.buttonLeft.addEventListener('click', function (e) {
@@ -7310,11 +7347,11 @@ var MobileLargePhotoScroller = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return needMobileVersionOfSingleProductKit; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 
 function needMobileVersionOfSingleProductKit() {
-  var largePhotoScrollRightButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollRightButton');
-  var largePhotoScrollLeftButton = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollLeftButton');
+  var largePhotoScrollRightButton = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollRightButton');
+  var largePhotoScrollLeftButton = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#largePhotoScrollLeftButton');
 
   if (!largePhotoScrollRightButton && !largePhotoScrollLeftButton) {
     return false;
@@ -7591,8 +7628,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductCache; });
 /* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
 /* harmony import */ var _message_absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../message/absoluteFlashMessage */ "./resources/js2/message/absoluteFlashMessage.js");
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -7651,8 +7688,8 @@ var ProductCache = /*#__PURE__*/function (_Aware) {
     _classCallCheck(this, ProductCache);
 
     _this = _super.call(this);
-    var productListWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#productList');
-    var viewedProductsSummaryWrapper = Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#viewedProductsSummaryWrapper');
+    var productListWrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#productList');
+    var viewedProductsSummaryWrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_2__["default"])('#viewedProductsSummaryWrapper');
 
     if (!productListWrapper && !viewedProductsSummaryWrapper) {
       return _possibleConstructorReturn(_this);
@@ -7666,8 +7703,8 @@ var ProductCache = /*#__PURE__*/function (_Aware) {
     _this.oneProductUrl = '/public-js/one-product/';
     _this.productsWereCachedOnPageLoading = false;
 
-    if (productListWrapper && Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
-      Object(_el__WEBPACK_IMPORTED_MODULE_2__["default"])('body').addEventListener('mouseover', function (e) {
+    if (productListWrapper && Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_2__["default"])('body').addEventListener('mouseover', function (e) {
         _this._loadEntireListOnPageLoading();
       });
     }
@@ -7902,7 +7939,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SourceOfFilteredProducts; });
 /* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
 /* harmony import */ var _message_absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../message/absoluteFlashMessage */ "./resources/js2/message/absoluteFlashMessage.js");
-/* harmony import */ var _allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../allProductsMustBeCached */ "./resources/js2/allProductsMustBeCached.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -7957,7 +7994,7 @@ var SourceOfFilteredProducts = /*#__PURE__*/function (_Aware) {
   _createClass(SourceOfFilteredProducts, [{
     key: "getFiltered",
     value: function getFiltered() {
-      if (Object(_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_2__["default"])()) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_2__["default"])()) {
         return this._getFilteredProductsFromCache();
       } else {
         return this._getFilteredProductsFromServer();
@@ -8028,43 +8065,6 @@ var SourceOfFilteredProducts = /*#__PURE__*/function (_Aware) {
 
 /***/ }),
 
-/***/ "./resources/js2/scrollDocument.js":
-/*!*****************************************!*\
-  !*** ./resources/js2/scrollDocument.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return scrollDocument; });
-function scrollDocument(distance, direction) {
-  var coveredDistance = 0; // пройденное расстояние
-
-  _scrollDocument(distance, coveredDistance, direction);
-}
-
-function _scrollDocument(distance, coveredDistance, direction) {
-  if (coveredDistance > distance) {
-    return;
-  }
-
-  var step = 3; // px
-
-  if (direction === 'down') {
-    window.scrollBy(0, step);
-  } else {
-    window.scrollBy(0, -step);
-  }
-
-  coveredDistance += step;
-  setTimeout(function () {
-    _scrollDocument(distance, coveredDistance, direction);
-  }, 1);
-}
-
-/***/ }),
-
 /***/ "./resources/js2/settings/settingsSetterOnPageLoad.js":
 /*!************************************************************!*\
   !*** ./resources/js2/settings/settingsSetterOnPageLoad.js ***!
@@ -8075,7 +8075,7 @@ function _scrollDocument(distance, coveredDistance, direction) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SettingsSetterOnPageLoad; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -8113,7 +8113,7 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
     _classCallCheck(this, SettingsSetterOnPageLoad);
 
     _this = _super.call(this);
-    _this.wrapper = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); // задержка для дать время установить указатель на app при загрузке
+    _this.wrapper = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList'); // задержка для дать время установить указатель на app при загрузке
 
     setTimeout(function () {
       _this._initSettings();
@@ -8124,7 +8124,7 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
   _createClass(SettingsSetterOnPageLoad, [{
     key: "_initSettings",
     value: function _initSettings() {
-      var sectionName = this._ucFirst(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.productSectionName);
+      var sectionName = this._ucFirst(Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.productSectionName);
 
       if (!sectionName) {
         return;
@@ -8213,8 +8213,8 @@ var SettingsSetterOnPageLoad = /*#__PURE__*/function (_Aware) {
           priceDown: 'Сначала дорогие'
         };
 
-        if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer')) {
-          Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer').innerText = book[sortValue];
+        if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer')) {
+          Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#sortingModeValueContainer').innerText = book[sortValue];
         } // разблокировать после установки settings
 
 
@@ -8731,7 +8731,7 @@ var ViewedProductsAppender = /*#__PURE__*/function (_Aware) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ViewedProductsSummaryMaker; });
-/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../el */ "./resources/js2/el.js");
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
 /* harmony import */ var _http_getJson__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../http/getJson */ "./resources/js2/http/getJson.js");
 /* harmony import */ var _html_viewedProductsSummary_getViewedProductsItemHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../html/viewedProductsSummary/getViewedProductsItemHtml */ "./resources/js2/html/viewedProductsSummary/getViewedProductsItemHtml.js");
 /* harmony import */ var _html_viewedProductsSummary_getViewedProductsHeaderHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../html/viewedProductsSummary/getViewedProductsHeaderHtml */ "./resources/js2/html/viewedProductsSummary/getViewedProductsHeaderHtml.js");
@@ -8789,7 +8789,7 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
     _classCallCheck(this, ViewedProductsSummaryMaker);
 
     _this = _super.call(this);
-    _this.wrapperOfSummary = Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper');
+    _this.wrapperOfSummary = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryWrapper');
 
     if (!_this.wrapperOfSummary) {
       return _possibleConstructorReturn(_this);
@@ -8799,7 +8799,7 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
     _this.viewedProductsSummaryWasCreated = false;
     _this.summaryListUrl = '/public-js/viewed-product-summary-list';
     _this.summaryList = [];
-    Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('mouseover', function (e) {
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('mouseover', function (e) {
       _this._firstCreation();
     });
     return _this;
@@ -8851,7 +8851,7 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_renderHeader",
     value: function _renderHeader() {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryHeader')) {
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedProductsSummaryHeader')) {
         return;
       }
 
@@ -8861,8 +8861,8 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
   }, {
     key: "_renderBody",
     value: function _renderBody(products) {
-      if (Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent))) {
-        Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent)).remove();
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent))) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent)).remove();
       }
 
       var itemsHtmlArr = products.map(function (product) {

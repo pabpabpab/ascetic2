@@ -1,7 +1,7 @@
 import getFilterBlockHtml from "./../../html/productList/filterBlock/getFilterBlockHtml";
 import getPriceBlockHtmlForFilter from "./../../html/productList/filterBlock/getPriceBlockHtmlForFilter";
 import getCategoriesBlockHtmlForFilter from "./../../html/productList/filterBlock/getCategoriesBlockHtmlForFilter";
-import el from "../../el";
+import el from "../../auxiliaryFunctions/el";
 import getJson from "../../http/getJson";
 import Aware from "../../parentClasses/app/aware";
 

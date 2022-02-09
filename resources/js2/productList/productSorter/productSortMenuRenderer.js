@@ -1,4 +1,4 @@
-import el from "../../el";
+import el from "../../auxiliaryFunctions/el";
 import getSorterBlockHtml from "../../html/productList/sorterBlock/getSorterBlockHtml";
 import Aware from "../../parentClasses/app/aware";
 

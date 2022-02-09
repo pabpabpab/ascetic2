@@ -1,4 +1,4 @@
-import el from './../el';
+import el from '../auxiliaryFunctions/el';
 import getJson from "./../http/getJson";
 import getViewedProductsItemHtml from "./../html/viewedProductsSummary/getViewedProductsItemHtml";
 import getViewedProductsHeaderHtml from "./../html/viewedProductsSummary/getViewedProductsHeaderHtml";

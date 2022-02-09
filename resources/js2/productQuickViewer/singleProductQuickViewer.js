@@ -1,5 +1,5 @@
-import el from './../el';
-import allProductsMustBeCached from "../allProductsMustBeCached";
+import el from '../auxiliaryFunctions/el';
+import allProductsMustBeCached from "../auxiliaryFunctions/allProductsMustBeCached";
 import getProductObject from "./../productObject/getProductObject";
 import getSingleProductHtml from "./../html/singleProduct/index-getSingleProductHtml";
 import singleProductKit from "./../productSingle/singleProductKit";

@@ -1,4 +1,4 @@
-import el from '../el';
+import el from '../auxiliaryFunctions/el';
 import VisibleBlock from "../parentClasses/visibleBlock";
 import getAbsoluteMessageWithCloseIconHtml from "../html/getAbsoluteMessageWithCloseIconHtml";
 

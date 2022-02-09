@@ -1,9 +1,9 @@
-import el from '../../el';
+import el from '../../auxiliaryFunctions/el';
 import getProductObject from "../../productObject/getProductObject";
 import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
-import scrollDocument from "../../scrollDocument";
+import scrollDocument from "../../auxiliaryFunctions/scrollDocument";
 import FrequentAbsoluteFlashMessage from "../../message/frequentAbsoluteFlashMessage";
-import allProductsMustBeCached from "../../allProductsMustBeCached";
+import allProductsMustBeCached from "../../auxiliaryFunctions/allProductsMustBeCached";
 import Aware from "../../parentClasses/app/aware";
 
 export default class RendererOfViewedProductsByLink extends Aware {

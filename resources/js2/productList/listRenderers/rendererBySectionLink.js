@@ -1,8 +1,8 @@
-import el from '../../el';
+import el from '../../auxiliaryFunctions/el';
 import getProductObject from "../../productObject/getProductObject";
 import getProductsItemHtml from "../../html/productList/productListItem/index-getProductsItemHtml";
-import scrollDocument from "../../scrollDocument";
-import allProductsMustBeCached from "../../allProductsMustBeCached";
+import scrollDocument from "../../auxiliaryFunctions/scrollDocument";
+import allProductsMustBeCached from "../../auxiliaryFunctions/allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../message/frequentAbsoluteFlashMessage";
 import Aware from "../../parentClasses/app/aware";
 

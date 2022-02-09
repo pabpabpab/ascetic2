@@ -1,4 +1,4 @@
-import el from '../el';
+import el from '../auxiliaryFunctions/el';
 import AbsoluteForm from "../parentClasses/absoluteForm";
 import forgotPasswordValidation from "./validation/forgotPasswordValidation";
 import getForgotPasswordFormHtml from "../html/auth/getForgotPasswordFormHtml";

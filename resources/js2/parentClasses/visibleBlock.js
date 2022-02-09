@@ -1,4 +1,4 @@
-import el from './../el';
+import el from '../auxiliaryFunctions/el';
 
 export default class VisibleBlock {
 

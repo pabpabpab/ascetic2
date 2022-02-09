@@ -1,4 +1,4 @@
-import el from '../el';
+import el from '../auxiliaryFunctions/el';
 import setCookie from '../cookie/setCookie';
 import getCookie from '../cookie/getCookie';
 import postJson from "../http/postJson";

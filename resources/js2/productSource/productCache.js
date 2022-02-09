@@ -1,7 +1,7 @@
 import getJson from "./../http/getJson";
 import AbsoluteFlashMessage from "../message/absoluteFlashMessage";
-import el from "./../el";
-import allProductsMustBeCached from "./../allProductsMustBeCached";
+import el from "../auxiliaryFunctions/el";
+import allProductsMustBeCached from "../auxiliaryFunctions/allProductsMustBeCached";
 import Aware from "../parentClasses/app/aware";
 
 export default class ProductCache extends Aware {

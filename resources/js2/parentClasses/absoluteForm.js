@@ -1,4 +1,4 @@
-import el from './../el';
+import el from '../auxiliaryFunctions/el';
 import postJson from "../http/postJson";
 import VisibleBlockByClick from "./visibleBlockByClick";
 

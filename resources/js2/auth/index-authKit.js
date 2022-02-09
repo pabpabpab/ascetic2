@@ -1,4 +1,4 @@
-import el from "../el";
+import el from "../auxiliaryFunctions/el";
 import AuthAbsoluteMenu from "./authAbsoluteMenu";
 import PasswordTypeChanger from "./passwordTypeChanger";
 import AbsoluteFlashMessage from "../message/absoluteFlashMessage";
