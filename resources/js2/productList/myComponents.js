@@ -11,7 +11,7 @@ import SourceOfFilteredProducts from "../productSource/sourceOfFilteredProducts"
 import RendererOfProductsByViewMoreButton from "./listRenderers/rendererByViewMoreButton";
 import PaginationBlockRenderer from "./paginationRenderer/paginationBlockRenderer";
 import RendererOfProductsByPaginationButton from "./listRenderers/rendererByPaginationButton";
-import RendererOfProductsByMenuLink from "./listRenderers/rendererByMenuLink";
+import RendererOfProductsBySectionLink from "./listRenderers/rendererBySectionLink";
 import RendererOfViewedProductsByLink from "./listRenderers/rendererOfViewedProductsByLink";
 import RendererBySearchSettings from "./listRenderers/rendererBySearchSettings";
 import RendererBySortSettings from "./listRenderers/rendererBySortSettings";
@@ -51,7 +51,7 @@ export default {
     rendererOfProductsByViewMoreButton: new RendererOfProductsByViewMoreButton(),
     rendererOfPaginationBlock: new PaginationBlockRenderer(),
     rendererOfProductsByPaginationButton: new RendererOfProductsByPaginationButton(),
-    rendererOfProductsByMenuLink: new RendererOfProductsByMenuLink(),
+    rendererOfProductsBySectionLink: new RendererOfProductsBySectionLink(),
     rendererOfViewedProductsByLink: new RendererOfViewedProductsByLink(),
     rendererBySearchSettings: new RendererBySearchSettings(),
     rendererBySortSettings: new RendererBySortSettings(),

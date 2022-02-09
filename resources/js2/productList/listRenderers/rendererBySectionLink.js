@@ -6,7 +6,7 @@ import allProductsMustBeCached from "../../allProductsMustBeCached";
 import FrequentAbsoluteFlashMessage from "../../message/frequentAbsoluteFlashMessage";
 import Aware from "../../parentClasses/app/aware";
 
-export default class RendererByMenuLink extends Aware {
+export default class RendererBySectionLink extends Aware {
 
     constructor() {
         super();
