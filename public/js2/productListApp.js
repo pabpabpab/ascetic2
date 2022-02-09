@@ -1635,7 +1635,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getListOfCategoriesHtml; });
 function getListOfCategoriesHtml(categoriesArr) {
   var catsArr = categoriesArr.map(function (item) {
-    return "<a href='/products/".concat(item.slug, "' class='product_item__name__link'>").concat(item.name, "</a>");
+    return "<a href='/products/".concat(item.slug, "'\n                   data-link-section-name='productCategory'\n                   data-link-category-id='").concat(item.id, "'\n                   data-link-category-slug='").concat(item.slug, "'\n                   data-link-category-name='").concat(item.name, "'\n                   class='product_item__name__link'>\n                      ").concat(item.name, "\n                </a>");
   });
   return catsArr.join(', ');
 }
@@ -1799,7 +1799,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getListOfCategoriesHtml; });
 function getListOfCategoriesHtml(categoriesArr) {
   var catsArr = categoriesArr.map(function (item) {
-    return "<a href='/products/".concat(item.slug, "' class='single_product__category_item__link'>").concat(item.name, "</a>");
+    return "<a href='/products/".concat(item.slug, "'\n                   data-link-section-name='productCategory'\n                   data-link-category-id='").concat(item.id, "'\n                   data-link-category-slug='").concat(item.slug, "'\n                   data-link-category-name='").concat(item.name, "'\n                   class='single_product__category_item__link'>\n                      ").concat(item.name, "\n                </a>");
   });
   return catsArr.join(', ');
 }
@@ -3457,7 +3457,9 @@ var RendererByMenuLink = /*#__PURE__*/function (_Aware) {
     _this.messenger = new _message_frequentAbsoluteFlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]();
     _this.disabledRequest = false;
     Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
-      if (e.target.dataset.menuLinkSectionName) {
+      var dataset = e.target.dataset;
+
+      if (dataset.menuLinkSectionName || dataset.linkSectionName) {
         e.preventDefault();
 
         _this.commit('resetSearchSettings');
@@ -3477,13 +3479,16 @@ var RendererByMenuLink = /*#__PURE__*/function (_Aware) {
   _createClass(RendererByMenuLink, [{
     key: "_setSectionSettings",
     value: function _setSectionSettings(e) {
-      var sectionName = e.target.dataset.menuLinkSectionName;
+      var _dataset$menuLinkSect;
+
+      var dataset = e.target.dataset;
+      var sectionName = (_dataset$menuLinkSect = dataset.menuLinkSectionName) !== null && _dataset$menuLinkSect !== void 0 ? _dataset$menuLinkSect : dataset.linkSectionName;
 
       if (sectionName === 'allProducts') {
         this.commit('setSectionData', {
           sectionName: sectionName,
           additionalData: '',
-          h1Text: e.target.dataset.menuLinkTitleText
+          h1Text: dataset.menuLinkTitleText
         });
         return;
       }
@@ -3492,15 +3497,17 @@ var RendererByMenuLink = /*#__PURE__*/function (_Aware) {
         this.commit('setSectionData', {
           sectionName: sectionName,
           additionalData: '',
-          h1Text: e.target.dataset.menuLinkTitleText
+          h1Text: dataset.menuLinkTitleText
         });
         return;
       }
 
       if (sectionName === 'productCategory') {
-        var categoryId = e.target.dataset.menuLinkCategoryId;
-        var categorySlug = e.target.dataset.menuLinkCategorySlug;
-        var categoryName = e.target.dataset.menuLinkCategoryName;
+        var _dataset$menuLinkCate, _dataset$menuLinkCate2, _dataset$menuLinkCate3;
+
+        var categoryId = (_dataset$menuLinkCate = dataset.menuLinkCategoryId) !== null && _dataset$menuLinkCate !== void 0 ? _dataset$menuLinkCate : dataset.linkCategoryId;
+        var categorySlug = (_dataset$menuLinkCate2 = dataset.menuLinkCategorySlug) !== null && _dataset$menuLinkCate2 !== void 0 ? _dataset$menuLinkCate2 : dataset.linkCategorySlug;
+        var categoryName = (_dataset$menuLinkCate3 = dataset.menuLinkCategoryName) !== null && _dataset$menuLinkCate3 !== void 0 ? _dataset$menuLinkCate3 : dataset.linkCategoryName;
         this.commit('setSectionData', {
           sectionName: sectionName,
           additionalData: "".concat(categoryId, ";").concat(categorySlug, ";").concat(categoryName),

@@ -64,7 +64,12 @@
                                     'category' => $category->slug
                                 ]);
                             @endphp
-                            <a href="{{ $catUrl }}" class="product_item__name__link">
+                            <a href="{{ $catUrl }}"
+                               data-link-section-name="productCategory"
+                               data-link-category-id="{{ $category->id }}"
+                               data-link-category-slug="{{ $category->slug }}"
+                               data-link-category-name="{{ $category->name }}"
+                               class="product_item__name__link">
                                 {{ $category->name }}</a>@if (!$loop->last), @endif
                         @endforeach
                     </p>

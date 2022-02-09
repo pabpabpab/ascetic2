@@ -1427,7 +1427,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getListOfCategoriesHtml; });
 function getListOfCategoriesHtml(categoriesArr) {
   var catsArr = categoriesArr.map(function (item) {
-    return "<a href='/products/".concat(item.slug, "' class='single_product__category_item__link'>").concat(item.name, "</a>");
+    return "<a href='/products/".concat(item.slug, "'\n                   data-link-section-name='productCategory'\n                   data-link-category-id='").concat(item.id, "'\n                   data-link-category-slug='").concat(item.slug, "'\n                   data-link-category-name='").concat(item.name, "'\n                   class='single_product__category_item__link'>\n                      ").concat(item.name, "\n                </a>");
   });
   return catsArr.join(', ');
 }

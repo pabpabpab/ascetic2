@@ -16,7 +16,8 @@ export default class RendererByMenuLink extends Aware {
         this.disabledRequest = false;
 
         el('body').addEventListener('click', (e) => {
-            if (e.target.dataset.menuLinkSectionName) {
+            const dataset = e.target.dataset;
+            if (dataset.menuLinkSectionName || dataset.linkSectionName) {
                 e.preventDefault();
                 this.commit('resetSearchSettings');
                 this._setSectionSettings(e);
@@ -28,12 +29,13 @@ export default class RendererByMenuLink extends Aware {
     }
 
     _setSectionSettings(e) {
-        const sectionName = e.target.dataset.menuLinkSectionName;
+        const dataset = e.target.dataset;
+        const sectionName = dataset.menuLinkSectionName ?? dataset.linkSectionName;
         if (sectionName === 'allProducts') {
             this.commit('setSectionData', {
                 sectionName: sectionName,
                 additionalData: '',
-                h1Text: e.target.dataset.menuLinkTitleText,
+                h1Text: dataset.menuLinkTitleText,
             });
             return;
         }
@@ -41,14 +43,14 @@ export default class RendererByMenuLink extends Aware {
             this.commit('setSectionData', {
                 sectionName: sectionName,
                 additionalData: '',
-                h1Text: e.target.dataset.menuLinkTitleText,
+                h1Text: dataset.menuLinkTitleText,
             });
             return;
         }
         if (sectionName === 'productCategory') {
-            const categoryId = e.target.dataset.menuLinkCategoryId;
-            const categorySlug = e.target.dataset.menuLinkCategorySlug;
-            const categoryName = e.target.dataset.menuLinkCategoryName;
+            const categoryId = dataset.menuLinkCategoryId ?? dataset.linkCategoryId;
+            const categorySlug = dataset.menuLinkCategorySlug ?? dataset.linkCategorySlug;
+            const categoryName = dataset.menuLinkCategoryName ?? dataset.linkCategoryName;
             this.commit('setSectionData', {
                 sectionName: sectionName,
                 additionalData: `${categoryId};${categorySlug};${categoryName}`,
