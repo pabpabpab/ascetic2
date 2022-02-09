@@ -32,8 +32,7 @@
                     data-big-photo-version="desktop"
                     class="single_product__big_photo__content"
                     v-html="getMainPhoto"
-                    @mouseover="startViewLargePhoto()"
-                    @mousemove="viewLargePhoto($event)"
+                    @mousemove="startViewLargePhoto();viewLargePhoto($event)"
                     @mouseleave="showInitialPhoto()">
                 </div>
 
@@ -142,6 +141,7 @@ export default {
             indexOfMainPhoto: 0,
             mainPhotoSizeIndex: 4,
             mainPhotoRatio: 0,
+            viewingLargePhotoWasStarted: false,
         }
     },
     computed: {

@@ -4,6 +4,10 @@ export default {
         if (!this.$refs.mainPhotoDiv) {
             return;
         }
+        if (this.viewingLargePhotoWasStarted) {
+            return;
+        }
+        this.viewingLargePhotoWasStarted = true;
         const wrapper = this.$refs.mainPhotoDiv.getBoundingClientRect();
         //this.$refs.mainPhotoDiv.style.height = (wrapper.bottom - wrapper.top) + 'px';
         this.mainPhotoRatio = 1600/(wrapper.right - wrapper.left); // 1600px ширина фото под лупой
@@ -27,5 +31,6 @@ export default {
         this.mainPhotoSizeIndex = 4;
         this.$refs.mainPhotoDiv.scrollLeft = 0;
         this.$refs.mainPhotoDiv.scrollTop = 0;
+        this.viewingLargePhotoWasStarted = false;
     },
 }

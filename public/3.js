@@ -684,7 +684,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 
@@ -701,7 +700,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       indexOfMainPhoto: 0,
       mainPhotoSizeIndex: 4,
-      mainPhotoRatio: 0
+      mainPhotoRatio: 0,
+      viewingLargePhotoWasStarted: false
     };
   },
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['imgFolderPrefix'])), _someComputed_computedForSingleProduct__WEBPACK_IMPORTED_MODULE_1__["default"]), {}, {
@@ -1453,11 +1453,9 @@ var render = function() {
               attrs: { "data-big-photo-version": "desktop" },
               domProps: { innerHTML: _vm._s(_vm.getMainPhoto) },
               on: {
-                mouseover: function($event) {
-                  return _vm.startViewLargePhoto()
-                },
                 mousemove: function($event) {
-                  return _vm.viewLargePhoto($event)
+                  _vm.startViewLargePhoto()
+                  _vm.viewLargePhoto($event)
                 },
                 mouseleave: function($event) {
                   return _vm.showInitialPhoto()
@@ -2252,6 +2250,11 @@ __webpack_require__.r(__webpack_exports__);
       return;
     }
 
+    if (this.viewingLargePhotoWasStarted) {
+      return;
+    }
+
+    this.viewingLargePhotoWasStarted = true;
     var wrapper = this.$refs.mainPhotoDiv.getBoundingClientRect(); //this.$refs.mainPhotoDiv.style.height = (wrapper.bottom - wrapper.top) + 'px';
 
     this.mainPhotoRatio = 1600 / (wrapper.right - wrapper.left); // 1600px ширина фото под лупой
@@ -2273,6 +2276,7 @@ __webpack_require__.r(__webpack_exports__);
     this.mainPhotoSizeIndex = 4;
     this.$refs.mainPhotoDiv.scrollLeft = 0;
     this.$refs.mainPhotoDiv.scrollTop = 0;
+    this.viewingLargePhotoWasStarted = false;
   }
 });
 
