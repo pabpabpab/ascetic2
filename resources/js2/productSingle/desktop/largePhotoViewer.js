@@ -1,5 +1,4 @@
 import el from '../../auxiliaryFunctions/el';
-import needMobileVersion from "../needMobileVersionOfSingleProductKit";
 
 export default class DesktopLargePhotoViewer {
     constructor() {
@@ -7,6 +6,7 @@ export default class DesktopLargePhotoViewer {
             return;
         }
 
+        this.viewingLargePhotoWasStarted = false;
         this.mainPhotoRatio = 0;
         this.photoContainer = el('#mainPhotoContainer');
 
@@ -23,10 +23,10 @@ export default class DesktopLargePhotoViewer {
             e.stopPropagation();
         });
 
-        this.photoContainer.addEventListener('mouseover', (e) => {
-            this._startViewLargePhoto();
-        });
         this.photoContainer.addEventListener('mousemove', (e) => {
+            if (!this.viewingLargePhotoWasStarted) {
+                this._startViewLargePhoto();
+            }
             this._viewLargePhoto(e);
         });
         this.photoContainer.addEventListener('mouseleave', (e) => {
@@ -35,6 +35,7 @@ export default class DesktopLargePhotoViewer {
     }
 
     _startViewLargePhoto() {
+        this.viewingLargePhotoWasStarted = true;
         el('#mainPhotoContainer').style.display = 'block';
         el('#mainPhoto').className = 'photo__size5';
 
@@ -54,6 +55,7 @@ export default class DesktopLargePhotoViewer {
     }
 
     _finishViewLargePhoto() {
+        this.viewingLargePhotoWasStarted = false;
         el('#mainPhoto').className = 'photo__size4';
         this.photoContainer.scrollLeft = 0;
         this.photoContainer.scrollTop = 0;

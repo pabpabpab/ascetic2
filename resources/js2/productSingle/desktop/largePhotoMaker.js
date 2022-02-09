@@ -36,7 +36,6 @@ export default class LargePhotoMaker {
 
 
 /*
-
 export default class DesktopLargePhotoMaker {
     constructor() {
         this.largePhotosHtmlWasDone = false;
@@ -58,21 +57,4 @@ export default class DesktopLargePhotoMaker {
             this._makeLargePhotos();
         });
     }
-
-    _makeLargePhotos() {
-        if (this.largePhotosHtmlWasDone) {
-            return;
-        }
-        this.largePhotosHtmlWasDone = true;
-
-        const smallPhotosHtml = el('#smallPhotos').innerHTML;
-        let largePhotosHtml = smallPhotosHtml.replaceAll("products-photos-size2", "products-photos-size5");
-        largePhotosHtml = largePhotosHtml.replaceAll("s2-", "s5-");
-        largePhotosHtml = largePhotosHtml.replaceAll("data-small-photo", "data-large-photo");
-        largePhotosHtml = `<div id="largePhotos" class="display-none">${largePhotosHtml}</div>`;
-        el('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml);
-        //console.log(largePhotosHtml);
-    }
-}
-
- */
+*/

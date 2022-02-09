@@ -35,7 +35,6 @@ export default class MainPhotoChanger {
 
 
 /*
-
 export default class DesktopMainPhotoChanger {
     constructor() {
         el('body').addEventListener('mouseover', (e) => {
@@ -57,20 +56,5 @@ export default class DesktopMainPhotoChanger {
             this._changeMainPhoto(e.target.dataset.smallPhoto);
         });
     }
-
-    _changeMainPhoto(photoNumber) {
-        const largePhotoSelector = `[data-large-photo="${photoNumber}"]`;
-        el('#mainPhoto').src = el(largePhotoSelector).src;
-
-        this._refreshPhotoNumberIndicator(photoNumber);
-    }
-
-    _refreshPhotoNumberIndicator(photoNumber) {
-        if (!el('#photoNumberIndicator')) {
-            return;
-        }
-        el('#photoNumberIndicator').innerText = photoNumber;
-    }
 }
-
- */
+*/
