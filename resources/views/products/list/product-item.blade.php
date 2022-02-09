@@ -21,35 +21,26 @@
     <div class="product_item">
         <div class="product_item__content">
 
-            @if ($photoSrc)
-                <div class="product_item__photo_wrapper">
-                    <div class="product_item__quick_view_link__wrapper">
-                        <a data-quick-view="{{ $product->id }}" href='{{ $singleProductUrl }}' class="product_item__quick_view_link">
-                            Быстрый просмотр
-                        </a>
-                    </div>
-
-                    <a href='{{ $singleProductUrl }}'>
-                        <img src="{{ $photoSrc }}"
-                             alt="{{ $product->name }}"
-                             data-product-item-link="{{ $product->id }}"
-                             class="photo__size3"/>
+            <div class="product_item__photo_wrapper">
+                <div class="product_item__quick_view_link__wrapper">
+                    <a data-quick-view="{{ $product->id }}" href='{{ $singleProductUrl }}' class="product_item__quick_view_link">
+                        Быстрый просмотр
                     </a>
                 </div>
-            @else
-                <div class="product_item__photo_wrapper">
-                    <div class="product_item__quick_view_link__wrapper">
-                        <a data-quick-view="{{ $product->id }}" href='{{ $singleProductUrl }}' class="product_item__quick_view_link">
-                            Быстрый просмотр
-                        </a>
-                    </div>
 
+                @if ($photoSrc)
+                    <a href='{{ $singleProductUrl }}'>
+                        <img src="{{ $photoSrc }}"
+                            alt="{{ $product->name }}"
+                            data-product-item-link="{{ $product->id }}"
+                            class="photo__size3"/>
+                    </a>
+                @else
                     <div class="product_item__no_photo">
                         НЕТ ФОТО
                     </div>
-                </div>
-            @endif
-
+                @endif
+            </div>
 
             <div>
                 <div class="product_item__name">

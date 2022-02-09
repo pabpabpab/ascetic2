@@ -14,11 +14,21 @@ export default function getProductsItemHtml(product, viewMode) {
 
                   <div class="product_item__content">
 
-                      ${
-                        Boolean(product.photos)
-                            ? getPhotoBlockHtml(product, viewMode)
-                            : getNoPhotoBlockHtml(product)
-                       }
+                      <div class="product_item__photo_wrapper">
+                         <div class="product_item__quick_view_link__wrapper">
+                            <a data-quick-view="${product.id}"
+                               href='/product/${product.slug}-${product.id}'
+                               class="product_item__quick_view_link">
+                                  Быстрый просмотр
+                            </a>
+                         </div>
+
+                         ${
+                             Boolean(product.photos)
+                                ? getPhotoBlockHtml(product, viewMode)
+                                : getNoPhotoBlockHtml(product)
+                         }
+                      </div>
 
                       <div>
                           <div class="product_item__name">

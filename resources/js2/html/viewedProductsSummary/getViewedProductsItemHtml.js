@@ -1,15 +1,23 @@
 export default function getViewedProductsItemHtml(product) {
-    //console.log(product);
-
     return `<div class="product_item__wrapper">
                <div class="product_item product_item__in_viewed_summary">
 
                   <div class="product_item__content">
-                      ${
-                          Boolean(product.photos)
-                              ? _getPhotoBlockHtml(product)
-                              : _getNoPhotoBlockHtml(product)
-                       }
+                      <div class="product_item__photo_wrapper">
+                          <div class="product_item__quick_view_link__wrapper product_item__quick_view_link__wrapper__in_viewed_summary">
+                             <a data-quick-view="${product.id}"
+                                href='/product/${product.slug}-${product.id}'
+                                class="product_item__quick_view_link product_item__quick_view_link__in_viewed_summary">
+                                   Быстрый просмотр
+                             </a>
+                          </div>
+
+                         ${
+                            Boolean(product.photos)
+                               ? _getPhotoBlockHtml(product)
+                               : _getNoPhotoBlockHtml()
+                          }
+                      </div>
 
                       <div>
                           <div class="product_item__name">
@@ -32,37 +40,16 @@ export default function getViewedProductsItemHtml(product) {
 
 function _getPhotoBlockHtml(product) {
     const photoFolder = "/storage/products-photos-size3/";
-    return `<div class="product_item__photo_wrapper">
-                <div class="product_item__quick_view_link__wrapper product_item__quick_view_link__wrapper__in_viewed_summary">
-                    <a data-quick-view="${product.id}"
-                        href='/product/${product.slug}-${product.id}'
-                        class="product_item__quick_view_link product_item__quick_view_link__in_viewed_summary">
-                            Быстрый просмотр
-                    </a>
-                </div>
-
-                <a href='/product/${product.slug}-${product.id}'>
-                    <img src='${photoFolder}${product.id}s3-${product.photos[0]}'
-                       alt=""
-                       data-product-item-link="${product.id}"
-                       class="photo__size3 product_item__photo__in_viewed_summary"/>
-                </a>
-            </div>`;
+    return `<a href='/product/${product.slug}-${product.id}'>
+                <img src='${photoFolder}${product.id}s3-${product.photos[0]}'
+                    alt=""
+                    data-product-item-link="${product.id}"
+                    class="photo__size3 product_item__photo__in_viewed_summary"/>
+           </a>`;
 }
 
-function _getNoPhotoBlockHtml(product) {
-    const photoFolder = "/storage/products-photos-size3/";
-    return `<div class="product_item__photo_wrapper">
-                <div class="product_item__quick_view_link__wrapper product_item__quick_view_link__wrapper__in_viewed_summary">
-                    <a data-quick-view="${product.id}"
-                        href='/product/${product.slug}-${product.id}'
-                        class="product_item__quick_view_link product_item__quick_view_link__in_viewed_summary">
-                            Быстрый просмотр
-                    </a>
-                </div>
-
-                <div class="product_item__no_photo product_item__no_photo__in_viewed_summary">
-                    НЕТ ФОТО
-                </div>
+function _getNoPhotoBlockHtml() {
+    return `<div class="product_item__no_photo product_item__no_photo__in_viewed_summary">
+                НЕТ ФОТО
             </div>`;
 }
