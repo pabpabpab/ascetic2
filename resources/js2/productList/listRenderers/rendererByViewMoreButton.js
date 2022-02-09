@@ -49,9 +49,10 @@ export default class RendererByViewMoreButton extends Aware {
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
+                const viewMode = this.state.viewSettings.mode;
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
-                    return getProductsItemHtml(productObject);
+                    return getProductsItemHtml(productObject, viewMode);
                 });
                 const itemsHtml = itemsHtmlArr.join('');
                 //const itemsHtml = `<div class="product_list__content show_block">${ itemsHtmlArr.join('') }</div>`;

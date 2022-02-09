@@ -76,9 +76,10 @@ export default class RendererBySearchSettings extends Aware {
         this.components.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.messenger.hideMessage();
+                const viewMode = this.state.viewSettings.mode;
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
-                    return getProductsItemHtml(productObject);
+                    return getProductsItemHtml(productObject, viewMode);
                 });
                 const itemsHtml = `<div id="productListContent">${ itemsHtmlArr.join('') }</div>`;
                 if (el('#productListContent')) {

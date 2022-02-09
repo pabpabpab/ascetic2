@@ -5,17 +5,18 @@ import getListOfCategoriesHtml from './getListOfCategoriesHtml';
 import getListOfMaterialsHtml from './getListOfMaterialsHtml';
 import getListOfColorsHtml from './getListOfColorsHtml';
 
-export default function getProductsItemHtml(product) {
+export default function getProductsItemHtml(product, viewMode) {
     //console.log(product);
 
+    const bigView = viewMode === 'bigView' ? 'big_view' : '';
     return `<div data-product-item="${product.id}" class="product_item__wrapper">
-               <div class="product_item">
+               <div class="product_item ${bigView}">
 
                   <div class="product_item__content">
 
                       ${
                         Boolean(product.photos)
-                            ? getPhotoBlockHtml(product)
+                            ? getPhotoBlockHtml(product, viewMode)
                             : getNoPhotoBlockHtml(product)
                        }
 

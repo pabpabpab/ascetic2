@@ -59,9 +59,10 @@ export default class RendererOfViewedProductsByLink extends Aware {
             .then(({filteredProducts, sectionProductsCount, allViewedIdsStr}) => {
                 this.disabledRequest = false;
                 this.messenger.hideMessage();
+                const viewMode = this.state.viewSettings.mode;
                 const itemsHtmlArr = filteredProducts.map((product) => {
                     const productObject = getProductObject(product);
-                    return getProductsItemHtml(productObject);
+                    return getProductsItemHtml(productObject, viewMode);
                 });
                 const itemsHtml = `<div id="productListContent" class="show_block">${ itemsHtmlArr.join('') }</div>`;
                 if (el('#productListContent')) {
