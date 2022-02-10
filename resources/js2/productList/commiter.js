@@ -26,6 +26,7 @@ export default class Commiter extends Aware {
             setStartOffset: ['checkPaginatorSettings'],
             setPageNumber: ['checkPaginatorSettings'],
             setPageCount: ['checkPaginatorSettings'],
+            setPerPage: [],
         }
 
         const checkMethodList =  checkMethods[mutationName];

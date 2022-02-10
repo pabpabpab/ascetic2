@@ -20,7 +20,7 @@ class ProductSearchController extends Controller
         Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
-        $perPage = 3;
+        $perPage = config("my_site.pagination.perPage");
 
         $result = $service->getSearched([
             'minPrice' => $minPrice,

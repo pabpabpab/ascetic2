@@ -2,6 +2,7 @@ import state from './productList/myState';
 import mutations from "./productList/myMutations";
 import components from './productList/myComponents';
 import Commiter from "./productList/commiter";
+import MenuVisibilityManager from "./menu/menuVisibilityManager";
 import TopDropMenuFiller from "./menu/topDropMenuFiller";
 import CsrfUpdater from "./http/csrfUpdater";
 import authKit from "./auth/index-authKit";
@@ -34,6 +35,7 @@ for (let item in app.components) {
 new FavoriteProductsSwitcher();
 new FavoriteProductsTotalCountIndication();
 
+new MenuVisibilityManager();
 new TopDropMenuFiller();
 new CsrfUpdater();
 authKit();

@@ -28,6 +28,7 @@
              data-section-products-count="{{ $sectionProductsCount }}"
              data-section-page-count="{{ $pageCount }}"
              data-current-page="{{ $currentPage }}"
+             data-per-page="{{ $perPage }}"
              data-product-section-name="{{ $productSectionName }}"
              data-additional-section-data="{{ $additionalSectionData }}"
              data-h1-text="{{ $pageTitle }}"

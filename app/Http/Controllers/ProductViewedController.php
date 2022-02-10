@@ -21,7 +21,7 @@ class ProductViewedController extends Controller
         });
 
         $productsCount = $service->getAllViewed()->count();
-        $perPage = 3;
+        $perPage = config("my_site.pagination.perPage");
         $products = $service->getAllViewed()->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,

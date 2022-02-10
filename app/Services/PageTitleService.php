@@ -73,15 +73,15 @@ class PageTitleService
     protected function allProducts(): array
     {
         return [
-            'pageTitle' => config("my_site.mainPageTitle"),
-            'pageDescription' => config("my_site.mainPageDescription"),
+            'pageTitle' => config("my_site.titles.mainPageTitle"),
+            'pageDescription' => config("my_site.titles.mainPageDescription"),
         ];
     }
     protected function productSearchOnServer($data): array
     {
         return [
-            'pageTitle' => config("my_site.mainPageTitle"),
-            'pageDescription' => config("my_site.mainPageDescription"),
+            'pageTitle' => config("my_site.titles.mainPageTitle"),
+            'pageDescription' => config("my_site.titles.mainPageDescription"),
         ];
     }
     protected function favoriteProducts($data): array

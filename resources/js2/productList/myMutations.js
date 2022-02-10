@@ -45,4 +45,8 @@ export default {
     setPageCount: (state, value) => {
         state.paginatorSettings.pageCount = value;
     },
+
+    setPerPage: (state, value) => {
+        state.paginatorSettings.perPage = value;
+    },
 }

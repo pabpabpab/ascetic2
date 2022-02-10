@@ -25,7 +25,7 @@ class ProductByCategoryController extends Controller
         });
 
         $productsCount = $category->products()->count();
-        $perPage = 3;
+        $perPage = config("my_site.pagination.perPage");
         // $category определена в роуте как {category:slug}
         return view('products.list.index', [
             'category' => $category,

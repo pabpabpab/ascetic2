@@ -9,8 +9,13 @@ export default class SettingsSetterOnPageLoad extends Aware {
         this.wrapper = el('#productList');
         // задержка для дать время установить указатель на app при загрузке
         setTimeout(() => {
+            this._setPerPage();
             this._initSettings();
         }, 100);
+    }
+
+    _setPerPage() {
+        this.commit('setPerPage', Number(this.wrapper.dataset.perPage));
     }
 
     _initSettings() {

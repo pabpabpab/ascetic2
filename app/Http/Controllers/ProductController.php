@@ -22,7 +22,7 @@ class ProductController extends Controller
         });
 
         $totalProductsCount = Product::count();
-        $perPage = 3;
+        $perPage = config("my_site.pagination.perPage");
         $products = $service->getAll('active')
             ->paginate($perPage);
         return view('products.list.index', [
@@ -49,7 +49,7 @@ class ProductController extends Controller
         });
 
         $totalProductsCount = Product::count();
-        $perPage = 3;
+        $perPage = config("my_site.pagination.perPage");
         $products = $service->getAll('active')
             ->paginate($perPage);
         return view('products.list.index', [

@@ -42,7 +42,7 @@ class FavoriteProductController extends Controller
     // /public-js/favorite-products/sort/${sortMode}/offset/${startOffset}
     public function getFavoriteProductsForJS(FavoriteProductsListService $service, string $sortValue, int $startOffset): JsonResponse
     {
-        $perPage = 3;
+        $perPage = config("my_site.pagination.perPage");
         $products = $service->getList($sortValue)->offset($startOffset)->limit($perPage)->get();
         $sectionProductsCount = $service->getList()->count();
 

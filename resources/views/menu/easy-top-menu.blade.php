@@ -1,4 +1,4 @@
-<header class="top_menu">
+<header id="topMainMenu" class="top_menu">
     <div class="top_menu__left">
 
         <a href="/" data-logo="link" class="logo__link">

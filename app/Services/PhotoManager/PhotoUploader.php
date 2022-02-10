@@ -49,15 +49,16 @@ class PhotoUploader
         $my_size = config("my_photo.sizes.".$i);
         $width = (int) $my_size['width'];
         $height = (int) $my_size['height'];
+        $quality = config("my_photo.quality") + 0;
 
         $ext = explode('.', $newFileName)[1];
 
         if ($i === 6) {
             Image::make($file)->save($fullPath, 100, $ext);
         } elseif ($width > 0) {
-            Image::make($file)->widen($width)->save($fullPath, 95, $ext);
+            Image::make($file)->widen($width)->save($fullPath, $quality, $ext);
         } elseif ($height > 0) {
-            Image::make($file)->heighten($height)->save($fullPath, 95, $ext);
+            Image::make($file)->heighten($height)->save($fullPath, $quality, $ext);
         }
     }
 

@@ -1,3 +1,22 @@
+.show_menu
+    animation: showMenu .5s //forwards
+.hide_menu
+    animation: hideMenu .3s forwards
+@keyframes showMenu
+    from, to
+        top: -100px
+        visibility: hidden
+    100%
+        top: 0
+        visibility: visible
+@keyframes hideMenu
+    from, to
+        top: 0
+        visibility: visible
+    100%
+        top: -100px
+        visibility: hidden
+
 
 .top_menu
     position: fixed

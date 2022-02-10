@@ -1,5 +1,6 @@
 import singleProductKit from "./productSingle/singleProductKit";
 import components from "./productSingle/myComponents";
+import MenuVisibilityManager from "./menu/menuVisibilityManager";
 import TopDropMenuFiller from "./menu/topDropMenuFiller";
 import CsrfUpdater from "./http/csrfUpdater";
 import authKit from "./auth/index-authKit";
@@ -23,6 +24,7 @@ for (let item in app.components) {
 
 new FavoriteProductsSwitcher();
 new FavoriteProductsTotalCountIndication();
+new MenuVisibilityManager();
 new TopDropMenuFiller();
 new CsrfUpdater();
 authKit();
