@@ -29,15 +29,24 @@ export default function getProductsItemHtml(product, viewMode) {
                       </div>
 
                       <div>
+                          <div class="product_item__price_and_order">
+                              <div class="product_item__price">
+                                 ${product.price} ₽
+                              </div>
+                              <div data-order-button="${product.id}"
+                                 class="product_item__order_icon__wrapper">
+                                 <img data-order-button="${product.id}"
+                                    alt=""
+                                    src="/images/orderIcon.svg"
+                                    class="product_item__order_icon__img">
+                              </div>
+                          </div>
                           <div class="product_item__name">
                               <a href='/product/${product.slug}-${product.id}'
                                   data-product-item-link="${product.id}"
                                   class="product_item__name__link">
                                   ${product.name}
                               </a>
-                          </div>
-                          <div class="product_item__price">
-                              ${product.price} ₽
                           </div>
                       </div>
 

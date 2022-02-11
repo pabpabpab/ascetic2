@@ -31,6 +31,7 @@ import TotalIndicatorOfFilterParameters from "./productFilter/totalIndicatorOfFi
 import TopTotalSearchParametersRenderer from "./productFilter/topTotalSearchParametersRenderer";
 import SettingsSetterOnPageLoad from "../settings/settingsSetterOnPageLoad";
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
+import OrderWindow from "../orderWindow/orderWindow";
 
 
 
@@ -83,8 +84,13 @@ export default {
     topTotalSearchParametersRenderer: new TopTotalSearchParametersRenderer(),
     // -----------------------------------------
 
+    orderWindow: new OrderWindow(),
+    // -----------------------------------------
+
     // при загрузке страницы с сервера с поисковыми параметрами в url
     settingsSetterOnPageLoad: new SettingsSetterOnPageLoad(),
 
     favoriteProductsIndicationOnPageLoad: new FavoriteProductsIndicationOnPageLoad(),
+
+
 }

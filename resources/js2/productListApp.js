@@ -8,6 +8,7 @@ import CsrfUpdater from "./http/csrfUpdater";
 import authKit from "./auth/index-authKit";
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 import FavoriteProductsTotalCountIndication from "./favoriteProducts/favoriteProductsTotalCountIndication";
+import OrderWindow from "./orderWindow/orderWindow";
 
 
 const app = {
@@ -34,6 +35,8 @@ for (let item in app.components) {
 
 new FavoriteProductsSwitcher();
 new FavoriteProductsTotalCountIndication();
+
+
 
 new MenuVisibilityManager();
 new TopDropMenuFiller();

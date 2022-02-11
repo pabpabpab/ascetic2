@@ -5,7 +5,7 @@ export default function getListOfCategoriesHtml(categoriesArr) {
                    data-link-category-id='${item.id}'
                    data-link-category-slug='${item.slug}'
                    data-link-category-name='${item.name}'
-                   class='product_item__name__link'>
+                   class='product_item__category_link'>
                       ${item.name}
                 </a>`;
     });

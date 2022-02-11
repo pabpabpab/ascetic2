@@ -2,7 +2,17 @@
     $currentCategorySlug = \Illuminate\Support\Facades\Route::current()->category->slug ?? '';
 @endphp
 
-<footer class="bottom_menu">
+<footer id="siteFooter"
+    data-site-address="{{ $contacts['address'] }}"
+    data-site-phone="{{ $contacts['phone'] }}"
+    data-site-phone-time="{{ $contacts['phoneTime'] }}"
+    data-site-whatsUp="{{ $contacts['whatsUp'] }}"
+    data-site-tg="{{ $contacts['tg'] }}"
+    data-site-vkontakte="{{ $contacts['vkontakte'] }}"
+    data-site-ok="{{ $contacts['ok'] }}"
+    data-site-meta="{{ $contacts['meta'] }}"
+    data-site-email="{{ $contacts['e-mail'] }}"
+    class="bottom_menu">
     <nav>
         <ul id="bottomMenu-allCategories" class="bottom_menu__ul">
             @foreach ($categories as $category)

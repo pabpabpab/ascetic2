@@ -1746,6 +1746,35 @@ function getDropMenuHtml(innerHtml) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/getOrderWindowHtml.js":
+/*!**************************************************!*\
+  !*** ./resources/js2/html/getOrderWindowHtml.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getOrderWindowHtml; });
+function getOrderWindowHtml(product, contacts) {
+  return "<div id=\"orderWindow\" class=\"order_window__wrapper show_block\">\n                <div class=\"order_window\">\n                    <p class=\"order_window__header\">\n                       <span class=\"order_window__header__do_order\">\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C</span> \u041B\u043E\u0442 \u2116 ".concat(product.id, "\n                    </p>\n\n                     <div class=\"order_window__photo_wrapper\">\n                       ").concat(_getPhotoBlockHtml(product), "\n                       <p class=\"order_window__product_name\">\n                           ").concat(product.name, "\n                       </p>\n                    </div>\n\n\n                    ").concat(_getItem(contacts.address, 'Адрес', 'address.svg'), "\n                    ").concat(_getItem(contacts.phone, 'Телефон', 'telephone.svg'), "\n                    ").concat(_getItem(contacts.phoneTime, 'Время для звонка', 'phoneTime.svg'), "\n                    ").concat(_getItem(contacts.whatsUp, 'WhatsUp', 'whatsapp.png'), "\n                    ").concat(_getItem(contacts.tg, 'Telegram', 'telegram.png'), "\n                    ").concat(_getItem(contacts.vkontakte, 'Вконтакте', 'vkontakte.svg'), "\n                    ").concat(_getItem(contacts.ok, 'Одноклассники', 'ok.png'), "\n                    ").concat(_getItem(contacts.meta, 'Meta', 'facebook.svg'), "\n                    ").concat(_getItem(contacts.email, 'E-mail', 'email.svg'), "\n                    <div class='order_window__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
+}
+
+function _getItem(propValue, title, iconSrc) {
+  if (propValue.length === 0) {
+    return '';
+  }
+
+  return "<p class=\"order_window__contact_item\">\n                <span title=\"".concat(title, "\" class=\"order_window__contact_item__field_title\">\n                <img alt=\"\" src=\"/images/contactIcons/").concat(iconSrc, "\"\n                    class=\"order_window__contact_item__icon\" />\n                </span>\n                ").concat(propValue, "\n            </p>");
+}
+
+function _getPhotoBlockHtml(product) {
+  var photoFolder = "/storage/products-photos-size3/";
+  return "<p class=\"order_window__photo\">\n                <img src='".concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                    alt=\"\"\n                    class=\"order_window__photo_img\"/>\n            </p>");
+}
+
+/***/ }),
+
 /***/ "./resources/js2/html/productList/filterBlock/getCategoriesBlockHtmlForFilter.js":
 /*!***************************************************************************************!*\
   !*** ./resources/js2/html/productList/filterBlock/getCategoriesBlockHtmlForFilter.js ***!
@@ -1829,7 +1858,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getListOfCategoriesHtml; });
 function getListOfCategoriesHtml(categoriesArr) {
   var catsArr = categoriesArr.map(function (item) {
-    return "<a href='/products/".concat(item.slug, "'\n                   data-link-section-name='productCategory'\n                   data-link-category-id='").concat(item.id, "'\n                   data-link-category-slug='").concat(item.slug, "'\n                   data-link-category-name='").concat(item.name, "'\n                   class='product_item__name__link'>\n                      ").concat(item.name, "\n                </a>");
+    return "<a href='/products/".concat(item.slug, "'\n                   data-link-section-name='productCategory'\n                   data-link-category-id='").concat(item.id, "'\n                   data-link-category-slug='").concat(item.slug, "'\n                   data-link-category-name='").concat(item.name, "'\n                   class='product_item__category_link'>\n                      ").concat(item.name, "\n                </a>");
   });
   return catsArr.join(', ');
 }
@@ -1932,7 +1961,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getProductsItemHtml(product, viewMode) {
   var bigView = viewMode === 'bigView' ? 'big_view' : '';
-  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper\">\n               <div class=\"product_item ").concat(bigView, "\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__photo_wrapper\">\n                         <div class=\"product_item__quick_view_link__wrapper\">\n                            <a data-quick-view=\"").concat(product.id, "\"\n                               href='/product/").concat(product.slug, "-").concat(product.id, "'\n                               class=\"product_item__quick_view_link\">\n                                  \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                            </a>\n                         </div>\n\n                         ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product, viewMode) : Object(_getNoPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(), "\n                      </div>\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
+  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper\">\n               <div class=\"product_item ").concat(bigView, "\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__photo_wrapper\">\n                         <div class=\"product_item__quick_view_link__wrapper\">\n                            <a data-quick-view=\"").concat(product.id, "\"\n                               href='/product/").concat(product.slug, "-").concat(product.id, "'\n                               class=\"product_item__quick_view_link\">\n                                  \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                            </a>\n                         </div>\n\n                         ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product, viewMode) : Object(_getNoPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(), "\n                      </div>\n\n                      <div>\n                          <div class=\"product_item__price_and_order\">\n                              <div class=\"product_item__price\">\n                                 ").concat(product.price, " \u20BD\n                              </div>\n                              <div data-order-button=\"").concat(product.id, "\"\n                                 class=\"product_item__order_icon__wrapper\">\n                                 <img data-order-button=\"").concat(product.id, "\"\n                                    alt=\"\"\n                                    src=\"/images/orderIcon.svg\"\n                                    class=\"product_item__order_icon__img\">\n                              </div>\n                          </div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
 }
 
 /***/ }),
@@ -2157,7 +2186,7 @@ function getViewedProductHeaderHtml(product) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getViewedProductsItemHtml; });
 function getViewedProductsItemHtml(product) {
-  return "<div class=\"product_item__wrapper\">\n               <div class=\"product_item product_item__in_viewed_summary\">\n\n                  <div class=\"product_item__content\">\n                      <div class=\"product_item__photo_wrapper\">\n                          <div class=\"product_item__quick_view_link__wrapper product_item__quick_view_link__wrapper__in_viewed_summary\">\n                             <a data-quick-view=\"".concat(product.id, "\"\n                                href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                class=\"product_item__quick_view_link product_item__quick_view_link__in_viewed_summary\">\n                                   \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                             </a>\n                          </div>\n\n                         ").concat(Boolean(product.photos) ? _getPhotoBlockHtml(product) : _getNoPhotoBlockHtml(), "\n                      </div>\n\n                      <div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link product_item__name__link__in_viewed_summary\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                          <div class=\"product_item__price product_item__price__in_viewed_summary\">\n                              ").concat(product.price, " \u20BD\n                          </div>\n                      </div>\n                  </div>\n\n               </div>\n            </div>");
+  return "<div class=\"product_item__wrapper\">\n               <div class=\"product_item product_item__in_viewed_summary\">\n\n                  <div class=\"product_item__content\">\n                      <div class=\"product_item__photo_wrapper\">\n                          <div class=\"product_item__quick_view_link__wrapper product_item__quick_view_link__wrapper__in_viewed_summary\">\n                             <a data-quick-view=\"".concat(product.id, "\"\n                                href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                class=\"product_item__quick_view_link product_item__quick_view_link__in_viewed_summary\">\n                                   \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                             </a>\n                          </div>\n\n                         ").concat(Boolean(product.photos) ? _getPhotoBlockHtml(product) : _getNoPhotoBlockHtml(), "\n                      </div>\n\n\n                       <div>\n                          <div class=\"product_item__price_and_order\">\n                              <div class=\"product_item__price product_item__price__in_viewed_summary\">\n                                 ").concat(product.price, " \u20BD\n                              </div>\n                          </div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link product_item__name__link__in_viewed_summary\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                      </div>\n                  </div>\n\n               </div>\n            </div>");
 }
 
 function _getPhotoBlockHtml(product) {
@@ -2847,6 +2876,175 @@ var FrequentAbsoluteFlashMessage = /*#__PURE__*/function () {
 
   return FrequentAbsoluteFlashMessage;
 }();
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/orderWindow/orderWindow.js":
+/*!**************************************************!*\
+  !*** ./resources/js2/orderWindow/orderWindow.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OrderWindow; });
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
+/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
+/* harmony import */ var _html_getOrderWindowHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../html/getOrderWindowHtml */ "./resources/js2/html/getOrderWindowHtml.js");
+/* harmony import */ var _auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auxiliaryFunctions/allProductsMustBeCached */ "./resources/js2/auxiliaryFunctions/allProductsMustBeCached.js");
+/* harmony import */ var _productObject_getProductObject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../productObject/getProductObject */ "./resources/js2/productObject/getProductObject.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+var OrderWindow = /*#__PURE__*/function (_Aware) {
+  _inherits(OrderWindow, _Aware);
+
+  var _super = _createSuper(OrderWindow);
+
+  function OrderWindow() {
+    var _this;
+
+    _classCallCheck(this, OrderWindow);
+
+    _this = _super.call(this);
+    _this.wrapId = 'orderWindow';
+    _this.wrapSelector = '#orderWindow';
+    _this.collapseIconSelector = '.order_window__collapse_icon';
+    _this.basicCss = 'order_window__wrapper';
+    _this.showCss = 'show_block';
+    _this.hideCss = 'hide_block';
+    _this.css = '';
+    _this.contacts = {};
+    Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('click', function (e) {
+      if (!e.target.dataset || !e.target.dataset.orderButton) {
+        return;
+      }
+
+      var productId = Number(e.target.dataset.orderButton);
+      e.preventDefault();
+      e.stopPropagation();
+
+      _this._render(productId);
+    });
+    return _this;
+  }
+
+  _createClass(OrderWindow, [{
+    key: "_render",
+    value: function _render(productId) {
+      var _this2 = this;
+
+      this._preRenderActions();
+
+      this._getOneProduct(productId).then(function (product) {
+        var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_4__["default"])(product);
+        var html = Object(_html_getOrderWindowHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(productObject, _this2.contacts);
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
+
+        _this2._listenThisBlock();
+      });
+    }
+  }, {
+    key: "_getOneProduct",
+    value: function _getOneProduct(productId) {
+      if (Object(_auxiliaryFunctions_allProductsMustBeCached__WEBPACK_IMPORTED_MODULE_3__["default"])()) {
+        return this.components.productCache.getEntireList().then(function (data) {
+          var list = _toConsumableArray(data);
+
+          return list.filter(function (item) {
+            return item.id === productId;
+          })[0];
+        });
+      } else {
+        return this.components.productCache.getOneFromServer(productId).then(function (product) {
+          return product;
+        });
+      }
+    }
+  }, {
+    key: "_listenThisBlock",
+    value: function _listenThisBlock() {
+      var _this3 = this;
+
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.collapseIconSelector).addEventListener('click', function (e) {
+        _this3._collapseWindow(e);
+      });
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).addEventListener('click', function (e) {
+        if (e.target.id === _this3.wrapId) {
+          _this3._collapseWindow(e);
+        }
+      });
+    }
+  }, {
+    key: "_preRenderActions",
+    value: function _preRenderActions() {
+      var dataset = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#siteFooter').dataset;
+      this.contacts = {
+        address: dataset.siteAddress,
+        phone: dataset.sitePhone,
+        phoneTime: dataset.sitePhoneTime,
+        whatsUp: dataset.siteWhatsup,
+        tg: dataset.siteTg,
+        vkontakte: dataset.siteVkontakte,
+        ok: dataset.siteOk,
+        meta: dataset.siteMeta,
+        email: dataset.siteEmail
+      };
+    }
+  }, {
+    key: "_collapseWindow",
+    value: function _collapseWindow() {
+      var _this4 = this;
+
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
+      setTimeout(function () {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(_this4.wrapSelector).remove();
+      }, 700);
+    }
+  }]);
+
+  return OrderWindow;
+}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 
 
@@ -4928,6 +5126,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
 /* harmony import */ var _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../settings/settingsSetterOnPageLoad */ "./resources/js2/settings/settingsSetterOnPageLoad.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../orderWindow/orderWindow */ "./resources/js2/orderWindow/orderWindow.js");
+
 
 
 
@@ -4998,6 +5198,8 @@ __webpack_require__.r(__webpack_exports__);
   searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_27__["default"](),
   totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_28__["default"](),
   topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_29__["default"](),
+  // -----------------------------------------
+  orderWindow: new _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_32__["default"](),
   // -----------------------------------------
   // при загрузке страницы с сервера с поисковыми параметрами в url
   settingsSetterOnPageLoad: new _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_30__["default"](),
@@ -6722,6 +6924,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_index_authKit__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth/index-authKit */ "./resources/js2/auth/index-authKit.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotalCountIndication */ "./resources/js2/favoriteProducts/favoriteProductsTotalCountIndication.js");
+/* harmony import */ var _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./orderWindow/orderWindow */ "./resources/js2/orderWindow/orderWindow.js");
+
 
 
 

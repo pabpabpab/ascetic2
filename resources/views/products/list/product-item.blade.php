@@ -43,13 +43,22 @@
             </div>
 
             <div>
+                <div class="product_item__price_and_order">
+                    <div class="product_item__price">
+                        {{ $price }} ₽
+                    </div>
+                    <div data-order-button="{{ $product->id }}"
+                        class="product_item__order_icon__wrapper">
+                        <img data-order-button="{{ $product->id }}"
+                             alt=""
+                             src="{{ asset('images/orderIcon.svg') }}"
+                             class="product_item__order_icon__img">
+                    </div>
+                </div>
                 <div class="product_item__name">
                     <a href='{{ $singleProductUrl }}' data-product-item-link="{{ $product->id }}" class="product_item__name__link">
                         {{ $product->name }}
                     </a>
-                </div>
-                <div class="product_item__price">
-                    {{ $price }} ₽
                 </div>
             </div>
 
@@ -68,7 +77,7 @@
                                data-link-category-id="{{ $category->id }}"
                                data-link-category-slug="{{ $category->slug }}"
                                data-link-category-name="{{ $category->name }}"
-                               class="product_item__name__link">
+                               class="product_item__category_link">
                                 {{ $category->name }}</a>@if (!$loop->last), @endif
                         @endforeach
                     </p>

@@ -19,16 +19,19 @@ export default function getViewedProductsItemHtml(product) {
                           }
                       </div>
 
-                      <div>
+
+                       <div>
+                          <div class="product_item__price_and_order">
+                              <div class="product_item__price product_item__price__in_viewed_summary">
+                                 ${product.price} ₽
+                              </div>
+                          </div>
                           <div class="product_item__name">
                               <a href='/product/${product.slug}-${product.id}'
                                   data-product-item-link="${product.id}"
                                   class="product_item__name__link product_item__name__link__in_viewed_summary">
                                   ${product.name}
                               </a>
-                          </div>
-                          <div class="product_item__price product_item__price__in_viewed_summary">
-                              ${product.price} ₽
                           </div>
                       </div>
                   </div>
