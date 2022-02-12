@@ -75,14 +75,23 @@
                 </span>
             </div>
 
+            <div data-order-button="{{ $product->id }}" class="single_product__favorite_icon__wrapper">
+                <img data-order-button="{{ $product->id }}" alt=""
+                     src="{{ asset('images/orderIcon.svg') }}"
+                     class="single_product__order_icon__img">
+                <span data-order-button="{{ $product->id }}" class="single_product__favorite_icon__text">
+                    ЗАКАЗАТЬ
+                </span>
+            </div>
 
-{{--
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
---}}
+
+            {{--
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            --}}
         </section>
 
     </div>

@@ -5,8 +5,7 @@ import ViewedProductsAppender from "../viewedProducts/viewedProductsAppender";
 import SingleProductQuickViewer from "../productQuickViewer/singleProductQuickViewer";
 
 import FavoriteProductsIndicationOnPageLoad from "../favoriteProducts/favoriteProductsIndicationOnPageLoad";
-import FavoriteProductsSwitcher from "../favoriteProducts/favoriteProductsSwitcher";
-import FavoriteProductsTotalCountIndication from "../favoriteProducts/favoriteProductsTotalCountIndication";
+import OrderWindow from "../orderWindow/orderWindow";
 
 
 
@@ -16,4 +15,6 @@ export default {
     viewedProductsAppender: new ViewedProductsAppender(),
     singleProductQuickViewer: new SingleProductQuickViewer(),
     favoriteProductsIndicationOnPageLoad: new FavoriteProductsIndicationOnPageLoad(),
+
+    orderWindow: new OrderWindow(),
 }

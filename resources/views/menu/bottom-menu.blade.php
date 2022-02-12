@@ -3,10 +3,11 @@
 @endphp
 
 <footer id="siteFooter"
+    data-site-domain="{{ $contacts['domain'] }}"
     data-site-address="{{ $contacts['address'] }}"
     data-site-phone="{{ $contacts['phone'] }}"
     data-site-phone-time="{{ $contacts['phoneTime'] }}"
-    data-site-whatsUp="{{ $contacts['whatsUp'] }}"
+    data-site-whatsapp="{{ $contacts['whatsapp'] }}"
     data-site-tg="{{ $contacts['tg'] }}"
     data-site-vkontakte="{{ $contacts['vkontakte'] }}"
     data-site-ok="{{ $contacts['ok'] }}"

@@ -40,25 +40,28 @@
         align-items: center
         justify-content: flex-start
     &__photo
-        padding: 0
+        padding: 0 20px 0 0
         margin: 0
     &__photo_img
         height: 70px
         border-radius: 5px
     &__product_name
         +font(17px, #fff, 100)
-        padding-left: 20px
     &__contact_item
         padding: 5px 0
         margin: 0
-        &__field_title
+        &__title
             +font(17px, #ccc, 100)
             //line-height: 17px
             margin: 0 15px 0 0
             padding: 0
         &__icon
             height: 25px
-            margin: 0 0 -2px 0
+            margin: 0 0 -5px 0
+        &__link
+            +font(17px, #fff, 100)
+            &:hover
+                border-bottom: 1px solid rgba(255, 255, 255, 0.5)
 
 .order_window__collapse_icon
     position: absolute

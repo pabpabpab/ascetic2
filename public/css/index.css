@@ -1786,6 +1786,12 @@ h2 {
   cursor: pointer;
 }
 
+.single_product__order_icon__img {
+  width: 27px;
+  margin: 0;
+  cursor: pointer;
+}
+
 .single_product__favorite_icon__text {
   margin-left: 15px;
   font-size: 13px;
@@ -2472,7 +2478,7 @@ h2 {
 }
 
 .order_window__photo {
-  padding: 0;
+  padding: 0 20px 0 0;
   margin: 0;
 }
 
@@ -2485,7 +2491,6 @@ h2 {
   font-size: 17px;
   color: #fff;
   font-weight: 100;
-  padding-left: 20px;
 }
 
 .order_window__contact_item {
@@ -2493,7 +2498,7 @@ h2 {
   margin: 0;
 }
 
-.order_window__contact_item__field_title {
+.order_window__contact_item__title {
   font-size: 17px;
   color: #ccc;
   font-weight: 100;
@@ -2503,7 +2508,17 @@ h2 {
 
 .order_window__contact_item__icon {
   height: 25px;
-  margin: 0 0 -2px 0;
+  margin: 0 0 -5px 0;
+}
+
+.order_window__contact_item__link {
+  font-size: 17px;
+  color: #fff;
+  font-weight: 100;
+}
+
+.order_window__contact_item__link:hover {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .order_window__collapse_icon {

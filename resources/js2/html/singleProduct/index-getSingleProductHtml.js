@@ -1,3 +1,4 @@
+import getOrderIconBlockHtml from "./getOrderIconBlockHtml";
 import getFavoriteIconBlockHtml from './getFavoriteIconBlockHtml';
 import getPhotoBlockHtml from './getPhotoBlockHtml';
 import getListOfCategoriesHtml from './getListOfCategoriesHtml';
@@ -45,6 +46,7 @@ export default function getSingleProductHtml(product) {
                                     ${product.description}
                                 </div>
                                 ${ getFavoriteIconBlockHtml(product.id) }
+                                ${ getOrderIconBlockHtml(product.id) }
                             </section>
 
                         </div>

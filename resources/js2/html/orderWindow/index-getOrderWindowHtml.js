@@ -1,3 +1,12 @@
+import getVkontakteHtml from "./getVkontakeHtml";
+import getOKHtml from "./getOKHtml";
+import getFacebookHtml from "./getFacebookHtml";
+import getEmailHtml from "./getEmailHtml"
+import getWhatsappHtml from "./getWhatsappHtml";
+import getTelegramHtml from "./getTelegramHtml";
+import getPhoneHtml from "./getPhoneHtml";
+import getAddressHtml from "./getAddressHtml";
+
 export default function getOrderWindowHtml(product, contacts) {
     return `<div id="orderWindow" class="order_window__wrapper show_block">
                 <div class="order_window">
@@ -12,16 +21,16 @@ export default function getOrderWindowHtml(product, contacts) {
                        </p>
                     </div>
 
-
-                    ${ _getItem(contacts.address, 'Адрес', 'address.svg') }
-                    ${ _getItem(contacts.phone, 'Телефон', 'telephone.svg') }
+                    ${ getAddressHtml(contacts.address) }
+                    ${ getPhoneHtml(contacts.phone) }
                     ${ _getItem(contacts.phoneTime, 'Время для звонка', 'phoneTime.svg') }
-                    ${ _getItem(contacts.whatsUp, 'WhatsUp', 'whatsapp.png') }
-                    ${ _getItem(contacts.tg, 'Telegram', 'telegram.png') }
-                    ${ _getItem(contacts.vkontakte, 'Вконтакте', 'vkontakte.svg') }
-                    ${ _getItem(contacts.ok, 'Одноклассники', 'ok.png') }
-                    ${ _getItem(contacts.meta, 'Meta', 'facebook.svg') }
-                    ${ _getItem(contacts.email, 'E-mail', 'email.svg') }
+                    ${ getWhatsappHtml(contacts.whatsapp, product) }
+                    ${ getTelegramHtml(contacts.tg, product) }
+                    ${ getVkontakteHtml(contacts.vkontakte) }
+                    ${ getOKHtml(contacts.ok) }
+                    ${ getFacebookHtml(contacts.meta) }
+                    ${ getEmailHtml(contacts.email, product) }
+
                     <div class='order_window__collapse_icon'>&#215;</div>
                 </div>
             </div>`;
@@ -33,7 +42,7 @@ function _getItem(propValue, title, iconSrc) {
         return '';
     }
     return `<p class="order_window__contact_item">
-                <span title="${title}" class="order_window__contact_item__field_title">
+                <span title="${title}" class="order_window__contact_item__title">
                 <img alt="" src="/images/contactIcons/${iconSrc}"
                     class="order_window__contact_item__icon" />
                 </span>
@@ -42,6 +51,9 @@ function _getItem(propValue, title, iconSrc) {
 }
 
 function _getPhotoBlockHtml(product) {
+    if (!product.photos[0]) {
+        return '';
+    }
     const photoFolder = "/storage/products-photos-size3/";
     return `<p class="order_window__photo">
                 <img src='${photoFolder}${product.id}s3-${product.photos[0]}'

@@ -1,6 +1,6 @@
 import el from '../auxiliaryFunctions/el';
 import Aware from "./../parentClasses/app/aware";
-import getOrderWindowHtml from "../html/getOrderWindowHtml";
+import getOrderWindowHtml from "../html/orderWindow/index-getOrderWindowHtml";
 import allProductsMustBeCached from "../auxiliaryFunctions/allProductsMustBeCached";
 import getProductObject from "../productObject/getProductObject";
 
@@ -69,10 +69,11 @@ export default class OrderWindow extends Aware {
     _preRenderActions() {
         const dataset = el('#siteFooter').dataset;
         this.contacts = {
+            domain: dataset.siteDomain,
             address: dataset.siteAddress,
             phone: dataset.sitePhone,
             phoneTime: dataset.sitePhoneTime,
-            whatsUp: dataset.siteWhatsup,
+            whatsapp: dataset.siteWhatsapp,
             tg: dataset.siteTg,
             vkontakte: dataset.siteVkontakte,
             ok: dataset.siteOk,
