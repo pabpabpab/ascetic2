@@ -1,25 +1,24 @@
 import state from './productList/myState';
 import mutations from "./productList/myMutations";
 import components from './productList/myComponents';
-import Commiter from "./productList/commiter";
+import Mutator from "./productList/mutator";
 import MenuVisibilityManager from "./menu/menuVisibilityManager";
 import TopDropMenuFiller from "./menu/topDropMenuFiller";
 import CsrfUpdater from "./http/csrfUpdater";
 import authKit from "./auth/index-authKit";
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 import FavoriteProductsTotalCountIndication from "./favoriteProducts/favoriteProductsTotalCountIndication";
-import OrderWindow from "./orderWindow/orderWindow";
 
 
 const app = {
     state,
     mutations,
-    commiter: new Commiter(),
+    mutator: new Mutator(),
     components,
 };
 
 
-app.commiter.app = app;
+app.mutator.app = app;
 
 for (let item in app.components) {
     if (app.components.hasOwnProperty(item)) {
@@ -29,7 +28,7 @@ for (let item in app.components) {
         // в классах будет this.state
         app.components[item].state = app.state;
         // в классах будет this.commit();
-        app.components[item].commit = app.commiter.commit;
+        app.components[item].commit = app.mutator.commit;
     }
 }
 

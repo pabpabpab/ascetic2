@@ -1,6 +1,6 @@
 import Aware from "../parentClasses/app/aware";
 
-export default class Commiter extends Aware {
+export default class Mutator extends Aware {
 
     constructor() {
         super();
@@ -8,7 +8,7 @@ export default class Commiter extends Aware {
 
     commit(mutationName, data) {
         this.app.mutations[mutationName](this.app.state, data);
-        this.app.commiter._notifyObservers(mutationName);
+        this.app.mutator._notifyObservers(mutationName);
     }
 
     _notifyObservers(mutationName) {

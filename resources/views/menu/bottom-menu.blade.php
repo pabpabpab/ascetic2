@@ -47,10 +47,10 @@
         </ul>
     </nav>
     <div data-order-button="0" class="bottom_menu__contacts">
-        <p data-order-button="0" class="bottom_menu__contacts__relative">
+        <div data-order-button="0" class="bottom_menu__contacts__relative">
             <p data-order-button="0" class="bottom_menu__contacts__absolute">
                 Контакты
             </p>
-        </p>
+        </div>
     </div>
 </footer>

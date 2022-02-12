@@ -3783,101 +3783,6 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
 
 /***/ }),
 
-/***/ "./resources/js2/productList/commiter.js":
-/*!***********************************************!*\
-  !*** ./resources/js2/productList/commiter.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Commiter; });
-/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-var Commiter = /*#__PURE__*/function (_Aware) {
-  _inherits(Commiter, _Aware);
-
-  var _super = _createSuper(Commiter);
-
-  function Commiter() {
-    _classCallCheck(this, Commiter);
-
-    return _super.call(this);
-  }
-
-  _createClass(Commiter, [{
-    key: "commit",
-    value: function commit(mutationName, data) {
-      this.app.mutations[mutationName](this.app.state, data);
-
-      this.app.commiter._notifyObservers(mutationName);
-    }
-  }, {
-    key: "_notifyObservers",
-    value: function _notifyObservers(mutationName) {
-      var _this = this;
-
-      var checkMethods = {
-        setViewMode: ['checkViewSettings'],
-        setSortMode: ['checkSortSettings'],
-        setSectionData: ['checkSectionSettings'],
-        setMinPrice: ['checkSearchSettings'],
-        setMaxPrice: ['checkSearchSettings'],
-        setCategoriesIds: ['checkSearchSettings'],
-        resetSearchSettings: ['checkSearchSettings'],
-        setSectionProductsCount: ['checkPaginatorSettings'],
-        setStartOffset: ['checkPaginatorSettings'],
-        setPageNumber: ['checkPaginatorSettings'],
-        setPageCount: ['checkPaginatorSettings'],
-        setPerPage: []
-      };
-      var checkMethodList = checkMethods[mutationName];
-
-      var _loop = function _loop(item) {
-        if (_this.app.components.hasOwnProperty(item)) {
-          checkMethodList.forEach(function (checkMethod) {
-            _this.app.components[item][checkMethod]();
-          });
-        }
-      };
-
-      for (var item in this.app.components) {
-        _loop(item);
-      }
-    }
-  }]);
-
-  return Commiter;
-}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-
-
-/***/ }),
-
 /***/ "./resources/js2/productList/headerManager/headerVisibilityManager.js":
 /*!****************************************************************************!*\
   !*** ./resources/js2/productList/headerManager/headerVisibilityManager.js ***!
@@ -5382,6 +5287,101 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
 
   return RendererOfViewedProductsByLink;
 }(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_6__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js2/productList/mutator.js":
+/*!**********************************************!*\
+  !*** ./resources/js2/productList/mutator.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Mutator; });
+/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var Mutator = /*#__PURE__*/function (_Aware) {
+  _inherits(Mutator, _Aware);
+
+  var _super = _createSuper(Mutator);
+
+  function Mutator() {
+    _classCallCheck(this, Mutator);
+
+    return _super.call(this);
+  }
+
+  _createClass(Mutator, [{
+    key: "commit",
+    value: function commit(mutationName, data) {
+      this.app.mutations[mutationName](this.app.state, data);
+
+      this.app.mutator._notifyObservers(mutationName);
+    }
+  }, {
+    key: "_notifyObservers",
+    value: function _notifyObservers(mutationName) {
+      var _this = this;
+
+      var checkMethods = {
+        setViewMode: ['checkViewSettings'],
+        setSortMode: ['checkSortSettings'],
+        setSectionData: ['checkSectionSettings'],
+        setMinPrice: ['checkSearchSettings'],
+        setMaxPrice: ['checkSearchSettings'],
+        setCategoriesIds: ['checkSearchSettings'],
+        resetSearchSettings: ['checkSearchSettings'],
+        setSectionProductsCount: ['checkPaginatorSettings'],
+        setStartOffset: ['checkPaginatorSettings'],
+        setPageNumber: ['checkPaginatorSettings'],
+        setPageCount: ['checkPaginatorSettings'],
+        setPerPage: []
+      };
+      var checkMethodList = checkMethods[mutationName];
+
+      var _loop = function _loop(item) {
+        if (_this.app.components.hasOwnProperty(item)) {
+          checkMethodList.forEach(function (checkMethod) {
+            _this.app.components[item][checkMethod]();
+          });
+        }
+      };
+
+      for (var item in this.app.components) {
+        _loop(item);
+      }
+    }
+  }]);
+
+  return Mutator;
+}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 
@@ -7219,15 +7219,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _productList_myState__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./productList/myState */ "./resources/js2/productList/myState.js");
 /* harmony import */ var _productList_myMutations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./productList/myMutations */ "./resources/js2/productList/myMutations.js");
 /* harmony import */ var _productList_myComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./productList/myComponents */ "./resources/js2/productList/myComponents.js");
-/* harmony import */ var _productList_commiter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./productList/commiter */ "./resources/js2/productList/commiter.js");
+/* harmony import */ var _productList_mutator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./productList/mutator */ "./resources/js2/productList/mutator.js");
 /* harmony import */ var _menu_menuVisibilityManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./menu/menuVisibilityManager */ "./resources/js2/menu/menuVisibilityManager.js");
 /* harmony import */ var _menu_topDropMenuFiller__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./menu/topDropMenuFiller */ "./resources/js2/menu/topDropMenuFiller.js");
 /* harmony import */ var _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./http/csrfUpdater */ "./resources/js2/http/csrfUpdater.js");
 /* harmony import */ var _auth_index_authKit__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth/index-authKit */ "./resources/js2/auth/index-authKit.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsSwitcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsSwitcher */ "./resources/js2/favoriteProducts/favoriteProductsSwitcher.js");
 /* harmony import */ var _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotalCountIndication */ "./resources/js2/favoriteProducts/favoriteProductsTotalCountIndication.js");
-/* harmony import */ var _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./orderWindow/orderWindow */ "./resources/js2/orderWindow/orderWindow.js");
-
 
 
 
@@ -7241,10 +7239,10 @@ __webpack_require__.r(__webpack_exports__);
 var app = {
   state: _productList_myState__WEBPACK_IMPORTED_MODULE_0__["default"],
   mutations: _productList_myMutations__WEBPACK_IMPORTED_MODULE_1__["default"],
-  commiter: new _productList_commiter__WEBPACK_IMPORTED_MODULE_3__["default"](),
+  mutator: new _productList_mutator__WEBPACK_IMPORTED_MODULE_3__["default"](),
   components: _productList_myComponents__WEBPACK_IMPORTED_MODULE_2__["default"]
 };
-app.commiter.app = app;
+app.mutator.app = app;
 
 for (var item in app.components) {
   if (app.components.hasOwnProperty(item)) {
@@ -7254,7 +7252,7 @@ for (var item in app.components) {
 
     app.components[item].state = app.state; // в классах будет this.commit();
 
-    app.components[item].commit = app.commiter.commit;
+    app.components[item].commit = app.mutator.commit;
   }
 }
 
