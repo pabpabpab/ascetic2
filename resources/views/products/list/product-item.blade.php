@@ -17,7 +17,7 @@
     ]);
 @endphp
 
-<div class="product_item__wrapper">
+<div data-product-item="{{ $product->id }}" class="product_item__wrapper">
     <div class="product_item">
         <div class="product_item__content">
 

@@ -1793,7 +1793,7 @@ function getEmailHtml(propValue, product) {
     return '';
   }
 
-  var text = "\u041B\u043E\u0442 \u043D\u043E\u043C\u0435\u0440 ".concat(product.id, " (").concat(product.name, ")");
+  var text = product ? "\u041B\u043E\u0442 \u043D\u043E\u043C\u0435\u0440 ".concat(product.id, " (").concat(product.name, ")") : '';
   return "<p class=\"order_window__contact_item\">\n                <span title=\"E-mail\" class=\"order_window__contact_item__title\">\n                <img alt=\"\" src=\"/images/contactIcons/email.svg\"\n                    class=\"order_window__contact_item__icon\" />\n                </span>\n                <a href=\"mailto:".concat(propValue, "?subject=").concat(text, "&body=").concat(text, "\" class=\"order_window__contact_item__link\">\n                    ").concat(propValue, "\n                </a>\n            </p>");
 }
 
@@ -1815,6 +1815,26 @@ function getFacebookHtml(propValue) {
   }
 
   return "<p class=\"order_window__contact_item\">\n                <span title=\"Meta\" class=\"order_window__contact_item__title\">\n                <img alt=\"\" src=\"/images/contactIcons/facebook.svg\"\n                    class=\"order_window__contact_item__icon\" />\n                </span>\n                <a href=\"".concat(propValue, "\" target=_blank class=\"order_window__contact_item__link\">\n                    ").concat(propValue, "\n                </a>\n            </p>");
+}
+
+/***/ }),
+
+/***/ "./resources/js2/html/orderWindow/getHeaderHtml.js":
+/*!*********************************************************!*\
+  !*** ./resources/js2/html/orderWindow/getHeaderHtml.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getHeaderHtml; });
+function getHeaderHtml(product) {
+  if (!product) {
+    return "<p class=\"order_window__header\">\n                    \u0421\u0432\u044F\u0437\u0430\u0442\u044C\u0441\u044F \u043F\u043E \u043F\u043E\u0432\u043E\u0434\u0443 \u0438\u0437\u0433\u043E\u0442\u043E\u0432\u043B\u0435\u043D\u0438\u044F \u0442\u043E\u0432\u0430\u0440\u0430<br>\n                    \u0438\u0437 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043D\u044B\u0445 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435 \u0438\u043B\u0438 \u043F\u043E\u0434\u043E\u0431\u043D\u043E\u0433\u043E\n                </p>";
+  }
+
+  return "<p class=\"order_window__header\">\n                <span class=\"order_window__header__do_order\">\n                    \u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C\n                </span>\n                \u041B\u043E\u0442 \u2116 ".concat(product.id, "\n            </p>");
 }
 
 /***/ }),
@@ -1865,6 +1885,35 @@ function getPhoneHtml(propValue) {
 
 /***/ }),
 
+/***/ "./resources/js2/html/orderWindow/getProductInfoHtml.js":
+/*!**************************************************************!*\
+  !*** ./resources/js2/html/orderWindow/getProductInfoHtml.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getProductInfoHtml; });
+function getProductInfoHtml(product) {
+  if (!product) {
+    return '';
+  }
+
+  return "<div class=\"order_window__photo_wrapper\">\n                ".concat(_getPhotoBlockHtml(product), "\n                <p class=\"order_window__product_name\">\n                    ").concat(product.name, "\n                </p>\n            </div>");
+}
+
+function _getPhotoBlockHtml(product) {
+  if (!product.photos[0]) {
+    return '';
+  }
+
+  var photoFolder = "/storage/products-photos-size3/";
+  return "<p class=\"order_window__photo\">\n                <img src='".concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                    alt=\"\"\n                    class=\"order_window__photo_img\"/>\n            </p>");
+}
+
+/***/ }),
+
 /***/ "./resources/js2/html/orderWindow/getPurePhoneNumber.js":
 /*!**************************************************************!*\
   !*** ./resources/js2/html/orderWindow/getPurePhoneNumber.js ***!
@@ -1895,7 +1944,7 @@ function getPurePhoneNumber(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getTelegramHtml; });
-function getTelegramHtml(propValue, product) {
+function getTelegramHtml(propValue) {
   if (propValue.length === 0) {
     return '';
   }
@@ -1903,7 +1952,6 @@ function getTelegramHtml(propValue, product) {
   var value = propValue.replaceAll(' ', '');
   var domain = value[0] === '@' ? value.slice(1) : value;
   var nikName = value[0] === '@' ? value : "@".concat(value);
-  var text = "\u041B\u043E\u0442 \u043D\u043E\u043C\u0435\u0440 ".concat(product.id, " (").concat(product.name, ")");
   return "<p class=\"order_window__contact_item\">\n                <span title=\"Telegram\" class=\"order_window__contact_item__title\">\n                <img alt=\"\" src=\"/images/contactIcons/telegram.png\"\n                    class=\"order_window__contact_item__icon\" />\n                </span>\n\n                <a href=\"tg://resolve?domain=".concat(domain, "\" class=\"order_window__contact_item__link\">\n                    ").concat(nikName, "\n                </a>\n            </p>");
 }
 
@@ -1946,7 +1994,7 @@ function getWhatsappHtml(propValue, product) {
     return '';
   }
 
-  var text = "\u041B\u043E\u0442 \u043D\u043E\u043C\u0435\u0440 ".concat(product.id, " (").concat(product.name, ")");
+  var text = product ? "\u041B\u043E\u0442 \u043D\u043E\u043C\u0435\u0440 ".concat(product.id, " (").concat(product.name, ")") : '';
   return "<p class=\"order_window__contact_item\">\n                <span title=\"Whatsapp\" class=\"order_window__contact_item__title\">\n                <img alt=\"\" src=\"/images/contactIcons/whatsapp.png\"\n                    class=\"order_window__contact_item__icon\" />\n                </span>\n                <a href=\"https://wa.me/".concat(Object(_getPurePhoneNumber__WEBPACK_IMPORTED_MODULE_0__["default"])(propValue), "?text=").concat(text, "\" class=\"order_window__contact_item__link\">\n                    ").concat(propValue, "\n                </a>\n            </p>");
 }
 
@@ -1962,14 +2010,18 @@ function getWhatsappHtml(propValue, product) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getOrderWindowHtml; });
-/* harmony import */ var _getVkontakeHtml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getVkontakeHtml */ "./resources/js2/html/orderWindow/getVkontakeHtml.js");
-/* harmony import */ var _getOKHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getOKHtml */ "./resources/js2/html/orderWindow/getOKHtml.js");
-/* harmony import */ var _getFacebookHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getFacebookHtml */ "./resources/js2/html/orderWindow/getFacebookHtml.js");
-/* harmony import */ var _getEmailHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getEmailHtml */ "./resources/js2/html/orderWindow/getEmailHtml.js");
-/* harmony import */ var _getWhatsappHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getWhatsappHtml */ "./resources/js2/html/orderWindow/getWhatsappHtml.js");
-/* harmony import */ var _getTelegramHtml__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getTelegramHtml */ "./resources/js2/html/orderWindow/getTelegramHtml.js");
-/* harmony import */ var _getPhoneHtml__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./getPhoneHtml */ "./resources/js2/html/orderWindow/getPhoneHtml.js");
-/* harmony import */ var _getAddressHtml__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./getAddressHtml */ "./resources/js2/html/orderWindow/getAddressHtml.js");
+/* harmony import */ var _getHeaderHtml__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getHeaderHtml */ "./resources/js2/html/orderWindow/getHeaderHtml.js");
+/* harmony import */ var _getProductInfoHtml__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getProductInfoHtml */ "./resources/js2/html/orderWindow/getProductInfoHtml.js");
+/* harmony import */ var _getVkontakeHtml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getVkontakeHtml */ "./resources/js2/html/orderWindow/getVkontakeHtml.js");
+/* harmony import */ var _getOKHtml__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./getOKHtml */ "./resources/js2/html/orderWindow/getOKHtml.js");
+/* harmony import */ var _getFacebookHtml__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./getFacebookHtml */ "./resources/js2/html/orderWindow/getFacebookHtml.js");
+/* harmony import */ var _getEmailHtml__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./getEmailHtml */ "./resources/js2/html/orderWindow/getEmailHtml.js");
+/* harmony import */ var _getWhatsappHtml__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./getWhatsappHtml */ "./resources/js2/html/orderWindow/getWhatsappHtml.js");
+/* harmony import */ var _getTelegramHtml__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./getTelegramHtml */ "./resources/js2/html/orderWindow/getTelegramHtml.js");
+/* harmony import */ var _getPhoneHtml__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./getPhoneHtml */ "./resources/js2/html/orderWindow/getPhoneHtml.js");
+/* harmony import */ var _getAddressHtml__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./getAddressHtml */ "./resources/js2/html/orderWindow/getAddressHtml.js");
+
+
 
 
 
@@ -1979,7 +2031,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function getOrderWindowHtml(product, contacts) {
-  return "<div id=\"orderWindow\" class=\"order_window__wrapper show_block\">\n                <div class=\"order_window\">\n                    <p class=\"order_window__header\">\n                       <span class=\"order_window__header__do_order\">\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C</span> \u041B\u043E\u0442 \u2116 ".concat(product.id, "\n                    </p>\n\n                     <div class=\"order_window__photo_wrapper\">\n                       ").concat(_getPhotoBlockHtml(product), "\n                       <p class=\"order_window__product_name\">\n                           ").concat(product.name, "\n                       </p>\n                    </div>\n\n                    ").concat(Object(_getAddressHtml__WEBPACK_IMPORTED_MODULE_7__["default"])(contacts.address), "\n                    ").concat(Object(_getPhoneHtml__WEBPACK_IMPORTED_MODULE_6__["default"])(contacts.phone), "\n                    ").concat(_getItem(contacts.phoneTime, 'Время для звонка', 'phoneTime.svg'), "\n                    ").concat(Object(_getWhatsappHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(contacts.whatsapp, product), "\n                    ").concat(Object(_getTelegramHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(contacts.tg, product), "\n                    ").concat(Object(_getVkontakeHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(contacts.vkontakte), "\n                    ").concat(Object(_getOKHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(contacts.ok), "\n                    ").concat(Object(_getFacebookHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(contacts.meta), "\n                    ").concat(Object(_getEmailHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(contacts.email, product), "\n\n                    <div class='order_window__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
+  return "<div id=\"orderWindow\" class=\"order_window__wrapper show_block\">\n                <div class=\"order_window\">\n                    ".concat(Object(_getHeaderHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product), "\n                    ").concat(Object(_getProductInfoHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product), "\n                    ").concat(Object(_getAddressHtml__WEBPACK_IMPORTED_MODULE_9__["default"])(contacts.address), "\n                    ").concat(Object(_getPhoneHtml__WEBPACK_IMPORTED_MODULE_8__["default"])(contacts.phone), "\n                    ").concat(_getItem(contacts.phoneTime, 'Время для звонка', 'phoneTime.svg'), "\n                    ").concat(Object(_getWhatsappHtml__WEBPACK_IMPORTED_MODULE_6__["default"])(contacts.whatsapp, product), "\n                    ").concat(Object(_getTelegramHtml__WEBPACK_IMPORTED_MODULE_7__["default"])(contacts.tg), "\n                    ").concat(Object(_getVkontakeHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(contacts.vkontakte), "\n                    ").concat(Object(_getOKHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(contacts.ok), "\n                    ").concat(Object(_getFacebookHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(contacts.meta), "\n                    ").concat(Object(_getEmailHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(contacts.email, product), "\n\n                    <div class='order_window__collapse_icon'>&#215;</div>\n                </div>\n            </div>");
 }
 
 function _getItem(propValue, title, iconSrc) {
@@ -1988,15 +2040,6 @@ function _getItem(propValue, title, iconSrc) {
   }
 
   return "<p class=\"order_window__contact_item\">\n                <span title=\"".concat(title, "\" class=\"order_window__contact_item__title\">\n                <img alt=\"\" src=\"/images/contactIcons/").concat(iconSrc, "\"\n                    class=\"order_window__contact_item__icon\" />\n                </span>\n                ").concat(propValue, "\n            </p>");
-}
-
-function _getPhotoBlockHtml(product) {
-  if (!product.photos[0]) {
-    return '';
-  }
-
-  var photoFolder = "/storage/products-photos-size3/";
-  return "<p class=\"order_window__photo\">\n                <img src='".concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                    alt=\"\"\n                    class=\"order_window__photo_img\"/>\n            </p>");
 }
 
 /***/ }),
@@ -2187,7 +2230,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getProductsItemHtml(product, viewMode) {
   var bigView = viewMode === 'bigView' ? 'big_view' : '';
-  return "<div class=\"product_item__wrapper\">\n               <div data-product-item=\"".concat(product.id, "\" class=\"product_item ").concat(bigView, "\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__photo_wrapper\">\n                         <div class=\"product_item__quick_view_link__wrapper\">\n                            <a data-quick-view=\"").concat(product.id, "\"\n                               href='/product/").concat(product.slug, "-").concat(product.id, "'\n                               class=\"product_item__quick_view_link\">\n                                  \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                            </a>\n                         </div>\n\n                         ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product, viewMode) : Object(_getNoPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(), "\n                      </div>\n\n                      <div>\n                          <div class=\"product_item__price_and_order\">\n                              <div class=\"product_item__price\">\n                                 ").concat(product.price, " \u20BD\n                              </div>\n                              <div data-order-button=\"").concat(product.id, "\"\n                                 class=\"product_item__order_icon__wrapper\">\n                                 <img data-order-button=\"").concat(product.id, "\"\n                                    alt=\"\"\n                                    src=\"/images/orderIcon.svg\"\n                                    class=\"product_item__order_icon__img\">\n                              </div>\n                          </div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
+  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper\">\n               <div class=\"product_item ").concat(bigView, "\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__photo_wrapper\">\n                         <div class=\"product_item__quick_view_link__wrapper\">\n                            <a data-quick-view=\"").concat(product.id, "\"\n                               href='/product/").concat(product.slug, "-").concat(product.id, "'\n                               class=\"product_item__quick_view_link\">\n                                  \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                            </a>\n                         </div>\n\n                         ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product, viewMode) : Object(_getNoPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(), "\n                      </div>\n\n                      <div>\n                          <div class=\"product_item__price_and_order\">\n                              <div class=\"product_item__price\">\n                                 ").concat(product.price, " \u20BD\n                              </div>\n                              <div data-order-button=\"").concat(product.id, "\"\n                                 class=\"product_item__order_icon__wrapper\">\n                                 <img data-order-button=\"").concat(product.id, "\"\n                                    alt=\"\"\n                                    src=\"/images/orderIcon.svg\"\n                                    class=\"product_item__order_icon__img\">\n                              </div>\n                          </div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
 }
 
 /***/ }),
@@ -3204,21 +3247,35 @@ var OrderWindow = /*#__PURE__*/function (_Aware) {
         return;
       }
 
-      var productId = Number(e.target.dataset.orderButton);
-      e.preventDefault();
-      e.stopPropagation();
+      var productId = e.target.dataset.orderButton;
 
-      _this._render(productId);
+      if (productId === '0') {
+        _this._renderCommonWindow();
+
+        return;
+      }
+
+      _this._render(Number(productId));
     });
     return _this;
   }
 
   _createClass(OrderWindow, [{
+    key: "_renderCommonWindow",
+    value: function _renderCommonWindow() {
+      this._prepareData();
+
+      var html = Object(_html_orderWindow_index_getOrderWindowHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(null, this.contacts);
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', html);
+
+      this._listenThisBlock();
+    }
+  }, {
     key: "_render",
     value: function _render(productId) {
       var _this2 = this;
 
-      this._preRenderActions();
+      this._prepareData();
 
       this._getOneProduct(productId).then(function (product) {
         var productObject = Object(_productObject_getProductObject__WEBPACK_IMPORTED_MODULE_4__["default"])(product);
@@ -3260,8 +3317,8 @@ var OrderWindow = /*#__PURE__*/function (_Aware) {
       });
     }
   }, {
-    key: "_preRenderActions",
-    value: function _preRenderActions() {
+    key: "_prepareData",
+    value: function _prepareData() {
       var dataset = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#siteFooter').dataset;
       this.contacts = {
         domain: dataset.siteDomain,

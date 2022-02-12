@@ -22,15 +22,25 @@ export default class OrderWindow extends Aware {
             if (!e.target.dataset || !e.target.dataset.orderButton) {
                 return;
             }
-            const productId = Number(e.target.dataset.orderButton);
-            e.preventDefault();
-            e.stopPropagation();
-            this._render(productId);
+            const productId = e.target.dataset.orderButton;
+            if (productId === '0') {
+                this._renderCommonWindow();
+                return;
+            }
+            this._render(Number(productId));
         });
     }
 
+
+    _renderCommonWindow() {
+        this._prepareData();
+        const html = getOrderWindowHtml(null, this.contacts);
+        el('body').insertAdjacentHTML('beforeend', html);
+        this._listenThisBlock();
+    }
+
     _render(productId) {
-        this._preRenderActions();
+        this._prepareData();
         this._getOneProduct(productId).then((product) => {
             const productObject = getProductObject(product);
             const html = getOrderWindowHtml(productObject, this.contacts);
@@ -66,7 +76,7 @@ export default class OrderWindow extends Aware {
         });
     }
 
-    _preRenderActions() {
+    _prepareData() {
         const dataset = el('#siteFooter').dataset;
         this.contacts = {
             domain: dataset.siteDomain,

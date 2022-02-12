@@ -1,3 +1,5 @@
+import getHeaderHtml from "./getHeaderHtml";
+import getProductInfoHtml from "./getProductInfoHtml";
 import getVkontakteHtml from "./getVkontakeHtml";
 import getOKHtml from "./getOKHtml";
 import getFacebookHtml from "./getFacebookHtml";
@@ -10,22 +12,13 @@ import getAddressHtml from "./getAddressHtml";
 export default function getOrderWindowHtml(product, contacts) {
     return `<div id="orderWindow" class="order_window__wrapper show_block">
                 <div class="order_window">
-                    <p class="order_window__header">
-                       <span class="order_window__header__do_order">Заказать</span> Лот № ${product.id}
-                    </p>
-
-                     <div class="order_window__photo_wrapper">
-                       ${ _getPhotoBlockHtml(product)}
-                       <p class="order_window__product_name">
-                           ${ product.name }
-                       </p>
-                    </div>
-
+                    ${ getHeaderHtml(product) }
+                    ${ getProductInfoHtml(product) }
                     ${ getAddressHtml(contacts.address) }
                     ${ getPhoneHtml(contacts.phone) }
                     ${ _getItem(contacts.phoneTime, 'Время для звонка', 'phoneTime.svg') }
                     ${ getWhatsappHtml(contacts.whatsapp, product) }
-                    ${ getTelegramHtml(contacts.tg, product) }
+                    ${ getTelegramHtml(contacts.tg) }
                     ${ getVkontakteHtml(contacts.vkontakte) }
                     ${ getOKHtml(contacts.ok) }
                     ${ getFacebookHtml(contacts.meta) }
@@ -47,17 +40,5 @@ function _getItem(propValue, title, iconSrc) {
                     class="order_window__contact_item__icon" />
                 </span>
                 ${propValue}
-            </p>`;
-}
-
-function _getPhotoBlockHtml(product) {
-    if (!product.photos[0]) {
-        return '';
-    }
-    const photoFolder = "/storage/products-photos-size3/";
-    return `<p class="order_window__photo">
-                <img src='${photoFolder}${product.id}s3-${product.photos[0]}'
-                    alt=""
-                    class="order_window__photo_img"/>
             </p>`;
 }
