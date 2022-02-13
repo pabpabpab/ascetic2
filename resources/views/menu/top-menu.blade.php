@@ -66,7 +66,7 @@
                 <p
                    data-menu-link-section-name="allProducts"
                    data-menu-link-title-text="{{ $mainPageTitle }}"
-                   class="top_menu__link top_menu__link_with_drop_menu nowrap m0 cursor-pointer">
+                   class="top_menu__link top_menu__link_with_drop_menu nowrap m0">
                     Все
                 </p>
             </div>
@@ -76,6 +76,11 @@
 
 
     <div data-menu="right" class="top_menu__ul">
+        <div data-order-button="0" class="top_menu__li">
+            <p data-order-button="0" class="top_menu__link m0">
+                Контакты
+            </p>
+        </div>
         <div class="top_menu__li_auth">
             @include('menu.fav-icon')
         </div>

@@ -47,7 +47,7 @@
         </ul>
     </nav>
     <div data-order-button="0" class="bottom_menu__contacts">
-        <div data-order-button="0" class="bottom_menu__contacts__relative">
+        <div class="bottom_menu__contacts__relative">
             <p data-order-button="0" class="bottom_menu__contacts__absolute">
                 Контакты
             </p>

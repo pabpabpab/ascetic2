@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
             'perPage' => config("my_site.pagination.perPage"),
             'mainPageTitle' => config("my_site.titles.mainPageTitle"),
             'contacts' => config("my_site.contacts"),
+            'cacheLimit' => config("my_site.cacheLimit"),
         ]);
 
     }

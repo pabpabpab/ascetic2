@@ -8,11 +8,6 @@ return [
         'mainPageDescription' => 'Товары из дерева на заказ.',
     ],
 
-    'pagination' => [
-        'perPage' => 3
-    ],
-
-
     'contacts' => [
         'domain' => 'AsceticShop.ru',
         'address' => 'Екатеринбург, ул. Азина, 39',
@@ -25,6 +20,12 @@ return [
         'meta' => 'https://meta.com/',
         'e-mail' => 'microsupport@mail.ru',
     ],
+
+    'pagination' => [
+        'perPage' => 3
+    ],
+
+    'cacheLimit' => 100,
 
 ];
 

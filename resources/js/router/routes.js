@@ -50,6 +50,20 @@ const routes = [
         name: 'TrashedProducts',
         component: () => import('../components/Admin/TrashedProductsPage.vue'),
     },
+
+
+    {
+        path: '/admin/settings',
+        name: 'SettingsMenu',
+        component: () => import('../components/Admin/SettingsMenuPage.vue'),
+    },
+    {
+        path: '/admin/settings/:subject',
+        name: 'Settings',
+        component: () => import('../components/Admin/Settings/SettingsIndex.vue'),
+    },
+
+
     {
         path: '*',
         redirect: '/admin',

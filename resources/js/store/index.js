@@ -15,10 +15,12 @@ import waitingScreen from './waitingScreen';
 import confirmationDialog from './confirmationDialog';
 import contextMenu from './contextMenu_js/contextMenu';
 import seoManager from './seoManager';
+import settingsManager from './settingsManager';
 import dragAndDropByY from './dragAndDropByY';
 import dragAndDropByXY from './dragAndDropByXY';
 import dragAndDropInAbsDiv from './dragAndDropInAbsDiv';
 import mobileMenu from './mobileMenu';
+import auxiliary_actions from "./index_js/auxiliary_actions";
 
 Vue.use(Vuex);
 
@@ -32,26 +34,7 @@ const store = new Vuex.Store({
         imgFolderPrefix: (state) => state.imgFolderPrefix,
     },
     actions: {
-        closeAllByClickOnAppTag({ dispatch, commit, getters }, event) {
-            dispatch('closePopupErrorsBox');
-            dispatch('contextMenu/closeContextMenuByClick', event);
-
-            if (getters["mobileMenu/mobileMenuVisibility"]) {
-                dispatch('hideMobileMenu');
-            }
-
-            if (getters["products/visibility"]("productsFilters")) {
-                dispatch('products/closeProductsFilters');
-            }
-
-            commit('products/setVisibility', {
-                componentName: 'productSortingSelectForMobile',
-                value: false
-            });
-        },
-        scrollWindowBottom() {
-            window.scrollBy(0, 1000000);
-        },
+        ...auxiliary_actions,
     },
     modules: {
         csrfToken,
@@ -68,6 +51,7 @@ const store = new Vuex.Store({
         confirmationDialog,
         contextMenu,
         seoManager,
+        settingsManager,
         dragAndDropByY,
         dragAndDropByXY,
         dragAndDropInAbsDiv,

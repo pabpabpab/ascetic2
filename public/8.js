@@ -2109,7 +2109,7 @@ function _hasIncreaseInTextareaLength(event) {
 }
 
 function _increaseTextareaHeight(event) {
-  event.target.style.height = event.target.scrollHeight + 20 + 'px';
+  event.target.style.height = event.target.scrollHeight + 10 + 'px';
 }
 
 function _hasDecreaseInTextareaLength(event) {

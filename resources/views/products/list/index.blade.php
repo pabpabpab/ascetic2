@@ -24,6 +24,7 @@
 
 
         <div id="productList"
+             data-cache-limit="{{ $cacheLimit }}"
              data-total-products-count="{{ $totalProductsCount }}"
              data-section-products-count="{{ $sectionProductsCount }}"
              data-section-page-count="{{ $pageCount }}"

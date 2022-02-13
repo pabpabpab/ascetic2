@@ -889,11 +889,15 @@ function allProductsMustBeCached() {
     return false;
   }
 
+  if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.cacheLimit) {
+    return false;
+  }
+
   if (!Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount) {
     return false;
   }
 
-  var limitForCachingOfProductEntireList = 100;
+  var limitForCachingOfProductEntireList = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.cacheLimit);
   var totalProductsCount = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.totalProductsCount);
   return totalProductsCount < limitForCachingOfProductEntireList;
 }
@@ -1392,7 +1396,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getHeaderHtml; });
 function getHeaderHtml(product) {
   if (!product) {
-    return "<p class=\"order_window__header\">\n                    \u0421\u0432\u044F\u0437\u0430\u0442\u044C\u0441\u044F \u043F\u043E \u043F\u043E\u0432\u043E\u0434\u0443 \u0438\u0437\u0433\u043E\u0442\u043E\u0432\u043B\u0435\u043D\u0438\u044F \u0442\u043E\u0432\u0430\u0440\u0430<br>\n                    \u0438\u0437 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043D\u044B\u0445 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435 \u0438\u043B\u0438 \u043F\u043E\u0434\u043E\u0431\u043D\u043E\u0433\u043E\n                </p>";
+    return "<p class=\"order_window__header\">\n                    \u0421\u0432\u044F\u0437\u0430\u0442\u044C\u0441\u044F \u043F\u043E \u043F\u043E\u0432\u043E\u0434\u0443 \u0438\u0437\u0433\u043E\u0442\u043E\u0432\u043B\u0435\u043D\u0438\u044F \u0442\u043E\u0432\u0430\u0440\u0430<br>\n                    \u0438\u0437 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043D\u044B\u0445 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435 \u0438\u043B\u0438 \u043F\u043E\u0445\u043E\u0436\u0435\u0433\u043E\n                </p>";
   }
 
   return "<p class=\"order_window__header\">\n                <span class=\"order_window__header__do_order\">\n                    \u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C\n                </span>\n                \u041B\u043E\u0442 \u2116 ".concat(product.id, "\n            </p>");

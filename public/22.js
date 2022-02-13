@@ -83,7 +83,7 @@ var render = function() {
       [
         _c("reload-icon"),
         _vm._v(" "),
-        _c("h1", { staticClass: "pd0 mb0 mauto" }, [_vm._v("Пользователи")])
+        _c("h1", { staticClass: "pd0 mb0" }, [_vm._v("Пользователи")])
       ],
       1
     ),

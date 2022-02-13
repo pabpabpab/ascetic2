@@ -121,7 +121,13 @@
             </li>
 
             <li class="top_menu__li">
-                <router-link :to="{ name: 'Help' }" :class="mainPageLinkClass">
+                <router-link :to="{ name: 'SettingsMenu' }" :class="settingsPageLinkClass">
+                    Настройки
+                </router-link>
+            </li>
+
+            <li class="top_menu__li">
+                <router-link :to="{ name: 'Help' }" :class="helpPageLinkClass">
                     Помощь
                 </router-link>
             </li>
@@ -168,7 +174,13 @@ export default {
                 'top_menu__link_active': this.$route.name === 'Users',
             }
         },
-        mainPageLinkClass() {
+        settingsPageLinkClass() {
+            return {
+                'top_menu__link': true,
+                'top_menu__link_active': this.$route.name === 'Settings',
+            }
+        },
+        helpPageLinkClass() {
             return {
                 'top_menu__link': true,
                 'top_menu__link_active': this.$route.name === 'Help',

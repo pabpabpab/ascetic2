@@ -547,6 +547,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "MobileMenuContent"
 });
@@ -824,6 +835,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'top_menu',
@@ -853,7 +870,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         'top_menu__link_active': this.$route.name === 'Users'
       };
     },
-    mainPageLinkClass: function mainPageLinkClass() {
+    settingsPageLinkClass: function settingsPageLinkClass() {
+      return {
+        'top_menu__link': true,
+        'top_menu__link_active': this.$route.name === 'Settings'
+      };
+    },
+    helpPageLinkClass: function helpPageLinkClass() {
       return {
         'top_menu__link': true,
         'top_menu__link_active': this.$route.name === 'Help'
@@ -2464,6 +2487,24 @@ var render = function() {
             "router-link",
             {
               staticClass: "mobile_menu__link",
+              attrs: { to: { name: "SettingsMenu" } }
+            },
+            [_vm._v("\n                Настройки сайта\n            ")]
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("ul", { staticClass: "mobile_menu__ul mobile_menu__ul_with_bg" }, [
+      _c(
+        "li",
+        { staticClass: "mobile_menu__li" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "mobile_menu__link",
               attrs: { to: { name: "Help" } }
             },
             [_vm._v("\n                Помощь\n            ")]
@@ -2481,23 +2522,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      { staticClass: "mobile_menu__ul mobile_menu__ul_with_bg" },
-      [
-        _c("li", { staticClass: "mobile_menu__li" }, [
-          _c(
-            "a",
-            {
-              staticClass:
-                "mobile_menu__link mobile_menu__link_with_top_offset",
-              attrs: { href: "http://asceticshop.ru" }
-            },
-            [_vm._v("\n                AsceticShop.ru\n            ")]
-          )
-        ])
-      ]
-    )
+    return _c("ul", { staticClass: "mobile_menu__ul" }, [
+      _c("li", { staticClass: "mobile_menu__li" }, [
+        _c(
+          "a",
+          {
+            staticClass: "mobile_menu__link mobile_menu__link_with_top_offset",
+            attrs: { href: "http://asceticshop.ru" }
+          },
+          [_vm._v("\n                AsceticShop.ru\n            ")]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -2933,7 +2969,23 @@ var render = function() {
         [
           _c(
             "router-link",
-            { class: _vm.mainPageLinkClass, attrs: { to: { name: "Help" } } },
+            {
+              class: _vm.settingsPageLinkClass,
+              attrs: { to: { name: "SettingsMenu" } }
+            },
+            [_vm._v("\n                Настройки\n            ")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "li",
+        { staticClass: "top_menu__li" },
+        [
+          _c(
+            "router-link",
+            { class: _vm.helpPageLinkClass, attrs: { to: { name: "Help" } } },
             [_vm._v("\n                Помощь\n            ")]
           )
         ],
@@ -20328,6 +20380,18 @@ var routes = [{
     return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
   }
 }, {
+  path: '/admin/settings',
+  name: 'SettingsMenu',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ../components/Admin/SettingsMenuPage.vue */ "./resources/js/components/Admin/SettingsMenuPage.vue"));
+  }
+}, {
+  path: '/admin/settings/:subject',
+  name: 'Settings',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ../components/Admin/Settings/SettingsIndex.vue */ "./resources/js/components/Admin/Settings/SettingsIndex.vue"));
+  }
+}, {
   path: '*',
   redirect: '/admin'
 }];
@@ -22617,10 +22681,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
 /* harmony import */ var _contextMenu_js_contextMenu__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./contextMenu_js/contextMenu */ "./resources/js/store/contextMenu_js/contextMenu.js");
 /* harmony import */ var _seoManager__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./seoManager */ "./resources/js/store/seoManager.js");
-/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
-/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
-/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
-/* harmony import */ var _mobileMenu__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./mobileMenu */ "./resources/js/store/mobileMenu.js");
+/* harmony import */ var _settingsManager__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./settingsManager */ "./resources/js/store/settingsManager.js");
+/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
+/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
+/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
+/* harmony import */ var _mobileMenu__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./mobileMenu */ "./resources/js/store/mobileMenu.js");
+/* harmony import */ var _index_js_auxiliary_actions__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./index_js/auxiliary_actions */ "./resources/js/store/index_js/auxiliary_actions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 
 
@@ -22652,31 +22726,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       return state.imgFolderPrefix;
     }
   },
-  actions: {
-    closeAllByClickOnAppTag: function closeAllByClickOnAppTag(_ref, event) {
-      var dispatch = _ref.dispatch,
-          commit = _ref.commit,
-          getters = _ref.getters;
-      dispatch('closePopupErrorsBox');
-      dispatch('contextMenu/closeContextMenuByClick', event);
-
-      if (getters["mobileMenu/mobileMenuVisibility"]) {
-        dispatch('hideMobileMenu');
-      }
-
-      if (getters["products/visibility"]("productsFilters")) {
-        dispatch('products/closeProductsFilters');
-      }
-
-      commit('products/setVisibility', {
-        componentName: 'productSortingSelectForMobile',
-        value: false
-      });
-    },
-    scrollWindowBottom: function scrollWindowBottom() {
-      window.scrollBy(0, 1000000);
-    }
-  },
+  actions: _objectSpread({}, _index_js_auxiliary_actions__WEBPACK_IMPORTED_MODULE_21__["default"]),
   modules: {
     csrfToken: _csrfToken__WEBPACK_IMPORTED_MODULE_2__["default"],
     http: _http__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -22692,13 +22742,51 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_13__["default"],
     contextMenu: _contextMenu_js_contextMenu__WEBPACK_IMPORTED_MODULE_14__["default"],
     seoManager: _seoManager__WEBPACK_IMPORTED_MODULE_15__["default"],
-    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_16__["default"],
-    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_17__["default"],
-    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_18__["default"],
-    mobileMenu: _mobileMenu__WEBPACK_IMPORTED_MODULE_19__["default"]
+    settingsManager: _settingsManager__WEBPACK_IMPORTED_MODULE_16__["default"],
+    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__["default"],
+    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__["default"],
+    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_19__["default"],
+    mobileMenu: _mobileMenu__WEBPACK_IMPORTED_MODULE_20__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
+
+/***/ }),
+
+/***/ "./resources/js/store/index_js/auxiliary_actions.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/store/index_js/auxiliary_actions.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  closeAllByClickOnAppTag: function closeAllByClickOnAppTag(_ref, event) {
+    var dispatch = _ref.dispatch,
+        commit = _ref.commit,
+        getters = _ref.getters;
+    dispatch('closePopupErrorsBox');
+    dispatch('contextMenu/closeContextMenuByClick', event);
+
+    if (getters["mobileMenu/mobileMenuVisibility"]) {
+      dispatch('hideMobileMenu');
+    }
+
+    if (getters["products/visibility"]("productsFilters")) {
+      dispatch('products/closeProductsFilters');
+    }
+
+    commit('products/setVisibility', {
+      componentName: 'productSortingSelectForMobile',
+      value: false
+    });
+  },
+  scrollWindowBottom: function scrollWindowBottom() {
+    window.scrollBy(0, 1000000);
+  }
+});
 
 /***/ }),
 
@@ -26129,6 +26217,147 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           commit('updateLocalSeoData', {
             entity: entity,
             data: data.seo
+          });
+          var txt = "\u0421\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043E.";
+          dispatch('showAbsoluteFlashMessage', {
+            text: txt,
+            sec: 1
+          }, {
+            root: true
+          });
+        } else {
+          var _data$customException;
+
+          var _txt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
+
+          dispatch('showAbsoluteFlashMessage', {
+            text: _txt,
+            sec: 2
+          }, {
+            root: true
+          });
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/settingsManager.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/settingsManager.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  namespaced: true,
+  state: {
+    url: {
+      save: '/api/admin/settings/save/',
+      get: '/api/admin/settings/get/'
+    },
+    settings: {
+      contacts: {
+        domain: '',
+        address: '',
+        phone: '',
+        phoneTime: '',
+        whatsapp: '',
+        tg: '',
+        vkontakte: '',
+        ok: '',
+        meta: '',
+        email: ''
+      },
+      mainPageSeo: {
+        mainPageTitle: '',
+        mainPageDescription: ''
+      },
+      pagination: {
+        perPage: 3
+      },
+      cacheLimit: {
+        value: 100
+      },
+      photoQuality: {
+        value: 90
+      },
+      adminEmail: {
+        value: ''
+      }
+    }
+  },
+  getters: {
+    settings: function settings(state) {
+      return function (subject) {
+        if (!subject) {
+          return state.settings;
+        }
+
+        return state.settings[subject];
+      };
+    },
+    url: function url(state) {
+      return function (type) {
+        return state.url[type];
+      };
+    }
+  },
+  mutations: {
+    setSettings: function setSettings(state, _ref) {
+      var subject = _ref.subject,
+          data = _ref.data;
+
+      var settings = _objectSpread({}, state.settings);
+
+      settings[subject] = _objectSpread({}, data);
+      state.settings = _objectSpread({}, settings);
+    }
+  },
+  actions: {
+    loadSettings: function loadSettings(_ref2, _ref3) {
+      var dispatch = _ref2.dispatch,
+          commit = _ref2.commit,
+          state = _ref2.state;
+      var subject = _ref3.subject;
+      var url = state.url.get + subject;
+      dispatch('getJsonWithWaitingScreen', url, {
+        root: true
+      }).then(function (data) {
+        commit('setSettings', {
+          subject: subject,
+          data: data
+        });
+      });
+    },
+    saveSettings: function saveSettings(_ref4, _ref5) {
+      var dispatch = _ref4.dispatch,
+          commit = _ref4.commit,
+          state = _ref4.state,
+          rootState = _ref4.rootState;
+      var subject = _ref5.subject,
+          data = _ref5.data;
+      var url = state.url.save + subject;
+      dispatch('postJsonWithWaitingScreen', {
+        url: url,
+        data: data
+      }, {
+        root: true
+      }).then(function (data) {
+        if (data.saveSuccess === true) {
+          commit('setSettings', {
+            subject: subject,
+            data: data.data
           });
           var txt = "\u0421\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043E.";
           dispatch('showAbsoluteFlashMessage', {

@@ -70,7 +70,18 @@
             </li>
         </ul>
 
+
         <ul class="mobile_menu__ul">
+            <li class="mobile_menu__li">
+                <router-link
+                    :to="{ name: 'SettingsMenu' }"
+                    class="mobile_menu__link">
+                    Настройки сайта
+                </router-link>
+            </li>
+        </ul>
+
+        <ul class="mobile_menu__ul mobile_menu__ul_with_bg">
             <li class="mobile_menu__li">
                 <router-link
                     :to="{ name: 'Help' }"
@@ -80,7 +91,7 @@
             </li>
         </ul>
 
-        <ul class="mobile_menu__ul mobile_menu__ul_with_bg">
+        <ul class="mobile_menu__ul">
             <li class="mobile_menu__li">
                 <a href="http://asceticshop.ru"
                    class="mobile_menu__link mobile_menu__link_with_top_offset">

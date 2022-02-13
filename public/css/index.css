@@ -217,6 +217,7 @@ a {
   background-color: #fff;
   border-radius: 1px;
   border-bottom: 2px solid #fff;
+  cursor: pointer;
 }
 
 .top_menu__link:hover {
@@ -2602,7 +2603,7 @@ h2 {
   color: #eee;
   font-weight: 100;
   padding: 7px 10px;
-  background-color: #333;
+  background-color: #000;
 }
 
 .auth_absolute_menu__link {
