@@ -49,7 +49,7 @@ class PhotoUploader
         $my_size = config("my_photo.sizes.".$i);
         $width = (int) $my_size['width'];
         $height = (int) $my_size['height'];
-        $quality = config("my_photo.quality") + 0;
+        $quality = config("my_photo.photoQuality") + 0;
 
         $ext = explode('.', $newFileName)[1];
 

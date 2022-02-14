@@ -37,6 +37,6 @@ return [
         '5' => ['width' => 1600, 'height' => 0],
     ],
 
-    'quality' => 90,
+    'photoQuality' => 90,
 
 ];

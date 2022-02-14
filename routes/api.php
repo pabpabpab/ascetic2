@@ -124,6 +124,11 @@ Route::group([
 
     });
 
+
+    Route::get('/settings/get/{subject}', 'SettingsController@getSettings')
+        ->where('subject', 'contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail');
+    Route::post('/settings/save/{subject}', 'SettingsController@saveSettings')
+        ->where('subject', 'contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail');
 });
 
 

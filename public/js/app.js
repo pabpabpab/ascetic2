@@ -20323,43 +20323,43 @@ var routes = [{
   path: '/admin',
   name: 'Main',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
+    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/Admin/MainPage.vue */ "./resources/js/components/Admin/MainPage.vue"));
   }
 }, {
   path: '/admin/help',
   name: 'Help',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/Admin/HelpPage.vue */ "./resources/js/components/Admin/HelpPage.vue"));
+    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/Admin/HelpPage.vue */ "./resources/js/components/Admin/HelpPage.vue"));
   }
 }, {
   path: '/admin/user/add',
   name: 'SaveUser',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
+    return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveUserPage.vue */ "./resources/js/components/Admin/SaveUserPage.vue"));
   }
 }, {
   path: '/admin/users',
   name: 'Users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
+    return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ../components/Admin/UsersPage.vue */ "./resources/js/components/Admin/UsersPage.vue"));
   }
 }, {
   path: '/admin/products/categories/:entity',
   name: 'Categories',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../components/Admin/CategoriesPage.vue */ "./resources/js/components/Admin/CategoriesPage.vue"));
   }
 }, {
   path: '/admin/product/add',
   name: 'SaveProduct',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
+    return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ../components/Admin/SaveProductPage.vue */ "./resources/js/components/Admin/SaveProductPage.vue"));
   }
 }, {
   path: '/admin/product/:slug-:id',
   name: 'SingleProduct',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, /*! ../components/Admin/SingleProductPage.vue */ "./resources/js/components/Admin/SingleProductPage.vue"));
   }
 }, {
   path: '/admin/products/active',
@@ -20377,19 +20377,19 @@ var routes = [{
   path: '/admin/products/trashed',
   name: 'TrashedProducts',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
   }
 }, {
   path: '/admin/settings',
   name: 'SettingsMenu',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 26).then(__webpack_require__.bind(null, /*! ../components/Admin/SettingsMenuPage.vue */ "./resources/js/components/Admin/SettingsMenuPage.vue"));
+    return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ../components/Admin/SettingsMenuPage.vue */ "./resources/js/components/Admin/SettingsMenuPage.vue"));
   }
 }, {
   path: '/admin/settings/:subject',
   name: 'Settings',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 25).then(__webpack_require__.bind(null, /*! ../components/Admin/Settings/SettingsIndex.vue */ "./resources/js/components/Admin/Settings/SettingsIndex.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/Admin/Settings/SettingsIndex.vue */ "./resources/js/components/Admin/Settings/SettingsIndex.vue"));
   }
 }, {
   path: '*',
@@ -26301,15 +26301,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     settings: function settings(state) {
       return function (subject) {
         if (!subject) {
-          return state.settings;
+          return _objectSpread({}, state.settings);
         }
 
-        return state.settings[subject];
-      };
-    },
-    url: function url(state) {
-      return function (type) {
-        return state.url[type];
+        return _objectSpread({}, state.settings[subject]);
       };
     }
   },
@@ -26318,10 +26313,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var subject = _ref.subject,
           data = _ref.data;
 
+      //console.log(subject);
       var settings = _objectSpread({}, state.settings);
 
       settings[subject] = _objectSpread({}, data);
-      state.settings = _objectSpread({}, settings);
+      state.settings = _objectSpread({}, settings); //console.log(state.settings);
     }
   },
   actions: {
@@ -26334,6 +26330,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       dispatch('getJsonWithWaitingScreen', url, {
         root: true
       }).then(function (data) {
+        //console.log(data);
         commit('setSettings', {
           subject: subject,
           data: data
@@ -26347,7 +26344,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           rootState = _ref4.rootState;
       var subject = _ref5.subject,
           data = _ref5.data;
-      var url = state.url.save + subject;
+      var url = state.url.save + subject; //console.log(url);
+
       dispatch('postJsonWithWaitingScreen', {
         url: url,
         data: data
@@ -26355,9 +26353,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         root: true
       }).then(function (data) {
         if (data.saveSuccess === true) {
+          //console.log(data);
           commit('setSettings', {
             subject: subject,
-            data: data.data
+            data: data.settings
           });
           var txt = "\u0421\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u043E.";
           dispatch('showAbsoluteFlashMessage', {
@@ -26367,17 +26366,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             root: true
           });
         } else {
-          var _data$customException;
-
-          var _txt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка сохранения';
-
+          var _txt = 'неудачная попытка сохранения';
           dispatch('showAbsoluteFlashMessage', {
             text: _txt,
             sec: 2
           }, {
             root: true
           });
-        }
+        } //dispatch('makePaginationLinksShot', entity);
+
       });
     }
   }

@@ -12,7 +12,7 @@
     data-site-vkontakte="{{ $contacts['vkontakte'] }}"
     data-site-ok="{{ $contacts['ok'] }}"
     data-site-meta="{{ $contacts['meta'] }}"
-    data-site-email="{{ $contacts['e-mail'] }}"
+    data-site-email="{{ $contacts['email'] }}"
     class="bottom_menu">
     <nav>
         <ul id="bottomMenu-allCategories" class="bottom_menu__ul">

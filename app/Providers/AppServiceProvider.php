@@ -29,15 +29,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Product::observe(ProductObserver::class);
 
-        //config(['my_site.pagination.perPage' => '1']);
-
         $categoryModelClassName = "App\Models\Category";
         View::share([
             'categories' => $categoryService->getAll($categoryModelClassName),
             'jsAppName' => 'productListApp.js',
             'currentPage' => 1,
             'perPage' => config("my_site.pagination.perPage"),
-            'mainPageTitle' => config("my_site.titles.mainPageTitle"),
+            'mainPageTitle' => config("my_site.mainPageSeo.mainPageTitle"),
             'contacts' => config("my_site.contacts"),
             'cacheLimit' => config("my_site.cacheLimit"),
         ]);

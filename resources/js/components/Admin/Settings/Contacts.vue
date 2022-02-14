@@ -3,6 +3,15 @@
         <h1 class="pd0 mb0">Контакты для заказа товара</h1>
         <div class="content_block settingsPage">
 
+            <div class="settings_form__check_address_icon__wrapper">
+                <a :href="addressLinkHref" target=_blank
+                   class="settings_form__check_address_icon__link">
+                    <img :src="checkAddressIcon"
+                         alt=""
+                         title="Проверить введенный здесь адрес на карте"
+                         class="settings_form__check_address_icon__img">
+                </a>
+            </div>
             <settings-input
                 header="Адрес почтовый"
                 v-model="localSettings.address"
@@ -82,13 +91,21 @@
                 @saveSettings="saveSettings"
                 class="mt30">
             </settings-input>
+            <settings-input
+                header="Web-адрес сайта"
+                v-model="localSettings.domain"
+                :settings="localSettings"
+                entity="domain"
+                @saveSettings="saveSettings"
+                class="mt30">
+            </settings-input>
         </div>
     </div>
 </template>
 
 <script>
-
-import {mapActions} from "vuex";
+import checkAddressIcon from "../../../../assets/checkAddressIcon.svg"
+import {mapActions, mapGetters} from "vuex";
 import SettingsInput from "./SettingsInput";
 export default {
     name: "Contacts",
@@ -107,7 +124,22 @@ export default {
                 meta: '',
                 email: '',
             },
+            checkAddressIcon: checkAddressIcon,
         };
+    },
+    computed: {
+        ...mapGetters('settingsManager', [
+            'settings',
+        ]),
+
+        contacts() {
+            return this.settings('contacts');
+        },
+
+
+        addressLinkHref() {
+            return `https://yandex.ru/maps/?text=${this.localSettings.address}`;
+        }
     },
     methods: {
         ...mapActions('settingsManager', [
@@ -115,18 +147,21 @@ export default {
             'loadSettings'
         ]),
         saveSettings() {
-            console.log(this.localSettings);
+            this.$store.dispatch('settingsManager/saveSettings', {
+                subject: 'contacts',
+                data: this.localSettings,
+            })
         },
+    },
+    watch:{
+        contacts(value) {
+            //console.log(value);
+            this.localSettings = { ...value };
+        },
+    },
+    mounted() {
+        this.$store.dispatch('settingsManager/loadSettings', {subject: 'contacts'});
     },
 }
 
-
-/*
-
-            <router-link :to="{ name: 'SettingsMenu' }">
-                <button class="button__save_product mauto mt30">
-                    Назад
-                </button>
-            </router-link>
- */
 </script>

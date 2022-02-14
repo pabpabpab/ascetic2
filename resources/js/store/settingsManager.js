@@ -40,18 +40,19 @@ export default {
     getters: {
         settings: (state) => (subject) => {
             if (!subject) {
-                return state.settings;
+                return { ...state.settings };
             }
-            return state.settings[subject];
+            return { ...state.settings[subject] };
         },
-
-        url: (state) => (type) => state.url[type],
     },
     mutations: {
         setSettings: (state, {subject, data}) => {
+            //console.log(subject);
             const settings = { ...state.settings };
             settings[subject] = { ...data };
             state.settings = { ...settings };
+            //console.log(state.settings);
+
         },
     },
     actions: {
@@ -60,12 +61,16 @@ export default {
             const url = state.url.get + subject;
             dispatch('getJsonWithWaitingScreen', url, { root: true })
                 .then((data) => {
+                    //console.log(data);
                     commit('setSettings', {subject, data});
                 });
         },
 
         saveSettings({ dispatch, commit, state, rootState }, { subject, data }) {
             const url = state.url.save + subject;
+
+            //console.log(url);
+
             dispatch(
                 'postJsonWithWaitingScreen',
                 {
@@ -77,13 +82,17 @@ export default {
                 .then((data) => {
                     if (data.saveSuccess === true) {
 
-                        commit('setSettings', {subject: subject, data: data.data});
+                        //console.log(data);
+
+                        commit('setSettings', {subject: subject, data: data.settings});
                         const txt = `Сохранено.`;
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1}, { root: true });
                     } else {
-                        const txt = data.customExceptionMessage ?? 'неудачная попытка сохранения';
+                        const txt = 'неудачная попытка сохранения';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }
+
+                    //dispatch('makePaginationLinksShot', entity);
                 });
         },
 
