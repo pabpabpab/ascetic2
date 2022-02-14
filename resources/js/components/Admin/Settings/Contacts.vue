@@ -3,44 +3,96 @@
         <h1 class="pd0 mb0">Контакты для заказа товара</h1>
         <div class="content_block settingsPage">
 
-            <p class="settings_form__property_header mt40">Адрес почтовый</p>
-            <div class="settings_form__input__container">
-                <textarea class="settings_form__input_textarea"
-                          placeholder=" "
-                          :disabled="disabledInput"
-                          @input="fitTextareaHeight($event);"
-                          v-model="localSettings.address">
-                </textarea>
-                <p @click="save()"
-                   title="Сохранить"
-                   class="settings_form__submit_icon__wrapper" :class="{display_none: !isEditing}">
-                    <img :src="tickIcon" alt="" class="settings_form__submit_icon__img">
-                </p>
-                <p @click="edit($event)"
-                     title="Редактировать"
-                     class="settings_form__submit_icon__wrapper" :class="{display_none: isEditing}">
-                    <img :src="pencilIcon" alt="" class="settings_form__submit_icon__img">
-                </p>
-            </div>
-
-
-
-            <router-link :to="{ name: 'SettingsMenu' }">
-                <button class="button__save_product mauto mt30">
-                    Назад
-                </button>
-            </router-link>
+            <settings-input
+                header="Адрес почтовый"
+                v-model="localSettings.address"
+                :settings="localSettings"
+                entity="address"
+                @saveSettings="saveSettings"
+                hint="Пример: Екатеринбург, ул. Азина, 39"
+                class="mt10">
+            </settings-input>
+            <settings-input
+                header="Телефон"
+                v-model="localSettings.phone"
+                :settings="localSettings"
+                entity="phone"
+                @saveSettings="saveSettings"
+                hint="Пример: 8 900 000 0000, 8 900 000 0001"
+                class="mt30">
+            </settings-input>
+            <settings-input
+                header="Когда можно звонить (рабочие часы)"
+                v-model="localSettings.phoneTime"
+                :settings="localSettings"
+                entity="phoneTime"
+                @saveSettings="saveSettings"
+                hint="Пример: с 10:00 до 20:00"
+                class="mt30">
+            </settings-input>
+            <settings-input
+                header="Whatsapp"
+                v-model="localSettings.whatsapp"
+                :settings="localSettings"
+                entity="whatsapp"
+                @saveSettings="saveSettings"
+                hint="Пример: 8 900 000 0001"
+                class="mt30">
+            </settings-input>
+            <settings-input
+                header="Telegram"
+                v-model="localSettings.tg"
+                :settings="localSettings"
+                entity="tg"
+                @saveSettings="saveSettings"
+                hint="Пример: @hugo117"
+                class="mt30">
+            </settings-input>
+            <settings-input
+                header="Вконтакте"
+                v-model="localSettings.vkontakte"
+                :settings="localSettings"
+                entity="vkontakte"
+                @saveSettings="saveSettings"
+                hint="Пример: https://vk.com/id29888795"
+                class="mt30">
+            </settings-input>
+            <settings-input
+                header="Одноклассники"
+                v-model="localSettings.ok"
+                :settings="localSettings"
+                entity="ok"
+                @saveSettings="saveSettings"
+                hint="Пример: https://ok.ru/profile/518524364583"
+                class="mt30">
+            </settings-input>
+            <settings-input
+                header="Meta (Facebook)"
+                v-model="localSettings.meta"
+                :settings="localSettings"
+                entity="meta"
+                @saveSettings="saveSettings"
+                class="mt30">
+            </settings-input>
+            <settings-input
+                header="E-mail"
+                v-model="localSettings.email"
+                :settings="localSettings"
+                entity="email"
+                @saveSettings="saveSettings"
+                class="mt30">
+            </settings-input>
         </div>
     </div>
 </template>
 
 <script>
-import pencilIcon from "../../../../assets/pencil.svg"
-import tickIcon from "../../../../assets/tick.svg"
-import _fitTextareaHeight from './../Products/functions/fitTextareaHeight';
+
 import {mapActions} from "vuex";
+import SettingsInput from "./SettingsInput";
 export default {
     name: "Contacts",
+    components: {SettingsInput},
     data() {
         return {
             localSettings: {
@@ -55,10 +107,6 @@ export default {
                 meta: '',
                 email: '',
             },
-            pencilIcon: pencilIcon,
-            tickIcon: tickIcon,
-            isEditing: false,
-            disabledInput: true,
         };
     },
     methods: {
@@ -66,38 +114,19 @@ export default {
             'saveSettings',
             'loadSettings'
         ]),
-        fitTextareaHeight(event) {
-            _fitTextareaHeight(event);
+        saveSettings() {
+            console.log(this.localSettings);
         },
-        edit(event) {
-            this.isEditing = true;
-            this.disabledInput = false;
-            const theEvent = event;
-            // без задержки не работает так как на инпуте есть disabled
-            setTimeout(() => {
-                this.focusInput(theEvent)
-            },100);
-        },
-
-        focusInput(event) {
-            const node1 = event.target.parentNode.parentNode.firstElementChild;
-            const node2 = event.target.parentNode.firstElementChild;
-            if (node1.tagName === 'TEXTAREA') {
-                node1.focus();
-                return;
-            }
-            if (node2.tagName === 'TEXTAREA') {
-                node2.focus();
-            }
-        },
-
-
-        save() {
-            this.isEditing = false;
-            this.disabledInput = true;
-
-        },
-
     },
 }
+
+
+/*
+
+            <router-link :to="{ name: 'SettingsMenu' }">
+                <button class="button__save_product mauto mt30">
+                    Назад
+                </button>
+            </router-link>
+ */
 </script>
