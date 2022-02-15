@@ -6,7 +6,7 @@ use App\Models\Setting;
 
 class SettingsService
 {
-    public function saveSettings($request, $subject)
+    public function saveSettings($request, $subject): array
     {
         $setting = Setting::where('slug', $subject)->first();
         $setting = blank($setting) ? new Setting() : $setting;
@@ -25,9 +25,8 @@ class SettingsService
     }
 
 
-
-
-    protected function _prepareContacts($request) {
+    protected function _prepareContacts($request): array
+    {
 
         return [
             'domain' => (string) $request->domain,
@@ -44,10 +43,7 @@ class SettingsService
     }
 
 
-
-
-
-    public function getBlankSetting($subject): array
+    public function getBlankSettings($subject): array
     {
         $method = "_getBlank".ucfirst($subject);
         return $this->$method();

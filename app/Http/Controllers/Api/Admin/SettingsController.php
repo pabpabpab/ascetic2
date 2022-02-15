@@ -14,31 +14,21 @@ class SettingsController extends Controller
     {
         $setting = Setting::where('slug', $subject)->first();
         $data = blank($setting)
-            ? $service->getBlankSetting($subject)
+            ? $service->getBlankSettings($subject)
             : json_decode($setting->data);
         // contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail
         return response()->json($data);
     }
 
-
-
     public function saveSettings(Request $request, SettingsService $service, $subject): JsonResponse
     {
-
-
-
         $result = $service->saveSettings($request, $subject);
-
 
         return response()->json([
             'saveSuccess' => $result['success'],
             'settings' => $result['data'],
         ]);
     }
-
-
-
-
 }
 
 

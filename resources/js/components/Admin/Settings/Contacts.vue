@@ -142,12 +142,9 @@ export default {
         ...mapGetters('settingsManager', [
             'settings',
         ]),
-
         contacts() {
             return this.settings('contacts');
         },
-
-
         addressLinkHref() {
             return `https://yandex.ru/maps/?text=${this.localSettings.address}`;
         }
