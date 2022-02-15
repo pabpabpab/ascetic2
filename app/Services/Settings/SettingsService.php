@@ -1,21 +1,94 @@
 <?php
 
-
 namespace App\Services\Settings;
 
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
+use App\Models\Setting;
 
 class SettingsService
 {
     public function saveSettings($request, $subject)
     {
-        $method = "_save".ucfirst($subject);
-        return $this->$method($request);
+        $setting = Setting::where('slug', $subject)->first();
+        $setting = blank($setting) ? new Setting() : $setting;
+
+        $prepareSettingMethod = "_prepare".ucfirst($subject);
+
+        $setting->data = json_encode($this->$prepareSettingMethod($request));
+        $setting->slug = $subject;
+
+        $setting->save();
+
+        return [
+            'success' => $setting->save(),
+            'data' => json_decode($setting->data)
+        ];
     }
 
-    protected function _saveContacts($request)
+
+
+
+    protected function _prepareContacts($request) {
+
+        return [
+            'domain' => (string) $request->domain,
+            'address' => (string) $request->address,
+            'phone' => (string) $request->phone,
+            'phoneTime' => (string) $request->phoneTime,
+            'whatsapp' => (string) $request->whatsapp,
+            'tg' => (string) $request->tg,
+            'vkontakte' => (string) $request->vkontakte,
+            'ok' => (string) $request->ok,
+            'meta' => (string) $request->meta,
+            'email' => (string) $request->email,
+        ];
+    }
+
+
+
+
+
+    public function getBlankSetting($subject): array
     {
+        $method = "_getBlank".ucfirst($subject);
+        return $this->$method();
+    }
+
+    protected function _getBlankContacts(): array
+    {
+        return [
+            'domain' => '',
+            'address' => '',
+            'phone' => '',
+            'phoneTime' => '',
+            'whatsapp' => '',
+            'tg' => '',
+            'vkontakte' => '',
+            'ok' => '',
+            'meta' => '',
+            'email' => '',
+        ];
+
+    }
+
+}
+
+
+//config(['my_site.pagination.perPage' => '1']);
+// contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail
+/*
+        $data = [
+            'contacts' => config("my_site.contacts"),
+            'mainPageSeo' => config("my_site.mainPageSeo"),
+            'pagination' => config("my_site.pagination"),
+            'cacheLimit' => config("my_site.cacheLimit"),
+            'photoQuality' => config("my_photo.photoQuality"),
+            'adminEmail' => env('ADMIN_EMAIL'),
+        ];
+*/
+
+
+/*
+ *
         config(['my_site.contacts.domain' => (string) $request->domain]);
         config(['my_site.contacts.address' => (string) $request->address]);
         config(['my_site.contacts.phone' => (string) $request->phone]);
@@ -46,25 +119,4 @@ class SettingsService
             return true;
         }
         return false;
-
-
-        //return config("my_site.contacts");
-    }
-
-
-}
-
-
-//config(['my_site.pagination.perPage' => '1']);
-// contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail
-/*
-        $data = [
-            'contacts' => config("my_site.contacts"),
-            'mainPageSeo' => config("my_site.mainPageSeo"),
-            'pagination' => config("my_site.pagination"),
-            'cacheLimit' => config("my_site.cacheLimit"),
-            'photoQuality' => config("my_photo.photoQuality"),
-            'adminEmail' => env('ADMIN_EMAIL'),
-        ];
-*/
-//info($request->address);
+ */

@@ -52,7 +52,6 @@ export default {
             settings[subject] = { ...data };
             state.settings = { ...settings };
             //console.log(state.settings);
-
         },
     },
     actions: {

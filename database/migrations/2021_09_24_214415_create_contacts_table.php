@@ -79,3 +79,4 @@ ORDER BY c.update_at DESC;
 
 
 // php artisan make:migration create_messages_table
+

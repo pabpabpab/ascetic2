@@ -1,14 +1,14 @@
 <template>
     <div>
         <p class="settings_form__property_header">{{ header }}</p>
-        <div class="settings_form__input__container">
-                <textarea class="settings_form__input_textarea"
-                          placeholder=""
-                          :disabled="disabledInput"
-                          v-model="settings[entity]"
-                          @input="fitTextareaHeight($event);">
-                </textarea>
-            <p @click="save()"
+        <div @click="edit($event)" class="settings_form__input__container">
+            <textarea placeholder=""
+                :disabled="disabledInput"
+                v-model="settings[entity]"
+                @input="fitTextareaHeight($event);"
+                class="settings_form__input_textarea">
+            </textarea>
+            <p @click.stop="save()"
                title="Сохранить"
                class="settings_form__submit_icon__wrapper" :class="{display_none: !isEditing}">
                 <img :src="tickIcon" alt="" class="settings_form__submit_icon__img">
@@ -33,7 +33,7 @@ import {mapActions} from "vuex";
 export default {
     name: "SettingsInput",
     // пропс value, потому что в родителе v-model
-    props: ['value', 'settings', 'entity', 'header', 'hint'],
+    props: ['value', 'settings', 'entity', 'header', 'hint', 'disableCmd'],
     data() {
         return {
             pencilIcon: pencilIcon,
@@ -65,20 +65,33 @@ export default {
             },100);
         },
         focusInput(event) {
-            const node1 = event.target.parentNode.parentNode.firstElementChild;
-            const node2 = event.target.parentNode.firstElementChild;
+            const node1 = event.target;
+            const node2 = event.target.parentNode.parentNode.firstElementChild;
+            const node3 = event.target.parentNode.firstElementChild;
             if (node1.tagName === 'TEXTAREA') {
                 node1.focus();
                 return;
             }
             if (node2.tagName === 'TEXTAREA') {
                 node2.focus();
+                return;
+            }
+            if (node3.tagName === 'TEXTAREA') {
+                node3.focus();
             }
         },
         save() {
             this.isEditing = false;
             this.disabledInput = true;
             this.$emit('saveSettings');
+        },
+    },
+    watch :{
+        disableCmd(value) {
+            if (value) {
+                this.isEditing = false;
+                this.disabledInput = true;
+            }
         },
     },
 }

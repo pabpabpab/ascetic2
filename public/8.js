@@ -182,6 +182,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -204,7 +214,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         meta: '',
         email: ''
       },
-      checkAddressIcon: _assets_checkAddressIcon_svg__WEBPACK_IMPORTED_MODULE_0___default.a
+      checkAddressIcon: _assets_checkAddressIcon_svg__WEBPACK_IMPORTED_MODULE_0___default.a,
+      disableAllInputsCmd: false
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('settingsManager', ['settings'])), {}, {
@@ -217,6 +228,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('settingsManager', ['saveSettings', 'loadSettings'])), {}, {
     saveSettings: function saveSettings() {
+      var _this = this;
+
+      this.disableAllInputsCmd = true;
+      setTimeout(function () {
+        _this.disableAllInputsCmd = false;
+      }, 100);
       this.$store.dispatch('settingsManager/saveSettings', {
         subject: 'contacts',
         data: this.localSettings
@@ -433,7 +450,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SettingsInput",
   // пропс value, потому что в родителе v-model
-  props: ['value', 'settings', 'entity', 'header', 'hint'],
+  props: ['value', 'settings', 'entity', 'header', 'hint', 'disableCmd'],
   data: function data() {
     return {
       pencilIcon: _assets_pencil_svg__WEBPACK_IMPORTED_MODULE_0___default.a,
@@ -463,8 +480,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, 100);
     },
     focusInput: function focusInput(event) {
-      var node1 = event.target.parentNode.parentNode.firstElementChild;
-      var node2 = event.target.parentNode.firstElementChild;
+      var node1 = event.target;
+      var node2 = event.target.parentNode.parentNode.firstElementChild;
+      var node3 = event.target.parentNode.firstElementChild;
 
       if (node1.tagName === 'TEXTAREA') {
         node1.focus();
@@ -473,6 +491,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (node2.tagName === 'TEXTAREA') {
         node2.focus();
+        return;
+      }
+
+      if (node3.tagName === 'TEXTAREA') {
+        node3.focus();
       }
     },
     save: function save() {
@@ -480,7 +503,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.disabledInput = true;
       this.$emit('saveSettings');
     }
-  })
+  }),
+  watch: {
+    disableCmd: function disableCmd(value) {
+      if (value) {
+        this.isEditing = false;
+        this.disabledInput = true;
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -617,6 +648,7 @@ var render = function() {
             header: "Адрес почтовый",
             settings: _vm.localSettings,
             entity: "address",
+            disableCmd: _vm.disableAllInputsCmd,
             hint: "Пример: Екатеринбург, ул. Азина, 39"
           },
           on: { saveSettings: _vm.saveSettings },
@@ -635,6 +667,7 @@ var render = function() {
             header: "Телефон",
             settings: _vm.localSettings,
             entity: "phone",
+            disableCmd: _vm.disableAllInputsCmd,
             hint: "Пример: 8 900 000 0000, 8 900 000 0001"
           },
           on: { saveSettings: _vm.saveSettings },
@@ -653,6 +686,7 @@ var render = function() {
             header: "Когда можно звонить (рабочие часы)",
             settings: _vm.localSettings,
             entity: "phoneTime",
+            disableCmd: _vm.disableAllInputsCmd,
             hint: "Пример: с 10:00 до 20:00"
           },
           on: { saveSettings: _vm.saveSettings },
@@ -671,6 +705,7 @@ var render = function() {
             header: "Whatsapp",
             settings: _vm.localSettings,
             entity: "whatsapp",
+            disableCmd: _vm.disableAllInputsCmd,
             hint: "Пример: 8 900 000 0001"
           },
           on: { saveSettings: _vm.saveSettings },
@@ -689,6 +724,7 @@ var render = function() {
             header: "Telegram",
             settings: _vm.localSettings,
             entity: "tg",
+            disableCmd: _vm.disableAllInputsCmd,
             hint: "Пример: @hugo117"
           },
           on: { saveSettings: _vm.saveSettings },
@@ -707,6 +743,7 @@ var render = function() {
             header: "Вконтакте",
             settings: _vm.localSettings,
             entity: "vkontakte",
+            disableCmd: _vm.disableAllInputsCmd,
             hint: "Пример: https://vk.com/id29888795"
           },
           on: { saveSettings: _vm.saveSettings },
@@ -725,6 +762,7 @@ var render = function() {
             header: "Одноклассники",
             settings: _vm.localSettings,
             entity: "ok",
+            disableCmd: _vm.disableAllInputsCmd,
             hint: "Пример: https://ok.ru/profile/518524364583"
           },
           on: { saveSettings: _vm.saveSettings },
@@ -742,7 +780,8 @@ var render = function() {
           attrs: {
             header: "Meta (Facebook)",
             settings: _vm.localSettings,
-            entity: "meta"
+            entity: "meta",
+            disableCmd: _vm.disableAllInputsCmd
           },
           on: { saveSettings: _vm.saveSettings },
           model: {
@@ -759,7 +798,8 @@ var render = function() {
           attrs: {
             header: "E-mail",
             settings: _vm.localSettings,
-            entity: "email"
+            entity: "email",
+            disableCmd: _vm.disableAllInputsCmd
           },
           on: { saveSettings: _vm.saveSettings },
           model: {
@@ -776,7 +816,8 @@ var render = function() {
           attrs: {
             header: "Web-адрес сайта",
             settings: _vm.localSettings,
-            entity: "domain"
+            entity: "domain",
+            disableCmd: _vm.disableAllInputsCmd
           },
           on: { saveSettings: _vm.saveSettings },
           model: {
@@ -966,74 +1007,86 @@ var render = function() {
       _vm._v(_vm._s(_vm.header))
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "settings_form__input__container" }, [
-      _c("textarea", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.settings[_vm.entity],
-            expression: "settings[entity]"
-          }
-        ],
-        staticClass: "settings_form__input_textarea",
-        attrs: { placeholder: "", disabled: _vm.disabledInput },
-        domProps: { value: _vm.settings[_vm.entity] },
+    _c(
+      "div",
+      {
+        staticClass: "settings_form__input__container",
         on: {
-          input: [
-            function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.settings, _vm.entity, $event.target.value)
-            },
-            function($event) {
-              return _vm.fitTextareaHeight($event)
-            }
-          ]
+          click: function($event) {
+            return _vm.edit($event)
+          }
         }
-      }),
-      _vm._v(" "),
-      _c(
-        "p",
-        {
-          staticClass: "settings_form__submit_icon__wrapper",
-          class: { display_none: !_vm.isEditing },
-          attrs: { title: "Сохранить" },
-          on: {
-            click: function($event) {
-              return _vm.save()
+      },
+      [
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.settings[_vm.entity],
+              expression: "settings[entity]"
             }
-          }
-        },
-        [
-          _c("img", {
-            staticClass: "settings_form__submit_icon__img",
-            attrs: { src: _vm.tickIcon, alt: "" }
-          })
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "p",
-        {
-          staticClass: "settings_form__submit_icon__wrapper",
-          class: { display_none: _vm.isEditing },
-          attrs: { title: "Редактировать" },
+          ],
+          staticClass: "settings_form__input_textarea",
+          attrs: { placeholder: "", disabled: _vm.disabledInput },
+          domProps: { value: _vm.settings[_vm.entity] },
           on: {
-            click: function($event) {
-              return _vm.edit($event)
-            }
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.settings, _vm.entity, $event.target.value)
+              },
+              function($event) {
+                return _vm.fitTextareaHeight($event)
+              }
+            ]
           }
-        },
-        [
-          _c("img", {
-            staticClass: "settings_form__submit_icon__img",
-            attrs: { src: _vm.pencilIcon, alt: "" }
-          })
-        ]
-      )
-    ]),
+        }),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "settings_form__submit_icon__wrapper",
+            class: { display_none: !_vm.isEditing },
+            attrs: { title: "Сохранить" },
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                return _vm.save()
+              }
+            }
+          },
+          [
+            _c("img", {
+              staticClass: "settings_form__submit_icon__img",
+              attrs: { src: _vm.tickIcon, alt: "" }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "settings_form__submit_icon__wrapper",
+            class: { display_none: _vm.isEditing },
+            attrs: { title: "Редактировать" },
+            on: {
+              click: function($event) {
+                return _vm.edit($event)
+              }
+            }
+          },
+          [
+            _c("img", {
+              staticClass: "settings_form__submit_icon__img",
+              attrs: { src: _vm.pencilIcon, alt: "" }
+            })
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "settings_form__input__bottom_hint" }, [
       _vm._v("\n        " + _vm._s(_vm.hint) + "\n    ")

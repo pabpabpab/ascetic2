@@ -17,6 +17,7 @@
                 v-model="localSettings.address"
                 :settings="localSettings"
                 entity="address"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 hint="Пример: Екатеринбург, ул. Азина, 39"
                 class="mt10">
@@ -26,6 +27,7 @@
                 v-model="localSettings.phone"
                 :settings="localSettings"
                 entity="phone"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 hint="Пример: 8 900 000 0000, 8 900 000 0001"
                 class="mt30">
@@ -35,6 +37,7 @@
                 v-model="localSettings.phoneTime"
                 :settings="localSettings"
                 entity="phoneTime"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 hint="Пример: с 10:00 до 20:00"
                 class="mt30">
@@ -44,6 +47,7 @@
                 v-model="localSettings.whatsapp"
                 :settings="localSettings"
                 entity="whatsapp"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 hint="Пример: 8 900 000 0001"
                 class="mt30">
@@ -53,6 +57,7 @@
                 v-model="localSettings.tg"
                 :settings="localSettings"
                 entity="tg"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 hint="Пример: @hugo117"
                 class="mt30">
@@ -62,6 +67,7 @@
                 v-model="localSettings.vkontakte"
                 :settings="localSettings"
                 entity="vkontakte"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 hint="Пример: https://vk.com/id29888795"
                 class="mt30">
@@ -71,6 +77,7 @@
                 v-model="localSettings.ok"
                 :settings="localSettings"
                 entity="ok"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 hint="Пример: https://ok.ru/profile/518524364583"
                 class="mt30">
@@ -80,6 +87,7 @@
                 v-model="localSettings.meta"
                 :settings="localSettings"
                 entity="meta"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 class="mt30">
             </settings-input>
@@ -88,6 +96,7 @@
                 v-model="localSettings.email"
                 :settings="localSettings"
                 entity="email"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 class="mt30">
             </settings-input>
@@ -96,6 +105,7 @@
                 v-model="localSettings.domain"
                 :settings="localSettings"
                 entity="domain"
+                :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
                 class="mt30">
             </settings-input>
@@ -125,6 +135,7 @@ export default {
                 email: '',
             },
             checkAddressIcon: checkAddressIcon,
+            disableAllInputsCmd: false,
         };
     },
     computed: {
@@ -147,6 +158,11 @@ export default {
             'loadSettings'
         ]),
         saveSettings() {
+            this.disableAllInputsCmd = true;
+            setTimeout(() => {
+                this.disableAllInputsCmd = false
+            },100);
+
             this.$store.dispatch('settingsManager/saveSettings', {
                 subject: 'contacts',
                 data: this.localSettings,
