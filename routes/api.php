@@ -126,9 +126,9 @@ Route::group([
 
 
     Route::get('/settings/get/{subject}', 'SettingsController@getSettings')
-        ->where('subject', 'contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail');
+        ->where('subject', 'contacts|main_page_seo|pagination|cache_limit|photo_quality|admin_email');
     Route::post('/settings/save/{subject}', 'SettingsController@saveSettings')
-        ->where('subject', 'contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail');
+        ->where('subject', 'contacts|main_page_seo|pagination|cache_limit|photo_quality|admin_email');
 });
 
 

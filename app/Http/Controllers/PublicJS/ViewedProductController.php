@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PublicJS;
 
 use App\Http\Controllers\Controller;
 use App\Services\Product\ViewedProductsService;
+use App\Services\Settings\SettingsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class ViewedProductController extends Controller
     // /public-js/viewed-products/offset/${settings.startOffset}
     public function getViewedProductsForJS(ViewedProductsService $service, int $startOffset): JsonResponse
     {
-        $perPage = config("my_site.pagination.perPage");
+        $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $products = $service->getAllViewed()->offset($startOffset)->limit($perPage)->get();
 
         $allViewedIdsStr = $service->getAllViewedIdsStr();

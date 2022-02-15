@@ -297,13 +297,15 @@ h1 {
   cursor: pointer;
 }
 
-@media screen and (min-width: 1070px) {
-  [data-mobile-menu=icon] {
-    display: none;
-  }
+[data-mobile-menu=icon] {
+  display: none;
 }
 
-@media screen and (max-width: 1069px) {
+[data-menu=left-short] {
+  display: none;
+}
+
+@media screen and (max-width: 1280px) {
   [data-logo=link] {
     display: none;
   }
@@ -331,12 +333,6 @@ h1 {
   }
 
   [data-li=category] {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 471px) {
-  [data-menu=left-short] {
     display: none;
   }
 }
@@ -373,7 +369,7 @@ h1 {
 
 @media screen and (max-width: 320px) {
   .top_menu__link {
-    padding: 13px 20px;
+    padding: 15px 20px;
   }
 }
 

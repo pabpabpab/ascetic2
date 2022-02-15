@@ -9,6 +9,6 @@ export default function getHeaderHtml(product) {
                 <span class="order_window__header__do_order">
                     Заказать
                 </span>
-                Лот № ${product.id}
+                Товар № ${product.id}
             </p>`;
 }

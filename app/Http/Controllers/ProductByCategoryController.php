@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Services\PageTitleService;
 use App\Services\Product\ListService;
+use App\Services\Settings\SettingsService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -25,7 +26,7 @@ class ProductByCategoryController extends Controller
         });
 
         $productsCount = $category->products()->count();
-        $perPage = config("my_site.pagination.perPage");
+        $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         // $category определена в роуте как {category:slug}
         return view('products.list.index', [
             'category' => $category,

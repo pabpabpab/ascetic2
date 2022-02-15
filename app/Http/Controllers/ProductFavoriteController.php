@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Services\PageTitleService;
 use App\Services\Product\FavoriteProductsListService;
+use App\Services\Settings\SettingsService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -22,7 +23,7 @@ class ProductFavoriteController extends Controller
         });
 
         $productsCount = $service->getList()->count();
-        $perPage = config("my_site.pagination.perPage");
+        $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $products = $service->getList()->paginate($perPage);
         return view('products.list.index', [
             'products' => $products,

@@ -122,6 +122,7 @@ export default {
     components: {SettingsInput},
     data() {
         return {
+            subject: 'contacts',
             localSettings: {
                 domain: '',
                 address: '',
@@ -142,8 +143,8 @@ export default {
         ...mapGetters('settingsManager', [
             'settings',
         ]),
-        contacts() {
-            return this.settings('contacts');
+        data() {
+            return this.settings(this.subject);
         },
         addressLinkHref() {
             return `https://yandex.ru/maps/?text=${this.localSettings.address}`;
@@ -161,19 +162,19 @@ export default {
             },100);
 
             this.$store.dispatch('settingsManager/saveSettings', {
-                subject: 'contacts',
+                subject: this.subject,
                 data: this.localSettings,
             })
         },
     },
     watch:{
-        contacts(value) {
+        data(value) {
             //console.log(value);
             this.localSettings = { ...value };
         },
     },
     mounted() {
-        this.$store.dispatch('settingsManager/loadSettings', {subject: 'contacts'});
+        this.$store.dispatch('settingsManager/loadSettings', {subject: this.subject});
     },
 }
 

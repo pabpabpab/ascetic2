@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PublicJS;
 
 use App\Http\Controllers\Controller;
 use App\Services\Product\SearchService;
+use App\Services\Settings\SettingsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class ProductSearchController extends Controller
     //product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/offset/{startOffset}
     public function search(SearchService $service, int $minPrice, int $maxPrice, string $categoriesIds, string $sortValue, int $startOffset): JsonResponse
     {
-        $perPage = config("my_site.pagination.perPage");
+        $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $result = $service->getSearched([
             'minPrice' => $minPrice,
             'maxPrice' => $maxPrice,

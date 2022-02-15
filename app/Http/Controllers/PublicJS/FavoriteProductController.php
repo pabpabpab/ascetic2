@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PublicJS;
 
 use App\Http\Controllers\Controller;
 use App\Services\Product\FavoriteProductsListService;
+use App\Services\Settings\SettingsService;
 use App\Services\User\FavoriteProductsSynchronizer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ class FavoriteProductController extends Controller
     // /public-js/favorite-products/sort/${sortMode}/offset/${startOffset}
     public function getFavoriteProductsForJS(FavoriteProductsListService $service, string $sortValue, int $startOffset): JsonResponse
     {
-        $perPage = config("my_site.pagination.perPage");
+        $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $products = $service->getList($sortValue)->offset($startOffset)->limit($perPage)->get();
         $sectionProductsCount = $service->getList()->count();
 

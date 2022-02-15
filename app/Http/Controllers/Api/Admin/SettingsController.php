@@ -16,7 +16,6 @@ class SettingsController extends Controller
         $data = blank($setting)
             ? $service->getBlankSettings($subject)
             : json_decode($setting->data);
-        // contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail
         return response()->json($data);
     }
 
@@ -34,15 +33,3 @@ class SettingsController extends Controller
 
 // php artisan make:controller Api/Admin/SettingsController
 
-
-/*
- *
-        $data = [
-            'contacts' => config("my_site.contacts"),
-            'mainPageSeo' => config("my_site.mainPageSeo"),
-            'pagination' => config("my_site.pagination"),
-            'cacheLimit' => config("my_site.cacheLimit"),
-            'photoQuality' => config("my_photo.photoQuality"),
-            'adminEmail' => env('ADMIN_EMAIL'),
-        ];
- */

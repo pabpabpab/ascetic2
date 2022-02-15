@@ -6,12 +6,31 @@ use App\Models\Setting;
 
 class SettingsService
 {
+    public function getSettings($subject): array
+    {
+        $setting = Setting::where('slug', $subject)->first();
+        $data = blank($setting)
+            ? $this->getBlankSettings($subject)
+            : json_decode($setting->data);
+
+        return (array) $data;
+    }
+
+
     public function saveSettings($request, $subject): array
     {
         $setting = Setting::where('slug', $subject)->first();
         $setting = blank($setting) ? new Setting() : $setting;
 
-        $prepareSettingMethod = "_prepare".ucfirst($subject);
+        $methods = [
+            'contacts' => '_prepareContactsData',
+            'main_page_seo' => '_prepareMainPageSeoData',
+            'cache_limit' => '_prepareCacheLimitData',
+            'pagination' => '_preparePaginationData',
+            'photo_quality' => '_preparePhotoQualityData',
+            'admin_email' => '_prepareAdminEmailData',
+        ];
+        $prepareSettingMethod = $methods[$subject];
 
         $setting->data = json_encode($this->$prepareSettingMethod($request));
         $setting->slug = $subject;
@@ -25,9 +44,52 @@ class SettingsService
     }
 
 
-    protected function _prepareContacts($request): array
-    {
 
+    protected function _prepareAdminEmailData($request): array
+    {
+        return [
+            'value' => (string) $request->value,
+        ];
+    }
+    protected function _preparePhotoQualityData($request): array
+    {
+        $value = $request->value + 0;
+        if ($value < 1 || $value > 100) {
+            $value = 90;
+        }
+        return [
+            'value' => (string) $value,
+        ];
+    }
+    protected function _preparePaginationData($request): array
+    {
+        $value = $request->perPage + 0;
+        if ($value < 1 || $value > 100) {
+            $value = 30;
+        }
+        return [
+            'perPage' => (string) $value,
+        ];
+    }
+    protected function _prepareCacheLimitData($request): array
+    {
+        $value = $request->value + 0;
+        if ($value < 1 || $value > 10000) {
+            $value = 100;
+        }
+        return [
+            'value' => (string) $value,
+        ];
+    }
+    protected function _prepareMainPageSeoData($request): array
+    {
+        return [
+            'mainPageTitle' => (string) $request->mainPageTitle,
+            'mainPageDescription' => (string) $request->mainPageDescription,
+        ];
+    }
+    protected function _prepareContactsData($request): array
+    {
         return [
             'domain' => (string) $request->domain,
             'address' => (string) $request->address,
@@ -45,74 +107,38 @@ class SettingsService
 
     public function getBlankSettings($subject): array
     {
-        $method = "_getBlank".ucfirst($subject);
-        return $this->$method();
-    }
-
-    protected function _getBlankContacts(): array
-    {
-        return [
-            'domain' => '',
-            'address' => '',
-            'phone' => '',
-            'phoneTime' => '',
-            'whatsapp' => '',
-            'tg' => '',
-            'vkontakte' => '',
-            'ok' => '',
-            'meta' => '',
-            'email' => '',
+        $blankSettings = [
+            'contacts' => [
+                'domain' => '',
+                'address' => '',
+                'phone' => '',
+                'phoneTime' => '',
+                'whatsapp' => '',
+                'tg' => '',
+                'vkontakte' => '',
+                'ok' => '',
+                'meta' => '',
+                'email' => '',
+            ],
+            'main_page_seo' => [
+                'mainPageTitle' => '',
+                'mainPageDescription' => '',
+            ],
+            'cache_limit' => [
+                'value' => 100,
+            ],
+            'pagination' => [
+                'perPage' => 3,
+            ],
+            'photo_quality' => [
+                'value' => 90,
+            ],
+            'admin_email' => [
+                'value' => ''
+            ],
         ];
-
+        return $blankSettings[$subject];
     }
 
 }
 
-
-//config(['my_site.pagination.perPage' => '1']);
-// contacts|mainPageSeo|pagination|cacheLimit|photoQuality|adminEmail
-/*
-        $data = [
-            'contacts' => config("my_site.contacts"),
-            'mainPageSeo' => config("my_site.mainPageSeo"),
-            'pagination' => config("my_site.pagination"),
-            'cacheLimit' => config("my_site.cacheLimit"),
-            'photoQuality' => config("my_photo.photoQuality"),
-            'adminEmail' => env('ADMIN_EMAIL'),
-        ];
-*/
-
-
-/*
- *
-        config(['my_site.contacts.domain' => (string) $request->domain]);
-        config(['my_site.contacts.address' => (string) $request->address]);
-        config(['my_site.contacts.phone' => (string) $request->phone]);
-        config(['my_site.contacts.phoneTime' => (string) $request->phoneTime]);
-        config(['my_site.contacts.whatsapp' => (string) $request->whatsapp]);
-        config(['my_site.contacts.tg' => (string) $request->tg]);
-        config(['my_site.contacts.vkontakte' => (string) $request->vkontakte]);
-        config(['my_site.contacts.ok' => (string) $request->ok]);
-        config(['my_site.contacts.meta' => (string) $request->meta]);
-        config(['my_site.contacts.email' => (string) $request->email]);
-
-
-        $arr = Config::get('my_site');
-        $arr['contacts']['domain'] = (string) $request->domain;
-        $arr['contacts']['address'] = (string) $request->address;
-        $arr['contacts']['phone'] = (string) $request->phone;
-        $arr['contacts']['phoneTime'] = (string) $request->phoneTime;
-        $arr['contacts']['whatsapp'] = (string) $request->whatsapp;
-        $arr['contacts']['tg'] = (string) $request->tg;
-        $arr['contacts']['vkontakte'] = (string) $request->vkontakte;
-        $arr['contacts']['ok'] = (string) $request->ok;
-        $arr['contacts']['meta'] = (string) $request->meta;
-        $arr['contacts']['email'] = (string) $request->email;
-
-
-        $data = var_export($arr, 1);
-        if (File::put(config_path() . '/my_site.php', "<?php\n return $data ;")) {
-            return true;
-        }
-        return false;
- */

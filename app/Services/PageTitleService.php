@@ -4,6 +4,8 @@
 namespace App\Services;
 
 
+use App\Services\Settings\SettingsService;
+
 class PageTitleService
 {
     public function getData(string $sectionName, array $data): array
@@ -72,16 +74,18 @@ class PageTitleService
 
     protected function allProducts(): array
     {
+        $mainPageSeo = (new SettingsService())->getSettings('main_page_seo');
         return [
-            'pageTitle' => config("my_site.mainPageSeo.mainPageTitle"),
-            'pageDescription' => config("my_site.mainPageSeo.mainPageDescription"),
+            'pageTitle' => $mainPageSeo['mainPageTitle'],
+            'pageDescription' => $mainPageSeo['mainPageDescription'],
         ];
     }
     protected function productSearchOnServer($data): array
     {
+        $mainPageSeo = (new SettingsService())->getSettings('main_page_seo');
         return [
-            'pageTitle' => config("my_site.mainPageSeo.mainPageTitle"),
-            'pageDescription' => config("my_site.mainPageSeo.mainPageDescription"),
+            'pageTitle' => $mainPageSeo['mainPageTitle'],
+            'pageDescription' => $mainPageSeo['mainPageDescription'],
         ];
     }
     protected function favoriteProducts($data): array

@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Product;
+use App\Models\Setting;
 use App\Observers\ProductObserver;
 use App\Services\Category\CategoryService;
+use App\Services\Settings\SettingsService;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(CategoryService $categoryService)
+    public function boot(SettingsService $service, CategoryService $categoryService)
     {
         Product::observe(ProductObserver::class);
 
@@ -34,10 +36,10 @@ class AppServiceProvider extends ServiceProvider
             'categories' => $categoryService->getAll($categoryModelClassName),
             'jsAppName' => 'productListApp.js',
             'currentPage' => 1,
-            'perPage' => config("my_site.pagination.perPage"),
-            'mainPageTitle' => config("my_site.mainPageSeo.mainPageTitle"),
-            'contacts' => config("my_site.contacts"),
-            'cacheLimit' => config("my_site.cacheLimit"),
+            'perPage' => $service->getSettings('pagination')['perPage'],
+            'mainPageTitle' => $service->getSettings('main_page_seo')['mainPageTitle'],
+            'contacts' => $service->getSettings('contacts'),
+            'cacheLimit' => $service->getSettings('cache_limit')['value'],
         ]);
 
     }

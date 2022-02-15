@@ -9,6 +9,14 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _SettingsInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SettingsInput */ "./resources/js/components/Admin/Settings/SettingsInput.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -23,8 +31,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "AdminEmail"
+  name: "AdminEmail",
+  components: {
+    SettingsInput: _SettingsInput__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      subject: 'admin_email',
+      localSettings: {
+        value: ''
+      },
+      disableAllInputsCmd: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('settingsManager', ['settings'])), {}, {
+    data: function data() {
+      return this.settings(this.subject);
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('settingsManager', ['saveSettings', 'loadSettings'])), {}, {
+    saveSettings: function saveSettings() {
+      var _this = this;
+
+      this.disableAllInputsCmd = true;
+      setTimeout(function () {
+        _this.disableAllInputsCmd = false;
+      }, 100);
+      this.$store.dispatch('settingsManager/saveSettings', {
+        subject: this.subject,
+        data: this.localSettings
+      });
+    }
+  }),
+  watch: {
+    data: function data(value) {
+      //console.log(value);
+      this.localSettings = _objectSpread({}, value);
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('settingsManager/loadSettings', {
+      subject: this.subject
+    });
+  }
 });
 
 /***/ }),
@@ -38,6 +94,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _SettingsInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SettingsInput */ "./resources/js/components/Admin/Settings/SettingsInput.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -52,8 +116,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "CacheLimit"
+  name: "CacheLimit",
+  components: {
+    SettingsInput: _SettingsInput__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      subject: 'cache_limit',
+      localSettings: {
+        value: ''
+      },
+      disableAllInputsCmd: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('settingsManager', ['settings'])), {}, {
+    data: function data() {
+      return this.settings(this.subject);
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('settingsManager', ['saveSettings', 'loadSettings'])), {}, {
+    saveSettings: function saveSettings() {
+      var _this = this;
+
+      this.disableAllInputsCmd = true;
+      setTimeout(function () {
+        _this.disableAllInputsCmd = false;
+      }, 100);
+      this.$store.dispatch('settingsManager/saveSettings', {
+        subject: this.subject,
+        data: this.localSettings
+      });
+    }
+  }),
+  watch: {
+    data: function data(value) {
+      //console.log(value);
+      this.localSettings = _objectSpread({}, value);
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('settingsManager/loadSettings', {
+      subject: this.subject
+    });
+  }
 });
 
 /***/ }),
@@ -202,6 +314,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      subject: 'contacts',
       localSettings: {
         domain: '',
         address: '',
@@ -219,8 +332,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('settingsManager', ['settings'])), {}, {
-    contacts: function contacts() {
-      return this.settings('contacts');
+    data: function data() {
+      return this.settings(this.subject);
     },
     addressLinkHref: function addressLinkHref() {
       return "https://yandex.ru/maps/?text=".concat(this.localSettings.address);
@@ -235,20 +348,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.disableAllInputsCmd = false;
       }, 100);
       this.$store.dispatch('settingsManager/saveSettings', {
-        subject: 'contacts',
+        subject: this.subject,
         data: this.localSettings
       });
     }
   }),
   watch: {
-    contacts: function contacts(value) {
+    data: function data(value) {
       //console.log(value);
       this.localSettings = _objectSpread({}, value);
     }
   },
   mounted: function mounted() {
     this.$store.dispatch('settingsManager/loadSettings', {
-      subject: 'contacts'
+      subject: this.subject
     });
   }
 });
@@ -264,6 +377,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _SettingsInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SettingsInput */ "./resources/js/components/Admin/Settings/SettingsInput.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -278,8 +399,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "MainPageSeo"
+  name: "MainPageSeo",
+  components: {
+    SettingsInput: _SettingsInput__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      subject: 'main_page_seo',
+      localSettings: {
+        mainPageTitle: '',
+        mainPageDescription: ''
+      },
+      disableAllInputsCmd: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('settingsManager', ['settings'])), {}, {
+    data: function data() {
+      return this.settings(this.subject);
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('settingsManager', ['saveSettings', 'loadSettings'])), {}, {
+    saveSettings: function saveSettings() {
+      var _this = this;
+
+      this.disableAllInputsCmd = true;
+      setTimeout(function () {
+        _this.disableAllInputsCmd = false;
+      }, 100);
+      this.$store.dispatch('settingsManager/saveSettings', {
+        subject: this.subject,
+        data: this.localSettings
+      });
+    }
+  }),
+  watch: {
+    data: function data(value) {
+      //console.log(value);
+      this.localSettings = _objectSpread({}, value);
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('settingsManager/loadSettings', {
+      subject: this.subject
+    });
+  }
 });
 
 /***/ }),
@@ -293,6 +473,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _SettingsInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SettingsInput */ "./resources/js/components/Admin/Settings/SettingsInput.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -307,8 +495,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PerPage"
+  name: "PerPage",
+  components: {
+    SettingsInput: _SettingsInput__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      subject: 'pagination',
+      localSettings: {
+        perPage: ''
+      },
+      disableAllInputsCmd: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('settingsManager', ['settings'])), {}, {
+    data: function data() {
+      return this.settings(this.subject);
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('settingsManager', ['saveSettings', 'loadSettings'])), {}, {
+    saveSettings: function saveSettings() {
+      var _this = this;
+
+      this.disableAllInputsCmd = true;
+      setTimeout(function () {
+        _this.disableAllInputsCmd = false;
+      }, 100);
+      this.$store.dispatch('settingsManager/saveSettings', {
+        subject: this.subject,
+        data: this.localSettings
+      });
+    }
+  }),
+  watch: {
+    data: function data(value) {
+      //console.log(value);
+      this.localSettings = _objectSpread({}, value);
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('settingsManager/loadSettings', {
+      subject: this.subject
+    });
+  }
 });
 
 /***/ }),
@@ -322,6 +558,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _SettingsInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SettingsInput */ "./resources/js/components/Admin/Settings/SettingsInput.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -336,8 +580,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "PhotoQuality"
+  name: "PhotoQuality",
+  components: {
+    SettingsInput: _SettingsInput__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      subject: 'photo_quality',
+      localSettings: {
+        value: ''
+      },
+      disableAllInputsCmd: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('settingsManager', ['settings'])), {}, {
+    data: function data() {
+      return this.settings(this.subject);
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('settingsManager', ['saveSettings', 'loadSettings'])), {}, {
+    saveSettings: function saveSettings() {
+      var _this = this;
+
+      this.disableAllInputsCmd = true;
+      setTimeout(function () {
+        _this.disableAllInputsCmd = false;
+      }, 100);
+      this.$store.dispatch('settingsManager/saveSettings', {
+        subject: this.subject,
+        data: this.localSettings
+      });
+    }
+  }),
+  watch: {
+    data: function data(value) {
+      //console.log(value);
+      this.localSettings = _objectSpread({}, value);
+    }
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('settingsManager/loadSettings', {
+      subject: this.subject
+    });
+  }
 });
 
 /***/ }),
@@ -536,13 +828,26 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "content_block mainPage" },
+      { staticClass: "content_block settingsPage" },
       [
-        _c("router-link", { attrs: { to: { name: "SettingsMenu" } } }, [
-          _c("button", { staticClass: "button__save_product mauto mt30" }, [
-            _vm._v("\n                Назад\n            ")
-          ])
-        ])
+        _c("settings-input", {
+          staticClass: "mt10",
+          attrs: {
+            header: "E-mail администратора",
+            settings: _vm.localSettings,
+            entity: "value",
+            disableCmd: _vm.disableAllInputsCmd,
+            hint: ""
+          },
+          on: { saveSettings: _vm.saveSettings },
+          model: {
+            value: _vm.localSettings.value,
+            callback: function($$v) {
+              _vm.$set(_vm.localSettings, "value", $$v)
+            },
+            expression: "localSettings.value"
+          }
+        })
       ],
       1
     )
@@ -575,13 +880,27 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "content_block mainPage" },
+      { staticClass: "content_block settingsPage" },
       [
-        _c("router-link", { attrs: { to: { name: "SettingsMenu" } } }, [
-          _c("button", { staticClass: "button__save_product mauto mt30" }, [
-            _vm._v("\n                Назад\n            ")
-          ])
-        ])
+        _c("settings-input", {
+          staticClass: "mt10",
+          attrs: {
+            header: "Лимит кэширования",
+            settings: _vm.localSettings,
+            entity: "value",
+            disableCmd: _vm.disableAllInputsCmd,
+            hint:
+              "Если товаров на сайте меньше указаной цифры, они (их данные из БД) все будут подгружены в браузер"
+          },
+          on: { saveSettings: _vm.saveSettings },
+          model: {
+            value: _vm.localSettings.value,
+            callback: function($$v) {
+              _vm.$set(_vm.localSettings, "value", $$v)
+            },
+            expression: "localSettings.value"
+          }
+        })
       ],
       1
     )
@@ -862,13 +1181,45 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "content_block mainPage" },
+      { staticClass: "content_block settingsPage" },
       [
-        _c("router-link", { attrs: { to: { name: "SettingsMenu" } } }, [
-          _c("button", { staticClass: "button__save_product mauto mt30" }, [
-            _vm._v("\n                Назад\n            ")
-          ])
-        ])
+        _c("settings-input", {
+          staticClass: "mt10",
+          attrs: {
+            header: "Title главной страницы",
+            settings: _vm.localSettings,
+            entity: "mainPageTitle",
+            disableCmd: _vm.disableAllInputsCmd,
+            hint: ""
+          },
+          on: { saveSettings: _vm.saveSettings },
+          model: {
+            value: _vm.localSettings.mainPageTitle,
+            callback: function($$v) {
+              _vm.$set(_vm.localSettings, "mainPageTitle", $$v)
+            },
+            expression: "localSettings.mainPageTitle"
+          }
+        }),
+        _vm._v(" "),
+        _c("settings-input", {
+          staticClass: "mt40",
+          attrs: {
+            header: "Description главной страницы",
+            settings: _vm.localSettings,
+            entity: "mainPageDescription",
+            disableCmd: _vm.disableAllInputsCmd,
+            hint: ""
+          },
+          on: { saveSettings: _vm.saveSettings },
+          model: {
+            value: _vm.localSettings.mainPageDescription,
+            callback: function($$v) {
+              _vm.$set(_vm.localSettings, "mainPageDescription", $$v)
+            },
+            expression: "localSettings.mainPageDescription"
+          }
+        })
       ],
       1
     )
@@ -898,18 +1249,31 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "show_block" }, [
     _c("h1", { staticClass: "pd0 mb0" }, [
-      _vm._v("Количество товаров на страницу в списке товаров на сайте")
+      _vm._v("Количество товаров на странице")
     ]),
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "content_block mainPage" },
+      { staticClass: "content_block settingsPage" },
       [
-        _c("router-link", { attrs: { to: { name: "SettingsMenu" } } }, [
-          _c("button", { staticClass: "button__save_product mauto mt30" }, [
-            _vm._v("\n                Назад\n            ")
-          ])
-        ])
+        _c("settings-input", {
+          staticClass: "mt10",
+          attrs: {
+            header: "PerPage",
+            settings: _vm.localSettings,
+            entity: "perPage",
+            disableCmd: _vm.disableAllInputsCmd,
+            hint: "Количество товаров на странице в списке товаров на сайте"
+          },
+          on: { saveSettings: _vm.saveSettings },
+          model: {
+            value: _vm.localSettings.perPage,
+            callback: function($$v) {
+              _vm.$set(_vm.localSettings, "perPage", $$v)
+            },
+            expression: "localSettings.perPage"
+          }
+        })
       ],
       1
     )
@@ -942,13 +1306,26 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "content_block mainPage" },
+      { staticClass: "content_block settingsPage" },
       [
-        _c("router-link", { attrs: { to: { name: "SettingsMenu" } } }, [
-          _c("button", { staticClass: "button__save_product mauto mt30" }, [
-            _vm._v("\n                Назад\n            ")
-          ])
-        ])
+        _c("settings-input", {
+          staticClass: "mt10",
+          attrs: {
+            header: "Quality (%)",
+            settings: _vm.localSettings,
+            entity: "value",
+            disableCmd: _vm.disableAllInputsCmd,
+            hint: ""
+          },
+          on: { saveSettings: _vm.saveSettings },
+          model: {
+            value: _vm.localSettings.value,
+            callback: function($$v) {
+              _vm.$set(_vm.localSettings, "value", $$v)
+            },
+            expression: "localSettings.value"
+          }
+        })
       ],
       1
     )

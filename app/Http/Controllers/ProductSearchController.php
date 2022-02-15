@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Services\PageTitleService;
 use App\Services\Product\SearchService;
+use App\Services\Settings\SettingsService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -20,7 +21,7 @@ class ProductSearchController extends Controller
         Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
-        $perPage = config("my_site.pagination.perPage");
+        $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
 
         $result = $service->getSearched([
             'minPrice' => $minPrice,

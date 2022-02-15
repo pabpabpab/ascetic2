@@ -7,6 +7,7 @@ use App\Services\PageTitleService;
 use App\Services\PhotoManager\PhotoSeoService;
 use App\Services\Product\ListService;
 use App\Services\Product\ViewedProductsService;
+use App\Services\Settings\SettingsService;
 use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
@@ -22,7 +23,7 @@ class ProductController extends Controller
         });
 
         $totalProductsCount = Product::count();
-        $perPage = config("my_site.pagination.perPage");
+        $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $products = $service->getAll('active')
             ->paginate($perPage);
         return view('products.list.index', [
@@ -49,7 +50,7 @@ class ProductController extends Controller
         });
 
         $totalProductsCount = Product::count();
-        $perPage = config("my_site.pagination.perPage");
+        $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $products = $service->getAll('active')
             ->paginate($perPage);
         return view('products.list.index', [

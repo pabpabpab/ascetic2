@@ -26279,20 +26279,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         meta: '',
         email: ''
       },
-      mainPageSeo: {
+      main_page_seo: {
         mainPageTitle: '',
         mainPageDescription: ''
       },
       pagination: {
         perPage: 3
       },
-      cacheLimit: {
+      cache_limit: {
         value: 100
       },
-      photoQuality: {
+      photo_quality: {
         value: 90
       },
-      adminEmail: {
+      admin_email: {
         value: ''
       }
     }
@@ -26373,8 +26373,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }, {
             root: true
           });
-        } //dispatch('makePaginationLinksShot', entity);
-
+        }
       });
     }
   }

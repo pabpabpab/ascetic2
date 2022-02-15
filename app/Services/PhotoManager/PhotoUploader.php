@@ -4,15 +4,20 @@
 namespace App\Services\PhotoManager;
 
 
+use App\Services\Settings\SettingsService;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class PhotoUploader
 {
 
-    public function saveUploadedFiles($files, $productId): array {
-
+    public function saveUploadedFiles($files, $productId): array
+    {
         //$files // они там элементы массива photos | $request->file('photos.'.$i)
+
+        // считать из таблицы настроек сайта photoQuality
+        $siteSetting = (new SettingsService())->getSettings('photo_quality');
+        $quality = $siteSetting['value'] + 0;
 
         $timeNameArr = [];
         $timeName = time();
@@ -31,7 +36,7 @@ class PhotoUploader
                 // индекс 1 пропустить (не нужны мелкие фото)
                 for ($i = 2; $i <= 6; $i++) {
                     $newFileName = $productId."s".$i."-".$timeName.".".$ext;
-                    $this->_savePhotoVersion($file, $newFileName, $i);
+                    $this->_savePhotoVersion($file, $newFileName, $i, $quality);
                 }
 
                 $timeNameArr[] = $timeName.".".$ext;
@@ -42,14 +47,14 @@ class PhotoUploader
     }
 
 
-    protected function _savePhotoVersion($file, $newFileName, $i) {
+    protected function _savePhotoVersion($file, $newFileName, $i, $quality)
+    {
         $folderName = config("my_photo.folders.size".$i);
         $fullPath = Storage::disk('public')->path($folderName."/".$newFileName);
 
         $my_size = config("my_photo.sizes.".$i);
         $width = (int) $my_size['width'];
         $height = (int) $my_size['height'];
-        $quality = config("my_photo.photoQuality") + 0;
 
         $ext = explode('.', $newFileName)[1];
 

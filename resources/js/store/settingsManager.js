@@ -19,20 +19,20 @@ export default {
                 meta: '',
                 email: '',
             },
-            mainPageSeo: {
+            main_page_seo: {
                 mainPageTitle: '',
                 mainPageDescription: '',
             },
             pagination: {
                 perPage: 3,
             },
-            cacheLimit: {
+            cache_limit: {
                 value: 100,
             },
-            photoQuality: {
+            photo_quality: {
                 value: 90,
             },
-            adminEmail: {
+            admin_email: {
                 value: '',
             },
         },
@@ -67,9 +67,7 @@ export default {
 
         saveSettings({ dispatch, commit, state, rootState }, { subject, data }) {
             const url = state.url.save + subject;
-
             //console.log(url);
-
             dispatch(
                 'postJsonWithWaitingScreen',
                 {
@@ -80,9 +78,7 @@ export default {
             )
                 .then((data) => {
                     if (data.saveSuccess === true) {
-
                         //console.log(data);
-
                         commit('setSettings', {subject: subject, data: data.settings});
                         const txt = `Сохранено.`;
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 1}, { root: true });
@@ -90,8 +86,6 @@ export default {
                         const txt = 'неудачная попытка сохранения';
                         dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                     }
-
-                    //dispatch('makePaginationLinksShot', entity);
                 });
         },
 
