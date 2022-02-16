@@ -17,7 +17,7 @@ export default {
     },
 
     actions: {
-        updateCSRF({ dispatch, commit, getters }, seconds = 10) {
+        updateCSRF({ dispatch, commit, getters }, seconds = 20) {
             const url = getters.csrfUrl;
             setInterval(() => {
                 dispatch('getJson', url).then((data) => {

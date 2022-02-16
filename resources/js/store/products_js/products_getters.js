@@ -49,6 +49,8 @@ export default {
     viewingMode: (state) => state.viewingMode,
     sortingMode: (state) => state.sortingMode,
 
+
+
     visibility: (state) => (componentName) => state.visibility[componentName],
     needReload: (state) => (entity) => state.needReload[entity],
 

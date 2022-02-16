@@ -3070,6 +3070,98 @@ h1 {
   padding: 0 0 18px 10px;
 }
 
+.filter_icon_and_lot_number__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.show_lot_number {
+  font-size: 25px;
+  color: #000;
+  font-weight: 400;
+  height: 25px;
+  margin: -1px 20px 0 0;
+  padding: 0;
+}
+
+.show_lot_number_with_input {
+  position: relative;
+  margin: -4px 30px 0 0;
+}
+
+.show_lot_number_with_input__collapse_icon {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 25px;
+  height: 25px;
+  background-color: #786e6e;
+  font-size: 30px;
+  color: #fff;
+  font-weight: 700;
+  line-height: 15px;
+  cursor: pointer;
+  border-radius: 25px;
+  border: 3px solid #fff;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.show_lot_number_with_input__collapse_icon:hover {
+  background-color: #505050;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.show_lot_number__input {
+  width: 100px;
+  padding: 5px 5px;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #fff;
+  border: 2px solid #000;
+  outline: 0;
+  border-radius: 3px;
+  font-size: 15px;
+  color: #000;
+  font-weight: 400;
+  line-height: 15px;
+  text-align: right;
+}
+
+.show_lot_number__input::-webkit-input-placeholder {
+  font-size: 12px;
+  color: #b0b0b0;
+  font-weight: 400;
+}
+
+.show_lot_number__input::-moz-placeholder {
+  font-size: 12px;
+  color: #b0b0b0;
+  font-weight: 400;
+}
+
+.show_lot_number__input:-moz-placeholder {
+  font-size: 12px;
+  color: #b0b0b0;
+  font-weight: 400;
+}
+
 .filter_icon__wrapper {
   position: relative;
   margin: 0 5px 0 0;
@@ -3103,6 +3195,7 @@ h1 {
   -webkit-box-flex: 9;
       -ms-flex-positive: 9;
           flex-grow: 9;
+  width: 30px;
   text-align: left;
   margin: 0 0 0 -5px;
   padding: 0;
@@ -3111,7 +3204,7 @@ h1 {
 .viewing_icon__content {
   margin: 0;
   padding: 0;
-  width: 50px;
+  width: 30px;
 }
 
 .viewing_icon__img {
@@ -3170,7 +3263,7 @@ h1 {
           align-items: center;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
-  width: 150px;
+  width: 130px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   cursor: pointer;
@@ -3230,8 +3323,8 @@ h1 {
   position: absolute;
   z-index: 8;
   top: 0;
-  left: 15px;
-  width: 150px;
+  left: 10px;
+  width: 130px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   height: 150px;
@@ -3247,6 +3340,7 @@ h1 {
   font-size: 15px;
   color: #504646;
   font-weight: 400;
+  white-space: nowrap;
   text-align: left;
   padding: 12px 10px 12px 15px;
   margin: 0;
@@ -3260,6 +3354,32 @@ h1 {
 @media screen and (max-width: 1200px) {
   .filter_icon__img {
     margin: 0 0 -10px 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .show_lot_number_with_input {
+    margin: -6px 15px 0 0;
+  }
+
+  .show_lot_number__input {
+    width: 70px;
+    font-size: 12px;
+    color: #000;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .show_lot_number_with_input {
+    margin: -7px 15px 0 0;
+  }
+
+  .show_lot_number__input {
+    width: 50px;
+    font-size: 10px;
+    color: #000;
+    font-weight: 400;
   }
 }
 

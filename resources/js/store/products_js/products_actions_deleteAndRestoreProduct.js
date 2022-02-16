@@ -16,7 +16,7 @@ export default {
                 if (data.deleteSuccess === true) {
 
                     commit('setNeedReload', { entity: 'trashedProducts', value: true });
-                    commit('setPreviousRouteName', theRouter.currentRoute.name);
+                    //commit('setPreviousRouteName', theRouter.currentRoute.name);
                     dispatch('setReloadAllCategoriesCommand', true, {root: true}); // для перезагрузки категорий потом
 
                     const currentPageIndex = rootGetters['pagination/currentPageIndex']('products');

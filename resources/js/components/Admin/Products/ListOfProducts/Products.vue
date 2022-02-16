@@ -8,10 +8,19 @@
             <pagination v-if="productsLength > 1" entity="products" class="pdb0"></pagination>
 
             <div class="top_viewing_sorting_filtering_container">
-                <viewing-icon></viewing-icon>
-                <sorting-modes v-if="1 === 2"></sorting-modes>
-                <sorting-modes-for-mobile></sorting-modes-for-mobile>
-                <filters-icon v-if="$route.name === 'Products'"></filters-icon>
+                <div class="viewing_icon__wrapper">
+                    <viewing-icon></viewing-icon>
+                </div>
+                <div v-if="1 === 2">
+                    <sorting-modes></sorting-modes>
+                </div>
+                <div class="sorting_modes_for_mobile__wrapper">
+                    <sorting-modes-for-mobile></sorting-modes-for-mobile>
+                </div>
+                <div v-if="$route.name === 'Products'" class="filter_icon_and_lot_number__wrapper">
+                    <lot-number-control></lot-number-control>
+                    <filters-icon></filters-icon>
+                </div>
             </div>
 
 
@@ -72,11 +81,13 @@ import SortingModesForMobile from "../Sorting/SortingModesForMobile";
 import ProductQuickViewManager from "../QuickViewManager/ProductQuickViewManager";
 import FiltersIcon from "../Filtering/FilterIcon";
 import PaginationMobile from "../../Pagination/PaginationMobile";
+import LotNumberControl from "../Filtering/LotNumberControl";
 
 
 export default {
     name: "Products",
     components: {
+        LotNumberControl,
         PaginationMobile,
         ProductItem,
         ViewingIcon,

@@ -59,5 +59,27 @@ export default {
             filtered = colorFilterCore(filtered, searchObject);
         }
         return [...filtered];
-    }
+    },
+
+
+
+    makeSearchByLotNumber({dispatch, commit, getters, state}, productId) {
+        commit('resetSearchObject');
+
+        let products = [ ...getters.products ];
+        const filtered = products.filter((el) => {
+            const id = Number(el.id);
+            return id === productId;
+        });
+        if (filtered.length === 0) {
+            const txt = `Ничего не найдено`
+            dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 1.5}, { root: true });
+            dispatch('paginateProducts', products);
+        } else {
+            const txt = `Показан товар номер ${productId}`
+            dispatch('showAbsoluteFlashFiltersMessage', {text: txt, sec: 3.5}, { root: true });
+            dispatch('paginateProducts', filtered);
+        }
+    },
+
 }

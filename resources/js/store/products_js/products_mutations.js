@@ -111,7 +111,6 @@ export default {
         state.viewingMode = mode;
     },
 
-
     // ---------------------при drag and drop --------------------------
     moveProductInProductsById: (state, {operatedId, targetId}) => {
         const products = [...state.products];
@@ -144,7 +143,7 @@ export default {
         const singleProduct = state.singleProductFromServer;
         const photoSet = JSON.parse(singleProduct.product.photo_set)
 
-        // вырвать из массива и получить наш элемент, который двигаем
+        // вытащить из массива и получить наш элемент, который двигаем
         const operatedItem = photoSet.splice(currentIndex, 1)[0];
 
         // заплатка (когда тащим сверху вниз, но не за нижний предел списка)

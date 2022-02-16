@@ -195,8 +195,6 @@ export default {
                 photos: this.photos
             });
         },
-
-
     },
 
     mounted() {

@@ -145,11 +145,5 @@ export default {
             }
         },
     },
-
-    /*
-    mounted() {
-        this.$store.dispatch('updateCSRF', 5);
-    },
-    */
 }
 </script>

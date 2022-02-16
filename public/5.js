@@ -292,6 +292,70 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "LotNumberControl",
+  data: function data() {
+    return {
+      showInput: false,
+      lotNumber: ''
+    };
+  },
+  filters: {
+    numeric: function numeric(value) {}
+  },
+  methods: {
+    resetThisInput: function resetThisInput() {
+      this.lotNumber = '';
+    },
+    collapseInput: function collapseInput() {
+      this.resetThisInput();
+      this.showInput = false;
+    }
+  },
+  watch: {
+    lotNumber: function lotNumber(value) {
+      this.lotNumber = Number(value);
+
+      if (this.lotNumber === 0 || isNaN(this.lotNumber)) {
+        this.lotNumber = '';
+      }
+
+      this.$store.dispatch('products/makeSearchByLotNumber', this.lotNumber + 0);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/Filtering/ProductsFilter.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/Filtering/ProductsFilter.vue?vue&type=script&lang=js& ***!
@@ -928,6 +992,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _QuickViewManager_ProductQuickViewManager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../QuickViewManager/ProductQuickViewManager */ "./resources/js/components/Admin/Products/QuickViewManager/ProductQuickViewManager.vue");
 /* harmony import */ var _Filtering_FilterIcon__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../Filtering/FilterIcon */ "./resources/js/components/Admin/Products/Filtering/FilterIcon.vue");
 /* harmony import */ var _Pagination_PaginationMobile__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../Pagination/PaginationMobile */ "./resources/js/components/Admin/Pagination/PaginationMobile.vue");
+/* harmony import */ var _Filtering_LotNumberControl__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../Filtering/LotNumberControl */ "./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -992,6 +1057,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -1010,6 +1085,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Products",
   components: {
+    LotNumberControl: _Filtering_LotNumberControl__WEBPACK_IMPORTED_MODULE_15__["default"],
     PaginationMobile: _Pagination_PaginationMobile__WEBPACK_IMPORTED_MODULE_14__["default"],
     ProductItem: _ProductItem__WEBPACK_IMPORTED_MODULE_1__["default"],
     ViewingIcon: _Viewing_ViewingIcon__WEBPACK_IMPORTED_MODULE_9__["default"],
@@ -1206,6 +1282,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
  //&#709;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1266,8 +1343,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
 //
 //
 //
@@ -1684,6 +1759,78 @@ var render = function() {
         : _vm._e()
     ]
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=template&id=2bb2e198&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=template&id=2bb2e198& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.showInput
+    ? _c("div", { staticClass: "show_lot_number show_lot_number_with_input" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.lotNumber,
+              expression: "lotNumber"
+            }
+          ],
+          staticClass: "show_lot_number__input",
+          attrs: { type: "text", maxlength: "10", placeholder: "Номер товара" },
+          domProps: { value: _vm.lotNumber },
+          on: {
+            input: [
+              function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.lotNumber = $event.target.value
+              },
+              function($event) {}
+            ]
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "show_lot_number_with_input__collapse_icon",
+            on: { click: _vm.collapseInput }
+          },
+          [_vm._v("\n        ×\n    ")]
+        )
+      ])
+    : _c(
+        "div",
+        {
+          staticClass: "icon_with_hint icon_with_left_hint show_lot_number",
+          attrs: { "data-title": "Показать товар номер..." },
+          on: {
+            click: function($event) {
+              _vm.showInput = !_vm.showInput
+            }
+          }
+        },
+        [_vm._v("\n    №\n")]
+      )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2415,20 +2562,32 @@ var render = function() {
             })
           : _vm._e(),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "top_viewing_sorting_filtering_container" },
-          [
-            _c("viewing-icon"),
-            _vm._v(" "),
-             false ? undefined : _vm._e(),
-            _vm._v(" "),
-            _c("sorting-modes-for-mobile"),
-            _vm._v(" "),
-            _vm.$route.name === "Products" ? _c("filters-icon") : _vm._e()
-          ],
-          1
-        ),
+        _c("div", { staticClass: "top_viewing_sorting_filtering_container" }, [
+          _c(
+            "div",
+            { staticClass: "viewing_icon__wrapper" },
+            [_c("viewing-icon")],
+            1
+          ),
+          _vm._v(" "),
+           false ? undefined : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "sorting_modes_for_mobile__wrapper" },
+            [_c("sorting-modes-for-mobile")],
+            1
+          ),
+          _vm._v(" "),
+          _vm.$route.name === "Products"
+            ? _c(
+                "div",
+                { staticClass: "filter_icon_and_lot_number__wrapper" },
+                [_c("lot-number-control"), _vm._v(" "), _c("filters-icon")],
+                1
+              )
+            : _vm._e()
+        ]),
         _vm._v(" "),
         _c("search-total-parameters"),
         _vm._v(" "),
@@ -2657,7 +2816,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "sorting_modes_for_mobile__wrapper" }, [
+  return _c("div", [
     _c(
       "div",
       {
@@ -2774,23 +2933,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "viewing_icon__wrapper" }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "icon_with_hint icon_with_right_hint viewing_icon__content",
-        attrs: { "data-title": _vm.title },
-        on: { click: _vm.changeViewingMode }
-      },
-      [
-        _c("img", {
-          staticClass: "viewing_icon__img",
-          attrs: { src: _vm.src, alt: "" }
-        })
-      ]
-    )
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "icon_with_hint icon_with_right_hint viewing_icon__content",
+      attrs: { "data-title": _vm.title },
+      on: { click: _vm.changeViewingMode }
+    },
+    [
+      _c("img", {
+        staticClass: "viewing_icon__img",
+        attrs: { src: _vm.src, alt: "" }
+      })
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -3084,6 +3240,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilterIcon_vue_vue_type_template_id_40217334___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilterIcon_vue_vue_type_template_id_40217334___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LotNumberControl_vue_vue_type_template_id_2bb2e198___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LotNumberControl.vue?vue&type=template&id=2bb2e198& */ "./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=template&id=2bb2e198&");
+/* harmony import */ var _LotNumberControl_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LotNumberControl.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LotNumberControl_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LotNumberControl_vue_vue_type_template_id_2bb2e198___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LotNumberControl_vue_vue_type_template_id_2bb2e198___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Admin/Products/Filtering/LotNumberControl.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LotNumberControl_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./LotNumberControl.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LotNumberControl_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=template&id=2bb2e198&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=template&id=2bb2e198& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotNumberControl_vue_vue_type_template_id_2bb2e198___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./LotNumberControl.vue?vue&type=template&id=2bb2e198& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/Filtering/LotNumberControl.vue?vue&type=template&id=2bb2e198&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotNumberControl_vue_vue_type_template_id_2bb2e198___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LotNumberControl_vue_vue_type_template_id_2bb2e198___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

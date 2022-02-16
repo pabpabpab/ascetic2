@@ -293,6 +293,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (from.name) {
         window.scrollBy(0, -1000000);
       }
+
+      if (!['Products', 'ProductsByCategory'].includes(to.name)) {
+        this.$store.commit('products/setPreviousRouteName', this.$route.name);
+        this.$store.commit('products/resetSearchObject');
+        this.$store.commit('products/resetSearchTotalParameters');
+        this.$store.commit('products/setSortingMode', 'position');
+      }
     }
   },
   mounted: function mounted() {
@@ -21852,7 +21859,7 @@ __webpack_require__.r(__webpack_exports__);
       var dispatch = _ref.dispatch,
           commit = _ref.commit,
           getters = _ref.getters;
-      var seconds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+      var seconds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
       var url = getters.csrfUrl;
       setInterval(function () {
         dispatch('getJson', url).then(function (data) {
@@ -24139,8 +24146,8 @@ __webpack_require__.r(__webpack_exports__);
         commit('setNeedReload', {
           entity: 'trashedProducts',
           value: true
-        });
-        commit('setPreviousRouteName', _router__WEBPACK_IMPORTED_MODULE_0__["default"].currentRoute.name);
+        }); //commit('setPreviousRouteName', theRouter.currentRoute.name);
+
         dispatch('setReloadAllCategoriesCommand', true, {
           root: true
         }); // для перезагрузки категорий потом
@@ -25176,6 +25183,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee2);
     }))();
+  },
+  makeSearchByLotNumber: function makeSearchByLotNumber(_ref9, productId) {
+    var dispatch = _ref9.dispatch,
+        commit = _ref9.commit,
+        getters = _ref9.getters,
+        state = _ref9.state;
+    commit('resetSearchObject');
+
+    var products = _toConsumableArray(getters.products);
+
+    var filtered = products.filter(function (el) {
+      var id = Number(el.id);
+      return id === productId;
+    });
+
+    if (filtered.length === 0) {
+      var txt = "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E";
+      dispatch('showAbsoluteFlashFiltersMessage', {
+        text: txt,
+        sec: 1.5
+      }, {
+        root: true
+      });
+      dispatch('paginateProducts', products);
+    } else {
+      var _txt = "\u041F\u043E\u043A\u0430\u0437\u0430\u043D \u0442\u043E\u0432\u0430\u0440 \u043D\u043E\u043C\u0435\u0440 ".concat(productId);
+
+      dispatch('showAbsoluteFlashFiltersMessage', {
+        text: _txt,
+        sec: 3.5
+      }, {
+        root: true
+      });
+      dispatch('paginateProducts', filtered);
+    }
   }
 });
 
@@ -25258,8 +25300,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 commit('setNeedReload', {
                   entity: 'products',
                   value: false
-                });
-                commit('setPreviousRouteName', ''); // *
+                }); //commit('setPreviousRouteName', ''); // *
 
                 dispatch('_showLoadedProducts', route);
               });
@@ -25302,10 +25343,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 8:
               filtered = _context2.sent;
-              dispatch('sortAndPaginateProducts', filtered);
-              commit('setPreviousRouteName', route.name); // *
+              dispatch('sortAndPaginateProducts', filtered); //commit('setPreviousRouteName', route.name); // *
 
-            case 11:
+            case 10:
             case "end":
               return _context2.stop();
           }
@@ -25380,28 +25420,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   getFilteredProductsByRoute: function getFilteredProductsByRoute(_ref7, route) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      var _route$params$categor, _route$params, _route$params$categor2, _route$params2;
+      var getters, _route$params$categor, _route$params, gettersBook, getterName;
 
-      var getters, gettersBook, getterName;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               getters = _ref7.getters;
-              gettersBook = {
-                Products: {
-                  all: 'allProducts'
-                },
-                ProductsByCategory: {
-                  category: 'getProductsByCategory',
-                  material: 'getProductsByMaterial',
-                  color: 'getProductsByColor'
-                }
-              };
-              getterName = gettersBook[route.name][(_route$params$categor = (_route$params = route.params) === null || _route$params === void 0 ? void 0 : _route$params.categoryEntity) !== null && _route$params$categor !== void 0 ? _route$params$categor : 'all'];
-              return _context4.abrupt("return", _toConsumableArray(getters[getterName]((_route$params$categor2 = (_route$params2 = route.params) === null || _route$params2 === void 0 ? void 0 : _route$params2.categoryId) !== null && _route$params$categor2 !== void 0 ? _route$params$categor2 : 0)));
 
-            case 4:
+              if (!(route.name === 'ProductsByCategory')) {
+                _context4.next = 5;
+                break;
+              }
+
+              gettersBook = {
+                category: 'getProductsByCategory',
+                material: 'getProductsByMaterial',
+                color: 'getProductsByColor'
+              };
+              getterName = gettersBook[route.params.categoryEntity];
+              return _context4.abrupt("return", _toConsumableArray(getters[getterName]((_route$params$categor = (_route$params = route.params) === null || _route$params === void 0 ? void 0 : _route$params.categoryId) !== null && _route$params$categor !== void 0 ? _route$params$categor : 0)));
+
+            case 5:
+              return _context4.abrupt("return", _toConsumableArray(getters['allProducts'](0)));
+
+            case 6:
             case "end":
               return _context4.stop();
           }
@@ -25937,7 +25980,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         newIndex = _ref2.newIndex,
         vector = _ref2.vector;
     var singleProduct = state.singleProductFromServer;
-    var photoSet = JSON.parse(singleProduct.product.photo_set); // вырвать из массива и получить наш элемент, который двигаем
+    var photoSet = JSON.parse(singleProduct.product.photo_set); // вытащить из массива и получить наш элемент, который двигаем
 
     var operatedItem = photoSet.splice(currentIndex, 1)[0]; // заплатка (когда тащим сверху вниз, но не за нижний предел списка)
 

@@ -8,12 +8,11 @@ export default {
 
     async showProducts({dispatch, commit, getters}, route = {name: 'Products'}) {
         commit('setVisibility', { componentName: 'productQuickViewManager', value: false });
-
         if (getters.productsLength < 2 || getters.needReload('products')) {
             dispatch('loadProducts', route)
                 .then(({products, route}) => {
                     commit('setNeedReload', { entity: 'products', value: false });
-                    commit('setPreviousRouteName', ''); // *
+                    //commit('setPreviousRouteName', ''); // *
                     dispatch('_showLoadedProducts', route);
                 });
             return;
@@ -29,7 +28,7 @@ export default {
         }
         const filtered = await dispatch('getFiltered', route);
         dispatch('sortAndPaginateProducts', filtered);
-        commit('setPreviousRouteName', route.name); // *
+        //commit('setPreviousRouteName', route.name); // *
     },
 
     loadProducts({ dispatch, commit, state }, route = { name: 'Products' }) {
@@ -65,19 +64,18 @@ export default {
     },
 
     async getFilteredProductsByRoute({getters}, route) {
-        const gettersBook = {
-            Products: {
-                all: 'allProducts'
-            },
-            ProductsByCategory: {
+        if (route.name === 'ProductsByCategory') {
+            const gettersBook = {
                 category: 'getProductsByCategory',
                 material: 'getProductsByMaterial',
                 color: 'getProductsByColor',
             }
+            const getterName = gettersBook[route.params.categoryEntity];
+            return [ ...getters[getterName](route.params?.categoryId ?? 0) ];
         }
-        const getterName = gettersBook[route.name][route.params?.categoryEntity ?? 'all'];
-        return [ ...getters[getterName](route.params?.categoryId ?? 0) ];
+        return [ ...getters['allProducts'](0) ];
     },
+
 
     paginateProducts({ dispatch }, data) {
         dispatch('setFiltered', { entity: 'products', data: data }, { root: true })

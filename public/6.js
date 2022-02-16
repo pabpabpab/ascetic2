@@ -1527,10 +1527,6 @@ function _hasIncreaseInTextareaLength(event) {
   return event.target.scrollHeight > event.target.clientHeight;
 }
 
-function _increaseTextareaHeight(event) {
-  event.target.style.height = event.target.scrollHeight + 10 + 'px';
-}
-
 function _hasDecreaseInTextareaLength(event) {
   if (event.target.value.length / prevLength < 0.85) {
     prevLength = event.target.value.length;
@@ -1538,6 +1534,10 @@ function _hasDecreaseInTextareaLength(event) {
   }
 
   return false;
+}
+
+function _increaseTextareaHeight(event) {
+  event.target.style.height = event.target.scrollHeight + 10 + 'px';
 }
 
 function _resetTextareaHeight(event) {

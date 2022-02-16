@@ -7,11 +7,64 @@
     //border: 1px solid #003cff
 
 
+.filter_icon_and_lot_number__wrapper
+    display: flex
+    //border: 1px solid #003cff
+
+.show_lot_number
+    +font(25px, #000, 400)
+    height: 25px
+    margin: -1px 20px 0 0
+    //border: 1px solid #f00
+    padding: 0
+.show_lot_number_with_input
+    position: relative
+    margin: -4px 30px 0 0
+    &__collapse_icon
+        position: absolute
+        top: -15px
+        left: -15px
+        width: 25px
+        height: 25px
+        background-color: rgb(120, 110, 110)
+        +font(30px, #fff, 700)
+        line-height: 15px
+        cursor: pointer
+        border-radius: 25px
+        border: 3px solid #fff
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3)
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        &:hover
+            background-color: rgb(80, 80, 80)
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5)
+
+.show_lot_number__input
+    width: 100px
+    padding: 5px 5px
+    margin: 0
+    box-sizing: border-box
+    background-color: #fff
+    border: 2px solid #000
+    outline: 0
+    border-radius: 3px
+    +font(15px, #000, 400)
+    line-height: 15px
+    text-align: right
+    &::-webkit-input-placeholder
+        +font(12px, #b0b0b0, 400)
+    &::-moz-placeholder
+        +font(12px, #b0b0b0, 400)
+    &:-moz-placeholder
+        +font(12px, #b0b0b0, 400)
 
 .filter_icon__wrapper
     position: relative
     margin: 0 5px 0 0
     padding: 0
+    //border: 1px solid #000
 .filter_icon__img
     margin: 0 0 -15px 0
     padding: 0
@@ -31,8 +84,10 @@
     text-align: center
 
 
+
 .viewing_icon__wrapper
     flex-grow: 9
+    width: 30px
     text-align: left
     margin: 0 0 0 -5px
     padding: 0
@@ -40,7 +95,7 @@
 .viewing_icon__content
     margin: 0
     padding: 0
-    width: 50px
+    width: 30px
     //border: 1px solid #f00
 .viewing_icon__img
     margin: 0 0 -12px 0
@@ -79,7 +134,7 @@
         justify-content: space-between
         align-items: center
         flex-wrap: nowrap
-        width: 150px
+        width: 130px
         box-sizing: border-box
         cursor: pointer
     &__selected_mode
@@ -114,8 +169,8 @@
         position: absolute
         z-index: $sorting_modes_for_mobile__absolute_items_list__z-index
         top: 0
-        left: 15px
-        width: 150px
+        left: 10px
+        width: 130px
         box-sizing: border-box
         height: 150px
         overflow: hidden
@@ -125,6 +180,7 @@
         box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5)
     &__absolute_item
         +font(15px, rgb(80, 70, 70), 400)
+        white-space: nowrap
         text-align: left
         padding: 12px 10px 12px 15px
         margin: 0

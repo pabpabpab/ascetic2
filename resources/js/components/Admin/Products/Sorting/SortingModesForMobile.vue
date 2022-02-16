@@ -1,5 +1,5 @@
 <template>
-    <div class="sorting_modes_for_mobile__wrapper">
+    <div>
 
         <div @click.stop="changeSelectVisibility" class="sorting_modes_for_mobile__selected_mode__wrapper">
             <div class="sorting_modes_for_mobile__selected_mode">
@@ -26,6 +26,7 @@
                 </p>
             </div>
         </div>
+
     </div>
 </template>
 
