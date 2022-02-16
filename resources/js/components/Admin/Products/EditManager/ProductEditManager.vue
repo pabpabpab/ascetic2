@@ -30,7 +30,6 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-import _fitTextareaHeight from '../functions/fitTextareaHeight';
 
 export default {
     name: "ProductEditManager",
@@ -105,9 +104,6 @@ export default {
         ...mapActions('products', [
             'closeProductEditManager',
         ]),
-        fitTextareaHeight(event) {
-            _fitTextareaHeight(event);
-        },
         save() {
             this.saveCmd = true;
 

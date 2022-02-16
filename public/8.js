@@ -700,7 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_pencil_svg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_pencil_svg__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _assets_tick_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../assets/tick.svg */ "./resources/assets/tick.svg");
 /* harmony import */ var _assets_tick_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_tick_svg__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Products_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../Products/functions/fitTextareaHeight */ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js");
+/* harmony import */ var _functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/fitTextareaHeight */ "./resources/js/components/Admin/Settings/functions/fitTextareaHeight.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -708,7 +708,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -748,47 +747,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       pencilIcon: _assets_pencil_svg__WEBPACK_IMPORTED_MODULE_0___default.a,
       tickIcon: _assets_tick_svg__WEBPACK_IMPORTED_MODULE_1___default.a,
       isEditing: false,
-      disabledInput: true
+      disabledInput: true,
+      inputNode: null
     };
   },
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapActions"])('settingsManager', ['saveSettings', 'loadSettings'])), {}, {
-    fitTextareaHeight: function fitTextareaHeight(event) {
-      Object(_Products_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_2__["default"])(event);
+    fitTextareaHeight: function fitTextareaHeight() {
+      this.inputNode.style = null;
+
+      Object(_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_2__["default"])(this.inputNode);
     },
     changeValue: function changeValue() {
       // emit события input, потому что в родителе v-model
       // через промежуточное значение, в данном случае тоже пропс (копию исходного объекта localSettings)
       this.$emit('input', this.settings[this.entity]);
     },
-    edit: function edit(event) {
+    edit: function edit() {
       var _this = this;
 
       this.isEditing = true;
-      this.disabledInput = false;
-      var theEvent = event; // без задержки не работает так как на инпуте есть disabled
+      this.disabledInput = false; // без задержки не работает так как на инпуте есть disabled
 
       setTimeout(function () {
-        _this.focusInput(theEvent);
+        _this.focusInput();
       }, 100);
     },
-    focusInput: function focusInput(event) {
-      var node1 = event.target;
-      var node2 = event.target.parentNode.parentNode.firstElementChild;
-      var node3 = event.target.parentNode.firstElementChild;
+    focusInput: function focusInput() {
+      this.$refs.settingInput.focus();
+      this.inputNode.style = null;
 
-      if (node1.tagName === 'TEXTAREA') {
-        node1.focus();
-        return;
-      }
-
-      if (node2.tagName === 'TEXTAREA') {
-        node2.focus();
-        return;
-      }
-
-      if (node3.tagName === 'TEXTAREA') {
-        node3.focus();
-      }
+      Object(_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_2__["default"])(this.inputNode);
     },
     save: function save() {
       this.isEditing = false;
@@ -802,7 +790,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.isEditing = false;
         this.disabledInput = true;
       }
+    },
+    value: function value(val) {
+      var _this2 = this;
+
+      if (!val) {
+        return;
+      }
+
+      setTimeout(function () {
+        _this2.inputNode.style = null;
+
+        Object(_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_2__["default"])(_this2.inputNode);
+      }, 100);
     }
+  },
+  mounted: function mounted() {
+    this.inputNode = this.$refs.settingInput;
   }
 });
 
@@ -890,7 +894,7 @@ var render = function() {
             entity: "value",
             disableCmd: _vm.disableAllInputsCmd,
             hint:
-              "Если товаров на сайте меньше указаной цифры, они (их данные из БД) все будут подгружены в браузер"
+              "Если товаров на сайте меньше указаной цифры, их данные из БД все будут подгружены в браузер"
           },
           on: { saveSettings: _vm.saveSettings },
           model: {
@@ -1390,7 +1394,7 @@ var render = function() {
         staticClass: "settings_form__input__container",
         on: {
           click: function($event) {
-            return _vm.edit($event)
+            return _vm.edit()
           }
         }
       },
@@ -1404,6 +1408,7 @@ var render = function() {
               expression: "settings[entity]"
             }
           ],
+          ref: "settingInput",
           staticClass: "settings_form__input_textarea",
           attrs: { placeholder: "", disabled: _vm.disabledInput },
           domProps: { value: _vm.settings[_vm.entity] },
@@ -1416,7 +1421,7 @@ var render = function() {
                 _vm.$set(_vm.settings, _vm.entity, $event.target.value)
               },
               function($event) {
-                return _vm.fitTextareaHeight($event)
+                return _vm.fitTextareaHeight()
               }
             ]
           }
@@ -1448,12 +1453,7 @@ var render = function() {
           {
             staticClass: "settings_form__submit_icon__wrapper",
             class: { display_none: _vm.isEditing },
-            attrs: { title: "Редактировать" },
-            on: {
-              click: function($event) {
-                return _vm.edit($event)
-              }
-            }
+            attrs: { title: "Редактировать" }
           },
           [
             _c("img", {
@@ -1507,64 +1507,6 @@ module.exports = "/images/pencil.svg?00730309400fee823b14bd745a68d219";
 /***/ (function(module, exports) {
 
 module.exports = "/images/tick.svg?9749d3d14d7ace47aaae004945a7cab5";
-
-/***/ }),
-
-/***/ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/functions/fitTextareaHeight.js ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return fitTextareaHeight; });
-var prevLength = 0;
-function fitTextareaHeight(event) {
-  if (_hasIncreaseInTextareaLength(event)) {
-    prevLength = event.target.value.length;
-
-    if (event.target.clientHeight > 500) {
-      return;
-    }
-
-    _increaseTextareaHeight(event);
-
-    return;
-  }
-
-  if (!_hasDecreaseInTextareaLength(event)) {
-    return;
-  }
-
-  _resetTextareaHeight(event);
-
-  setTimeout(function () {
-    fitTextareaHeight(event);
-  }, 10);
-}
-
-function _hasIncreaseInTextareaLength(event) {
-  return event.target.scrollHeight > event.target.clientHeight;
-}
-
-function _increaseTextareaHeight(event) {
-  event.target.style.height = event.target.scrollHeight + 10 + 'px';
-}
-
-function _hasDecreaseInTextareaLength(event) {
-  if (event.target.value.length / prevLength < 0.85) {
-    prevLength = event.target.value.length;
-    return true;
-  }
-
-  return false;
-}
-
-function _resetTextareaHeight(event) {
-  event.target.style = null;
-}
 
 /***/ }),
 
@@ -2117,6 +2059,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SettingsInput_vue_vue_type_template_id_16f51ba6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Settings/functions/fitTextareaHeight.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Admin/Settings/functions/fitTextareaHeight.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return fitTextareaHeight; });
+var prevLength = 0;
+function fitTextareaHeight(node) {
+  if (_hasIncreaseInTextareaLength(node)) {
+    prevLength = node.value.length;
+
+    if (node.clientHeight > 500) {
+      return;
+    }
+
+    _increaseTextareaHeight(node);
+
+    return;
+  }
+
+  if (!_hasDecreaseInTextareaLength(node)) {
+    return;
+  }
+
+  _resetTextareaHeight(node);
+
+  setTimeout(function () {
+    fitTextareaHeight(node);
+  }, 10);
+}
+
+function _hasIncreaseInTextareaLength(node) {
+  return node.scrollHeight > node.clientHeight;
+}
+
+function _hasDecreaseInTextareaLength(node) {
+  if (node.value.length / prevLength < 0.85) {
+    prevLength = node.value.length;
+    return true;
+  }
+
+  return false;
+}
+
+function _increaseTextareaHeight(node) {
+  node.style.height = node.scrollHeight + 10 + 'px';
+}
+
+function _resetTextareaHeight(node) {
+  node.style = null;
+}
 
 /***/ })
 

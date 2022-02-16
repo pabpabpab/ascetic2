@@ -14,6 +14,7 @@
                     <label class="seo_manager__input_label">{{getAltInputLabel}}</label>
                     <textarea class="seo_manager__input_textarea seo_manager__input_textarea_alt"
                               placeholder=" "
+                              @click="fitTextareaHeight($event);"
                               @input="fitTextareaHeight($event);"
                               v-model="localData.imgAlt">
                     </textarea>
@@ -22,6 +23,7 @@
                 <label class="seo_manager__input_label">{{getTitleInputLabel}}</label>
                 <textarea class="seo_manager__input_textarea seo_manager__input_textarea_title"
                           placeholder=" "
+                          @click="fitTextareaHeight($event);"
                           @input="fitTextareaHeight($event);"
                           v-model="localData.pageTitle">
                 </textarea>
@@ -29,6 +31,7 @@
                 <label class="seo_manager__input_label">{{getDescriptionInputLabel}}</label>
                 <textarea class="seo_manager__input_textarea seo_manager__input_textarea_description"
                           placeholder=" "
+                          @click="fitTextareaHeight($event);"
                           @input="fitTextareaHeight($event);"
                           v-model="localData.pageDescription">
                 </textarea>

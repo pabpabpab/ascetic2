@@ -1,15 +1,19 @@
 .top_viewing_sorting_filtering_container
     width: 100%
     display: flex
+    justify-content: space-between
     align-items: flex-end
-    padding: 5px 0 8px 10px
+    padding: 0 0 18px 10px
+    //border: 1px solid #003cff
+
+
 
 .filter_icon__wrapper
     position: relative
     margin: 0 5px 0 0
     padding: 0
 .filter_icon__img
-    margin: 0 0 -10px 0
+    margin: 0 0 -15px 0
     padding: 0
     height: 30px
 .filter_icon__total_indicator
@@ -28,14 +32,24 @@
 
 
 .viewing_icon__wrapper
-    margin: 0 22px 0 -5px
+    flex-grow: 9
+    text-align: left
+    margin: 0 0 0 -5px
     padding: 0
+    //border: 1px solid #003cff
+.viewing_icon__content
+    margin: 0
+    padding: 0
+    width: 50px
+    //border: 1px solid #f00
 .viewing_icon__img
     margin: 0 0 -12px 0
     padding: 0
     height: 35px
+    //border: 1px solid #000
 
 .products_sorting_modes
+    display: none // отключено
     flex-grow: 10
     margin: 0
     padding: 0
@@ -56,16 +70,16 @@
 
 .sorting_modes_for_mobile
     &__wrapper
-        width: 150px
-        border-radius: 5px
-        margin: 0 10px -7px 10px
+        display: block
+        flex-grow: 10
     &__selected_mode__wrapper
         padding: 0
+        margin: 0 10px -7px 10px
         display: flex
         justify-content: space-between
         align-items: center
         flex-wrap: nowrap
-        width: 100%
+        width: 150px
         box-sizing: border-box
         cursor: pointer
     &__selected_mode
@@ -100,23 +114,15 @@
         position: absolute
         z-index: $sorting_modes_for_mobile__absolute_items_list__z-index
         top: 0
-        left: 0
-        width: 99%
+        left: 15px
+        width: 150px
         box-sizing: border-box
         height: 150px
-        overflow-y: auto
+        overflow: hidden
         padding: 7px 0
         background-color: #fff
         border-radius: 5px
         box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5)
-        &::-webkit-scrollbar
-            width: 15px
-            background-color: #f8f8f8
-            padding: 0 15px
-        &::-webkit-scrollbar-thumb
-            background-color: #aaa
-            border: 4px solid #f8f8f8
-            border-radius: 10px
     &__absolute_item
         +font(15px, rgb(80, 70, 70), 400)
         text-align: left

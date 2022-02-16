@@ -9,7 +9,7 @@
 
             <div class="top_viewing_sorting_filtering_container">
                 <viewing-icon></viewing-icon>
-                <sorting-modes></sorting-modes>
+                <sorting-modes v-if="1 === 2"></sorting-modes>
                 <sorting-modes-for-mobile></sorting-modes-for-mobile>
                 <filters-icon v-if="$route.name === 'Products'"></filters-icon>
             </div>

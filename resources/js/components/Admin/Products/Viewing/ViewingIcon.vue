@@ -1,8 +1,10 @@
 <template>
-    <div @click="changeViewingMode"
-         :data-title="title"
-         class="icon_with_hint icon_with_right_hint viewing_icon__wrapper">
-        <img :src="src" alt="" class="viewing_icon__img">
+    <div class="viewing_icon__wrapper">
+        <div @click="changeViewingMode"
+             :data-title="title"
+             class="icon_with_hint icon_with_right_hint viewing_icon__content">
+            <img :src="src" alt="" class="viewing_icon__img">
+        </div>
     </div>
 </template>
 

@@ -117,7 +117,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/fitTextareaHeight */ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -154,7 +153,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductEditManager",
@@ -217,9 +215,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])('products', ['closeProductEditManager'])), {}, {
-    fitTextareaHeight: function fitTextareaHeight(event) {
-      Object(_functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_1__["default"])(event);
-    },
     save: function save() {
       var _this = this;
 
@@ -608,64 +603,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductEditManager_vue_vue_type_template_id_3856c2a0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/functions/fitTextareaHeight.js ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return fitTextareaHeight; });
-var prevLength = 0;
-function fitTextareaHeight(event) {
-  if (_hasIncreaseInTextareaLength(event)) {
-    prevLength = event.target.value.length;
-
-    if (event.target.clientHeight > 500) {
-      return;
-    }
-
-    _increaseTextareaHeight(event);
-
-    return;
-  }
-
-  if (!_hasDecreaseInTextareaLength(event)) {
-    return;
-  }
-
-  _resetTextareaHeight(event);
-
-  setTimeout(function () {
-    fitTextareaHeight(event);
-  }, 10);
-}
-
-function _hasIncreaseInTextareaLength(event) {
-  return event.target.scrollHeight > event.target.clientHeight;
-}
-
-function _increaseTextareaHeight(event) {
-  event.target.style.height = event.target.scrollHeight + 10 + 'px';
-}
-
-function _hasDecreaseInTextareaLength(event) {
-  if (event.target.value.length / prevLength < 0.85) {
-    prevLength = event.target.value.length;
-    return true;
-  }
-
-  return false;
-}
-
-function _resetTextareaHeight(event) {
-  event.target.style = null;
-}
 
 /***/ })
 

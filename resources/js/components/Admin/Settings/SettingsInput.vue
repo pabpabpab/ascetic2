@@ -1,11 +1,11 @@
 <template>
     <div>
         <p class="settings_form__property_header">{{ header }}</p>
-        <div @click="edit($event)" class="settings_form__input__container">
-            <textarea placeholder=""
+        <div @click="edit()" class="settings_form__input__container">
+            <textarea ref="settingInput" placeholder=""
                 :disabled="disabledInput"
                 v-model="settings[entity]"
-                @input="fitTextareaHeight($event);"
+                @input="fitTextareaHeight();"
                 class="settings_form__input_textarea">
             </textarea>
             <p @click.stop="save()"
@@ -13,8 +13,7 @@
                class="settings_form__submit_icon__wrapper" :class="{display_none: !isEditing}">
                 <img :src="tickIcon" alt="" class="settings_form__submit_icon__img">
             </p>
-            <p @click="edit($event)"
-               title="Редактировать"
+            <p title="Редактировать"
                class="settings_form__submit_icon__wrapper" :class="{display_none: isEditing}">
                 <img :src="pencilIcon" alt="" class="settings_form__submit_icon__img">
             </p>
@@ -28,7 +27,7 @@
 <script>
 import pencilIcon from "../../../../assets/pencil.svg"
 import tickIcon from "../../../../assets/tick.svg"
-import _fitTextareaHeight from './../Products/functions/fitTextareaHeight';
+import _fitTextareaHeight from './functions/fitTextareaHeight';
 import {mapActions} from "vuex";
 export default {
     name: "SettingsInput",
@@ -40,6 +39,7 @@ export default {
             tickIcon: tickIcon,
             isEditing: false,
             disabledInput: true,
+            inputNode: null,
         };
     },
     methods: {
@@ -47,38 +47,27 @@ export default {
             'saveSettings',
             'loadSettings'
         ]),
-        fitTextareaHeight(event) {
-            _fitTextareaHeight(event);
+        fitTextareaHeight() {
+            this.inputNode.style = null;
+            _fitTextareaHeight(this.inputNode);
         },
         changeValue() {
             // emit события input, потому что в родителе v-model
             // через промежуточное значение, в данном случае тоже пропс (копию исходного объекта localSettings)
             this.$emit('input', this.settings[this.entity]);
         },
-        edit(event) {
+        edit() {
             this.isEditing = true;
             this.disabledInput = false;
-            const theEvent = event;
             // без задержки не работает так как на инпуте есть disabled
             setTimeout(() => {
-                this.focusInput(theEvent)
+                this.focusInput()
             },100);
         },
-        focusInput(event) {
-            const node1 = event.target;
-            const node2 = event.target.parentNode.parentNode.firstElementChild;
-            const node3 = event.target.parentNode.firstElementChild;
-            if (node1.tagName === 'TEXTAREA') {
-                node1.focus();
-                return;
-            }
-            if (node2.tagName === 'TEXTAREA') {
-                node2.focus();
-                return;
-            }
-            if (node3.tagName === 'TEXTAREA') {
-                node3.focus();
-            }
+        focusInput() {
+            this.$refs.settingInput.focus();
+            this.inputNode.style = null;
+            _fitTextareaHeight(this.inputNode);
         },
         save() {
             this.isEditing = false;
@@ -93,6 +82,18 @@ export default {
                 this.disabledInput = true;
             }
         },
+        value(val) {
+            if (!val) {
+                return;
+            }
+            setTimeout(() => {
+                this.inputNode.style = null;
+                _fitTextareaHeight(this.inputNode);
+            },100);
+        }
+    },
+    mounted() {
+        this.inputNode = this.$refs.settingInput;
     },
 }
 </script>

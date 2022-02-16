@@ -17,7 +17,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "SaveProductPage",
   components: {
     ProductForm: function ProductForm() {
-      return Promise.all(/*! import() */[__webpack_require__.e(6), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./Products/ProductForm/ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm/ProductForm.vue"));
+      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./Products/ProductForm/ProductForm.vue */ "./resources/js/components/Admin/Products/ProductForm/ProductForm.vue"));
     }
   }
 });

@@ -137,17 +137,25 @@
         <ul data-menu="right" data-mobile-menu="icon" class="top_menu__ul">
             <li @click.stop="showMobileMenu()"
                 class="top_menu__li top_menu__li__mobile_menu_icon">
-                &#9776;
+                <img :src="mobileMenuIcon"
+                     alt=""
+                     class="top_menu__li__mobile_menu_icon__img">
             </li>
         </ul>
     </nav>
 </template>
 
 <script>
+import mobileMenuIcon from "../../../assets/mobileMenuIcon.svg"
 import {mapActions} from "vuex";
 
 export default {
-    name: 'top_menu',
+    name: 'TopMenu',
+    data() {
+        return {
+            mobileMenuIcon: mobileMenuIcon,
+        };
+    },
     computed: {
         saveProductLinkClass() {
             return {

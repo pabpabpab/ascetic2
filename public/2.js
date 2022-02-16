@@ -71,6 +71,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -265,6 +268,9 @@ var render = function() {
                 attrs: { placeholder: " " },
                 domProps: { value: _vm.localData.imgAlt },
                 on: {
+                  click: function($event) {
+                    return _vm.fitTextareaHeight($event)
+                  },
                   input: [
                     function($event) {
                       if ($event.target.composing) {
@@ -299,6 +305,9 @@ var render = function() {
           attrs: { placeholder: " " },
           domProps: { value: _vm.localData.pageTitle },
           on: {
+            click: function($event) {
+              return _vm.fitTextareaHeight($event)
+            },
             input: [
               function($event) {
                 if ($event.target.composing) {
@@ -331,6 +340,9 @@ var render = function() {
           attrs: { placeholder: " " },
           domProps: { value: _vm.localData.pageDescription },
           on: {
+            click: function($event) {
+              return _vm.fitTextareaHeight($event)
+            },
             input: [
               function($event) {
                 if ($event.target.composing) {
@@ -384,6 +396,64 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/functions/fitTextareaHeight.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return fitTextareaHeight; });
+var prevLength = 0;
+function fitTextareaHeight(event) {
+  if (_hasIncreaseInTextareaLength(event)) {
+    prevLength = event.target.value.length;
+
+    if (event.target.clientHeight > 500) {
+      return;
+    }
+
+    _increaseTextareaHeight(event);
+
+    return;
+  }
+
+  if (!_hasDecreaseInTextareaLength(event)) {
+    return;
+  }
+
+  _resetTextareaHeight(event);
+
+  setTimeout(function () {
+    fitTextareaHeight(event);
+  }, 10);
+}
+
+function _hasIncreaseInTextareaLength(event) {
+  return event.target.scrollHeight > event.target.clientHeight;
+}
+
+function _increaseTextareaHeight(event) {
+  event.target.style.height = event.target.scrollHeight + 10 + 'px';
+}
+
+function _hasDecreaseInTextareaLength(event) {
+  if (event.target.value.length / prevLength < 0.85) {
+    prevLength = event.target.value.length;
+    return true;
+  }
+
+  return false;
+}
+
+function _resetTextareaHeight(event) {
+  event.target.style = null;
+}
 
 /***/ }),
 

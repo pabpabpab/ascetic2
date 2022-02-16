@@ -1274,6 +1274,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -2419,7 +2421,7 @@ var render = function() {
           [
             _c("viewing-icon"),
             _vm._v(" "),
-            _c("sorting-modes"),
+             false ? undefined : _vm._e(),
             _vm._v(" "),
             _c("sorting-modes-for-mobile"),
             _vm._v(" "),
@@ -2772,20 +2774,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "icon_with_hint icon_with_right_hint viewing_icon__wrapper",
-      attrs: { "data-title": _vm.title },
-      on: { click: _vm.changeViewingMode }
-    },
-    [
-      _c("img", {
-        staticClass: "viewing_icon__img",
-        attrs: { src: _vm.src, alt: "" }
-      })
-    ]
-  )
+  return _c("div", { staticClass: "viewing_icon__wrapper" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "icon_with_hint icon_with_right_hint viewing_icon__content",
+        attrs: { "data-title": _vm.title },
+        on: { click: _vm.changeViewingMode }
+      },
+      [
+        _c("img", {
+          staticClass: "viewing_icon__img",
+          attrs: { src: _vm.src, alt: "" }
+        })
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

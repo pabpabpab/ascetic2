@@ -689,7 +689,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _assets_mobileMenuIcon_svg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../assets/mobileMenuIcon.svg */ "./resources/assets/mobileMenuIcon.svg");
+/* harmony import */ var _assets_mobileMenuIcon_svg__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_mobileMenuIcon_svg__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -841,9 +843,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'top_menu',
+  name: 'TopMenu',
+  data: function data() {
+    return {
+      mobileMenuIcon: _assets_mobileMenuIcon_svg__WEBPACK_IMPORTED_MODULE_0___default.a
+    };
+  },
   computed: {
     saveProductLinkClass: function saveProductLinkClass() {
       return {
@@ -883,7 +893,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     }
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])(['showMobileMenu']))
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])(['showMobileMenu']))
 });
 
 /***/ }),
@@ -3011,7 +3021,12 @@ var render = function() {
               }
             }
           },
-          [_vm._v("\n            ☰\n        ")]
+          [
+            _c("img", {
+              staticClass: "top_menu__li__mobile_menu_icon__img",
+              attrs: { src: _vm.mobileMenuIcon, alt: "" }
+            })
+          ]
         )
       ]
     )
@@ -19624,6 +19639,17 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./resources/assets/mobileMenuIcon.svg":
+/*!*********************************************!*\
+  !*** ./resources/assets/mobileMenuIcon.svg ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/mobileMenuIcon.svg?5b0a91bdf378f5998260b48016844d07";
+
+/***/ }),
+
 /***/ "./resources/assets/spinner.gif":
 /*!**************************************!*\
   !*** ./resources/assets/spinner.gif ***!
@@ -20365,19 +20391,19 @@ var routes = [{
   path: '/admin/products/active',
   name: 'Products',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/by/:categoryEntity/:slug',
   name: 'ProductsByCategory',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(3), __webpack_require__.e(4), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ../components/Admin/ProductsPage.vue */ "./resources/js/components/Admin/ProductsPage.vue"));
   }
 }, {
   path: '/admin/products/trashed',
   name: 'TrashedProducts',
   component: function component() {
-    return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(4), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(0), __webpack_require__.e(4), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ../components/Admin/TrashedProductsPage.vue */ "./resources/js/components/Admin/TrashedProductsPage.vue"));
   }
 }, {
   path: '/admin/settings',

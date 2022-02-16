@@ -58,6 +58,7 @@
                           :class="{ 'input_alarm': isAlarmingInput('description') }"
                           placeholder=" "
                           @keyup="typeinValidation(localProduct);"
+                          @click="fitTextareaHeight($event);"
                           @input="fitTextareaHeight($event);"
                           v-model="localProduct.description">
                 </textarea>

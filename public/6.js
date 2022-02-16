@@ -505,6 +505,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -1096,6 +1097,9 @@ var render = function() {
                 keyup: function($event) {
                   return _vm.typeinValidation(_vm.localProduct)
                 },
+                click: function($event) {
+                  return _vm.fitTextareaHeight($event)
+                },
                 input: [
                   function($event) {
                     if ($event.target.composing) {
@@ -1481,6 +1485,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_template_id_81d40892___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/functions/fitTextareaHeight.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return fitTextareaHeight; });
+var prevLength = 0;
+function fitTextareaHeight(event) {
+  if (_hasIncreaseInTextareaLength(event)) {
+    prevLength = event.target.value.length;
+
+    if (event.target.clientHeight > 500) {
+      return;
+    }
+
+    _increaseTextareaHeight(event);
+
+    return;
+  }
+
+  if (!_hasDecreaseInTextareaLength(event)) {
+    return;
+  }
+
+  _resetTextareaHeight(event);
+
+  setTimeout(function () {
+    fitTextareaHeight(event);
+  }, 10);
+}
+
+function _hasIncreaseInTextareaLength(event) {
+  return event.target.scrollHeight > event.target.clientHeight;
+}
+
+function _increaseTextareaHeight(event) {
+  event.target.style.height = event.target.scrollHeight + 10 + 'px';
+}
+
+function _hasDecreaseInTextareaLength(event) {
+  if (event.target.value.length / prevLength < 0.85) {
+    prevLength = event.target.value.length;
+    return true;
+  }
+
+  return false;
+}
+
+function _resetTextareaHeight(event) {
+  event.target.style = null;
+}
 
 /***/ }),
 

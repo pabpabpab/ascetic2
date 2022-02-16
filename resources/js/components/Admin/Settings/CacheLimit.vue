@@ -9,7 +9,7 @@
                 entity="value"
                 :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
-                hint="Если товаров на сайте меньше указаной цифры, они (их данные из БД) все будут подгружены в браузер"
+                hint="Если товаров на сайте меньше указаной цифры, их данные из БД все будут подгружены в браузер"
                 class="mt10">
             </settings-input>
         </div>
