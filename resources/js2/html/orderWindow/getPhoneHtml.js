@@ -5,12 +5,12 @@ export default function getPhoneHtml(propValue) {
         return '';
     }
 
-    const arr = propValue.split(',');
-    const phoneLinksArr = propValue.split(',').map(item => {
+    const values = propValue.replaceAll(' ', '');
+    const phoneLinksArr = values.split(',').map(item => {
         return `<a href="tel:${getPurePhoneNumber(item)}" class="order_window__contact_item__link">
                     ${item}
                 </a>`
-    })
+    });
 
     return `<div class="order_window__contact_item">
                 <div title="Телефон" class="order_window__contact_item__title">

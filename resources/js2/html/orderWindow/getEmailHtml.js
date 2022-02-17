@@ -6,11 +6,11 @@ export default function getEmailHtml(propValue, product) {
     }
     const text = product ? `Лот номер ${product.id} (${product.name})` : '';
 
-    const arr = propValue.split(',');
-    const emailLinksArr = propValue.split(',').map(item => {
+    const values = propValue.replaceAll(' ', '');
+    const emailLinksArr = values.split(',').map(item => {
         return `<a href="mailto:${item}?subject=${text}&body=${text}" class="order_window__contact_item__link">
                     ${item}
-                </a>`
+                </a>`;
     })
 
     return `<div class="order_window__contact_item">

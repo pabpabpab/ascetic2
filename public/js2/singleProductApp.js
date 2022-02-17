@@ -1579,8 +1579,8 @@ function getEmailHtml(propValue, product) {
   }
 
   var text = product ? "\u041B\u043E\u0442 \u043D\u043E\u043C\u0435\u0440 ".concat(product.id, " (").concat(product.name, ")") : '';
-  var arr = propValue.split(',');
-  var emailLinksArr = propValue.split(',').map(function (item) {
+  var values = propValue.replaceAll(' ', '');
+  var emailLinksArr = values.split(',').map(function (item) {
     return "<a href=\"mailto:".concat(item, "?subject=").concat(text, "&body=").concat(text, "\" class=\"order_window__contact_item__link\">\n                    ").concat(item, "\n                </a>");
   });
   return "<div class=\"order_window__contact_item\">\n                <div title=\"E-mail\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/email.svg\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    ".concat(emailLinksArr.join(', '), "\n                </div>\n            </p>");
@@ -1603,7 +1603,11 @@ function getFacebookHtml(propValue) {
     return '';
   }
 
-  return "<div class=\"order_window__contact_item\">\n                <div title=\"Meta\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/facebook.svg\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    <a href=\"".concat(propValue, "\" target=_blank class=\"order_window__contact_item__link\">\n                        ").concat(propValue, "\n                    </a>\n                </div>\n            </div>");
+  var values = propValue.replaceAll(' ', '');
+  var linksArr = values.split(',').map(function (item) {
+    return "<a href=\"".concat(item, "\" target=_blank class=\"order_window__contact_item__link\">\n                        ").concat(item, "\n                </a>");
+  });
+  return "<div class=\"order_window__contact_item\">\n                <div title=\"Meta\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/facebook.svg\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    ".concat(linksArr.join(', '), "\n                </div>\n            </div>");
 }
 
 /***/ }),
@@ -1643,7 +1647,11 @@ function getOKHtml(propValue) {
     return '';
   }
 
-  return "<div class=\"order_window__contact_item\">\n                <div title=\"\u041E\u0434\u043D\u043E\u043A\u043B\u0430\u0441\u0441\u043D\u0438\u043A\u0438\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/ok.png\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    <a href=\"".concat(propValue, "\" target=_blank class=\"order_window__contact_item__link\">\n                        ").concat(propValue, "\n                    </a>\n                </div>\n            </div>");
+  var values = propValue.replaceAll(' ', '');
+  var linksArr = values.split(',').map(function (item) {
+    return "<a href=\"".concat(item, "\" target=_blank class=\"order_window__contact_item__link\">\n                        ").concat(item, "\n                </a>");
+  });
+  return "<div class=\"order_window__contact_item\">\n                <div title=\"\u041E\u0434\u043D\u043E\u043A\u043B\u0430\u0441\u0441\u043D\u0438\u043A\u0438\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/ok.png\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    ".concat(linksArr.join(', '), "\n                </div>\n            </div>");
 }
 
 /***/ }),
@@ -1665,8 +1673,8 @@ function getPhoneHtml(propValue) {
     return '';
   }
 
-  var arr = propValue.split(',');
-  var phoneLinksArr = propValue.split(',').map(function (item) {
+  var values = propValue.replaceAll(' ', '');
+  var phoneLinksArr = values.split(',').map(function (item) {
     return "<a href=\"tel:".concat(Object(_getPurePhoneNumber__WEBPACK_IMPORTED_MODULE_0__["default"])(item), "\" class=\"order_window__contact_item__link\">\n                    ").concat(item, "\n                </a>");
   });
   return "<div class=\"order_window__contact_item\">\n                <div title=\"\u0422\u0435\u043B\u0435\u0444\u043E\u043D\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/telephone.svg\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    ".concat(phoneLinksArr.join(', '), "\n                </div>\n            </div>");
@@ -1733,15 +1741,20 @@ function getPurePhoneNumber(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getTelegramHtml; });
+/* harmony import */ var _getPurePhoneNumber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getPurePhoneNumber */ "./resources/js2/html/orderWindow/getPurePhoneNumber.js");
+
 function getTelegramHtml(propValue) {
   if (propValue.length === 0) {
     return '';
   }
 
-  var value = propValue.replaceAll(' ', '');
-  var domain = value[0] === '@' ? value.slice(1) : value;
-  var nikName = value[0] === '@' ? value : "@".concat(value);
-  return "<div class=\"order_window__contact_item\">\n                <div title=\"Telegram\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/telegram.png\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    <a href=\"tg://resolve?domain=".concat(domain, "\" class=\"order_window__contact_item__link\">\n                        ").concat(nikName, "\n                    </a>\n                </div>\n            </div>");
+  var values = propValue.replaceAll(' ', '');
+  var linksArr = values.split(',').map(function (value) {
+    var domain = value[0] === '@' ? value.slice(1) : value;
+    var nikName = value[0] === '@' ? value : "@".concat(value);
+    return "<a href=\"tg://resolve?domain=".concat(domain, "\" class=\"order_window__contact_item__link\">\n                        ").concat(nikName, "\n                </a>");
+  });
+  return "<div class=\"order_window__contact_item\">\n                <div title=\"Telegram\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/telegram.png\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    ".concat(linksArr.join(', '), "\n                </div>\n            </div>");
 }
 
 /***/ }),
@@ -1761,7 +1774,11 @@ function getVkontakteHtml(propValue) {
     return '';
   }
 
-  return "<div class=\"order_window__contact_item\">\n                <div title=\"\u0412\u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0435\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/vkontakte.svg\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    <a href=\"".concat(propValue, "\" target=_blank class=\"order_window__contact_item__link\">\n                        ").concat(propValue, "\n                    </a>\n                </div>\n            </div>");
+  var values = propValue.replaceAll(' ', '');
+  var linksArr = values.split(',').map(function (item) {
+    return "<a href=\"".concat(item, "\" target=_blank class=\"order_window__contact_item__link\">\n                        ").concat(item, "\n                </a>");
+  });
+  return "<div class=\"order_window__contact_item\">\n                <div title=\"\u0412\u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0435\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/vkontakte.svg\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    ".concat(linksArr.join(', '), "\n                </div>\n            </div>");
 }
 
 /***/ }),
@@ -1784,8 +1801,8 @@ function getWhatsappHtml(propValue, product) {
   }
 
   var text = product ? "\u041B\u043E\u0442 \u043D\u043E\u043C\u0435\u0440 ".concat(product.id, " (").concat(product.name, ")") : '';
-  var arr = propValue.split(',');
-  var phoneLinksArr = propValue.split(',').map(function (item) {
+  var values = propValue.replaceAll(' ', '');
+  var phoneLinksArr = values.split(',').map(function (item) {
     return "<a href=\"https://wa.me/".concat(Object(_getPurePhoneNumber__WEBPACK_IMPORTED_MODULE_0__["default"])(item), "?text=").concat(text, "\" class=\"order_window__contact_item__link\">\n                    ").concat(item, "\n                </a>");
   });
   return "<div class=\"order_window__contact_item\">\n                <div title=\"Whatsapp\" class=\"order_window__contact_item__title\">\n                    <img alt=\"\" src=\"/images/contactIcons/whatsapp.png\"\n                        class=\"order_window__contact_item__icon\" />\n                </div>\n                <div class=\"order_window__contact_item__content\">\n                    ".concat(phoneLinksArr.join(', '), "\n                </div>\n            </div>");
