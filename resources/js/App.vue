@@ -81,8 +81,10 @@ export default {
             if (from.name) {
                 window.scrollBy(0, -1000000);
             }
+
+
             if (!['Products', 'ProductsByCategory'].includes(to.name)) {
-                this.$store.commit('products/setPreviousRouteName', this.$route.name);
+                // this.$store.commit('products/setPreviousRouteName', this.$route.name);
                 this.$store.commit('products/resetSearchObject');
                 this.$store.commit('products/resetSearchTotalParameters');
                 this.$store.commit('products/setSortingMode', 'position');
@@ -91,7 +93,7 @@ export default {
     },
 
     mounted() {
-        this.$store.dispatch('updateCSRF');
+        //this.$store.dispatch('updateCSRF');
 
         window.addEventListener('scroll', () => {
             this.$store.dispatch('closeContextMenu');

@@ -170,7 +170,8 @@ export default {
         state.needReload = needReload;
     },
     // ------------------------------------------------------------------
+    /*
     setPreviousRouteName: (state, value) => {
         state.previousRouteName = value;
-    },
+    },*/
 };

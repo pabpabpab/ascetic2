@@ -295,7 +295,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (!['Products', 'ProductsByCategory'].includes(to.name)) {
-        this.$store.commit('products/setPreviousRouteName', this.$route.name);
+        // this.$store.commit('products/setPreviousRouteName', this.$route.name);
         this.$store.commit('products/resetSearchObject');
         this.$store.commit('products/resetSearchTotalParameters');
         this.$store.commit('products/setSortingMode', 'position');
@@ -305,7 +305,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    this.$store.dispatch('updateCSRF');
+    //this.$store.dispatch('updateCSRF');
     window.addEventListener('scroll', function () {
       _this.$store.dispatch('closeContextMenu');
     });
@@ -25326,26 +25326,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               dispatch = _ref4.dispatch, commit = _ref4.commit, getters = _ref4.getters;
               commit('setListHeader', route);
+              /*
+              if (!await dispatch('_needNewPagination', route)) { // *
+                  return;
+              }*/
+
               _context2.next = 4;
-              return dispatch('_needNewPagination', route);
-
-            case 4:
-              if (_context2.sent) {
-                _context2.next = 6;
-                break;
-              }
-
-              return _context2.abrupt("return");
-
-            case 6:
-              _context2.next = 8;
               return dispatch('getFiltered', route);
 
-            case 8:
+            case 4:
               filtered = _context2.sent;
               dispatch('sortAndPaginateProducts', filtered); //commit('setPreviousRouteName', route.name); // *
 
-            case 10:
+            case 6:
             case "end":
               return _context2.stop();
           }
@@ -25442,7 +25435,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context4.abrupt("return", _toConsumableArray(getters[getterName]((_route$params$categor = (_route$params = route.params) === null || _route$params === void 0 ? void 0 : _route$params.categoryId) !== null && _route$params$categor !== void 0 ? _route$params$categor : 0)));
 
             case 5:
-              return _context4.abrupt("return", _toConsumableArray(getters['allProducts'](0)));
+              return _context4.abrupt("return", _toConsumableArray(getters['allProducts']));
 
             case 6:
             case "end":
@@ -25706,10 +25699,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return state.products.length;
   },
   allProducts: function allProducts(state) {
-    return function () {
-      var categoryId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      return state.products;
-    };
+    return state.products;
   },
   getProductsByCategory: function getProductsByCategory(state) {
     return function (categoryId) {
@@ -25796,10 +25786,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return function (entity) {
       return state.needReload[entity];
     };
-  },
-  previousRouteName: function previousRouteName(state) {
-    return state.previousRouteName;
-  }
+  } //previousRouteName: (state) => state.previousRouteName,
+
 });
 
 /***/ }),
@@ -26008,11 +25996,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var needReload = state.needReload;
     needReload[entity] = value;
     state.needReload = needReload;
-  },
-  // ------------------------------------------------------------------
-  setPreviousRouteName: function setPreviousRouteName(state, value) {
-    state.previousRouteName = value;
-  }
+  } // ------------------------------------------------------------------
+
+  /*
+  setPreviousRouteName: (state, value) => {
+      state.previousRouteName = value;
+  },*/
+
 });
 
 /***/ }),
@@ -26053,7 +26043,7 @@ __webpack_require__.r(__webpack_exports__);
   listHeader: '',
   productsCountFromServer: 0,
   singleProductFromServer: {},
-  previousRouteName: '',
+  //previousRouteName: '',
   needReload: {
     products: false,
     trashedProducts: false

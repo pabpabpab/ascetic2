@@ -304,6 +304,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -841,7 +842,8 @@ var render = function() {
             settings: _vm.localSettings,
             entity: "value",
             disableCmd: _vm.disableAllInputsCmd,
-            hint: ""
+            hint:
+              "E-mail еще одного или нового администратора (если несколько, то через запятую)"
           },
           on: { saveSettings: _vm.saveSettings },
           model: {
@@ -1029,7 +1031,7 @@ var render = function() {
             settings: _vm.localSettings,
             entity: "whatsapp",
             disableCmd: _vm.disableAllInputsCmd,
-            hint: "Пример: 8 900 000 0001"
+            hint: "Пример: 8 900 000 0000, 8 900 000 0001"
           },
           on: { saveSettings: _vm.saveSettings },
           model: {
@@ -1122,7 +1124,8 @@ var render = function() {
             header: "E-mail",
             settings: _vm.localSettings,
             entity: "email",
-            disableCmd: _vm.disableAllInputsCmd
+            disableCmd: _vm.disableAllInputsCmd,
+            hint: "Можно несколько через запятую"
           },
           on: { saveSettings: _vm.saveSettings },
           model: {

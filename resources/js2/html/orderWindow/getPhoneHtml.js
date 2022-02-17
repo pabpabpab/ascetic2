@@ -12,12 +12,14 @@ export default function getPhoneHtml(propValue) {
                 </a>`
     })
 
-    return `<p class="order_window__contact_item">
-                <span title="Телефон" class="order_window__contact_item__title">
-                <img alt="" src="/images/contactIcons/telephone.svg"
-                    class="order_window__contact_item__icon" />
-                </span>
-                ${ phoneLinksArr.join(', ') }
-            </p>`;
+    return `<div class="order_window__contact_item">
+                <div title="Телефон" class="order_window__contact_item__title">
+                    <img alt="" src="/images/contactIcons/telephone.svg"
+                        class="order_window__contact_item__icon" />
+                </div>
+                <div class="order_window__contact_item__content">
+                    ${ phoneLinksArr.join(', ') }
+                </div>
+            </div>`;
 }
 

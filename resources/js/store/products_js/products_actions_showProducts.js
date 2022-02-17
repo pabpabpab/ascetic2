@@ -23,9 +23,10 @@ export default {
 
     async _showLoadedProducts({dispatch, commit, getters}, route) {
         commit('setListHeader', route);
+        /*
         if (!await dispatch('_needNewPagination', route)) { // *
             return;
-        }
+        }*/
         const filtered = await dispatch('getFiltered', route);
         dispatch('sortAndPaginateProducts', filtered);
         //commit('setPreviousRouteName', route.name); // *
@@ -73,7 +74,7 @@ export default {
             const getterName = gettersBook[route.params.categoryEntity];
             return [ ...getters[getterName](route.params?.categoryId ?? 0) ];
         }
-        return [ ...getters['allProducts'](0) ];
+        return [ ...getters['allProducts'] ];
     },
 
 

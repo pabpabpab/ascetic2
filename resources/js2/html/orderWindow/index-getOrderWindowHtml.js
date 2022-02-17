@@ -34,11 +34,13 @@ function _getItem(propValue, title, iconSrc) {
     if (propValue.length === 0) {
         return '';
     }
-    return `<p class="order_window__contact_item">
-                <span title="${title}" class="order_window__contact_item__title">
-                <img alt="" src="/images/contactIcons/${iconSrc}"
-                    class="order_window__contact_item__icon" />
-                </span>
-                ${propValue}
-            </p>`;
+    return `<div class="order_window__contact_item">
+                <div title="${title}" class="order_window__contact_item__title">
+                    <img alt="" src="/images/contactIcons/${iconSrc}"
+                        class="order_window__contact_item__icon" />
+                </div>
+                <div class="order_window__contact_item__content">
+                    ${propValue}
+                </div>
+            </div>`;
 }

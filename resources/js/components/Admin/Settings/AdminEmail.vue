@@ -9,7 +9,7 @@
                 entity="value"
                 :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
-                hint=""
+                hint="E-mail еще одного или нового администратора (если несколько, то через запятую)"
                 class="mt10">
             </settings-input>
         </div>

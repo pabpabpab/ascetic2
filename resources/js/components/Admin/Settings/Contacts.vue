@@ -49,7 +49,7 @@
                 entity="whatsapp"
                 :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
-                hint="Пример: 8 900 000 0001"
+                hint="Пример: 8 900 000 0000, 8 900 000 0001"
                 class="mt30">
             </settings-input>
             <settings-input
@@ -98,6 +98,7 @@
                 entity="email"
                 :disableCmd="disableAllInputsCmd"
                 @saveSettings="saveSettings"
+                hint="Можно несколько через запятую"
                 class="mt30">
             </settings-input>
             <settings-input

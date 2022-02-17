@@ -3,7 +3,7 @@ export default {
     products: (state) => state.products,
     productsLength: (state) => state.products.length,
 
-    allProducts: (state) => (categoryId = 0) => state.products,
+    allProducts: (state) => state.products,
 
     getProductsByCategory: (state) => (categoryId) => {
         return state.products.filter((item) => {
@@ -54,5 +54,5 @@ export default {
     visibility: (state) => (componentName) => state.visibility[componentName],
     needReload: (state) => (entity) => state.needReload[entity],
 
-    previousRouteName: (state) => state.previousRouteName,
+    //previousRouteName: (state) => state.previousRouteName,
 };
