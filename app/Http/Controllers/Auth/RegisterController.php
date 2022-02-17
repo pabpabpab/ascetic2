@@ -6,7 +6,9 @@ use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
+use App\Services\Settings\SettingsService;
 use App\Services\User\FavoriteProductsSynchronizer;
+use App\Services\User\IsAdminService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,18 +32,9 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request)
     {
         $role = 'user';
-        if ($request->email === env('ADMIN_EMAIL')) {
+        if ((new IsAdminService())->checkByEmail($request->email)) {
             $role = 'admin';
         }
-/*
-        $user = User::create([
-            'name' => $request->name,
-            'role' => $role,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-*/
-
 
         $user = new User();
         $user->name = $request->name;
@@ -50,25 +43,20 @@ class RegisterController extends Controller
         $user->password = Hash::make($request->password);
         $user->save(); // теперь у $user есть id при create
 
-
-
         if (blank($user->id)) {
             return $request->expectsJson()
                 ? response()->json(['success' => false])
                 : back()->with(['authStatus' => 'Не удалось создать регистрацию.']);
         }
 
-
         event(new UserRegisteredEvent($user));
 
         Auth::login($user);
-
 
         // с фронта favoriteIds (которые могут быть) в реквест добавлен при register
         // для записи в бэк
         (new FavoriteProductsSynchronizer())
             ->mixFrontAndBackUserFavoriteIds(Auth::user()->id, (string) $request->favoriteIds);
-
 
         return $request->expectsJson()
             ? response()->json(['success' => true])

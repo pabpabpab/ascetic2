@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserSaveRequest;
 use App\Models\User;
+use App\Services\User\DeleteByAdminService;
 use App\Services\User\SaveByAdminService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -27,11 +28,11 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function delete(User $user): JsonResponse
+    public function delete(DeleteByAdminService $service, User $user): JsonResponse
     {
-       // instance user'a в роуте как {user}
+        // instance user'a в роуте как {user}
         return response()->json([
-            'deleteSuccess' => $user->delete()
+            'deleteSuccess' => $service->deleteOne($user)
         ]);
     }
 

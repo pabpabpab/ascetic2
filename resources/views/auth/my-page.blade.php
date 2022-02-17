@@ -5,7 +5,14 @@
     $favoriteIdsStr = (string) $_COOKIE['favoriteIds'];
     $favoriteCount = strlen($favoriteIdsStr) > 0 ? count(explode(",", $favoriteIdsStr)) : 0;
 
-    $viewedCount = session()->exists('viewedProductsIds') ? count(session('viewedProductsIds')) : 0;
+    //$viewedCount = session()->exists('viewedProductsIds') ? count(session('viewedProductsIds')) : 0;
+
+    $viewedCount = 0;
+    $viewedIdsStr = request()->cookie('viewedIds') ?? '';
+    if ($viewedIdsStr) {
+       $viewedCount = count(explode(",", $viewedIdsStr));
+    }
+
 @endphp
 
 

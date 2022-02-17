@@ -31,7 +31,7 @@ class SendVerificationEmail
     {
         $user = $event->user;
 
-        info($user);
+        //info($user);
 
         //Mail::to($user->email)->send(new ConfirmRegistration($user));
 

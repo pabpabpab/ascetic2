@@ -7,23 +7,18 @@
        'my'
    ];
    $isAccountRoute = explode(".", $currentRouteName)[0] === 'account';
+
 @endphp
 
 @if (in_array($currentRouteName, $excludedRoutes))
     {{-- --}}
 @elseif ($isAccountRoute)
     {{-- --}}
-@elseif (!$viewedIdsStr)
-    {{-- --}}
+{{-- @elseif (!$viewedIdsStr) --}}
 @else
     <aside id="viewedProductsSummaryWrapper" class="viewed_products__aside">
     </aside>
 @endif
-
-
-
-
-
 
 
 
