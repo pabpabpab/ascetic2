@@ -15,15 +15,25 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
+
     public function handle(Request $request, Closure $next, $role)
     {
+        if (blank(Auth::user())) {
+            return $request->expectsJson()
+                ? response()->json(['accessDeniedReason' => 'unauthorizedUser'])
+                : route('account.login.show');
+        }
 
         if(! Auth::user()->_hasRole($role)) {
             return $request->expectsJson()
-                ? response()->json(['accessDenied' => true]) // временно
+                ? response()->json(['accessDeniedReason' => 'userIsNotAdmin'])
                 : redirect('/')->with(['flashMessage' => 'У Вас нет прав администратора.']);
         }
 
         return $next($request);
     }
+
 }
+
+// php artisan make:middleware CheckRole
+

@@ -93,8 +93,6 @@ export default {
     },
 
     mounted() {
-        //this.$store.dispatch('updateCSRF');
-
         window.addEventListener('scroll', () => {
             this.$store.dispatch('closeContextMenu');
         });

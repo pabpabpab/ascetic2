@@ -1,12 +1,12 @@
 export default {
 
     url: {
-        usersCount: '/api/admin/users/count',
-        users: '/api/admin/users',
+        usersCount: '/admin-js/users/count',
+        users: '/admin-js/users',
 
-        singleUser: '/api/admin/user/',
-        saveUser: '/api/admin/user/save/',
-        deleteUser: '/api/admin/user/delete/',
+        singleUser: '/admin-js/user/',
+        saveUser: '/admin-js/user/save/',
+        deleteUser: '/admin-js/user/delete/',
     },
 
     usersCount: -1,

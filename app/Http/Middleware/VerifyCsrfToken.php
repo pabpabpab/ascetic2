@@ -11,21 +11,10 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
+
+
     protected $except = [
-        //
+        //'admin-js/*'
     ];
-
-
-    /*
-     * public function handle($request, Closure $next)
-     {
-        if ( ! $request->is('api/*'))
-        {
-            return parent::handle($request, $next);
-        }
-
-        return $next($request);
-    }
-     */
 
 }

@@ -2,8 +2,8 @@ export default {
     namespaced: true,
     state: {
         url: {
-            save:  '/api/admin/settings/save/',
-            get:  '/api/admin/settings/get/',
+            save:  '/admin-js/settings/save/',
+            get:  '/admin-js/settings/get/',
         },
 
         settings: {

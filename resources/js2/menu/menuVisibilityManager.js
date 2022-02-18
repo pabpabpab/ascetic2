@@ -18,6 +18,12 @@ export default class MenuVisibilityManager {
     }
 
     _manage() {
+        // если скролла нет
+        if (el('body').scrollHeight <= window.innerHeight) {
+            this._show();
+            return;
+        }
+
         const currentY = window.pageYOffset;
         if (this.menu && currentY < this.startYControl) {
             return;

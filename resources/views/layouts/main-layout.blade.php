@@ -1,10 +1,10 @@
 @php
     $currentRouteName = \Illuminate\Support\Facades\Route::currentRouteName();
-    $jsAppName = "js2/".$jsAppName;
-    $accountRoute = explode(".", $currentRouteName)[0] === 'account';
-    if ($accountRoute) {
-        $jsAppName = "js2/menuApp.js";
+
+    if (!isset($jsAppName)) {
+        $jsAppName = "menuApp.js";
     }
+    $jsAppName = "js2/".$jsAppName;
 @endphp
 <!doctype html>
 <html lang="ru">

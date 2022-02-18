@@ -1,45 +1,45 @@
 export default {
 
     categoriesCountUrl: {
-        categories: '/api/admin/categories/count',
-        materials: '/api/admin/materials/count',
-        colors: '/api/admin/colors/count',
+        categories: '/admin-js/categories/count',
+        materials: '/admin-js/materials/count',
+        colors: '/admin-js/colors/count',
     },
 
     categoriesUrl: {
-        categories: '/api/admin/categories/',
-        materials: '/api/admin/materials/',
-        colors: '/api/admin/colors/',
+        categories: '/admin-js/categories/',
+        materials: '/admin-js/materials/',
+        colors: '/admin-js/colors/',
     },
 
     singleCategoryUrl: {
-        categories: '/api/admin/category/',
-        materials: '/api/admin/material/',
-        colors: '/api/admin/color/',
+        categories: '/admin-js/category/',
+        materials: '/admin-js/material/',
+        colors: '/admin-js/color/',
     },
 
     saveCategoryUrl: {
-        categories: '/api/admin/category/save/',
-        materials: '/api/admin/material/save/',
-        colors: '/api/admin/color/save/',
+        categories: '/admin-js/category/save/',
+        materials: '/admin-js/material/save/',
+        colors: '/admin-js/color/save/',
     },
 
     deleteCategoryUrl: {
-        categories: '/api/admin/category/delete/',
-        materials: '/api/admin/material/delete/',
-        colors: '/api/admin/color/delete/',
+        categories: '/admin-js/category/delete/',
+        materials: '/admin-js/material/delete/',
+        colors: '/admin-js/color/delete/',
     },
 
     changePositionUrl: {
-        categories: '/api/admin/category/change-position/',
-        materials: '/api/admin/material/change-position/',
-        colors: '/api/admin/color/change-position/',
+        categories: '/admin-js/category/change-position/',
+        materials: '/admin-js/material/change-position/',
+        colors: '/admin-js/color/change-position/',
     },
 
     moveUrl: {
-        categories: '/api/admin/category/move/',
-        materials: '/api/admin/material/move/',
-        colors: '/api/admin/color/move/',
+        categories: '/admin-js/category/move/',
+        materials: '/admin-js/material/move/',
+        colors: '/admin-js/color/move/',
     },
 
 

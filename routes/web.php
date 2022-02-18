@@ -9,14 +9,17 @@ use \App\Http\Controllers\ProductByCategoryController;
 
 
 Route::get('/', [ProductController::class, 'index'])
-    ->name('mainPage');
+    ->name('mainPage')
+    ->middleware('productListSettings');
 
 Route::get('/products/{pageNumber}', [ProductController::class, 'list'])
     ->where('pageNumber', '[0-9]+')
+    ->middleware('productListSettings')
     ->name('products.list');
 
 Route::get('/products/{category:slug}/{pageNumber?}', [ProductByCategoryController::class, 'getByCategory'])
     ->where('pageNumber', '[0-9]+')
+    ->middleware('productListSettings')
     ->name('products.byCategory');
 
 
@@ -29,9 +32,11 @@ Route::get('/product/{product}/photo/{photoSlug}-{photoId}', [ProductController:
 
 Route::get('/viewed-products/{pageNumber?}', [ProductViewedController::class, 'getViewedProducts'])
     ->where('pageNumber', '[0-9]+')
+    ->middleware('productListSettings')
     ->name('products.viewed');
 Route::get('/favorite-products/{pageNumber?}', [ProductFavoriteController::class, 'getFavoriteProducts'])
     ->where('pageNumber', '[0-9]+')
+    ->middleware('productListSettings')
     ->name('products.favorites');
 
 
@@ -45,6 +50,7 @@ Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesId
         'sortValue' => 'default|position|priceUp|priceDown',
         'pageNumber' => '[0-9]+'
     ])
+    ->middleware('productListSettings')
     ->name('products.search');
 
 

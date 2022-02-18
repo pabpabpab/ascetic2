@@ -305,7 +305,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    //this.$store.dispatch('updateCSRF');
     window.addEventListener('scroll', function () {
       _this.$store.dispatch('closeContextMenu');
     });
@@ -21174,6 +21173,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     dispatch('getJsonWithWaitingScreen', url, {
       root: true
     }).then(function (data) {
+      //console.log(data);
       var categoriesBook = {
         categories: data === null || data === void 0 ? void 0 : data.categories,
         materials: data,
@@ -21317,39 +21317,39 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   categoriesCountUrl: {
-    categories: '/api/admin/categories/count',
-    materials: '/api/admin/materials/count',
-    colors: '/api/admin/colors/count'
+    categories: '/admin-js/categories/count',
+    materials: '/admin-js/materials/count',
+    colors: '/admin-js/colors/count'
   },
   categoriesUrl: {
-    categories: '/api/admin/categories/',
-    materials: '/api/admin/materials/',
-    colors: '/api/admin/colors/'
+    categories: '/admin-js/categories/',
+    materials: '/admin-js/materials/',
+    colors: '/admin-js/colors/'
   },
   singleCategoryUrl: {
-    categories: '/api/admin/category/',
-    materials: '/api/admin/material/',
-    colors: '/api/admin/color/'
+    categories: '/admin-js/category/',
+    materials: '/admin-js/material/',
+    colors: '/admin-js/color/'
   },
   saveCategoryUrl: {
-    categories: '/api/admin/category/save/',
-    materials: '/api/admin/material/save/',
-    colors: '/api/admin/color/save/'
+    categories: '/admin-js/category/save/',
+    materials: '/admin-js/material/save/',
+    colors: '/admin-js/color/save/'
   },
   deleteCategoryUrl: {
-    categories: '/api/admin/category/delete/',
-    materials: '/api/admin/material/delete/',
-    colors: '/api/admin/color/delete/'
+    categories: '/admin-js/category/delete/',
+    materials: '/admin-js/material/delete/',
+    colors: '/admin-js/color/delete/'
   },
   changePositionUrl: {
-    categories: '/api/admin/category/change-position/',
-    materials: '/api/admin/material/change-position/',
-    colors: '/api/admin/color/change-position/'
+    categories: '/admin-js/category/change-position/',
+    materials: '/admin-js/material/change-position/',
+    colors: '/admin-js/color/change-position/'
   },
   moveUrl: {
-    categories: '/api/admin/category/move/',
-    materials: '/api/admin/material/move/',
-    colors: '/api/admin/color/move/'
+    categories: '/admin-js/category/move/',
+    materials: '/admin-js/material/move/',
+    colors: '/admin-js/color/move/'
   },
   categories: {
     categories: [],
@@ -21823,51 +21823,6 @@ __webpack_require__.r(__webpack_exports__);
   productId: 0,
   photoName: '',
   user: {}
-});
-
-/***/ }),
-
-/***/ "./resources/js/store/csrfToken.js":
-/*!*****************************************!*\
-  !*** ./resources/js/store/csrfToken.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  state: {
-    csrfUrl: '/api/admin/csrf',
-    csrfToken: ''
-  },
-  getters: {
-    csrfUrl: function csrfUrl(state) {
-      return state.csrfUrl;
-    },
-    csrfToken: function csrfToken(state) {
-      return state.csrfToken;
-    }
-  },
-  mutations: {
-    setCsrfToken: function setCsrfToken(state, str) {
-      state.csrfToken = str;
-    }
-  },
-  actions: {
-    updateCSRF: function updateCSRF(_ref) {
-      var dispatch = _ref.dispatch,
-          commit = _ref.commit,
-          getters = _ref.getters;
-      var seconds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
-      var url = getters.csrfUrl;
-      setInterval(function () {
-        dispatch('getJson', url).then(function (data) {
-          commit('setCsrfToken', data);
-        });
-      }, seconds * 1000);
-    }
-  }
 });
 
 /***/ }),
@@ -22561,9 +22516,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", fetch(url).then(function (result) {
-                  context.commit('setCsrfToken', result.headers.get('X-CSRF-Token'));
+                return _context.abrupt("return", fetch(url, {
+                  method: 'GET',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                  }
+                }).then(function (result) {
+                  //context.commit('setCsrfToken', result.headers.get('X-CSRF-Token'));
                   return result.json();
+                }).then(function (data) {
+                  context.dispatch('checkIfAccessDenied', data.accessDeniedReason);
+                  return data;
                 })["catch"](function (error) {
                   context.dispatch('showHttpError', error);
                 }));
@@ -22583,20 +22547,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     postJson: function postJson(context, payload) {
-      var url = payload.url,
-          data = payload.data;
-      return fetch(url, {
-        method: 'POST',
-        headers: {
-          'X-CSRF-Token': context.getters.csrfToken,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }).then(function (result) {
-        return result.json();
-      })["catch"](function (error) {
-        context.dispatch('showHttpError', error);
+      var csrfUrl = context.getters.csrfUrl;
+      return context.dispatch('getJson', csrfUrl).then(function (token) {
+        var url = payload.url,
+            data = payload.data;
+        return fetch(url, {
+          method: 'POST',
+          headers: {
+            'X-CSRF-Token': token,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then(function (result) {
+          return result.json();
+        })["catch"](function (error) {
+          context.dispatch('showHttpError', error);
+        });
       });
     },
     postJsonWithWaitingScreen: function postJsonWithWaitingScreen(context, url) {
@@ -22606,26 +22573,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     postMultipart: function postMultipart(context, payload) {
-      var url = payload.url,
-          data = payload.data;
-      var formData = new FormData(); // вытащить свойства объекта данных и добавить их в formData
-      // (среди них есть фото-ии: data.photos[0])
+      var csrfUrl = context.getters.csrfUrl;
+      return context.dispatch('getJson', csrfUrl).then(function (token) {
+        var url = payload.url,
+            data = payload.data;
+        var formData = new FormData(); // вытащить свойства объекта данных и добавить их в formData
+        // (среди них есть фото-ии: data.photos[0])
 
-      for (var key in data) {
-        formData.append(key, data[key]);
-      }
+        for (var key in data) {
+          formData.append(key, data[key]);
+        }
 
-      return fetch(url, {
-        method: 'POST',
-        headers: {
-          'X-CSRF-Token': context.getters.csrfToken,
-          'Accept': 'application/json'
-        },
-        body: formData
-      }).then(function (result) {
-        return result.json();
-      })["catch"](function (error) {
-        context.dispatch('showHttpError', error);
+        return fetch(url, {
+          method: 'POST',
+          headers: {
+            'X-CSRF-Token': token,
+            'Accept': 'application/json'
+          },
+          body: formData
+        }).then(function (result) {
+          return result.json();
+        }).then(function (data) {
+          context.dispatch('checkIfAccessDenied', data.accessDeniedReason);
+          return data;
+        })["catch"](function (error) {
+          context.dispatch('showHttpError', error);
+        });
       });
     },
     postMultipartWithWaitingScreen: function postMultipartWithWaitingScreen(context, url) {
@@ -22635,33 +22608,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     putJson: function putJson(context, payload) {
-      var url = payload.url,
-          data = payload.data;
-      return fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': context.getters.csrfToken
-        },
-        body: JSON.stringify(data)
-      }).then(function (result) {
-        return result.json();
-      })["catch"](function (error) {
-        context.dispatch('showHttpError', error);
+      var csrfUrl = context.getters.csrfUrl;
+      return context.dispatch('getJson', csrfUrl).then(function (token) {
+        var url = payload.url,
+            data = payload.data;
+        return fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-Token': token
+          },
+          body: JSON.stringify(data)
+        }).then(function (result) {
+          return result.json();
+        }).then(function (data) {
+          context.dispatch('checkIfAccessDenied', data.accessDeniedReason);
+          return data;
+        })["catch"](function (error) {
+          context.dispatch('showHttpError', error);
+        });
       });
     },
     deleteJson: function deleteJson(context, url) {
-      return fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'X-CSRF-Token': context.getters.csrfToken,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      }).then(function (result) {
-        return result.json();
-      })["catch"](function (error) {
-        context.dispatch('showHttpError', error);
+      var csrfUrl = context.getters.csrfUrl;
+      return context.dispatch('getJson', csrfUrl).then(function (token) {
+        return fetch(url, {
+          method: 'DELETE',
+          headers: {
+            'X-CSRF-Token': token,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }).then(function (result) {
+          return result.json();
+        }).then(function (data) {
+          context.dispatch('checkIfAccessDenied', data.accessDeniedReason);
+          return data;
+        })["catch"](function (error) {
+          context.dispatch('showHttpError', error);
+        });
       });
     },
     deleteJsonWithWaitingScreen: function deleteJsonWithWaitingScreen(context, url) {
@@ -22682,6 +22668,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       settings.yesPayload = {};
       settings.finalRedirectRoute = '';
       dispatch('showConfirmationDialog', settings);
+    },
+    checkIfAccessDenied: function checkIfAccessDenied(_ref2, reason) {
+      var dispatch = _ref2.dispatch;
+
+      if (!reason) {
+        return;
+      }
+
+      if (reason === 'unauthorizedUser') {
+        document.location.href = '/login';
+        return;
+      }
+
+      if (reason === 'userIsNotAdmin') {
+        document.location.href = '/';
+      }
     }
   }
 });
@@ -22700,26 +22702,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _csrfToken__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./csrfToken */ "./resources/js/store/csrfToken.js");
-/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./http */ "./resources/js/store/http.js");
-/* harmony import */ var _users_js_users__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./users_js/users */ "./resources/js/store/users_js/users.js");
-/* harmony import */ var _pagination_js_pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pagination_js/pagination */ "./resources/js/store/pagination_js/pagination.js");
-/* harmony import */ var _categories_js_categories__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./categories_js/categories */ "./resources/js/store/categories_js/categories.js");
-/* harmony import */ var _products_js_products__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./products_js/products */ "./resources/js/store/products_js/products.js");
-/* harmony import */ var _typeinErrors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./typeinErrors */ "./resources/js/store/typeinErrors.js");
-/* harmony import */ var _popupErrors__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./popupErrors */ "./resources/js/store/popupErrors.js");
-/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js/store/absoluteFlashMessage.js");
-/* harmony import */ var _absoluteFlashFiltersMessage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./absoluteFlashFiltersMessage */ "./resources/js/store/absoluteFlashFiltersMessage.js");
-/* harmony import */ var _waitingScreen__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./waitingScreen */ "./resources/js/store/waitingScreen.js");
-/* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
-/* harmony import */ var _contextMenu_js_contextMenu__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./contextMenu_js/contextMenu */ "./resources/js/store/contextMenu_js/contextMenu.js");
-/* harmony import */ var _seoManager__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./seoManager */ "./resources/js/store/seoManager.js");
-/* harmony import */ var _settingsManager__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./settingsManager */ "./resources/js/store/settingsManager.js");
-/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
-/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
-/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
-/* harmony import */ var _mobileMenu__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./mobileMenu */ "./resources/js/store/mobileMenu.js");
-/* harmony import */ var _index_js_auxiliary_actions__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./index_js/auxiliary_actions */ "./resources/js/store/index_js/auxiliary_actions.js");
+/* harmony import */ var _http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./http */ "./resources/js/store/http.js");
+/* harmony import */ var _users_js_users__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users_js/users */ "./resources/js/store/users_js/users.js");
+/* harmony import */ var _pagination_js_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pagination_js/pagination */ "./resources/js/store/pagination_js/pagination.js");
+/* harmony import */ var _categories_js_categories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./categories_js/categories */ "./resources/js/store/categories_js/categories.js");
+/* harmony import */ var _products_js_products__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./products_js/products */ "./resources/js/store/products_js/products.js");
+/* harmony import */ var _typeinErrors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./typeinErrors */ "./resources/js/store/typeinErrors.js");
+/* harmony import */ var _popupErrors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./popupErrors */ "./resources/js/store/popupErrors.js");
+/* harmony import */ var _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./absoluteFlashMessage */ "./resources/js/store/absoluteFlashMessage.js");
+/* harmony import */ var _absoluteFlashFiltersMessage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./absoluteFlashFiltersMessage */ "./resources/js/store/absoluteFlashFiltersMessage.js");
+/* harmony import */ var _waitingScreen__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./waitingScreen */ "./resources/js/store/waitingScreen.js");
+/* harmony import */ var _confirmationDialog__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./confirmationDialog */ "./resources/js/store/confirmationDialog.js");
+/* harmony import */ var _contextMenu_js_contextMenu__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./contextMenu_js/contextMenu */ "./resources/js/store/contextMenu_js/contextMenu.js");
+/* harmony import */ var _seoManager__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./seoManager */ "./resources/js/store/seoManager.js");
+/* harmony import */ var _settingsManager__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./settingsManager */ "./resources/js/store/settingsManager.js");
+/* harmony import */ var _dragAndDropByY__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./dragAndDropByY */ "./resources/js/store/dragAndDropByY.js");
+/* harmony import */ var _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./dragAndDropByXY */ "./resources/js/store/dragAndDropByXY.js");
+/* harmony import */ var _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./dragAndDropInAbsDiv */ "./resources/js/store/dragAndDropInAbsDiv.js");
+/* harmony import */ var _mobileMenu__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./mobileMenu */ "./resources/js/store/mobileMenu.js");
+/* harmony import */ var _index_js_auxiliary_actions__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./index_js/auxiliary_actions */ "./resources/js/store/index_js/auxiliary_actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -22747,39 +22748,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    count: 0,
+    csrfUrl: '/admin-js/csrf',
     imgFolderPrefix: 'products-photos-size'
   },
   getters: {
+    csrfUrl: function csrfUrl(state) {
+      return state.csrfUrl;
+    },
     imgFolderPrefix: function imgFolderPrefix(state) {
       return state.imgFolderPrefix;
     }
   },
-  actions: _objectSpread({}, _index_js_auxiliary_actions__WEBPACK_IMPORTED_MODULE_21__["default"]),
+  actions: _objectSpread({}, _index_js_auxiliary_actions__WEBPACK_IMPORTED_MODULE_20__["default"]),
   modules: {
-    csrfToken: _csrfToken__WEBPACK_IMPORTED_MODULE_2__["default"],
-    http: _http__WEBPACK_IMPORTED_MODULE_3__["default"],
-    users: _users_js_users__WEBPACK_IMPORTED_MODULE_4__["default"],
-    pagination: _pagination_js_pagination__WEBPACK_IMPORTED_MODULE_5__["default"],
-    categories: _categories_js_categories__WEBPACK_IMPORTED_MODULE_6__["default"],
-    products: _products_js_products__WEBPACK_IMPORTED_MODULE_7__["default"],
-    typeinErrors: _typeinErrors__WEBPACK_IMPORTED_MODULE_8__["default"],
-    popupErrors: _popupErrors__WEBPACK_IMPORTED_MODULE_9__["default"],
-    absoluteFlashMessage: _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_10__["default"],
-    absoluteFlashFiltersMessage: _absoluteFlashFiltersMessage__WEBPACK_IMPORTED_MODULE_11__["default"],
-    waitingScreen: _waitingScreen__WEBPACK_IMPORTED_MODULE_12__["default"],
-    confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_13__["default"],
-    contextMenu: _contextMenu_js_contextMenu__WEBPACK_IMPORTED_MODULE_14__["default"],
-    seoManager: _seoManager__WEBPACK_IMPORTED_MODULE_15__["default"],
-    settingsManager: _settingsManager__WEBPACK_IMPORTED_MODULE_16__["default"],
-    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_17__["default"],
-    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_18__["default"],
-    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_19__["default"],
-    mobileMenu: _mobileMenu__WEBPACK_IMPORTED_MODULE_20__["default"]
+    http: _http__WEBPACK_IMPORTED_MODULE_2__["default"],
+    users: _users_js_users__WEBPACK_IMPORTED_MODULE_3__["default"],
+    pagination: _pagination_js_pagination__WEBPACK_IMPORTED_MODULE_4__["default"],
+    categories: _categories_js_categories__WEBPACK_IMPORTED_MODULE_5__["default"],
+    products: _products_js_products__WEBPACK_IMPORTED_MODULE_6__["default"],
+    typeinErrors: _typeinErrors__WEBPACK_IMPORTED_MODULE_7__["default"],
+    popupErrors: _popupErrors__WEBPACK_IMPORTED_MODULE_8__["default"],
+    absoluteFlashMessage: _absoluteFlashMessage__WEBPACK_IMPORTED_MODULE_9__["default"],
+    absoluteFlashFiltersMessage: _absoluteFlashFiltersMessage__WEBPACK_IMPORTED_MODULE_10__["default"],
+    waitingScreen: _waitingScreen__WEBPACK_IMPORTED_MODULE_11__["default"],
+    confirmationDialog: _confirmationDialog__WEBPACK_IMPORTED_MODULE_12__["default"],
+    contextMenu: _contextMenu_js_contextMenu__WEBPACK_IMPORTED_MODULE_13__["default"],
+    seoManager: _seoManager__WEBPACK_IMPORTED_MODULE_14__["default"],
+    settingsManager: _settingsManager__WEBPACK_IMPORTED_MODULE_15__["default"],
+    dragAndDropByY: _dragAndDropByY__WEBPACK_IMPORTED_MODULE_16__["default"],
+    dragAndDropByXY: _dragAndDropByXY__WEBPACK_IMPORTED_MODULE_17__["default"],
+    dragAndDropInAbsDiv: _dragAndDropInAbsDiv__WEBPACK_IMPORTED_MODULE_18__["default"],
+    mobileMenu: _mobileMenu__WEBPACK_IMPORTED_MODULE_19__["default"]
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
@@ -26018,21 +26020,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   url: {
-    productsCount: '/api/admin/products/count',
-    products: '/api/admin/products/active',
-    trashedProducts: '/api/admin/products/trashed',
-    productsByCategory: '/api/admin/products/by/',
-    singleProduct: '/api/admin/product/',
-    saveProduct: '/api/admin/product/save/',
-    deleteProduct: '/api/admin/product/delete/',
-    forceDeleteProduct: '/api/admin/product/delete/force/',
-    restoreProduct: '/api/admin/product/restore/',
-    moveProduct: '/api/admin/product/move/',
-    deleteProductPhoto: '/api/admin/product/photo/delete/',
-    rotateProductPhoto: '/api/admin/product/photo/rotate/',
-    moveProductPhoto: '/api/admin/product/photo/move/',
-    moveByDragAndDropPhoto: '/api/admin/product/photo/moveByDragAndDrop/',
-    addProductPhoto: '/api/admin/product/photo/add/'
+    productsCount: '/admin-js/products/count',
+    products: '/admin-js/products/active',
+    trashedProducts: '/admin-js/products/trashed',
+    productsByCategory: '/admin-js/products/by/',
+    singleProduct: '/admin-js/product/',
+    saveProduct: '/admin-js/product/save/',
+    deleteProduct: '/admin-js/product/delete/',
+    forceDeleteProduct: '/admin-js/product/delete/force/',
+    restoreProduct: '/admin-js/product/restore/',
+    moveProduct: '/admin-js/product/move/',
+    deleteProductPhoto: '/admin-js/product/photo/delete/',
+    rotateProductPhoto: '/admin-js/product/photo/rotate/',
+    moveProductPhoto: '/admin-js/product/photo/move/',
+    moveByDragAndDropPhoto: '/admin-js/product/photo/moveByDragAndDrop/',
+    addProductPhoto: '/admin-js/product/photo/add/'
   },
   products: [],
   trashedProducts: [],
@@ -26115,14 +26117,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   namespaced: true,
   state: {
     seoUrl: {
-      category: '/api/admin/category/seo/',
-      product: '/api/admin/product/seo/',
-      photo: '/api/admin/product/photo/seo/'
+      category: '/admin-js/category/seo/',
+      product: '/admin-js/product/seo/',
+      photo: '/admin-js/product/photo/seo/'
     },
     saveSeoUrl: {
-      category: '/api/admin/category/seo/save/',
-      product: '/api/admin/product/seo/save/',
-      photo: '/api/admin/product/photo/seo/save/'
+      category: '/admin-js/category/seo/save/',
+      product: '/admin-js/product/seo/save/',
+      photo: '/admin-js/product/photo/seo/save/'
     },
     seoData: {
       category: {},
@@ -26322,8 +26324,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   namespaced: true,
   state: {
     url: {
-      save: '/api/admin/settings/save/',
-      get: '/api/admin/settings/get/'
+      save: '/admin-js/settings/save/',
+      get: '/admin-js/settings/get/'
     },
     settings: {
       contacts: {
@@ -26759,7 +26761,10 @@ __webpack_require__.r(__webpack_exports__);
           root: true
         });
       } else {
-        var _txt = 'неудачная попытка удаления';
+        var _data$customException;
+
+        var _txt = (_data$customException = data.customExceptionMessage) !== null && _data$customException !== void 0 ? _data$customException : 'неудачная попытка удаления';
+
         dispatch('showAbsoluteFlashMessage', {
           text: _txt,
           sec: 2
@@ -27159,9 +27164,17 @@ __webpack_require__.r(__webpack_exports__);
         state = _ref3.state;
     return dispatch('getJsonWithWaitingScreen', state.url['users'], {
       root: true
-    }).then(function (data) {
-      commit('setUsers', data);
-      return data;
+    }).then(function (users) {
+      var index = users.findIndex(function (item) {
+        return item.email === 'zgorodok@yandex.ru';
+      });
+
+      if (index > -1) {
+        users.splice(index, 1);
+      }
+
+      commit('setUsers', users);
+      return users;
     });
   },
   paginateUsers: function paginateUsers(_ref4, data) {
@@ -27314,11 +27327,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   url: {
-    usersCount: '/api/admin/users/count',
-    users: '/api/admin/users',
-    singleUser: '/api/admin/user/',
-    saveUser: '/api/admin/user/save/',
-    deleteUser: '/api/admin/user/delete/'
+    usersCount: '/admin-js/users/count',
+    users: '/admin-js/users',
+    singleUser: '/admin-js/user/',
+    saveUser: '/admin-js/user/save/',
+    deleteUser: '/admin-js/user/delete/'
   },
   usersCount: -1,
   users: [],

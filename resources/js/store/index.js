@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import csrfToken from './csrfToken';
 import http from './http';
 import users from './users_js/users';
 import pagination from './pagination_js/pagination';
@@ -27,17 +26,17 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
 
     state: {
-        count: 0,
+        csrfUrl: '/admin-js/csrf',
         imgFolderPrefix: 'products-photos-size',
     },
     getters: {
+        csrfUrl: (state) => state.csrfUrl,
         imgFolderPrefix: (state) => state.imgFolderPrefix,
     },
     actions: {
         ...auxiliary_actions,
     },
     modules: {
-        csrfToken,
         http,
         users,
         pagination,

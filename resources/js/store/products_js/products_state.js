@@ -1,23 +1,23 @@
 export default {
 
     url: {
-        productsCount: '/api/admin/products/count',
-        products: '/api/admin/products/active',
-        trashedProducts: '/api/admin/products/trashed',
-        productsByCategory: '/api/admin/products/by/',
-        singleProduct: '/api/admin/product/',
-        saveProduct: '/api/admin/product/save/',
+        productsCount: '/admin-js/products/count',
+        products: '/admin-js/products/active',
+        trashedProducts: '/admin-js/products/trashed',
+        productsByCategory: '/admin-js/products/by/',
+        singleProduct: '/admin-js/product/',
+        saveProduct: '/admin-js/product/save/',
 
-        deleteProduct: '/api/admin/product/delete/',
-        forceDeleteProduct: '/api/admin/product/delete/force/',
-        restoreProduct: '/api/admin/product/restore/',
-        moveProduct: '/api/admin/product/move/',
+        deleteProduct: '/admin-js/product/delete/',
+        forceDeleteProduct: '/admin-js/product/delete/force/',
+        restoreProduct: '/admin-js/product/restore/',
+        moveProduct: '/admin-js/product/move/',
 
-        deleteProductPhoto: '/api/admin/product/photo/delete/',
-        rotateProductPhoto: '/api/admin/product/photo/rotate/',
-        moveProductPhoto: '/api/admin/product/photo/move/',
-        moveByDragAndDropPhoto: '/api/admin/product/photo/moveByDragAndDrop/',
-        addProductPhoto: '/api/admin/product/photo/add/',
+        deleteProductPhoto: '/admin-js/product/photo/delete/',
+        rotateProductPhoto: '/admin-js/product/photo/rotate/',
+        moveProductPhoto: '/admin-js/product/photo/move/',
+        moveByDragAndDropPhoto: '/admin-js/product/photo/moveByDragAndDrop/',
+        addProductPhoto: '/admin-js/product/photo/add/',
     },
 
     products: [],

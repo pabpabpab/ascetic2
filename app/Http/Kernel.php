@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AttachProductListSettings;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -38,16 +39,13 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+            //\App\Http\Middleware\AttachCsrfTokenToHeaders::class,
         ],
 
         'api' => [
-            \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Session\Middleware\StartSession::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            //\App\Http\Middleware\VerifyCsrfToken::class,
-            \App\Http\Middleware\AttachCsrfTokenToHeaders::class,
-            \Illuminate\Session\Middleware\AuthenticateSession::class,
         ],
     ];
 
@@ -69,5 +67,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => CheckRole::class,
+        'productListSettings' => AttachProductListSettings::class,
     ];
 }

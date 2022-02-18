@@ -2,7 +2,7 @@
     <div class="show_block">
         <div class="users_header">
             <reload-icon></reload-icon>
-            <h1 class="pd0 mb0">Пользователи</h1>
+            <h1 class="pd0 mb0 mauto">Пользователи</h1>
         </div>
         <div class="content_block content_block__users">
             <search-user-panel></search-user-panel>

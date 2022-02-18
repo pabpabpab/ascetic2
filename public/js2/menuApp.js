@@ -1810,6 +1810,13 @@ var MenuVisibilityManager = /*#__PURE__*/function () {
   }, {
     key: "_manage",
     value: function _manage() {
+      // если скролла нет
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').scrollHeight <= window.innerHeight) {
+        this._show();
+
+        return;
+      }
+
       var currentY = window.pageYOffset;
 
       if (this.menu && currentY < this.startYControl) {

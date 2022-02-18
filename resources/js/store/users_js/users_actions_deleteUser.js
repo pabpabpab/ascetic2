@@ -30,7 +30,7 @@ export default {
                     const txt = `Пользователь «${user.email}» удален.`;
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 } else {
-                    const txt = 'неудачная попытка удаления';
+                    const txt = data.customExceptionMessage ?? 'неудачная попытка удаления';
                     dispatch('showAbsoluteFlashMessage', {text: txt, sec: 2}, { root: true });
                 }
             });

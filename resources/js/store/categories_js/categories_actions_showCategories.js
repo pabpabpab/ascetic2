@@ -21,6 +21,7 @@ export default {
         const url = state.categoriesUrl[entity];
         dispatch('getJsonWithWaitingScreen', url, { root: true })
             .then((data) => {
+                //console.log(data);
                 const categoriesBook = {
                     categories: data?.categories,
                     materials: data,

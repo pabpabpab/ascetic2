@@ -103,7 +103,6 @@ class ProductController extends Controller
             'pageDescription' => $pageData['pageDescription'],
             'product' => $product,
             'photoSeo' => $photoSeo,
-            'jsAppName' => 'menuApp.js'
         ]);
     }
 

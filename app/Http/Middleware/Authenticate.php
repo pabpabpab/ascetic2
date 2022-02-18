@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -12,10 +13,11 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+
     protected function redirectTo($request)
     {
-        return $request->expectsJson()
-            ? response()->json(['loginRequired' => true]) // временно
-            : route('account.login.show');
+        if (! $request->expectsJson()) {
+            route('account.login.show');
+        }
     }
 }

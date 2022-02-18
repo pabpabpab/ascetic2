@@ -2,15 +2,15 @@ export default {
     namespaced: true,
     state: {
         seoUrl: {
-            category:  '/api/admin/category/seo/',
-            product:  '/api/admin/product/seo/',
-            photo: '/api/admin/product/photo/seo/',
+            category:  '/admin-js/category/seo/',
+            product:  '/admin-js/product/seo/',
+            photo: '/admin-js/product/photo/seo/',
         },
 
         saveSeoUrl: {
-            category:  '/api/admin/category/seo/save/',
-            product:  '/api/admin/product/seo/save/',
-            photo: '/api/admin/product/photo/seo/save/',
+            category:  '/admin-js/category/seo/save/',
+            product:  '/admin-js/product/seo/save/',
+            photo: '/admin-js/product/photo/seo/save/',
         },
 
         seoData: {
