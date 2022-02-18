@@ -1,3 +1,4 @@
+// не используется
 export default {
     set(token) {
         //<meta name="csrf-token" content="{{ csrf_token() }}">

@@ -1636,83 +1636,6 @@ function _getItem(propValue, title, iconSrc) {
 
 /***/ }),
 
-/***/ "./resources/js2/http/csrfToken.js":
-/*!*****************************************!*\
-  !*** ./resources/js2/http/csrfToken.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({
-  set: function set(token) {
-    //<meta name="csrf-token" content="{{ csrf_token() }}">
-    document.querySelector('meta[name="csrf-token"]').content = token;
-  },
-  get: function get() {
-    //console.log(document.querySelector('meta[name="csrf-token"]').content);
-    return document.querySelector('meta[name="csrf-token"]').content;
-  }
-});
-
-/***/ }),
-
-/***/ "./resources/js2/http/csrfUpdater.js":
-/*!*******************************************!*\
-  !*** ./resources/js2/http/csrfUpdater.js ***!
-  \*******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CsrfUpdater; });
-/* harmony import */ var _csrfToken_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./csrfToken.js */ "./resources/js2/http/csrfToken.js");
-/* harmony import */ var _getJson__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getJson */ "./resources/js2/http/getJson.js");
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-var CsrfUpdater = /*#__PURE__*/function () {
-  function CsrfUpdater() {
-    _classCallCheck(this, CsrfUpdater);
-
-    this.url = '/public-js/csrf';
-
-    this._updater();
-  }
-
-  _createClass(CsrfUpdater, [{
-    key: "_updater",
-    value: function _updater() {
-      var _this = this;
-
-      setInterval(function () {
-        _this._updaterCore();
-      }, 15 * 1000);
-    }
-  }, {
-    key: "_updaterCore",
-    value: function _updaterCore() {
-      Object(_getJson__WEBPACK_IMPORTED_MODULE_1__["default"])(this.url).then(function (data) {
-        _csrfToken_js__WEBPACK_IMPORTED_MODULE_0__["default"].set(data);
-      });
-    }
-  }]);
-
-  return CsrfUpdater;
-}();
-
-
-
-/***/ }),
-
 /***/ "./resources/js2/http/getJson.js":
 /*!***************************************!*\
   !*** ./resources/js2/http/getJson.js ***!
@@ -1723,11 +1646,8 @@ var CsrfUpdater = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getJson; });
-/* harmony import */ var _csrfToken_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./csrfToken.js */ "./resources/js2/http/csrfToken.js");
-
 function getJson(url) {
   return fetch(url).then(function (result) {
-    //csrfToken.set(result.headers.get('X-CSRF-Token'));
     return result.json();
   })["catch"](function (error) {
     console.log(error);
@@ -1746,21 +1666,24 @@ function getJson(url) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return postJson; });
-/* harmony import */ var _csrfToken_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./csrfToken.js */ "./resources/js2/http/csrfToken.js");
+/* harmony import */ var _getJson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getJson */ "./resources/js2/http/getJson.js");
 
 function postJson(url, data) {
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      'X-CSRF-Token': _csrfToken_js__WEBPACK_IMPORTED_MODULE_0__["default"].get(),
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify(data)
-  }).then(function (result) {
-    return result.json();
-  })["catch"](function (error) {
-    console.log(error);
+  var csrfUrl = '/public-js/csrf';
+  return Object(_getJson__WEBPACK_IMPORTED_MODULE_0__["default"])(csrfUrl).then(function (token) {
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(function (result) {
+      return result.json();
+    })["catch"](function (error) {
+      console.log(error);
+    });
   });
 }
 
@@ -1947,22 +1870,19 @@ var TopDropMenuFiller = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu_menuVisibilityManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./menu/menuVisibilityManager */ "./resources/js2/menu/menuVisibilityManager.js");
 /* harmony import */ var _menu_topDropMenuFiller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu/topDropMenuFiller */ "./resources/js2/menu/topDropMenuFiller.js");
-/* harmony import */ var _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./http/csrfUpdater */ "./resources/js2/http/csrfUpdater.js");
-/* harmony import */ var _auth_index_authKit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth/index-authKit */ "./resources/js2/auth/index-authKit.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotalCountIndication */ "./resources/js2/favoriteProducts/favoriteProductsTotalCountIndication.js");
-/* harmony import */ var _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./orderWindow/orderWindow */ "./resources/js2/orderWindow/orderWindow.js");
+/* harmony import */ var _auth_index_authKit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth/index-authKit */ "./resources/js2/auth/index-authKit.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./favoriteProducts/favoriteProductsTotalCountIndication */ "./resources/js2/favoriteProducts/favoriteProductsTotalCountIndication.js");
+/* harmony import */ var _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./orderWindow/orderWindow */ "./resources/js2/orderWindow/orderWindow.js");
 
 
 
 
 
-
-new _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_5__["default"]();
-new _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_4__["default"]();
+new _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_4__["default"]();
+new _favoriteProducts_favoriteProductsTotalCountIndication__WEBPACK_IMPORTED_MODULE_3__["default"]();
 new _menu_menuVisibilityManager__WEBPACK_IMPORTED_MODULE_0__["default"]();
 new _menu_topDropMenuFiller__WEBPACK_IMPORTED_MODULE_1__["default"]();
-new _http_csrfUpdater__WEBPACK_IMPORTED_MODULE_2__["default"]();
-Object(_auth_index_authKit__WEBPACK_IMPORTED_MODULE_3__["default"])();
+Object(_auth_index_authKit__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
 /***/ }),
 
