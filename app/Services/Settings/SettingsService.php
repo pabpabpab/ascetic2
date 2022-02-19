@@ -25,6 +25,7 @@ class SettingsService
         $methods = [
             'contacts' => '_prepareContactsData',
             'main_page_seo' => '_prepareMainPageSeoData',
+            'visible_categories_limit' => '_prepareVisibleCategoriesLimitData',
             'cache_limit' => '_prepareCacheLimitData',
             'pagination' => '_preparePaginationData',
             'photo_quality' => '_preparePhotoQualityData',
@@ -42,7 +43,6 @@ class SettingsService
             'data' => json_decode($setting->data)
         ];
     }
-
 
 
     protected function _prepareAdminEmailData($request): array
@@ -76,6 +76,16 @@ class SettingsService
         $value = $request->value + 0;
         if ($value < 1 || $value > 10000) {
             $value = 100;
+        }
+        return [
+            'value' => (string) $value,
+        ];
+    }
+    protected function _prepareVisibleCategoriesLimitData($request): array
+    {
+        $value = $request->value + 0;
+        if ($value < 1 || $value > 10) {
+            $value = 3;
         }
         return [
             'value' => (string) $value,
@@ -123,6 +133,9 @@ class SettingsService
             'main_page_seo' => [
                 'mainPageTitle' => '',
                 'mainPageDescription' => '',
+            ],
+            'visible_categories_limit' => [
+                'value' => 3,
             ],
             'cache_limit' => [
                 'value' => 100,

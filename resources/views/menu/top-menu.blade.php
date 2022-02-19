@@ -28,8 +28,8 @@
         <nav data-menu="left" class="top_menu__ul">
 
             @php
-                $categoriesCount = count($categories);
-                $loopLimit = $categoriesCount < 5 ? $categoriesCount : 5;
+                $catCount = count($categories);
+                $loopLimit = $catCount < $visibleCategoriesLimit ? $catCount : $visibleCategoriesLimit;
             @endphp
 
             @for ($i = 0; $i < $loopLimit; $i++)
@@ -62,21 +62,31 @@
                 </div>
             @endfor
 
-            <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
-                <p
-                   data-menu-link-section-name="allProducts"
-                   data-menu-link-title-text="{{ $mainPageTitle }}"
-                   class="top_menu__link top_menu__link_with_drop_menu nowrap m0">
-                    Все
-                </p>
-            </div>
+            @if ($catCount >= $visibleCategoriesLimit)
+                <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
+                    <p
+                        data-menu-link-section-name="allProducts"
+                        data-menu-link-title-text="{{ $mainPageTitle }}"
+                        class="top_menu__link top_menu__link_with_drop_menu nowrap m0">
+                        Все
+                    </p>
+                </div>
+            @endif
+
 
         </nav>
     </div>
 
 
     <div data-menu="right" class="top_menu__ul">
-        <div data-order-button="0" class="top_menu__li">
+        <div data-menu-contact-link="mobile" data-order-button="0" class="top_menu__li">
+            <p data-order-button="0" class="top_menu__link m0">
+                <img data-order-button="0" alt=""
+                     src="{{ asset('/images/contacts.svg') }}"
+                     class="top_menu__contacts_icon__img">
+            </p>
+        </div>
+        <div data-menu-contact-link="desktop" data-order-button="0" class="top_menu__li">
             <p data-order-button="0" class="top_menu__link m0">
                 Контакты
             </p>

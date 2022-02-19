@@ -1,0 +1,28 @@
+.top_menu__li__mobile_menu_icon
+    +font(30px, rgb(25, 118, 213), 400)
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 0 25px
+    cursor: pointer
+    &__img
+        height: 35px
+        cursor: pointer
+
+[data-mobile-menu="icon"]
+    display: none
+[data-menu="left-short"]
+    display: none
+
+
+@media screen and (max-width: 1280px)
+    [data-logo="link"]
+        display: none
+    [data-menu="right"]
+        display: none
+    [data-mobile-menu="icon"]
+        display: flex
+
+    [data-li="category"]
+        display: none
+

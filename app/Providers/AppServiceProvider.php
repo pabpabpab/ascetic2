@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         $categoryModelClassName = "App\Models\Category";
         View::share([
             'categories' => $categoryService->getAll($categoryModelClassName),
+            'visibleCategoriesLimit' => $service->getSettings('visible_categories_limit')['value'],
             'mainPageTitle' => $service->getSettings('main_page_seo')['mainPageTitle'],
             'contacts' => $service->getSettings('contacts'),
         ]);

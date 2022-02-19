@@ -77,6 +77,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SettingsPage'
 });
@@ -142,6 +152,33 @@ var render = function() {
               [
                 _vm._v(
                   "\n                        SEO главной страницы сайта\n                    "
+                )
+              ]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "mobile_menu__ul" }, [
+        _c(
+          "li",
+          { staticClass: "mobile_menu__li" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "mobile_menu__link",
+                attrs: {
+                  to: {
+                    name: "Settings",
+                    params: { subject: "visibleCategoriesLimit" }
+                  }
+                }
+              },
+              [
+                _vm._v(
+                  "\n                        Количество видимых категорий в верхнем меню\n                    "
                 )
               ]
             )

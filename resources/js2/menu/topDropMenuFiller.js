@@ -4,6 +4,9 @@ import getDropMenuHtml from '../html/getDropMenuHtml.js';
 export default class TopDropMenuFiller {
     constructor() {
         this.initiatorContainer = el('#topMenu-dropMenuInitiatorContainer');
+        if (!this.initiatorContainer) {
+            return;
+        }
         this.initiatorContainer.addEventListener('mouseover', (e) => {
             this._fillMenu();
         });

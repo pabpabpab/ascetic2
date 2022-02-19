@@ -23,6 +23,9 @@ export default {
                 mainPageTitle: '',
                 mainPageDescription: '',
             },
+            visible_categories_limit: {
+                value: 3,
+            },
             pagination: {
                 perPage: 3,
             },

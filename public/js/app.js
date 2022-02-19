@@ -26344,6 +26344,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         mainPageTitle: '',
         mainPageDescription: ''
       },
+      visible_categories_limit: {
+        value: 3
+      },
       pagination: {
         perPage: 3
       },

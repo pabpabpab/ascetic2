@@ -5,6 +5,7 @@
 <script>
 import Contacts from "./Contacts";
 import MainPageSeo from "./MainPageSeo";
+import VisibleCategoriesLimit from "./VisibleCategoriesLimit";
 import PerPage from "./PerPage";
 import CacheLimit from "./CacheLimit";
 import PhotoQuality from "./PhotoQuality";
@@ -14,6 +15,7 @@ export default {
     components: {
         Contacts,
         MainPageSeo,
+        VisibleCategoriesLimit,
         PerPage,
         CacheLimit,
         PhotoQuality,
@@ -24,6 +26,7 @@ export default {
             currentComponent: {
                 contacts: 'Contacts',
                 mainPageSeo: 'MainPageSeo',
+                visibleCategoriesLimit: 'VisibleCategoriesLimit',
                 perPage: 'PerPage',
                 cacheLimit: 'CacheLimit',
                 photoQuality: 'PhotoQuality',
@@ -31,11 +34,5 @@ export default {
             },
         };
     },
-
-
-
-    mounted() {
-        //console.log(this.$route.params.subject);
-    }
 }
 </script>

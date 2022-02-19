@@ -1623,8 +1623,10 @@ function getAuthAbsoluteMenuHtml() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getAuthenticatedMenuHtml; });
 function getAuthenticatedMenuHtml(userName, isAdmin) {
-  var userLink = isAdmin ? "<a href=\"/admin\" class=\"top_menu__link\">Admin panel</a>" : "<a href=\"/my\" class=\"top_menu__link\">".concat(userName, "</a>");
-  return "<div id=\"authMenuContent\" class=\"display-flex\">\n                ".concat(userLink, "\n                <a href=\"/logout\" title=\"\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430\" class=\"top_menu__link top_menu__link_account_exit\">\n                    <img alt=\"\" src=\"/images/accountExitIcon.svg\" class=\"account_exit__icon mr15\">\n                </a>\n            </div>");
+  var ellipsis = userName.length > 12 ? '...' : '';
+  var userLink = isAdmin ? "<a href=\"/admin\" data-menu-user-link=\"desktop\" class=\"top_menu__link nowrap\">Admin panel</a>" : "<a href=\"/my\" data-menu-user-link=\"desktop\" class=\"top_menu__link nowrap\">".concat(userName.slice(0, 12)).concat(ellipsis, "</a>");
+  var mobileUserLink = isAdmin ? "<a href=\"/admin\" data-menu-user-link=\"mobile\" class=\"top_menu__link nowrap\">Admin</a>" : "<a href=\"/my\" data-menu-user-link=\"mobile\" class=\"top_menu__link nowrap\">".concat(userName.slice(0, 1), "...</a>");
+  return "<div id=\"authMenuContent\" class=\"display-flex\">\n                ".concat(userLink, "\n                ").concat(mobileUserLink, "\n                <a href=\"/logout\" title=\"\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430\" class=\"top_menu__link top_menu__link_account_exit\">\n                    <img alt=\"\" src=\"/images/accountExitIcon.svg\" class=\"account_exit__icon mr15\">\n                </a>\n            </div>");
 }
 
 /***/ }),
@@ -2842,6 +2844,11 @@ var TopDropMenuFiller = /*#__PURE__*/function () {
     _classCallCheck(this, TopDropMenuFiller);
 
     this.initiatorContainer = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuInitiatorContainer');
+
+    if (!this.initiatorContainer) {
+      return;
+    }
+
     this.initiatorContainer.addEventListener('mouseover', function (e) {
       _this._fillMenu();
     });

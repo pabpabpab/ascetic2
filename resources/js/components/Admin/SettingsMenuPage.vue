@@ -26,6 +26,16 @@
                 <ul class="mobile_menu__ul">
                     <li class="mobile_menu__li">
                         <router-link
+                            :to="{ name: 'Settings', params: { subject: 'visibleCategoriesLimit' } }"
+                            class="mobile_menu__link">
+                            Количество видимых категорий в верхнем меню
+                        </router-link>
+                    </li>
+                </ul>
+
+                <ul class="mobile_menu__ul">
+                    <li class="mobile_menu__li">
+                        <router-link
                             :to="{ name: 'Settings', params: { subject: 'perPage' } }"
                             class="mobile_menu__link">
                             Количество товаров на странице в списке товаров на сайте
