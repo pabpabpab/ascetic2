@@ -28,7 +28,7 @@
 </head>
 <body>
 @if ($currentRouteName === 'products.singlePhotoPage')
-    @include('menu.easy-top-menu')
+    @include('menu.top-menu') {{--@include('menu.easy-top-menu')--}}
 @else
     @include('menu.top-menu')
 @endif

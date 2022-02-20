@@ -84,7 +84,7 @@ class SettingsService
     protected function _prepareVisibleCategoriesLimitData($request): array
     {
         $value = $request->value + 0;
-        if ($value < 1 || $value > 10) {
+        if ($value < 0 || $value > 10) {
             $value = 3;
         }
         return [

@@ -4,6 +4,17 @@
 
 
 <header id="topMainMenu" class="top_menu">
+    <div data-mobile-menu-icon="1" class="top_menu__mobile_menu_icon__wrapper">
+        <p class="top_menu__mobile_menu_icon__content">
+            <img data-mobile-menu-icon="1" alt=""
+                 src="{{ asset('/images/blackMobileMenuIcon.svg') }}"
+                 class="top_menu__mobile_menu_icon__img">
+        </p>
+    </div>
+
+
+
+
     <div class="top_menu__left">
 
         @if ($currentRouteName === 'mainPage')
@@ -39,7 +50,7 @@
                         'category' => $category->slug
                     ]);
                 @endphp
-                <div data-menu-link-category="{{ $i }}" class="top_menu__li">
+                <div data-menu-link-category="{{ $i + 1 }}" class="top_menu__li">
                     @if ($category->slug === $currentCategorySlug)
                         <p data-menu-link-section-name="productCategory"
                            data-menu-link-category-id="{{ $category->id }}"
@@ -62,7 +73,7 @@
                 </div>
             @endfor
 
-            @if ($catCount >= $visibleCategoriesLimit)
+            {{--@if ($catCount >= $visibleCategoriesLimit)--}}
                 <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
                     <p
                         data-menu-link-section-name="allProducts"
@@ -71,8 +82,7 @@
                         Все
                     </p>
                 </div>
-            @endif
-
+            {{--@endif--}}
 
         </nav>
     </div>
@@ -82,7 +92,7 @@
         <div data-menu-contact-link="mobile" data-order-button="0" class="top_menu__li">
             <p data-order-button="0" class="top_menu__link m0">
                 <img data-order-button="0" alt=""
-                     src="{{ asset('/images/contacts.svg') }}"
+                     src="{{ asset('/images/contacts2.svg') }}"
                      class="top_menu__contacts_icon__img">
             </p>
         </div>
@@ -91,7 +101,7 @@
                 Контакты
             </p>
         </div>
-        <div class="top_menu__li_auth">
+        <div class="top_menu__li_favorites">
             @include('menu.fav-icon')
         </div>
         <div class="top_menu__li_auth">
