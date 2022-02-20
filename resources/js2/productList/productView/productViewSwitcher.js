@@ -19,10 +19,12 @@ export default class ProductViewSwitcher extends Aware {
         const icon = el('#productViewIcon');
         if (icon.src.includes('BigItems')) {
             icon.src = this.iconSrc.smallView;
+            icon.classList.toggle('viewing_icon__img_minimized');
             this.commit('setViewMode', 'bigView');
             this._switchToBigView();
         } else {
             icon.src = this.iconSrc.bigView;
+            icon.classList.toggle('viewing_icon__img_minimized');
             this.commit('setViewMode', 'smallView');
             this._switchToSmallView();
         }

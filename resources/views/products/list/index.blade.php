@@ -13,7 +13,7 @@
     <section>
 
         <div class="h1_viewing_sorting_filtering_container">
-            <h1 id="productsH1" class="products__h1 mb0">
+            <h1 id="productsH1" class="products__h1">
                 {{ $pageTitle }}
             </h1>
 

@@ -695,18 +695,23 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0 0 0 0;
+  padding: 0;
   margin: 0;
 }
 
 .products__h1 {
   margin-left: 15px;
+  margin-bottom: 0;
   width: 100%;
 }
 
@@ -723,7 +728,7 @@ h2 {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 0 0 0 0;
+  padding: 0;
   margin: 0;
 }
 
@@ -770,7 +775,11 @@ h2 {
 .viewing_icon__img {
   margin: 0 0 -5px 0;
   padding: 0;
-  height: 30px;
+  height: 32px;
+}
+
+.viewing_icon__img_minimized {
+  height: 32px;
 }
 
 .sorting_modes__wrapper {
@@ -808,8 +817,9 @@ h2 {
       -ms-flex-positive: 1;
           flex-grow: 1;
   font-size: 15px;
-  color: #504646;
+  color: #000;
   font-weight: 400;
+  white-space: nowrap;
   height: 35px;
   line-height: 35px;
   border-radius: 5px 0 0 5px;
@@ -826,7 +836,7 @@ h2 {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 12px;
-  color: #32322d;
+  color: #000;
   font-weight: 400;
   background-color: transparent;
   border-radius: 0 5px 5px 0;
@@ -959,6 +969,110 @@ h2 {
   }
 }
 
+@media screen and (max-width: 900px) {
+  .h1_viewing_sorting_filtering_container {
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+
+  .products__h1 {
+    margin: 0 0 0 15px;
+    padding: 0;
+    width: 100%;
+  }
+
+  .viewing_sorting_filtering_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin: 10px 0 0 15px;
+    padding: 0;
+  }
+
+  .viewing_icon__wrapper {
+    margin: 0;
+    padding: 5px 0;
+    background-color: unset;
+  }
+
+  .viewing_icon__img {
+    margin: -2px 0 0 -3px;
+    padding: 0;
+    height: 35px;
+  }
+
+  .viewing_icon__img_minimized {
+    height: 25px;
+    margin: 0 0 0 0;
+  }
+
+  .sorting_modes__wrapper {
+    width: 180px;
+    margin: 0 10px;
+    padding: 3px 10px;
+    background-color: unset;
+  }
+
+  .filter_icon__wrapper {
+    position: relative;
+    margin: 0;
+    padding: 6px 17px 6px 10px;
+    background-color: unset;
+  }
+
+  .filter_icon__total_indicator {
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .filter_icon__img {
+    height: 23px;
+  }
+
+  .filter_icon__total_indicator {
+    right: 7px;
+    height: 13px;
+    font-size: 12px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .products__h1 {
+    font-size: 18px;
+  }
+
+  .sorting_modes__wrapper {
+    width: 150px;
+  }
+
+  .sorting_modes__selected_mode {
+    font-size: 13px;
+    color: #000;
+    font-weight: 400;
+  }
+
+  .sorting_modes__arrow {
+    font-size: 11px;
+    color: #000;
+    font-weight: 400;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .filter_icon__img {
+    height: 21px;
+  }
+}
+
 .top_total_parameters_of_search {
   width: 100%;
   padding: 15px 0 0 15px;
@@ -991,6 +1105,45 @@ h2 {
 
 .top_total_parameters_of_search__item__collapse_icon:hover {
   background-color: #aaa;
+}
+
+@media screen and (max-width: 900px) {
+  .top_total_parameters_of_search {
+    margin: 0;
+    padding: 0 0 0 15px;
+  }
+
+  .top_total_parameters_of_search__item {
+    font-size: 13px;
+    line-height: 25px;
+    padding: 2px 7px 2px 12px;
+    margin: 8px 8px 10px 0;
+  }
+
+  .top_total_parameters_of_search__item__collapse_icon {
+    font-size: 17px;
+    padding: 1px 6px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .top_total_parameters_of_search {
+    padding: 0 0 0 15px;
+  }
+
+  .top_total_parameters_of_search__item {
+    font-size: 13px;
+    line-height: 25px;
+    padding: 2px 6px 2px 10px;
+    margin: 0 6px 8px 0;
+  }
+
+  .top_total_parameters_of_search__item__collapse_icon {
+    font-size: 17px;
+    padding: 1px 6px;
+    margin-left: 5px;
+  }
 }
 
 .product_filter {
@@ -2648,7 +2801,7 @@ h2 {
   z-index: 50;
   width: 500px;
   min-height: 200px;
-  padding: 30px;
+  padding: 45px 30px 30px 30px;
   background-color: black;
   font-size: 17px;
   color: #fff;

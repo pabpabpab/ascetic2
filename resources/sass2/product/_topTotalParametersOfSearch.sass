@@ -15,11 +15,36 @@
         &__collapse_icon
             +font(19px, #fff, 400)
             background-color: #ccc
-            //line-height: 8px
-            padding: 1px 7px //10px 5px 10px 10px
+            padding: 1px 7px
             border-radius: 15px
             margin-left: 15px
             cursor: pointer
             &:hover
                 background-color: #aaa
-                //color: #000 //#fcf081 //rgb(25, 118, 213)
+
+@media screen and (max-width: 900px)
+    .top_total_parameters_of_search
+        margin: 0
+        padding: 0 0 0 15px
+        &__item
+            font-size: 13px
+            line-height: 25px
+            padding: 2px 7px 2px 12px
+            margin: 8px 8px 10px 0
+            &__collapse_icon
+                font-size: 17px
+                padding: 1px 6px
+                margin-left: 5px
+
+@media screen and (max-width: 600px)
+    .top_total_parameters_of_search
+        padding: 0 0 0 15px
+        &__item
+            font-size: 13px
+            line-height: 25px
+            padding: 2px 6px 2px 10px
+            margin: 0 6px 8px 0
+            &__collapse_icon
+                font-size: 17px
+                padding: 1px 6px
+                margin-left: 5px

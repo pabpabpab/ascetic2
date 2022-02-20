@@ -3,16 +3,19 @@
     width: 100%
     box-sizing: border-box
     display: flex
+    flex-direction: row
     align-items: center
     justify-content: space-between
-    padding: 0 0 0 0
+    padding: 0
     margin: 0
     //border: 1px solid #003cff
 
 
 .products__h1
     margin-left: 15px
+    margin-bottom: 0
     width: 100%
+    //border: 1px solid #0f0
 
 .viewing_sorting_filtering_container
     width: 100%
@@ -20,7 +23,7 @@
     display: flex
     align-items: flex-end
     justify-content: flex-end
-    padding: 0 0 0 0
+    padding: 0
     margin: 0
     //border: 1px solid #f00
 
@@ -59,7 +62,9 @@
 .viewing_icon__img
     margin: 0 0 -5px 0
     padding: 0
-    height: 30px
+    height: 32px
+.viewing_icon__img_minimized
+    height: 32px
 
 
 .sorting_modes
@@ -83,7 +88,8 @@
         cursor: pointer
     &__selected_mode
         flex-grow: 1
-        +font(15px, rgb(80, 70, 70), 400)
+        +font(15px, #000, 400)
+        white-space: nowrap
         height: 35px
         line-height: 35px
         border-radius: 5px 0 0 5px
@@ -91,7 +97,7 @@
         display: flex
         align-items: center
         justify-content: center
-        +font(12px, rgb(50, 50, 45), 400)
+        +font(12px, #000, 400)
         background-color: transparent
         border-radius: 0 5px 5px 0
         width: 20px
