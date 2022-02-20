@@ -27,19 +27,14 @@
     <script src="{{ mix($jsAppName) }}?t=@php echo time(); @endphp" defer></script>
 </head>
 <body>
-@if ($currentRouteName === 'products.singlePhotoPage')
-    @include('menu.top-menu') {{--@include('menu.easy-top-menu')--}}
-@else
-    @include('menu.top-menu')
-@endif
+
+@include('menu.top-menu')
 
 <main class="content_wrapper">
     @yield('content')
 </main>
 
-
 @include('blocks.viewed-products-summary')
-
 
 @include('menu.bottom-menu')
 

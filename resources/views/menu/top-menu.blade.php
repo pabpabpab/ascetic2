@@ -4,16 +4,6 @@
 
 
 <header id="topMainMenu" class="top_menu">
-    <div data-mobile-menu-icon="1" class="top_menu__mobile_menu_icon__wrapper">
-        <p class="top_menu__mobile_menu_icon__content">
-            <img data-mobile-menu-icon="1" alt=""
-                 src="{{ asset('/images/blackMobileMenuIcon.svg') }}"
-                 class="top_menu__mobile_menu_icon__img">
-        </p>
-    </div>
-
-
-
 
     <div class="top_menu__left">
 
@@ -33,7 +23,6 @@
                 AsceticShop.ru
             </a>
         @endif
-
 
 
         <nav data-menu="left" class="top_menu__ul">
@@ -74,14 +63,14 @@
             @endfor
 
             {{--@if ($catCount >= $visibleCategoriesLimit)--}}
-                <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
-                    <p
-                        data-menu-link-section-name="allProducts"
-                        data-menu-link-title-text="{{ $mainPageTitle }}"
-                        class="top_menu__link top_menu__link_with_drop_menu nowrap m0">
-                        Все
-                    </p>
-                </div>
+            <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
+                <p
+                    data-menu-link-section-name="allProducts"
+                    data-menu-link-title-text="{{ $mainPageTitle }}"
+                    class="top_menu__link top_menu__link_with_drop_menu nowrap m0">
+                    Все
+                </p>
+            </div>
             {{--@endif--}}
 
         </nav>
@@ -106,6 +95,13 @@
         </div>
         <div class="top_menu__li_auth">
             @include('menu.auth-menu')
+        </div>
+        <div data-mobile-menu-icon="1" class="top_menu__mobile_menu_icon__wrapper">
+            <p class="top_menu__mobile_menu_icon__content">
+                <img data-mobile-menu-icon="1" alt=""
+                     src="{{ asset('/images/blackMobileMenuIcon.svg') }}"
+                     class="top_menu__mobile_menu_icon__img">
+            </p>
         </div>
     </div>
 </header>
