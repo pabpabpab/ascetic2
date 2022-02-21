@@ -1,6 +1,6 @@
 .absolute_message__wrapper
     position: fixed
-    z-index: 15
+    z-index: $absolute_message_wrapper__z-index
     top: 0
     left: 0
     width: 100%
@@ -9,6 +9,7 @@
     justify-content: center
     align-items: center
     pointer-events: none
+
 
 .absolute_message__show_and_hide
     opacity: 0
@@ -24,7 +25,7 @@
 
 .absolute_message__div
     position: relative
-    z-index: 16
+    z-index: $absolute_message_content__z-index
     width: 300px
     min-height: 80px
     padding: 20px
@@ -42,7 +43,7 @@
 
 .absolute_message__close
     position: absolute
-    z-index: 17
+    z-index: $absolute_message_collapse_icon__z-index
     top: -8px
     right: 4px
     padding: 0
@@ -52,3 +53,12 @@
     &:hover
         +font(35px, #eee, 100)
 
+
+@media screen and (max-width: 900px)
+    .absolute_message__wrapper
+        justify-content: center
+        align-items: flex-start
+    .absolute_message__div
+        margin-top: 10px
+        min-height: 40px
+        padding: 10px 20px

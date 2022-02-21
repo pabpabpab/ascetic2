@@ -21,7 +21,7 @@
         padding: 5px 0
         background-color: unset
     .viewing_icon__img
-        margin: -2px 0 0 -3px
+        margin: -2px 0 0 -6px
         padding: 0
         height: 35px
     .viewing_icon__img_minimized
@@ -34,12 +34,16 @@
             margin: 0 10px
             padding: 3px 10px
             background-color: unset
+        &__selected_mode
+            font-size: 14px
 
     .filter_icon__wrapper
         position: relative
         margin: 0
         padding: 6px 17px 6px 10px
         background-color: unset
+    .filter_icon__img
+        height: 26px
     .filter_icon__total_indicator
         right: 0
 
@@ -52,21 +56,23 @@
         font-size: 12px
         line-height: 13px
 
-@media screen and (max-width: 500px)
-    .products__h1
-        font-size: 18px
-
     .sorting_modes
         &__wrapper
             width: 150px
         &__selected_mode
-            +font(13px, #000, 400)
+            font-size: 13px
         &__arrow
             +font(11px, #000, 400)
 
+
+@media screen and (max-width: 500px)
+    .products__h1
+        font-size: 18px
 
 
 @media screen and (max-width: 400px)
     .filter_icon__img
         height: 21px
 
+    .filter_icon__wrapper
+        padding-right: 20px

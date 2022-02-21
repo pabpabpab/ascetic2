@@ -549,7 +549,7 @@ a {
 
 @media screen and (max-width: 700px) {
   .top_menu__mobile_menu_icon__content {
-    padding: 14px 15px;
+    padding: 14px 15px 14px 15px;
   }
 
   .logo__link {
@@ -576,6 +576,10 @@ a {
 @media screen and (max-width: 450px) {
   .top_menu__link {
     padding: 14px 12px;
+  }
+
+  .top_menu__mobile_menu_icon__content {
+    padding: 14px 12px 14px 15px;
   }
 }
 
@@ -678,6 +682,12 @@ h1 {
   font-weight: 700;
   font-family: "Oswald", sans-serif;
   letter-spacing: 1px;
+}
+
+@media screen and (max-width: 1100px) {
+  h1 {
+    font-size: 20px;
+  }
 }
 
 h2 {
@@ -1003,7 +1013,7 @@ h2 {
   }
 
   .viewing_icon__img {
-    margin: -2px 0 0 -3px;
+    margin: -2px 0 0 -6px;
     padding: 0;
     height: 35px;
   }
@@ -1020,11 +1030,19 @@ h2 {
     background-color: unset;
   }
 
+  .sorting_modes__selected_mode {
+    font-size: 14px;
+  }
+
   .filter_icon__wrapper {
     position: relative;
     margin: 0;
     padding: 6px 17px 6px 10px;
     background-color: unset;
+  }
+
+  .filter_icon__img {
+    height: 26px;
   }
 
   .filter_icon__total_indicator {
@@ -1043,12 +1061,6 @@ h2 {
     font-size: 12px;
     line-height: 13px;
   }
-}
-
-@media screen and (max-width: 500px) {
-  .products__h1 {
-    font-size: 18px;
-  }
 
   .sorting_modes__wrapper {
     width: 150px;
@@ -1056,8 +1068,6 @@ h2 {
 
   .sorting_modes__selected_mode {
     font-size: 13px;
-    color: #000;
-    font-weight: 400;
   }
 
   .sorting_modes__arrow {
@@ -1067,9 +1077,19 @@ h2 {
   }
 }
 
+@media screen and (max-width: 500px) {
+  .products__h1 {
+    font-size: 18px;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .filter_icon__img {
     height: 21px;
+  }
+
+  .filter_icon__wrapper {
+    padding-right: 20px;
   }
 }
 
@@ -1129,6 +1149,7 @@ h2 {
 
 @media screen and (max-width: 600px) {
   .top_total_parameters_of_search {
+    margin: 0;
     padding: 0 0 0 15px;
   }
 
@@ -2695,6 +2716,71 @@ h2 {
   border-color: #fff;
 }
 
+@media screen and (max-width: 1100px) {
+  .pagination_and_view_more {
+    display: block;
+  }
+
+  .pagination_and_view_more__view_more {
+    min-width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+  .pagination_and_view_more__view_more__button {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    padding: 12px 25px;
+  }
+
+  .pagination_and_view_more__pagination_nav {
+    width: 100%;
+    padding: 35px 0 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+
+  .pagination__link {
+    margin-left: 15px;
+    margin-bottom: 15px;
+  }
+
+  .pagination__link_active {
+    margin-left: 15px;
+    margin-bottom: 15px;
+  }
+
+  .pagination__three_dots {
+    margin-left: 15px;
+    margin-bottom: 15px;
+  }
+
+  .pagination__link__arrow_left {
+    margin-left: 15px;
+    margin-bottom: 15px;
+  }
+
+  .pagination__link__arrow_right {
+    margin-left: 15px;
+    margin-bottom: 15px;
+  }
+}
+
 .viewed_products__aside {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
@@ -3411,7 +3497,7 @@ h2 {
 
 .absolute_message__wrapper {
   position: fixed;
-  z-index: 15;
+  z-index: 300;
   top: 0;
   left: 0;
   width: 100%;
@@ -3464,7 +3550,7 @@ h2 {
 
 .absolute_message__div {
   position: relative;
-  z-index: 16;
+  z-index: 301;
   width: 300px;
   min-height: 80px;
   padding: 20px;
@@ -3492,7 +3578,7 @@ h2 {
 
 .absolute_message__close {
   position: absolute;
-  z-index: 17;
+  z-index: 302;
   top: -8px;
   right: 4px;
   padding: 0;
@@ -3507,6 +3593,23 @@ h2 {
   font-size: 35px;
   color: #eee;
   font-weight: 100;
+}
+
+@media screen and (max-width: 900px) {
+  .absolute_message__wrapper {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+
+  .absolute_message__div {
+    margin-top: 10px;
+    min-height: 40px;
+    padding: 10px 20px;
+  }
 }
 
 .screen_404 {
