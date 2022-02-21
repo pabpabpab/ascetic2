@@ -31,6 +31,13 @@ class ViewedProductController extends Controller
     }
 
 
+    public function getTotalCount(ViewedProductsService $service): JsonResponse
+    {
+        return response()->json([
+            'value' => $service->getAllViewedCount(),
+        ]);
+    }
+
     // /public-js/viewed-products/offset/${settings.startOffset}
     public function getViewedProductsForJS(ViewedProductsService $service, int $startOffset): JsonResponse
     {

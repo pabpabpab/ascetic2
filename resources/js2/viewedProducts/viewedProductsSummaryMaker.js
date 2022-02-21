@@ -17,7 +17,11 @@ export default class ViewedProductsSummaryMaker extends Aware {
 
         this.viewedProductsSummaryWasCreated = false;
         this.summaryListUrl = '/public-js/viewed-product-summary-list';
+        this.viewedCountUrl = '/public-js/viewed-product-total-count';
         this.summaryList = [];
+        //this.viewedCount = 0;
+
+        this.mobileVersion = window.innerWidth <= 900; //px
 
         el('body').addEventListener('mouseover', (e) => {
             this._firstCreation();
@@ -37,6 +41,7 @@ export default class ViewedProductsSummaryMaker extends Aware {
                 //console.log(products);
                 if (products.length > 0) {
                     this._renderHeader();
+                    this._renderTotalCount();
                     this._renderBody(products);
                 }
             });
@@ -52,6 +57,7 @@ export default class ViewedProductsSummaryMaker extends Aware {
         }
         this.summaryList = [ ...[product], ...this.summaryList ];
         this._renderHeader();
+        this._renderTotalCount();
         this._renderBody(this.summaryList);
     }
 
@@ -59,11 +65,22 @@ export default class ViewedProductsSummaryMaker extends Aware {
         if (el('#viewedProductsSummaryHeader')) {
             return;
         }
-        const html = getViewedProductsHeaderHtml();
+        const html = getViewedProductsHeaderHtml(this.mobileVersion);
         this.wrapperOfSummary.insertAdjacentHTML('afterbegin', html);
     }
 
+    _renderTotalCount() {
+        this._loadViewedCount()
+            .then((value) => {
+                el('#viewedTotalCount').innerText = value;
+            });
+    }
+
     _renderBody(products) {
+        if (this.mobileVersion) {
+            return;
+        }
+
         if (el(`#${this.idOfContent}`)) {
             el(`#${this.idOfContent}`).remove();
         }
@@ -83,9 +100,14 @@ export default class ViewedProductsSummaryMaker extends Aware {
                 //console.log(data);
                 this.summaryList = [ ...data.products ];
                 return [ ...data.products ];
-            })
-            .catch(() => {
-                //
+            });
+    }
+
+    _loadViewedCount() {
+        return getJson(this.viewedCountUrl)
+            .then((data) => {
+                //this.viewedCount = data.value;
+                return data.value;
             });
     }
 

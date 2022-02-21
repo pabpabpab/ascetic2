@@ -24,7 +24,7 @@ Route::get('/one-product/{product}', [ProductController::class, 'getOneProduct']
 
 
 Route::get('/viewed-product-summary-list', [ViewedProductController::class, 'getSummaryList']);
-
+Route::get('/viewed-product-total-count', [ViewedProductController::class, 'getTotalCount']);
 
 
 Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesIds}/sort/{sortValue}/offset/{startOffset}',

@@ -2061,8 +2061,12 @@ function getSingleProductHtml(product) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getViewedProductHeaderHtml; });
-function getViewedProductHeaderHtml(product) {
-  return "<div id=\"viewedProductsSummaryHeader\" class=\"viewed_products__aside__header\">\n                <h2 class=\"viewed_products__aside__h2\">\u0412\u044B \u043D\u0435\u0434\u0430\u0432\u043D\u043E \u0441\u043C\u043E\u0442\u0440\u0435\u043B\u0438</h2>\n                <a href=\"/viewed-products\"\n                    data-viewed-products-link=\"1\"\n                    class=\"viewed_products__link\">\n                    \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0432\u0441\u0435\n                </a>\n           </div>";
+function getViewedProductHeaderHtml(mobileVersion) {
+  if (mobileVersion) {
+    return "<div id=\"viewedProductsSummaryHeader\" class=\"viewed_products__wrapper__header\">\n                    <a href=\"/viewed-products\"\n                        data-viewed-products-link=\"1\"\n                        class=\"viewed_products__link\">\n                        \u0412\u044B \u043D\u0435\u0434\u0430\u0432\u043D\u043E \u0441\u043C\u043E\u0442\u0440\u0435\u043B\u0438 \u044D\u0442\u0438 \u0442\u043E\u0432\u0430\u0440\u044B\n                    </a>\n                    <span id=\"viewedTotalCount\" class=\"viewed_products__totalCount\"></span>\n                </div>";
+  }
+
+  return "<div id=\"viewedProductsSummaryHeader\" class=\"viewed_products__wrapper__header\">\n                <h2 class=\"viewed_products__wrapper__h2\">\u0412\u044B \u043D\u0435\u0434\u0430\u0432\u043D\u043E \u0441\u043C\u043E\u0442\u0440\u0435\u043B\u0438</h2>\n                <a href=\"/viewed-products\"\n                    data-viewed-products-link=\"1\"\n                    class=\"viewed_products__link\">\n                    \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0432\u0441\u0435\n                </a>\n                <span id=\"viewedTotalCount\" class=\"viewed_products__totalCount\"></span>\n           </div>";
 }
 
 /***/ }),
@@ -4505,7 +4509,11 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
     _this.idOfContent = 'viewedProductsSummaryContent';
     _this.viewedProductsSummaryWasCreated = false;
     _this.summaryListUrl = '/public-js/viewed-product-summary-list';
-    _this.summaryList = [];
+    _this.viewedCountUrl = '/public-js/viewed-product-total-count';
+    _this.summaryList = []; //this.viewedCount = 0;
+
+    _this.mobileVersion = window.innerWidth <= 900; //px
+
     Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').addEventListener('mouseover', function (e) {
       _this._firstCreation();
     });
@@ -4530,6 +4538,8 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
         if (products.length > 0) {
           _this2._renderHeader();
 
+          _this2._renderTotalCount();
+
           _this2._renderBody(products);
         }
       });
@@ -4553,6 +4563,8 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
 
       this._renderHeader();
 
+      this._renderTotalCount();
+
       this._renderBody(this.summaryList);
     }
   }, {
@@ -4562,12 +4574,23 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
         return;
       }
 
-      var html = Object(_html_viewedProductsSummary_getViewedProductsHeaderHtml__WEBPACK_IMPORTED_MODULE_3__["default"])();
+      var html = Object(_html_viewedProductsSummary_getViewedProductsHeaderHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(this.mobileVersion);
       this.wrapperOfSummary.insertAdjacentHTML('afterbegin', html);
+    }
+  }, {
+    key: "_renderTotalCount",
+    value: function _renderTotalCount() {
+      this._loadViewedCount().then(function (value) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#viewedTotalCount').innerText = value;
+      });
     }
   }, {
     key: "_renderBody",
     value: function _renderBody(products) {
+      if (this.mobileVersion) {
+        return;
+      }
+
       if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent))) {
         Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])("#".concat(this.idOfContent)).remove();
       }
@@ -4589,7 +4612,14 @@ var ViewedProductsSummaryMaker = /*#__PURE__*/function (_Aware) {
         //console.log(data);
         _this3.summaryList = _toConsumableArray(data.products);
         return _toConsumableArray(data.products);
-      })["catch"](function () {//
+      });
+    }
+  }, {
+    key: "_loadViewedCount",
+    value: function _loadViewedCount() {
+      return Object(_http_getJson__WEBPACK_IMPORTED_MODULE_1__["default"])(this.viewedCountUrl).then(function (data) {
+        //this.viewedCount = data.value;
+        return data.value;
       });
     }
   }]);

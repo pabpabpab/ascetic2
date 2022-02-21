@@ -16,7 +16,7 @@
     {{-- --}}
 {{-- @elseif (!$viewedIdsStr) --}}
 @else
-    <aside id="viewedProductsSummaryWrapper" class="viewed_products__aside">
+    <aside id="viewedProductsSummaryWrapper" class="viewed_products__wrapper">
     </aside>
 @endif
 

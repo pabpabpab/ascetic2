@@ -1,9 +1,9 @@
 <template>
     <div class="show_block">
-        <h1 class="pd0 mb0">Лимит кэширования</h1>
+        <h1 class="pd0 mb0">Коэффициент скорости прокрутки</h1>
         <div class="content_block settingsPage">
             <settings-input
-                header="Коэффициент скорости прокрутки"
+                header="Коэффициент"
                 v-model="localSettings.value"
                 :settings="localSettings"
                 entity="value"

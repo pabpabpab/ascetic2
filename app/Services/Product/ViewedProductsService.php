@@ -62,6 +62,10 @@ class ViewedProductsService
             ->whereRaw("id IN ($summaryIdsStr)")->orderByRaw("FIELD(id, $summaryIdsStr)")->get();
     }
 
+    public function getAllViewedCount(): int
+    {
+        return count($this->_getFrontIdsArr());
+    }
 
     protected function _getFrontIdsArr(): array
     {

@@ -1536,7 +1536,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "show_block" }, [
-    _c("h1", { staticClass: "pd0 mb0" }, [_vm._v("Лимит кэширования")]),
+    _c("h1", { staticClass: "pd0 mb0" }, [
+      _vm._v("Коэффициент скорости прокрутки")
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -1545,7 +1547,7 @@ var render = function() {
         _c("settings-input", {
           staticClass: "mt10",
           attrs: {
-            header: "Коэффициент скорости прокрутки",
+            header: "Коэффициент",
             settings: _vm.localSettings,
             entity: "value",
             disableCmd: _vm.disableAllInputsCmd,
