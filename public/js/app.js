@@ -26353,6 +26353,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       cache_limit: {
         value: 100
       },
+      scroll_speed_ratio: {
+        value: 75
+      },
       photo_quality: {
         value: 90
       },

@@ -1,13 +1,22 @@
+import el from "./el";
+
 export default function scrollDocument(distance, direction) {
     const coveredDistance = 0; // пройденное расстояние
-    _scrollDocument(distance, coveredDistance, direction)
+
+    const scrollSpeedRatio = Number(el('#productList').dataset.scrollSpeedRatio);
+    // коэф., установленный в админ-панели, определенный опытным путем (75),
+    // чтобы скорость скролинга была приемлемой
+
+    const step = Math.ceil(distance/scrollSpeedRatio);
+
+    _scrollDocument(distance, coveredDistance, direction, step)
 }
 
-function _scrollDocument(distance, coveredDistance, direction) {
+function _scrollDocument(distance, coveredDistance, direction, step) {
     if (coveredDistance > distance) {
         return;
     }
-    const step = 3; // px
+
     if (direction === 'down') {
         window.scrollBy(0, step);
     } else {
@@ -15,6 +24,6 @@ function _scrollDocument(distance, coveredDistance, direction) {
     }
     coveredDistance += step;
     setTimeout(() => {
-        _scrollDocument(distance, coveredDistance, direction);
+        _scrollDocument(distance, coveredDistance, direction, step);
     }, 1);
 }

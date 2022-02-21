@@ -930,18 +930,23 @@ function el(selector) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return scrollDocument; });
+/* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./el */ "./resources/js2/auxiliaryFunctions/el.js");
+
 function scrollDocument(distance, direction) {
   var coveredDistance = 0; // пройденное расстояние
 
-  _scrollDocument(distance, coveredDistance, direction);
+  var scrollSpeedRatio = Number(Object(_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#productList').dataset.scrollSpeedRatio); // коэф., установленный в админ-панели, определенный опытным путем (75),
+  // чтобы скорость скролинга была приемлемой
+
+  var step = Math.ceil(distance / scrollSpeedRatio);
+
+  _scrollDocument(distance, coveredDistance, direction, step);
 }
 
-function _scrollDocument(distance, coveredDistance, direction) {
+function _scrollDocument(distance, coveredDistance, direction, step) {
   if (coveredDistance > distance) {
     return;
   }
-
-  var step = 3; // px
 
   if (direction === 'down') {
     window.scrollBy(0, step);
@@ -951,7 +956,7 @@ function _scrollDocument(distance, coveredDistance, direction) {
 
   coveredDistance += step;
   setTimeout(function () {
-    _scrollDocument(distance, coveredDistance, direction);
+    _scrollDocument(distance, coveredDistance, direction, step);
   }, 1);
 }
 

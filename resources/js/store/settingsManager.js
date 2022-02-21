@@ -32,6 +32,9 @@ export default {
             cache_limit: {
                 value: 100,
             },
+            scroll_speed_ratio: {
+                value: 75,
+            },
             photo_quality: {
                 value: 90,
             },

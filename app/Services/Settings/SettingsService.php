@@ -27,6 +27,7 @@ class SettingsService
             'main_page_seo' => '_prepareMainPageSeoData',
             'visible_categories_limit' => '_prepareVisibleCategoriesLimitData',
             'cache_limit' => '_prepareCacheLimitData',
+            'scroll_speed_ratio' => '_prepareScrollSpeedRatioData',
             'pagination' => '_preparePaginationData',
             'photo_quality' => '_preparePhotoQualityData',
             'admin_email' => '_prepareAdminEmailData',
@@ -76,6 +77,16 @@ class SettingsService
         $value = $request->value + 0;
         if ($value < 1 || $value > 10000) {
             $value = 100;
+        }
+        return [
+            'value' => (string) $value,
+        ];
+    }
+    protected function _prepareScrollSpeedRatioData($request): array
+    {
+        $value = $request->value + 0;
+        if ($value < 3 || $value > 1000) {
+            $value = 75;
         }
         return [
             'value' => (string) $value,
@@ -139,6 +150,9 @@ class SettingsService
             ],
             'cache_limit' => [
                 'value' => 100,
+            ],
+            'scroll_speed_ratio' => [
+                'value' => 75,
             ],
             'pagination' => [
                 'perPage' => 3,

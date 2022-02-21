@@ -24,7 +24,6 @@
 
 
         <div id="productList"
-             data-cache-limit="{{ $cacheLimit }}"
              data-total-products-count="{{ $totalProductsCount }}"
              data-section-products-count="{{ $sectionProductsCount }}"
              data-section-page-count="{{ $pageCount }}"
@@ -33,6 +32,8 @@
              data-product-section-name="{{ $productSectionName }}"
              data-additional-section-data="{{ $additionalSectionData }}"
              data-h1-text="{{ $pageTitle }}"
+             data-cache-limit="{{ $cacheLimit }}"
+             data-scroll-speed-ratio="{{ $scrollSpeedRatio }}"
              class="products">
             <div id="productListContent">
                 @each('products.list.product-item', $products, 'product')

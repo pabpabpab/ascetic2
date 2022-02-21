@@ -8,6 +8,7 @@ import MainPageSeo from "./MainPageSeo";
 import VisibleCategoriesLimit from "./VisibleCategoriesLimit";
 import PerPage from "./PerPage";
 import CacheLimit from "./CacheLimit";
+import ScrollSpeedRatio from "./ScrollSpeedRatio";
 import PhotoQuality from "./PhotoQuality";
 import AdminEmail from "./AdminEmail";
 export default {
@@ -18,6 +19,7 @@ export default {
         VisibleCategoriesLimit,
         PerPage,
         CacheLimit,
+        ScrollSpeedRatio,
         PhotoQuality,
         AdminEmail,
     },
@@ -29,6 +31,7 @@ export default {
                 visibleCategoriesLimit: 'VisibleCategoriesLimit',
                 perPage: 'PerPage',
                 cacheLimit: 'CacheLimit',
+                scrollSpeedRatio: 'ScrollSpeedRatio',
                 photoQuality: 'PhotoQuality',
                 adminEmail: 'AdminEmail',
             },

@@ -56,6 +56,16 @@
                 <ul class="mobile_menu__ul">
                     <li class="mobile_menu__li">
                         <router-link
+                            :to="{ name: 'Settings', params: { subject: 'scrollSpeedRatio' } }"
+                            class="mobile_menu__link">
+                            Коэффициент скорости прокрутки (при переключении страниц на сайте)
+                        </router-link>
+                    </li>
+                </ul>
+
+                <ul class="mobile_menu__ul">
+                    <li class="mobile_menu__li">
+                        <router-link
                             :to="{ name: 'Settings', params: { subject: 'photoQuality' } }"
                             class="mobile_menu__link">
                             Качество фото

@@ -24,6 +24,7 @@ class AttachProductListSettings
             'jsAppName' => 'productListApp.js',
             'perPage' => $service->getSettings('pagination')['perPage'],
             'cacheLimit' => $service->getSettings('cache_limit')['value'],
+            'scrollSpeedRatio' => $service->getSettings('scroll_speed_ratio')['value'],
         ]);
 
         return $next($request);
