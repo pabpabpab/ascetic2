@@ -109,7 +109,7 @@ export default class RendererByLinkOfOneProductItem extends Aware {
         this.components.publicUrlMaker.publishUrl();
         this._makeInvisiblePaginationBlock();
 
-        const distance = window.pageYOffset;
+        const distance = window.pageYOffset + window.innerHeight/2;
         scrollDocument(distance, 'up');
     }
 

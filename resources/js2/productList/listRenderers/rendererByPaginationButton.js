@@ -81,7 +81,8 @@ export default class RendererByPaginationButton extends Aware {
         this.components.favoriteProductsIndicationOnPageLoad.displayFavoriteProducts();
         this.components.publicUrlMaker.publishUrl();
         this.components.rendererOfPaginationBlock.remake();
-        const distance = window.pageYOffset;
+
+        const distance = window.pageYOffset + window.innerHeight/2;
         scrollDocument(distance, 'up');
     }
 

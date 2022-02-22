@@ -4053,7 +4053,7 @@ var RendererByLinkOfOneProductItem = /*#__PURE__*/function (_Aware) {
 
       this._makeInvisiblePaginationBlock();
 
-      var distance = window.pageYOffset;
+      var distance = window.pageYOffset + window.innerHeight / 2;
       Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_6__["default"])(distance, 'up');
     }
   }, {
@@ -4233,7 +4233,7 @@ var RendererByPaginationButton = /*#__PURE__*/function (_Aware) {
       this.components.favoriteProductsIndicationOnPageLoad.displayFavoriteProducts();
       this.components.publicUrlMaker.publishUrl();
       this.components.rendererOfPaginationBlock.remake();
-      var distance = window.pageYOffset;
+      var distance = window.pageYOffset + window.innerHeight / 2;
       Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
     }
   }, {
@@ -4436,7 +4436,7 @@ var RendererBySearchSettings = /*#__PURE__*/function (_Aware) {
       this._makeInvisiblePaginationBlock(); //this.components.rendererOfPaginationBlock.remake();
 
 
-      var distance = window.pageYOffset;
+      var distance = window.pageYOffset + window.innerHeight / 2;
       Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
     }
   }, {
@@ -4669,7 +4669,7 @@ var RendererBySectionLink = /*#__PURE__*/function (_Aware) {
       this.components.favoriteProductsIndicationOnPageLoad.displayFavoriteProducts();
       this.components.publicUrlMaker.publishUrl();
       this.components.rendererOfPaginationBlock.remake();
-      var distance = window.pageYOffset;
+      var distance = window.pageYOffset + window.innerHeight / 2;
       Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
     }
   }, {
@@ -5241,7 +5241,7 @@ var RendererOfViewedProductsByLink = /*#__PURE__*/function (_Aware) {
       this.components.favoriteProductsIndicationOnPageLoad.displayFavoriteProducts();
       this.components.publicUrlMaker.publishUrl();
       this.components.rendererOfPaginationBlock.remake();
-      var distance = window.pageYOffset;
+      var distance = window.pageYOffset + window.innerHeight / 2;
       Object(_auxiliaryFunctions_scrollDocument__WEBPACK_IMPORTED_MODULE_3__["default"])(distance, 'up');
     }
   }, {

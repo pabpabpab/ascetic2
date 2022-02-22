@@ -10,7 +10,7 @@
 
 
 @section('content')
-    <section>
+    <section class="product_list__section">
 
         <div class="h1_viewing_sorting_filtering_container">
             <h1 id="productsH1" class="products__h1">
@@ -34,7 +34,7 @@
              data-h1-text="{{ $pageTitle }}"
              data-cache-limit="{{ $cacheLimit }}"
              data-scroll-speed-ratio="{{ $scrollSpeedRatio }}"
-             class="products">
+             class="product_list__wrapper">
             <div id="productListContent">
                 @each('products.list.product-item', $products, 'product')
             </div>

@@ -14,7 +14,7 @@
     data-site-meta="{{ $contacts['meta'] }}"
     data-site-email="{{ $contacts['email'] }}"
     class="bottom_menu">
-    <nav>
+    <nav class="bottom_menu__categories_wrapper">
         <ul id="bottomMenu-allCategories" class="bottom_menu__ul">
             @foreach ($categories as $category)
                 @php
@@ -46,9 +46,9 @@
             @endforeach
         </ul>
     </nav>
-    <div data-order-button="0" class="bottom_menu__contacts">
-        <div class="bottom_menu__contacts__relative">
-            <p data-order-button="0" class="bottom_menu__contacts__absolute">
+    <div data-order-button="0" class="bottom_menu__contacts_wrapper">
+        <div class="bottom_menu__contacts_wrapper__relative">
+            <p data-order-button="0" class="bottom_menu__contacts_wrapper__absolute">
                 Контакты
             </p>
         </div>

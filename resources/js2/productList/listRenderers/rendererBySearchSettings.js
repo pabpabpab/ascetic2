@@ -105,7 +105,7 @@ export default class RendererBySearchSettings extends Aware {
         this._makeInvisiblePaginationBlock();
         //this.components.rendererOfPaginationBlock.remake();
 
-        const distance = window.pageYOffset;
+        const distance = window.pageYOffset + window.innerHeight/2;
         scrollDocument(distance, 'up');
     }
 
