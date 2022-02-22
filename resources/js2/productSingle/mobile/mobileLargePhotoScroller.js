@@ -14,9 +14,11 @@ export default class MobileLargePhotoScroller {
         this.numberOfPhotos = this._getPhotoCount();
 
         this.buttonLeft.addEventListener('click', (e) => {
+            e.stopPropagation();
             this._showNextPhoto(-1);
         });
         this.buttonRight.addEventListener('click', (e) => {
+            e.stopPropagation();
             this._showNextPhoto(1);
         });
     }

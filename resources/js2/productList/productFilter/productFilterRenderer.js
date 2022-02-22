@@ -82,8 +82,12 @@ export default class ProductFilterRenderer extends Aware {
         this._setVisibilityToFalse2();
     }
     _setVisibilityToFalse2() {
+        // только если блок видимый влиять на свойство overflow
+        if (!el(this.wrapSelector).classList.contains(this.hideCss)) {
+            document.body.style.overflow = 'auto';
+        }
+
         el(this.wrapSelector).className = `${this.basicCss} ${this.hideCss}`;
-        document.body.style.overflow = 'auto';
     }
 
     _setInitialDataForFilter() {

@@ -3331,9 +3331,12 @@ var SingleProductQuickViewer = /*#__PURE__*/function (_Aware) {
 
       if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct')) {
         Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#quickProduct').remove();
-      }
+      } // задержка, чтобы сработало после остальных уловителей кликов на сайте
 
-      document.body.style.overflow = 'hidden';
+
+      setTimeout(function () {
+        document.body.style.overflow = 'hidden';
+      }, 5);
       Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('body').insertAdjacentHTML('beforeend', quickProductHtml);
       Object(_productSingle_singleProductKit__WEBPACK_IMPORTED_MODULE_4__["default"])();
     }
@@ -3864,9 +3867,13 @@ var MobileLargePhotoScroller = /*#__PURE__*/function () {
     this.indexOfMainPhoto = 0;
     this.numberOfPhotos = this._getPhotoCount();
     this.buttonLeft.addEventListener('click', function (e) {
+      e.stopPropagation();
+
       _this._showNextPhoto(-1);
     });
     this.buttonRight.addEventListener('click', function (e) {
+      e.stopPropagation();
+
       _this._showNextPhoto(1);
     });
   }

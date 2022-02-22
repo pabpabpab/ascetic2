@@ -73,7 +73,11 @@ export default class SingleProductQuickViewer extends Aware {
             el('#quickProduct').remove();
         }
 
-        document.body.style.overflow = 'hidden';
+        // задержка, чтобы сработало после остальных уловителей кликов на сайте
+        setTimeout(() => {
+            document.body.style.overflow = 'hidden';
+        }, 5);
+
         el('body').insertAdjacentHTML('beforeend', quickProductHtml);
 
         singleProductKit();

@@ -1048,7 +1048,7 @@ h2 {
   }
 
   .viewing_icon__img_minimized {
-    height: 25px;
+    height: 32px;
     margin: 0 0 0 0;
   }
 
@@ -2948,6 +2948,8 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2965,6 +2967,8 @@ h2 {
   width: 500px;
   min-height: 200px;
   padding: 45px 30px 30px 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-color: black;
   font-size: 17px;
   color: #fff;
@@ -2984,6 +2988,19 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  overflow: auto;
+}
+
+.order_window::-webkit-scrollbar {
+  width: 20px;
+  background-color: #000;
+  padding: 10px 15px;
+}
+
+.order_window::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border: 7.5px solid #000;
+  border-radius: 15px;
 }
 
 .order_window__header {
@@ -3093,6 +3110,31 @@ h2 {
   font-size: 55px;
   color: #eee;
   font-weight: 100;
+}
+
+@media screen and (max-width: 550px) {
+  .order_window {
+    width: 100%;
+    min-height: 200px;
+    max-height: 100%;
+    padding: 45px 20px 30px 20px;
+  }
+
+  .order_window__contact_item {
+    padding: 10px 0;
+  }
+
+  .order_window__contact_item__title {
+    font-size: 15px;
+  }
+
+  .order_window__contact_item__content {
+    font-size: 15px;
+  }
+
+  .order_window__contact_item__link {
+    font-size: 15px;
+  }
 }
 
 .auth_absolute_menu__wrapper {
