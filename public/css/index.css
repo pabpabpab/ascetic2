@@ -32,8 +32,30 @@ body {
   display: block;
 }
 
+.content_wrapper_of_product_list {
+  display: block;
+}
+
+.content_wrapper_of_single_product {
+  display: block;
+}
+
 a {
   text-decoration: none;
+}
+
+@media screen and (max-width: 850px) {
+  .content_wrapper {
+    width: 100%;
+  }
+
+  .content_wrapper_of_product_list {
+    width: 95%;
+  }
+
+  .content_wrapper_of_single_product {
+    width: 100%;
+  }
 }
 
 .show_block {
@@ -2142,7 +2164,7 @@ h2 {
       -ms-flex-positive: 10;
           flex-grow: 10;
   font-size: 17px;
-  color: #504b4b;
+  color: #000;
   font-weight: 400;
   padding: 30px 30px;
   -webkit-box-sizing: border-box;
@@ -2159,7 +2181,7 @@ h2 {
 
 .single_product__h1 {
   font-size: 25px;
-  color: #504b4b;
+  color: #000;
   font-weight: 700;
   font-family: "Oswald", sans-serif;
   letter-spacing: 1px;
@@ -2170,7 +2192,7 @@ h2 {
 .single_product__price {
   padding: 10px 0;
   font-size: 22px;
-  color: #504b4b;
+  color: #000;
   font-weight: 400;
   text-align: left;
 }
@@ -2179,7 +2201,7 @@ h2 {
   margin: 0;
   padding: 1px 0;
   font-size: 17px;
-  color: #504b4b;
+  color: #000;
   font-weight: 400;
   text-align: left;
 }
@@ -2187,7 +2209,7 @@ h2 {
 .single_product__category_item__link {
   text-align: left;
   font-size: 17px;
-  color: #322d2d;
+  color: #000;
   font-weight: 400;
   border: none;
 }
@@ -2199,7 +2221,7 @@ h2 {
 .single_product__description {
   padding: 20px 0 10px 0;
   font-size: 17px;
-  color: #504b4b;
+  color: #000;
   font-weight: 400;
   text-align: justify;
 }
@@ -2244,7 +2266,7 @@ h2 {
 .single_product__favorite_icon__text {
   margin-left: 15px;
   font-size: 13px;
-  color: #504b4b;
+  color: #000;
   font-weight: 400;
   font-family: "Oswald", sans-serif;
   letter-spacing: 1px;
@@ -2385,6 +2407,16 @@ h2 {
   }
 }
 
+@media screen and (max-width: 700px) {
+  .single_product__h1 {
+    font-size: 22px;
+  }
+
+  .single_product__price {
+    font-size: 18px;
+  }
+}
+
 @media screen and (min-width: 600px) {
   .single_product__big_photo__scroll_button {
     background-color: rgba(0, 0, 0, 0.1);
@@ -2414,6 +2446,16 @@ h2 {
     height: 19px;
     line-height: 19px;
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .single_product__h1 {
+    font-size: 19px;
+  }
+
+  .single_product__price {
+    font-size: 17px;
   }
 }
 

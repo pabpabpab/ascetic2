@@ -10,7 +10,6 @@
     flex-direction: row
 
 .single_product__all_photo_wrapper
-    //position: fixed
     position: -webkit-sticky
     position: sticky
     top: 80px
@@ -177,7 +176,7 @@
 
 .single_product__top_characteristics
     flex-grow: 10
-    +font(17px, rgb(80, 75, 75), 400)
+    +font(17px, #000, 400)
     padding: 30px 30px
     box-sizing: border-box
     background-color: #fff
@@ -186,29 +185,29 @@
     &__margin_left
         margin-left: 30px // $big_photo_width + 185px
 .single_product__h1
-    +font(25px, rgb(80, 75, 75), 700)
+    +font(25px, #000, 700) // rgb(80, 75, 75)
     font-family: 'Oswald', sans-serif
     letter-spacing: 1px
     text-align: left
     margin: 0
 .single_product__price
     padding: 10px 0
-    +font(22px, rgb(80, 75, 75), 400)
+    +font(22px, #000, 400)
     text-align: left
 .single_product__categories
     margin: 0
     padding: 1px 0
-    +font(17px, rgb(80, 75, 75), 400)
+    +font(17px, #000, 400)
     text-align: left
 .single_product__category_item__link
     text-align: left
-    +font(17px, rgb(50, 45, 45), 400)
+    +font(17px, #000, 400)
     border: none
     &:hover
         border-bottom: 1px solid rgba(50, 45, 45, 0.4)
 .single_product__description
     padding: 20px 0 10px 0
-    +font(17px, rgb(80, 75, 75), 400)
+    +font(17px, #000, 400)
     text-align: justify
 
 .single_product__favorite_icon__wrapper
@@ -234,7 +233,7 @@
     cursor: pointer
 .single_product__favorite_icon__text
     margin-left: 15px
-    +font(13px, rgb(80, 75, 75), 400)
+    +font(13px, #000, 400)
     font-family: $h1_font_family
     letter-spacing: 1px
     white-space: nowrap

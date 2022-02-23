@@ -1133,6 +1133,74 @@ function setCookie(name, value) {
 
 /***/ }),
 
+/***/ "./resources/js2/cssManager/cssManager.js":
+/*!************************************************!*\
+  !*** ./resources/js2/cssManager/cssManager.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return headerVisibilityManager; });
+/* harmony import */ var _auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auxiliaryFunctions/el */ "./resources/js2/auxiliaryFunctions/el.js");
+/* harmony import */ var _parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../parentClasses/app/aware */ "./resources/js2/parentClasses/app/aware.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var headerVisibilityManager = /*#__PURE__*/function (_Aware) {
+  _inherits(headerVisibilityManager, _Aware);
+
+  var _super = _createSuper(headerVisibilityManager);
+
+  function headerVisibilityManager() {
+    _classCallCheck(this, headerVisibilityManager);
+
+    return _super.call(this);
+  }
+
+  _createClass(headerVisibilityManager, [{
+    key: "checkSectionSettings",
+    value: function checkSectionSettings() {
+      var sectionName = this.state.sectionSettings.productSectionName;
+
+      if (['singleProduct'].includes(sectionName)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.content_wrapper').classList.add('content_wrapper_of_single_product');
+      } else {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('.content_wrapper').classList.remove('content_wrapper_of_single_product');
+      }
+    }
+  }]);
+
+  return headerVisibilityManager;
+}(_parentClasses_app_aware__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+
+/***/ }),
+
 /***/ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js":
 /*!********************************************************************************!*\
   !*** ./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js ***!
@@ -5392,20 +5460,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _listRenderers_rendererBySortSettings__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./listRenderers/rendererBySortSettings */ "./resources/js2/productList/listRenderers/rendererBySortSettings.js");
 /* harmony import */ var _listRenderers_RendererByLinkOfOneProductItem__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./listRenderers/RendererByLinkOfOneProductItem */ "./resources/js2/productList/listRenderers/RendererByLinkOfOneProductItem.js");
 /* harmony import */ var _h1Renderer_h1Renderer__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../h1Renderer/h1Renderer */ "./resources/js2/h1Renderer/h1Renderer.js");
-/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
-/* harmony import */ var _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./viewMoreButton/viewMoreButtonManager */ "./resources/js2/productList/viewMoreButton/viewMoreButtonManager.js");
-/* harmony import */ var _headerManager_headerVisibilityManager__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./headerManager/headerVisibilityManager */ "./resources/js2/productList/headerManager/headerVisibilityManager.js");
-/* harmony import */ var _productView_productViewSwitcher__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./productView/productViewSwitcher */ "./resources/js2/productList/productView/productViewSwitcher.js");
-/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
-/* harmony import */ var _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productSorter/sortMenuVisibilityManager */ "./resources/js2/productList/productSorter/sortMenuVisibilityManager.js");
-/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
-/* harmony import */ var _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./productFilter/productFilterHandler */ "./resources/js2/productList/productFilter/productFilterHandler.js");
-/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
-/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
-/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
-/* harmony import */ var _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../settings/settingsSetterOnPageLoad */ "./resources/js2/settings/settingsSetterOnPageLoad.js");
-/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
-/* harmony import */ var _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../orderWindow/orderWindow */ "./resources/js2/orderWindow/orderWindow.js");
+/* harmony import */ var _cssManager_cssManager__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../cssManager/cssManager */ "./resources/js2/cssManager/cssManager.js");
+/* harmony import */ var _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../menu/menuLinkCssMaker */ "./resources/js2/menu/menuLinkCssMaker.js");
+/* harmony import */ var _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./viewMoreButton/viewMoreButtonManager */ "./resources/js2/productList/viewMoreButton/viewMoreButtonManager.js");
+/* harmony import */ var _headerManager_headerVisibilityManager__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./headerManager/headerVisibilityManager */ "./resources/js2/productList/headerManager/headerVisibilityManager.js");
+/* harmony import */ var _productView_productViewSwitcher__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./productView/productViewSwitcher */ "./resources/js2/productList/productView/productViewSwitcher.js");
+/* harmony import */ var _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./productSorter/productSortMenuRenderer */ "./resources/js2/productList/productSorter/productSortMenuRenderer.js");
+/* harmony import */ var _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./productSorter/sortMenuVisibilityManager */ "./resources/js2/productList/productSorter/sortMenuVisibilityManager.js");
+/* harmony import */ var _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./productFilter/productFilterRenderer */ "./resources/js2/productList/productFilter/productFilterRenderer.js");
+/* harmony import */ var _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./productFilter/productFilterHandler */ "./resources/js2/productList/productFilter/productFilterHandler.js");
+/* harmony import */ var _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./productFilter/searchSettingsObserverForProductFilterRenderer */ "./resources/js2/productList/productFilter/searchSettingsObserverForProductFilterRenderer.js");
+/* harmony import */ var _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./productFilter/totalIndicatorOfFilterParameters */ "./resources/js2/productList/productFilter/totalIndicatorOfFilterParameters.js");
+/* harmony import */ var _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./productFilter/topTotalSearchParametersRenderer */ "./resources/js2/productList/productFilter/topTotalSearchParametersRenderer.js");
+/* harmony import */ var _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../settings/settingsSetterOnPageLoad */ "./resources/js2/settings/settingsSetterOnPageLoad.js");
+/* harmony import */ var _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../favoriteProducts/favoriteProductsIndicationOnPageLoad */ "./resources/js2/favoriteProducts/favoriteProductsIndicationOnPageLoad.js");
+/* harmony import */ var _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../orderWindow/orderWindow */ "./resources/js2/orderWindow/orderWindow.js");
+
 
 
 
@@ -5463,26 +5533,27 @@ __webpack_require__.r(__webpack_exports__);
   publicUrlMaker: new _urlMaker_publicUrlMaker__WEBPACK_IMPORTED_MODULE_3__["default"](),
   // -----------------------------------------
   h1Renderer: new _h1Renderer_h1Renderer__WEBPACK_IMPORTED_MODULE_18__["default"](),
-  menuLinkCssMaker: new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_19__["default"](),
-  viewMoreButtonManager: new _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_20__["default"](),
-  headerVisibilityManager: new _headerManager_headerVisibilityManager__WEBPACK_IMPORTED_MODULE_21__["default"](),
-  sortMenuVisibilityManager: new _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_24__["default"](),
+  cssManager: new _cssManager_cssManager__WEBPACK_IMPORTED_MODULE_19__["default"](),
+  menuLinkCssMaker: new _menu_menuLinkCssMaker__WEBPACK_IMPORTED_MODULE_20__["default"](),
+  viewMoreButtonManager: new _viewMoreButton_viewMoreButtonManager__WEBPACK_IMPORTED_MODULE_21__["default"](),
+  headerVisibilityManager: new _headerManager_headerVisibilityManager__WEBPACK_IMPORTED_MODULE_22__["default"](),
+  sortMenuVisibilityManager: new _productSorter_sortMenuVisibilityManager__WEBPACK_IMPORTED_MODULE_25__["default"](),
   // -----------------------------------------
-  sortMenuRenderer: new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_23__["default"](),
+  sortMenuRenderer: new _productSorter_productSortMenuRenderer__WEBPACK_IMPORTED_MODULE_24__["default"](),
   // -----------------------------------------
-  viewSwitcher: new _productView_productViewSwitcher__WEBPACK_IMPORTED_MODULE_22__["default"](),
+  viewSwitcher: new _productView_productViewSwitcher__WEBPACK_IMPORTED_MODULE_23__["default"](),
   // -----------------------------------------
-  productFilterRenderer: new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_25__["default"](),
-  productFilterHandler: new _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_26__["default"](),
-  searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_27__["default"](),
-  totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_28__["default"](),
-  topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_29__["default"](),
+  productFilterRenderer: new _productFilter_productFilterRenderer__WEBPACK_IMPORTED_MODULE_26__["default"](),
+  productFilterHandler: new _productFilter_productFilterHandler__WEBPACK_IMPORTED_MODULE_27__["default"](),
+  searchSettingsObserverForFilterRenderer: new _productFilter_searchSettingsObserverForProductFilterRenderer__WEBPACK_IMPORTED_MODULE_28__["default"](),
+  totalIndicatorOfFilterParameters: new _productFilter_totalIndicatorOfFilterParameters__WEBPACK_IMPORTED_MODULE_29__["default"](),
+  topTotalSearchParametersRenderer: new _productFilter_topTotalSearchParametersRenderer__WEBPACK_IMPORTED_MODULE_30__["default"](),
   // -----------------------------------------
-  orderWindow: new _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_32__["default"](),
+  orderWindow: new _orderWindow_orderWindow__WEBPACK_IMPORTED_MODULE_33__["default"](),
   // -----------------------------------------
   // при загрузке страницы с сервера с поисковыми параметрами в url
-  settingsSetterOnPageLoad: new _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_30__["default"](),
-  favoriteProductsIndicationOnPageLoad: new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_31__["default"]()
+  settingsSetterOnPageLoad: new _settings_settingsSetterOnPageLoad__WEBPACK_IMPORTED_MODULE_31__["default"](),
+  favoriteProductsIndicationOnPageLoad: new _favoriteProducts_favoriteProductsIndicationOnPageLoad__WEBPACK_IMPORTED_MODULE_32__["default"]()
 });
 
 /***/ }),

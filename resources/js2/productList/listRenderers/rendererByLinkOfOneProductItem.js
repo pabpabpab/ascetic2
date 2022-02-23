@@ -93,6 +93,7 @@ export default class RendererByLinkOfOneProductItem extends Aware {
             el('#productListContent').remove();
         }
         this.wrapper.insertAdjacentHTML('afterbegin', singleProductHtml);
+
         singleProductKit();
     }
 

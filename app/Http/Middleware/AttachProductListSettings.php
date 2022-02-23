@@ -21,6 +21,7 @@ class AttachProductListSettings
         $service = new SettingsService();
 
         View::share([
+            'isProductList' => true,
             'jsAppName' => 'productListApp.js',
             'perPage' => $service->getSettings('pagination')['perPage'],
             'cacheLimit' => $service->getSettings('cache_limit')['value'],

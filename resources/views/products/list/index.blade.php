@@ -35,9 +35,11 @@
              data-cache-limit="{{ $cacheLimit }}"
              data-scroll-speed-ratio="{{ $scrollSpeedRatio }}"
              class="product_list__wrapper">
+
             <div id="productListContent">
                 @each('products.list.product-item', $products, 'product')
             </div>
+
         </div>
     </section>
 

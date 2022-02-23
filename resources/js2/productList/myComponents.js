@@ -17,6 +17,7 @@ import RendererBySearchSettings from "./listRenderers/rendererBySearchSettings";
 import RendererBySortSettings from "./listRenderers/rendererBySortSettings";
 import RendererByLinkOfOneProductItem from "./listRenderers/RendererByLinkOfOneProductItem";
 import H1Renderer from "../h1Renderer/h1Renderer";
+import CssManager from "../cssManager/cssManager";
 import MenuLinkCssMaker from "../menu/menuLinkCssMaker";
 import ViewMoreButtonManager from "./viewMoreButton/viewMoreButtonManager";
 import HeaderVisibilityManager from "./headerManager/headerVisibilityManager";
@@ -65,6 +66,7 @@ export default {
     // -----------------------------------------
 
     h1Renderer: new H1Renderer(),
+    cssManager: new CssManager(),
     menuLinkCssMaker: new MenuLinkCssMaker(),
     viewMoreButtonManager: new ViewMoreButtonManager(),
     headerVisibilityManager: new HeaderVisibilityManager(),
@@ -91,6 +93,4 @@ export default {
     settingsSetterOnPageLoad: new SettingsSetterOnPageLoad(),
 
     favoriteProductsIndicationOnPageLoad: new FavoriteProductsIndicationOnPageLoad(),
-
-
 }

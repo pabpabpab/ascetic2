@@ -81,7 +81,7 @@
         <div data-menu-contact-link="mobile" data-order-button="0" class="top_menu__li">
             <p data-order-button="0" class="top_menu__link m0">
                 <img data-order-button="0" alt=""
-                     src="{{ asset('/images/contacts2.svg') }}"
+                     src="{{ asset('/images/contacts.svg') }}"
                      class="top_menu__contacts_icon__img">
             </p>
         </div>
