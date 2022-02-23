@@ -2,6 +2,7 @@ import singleProductKit from "./productSingle/singleProductKit";
 import components from "./productSingle/myComponents";
 import MenuVisibilityManager from "./menu/menuVisibilityManager";
 import TopDropMenuFiller from "./menu/topDropMenuFiller";
+import MobileMenu from "./menu/mobileMenu";
 import authKit from "./auth/index-authKit";
 import FavoriteProductsSwitcher from "./favoriteProducts/favoriteProductsSwitcher";
 import FavoriteProductsTotalCountIndication from "./favoriteProducts/favoriteProductsTotalCountIndication";
@@ -25,6 +26,7 @@ new FavoriteProductsSwitcher();
 new FavoriteProductsTotalCountIndication();
 new MenuVisibilityManager();
 new TopDropMenuFiller();
+new MobileMenu();
 authKit();
 
 
