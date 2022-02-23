@@ -13,15 +13,10 @@
         $userName = \Illuminate\Support\Facades\Auth::user()->name;
         $ellipsis = strlen($userName) > 12 ? '...' : '';
         $userName = $isAdmin ? 'Admin panel' : substr($userName, 0, 12) . $ellipsis;
-        $mobileUserName = $isAdmin ? 'Admin' : substr($userName, 0, 1) . '...';
     @endphp
 
-    <a href="{{ $userUrl }}" data-menu-user-link="desktop" class="top_menu__link nowrap">
+    <a href="{{ $userUrl }}" class="top_menu__link top_menu__link_auth nowrap">
         {{ $userName }}
-    </a>
-
-    <a href="{{ $userUrl }}" data-menu-user-link="mobile" class="top_menu__link nowrap">
-        {{ $mobileUserName }}
     </a>
 
     <a href="{{ route('account.logout') }}" title="Выйти из аккаунта" class="top_menu__link top_menu__link_account_exit">

@@ -15,12 +15,19 @@ export default class Register extends AbsoluteForm {
         this.wrapSelector = '#regForm';
         this.submitSelector = '#regSubmit';
 
+        this.loginFormSelector = '#loginForm';
+
         this.validationFunction = registerValidation;
     }
 
     _preRenderActions() {
         if (!el('#authAbsoluteMenu')) return;
         el('#authAbsoluteMenu').className = `auth_absolute_menu__wrapper hide_block`;
+
+        if (el(this.loginFormSelector) && el(this.loginFormSelector).classList.contains(this.showCss)) {
+            el(this.loginFormSelector).classList.remove(this.showCss);
+            el(this.loginFormSelector).classList.add(this.hideCss);
+        }
     }
 
     _getHtml(data) {

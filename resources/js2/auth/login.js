@@ -23,6 +23,8 @@ export default class Login extends AbsoluteForm {
         this.wrapSelector = '#loginForm';
         this.submitSelector = '#loginSubmit';
 
+        this.regFormSelector = '#regForm';
+
         this.validationFunction = loginValidation;
     }
 
@@ -30,6 +32,11 @@ export default class Login extends AbsoluteForm {
     _preRenderActions() {
         if (!el('#authAbsoluteMenu')) return;
         el('#authAbsoluteMenu').className = `auth_absolute_menu__wrapper hide_block`;
+
+        if (el(this.regFormSelector) && el(this.regFormSelector).classList.contains(this.showCss)) {
+            el(this.regFormSelector).classList.remove(this.showCss);
+            el(this.regFormSelector).classList.add(this.hideCss);
+        }
     }
 
     _additionalFirstRenderActions() {

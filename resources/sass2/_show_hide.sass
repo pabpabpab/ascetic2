@@ -3,6 +3,22 @@
     visibility: visible
     opacity: 1
     animation: showBlock .5s
+.hide_block
+    visibility: hidden
+    opacity: 0
+    animation: hideBlock .5s
+
+
+.show_block_forwards
+    visibility: visible
+    opacity: 1
+    animation: showBlock .5s forwards
+.hide_block_forwards
+    visibility: hidden
+    opacity: 0
+    animation: hideBlock .5s forwards
+
+
 @keyframes showBlock
     from, to
         opacity: 0
@@ -11,10 +27,6 @@
         opacity: 1
         visibility: visible
 
-.hide_block
-    visibility: hidden
-    opacity: 0
-    animation: hideBlock .5s
 @keyframes hideBlock
     from, to
         opacity: 1

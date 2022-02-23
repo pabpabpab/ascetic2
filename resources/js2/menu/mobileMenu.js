@@ -4,12 +4,13 @@ import getMobileMenuCollapseIconHtml from '../html/menu/getMobileMenuCollapseIco
 
 export default class MobileMenu {
     constructor() {
-        this.wrapSelector = `#mobileMenuWrapper`;
+        this.wrapSelector = '#mobileMenuWrapper';
         this.basicCss = 'mobile_menu__wrapper';
         this.showCss = 'show_block';
         this.hideCss = 'hide_block';
         this.menuIconSelector = '#mobileMenuIconContent';
         this.collapseIconSelector = '#mobileMenuCollapseIconContent';
+        this.authMenuSelector = '.top_menu__li_auth';
 
         this.initiator = el('#mobileMenuIconWrapper');
         if (!this.initiator) {
@@ -55,6 +56,7 @@ export default class MobileMenu {
         document.body.style.overflow = 'hidden';
         el(this.wrapSelector).className = `${this.basicCss} ${this.showCss}`;
         this._switchMenuIcon();
+        this._turnOnAuthMenu();
     }
     _setVisibilityToFalse() {
         // только если блок видимый влиять на свойство overflow
@@ -63,11 +65,8 @@ export default class MobileMenu {
         }
         el(this.wrapSelector).className = `${this.basicCss} ${this.hideCss}`;
         this._switchMenuIcon();
+        this._turnOffAuthMenu();
     }
-
-
-
-
 
     _switchMenuIcon() {
         if (!el(this.collapseIconSelector)) {
@@ -96,5 +95,14 @@ export default class MobileMenu {
         el(this.collapseIconSelector).classList.add('display-none');
     }
 
+
+    _turnOnAuthMenu() {
+        el(this.authMenuSelector).classList.remove('hide_block_forwards');
+        el(this.authMenuSelector).classList.add('show_block_forwards');
+    }
+    _turnOffAuthMenu() {
+        el(this.authMenuSelector).classList.remove('show_block_forwards');
+        el(this.authMenuSelector).classList.add('hide_block_forwards');
+    }
 }
 

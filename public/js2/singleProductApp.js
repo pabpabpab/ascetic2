@@ -404,6 +404,7 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
     _this.successUrl = successUrl;
     _this.wrapSelector = '#loginForm';
     _this.submitSelector = '#loginSubmit';
+    _this.regFormSelector = '#regForm';
     _this.validationFunction = _validation_loginValidation__WEBPACK_IMPORTED_MODULE_5__["default"];
     return _this;
   }
@@ -413,6 +414,11 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
     value: function _preRenderActions() {
       if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu')) return;
       Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu').className = "auth_absolute_menu__wrapper hide_block";
+
+      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.regFormSelector) && Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.regFormSelector).classList.contains(this.showCss)) {
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.regFormSelector).classList.remove(this.showCss);
+        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.regFormSelector).classList.add(this.hideCss);
+      }
     }
   }, {
     key: "_additionalFirstRenderActions",
@@ -645,6 +651,7 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
     _this.successUrl = successUrl;
     _this.wrapSelector = '#regForm';
     _this.submitSelector = '#regSubmit';
+    _this.loginFormSelector = '#loginForm';
     _this.validationFunction = _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_3__["default"];
     return _this;
   }
@@ -654,6 +661,11 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
     value: function _preRenderActions() {
       if (!Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu')) return;
       Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu').className = "auth_absolute_menu__wrapper hide_block";
+
+      if (Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.loginFormSelector) && Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.loginFormSelector).classList.contains(this.showCss)) {
+        Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.loginFormSelector).classList.remove(this.showCss);
+        Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.loginFormSelector).classList.add(this.hideCss);
+      }
     }
   }, {
     key: "_getHtml",
@@ -1403,9 +1415,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getAuthenticatedMenuHtml; });
 function getAuthenticatedMenuHtml(userName, isAdmin) {
   var ellipsis = userName.length > 12 ? '...' : '';
-  var userLink = isAdmin ? "<a href=\"/admin\" data-menu-user-link=\"desktop\" class=\"top_menu__link nowrap\">Admin panel</a>" : "<a href=\"/my\" data-menu-user-link=\"desktop\" class=\"top_menu__link nowrap\">".concat(userName.slice(0, 12)).concat(ellipsis, "</a>");
-  var mobileUserLink = isAdmin ? "<a href=\"/admin\" data-menu-user-link=\"mobile\" class=\"top_menu__link nowrap\">Admin</a>" : "<a href=\"/my\" data-menu-user-link=\"mobile\" class=\"top_menu__link nowrap\">".concat(userName.slice(0, 1), "...</a>");
-  return "<div id=\"authMenuContent\" class=\"display-flex\">\n                ".concat(userLink, "\n                ").concat(mobileUserLink, "\n                <a href=\"/logout\" title=\"\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430\" class=\"top_menu__link top_menu__link_account_exit\">\n                    <img alt=\"\" src=\"/images/accountExitIcon.svg\" class=\"account_exit__icon mr15\">\n                </a>\n            </div>");
+  var userLink = isAdmin ? "<a href=\"/admin\" class=\"top_menu__link top_menu__link_auth nowrap\">Admin panel</a>" : "<a href=\"/my\" class=\"top_menu__link top_menu__link_auth nowrap\">".concat(userName.slice(0, 12)).concat(ellipsis, "</a>");
+  return "<div id=\"authMenuContent\" class=\"display-flex\">\n                ".concat(userLink, "\n                <a href=\"/logout\" title=\"\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430\" class=\"top_menu__link top_menu__link_account_exit\">\n                    <img alt=\"\" src=\"/images/accountExitIcon.svg\" class=\"account_exit__icon mr15\">\n                </a>\n            </div>");
 }
 
 /***/ }),
@@ -2306,12 +2317,13 @@ var MobileMenu = /*#__PURE__*/function () {
 
     _classCallCheck(this, MobileMenu);
 
-    this.wrapSelector = "#mobileMenuWrapper";
+    this.wrapSelector = '#mobileMenuWrapper';
     this.basicCss = 'mobile_menu__wrapper';
     this.showCss = 'show_block';
     this.hideCss = 'hide_block';
     this.menuIconSelector = '#mobileMenuIconContent';
     this.collapseIconSelector = '#mobileMenuCollapseIconContent';
+    this.authMenuSelector = '.top_menu__li_auth';
     this.initiator = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#mobileMenuIconWrapper');
 
     if (!this.initiator) {
@@ -2373,6 +2385,8 @@ var MobileMenu = /*#__PURE__*/function () {
       Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.showCss);
 
       this._switchMenuIcon();
+
+      this._turnOnAuthMenu();
     }
   }, {
     key: "_setVisibilityToFalse",
@@ -2385,6 +2399,8 @@ var MobileMenu = /*#__PURE__*/function () {
       Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).className = "".concat(this.basicCss, " ").concat(this.hideCss);
 
       this._switchMenuIcon();
+
+      this._turnOffAuthMenu();
     }
   }, {
     key: "_switchMenuIcon",
@@ -2423,6 +2439,18 @@ var MobileMenu = /*#__PURE__*/function () {
     key: "_turnOffCollapseIcon",
     value: function _turnOffCollapseIcon() {
       Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.collapseIconSelector).classList.add('display-none');
+    }
+  }, {
+    key: "_turnOnAuthMenu",
+    value: function _turnOnAuthMenu() {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.authMenuSelector).classList.remove('hide_block_forwards');
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.authMenuSelector).classList.add('show_block_forwards');
+    }
+  }, {
+    key: "_turnOffAuthMenu",
+    value: function _turnOffAuthMenu() {
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.authMenuSelector).classList.remove('show_block_forwards');
+      Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.authMenuSelector).classList.add('hide_block_forwards');
     }
   }]);
 
@@ -3242,6 +3270,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
@@ -3279,10 +3311,31 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
       e.preventDefault();
       e.stopPropagation();
 
-      _this._render();
+      _this._render(e);
     });
     return _this;
   }
+
+  _createClass(VisibleBlockByClick, [{
+    key: "_render",
+    value: function _render(e) {
+      this._preRenderActions();
+
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector)) {
+        this._firstRender();
+
+        this._justSetVisibilityToTrue();
+
+        return;
+      }
+
+      if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.wrapSelector).classList.contains(this.showCss)) {
+        this._justSetVisibilityToTrue();
+      } else {
+        this._setVisibilityToFalse(e);
+      }
+    }
+  }]);
 
   return VisibleBlockByClick;
 }(_visibleBlock__WEBPACK_IMPORTED_MODULE_1__["default"]);
