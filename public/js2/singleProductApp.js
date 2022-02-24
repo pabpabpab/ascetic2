@@ -1416,7 +1416,7 @@ __webpack_require__.r(__webpack_exports__);
 function getAuthenticatedMenuHtml(userName, isAdmin) {
   var ellipsis = userName.length > 12 ? '...' : '';
   var userLink = isAdmin ? "<a href=\"/admin\" class=\"top_menu__link top_menu__link_auth nowrap\">Admin panel</a>" : "<a href=\"/my\" class=\"top_menu__link top_menu__link_auth nowrap\">".concat(userName.slice(0, 12)).concat(ellipsis, "</a>");
-  return "<div id=\"authMenuContent\" class=\"display-flex\">\n                ".concat(userLink, "\n                <a href=\"/logout\" title=\"\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430\" class=\"top_menu__link top_menu__link_account_exit\">\n                    <img alt=\"\" src=\"/images/accountExitIcon.svg\" class=\"account_exit__icon mr15\">\n                </a>\n            </div>");
+  return "<div id=\"authMenuContent\" class=\"display-flex\">\n                ".concat(userLink, "\n                <a href=\"/logout\" title=\"\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0430\u043A\u043A\u0430\u0443\u043D\u0442\u0430\" class=\"top_menu__link top_menu__link_account_exit\">\n                    <img alt=\"\" src=\"/images/accountExitIcon.svg\" class=\"account_exit__icon\">\n                </a>\n            </div>");
 }
 
 /***/ }),
