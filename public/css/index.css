@@ -466,7 +466,7 @@ body {
   height: 26px;
 }
 
-[data-mobile-menu-icon="1"] {
+#mobileMenuIconWrapper {
   display: none;
 }
 
@@ -517,7 +517,7 @@ body {
     display: none;
   }
 
-  [data-mobile-menu-icon="1"] {
+  #mobileMenuIconWrapper {
     display: block;
   }
 

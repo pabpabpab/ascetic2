@@ -9,10 +9,13 @@ export default class VisibleBlockByClick extends VisibleBlock {
         }
         el(data.clickSourceSelector).addEventListener('click', (e) => {
             e.preventDefault();
-            e.stopPropagation();
-            this._render(e);
+            //e.stopPropagation();
+            setTimeout(() => {
+                this._render(e);
+            }, 100);
         });
     }
+
 
     _render(e) {
         this._preRenderActions();

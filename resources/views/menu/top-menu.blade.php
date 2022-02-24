@@ -96,17 +96,13 @@
         <div class="top_menu__li_auth">
             @include('menu.auth-menu')
         </div>
-        <div id="mobileMenuIconWrapper" data-mobile-menu-icon="1" class="top_menu__mobile_menu_icon__wrapper">
+        <div id="mobileMenuIconWrapper" class="top_menu__mobile_menu_icon__wrapper">
             <p id="mobileMenuIconContent" class="top_menu__mobile_menu_icon__content">
-                <img data-mobile-menu-icon="1" alt=""
+                <img alt=""
                      src="{{ asset('/images/blackMobileMenuIcon.svg') }}"
                      class="top_menu__mobile_menu_icon__img">
             </p>
         </div>
     </div>
 </header>
-{{--
 
-
-
---}}

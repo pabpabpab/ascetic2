@@ -404,7 +404,6 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
     _this.successUrl = successUrl;
     _this.wrapSelector = '#loginForm';
     _this.submitSelector = '#loginSubmit';
-    _this.regFormSelector = '#regForm';
     _this.validationFunction = _validation_loginValidation__WEBPACK_IMPORTED_MODULE_5__["default"];
     return _this;
   }
@@ -414,11 +413,6 @@ var Login = /*#__PURE__*/function (_AbsoluteForm) {
     value: function _preRenderActions() {
       if (!Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu')) return;
       Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu').className = "auth_absolute_menu__wrapper hide_block";
-
-      if (Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.regFormSelector) && Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.regFormSelector).classList.contains(this.showCss)) {
-        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.regFormSelector).classList.remove(this.showCss);
-        Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(this.regFormSelector).classList.add(this.hideCss);
-      }
     }
   }, {
     key: "_additionalFirstRenderActions",
@@ -651,7 +645,6 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
     _this.successUrl = successUrl;
     _this.wrapSelector = '#regForm';
     _this.submitSelector = '#regSubmit';
-    _this.loginFormSelector = '#loginForm';
     _this.validationFunction = _validation_registerValidation_js__WEBPACK_IMPORTED_MODULE_3__["default"];
     return _this;
   }
@@ -661,11 +654,6 @@ var Register = /*#__PURE__*/function (_AbsoluteForm) {
     value: function _preRenderActions() {
       if (!Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu')) return;
       Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])('#authAbsoluteMenu').className = "auth_absolute_menu__wrapper hide_block";
-
-      if (Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.loginFormSelector) && Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.loginFormSelector).classList.contains(this.showCss)) {
-        Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.loginFormSelector).classList.remove(this.showCss);
-        Object(_auxiliaryFunctions_el_js__WEBPACK_IMPORTED_MODULE_0__["default"])(this.loginFormSelector).classList.add(this.hideCss);
-      }
     }
   }, {
     key: "_getHtml",
@@ -3308,10 +3296,11 @@ var VisibleBlockByClick = /*#__PURE__*/function (_VisibleBlock) {
     }
 
     Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])(data.clickSourceSelector).addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault(); //e.stopPropagation();
 
-      _this._render(e);
+      setTimeout(function () {
+        _this._render(e);
+      }, 100);
     });
     return _this;
   }
