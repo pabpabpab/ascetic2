@@ -21,7 +21,7 @@ class CheckRole
         if (blank(Auth::user())) {
             return $request->expectsJson()
                 ? response()->json(['accessDeniedReason' => 'unauthorizedUser'])
-                : route('account.login.show');
+                : redirect()->route('account.login.show');
         }
 
         if(! Auth::user()->_hasRole($role)) {

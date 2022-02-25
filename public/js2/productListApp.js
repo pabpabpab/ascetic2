@@ -2338,7 +2338,7 @@ __webpack_require__.r(__webpack_exports__);
 function getPhotoBlockHtml(product, viewMode) {
   var bigView = viewMode === 'bigView' ? 'big_view' : '';
   var photoFolder = "/storage/products-photos-size3/";
-  return "<a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                    alt=\"\"\n                    data-product-item-link=\"").concat(product.id, "\"\n                    class=\"photo__size3 ").concat(bigView, "\"/>\n            </a>");
+  return "<a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                    alt=\"\"\n                    data-product-item-link=\"").concat(product.id, "\"\n                    class=\"product_item__photo_img ").concat(bigView, "\"/>\n            </a>");
 }
 
 /***/ }),

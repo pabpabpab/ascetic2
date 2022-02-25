@@ -72,11 +72,11 @@ Route::get('/my', [App\Http\Controllers\MyPageController::class, 'index'])
 
 Route::get('/admin', function () {
     return view('admin.index_vuex');
-})->middleware(['auth', 'role:admin'])->name('adminPanel');
+})->middleware(['role:admin'])->name('adminPanel');
 
-Route::get('/admin/{any}', function ($any) {
+Route::get('/admin/{any}', function () {
     return view('admin.index_vuex');
-})->where('any', '.*')->middleware(['auth', 'role:admin']);
+})->where('any', '.*')->middleware(['role:admin']);
 
 
 

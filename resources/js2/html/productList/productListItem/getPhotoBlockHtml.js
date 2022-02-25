@@ -5,6 +5,6 @@ export default function getPhotoBlockHtml(product, viewMode) {
                 <img src='${photoFolder}${product.id}s3-${product.photos[0]}'
                     alt=""
                     data-product-item-link="${product.id}"
-                    class="photo__size3 ${bigView}"/>
+                    class="product_item__photo_img ${bigView}"/>
             </a>`;
 }

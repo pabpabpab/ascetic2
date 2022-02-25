@@ -4,14 +4,16 @@
     width: $photo_size3_big_width !important
 
 .product_item__wrapper
-    width: auto
+    //width: 19%
+    box-sizing: border-box
+    margin: 5px
 .product_item
     position: relative
     display: block
-    min-width: 130px
-    width: $photo_size3_width
+    //min-width: 130px
+    width: 100% //$photo_size3_width
     //max-width: $photo_size3_width
-    margin: 10px 10px 10px 10px
+    margin: 0 //10px 10px 10px 10px
     padding: 0
     text-align: left
     background-color: rgba(255, 255, 255, 0)
@@ -30,6 +32,8 @@
     &:hover .product_item__favorite_icon__wrapper
         opacity: 1
 
+    &__photo_img
+        width: 100%
 
     &__favorite_icon__wrapper
         position: absolute

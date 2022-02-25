@@ -32,11 +32,14 @@
 
 @include('menu.top-menu')
 
-<main class="content_wrapper {{ $additionalContentWrapperCss }}">
-    @yield('content')
-</main>
+<div class="content_wrapper {{ $additionalContentWrapperCss }}">
+    <main class="content_main_tag">
+        @yield('content')
+    </main>
 
-@include('blocks.viewed-products-summary')
+    @include('blocks.viewed-products-summary')
+</div>
+
 
 @include('menu.bottom-menu')
 
