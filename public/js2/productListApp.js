@@ -2335,10 +2335,9 @@ function getNoPhotoBlockHtml() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getPhotoBlockHtml; });
-function getPhotoBlockHtml(product, viewMode) {
-  var bigView = viewMode === 'bigView' ? 'big_view' : '';
+function getPhotoBlockHtml(product) {
   var photoFolder = "/storage/products-photos-size3/";
-  return "<a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                    alt=\"\"\n                    data-product-item-link=\"").concat(product.id, "\"\n                    class=\"product_item__photo_img ").concat(bigView, "\"/>\n            </a>");
+  return "<a href='/product/".concat(product.slug, "-").concat(product.id, "'>\n                <img src='").concat(photoFolder).concat(product.id, "s3-").concat(product.photos[0], "'\n                    alt=\"\"\n                    data-product-item-link=\"").concat(product.id, "\"\n                    class=\"product_item__photo__img\"/>\n            </a>");
 }
 
 /***/ }),
@@ -2367,7 +2366,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getProductsItemHtml(product, viewMode) {
   var bigView = viewMode === 'bigView' ? 'big_view' : '';
-  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper\">\n               <div class=\"product_item ").concat(bigView, "\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__photo_wrapper\">\n                         <div class=\"product_item__quick_view_link__wrapper\">\n                            <a data-quick-view=\"").concat(product.id, "\"\n                               href='/product/").concat(product.slug, "-").concat(product.id, "'\n                               class=\"product_item__quick_view_link\">\n                                  \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                            </a>\n                         </div>\n\n                         ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product, viewMode) : Object(_getNoPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(), "\n                      </div>\n\n                      <div>\n                          <div class=\"product_item__price_and_order\">\n                              <div class=\"product_item__price\">\n                                 ").concat(product.price, " \u20BD\n                              </div>\n                              <div data-order-button=\"").concat(product.id, "\"\n                                 class=\"product_item__order_icon__wrapper\">\n                                 <img data-order-button=\"").concat(product.id, "\"\n                                    alt=\"\"\n                                    src=\"/images/orderIcon.svg\"\n                                    class=\"product_item__order_icon__img\">\n                              </div>\n                          </div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
+  return "<div data-product-item=\"".concat(product.id, "\" class=\"product_item__wrapper ").concat(bigView, "\">\n               <div class=\"product_item\">\n\n                  <div class=\"product_item__content\">\n\n                      <div class=\"product_item__photo_wrapper\">\n                         <div class=\"product_item__quick_view_link__wrapper\">\n                            <a data-quick-view=\"").concat(product.id, "\"\n                               href='/product/").concat(product.slug, "-").concat(product.id, "'\n                               class=\"product_item__quick_view_link\">\n                                  \u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\n                            </a>\n                         </div>\n\n                         ").concat(Boolean(product.photos) ? Object(_getPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_1__["default"])(product) : Object(_getNoPhotoBlockHtml__WEBPACK_IMPORTED_MODULE_2__["default"])(), "\n                      </div>\n\n                      <div>\n                          <div class=\"product_item__price_and_order\">\n                              <div class=\"product_item__price\">\n                                 ").concat(product.price, " \u20BD\n                              </div>\n                              <div data-order-button=\"").concat(product.id, "\"\n                                 class=\"product_item__order_icon__wrapper\">\n                                 <img data-order-button=\"").concat(product.id, "\"\n                                    alt=\"\"\n                                    src=\"/images/orderIcon.svg\"\n                                    class=\"product_item__order_icon__img\">\n                              </div>\n                          </div>\n                          <div class=\"product_item__name\">\n                              <a href='/product/").concat(product.slug, "-").concat(product.id, "'\n                                  data-product-item-link=\"").concat(product.id, "\"\n                                  class=\"product_item__name__link\">\n                                  ").concat(product.name, "\n                              </a>\n                          </div>\n                      </div>\n\n\n                      <div class=\"product_item__bottom_info__relative_wrapper\">\n                          <div class=\"product_item__bottom_info__absolute\">\n                             <p title=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfCategoriesHtml__WEBPACK_IMPORTED_MODULE_3__["default"])(product.categories), "\n                             </p>\n                             <p title=\"\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfMaterialsHtml__WEBPACK_IMPORTED_MODULE_4__["default"])(product.materials), "\n                             </p>\n                             <p title=\"\u0426\u0432\u0435\u0442\" class=\"product_item__bottom_info__text\">\n                                ").concat(Object(_getListOfColorsHtml__WEBPACK_IMPORTED_MODULE_5__["default"])(product.colors), "\n                             </p>\n                          </div>\n                      </div>\n\n                  </div>\n\n\n                  ").concat(Object(_getFavoriteIconBlockHtml__WEBPACK_IMPORTED_MODULE_0__["default"])(product.id), "\n\n               </div>\n            </div>");
 }
 
 /***/ }),
@@ -7258,8 +7257,7 @@ var ProductViewSwitcher = /*#__PURE__*/function (_Aware) {
     _classCallCheck(this, ProductViewSwitcher);
 
     _this = _super.call(this);
-    _this.itemSelector = '.product_item';
-    _this.photoSelector = '.photo__size3';
+    _this.itemSelector = '.product_item__wrapper';
     _this.iconSrc = {
       bigView: '/images/viewingIconOfBigItems.svg',
       smallView: '/images/viewingIconOfSmallItems.svg'
@@ -7307,58 +7305,24 @@ var ProductViewSwitcher = /*#__PURE__*/function (_Aware) {
       } finally {
         _iterator.f();
       }
-
-      nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList').querySelectorAll(this.photoSelector);
-
-      var _iterator2 = _createForOfIteratorHelper(nodes),
-          _step2;
-
-      try {
-        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-          var _node = _step2.value;
-
-          _node.classList.add('big_view');
-        }
-      } catch (err) {
-        _iterator2.e(err);
-      } finally {
-        _iterator2.f();
-      }
     }
   }, {
     key: "_switchToSmallView",
     value: function _switchToSmallView() {
       var nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList').querySelectorAll(this.itemSelector);
 
-      var _iterator3 = _createForOfIteratorHelper(nodes),
-          _step3;
+      var _iterator2 = _createForOfIteratorHelper(nodes),
+          _step2;
 
       try {
-        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-          var node = _step3.value;
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var node = _step2.value;
           node.classList.remove('big_view');
         }
       } catch (err) {
-        _iterator3.e(err);
+        _iterator2.e(err);
       } finally {
-        _iterator3.f();
-      }
-
-      nodes = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_1__["default"])('#productList').querySelectorAll(this.photoSelector);
-
-      var _iterator4 = _createForOfIteratorHelper(nodes),
-          _step4;
-
-      try {
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          var _node2 = _step4.value;
-
-          _node2.classList.remove('big_view');
-        }
-      } catch (err) {
-        _iterator4.e(err);
-      } finally {
-        _iterator4.f();
+        _iterator2.f();
       }
     }
   }]);

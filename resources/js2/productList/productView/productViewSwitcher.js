@@ -4,8 +4,7 @@ import el from "../../auxiliaryFunctions/el";
 export default class ProductViewSwitcher extends Aware {
     constructor() {
         super();
-        this.itemSelector = '.product_item';
-        this.photoSelector = '.photo__size3';
+        this.itemSelector = '.product_item__wrapper';
         this.iconSrc = {
             bigView: '/images/viewingIconOfBigItems.svg',
             smallView: '/images/viewingIconOfSmallItems.svg',
@@ -35,18 +34,10 @@ export default class ProductViewSwitcher extends Aware {
         for (let node of nodes) {
             node.classList.add('big_view');
         }
-        nodes = el('#productList').querySelectorAll(this.photoSelector);
-        for (let node of nodes) {
-            node.classList.add('big_view');
-        }
     }
 
     _switchToSmallView() {
         let nodes = el('#productList').querySelectorAll(this.itemSelector);
-        for (let node of nodes) {
-            node.classList.remove('big_view');
-        }
-        nodes = el('#productList').querySelectorAll(this.photoSelector);
         for (let node of nodes) {
             node.classList.remove('big_view');
         }

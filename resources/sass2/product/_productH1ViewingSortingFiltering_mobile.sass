@@ -2,7 +2,7 @@
 @media screen and (max-width: 900px)
     .h1_viewing_sorting_filtering_container
         display: block
-        padding: 0
+        padding: 0 5px 0 0
         margin: 0
     .products__h1
         margin: 0 0 0 5px
@@ -21,16 +21,16 @@
         padding: 5px 0
         background-color: unset
     .viewing_icon__img
-        margin: -2px 0 0 -6px
+        margin: -2px 0 0 -15px
         padding: 0
         height: 35px
     .viewing_icon__img_minimized
         height: 32px
-        margin: 0 0 0 0
+        margin: 0 0 0 -10px
 
     .sorting_modes
         &__wrapper
-            width: 180px
+            width: 170px
             margin: 0 10px
             padding: 3px 10px
             background-color: unset
@@ -45,11 +45,19 @@
     .filter_icon__img
         height: 26px
     .filter_icon__total_indicator
-        right: 0
+        right: 5px
+
+@media screen and (max-width: 750px)
+    .sorting_modes
+        &__wrapper
+            width: 160px
+        &__absolute_list
+            width: 175px
+
 
 @media screen and (max-width: 650px)
     .h1_viewing_sorting_filtering_container
-        padding-right: 10px
+        padding-right: 15px
     .filter_icon__img
         height: 23px
         margin-right: -10px
@@ -71,11 +79,26 @@
 @media screen and (max-width: 500px)
     .products__h1
         font-size: 18px
-
+    .filter_icon__total_indicator
+        right: 0
 
 @media screen and (max-width: 400px)
+    .h1_viewing_sorting_filtering_container
+        padding-right: 10px
     .filter_icon__img
         height: 21px
 
     .filter_icon__wrapper
         padding-right: 20px
+
+
+@media screen and (max-width: 300px)
+    .viewing_icon__wrapper
+        display: none
+    .sorting_modes
+        &__wrapper
+            width: 150px
+            margin: 0 0 0 -8px
+            padding: 3px 0
+        &__absolute_list
+            width: 175px

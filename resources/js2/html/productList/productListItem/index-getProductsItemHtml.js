@@ -7,8 +7,8 @@ import getListOfColorsHtml from './getListOfColorsHtml';
 
 export default function getProductsItemHtml(product, viewMode) {
     const bigView = viewMode === 'bigView' ? 'big_view' : '';
-    return `<div data-product-item="${product.id}" class="product_item__wrapper">
-               <div class="product_item ${bigView}">
+    return `<div data-product-item="${product.id}" class="product_item__wrapper ${bigView}">
+               <div class="product_item">
 
                   <div class="product_item__content">
 
@@ -23,7 +23,7 @@ export default function getProductsItemHtml(product, viewMode) {
 
                          ${
                              Boolean(product.photos)
-                                ? getPhotoBlockHtml(product, viewMode)
+                                ? getPhotoBlockHtml(product)
                                 : getNoPhotoBlockHtml()
                          }
                       </div>

@@ -33,7 +33,7 @@
                         <img src="{{ $photoSrc }}"
                             alt="{{ $product->name }}"
                             data-product-item-link="{{ $product->id }}"
-                            class="product_item__photo_img"/>
+                            class="product_item__photo__img"/>
                     </a>
                 @else
                     <div class="product_item__no_photo">
