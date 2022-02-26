@@ -2240,6 +2240,11 @@ h2 {
     max-width: 100% !important;
     width: 100% !important;
   }
+
+  .product_item__quick_view_link {
+    font-size: 12px;
+    padding: 7px 7px;
+  }
 }
 
 @media screen and (max-width: 350px) {
