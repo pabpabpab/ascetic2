@@ -6,7 +6,7 @@
             <reload-icon></reload-icon>
             <h1 class="pd0 mb0 mauto">{{ getHeader }}</h1>
         </div>
-        <div class="content_block content_block__categories">
+        <div class="content_block content_block_of_categories">
             <component
                 :is="currentAddingComponent"
                 @change-adding-component="changeAddingComponent()">

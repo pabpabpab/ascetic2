@@ -1,5 +1,5 @@
 <template>
-    <div class="content_block content_block__products">
+    <div class="content_block content_block_of_products">
 
         <div class="products"
              :class="{ cursor_move: draggingOccurs }">

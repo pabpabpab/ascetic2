@@ -1,18 +1,8 @@
 .product_item_small__wrapper
-    //width: unset
     width: 120px // задать ширину чтобы не дергалось при drag-and-drop
 .product_item_small__wrapper .product_item
     min-width: 100px
     width: 100px
-    //margin: 10px
-.product_item_small__wrapper .photo__size3
-    width: 100px
-.product_item_small__wrapper .product_item__quick_view_link__wrapper
-    min-width: 100% //100px
-    width: 100% //100px
-    max-width: 100% //100px
-    height: 100% //75px
-    // border: 1px solid #0000ff
 .product_item_small__wrapper .product_item__quick_view_link
     padding: 3px 3px
     +font(10px, #585050, 400)
@@ -38,7 +28,6 @@
 .product_item_small__wrapper .product_item__bottom_info__absolute
     padding: 10px 3px
     font-size: 14px
-    border-radius: 0 0 3px 3px
 
 
 @media screen and (max-width: 420px)
@@ -46,8 +35,6 @@
         width: 95px
     .product_item_small__wrapper .product_item
         min-width: 80px
-        width: 80px
-    .product_item_small__wrapper .photo__size3
         width: 80px
     .product_item_small__wrapper .product_item__quick_view_link
         padding: 5px 1px
@@ -69,8 +56,8 @@
     .product_item_small__wrapper .product_item__bottom_info__absolute
         padding: 7px 3px
         font-size: 12px
-        border-radius: 0 0 2px 2px
 
-@media screen and (max-width: 400px)
     .product_item_small__wrapper
         width: 33%
+
+

@@ -1268,7 +1268,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "content_block content_block__categories" },
+        { staticClass: "content_block content_block_of_categories" },
         [
           _c(_vm.currentAddingComponent, {
             tag: "component",

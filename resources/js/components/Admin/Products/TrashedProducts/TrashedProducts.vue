@@ -1,5 +1,5 @@
 <template>
-    <div class="content_block content_block__products">
+    <div class="content_block content_block_of_products">
 
         <div class="products">
             <pagination v-if="trashedProductsLength > 1" entity="trashedProducts" class="pdb0"></pagination>

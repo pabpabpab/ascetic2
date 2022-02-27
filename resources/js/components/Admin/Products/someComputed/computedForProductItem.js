@@ -18,7 +18,7 @@ export default  {
 
         const folderName = `/storage/${this.imgFolderPrefix}3`;
         const fileNamePrefix = `${this.product.id}s3-`;
-        const imgClass = `photo__size3`;
+        const imgClass = `product_item__photo_img`;
 
         const mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
 

@@ -358,7 +358,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content_block content_block__products" }, [
+  return _c("div", { staticClass: "content_block content_block_of_products" }, [
     _c(
       "div",
       { staticClass: "products" },

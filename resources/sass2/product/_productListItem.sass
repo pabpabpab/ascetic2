@@ -11,14 +11,11 @@
 .product_item
     position: relative
     display: block
-    //min-width: 130px
-    width: 100% //$photo_size3_width
-    //max-width: $photo_size3_width
-    margin: 0 //10px 10px 10px 10px
+    width: 100%
+    margin: 0
     padding: 0
     text-align: left
     background-color: rgba(255, 255, 255, 0)
-    //box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1)
     transition: box-shadow .3s
     &:hover
         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.3)
@@ -94,17 +91,15 @@
         width: 100%
         height: 187px
         box-sizing: border-box
-        //border-bottom: 1px solid rgba(233, 241, 249)
         transition: color .3s
         &:hover
             color: rgb(247, 251, 255)
     &__price_and_order
-        padding: 0 10px 0 10px // 7px 10px 4px 10px
+        padding: 0 10px 0 10px
         margin: 0
         display: flex
         align-items: center
         justify-content: space-between
-        //border: 1px solid #003cff
     &__price
         +font(16px, #282828, 400)
         padding: 0
@@ -126,12 +121,8 @@
     &__order_icon__img
         height: 29px
     &__name
-        //+font(16px, rgb(45, 35, 35), 400)
         text-align: left
-        padding: 0 10px 10px 10px // 0 10px 10px 10px
-        //height: 45px
-    //flex-grow: 10
-    //border: 1px solid #003cff
+        padding: 0 10px 10px 10px
     &__name__link
         +font(16px, #686868, 100)
         text-decoration: none
@@ -152,11 +143,8 @@
     box-sizing: border-box
     +font(16px, rgb(45, 35, 35), 400)
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.3)
-    //border-radius: 0 0 5px 5px
     opacity: 0
     visibility: hidden
-    //transition: opacity .5s
-
 
 
 .product_item__bottom_info__text

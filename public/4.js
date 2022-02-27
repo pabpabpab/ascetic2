@@ -379,7 +379,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
     var fileNamePrefix = "".concat(this.product.id, "s3-");
-    var imgClass = "photo__size3";
+    var imgClass = "product_item__photo_img";
     var mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
     return "<img alt=\"\"\n                    src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(mainPhotoName, "\"\n                    class=\"").concat(imgClass, "\" />");
   },
