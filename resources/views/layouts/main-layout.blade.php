@@ -5,8 +5,6 @@
         $jsAppName = "menuApp.js";
     }
     $jsAppName = "js2/".$jsAppName;
-
-    $additionalContentWrapperCss = $isProductList ? 'content_wrapper_of_product_list' : '';
 @endphp
 <!doctype html>
 <html lang="ru">

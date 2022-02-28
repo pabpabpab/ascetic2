@@ -1,5 +1,4 @@
 .single_product_page__content_wrapper
-    // min-width: 97%
     width: 100%
     padding: 0
     margin: 0 auto
@@ -14,7 +13,6 @@
     position: sticky
     top: 80px
     height: $big_photo_height + 65 // не убирать, сломается sticky
-    //border: 1px solid #003cff
     display: flex
     justify-content: flex-start
     flex-direction: row
@@ -85,9 +83,6 @@
     //scroll-behavior: smooth
 
 
-
-
-
 .single_product__big_photo__wrapper
     position: relative
     width: $big_photo_width
@@ -113,9 +108,7 @@
     flex-wrap: nowrap
     min-width: 43px
     height: 23px
-    //line-height: 23px
     +font(14px, rgb(220, 220, 220), 400)
-    //text-align: center
     background-color: rgba(122, 122, 122, 0.5)
     border-radius: 20px
     pointer-events: none
@@ -147,7 +140,7 @@
                 top: 21px
                 width: 15px
                 height: 15px
-                border: solid #f0f0f0 //#fff // #0000ff
+                border: solid #f0f0f0
                 border-width: 3px 3px 0 0
                 border-radius: 1px
                 transform: rotate(45deg)
@@ -164,7 +157,7 @@
                 top: 21px
                 width: 15px
                 height: 15px
-                border: solid #f0f0f0 //#fff // #0000ff
+                border: solid #f0f0f0
                 border-width: 0 0 3px 3px
                 border-radius: 1px
                 transform: rotate(45deg)
@@ -185,7 +178,7 @@
     &__margin_left
         margin-left: 30px // $big_photo_width + 185px
 .single_product__h1
-    +font(24px, #000, 700) // rgb(80, 75, 75)
+    +font(24px, #000, 700)
     font-family: 'Oswald', sans-serif
     letter-spacing: 1px
     text-align: left

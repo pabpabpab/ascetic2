@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         $categoryModelClassName = "App\Models\Category";
         View::share([
             'isProductList' => false, // переопределяется в true в middleware AttachProductListSettings
+            'additionalContentWrapperCss' => '', // переопределяется в роутах
             'categories' => $categoryService->getAll($categoryModelClassName),
             'visibleCategoriesLimit' => $service->getSettings('visible_categories_limit')['value'],
             'mainPageTitle' => $service->getSettings('main_page_seo')['mainPageTitle'],

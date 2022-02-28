@@ -63,7 +63,7 @@
             @endfor
 
             {{--@if ($catCount >= $visibleCategoriesLimit)--}}
-            <div id="topMenu-dropMenuInitiatorContainer" class="top_menu__li">
+            <div id="topMenu-dropMenuInitiator" class="top_menu__li">
                 <p
                     data-menu-link-section-name="allProducts"
                     data-menu-link-title-text="{{ $mainPageTitle }}"

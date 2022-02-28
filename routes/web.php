@@ -8,6 +8,7 @@ use \App\Http\Controllers\ProductViewedController;
 use \App\Http\Controllers\ProductByCategoryController;
 
 
+
 Route::get('/', [ProductController::class, 'index'])
     ->name('mainPage')
     ->middleware('productListSettings');
@@ -55,6 +56,8 @@ Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesId
 
 
 
+Route::get('/my', [App\Http\Controllers\MyPageController::class, 'index'])
+    ->name('my');
 
 
 
@@ -65,8 +68,6 @@ Route::get('/product-search/price/{minPrice}-{maxPrice}/categories/{categoriesId
 
 
 
-Route::get('/my', [App\Http\Controllers\MyPageController::class, 'index'])
-    ->name('my');
 
 
 

@@ -3123,7 +3123,7 @@ var TopDropMenuFiller = /*#__PURE__*/function () {
 
     _classCallCheck(this, TopDropMenuFiller);
 
-    this.initiatorContainer = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuInitiatorContainer');
+    this.initiatorContainer = Object(_auxiliaryFunctions_el__WEBPACK_IMPORTED_MODULE_0__["default"])('#topMenu-dropMenuInitiator');
 
     if (!this.initiatorContainer) {
       return;

@@ -81,7 +81,8 @@ class ProductController extends Controller
             'product' => $product,
             'description' => $product->description,
             'photoSeo' => $service->getProductPhotoSeoListWithFullListOfPhoto($product->id),
-            'jsAppName' => 'singleProductApp.js'
+            'jsAppName' => 'singleProductApp.js',
+            'additionalContentWrapperCss' => 'content_wrapper_of_single_product',
         ]);
     }
 
@@ -103,6 +104,7 @@ class ProductController extends Controller
             'pageDescription' => $pageData['pageDescription'],
             'product' => $product,
             'photoSeo' => $photoSeo,
+            'additionalContentWrapperCss' => 'content_wrapper_of_photo_page',
         ]);
     }
 

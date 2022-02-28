@@ -3,7 +3,7 @@ import getDropMenuHtml from '../html/menu/getDropMenuHtml.js';
 
 export default class TopDropMenuFiller {
     constructor() {
-        this.initiatorContainer = el('#topMenu-dropMenuInitiatorContainer');
+        this.initiatorContainer = el('#topMenu-dropMenuInitiator');
         if (!this.initiatorContainer) {
             return;
         }
