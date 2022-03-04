@@ -14,12 +14,22 @@ class CategoryService
     protected $positionStep = 10;
 
 
-    public function saveOne($model, $modelClassName, string $name): array
+    public function createOne($modelClassName, string $name): array
     {
-        $model = $model->id > 0 ? $model : new $modelClassName();
+        $model = new $modelClassName();
         $model->name = $name;
         $model->slug = Str::slug($name, '-');
-        $model->position = $model->id > 0 ? $model->position : static::calcNewAddedPosition($modelClassName);
+        $model->position = static::calcNewAddedPosition($modelClassName);
+        return [
+            'success' => $model->save(),
+            'category' => $model
+        ];
+    }
+
+    public function saveOne($model, string $name): array
+    {
+        $model->name = $name;
+        $model->slug = Str::slug($name, '-');
         return [
             'success' => $model->save(),
             'category' => $model

@@ -21,7 +21,7 @@ class SaveService
     use PhotoTrait;
 
 
-    public function saveOne($request, $product): array
+    public function saveOne($request, $product = null): array
     {
         // info($request->input());
 
@@ -29,16 +29,29 @@ class SaveService
 
         try {
 
-            $action = $product->id > 0 ? 'edit' : 'create';
+            //$action = $product->id > 0 ? 'edit' : 'create';
+
+            $action = blank($product) ? 'create' : 'edit';
+
+
             // клон прежней версии товара, для обсчета потом категорий
             $formerProduct = null;
             if ($action === 'edit' && !$product->trashed()) {
                 $formerProduct = Product::with(['categories', 'materials', 'colors'])->find($product->id)->replicate();
             }
 
+            if ($action === 'create') {
+                $product = new Product();
+            }
+
             // СОХРАНИТЬ ОСНОВНЫЕ ДАННЫЕ
             $product->fill($request->input());
-            $product->position = $product->id > 0 ? $product->position : $this->_calcNewAddedPosition();
+            //$product->position = $product->id > 0 ? $product->position : $this->_calcNewAddedPosition();
+
+            if ($action === 'create') {
+                $product->position = $this->_calcNewAddedPosition();
+            }
+
             $product->slug = Str::slug($product->name, '_');
             $product->save(); // теперь у $product есть id
 

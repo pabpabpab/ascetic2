@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -36,6 +37,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+
         $this->configureRateLimiting();
 
         $this->routes(function () {

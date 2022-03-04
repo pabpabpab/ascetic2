@@ -18,6 +18,12 @@ export default {
         colors: '/admin-js/color/',
     },
 
+    createCategoryUrl: {
+        categories: '/admin-js/category/create',
+        materials: '/admin-js/material/create',
+        colors: '/admin-js/color/create',
+    },
+
     saveCategoryUrl: {
         categories: '/admin-js/category/save/',
         materials: '/admin-js/material/save/',

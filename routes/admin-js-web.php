@@ -2,7 +2,6 @@
 
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -10,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 // Админка
 Route::group([
-    'namespace' => '\App\Http\Controllers\Api\Admin',
+    'namespace' => '\App\Http\Controllers\AdminJS',
     'middleware' => ['role:admin'],
 ], function () {
 
@@ -25,14 +24,16 @@ Route::group([
     // single user
     Route::get('/user/{user}', 'UserController@getOne');
     Route::delete('/user/delete/{user}', 'UserController@delete');
-    Route::post('/user/save/{user?}', 'UserController@save');
+    Route::post('/user/create', 'UserController@create');
+    Route::post('/user/save/{user}', 'UserController@save');
 
     // категории товаров
     Route::get('/categories', 'CategoryController@getAll');
     Route::get('/categories/count', 'CategoryController@getCount');
     // одна категория
     Route::get('/category/{category}', 'CategoryController@getOne');
-    Route::post('/category/save/{category?}', 'CategoryController@save');
+    Route::post('/category/create', 'CategoryController@create');
+    Route::post('/category/save/{category}', 'CategoryController@save');
     Route::delete('/category/delete/{category}', 'CategoryController@delete');
     Route::post('/category/change-position/{category}', 'CategoryController@changePosition');
     Route::post('/category/move/{category}', 'CategoryController@move');
@@ -44,7 +45,8 @@ Route::group([
     Route::get('/materials/count', 'MaterialController@getCount');
     // один материал
     Route::get('/material/{material}', 'MaterialController@getOne');
-    Route::post('/material/save/{material?}', 'MaterialController@save');
+    Route::post('/material/create', 'MaterialController@create');
+    Route::post('/material/save/{material}', 'MaterialController@save');
     Route::delete('/material/delete/{material}', 'MaterialController@delete');
     Route::post('/material/change-position/{material}', 'MaterialController@changePosition');
     Route::post('/material/move/{material}', 'MaterialController@move');
@@ -55,7 +57,8 @@ Route::group([
     Route::get('/colors/count', 'ColorController@getCount');
     // один материал
     Route::get('/color/{color}', 'ColorController@getOne');
-    Route::post('/color/save/{color?}', 'ColorController@save');
+    Route::post('/color/create', 'ColorController@create');
+    Route::post('/color/save/{color}', 'ColorController@save');
     Route::delete('/color/delete/{color}', 'ColorController@delete');
     Route::post('/color/change-position/{color}', 'ColorController@changePosition');
     Route::post('/color/move/{color}', 'ColorController@move');
@@ -69,9 +72,12 @@ Route::group([
     Route::get('/products/count', 'ProductController@getCount');
 
     // один товар
-    Route::get('/product/{product}', 'ProductController@getOne')->name('apiProduct.one');
-    Route::get('/product/{slug}-{product}', 'ProductController@getOne')->name('product.one');
-    Route::post('/product/save/{product?}', 'ProductController@save')->name('product.save');
+    Route::get('/product/{product}', 'ProductController@getOne')->name('productById.one');
+    Route::get('/product/{slug}-{product}', 'ProductController@getOne'); //->name('product.one');
+
+    Route::post('/product/create', 'ProductController@create');
+    Route::post('/product/save/{product}', 'ProductController@save')->name('product.save');
+
     Route::delete('/product/delete/{product}', 'ProductController@delete');
     Route::get('/product/restore/{id}', 'ProductController@restore')
         ->where('id', '[0-9]+');
@@ -100,12 +106,11 @@ Route::group([
 
 
     Route::bind('product', function ($id) {
-        $arr = ['apiProduct.one', 'product.save'];
+        $arr = ['productById.one', 'product.save'];
         if (in_array(Route::currentRouteName(), $arr)) {
             return Product::withTrashed()->findOrFail($id);
         }
         return Product::findOrFail($id);
-
     });
 
 

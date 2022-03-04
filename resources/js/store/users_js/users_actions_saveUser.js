@@ -52,7 +52,7 @@ export default {
         dispatch(
                 'postJson',
                 {
-                    url: user.id > 0 ? state.url['saveUser'] + user.id : state.url['saveUser'],
+                    url: user.id > 0 ? state.url['saveUser'] + user.id : state.url['createUser'],
                     data: user
                 },
                 {root: true}

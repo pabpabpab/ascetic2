@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\AdminJS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductSaveRequest;
@@ -81,6 +81,15 @@ class ProductController extends Controller
             'photoSeo' => $service->getProductPhotoSeoList($product->id),
             // get seo фоток при открытии photoManager
         ]);
+    }
+
+
+    public function create(ProductSaveRequest $request, SaveService $service): JsonResponse
+    {
+        // instance товара в роуте как {product?}
+        return response()->json(
+            $service->saveOne($request)
+        );
     }
 
     public function save(ProductSaveRequest $request, SaveService $service, Product $product): JsonResponse

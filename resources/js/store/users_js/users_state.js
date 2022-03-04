@@ -5,6 +5,7 @@ export default {
         users: '/admin-js/users',
 
         singleUser: '/admin-js/user/',
+        createUser: '/admin-js/user/create',
         saveUser: '/admin-js/user/save/',
         deleteUser: '/admin-js/user/delete/',
     },

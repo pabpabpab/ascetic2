@@ -9,22 +9,22 @@
 
             <div class="top_viewing_sorting_filtering_container">
                 <div class="viewing_icon__wrapper">
-                    <viewing-icon></viewing-icon>
+                    <viewing-icon v-if="productsLength > 1"></viewing-icon>
                 </div>
                 <div v-if="1 === 2">
                     <sorting-modes></sorting-modes>
                 </div>
                 <div class="sorting_modes_for_mobile__wrapper">
-                    <sorting-modes-for-mobile></sorting-modes-for-mobile>
+                    <sorting-modes-for-mobile v-if="productsLength > 2"></sorting-modes-for-mobile>
                 </div>
                 <div v-if="$route.name === 'Products'" class="filter_icon_and_lot_number__wrapper">
-                    <lot-number-control></lot-number-control>
-                    <filters-icon></filters-icon>
+                    <lot-number-control v-if="productsLength > 1"></lot-number-control>
+                    <filters-icon v-if="productsLength > 2"></filters-icon>
                 </div>
             </div>
 
 
-            <search-total-parameters></search-total-parameters>
+            <search-total-parameters v-if="productsLength > 2"></search-total-parameters>
 
             <product-item
                 v-for="(item, index) of items"
@@ -37,7 +37,7 @@
             <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
             <pagination-mobile v-if="productsLength > 1" entity="products" class="pdb0"></pagination-mobile>
 
-            <transition name="product_filters">
+            <transition v-if="productsLength > 2" name="product_filters">
                 <products-filters v-show="$route.name === 'Products' && visibility('productsFilters')"></products-filters>
             </transition>
 

@@ -49,7 +49,7 @@ export default {
 
         const saveProductUrl = productId > 0
             ? state.url['saveProduct'] + productId
-            : state.url['saveProduct'];
+            : state.url['createProduct'];
 
         // добавить фото в объект продукта
         for (let i = 0; i < photos.length; i++ ) {

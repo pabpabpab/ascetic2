@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\AdminJS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ColorDeleteRequest;
@@ -34,12 +34,26 @@ class ColorController extends Controller
         return response()->json($color);
     }
 
+    public function create(ColorSaveRequest $request, CategoryService $categoryService): JsonResponse
+    {
+        // instance категории в роуте как {category?}
+        $result = $categoryService->createOne(
+            $this->modelClassName,
+            $request->input('name')
+        );
+
+        return response()->json([
+            'saveSuccess' => $result['success'],
+            'category' => $result['category']
+        ]);
+    }
+
+
     public function save(ColorSaveRequest $request, CategoryService $categoryService, Color $color): JsonResponse
     {
         // instance категории в роуте как {color?}
         $result = $categoryService->saveOne(
             $color,
-            $this->modelClassName,
             $request->input('name')
         );
 

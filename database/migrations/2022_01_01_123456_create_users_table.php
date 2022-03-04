@@ -13,6 +13,9 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('password_resets');
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');

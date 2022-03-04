@@ -45,5 +45,4 @@
 
     @include('pagination.pagination-and-view-more-section')
 
-    {{--@include('products.list.filter-block')--}}
 @endsection

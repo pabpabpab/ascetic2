@@ -44,7 +44,7 @@ export default {
         }
         const saveCategoryUrl = categoryId > 0
             ? state.saveCategoryUrl[entity] + categoryId
-            : state.saveCategoryUrl[entity];
+            : state.createCategoryUrl[entity];
 
         dispatch('showWaitingScreen', null, { root: true });
         dispatch(

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\AdminJS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UserSaveRequest;
@@ -34,6 +34,14 @@ class UserController extends Controller
         return response()->json([
             'deleteSuccess' => $service->deleteOne($user)
         ]);
+    }
+
+    public function create(UserSaveRequest $request, SaveByAdminService $service): JsonResponse
+    {
+        // instance user в роуте как {user?}
+        return response()->json(
+            $service->saveOne($request)
+        );
     }
 
     public function save(UserSaveRequest $request, SaveByAdminService $service, User $user): JsonResponse

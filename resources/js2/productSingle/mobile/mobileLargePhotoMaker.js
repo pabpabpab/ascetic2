@@ -6,13 +6,19 @@ export default class MobileLargePhotoMaker {
             return;
         }
         this.largePhotosHtmlWasDone = false;
+        /*
         el('#singleProduct').addEventListener('touchstart', (e) => {
             e.preventDefault();
             this._makeLargePhotos();
         });
         el('#singleProduct').addEventListener('mouseover', (e) => {
             this._makeLargePhotos();
-        });
+        });*/
+
+        // задержка чтобы главное фото загрузилось сначала
+        setTimeout(() => {
+            this._makeLargePhotos();
+        }, 1000);
     }
 
     _makeLargePhotos() {

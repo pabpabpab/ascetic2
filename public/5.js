@@ -301,6 +301,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -321,17 +328,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "LotNumberControl",
   data: function data() {
     return {
       showInput: false,
-      lotNumber: ''
+      lotNumber: '',
+      lastChangesTime: 0
     };
   },
-  filters: {
-    numeric: function numeric(value) {}
-  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('pagination', ['filteredLength'])), {}, {
+    filteredProductsLength: function filteredProductsLength() {
+      return this.filteredLength('products');
+    }
+  }),
   methods: {
     resetThisInput: function resetThisInput() {
       this.lotNumber = '';
@@ -342,14 +353,32 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    lotNumber: function lotNumber(value) {
-      this.lotNumber = Number(value);
+    lotNumber: function lotNumber(newValue, oldValue) {
+      this.lotNumber = Number(newValue);
 
       if (this.lotNumber === 0 || isNaN(this.lotNumber)) {
         this.lotNumber = '';
       }
 
       this.$store.dispatch('products/makeSearchByLotNumber', this.lotNumber + 0);
+
+      if (newValue !== oldValue) {
+        var now = new Date();
+        this.lastChangesTime = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+      }
+    },
+    filteredProductsLength: function filteredProductsLength(newValue, oldValue) {
+      var now = new Date();
+      var currentTime = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds(); // исключить изменения кол-ва товаров в результате ввода lotNumber
+
+      if (currentTime - this.lastChangesTime < 3) {
+        return;
+      } // иначе закрыть input
+
+
+      if (newValue !== oldValue) {
+        this.showInput = false;
+      }
     }
   }
 });
@@ -2566,7 +2595,7 @@ var render = function() {
           _c(
             "div",
             { staticClass: "viewing_icon__wrapper" },
-            [_c("viewing-icon")],
+            [_vm.productsLength > 1 ? _c("viewing-icon") : _vm._e()],
             1
           ),
           _vm._v(" "),
@@ -2575,7 +2604,9 @@ var render = function() {
           _c(
             "div",
             { staticClass: "sorting_modes_for_mobile__wrapper" },
-            [_c("sorting-modes-for-mobile")],
+            [
+              _vm.productsLength > 2 ? _c("sorting-modes-for-mobile") : _vm._e()
+            ],
             1
           ),
           _vm._v(" "),
@@ -2583,13 +2614,17 @@ var render = function() {
             ? _c(
                 "div",
                 { staticClass: "filter_icon_and_lot_number__wrapper" },
-                [_c("lot-number-control"), _vm._v(" "), _c("filters-icon")],
+                [
+                  _vm.productsLength > 1 ? _c("lot-number-control") : _vm._e(),
+                  _vm._v(" "),
+                  _vm.productsLength > 2 ? _c("filters-icon") : _vm._e()
+                ],
                 1
               )
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c("search-total-parameters"),
+        _vm.productsLength > 2 ? _c("search-total-parameters") : _vm._e(),
         _vm._v(" "),
         _vm._l(_vm.items, function(item, index) {
           return _c("product-item", {
@@ -2616,26 +2651,28 @@ var render = function() {
             })
           : _vm._e(),
         _vm._v(" "),
-        _c(
-          "transition",
-          { attrs: { name: "product_filters" } },
-          [
-            _c("products-filters", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value:
-                    _vm.$route.name === "Products" &&
-                    _vm.visibility("productsFilters"),
-                  expression:
-                    "$route.name === 'Products' && visibility('productsFilters')"
-                }
-              ]
-            })
-          ],
-          1
-        ),
+        _vm.productsLength > 2
+          ? _c(
+              "transition",
+              { attrs: { name: "product_filters" } },
+              [
+                _c("products-filters", {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value:
+                        _vm.$route.name === "Products" &&
+                        _vm.visibility("productsFilters"),
+                      expression:
+                        "$route.name === 'Products' && visibility('productsFilters')"
+                    }
+                  ]
+                })
+              ],
+              1
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "transition",

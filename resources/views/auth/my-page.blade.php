@@ -2,7 +2,7 @@
 
 
 @php
-    $favoriteIdsStr = (string) $_COOKIE['favoriteIds'];
+    $favoriteIdsStr = (string) ($_COOKIE['favoriteIds'] ?? '');
     $favoriteCount = strlen($favoriteIdsStr) > 0 ? count(explode(",", $favoriteIdsStr)) : 0;
 
     //$viewedCount = session()->exists('viewedProductsIds') ? count(session('viewedProductsIds')) : 0;

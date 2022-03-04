@@ -21,17 +21,23 @@
 <script>
 
 
+import {mapGetters} from "vuex";
+
 export default {
     name: "LotNumberControl",
     data() {
         return {
             showInput: false,
             lotNumber: '',
+            lastChangesTime: 0,
         };
     },
-    filters: {
-        numeric (value) {
-
+    computed: {
+        ...mapGetters('pagination', [
+            'filteredLength',
+        ]),
+        filteredProductsLength() {
+            return this.filteredLength('products');
         }
     },
     methods: {
@@ -44,13 +50,29 @@ export default {
         },
     },
     watch: {
-        lotNumber(value) {
-            this.lotNumber = Number(value);
+        lotNumber(newValue, oldValue) {
+            this.lotNumber = Number(newValue);
             if (this.lotNumber === 0 || isNaN(this.lotNumber)) {
                 this.lotNumber = '';
             }
             this.$store.dispatch('products/makeSearchByLotNumber', this.lotNumber + 0);
-        }
+            if (newValue !== oldValue) {
+                const now = new Date();
+                this.lastChangesTime = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+            }
+        },
+        filteredProductsLength(newValue, oldValue) {
+            const now = new Date();
+            const currentTime  = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+            // исключить изменения кол-ва товаров в результате ввода lotNumber
+            if (currentTime - this.lastChangesTime < 3) {
+                return;
+            }
+            // иначе закрыть input
+            if (newValue !== oldValue) {
+                this.showInput = false;
+            }
+        },
     },
 
 }

@@ -23,9 +23,12 @@ export default class ProductCache extends Aware {
 
         this.productsWereCachedOnPageLoading = false;
         if (productListWrapper && allProductsMustBeCached()) {
+            this._loadEntireListOnPageLoading();
+            /*
             el('body').addEventListener('mouseover', (e) => {
                 this._loadEntireListOnPageLoading();
             });
+            */
         }
     }
 

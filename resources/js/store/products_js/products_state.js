@@ -6,6 +6,7 @@ export default {
         trashedProducts: '/admin-js/products/trashed',
         productsByCategory: '/admin-js/products/by/',
         singleProduct: '/admin-js/product/',
+        createProduct: '/admin-js/product/create',
         saveProduct: '/admin-js/product/save/',
 
         deleteProduct: '/admin-js/product/delete/',

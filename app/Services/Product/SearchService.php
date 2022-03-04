@@ -43,14 +43,16 @@ class SearchService
             ->groupBy('products.id')
             ->whereRaw("products_categories.category_id IN ($categoriesIdsStr)");
 
+
+            $countQuery = "select count(*) as myRowCount from ({$queryBuilder->toSql()}) as q";
+            $productsCount = collect(DB::select($countQuery, $queryBuilder->getBindings()))->pluck('myRowCount')->first();
+
+            /*
+            // не работает на mysql 5
             $productsCount = $queryBuilder->clone()
                 ->select(DB::raw('count(1) OVER() as myCount'))
                 ->value('myCount');
-
-            // тоже работает
-            // $countQuery = "select count(*) as myRowCount from ({$queryBuilder->toSql()}) as q";
-            // $productsCount = collect(DB::select($countQuery, $queryBuilder->getBindings()))->pluck('myRowCount')->first();
-
+            */
         } else {
             // указаны поля для экономии трафика (для js)
             $queryBuilder = $queryBuilder->select('products.id', 'name', 'price', 'parameters', 'photo_set', 'slug');

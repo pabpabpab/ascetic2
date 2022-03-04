@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\AdminJS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MaterialDeleteRequest;
 use App\Http\Requests\Admin\MaterialSaveRequest;
-use App\Models\Category;
 use App\Models\Material;
 use App\Services\Category\CategoryService;
 use Illuminate\Http\JsonResponse;
@@ -35,12 +34,25 @@ class MaterialController extends Controller
         return response()->json($material);
     }
 
+    public function create(MaterialSaveRequest $request, CategoryService $categoryService): JsonResponse
+    {
+        // instance категории в роуте как {category?}
+        $result = $categoryService->createOne(
+            $this->modelClassName,
+            $request->input('name')
+        );
+
+        return response()->json([
+            'saveSuccess' => $result['success'],
+            'category' => $result['category']
+        ]);
+    }
+
     public function save(MaterialSaveRequest $request, CategoryService $categoryService, Material $material): JsonResponse
     {
         // instance категории в роуте как {material?}
         $result = $categoryService->saveOne(
             $material,
-            $this->modelClassName,
             $request->input('name')
         );
 

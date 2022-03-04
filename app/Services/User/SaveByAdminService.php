@@ -6,6 +6,7 @@ namespace App\Services\User;
 
 use App\Events\UserRegisteredEvent;
 use App\Mail\PasswordResetLink;
+use App\Models\User;
 use App\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -13,15 +14,15 @@ use Illuminate\Support\Facades\Mail;
 
 class SaveByAdminService
 {
-    public function saveOne($request, $user): array
+    public function saveOne($request, $user = null): array
     {
 
         DB::beginTransaction();
 
         try {
 
-            if (!$user->id) {
-                $this->_createUser($request, $user);
+            if (blank($user)) {
+                $user = $this->_createUser($request);
             } else {
                 $methodName = "_".$request->editTask; // editEmail / editRole / editPassword
                 $this->$methodName($request, $user);
@@ -79,9 +80,9 @@ class SaveByAdminService
     }
 
 
-
-    protected function _createUser($request, $user)
+    protected function _createUser($request)
     {
+        $user = new User();
         $user->fill($request->input());
         $user->role = $request->role === 'admin' ? 'admin' : 'user';
         $user->password = Hash::make($request->password);
@@ -89,6 +90,7 @@ class SaveByAdminService
         if ($request->email_verified) {
             $user->markEmailAsVerified();
         }
+        return $user;
     }
 
     protected function _editEmail($request, $user)

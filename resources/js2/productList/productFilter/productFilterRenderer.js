@@ -144,14 +144,16 @@ export default class ProductFilterRenderer extends Aware {
             });
     }
     _getPriceRangeFromCachedProducts() {
-        const minPrice = this.components.productCache.entireList.reduce((minPrice, item) => {
-            return minPrice < item.price ? minPrice : item.price;
-        }, 100000000000000000);
+        const products = [ ...this.components.productCache.entireList ];
+
+        const minPrice = products.reduce((previousValue, item) => {
+            return Number(item.price) < previousValue ? Number(item.price) : previousValue;
+        }, 1000000);
         const integerMinPrice = Math.floor(minPrice);
         this.minPriceLimit = integerMinPrice;
 
-        const maxPrice = this.components.productCache.entireList.reduce((maxPrice, item) => {
-            return maxPrice > item.price ? maxPrice : item.price;
+        const maxPrice = products.reduce((previousValue, item) => {
+            return Number(item.price) > previousValue ? Number(item.price) : previousValue;
         }, 0);
         const integerMaxPrice = Math.ceil(maxPrice);
         this.maxPriceLimit = integerMaxPrice;

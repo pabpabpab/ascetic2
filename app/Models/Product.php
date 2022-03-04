@@ -13,14 +13,13 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'id',
         'name',
         'price',
         'position',
     ];
 
-
     protected $attributes = [
+        'parameters' => '[]',
         'photo_set' => '[]',
         'photo_alt_set' => '[]',
     ];

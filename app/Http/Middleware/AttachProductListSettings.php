@@ -24,9 +24,9 @@ class AttachProductListSettings
             'isProductList' => true,
             'additionalContentWrapperCss' => 'content_wrapper_of_product_list',
             'jsAppName' => 'productListApp.js',
-            'perPage' => $service->getSettings('pagination')['perPage'],
-            'cacheLimit' => $service->getSettings('cache_limit')['value'],
-            'scrollSpeedRatio' => $service->getSettings('scroll_speed_ratio')['value'],
+            'perPage' => $service->getSettings('pagination')['perPage'] ?? 30,
+            'cacheLimit' => $service->getSettings('cache_limit')['value'] ?? 100,
+            'scrollSpeedRatio' => $service->getSettings('scroll_speed_ratio')['value'] ?? 75,
         ]);
 
         return $next($request);

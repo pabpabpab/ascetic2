@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Admin;
+namespace App\Http\Controllers\AdminJS;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryDeleteRequest;
@@ -42,12 +42,25 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
+    public function create(CategorySaveRequest $request, CategoryService $categoryService): JsonResponse
+    {
+        // instance категории в роуте как {category?}
+        $result = $categoryService->createOne(
+            $this->modelClassName,
+            $request->input('name')
+        );
+
+        return response()->json([
+            'saveSuccess' => $result['success'],
+            'category' => $result['category']
+        ]);
+    }
+
     public function save(CategorySaveRequest $request, CategoryService $categoryService, Category $category): JsonResponse
     {
         // instance категории в роуте как {category?}
         $result = $categoryService->saveOne(
             $category,
-            $this->modelClassName,
             $request->input('name')
         );
 
