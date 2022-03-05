@@ -4,6 +4,7 @@ import DesktopLargePhotoViewer from "./desktop/largePhotoViewer";
 import DesktopSmallPhotoScroller from "./desktop/smallPhotoScroller";
 import MobileLargePhotoMaker from "./mobile/mobileLargePhotoMaker";
 import MobileLargePhotoScroller from "./mobile/mobileLargePhotoScroller";
+import MobileLargePhotoSwiper from "./mobile/mobileLargePhotoSwiper";
 import QuickProductDestructor from "../productQuickViewer/quickProductDestructor";
 import needMobileVersion from './needMobileVersionOfSingleProductKit';
 
@@ -19,6 +20,7 @@ export default function singleProductKit() {
     if (needMobileVersion()) {
         new MobileLargePhotoMaker();
         new MobileLargePhotoScroller();
+        new MobileLargePhotoSwiper();
     }
 
     new QuickProductDestructor();

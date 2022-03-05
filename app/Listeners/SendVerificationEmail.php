@@ -33,10 +33,10 @@ class SendVerificationEmail
 
         //info($user);
 
-        //Mail::to($user->email)->send(new ConfirmRegistration($user));
+        //Mail::to($user->email)->send(new ConfirmRegister($user));
 
-        $cntnt = (new ConfirmRegister($user))->render();
-        info($cntnt);
+        $content = (new ConfirmRegister($user))->render();
+        info($content);
     }
 }
 

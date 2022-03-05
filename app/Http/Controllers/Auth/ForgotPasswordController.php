@@ -30,8 +30,6 @@ class ForgotPasswordController extends Controller
     // ПРИНЯТЬ МЕТОДОМ POST ЕМАЙЛ, И ОТПРАВИТЬ НА ЭТОТ ЕМАЙЛ RESET LINK
     public function sendResetLink(EmailRequest $request)
     {
-        // $request->validate(['email' => 'required|email']);
-
         $email = $request->only('email');
 
         $user = User::where('email', $email)->first();
@@ -72,9 +70,9 @@ class ForgotPasswordController extends Controller
         }
 
         // отправить письмо юзеру с reset link (с линком для создания нового пароля)
-        //Mail::to($user->email)->send(new PasswordResetLink($user));
-        $cntnt = (new PasswordResetLink($user))->render();
-        info($cntnt);
+        Mail::to($user->email)->send(new PasswordResetLink($user));
+        //$content = (new PasswordResetLink($user))->render();
+        //info($content);
 
         // успешный ответ с сообщением
         return $request->expectsJson()
