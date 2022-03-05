@@ -23,10 +23,13 @@ Route::group([
     // форма входа
     Route::get('/login', 'LoginController@showLoginForm')
         ->name('login.show');
+    Route::post('/login', 'LoginController@showLoginForm')
+        ->name('login.show');
+
+
     // вход по логину и паролю
     Route::post('/login/do', 'LoginController@doLogin')
         ->name('login.do');
-    // ->middleware(['guest', 'makeLogin']);
 
     // логаут
     Route::any('/logout', 'LogoutController@logout')
@@ -50,11 +53,15 @@ Route::group([
     Route::post('/reset-password/update', 'SetNewPasswordController@update')
         ->name('resetPassword.update');
 
+
+    Route::view('/uLoginWidget', 'auth.uLoginWidget');
+
     // получение ответа от ulogin.ru (запрос делается из js-виджета)
     Route::post('/u-login/response', 'ULoginController@response')
         ->name('uLogin.response');
+
     // запрос по ajax html-кода виджета
-    Route::get('/u-login/widget', 'ULoginController@getWidgetHtml')
-        ->name('uLogin.widget');
+    //Route::get('/u-login/widget', 'ULoginController@getWidgetHtml')
+        //->name('uLogin.widget');
 });
 

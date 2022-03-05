@@ -67,12 +67,14 @@
         </a>
 
 
+        <h1 class="mt50 mb0">Войти через</h1>
+
         <script src="//ulogin.ru/js/ulogin.js"></script>
         <div id="uLogin" class="auth_page__ulogin_div"
              data-ulogin="display=panel;theme=classic;fields=first_name,last_name;
-            providers=vkontakte,odnoklassniki,yandex,instagram,facebook,google;
-            hidden=twitter,mailru,yandex,livejournal,openid,linkedin,youtube,webmoney,googleplus;
-            redirect_uri=http%3A%2F%2F{{config("app.name")}}%2Fu-login%2Fresponse;mobilebuttons=0;">
+            providers=vkontakte,odnoklassniki,yandex,mailru,google;
+            hidden=;
+            redirect_uri={{env('APP_URL')}}/u-login/response;mobilebuttons=0;">
         </div>
 
     </div>

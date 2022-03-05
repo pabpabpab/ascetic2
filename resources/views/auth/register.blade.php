@@ -64,6 +64,18 @@
             </button>
         </form>
 
+
+        <h1 class="mt50 mb0">Регистрация через</h1>
+
+        <script src="//ulogin.ru/js/ulogin.js"></script>
+        <div id="uLogin" class="auth_page__ulogin_div"
+            data-ulogin="display=panel;theme=classic;fields=first_name,last_name;
+            providers=vkontakte,odnoklassniki,yandex,mailru,google;
+            hidden=;
+            redirect_uri={{env('APP_URL')}}/u-login/response;mobilebuttons=0;">
+        </div>
+
+
         @if (session('authStatus'))
             <div class="auth_page__auth_status">
                 {{ session('authStatus') }}

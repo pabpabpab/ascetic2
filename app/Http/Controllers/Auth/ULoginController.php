@@ -24,6 +24,7 @@ class ULoginController extends Controller
         // json-строка {"first_name":"", "last_name":"", "email":"", "network":"", "identity":""}
         $socialUserData = file_get_contents($url);
 
+
         // если пустая строка
         if (blank($socialUserData)) {
             return redirect()->route('account.login.show')
@@ -33,8 +34,8 @@ class ULoginController extends Controller
         // массив полученный из json-строки
         $socialUserArray = json_decode($socialUserData, true);
 
-        // если было поле error вида {"error":"token expired"} или вдруг пустой массив
-        if ((blank($socialUserArray)) or (filled($socialUserArray['error']))) {
+        // если вдруг пустой массив
+        if (blank($socialUserArray)) {
             return redirect()->route('account.login.show')
                 ->with(['authStatus' => 'Не удалось получить данные от социальной сети.']);
         }
@@ -68,17 +69,16 @@ class ULoginController extends Controller
     }
 
 
-
+    // НЕ ИСПОЛЬЗУЕТСЯ
     // запрос из iframe html-кода виджета
     public function getWidgetHtml() {
-
-        $widget = '<script src="//ulogin.ru/js/ulogin.js"></script>
-                   <div id="uLogin"
-                   data-ulogin="display=panel;theme=flat;fields=first_name,last_name;
-                   providers=vkontakte,odnoklassniki,yandex,facebook,instagram;
+        $widget = "<script src='//ulogin.ru/js/ulogin.js'></script>
+                   <div id='uLogin'
+                   data-ulogin='display=panel;theme=flat;fields=first_name,last_name;
+                   providers=vkontakte,odnoklassniki,yandex,google,mailru;
                    hidden=;
-                   redirect_uri=http%3A%2F%2F{{config("app.name")}}%2Fu-login%2Fresponse;
-                   mobilebuttons=0;"></div>';
+                   redirect_uri=".env('APP_URL')."/u-login/response;
+                   mobilebuttons=0;'></div>";
         return $widget;
         //return response()->json($widget);
     }

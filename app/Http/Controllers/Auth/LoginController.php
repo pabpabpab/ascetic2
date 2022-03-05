@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
@@ -43,6 +44,10 @@ class LoginController extends Controller
                 ? response()->json(['success' => false])
                 : back()->with(['authStatus' => 'Пользователь не определен.']);
         }
+
+
+
+        //event(new UserRegisteredEvent($user));
 
         //info((string) $_COOKIE['favoriteIds']);
         // почему-то не тот кук читает, поэтому с фронта favoriteIds в реквест добавлен при login

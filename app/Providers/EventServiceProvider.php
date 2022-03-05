@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\ProductModifiedEvent;
+use App\Events\UserIsLoggedInEvent;
 use App\Events\UserRegisteredEvent;
 use App\Listeners\ProductModifiedListener;
 use App\Listeners\SendVerificationEmail;
@@ -28,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
             ProductModifiedListener::class,
         ],
         /*
+        UserIsLoggedInEvent::class => [
+            SynchronizeFavoriteProducts::class,
+        ],
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],

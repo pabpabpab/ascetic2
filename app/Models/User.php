@@ -16,11 +16,21 @@ class User extends Authenticatable
         'role',
         'email',
         'email_verified_at',
+        'social_id',
+        'social_network',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    // на случай регистрации через соцсеть
+    protected $attributes = [
+        'password' => '',
+        'email' => '',
+        'social_id' => '',
+        'social_network' => '',
     ];
 
     protected $casts = [

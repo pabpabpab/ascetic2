@@ -11,20 +11,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UserRegisteredEvent
+class UserIsLoggedInEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-
-    public $user;
-
-
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
     public function __construct(User $user)
     {
         $this->user = $user;
     }
-
-
 
     /**
      * Get the channels the event should broadcast on.
@@ -37,7 +36,4 @@ class UserRegisteredEvent
     }
 }
 
-
-// php artisan make:event UserRegisteredEvent
-
-
+// php artisan make:event UserIsLoggedInEvent

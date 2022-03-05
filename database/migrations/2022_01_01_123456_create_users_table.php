@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->char('role', 20)->default('user');
-            $table->string('email')->unique();
+            $table->string('email'); //->unique(); // не делать unique, т.к. при рег через соцсети они возвращают всегда пустой email
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('social_network', 30)->nullable()
                 ->comment('название соцсети');
 
+            $table->index('email');
             $table->index('social_id');
         });
 

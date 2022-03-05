@@ -19,7 +19,8 @@ class ULoginService
         $socialId = $socUser['identity'];
         $socialId = Str::replace('https://', '', $socialId);
         $socialId = Str::replace('http://', '', $socialId);
-        $socialId = Str::limit($socialId, 50)->trim();
+        $socialId = Str::limit($socialId, 50);
+        $socialId = trim($socialId);
 
         if (blank($socialId)) {
             return null;
@@ -28,12 +29,16 @@ class ULoginService
         $socialEmail = $socUser['email'] ?? '';
 
         $socialNetwork = $socUser['network'];
-        $socialNetwork=Str::limit($socialNetwork, 15)->trim();
+        $socialNetwork=Str::limit($socialNetwork, 15);
+        $socialNetwork = trim($socialNetwork);
+
 
         $socialUserName = Str::limit(
             $socUser['first_name']." ".$socUser['last_name'],
             100
-        )->trim();
+        );
+        $socialUserName = trim($socialUserName);
+
 
         if (blank($socialUserName)) {
             return null;

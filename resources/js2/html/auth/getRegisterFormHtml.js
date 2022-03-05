@@ -26,9 +26,12 @@ export default function getRegisterFormHtml() {
                    Зарегистрироваться
                 </button>
 
-                <div class="js_reg_form__header mt30">
-                    Регистрация через
+                <div class="js_reg_form__header mt20">
+                    <a href="/uLoginWidget" class="js_reg_form__forgot_password_link">
+                        Регистрация через соцсети
+                    </a>
                 </div>
+
                 ${getULoginWidgetHtml()}
             <div>`;
 }
