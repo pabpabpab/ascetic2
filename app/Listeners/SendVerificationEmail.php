@@ -43,3 +43,4 @@ class SendVerificationEmail
 
 // php artisan make:listener SendVerificationEmail --event=UserRegisteredEvent
 
+

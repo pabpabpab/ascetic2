@@ -6,7 +6,6 @@ use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
-use App\Services\Settings\SettingsService;
 use App\Services\User\FavoriteProductsSynchronizer;
 use App\Services\User\IsAdminService;
 use Illuminate\Support\Facades\Auth;
@@ -52,11 +51,6 @@ class RegisterController extends Controller
         event(new UserRegisteredEvent($user));
 
         Auth::login($user);
-
-        // с фронта favoriteIds (которые могут быть) в реквест добавлен при register
-        // для записи в бэк
-        (new FavoriteProductsSynchronizer())
-            ->mixFrontAndBackUserFavoriteIds(Auth::user()->id, (string) $request->favoriteIds);
 
         return $request->expectsJson()
             ? response()->json(['success' => true])

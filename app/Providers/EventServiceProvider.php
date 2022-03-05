@@ -6,6 +6,7 @@ use App\Events\ProductModifiedEvent;
 use App\Events\UserRegisteredEvent;
 use App\Listeners\ProductModifiedListener;
 use App\Listeners\SendVerificationEmail;
+use App\Listeners\SynchronizeFavoriteProducts;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,6 +22,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         UserRegisteredEvent::class => [
             SendVerificationEmail::class,
+            SynchronizeFavoriteProducts::class,
         ],
         ProductModifiedEvent::class => [
             ProductModifiedListener::class,
