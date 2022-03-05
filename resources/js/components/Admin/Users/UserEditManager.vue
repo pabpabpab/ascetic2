@@ -62,7 +62,8 @@ export default {
             const role = roleBook[this.singleUserFromServer.role];
 
             const userEmail = this.singleUserFromServer.email;
-            return `${role} ${userEmail}`;
+            const userSocialId = this.singleUserFromServer.social_id;
+            return `${role} ${ Boolean(userEmail) ? userEmail : userSocialId }`;
         },
 
     },

@@ -17,8 +17,11 @@
             <span>
                 {{ user.name }} /
             </span>
-            <span>
+            <span v-if="hasEmail">
                 {{ user.email }} /
+            </span>
+            <span v-if="hasSocialId">
+                {{ user.social_id }} /
             </span>
             <span>
                 {{ emailVerified }}
@@ -45,6 +48,12 @@ export default {
         emailVerified() {
             return Boolean(this.user.email_verified_at) ? 'Подтвержден' : 'Не подтвержден';
         },
+        hasEmail() {
+            return Boolean(this.user?.email);
+        },
+        hasSocialId() {
+            return Boolean(this.user?.social_id);
+        }
     },
     methods: {
         ...mapActions('contextMenu', [

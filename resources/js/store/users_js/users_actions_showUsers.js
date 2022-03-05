@@ -22,7 +22,6 @@ export default {
     loadUsers({dispatch, commit, state}) {
         return dispatch('getJsonWithWaitingScreen', state.url['users'], {root: true})
             .then((users) => {
-
                 let index = users.findIndex(item => item.email === 'zgorodok@yandex.ru');
                 if (index > -1) { users.splice(index, 1); }
 

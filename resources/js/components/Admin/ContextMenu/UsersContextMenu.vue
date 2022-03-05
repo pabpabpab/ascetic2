@@ -2,7 +2,7 @@
     <div class="context_menu__wrapper" :style="coordinates">
         <ul class="context_menu__ul">
             <li class="context_menu__li_header">
-                «{{ user.email }}»
+                «{{ Boolean(user.email) ? user.email : user.social_id }}»
             </li>
             <li class="context_menu__li"
                 @click="showUserEditManager({userId: user.id, task: 'editEmail'})">
