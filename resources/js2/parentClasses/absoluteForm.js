@@ -62,6 +62,8 @@ export default class AbsoluteForm extends VisibleBlockByClick {
             return;
         }
 
+        el(this.submitSelector).innerText = 'Ждите...';
+
         // отправить данные и получить ответ
         postJson(this.postUrl, userData).then((data) => {
             if (data.backValidatorErrors) {
@@ -87,14 +89,14 @@ export default class AbsoluteForm extends VisibleBlockByClick {
     _ultimateFail() {}
 
     _getSubmitPermission() {
-        // защита от повторного нажатия на 5 сек
+        // защита от повторного нажатия на 9 сек
         if (this.disabledSubmit) {
             return false;
         }
         this.disabledSubmit = true;
         setTimeout(() => {
             this.disabledSubmit = false;
-        }, 5000);
+        }, 9000);
 
         return true;
     }

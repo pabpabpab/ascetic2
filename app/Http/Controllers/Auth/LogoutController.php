@@ -12,7 +12,8 @@ class LogoutController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // убрать чтобы не было ошибки когда сессия кончается
+        //$this->middleware('auth');
     }
 
     public function logout(Request $request)
