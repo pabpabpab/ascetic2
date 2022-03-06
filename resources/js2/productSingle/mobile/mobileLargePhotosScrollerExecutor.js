@@ -1,6 +1,7 @@
 import el from '../../auxiliaryFunctions/el';
 
-export default class MobileLargePhotoSwiper {
+// родительский класс для MobileLargePhotosScrollerByClick и MobileLargePhotosScrollerBySwipe
+export default class MobileLargePhotosScrollerExecutor {
     constructor() {
         if (!el('#smallPhotos')) {
             return;
@@ -12,42 +13,7 @@ export default class MobileLargePhotoSwiper {
 
         this.indexOfMainPhoto = 0;
         this.numberOfPhotos = this._getPhotoCount();
-
-        this.startTouchX = 0;
-        this.startTouchY = 0;
-        this.startTouchTime = 0;
-
-        el('#mainPhotoContainer').addEventListener('touchstart', (e) => {
-            this._startTouchHandler(e);
-        });
-        el('#mainPhotoContainer').addEventListener('touchend', (e) => {
-            this._endTouchHandler(e);
-        });
     }
-
-    _startTouchHandler(e) {
-        const touchObj = e.changedTouches[0];
-        this.startTouchX = touchObj.pageX;
-        this.startTouchY = touchObj.pageY;
-        this.startTouchTime = new Date().getTime();
-    }
-
-    _endTouchHandler(e) {
-        const touchObj = e.changedTouches[0];
-        const distanceX = touchObj.pageX - this.startTouchX;
-        const distanceY = touchObj.pageY - this.startTouchY;
-        const elapsedTime = new Date().getTime() - this.startTouchTime;
-
-        if (elapsedTime < 500 && distanceX > 35 && Math.abs(distanceY) < 120) {
-            this._showNextPhoto(-1);
-        }
-
-        if (elapsedTime < 500 && distanceX < -35 && Math.abs(distanceY) < 120) {
-            this._showNextPhoto(1);
-        }
-    }
-
-
 
     _showNextPhoto(offset) {
         this._changeButtonsVisibilityWhenScrollClick(offset);
@@ -71,7 +37,6 @@ export default class MobileLargePhotoSwiper {
 
         this._scrollLargePhotos(offset, startX, photoWidth);
     }
-
 
     _scrollLargePhotos(offset, startX, photoWidth) {
         const _coveredDistance = Math.abs(this.container.scrollLeft - startX);
@@ -118,11 +83,6 @@ export default class MobileLargePhotoSwiper {
         }
         this.photoNumberIndicator.innerText = photoNumber;
     }
-
-
-
-
-
 
     _getPhotoCount() {
         const nodes = document.querySelectorAll('[data-small-photo]');

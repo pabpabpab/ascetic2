@@ -363,15 +363,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$store.dispatch('products/makeSearchByLotNumber', this.lotNumber + 0);
 
       if (newValue !== oldValue) {
-        var now = new Date();
-        this.lastChangesTime = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+        this.lastChangesTime = new Date().getTime();
       }
     },
     filteredProductsLength: function filteredProductsLength(newValue, oldValue) {
-      var now = new Date();
-      var currentTime = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds(); // исключить изменения кол-ва товаров в результате ввода lotNumber
+      var currentTime = new Date().getTime(); // исключить изменения кол-ва товаров в результате ввода lotNumber
 
-      if (currentTime - this.lastChangesTime < 3) {
+      if (currentTime - this.lastChangesTime < 3000) {
         return;
       } // иначе закрыть input
 
