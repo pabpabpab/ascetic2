@@ -1,9 +1,19 @@
 import el from '../../auxiliaryFunctions/el';
-import MobileLargePhotosScrollerExecutor from "./mobileLargePhotosScrollerExecutor";
+import MobileLargePhotosScrollerExecutor from "./parentClass/mobileLargePhotoScrollerExecutor";
 
-export default class MobileLargePhotosScrollerBySwipe extends MobileLargePhotosScrollerExecutor {
+export default class MobileLargePhotosScroller extends MobileLargePhotosScrollerExecutor {
     constructor() {
         super();
+
+        this.buttonLeft.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this._showNextPhoto(-1);
+        });
+        this.buttonRight.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this._showNextPhoto(1);
+        });
+
 
         this.startTouchX = 0;
         this.startTouchY = 0;

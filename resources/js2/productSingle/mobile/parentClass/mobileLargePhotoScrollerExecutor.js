@@ -1,7 +1,7 @@
-import el from '../../auxiliaryFunctions/el';
+import el from '../../../auxiliaryFunctions/el';
 
-// родительский класс для MobileLargePhotosScrollerByClick и MobileLargePhotosScrollerBySwipe
-export default class MobileLargePhotosScrollerExecutor {
+// родительский класс для MobileLargePhotoScroller
+export default class MobileLargePhotoScrollerExecutor {
     constructor() {
         if (!el('#smallPhotos')) {
             return;
