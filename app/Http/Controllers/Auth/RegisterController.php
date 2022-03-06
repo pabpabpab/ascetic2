@@ -48,9 +48,9 @@ class RegisterController extends Controller
                 : back()->with(['authStatus' => 'Не удалось создать регистрацию.']);
         }
 
-        event(new UserRegisteredEvent($user));
-
         Auth::login($user);
+
+        event(new UserRegisteredEvent($user));
 
         return $request->expectsJson()
             ? response()->json(['success' => true])

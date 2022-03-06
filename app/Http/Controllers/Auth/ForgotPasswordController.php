@@ -70,7 +70,7 @@ class ForgotPasswordController extends Controller
         }
 
         // отправить письмо юзеру с reset link (с линком для создания нового пароля)
-        Mail::to($user->email)->send(new PasswordResetLink($user));
+        Mail::to($user)->send(new PasswordResetLink($user));
         //$content = (new PasswordResetLink($user))->render();
         //info($content);
 

@@ -36,14 +36,17 @@ class PasswordResetLink extends Mailable
      */
     public function build()
     {
+
+        $subject = "Создание нового пароля";
         $fakeUserId = $this->user->id + env('FAKE_ID_OFFSET');
 
-        return $this->view('emails.password-reset-link')
-                    ->with([
-                        'userName' => $this->user->getUserName(),
-                        'resetPasswordUrl' => URL::signedRoute('account.resetPassword.showForm',['fakeUserId' => $fakeUserId]
-                        ),
-                    ]);
+        return $this->subject($subject)
+            ->view('emails.password-reset-link')
+            ->with([
+                'userName' => $this->user->getUserName(),
+                'resetPasswordUrl' => URL::signedRoute('account.resetPassword.showForm', ['fakeUserId' => $fakeUserId]
+                ),
+            ]);
 
         /*
          * 'resetPasswordUrl' => URL::temporarySignedRoute(
@@ -52,3 +55,6 @@ class PasswordResetLink extends Mailable
          */
     }
 }
+
+
+//php artisan make:mail PasswordResetLink

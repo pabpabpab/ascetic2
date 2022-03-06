@@ -37,12 +37,25 @@ class ConfirmRegister extends Mailable
      */
     public function build()
     {
+        /*
+         * Within this method, you may call various methods such as
+         * from, subject, view, and attach
+         * to configure the email's presentation and delivery.
+         *
+         * You may type-hint dependencies on the mailable's build method.
+         * The Laravel service container automatically injects these dependencies.
+         */
+
+        $subject = "Завершение регистрации";
         $fakeUserId = $this->user->id + env('FAKE_ID_OFFSET');
 
-        return $this->view('emails.confirm-registration')
+        return $this->subject($subject)
+            ->view('emails.confirm-registration')
             ->with([
                 'userName' => $this->user->getUserName(),
                 'confirmingUrl' => URL::signedRoute('account.register.confirm', ['fakeUserId' => $fakeUserId]),
             ]);
     }
 }
+
+//php artisan make:mail ConfirmRegister
