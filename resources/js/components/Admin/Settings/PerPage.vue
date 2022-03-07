@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import getJsPartOfComponent from "./jsPartOfComponents/getJsPartOfComponent";
 import SettingsInput from "./SettingsInput";
 export default {
-    name: "PerPage",
+    name: 'PerPage',
     components: {SettingsInput},
     data() {
         return {
@@ -31,39 +31,6 @@ export default {
             disableAllInputsCmd: false,
         };
     },
-    computed: {
-        ...mapGetters('settingsManager', [
-            'settings',
-        ]),
-        data() {
-            return this.settings(this.subject);
-        },
-    },
-    methods: {
-        ...mapActions('settingsManager', [
-            'saveSettings',
-            'loadSettings'
-        ]),
-        saveSettings() {
-            this.disableAllInputsCmd = true;
-            setTimeout(() => {
-                this.disableAllInputsCmd = false
-            },100);
-
-            this.$store.dispatch('settingsManager/saveSettings', {
-                subject: this.subject,
-                data: this.localSettings,
-            })
-        },
-    },
-    watch:{
-        data(value) {
-            //console.log(value);
-            this.localSettings = { ...value };
-        },
-    },
-    mounted() {
-        this.$store.dispatch('settingsManager/loadSettings', {subject: this.subject});
-    },
+    ...getJsPartOfComponent,
 }
 </script>

@@ -4,7 +4,9 @@
         <div class="content_block settingsPage">
 
             <div class="settings_form__check_address_icon__wrapper">
-                <a :href="addressLinkHref" target=_blank
+                <a
+                   :href="`https://yandex.ru/maps/?text=${localSettings.address}`"
+                   target=_blank
                    class="settings_form__check_address_icon__link">
                     <img :src="checkAddressIcon"
                          alt=""
@@ -116,8 +118,8 @@
 
 <script>
 import checkAddressIcon from "../../../../assets/checkAddressIcon.svg"
-import {mapActions, mapGetters} from "vuex";
 import SettingsInput from "./SettingsInput";
+import getJsPartOfComponent from "./jsPartOfComponents/getJsPartOfComponent";
 export default {
     name: "Contacts",
     components: {SettingsInput},
@@ -140,43 +142,7 @@ export default {
             disableAllInputsCmd: false,
         };
     },
-    computed: {
-        ...mapGetters('settingsManager', [
-            'settings',
-        ]),
-        data() {
-            return this.settings(this.subject);
-        },
-        addressLinkHref() {
-            return `https://yandex.ru/maps/?text=${this.localSettings.address}`;
-        }
-    },
-    methods: {
-        ...mapActions('settingsManager', [
-            'saveSettings',
-            'loadSettings'
-        ]),
-        saveSettings() {
-            this.disableAllInputsCmd = true;
-            setTimeout(() => {
-                this.disableAllInputsCmd = false
-            },100);
-
-            this.$store.dispatch('settingsManager/saveSettings', {
-                subject: this.subject,
-                data: this.localSettings,
-            })
-        },
-    },
-    watch:{
-        data(value) {
-            //console.log(value);
-            this.localSettings = { ...value };
-        },
-    },
-    mounted() {
-        this.$store.dispatch('settingsManager/loadSettings', {subject: this.subject});
-    },
+    ...getJsPartOfComponent,
 }
 
 </script>

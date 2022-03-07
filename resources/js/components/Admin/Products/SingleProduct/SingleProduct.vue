@@ -129,7 +129,8 @@ import {mapActions, mapGetters} from "vuex";
 import scrollSmallPhotos from "../functions/scrollSmallPhotos";
 import viewLargePhoto from "../functions/viewLargePhoto";
 import scrollBigPhotos from "../functions/scrollBigPhotos";
-
+import startTouchHandler from "../functions/startTouchHandler";
+import endTouchHandler from "../functions/endTouchHandler";
 export default {
     name: "SingleProduct",
     props: ['from'],
@@ -142,6 +143,10 @@ export default {
             mainPhotoSizeIndex: 4,
             mainPhotoRatio: 0,
             viewingLargePhotoWasStarted: false,
+
+            startTouchX: 0,
+            startTouchY: 0,
+            startTouchTime: 0,
         }
     },
     computed: {
@@ -169,6 +174,9 @@ export default {
             'showContextMenu',
         ]),
 
+        ...startTouchHandler,
+        ...endTouchHandler,
+
         ...scrollSmallPhotos,
         ...viewLargePhoto,
         ...scrollBigPhotos,
@@ -180,21 +188,17 @@ export default {
         },
         showNextBigPhoto(offset) {
             this.scrollBigPhotos(offset);
-            /*
-            this.indexOfMainPhoto += offset;
-            if (this.indexOfMainPhoto < 0) {
-                this.indexOfMainPhoto = 0;
-            }
-            if (this.indexOfMainPhoto > this.numberOfPhotos - 1) {
-                this.indexOfMainPhoto = this.numberOfPhotos - 1;
-            }
-            */
         },
     },
     mounted() {
         if (this.from === 'singleProductPage') {
             this.$store.dispatch('products/loadSingleProduct', this.$route.params.id);
         }
+
+        setTimeout(() => {
+            this.$refs.mobileMainPhotoDiv.addEventListener('touchstart', this.startTouchHandler, false)
+            this.$refs.mobileMainPhotoDiv.addEventListener('touchend', this.endTouchHandler, false)
+        }, 1000); // меньше чем 1000 не успевает
     }
 }
 </script>

@@ -548,6 +548,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../functions/scrollSmallPhotos */ "./resources/js/components/Admin/Products/functions/scrollSmallPhotos.js");
 /* harmony import */ var _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../functions/viewLargePhoto */ "./resources/js/components/Admin/Products/functions/viewLargePhoto.js");
 /* harmony import */ var _functions_scrollBigPhotos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../functions/scrollBigPhotos */ "./resources/js/components/Admin/Products/functions/scrollBigPhotos.js");
+/* harmony import */ var _functions_startTouchHandler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../functions/startTouchHandler */ "./resources/js/components/Admin/Products/functions/startTouchHandler.js");
+/* harmony import */ var _functions_endTouchHandler__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../functions/endTouchHandler */ "./resources/js/components/Admin/Products/functions/endTouchHandler.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -684,6 +686,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SingleProduct",
   props: ['from'],
@@ -695,7 +699,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       indexOfMainPhoto: 0,
       mainPhotoSizeIndex: 4,
       mainPhotoRatio: 0,
-      viewingLargePhotoWasStarted: false
+      viewingLargePhotoWasStarted: false,
+      startTouchX: 0,
+      startTouchY: 0,
+      startTouchTime: 0
     };
   },
   computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('products', ['singleProductFromServer'])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(['imgFolderPrefix'])), _someComputed_computedForSingleProduct__WEBPACK_IMPORTED_MODULE_1__["default"]), {}, {
@@ -709,7 +716,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return this.indexOfMainPhoto < this.numberOfPhotos - 1;
     }
   }),
-  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('contextMenu', ['showContextMenu'])), _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__["default"]), _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__["default"]), _functions_scrollBigPhotos__WEBPACK_IMPORTED_MODULE_5__["default"]), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('contextMenu', ['showContextMenu'])), _functions_startTouchHandler__WEBPACK_IMPORTED_MODULE_6__["default"]), _functions_endTouchHandler__WEBPACK_IMPORTED_MODULE_7__["default"]), _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__["default"]), _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__["default"]), _functions_scrollBigPhotos__WEBPACK_IMPORTED_MODULE_5__["default"]), {}, {
     changeMainPhotoBySmallPhoto: function changeMainPhotoBySmallPhoto(event) {
       if (event.target.className === 'photo__size2') {
         this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
@@ -717,21 +724,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     showNextBigPhoto: function showNextBigPhoto(offset) {
       this.scrollBigPhotos(offset);
-      /*
-      this.indexOfMainPhoto += offset;
-      if (this.indexOfMainPhoto < 0) {
-          this.indexOfMainPhoto = 0;
-      }
-      if (this.indexOfMainPhoto > this.numberOfPhotos - 1) {
-          this.indexOfMainPhoto = this.numberOfPhotos - 1;
-      }
-      */
     }
   }),
   mounted: function mounted() {
+    var _this = this;
+
     if (this.from === 'singleProductPage') {
       this.$store.dispatch('products/loadSingleProduct', this.$route.params.id);
     }
+
+    setTimeout(function () {
+      _this.$refs.mobileMainPhotoDiv.addEventListener('touchstart', _this.startTouchHandler, false);
+
+      _this.$refs.mobileMainPhotoDiv.addEventListener('touchend', _this.endTouchHandler, false);
+    }, 1000); // меньше чем 1000 не успевает
   }
 });
 
@@ -2118,6 +2124,34 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/Products/functions/endTouchHandler.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/functions/endTouchHandler.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  endTouchHandler: function endTouchHandler(event) {
+    var touchObj = event.changedTouches[0];
+    var distanceX = touchObj.pageX - this.startTouchX;
+    var distanceY = touchObj.pageY - this.startTouchY;
+    var elapsedTime = new Date().getTime() - this.startTouchTime;
+
+    if (elapsedTime < 1000 && distanceX > 30 && Math.abs(distanceY) < 120) {
+      this.scrollBigPhotos(-1);
+    }
+
+    if (elapsedTime < 1000 && distanceX < -30 && Math.abs(distanceY) < 120) {
+      this.scrollBigPhotos(1);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/components/Admin/Products/functions/scrollBigPhotos.js":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/Admin/Products/functions/scrollBigPhotos.js ***!
@@ -2224,6 +2258,26 @@ __webpack_require__.r(__webpack_exports__);
     setTimeout(function () {
       _this._scrollSmallPhoto(distance, coveredDistance, direction);
     }, 1);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Products/functions/startTouchHandler.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Admin/Products/functions/startTouchHandler.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  startTouchHandler: function startTouchHandler(event) {
+    var touchObj = event.changedTouches[0];
+    this.startTouchX = touchObj.pageX;
+    this.startTouchY = touchObj.pageY;
+    this.startTouchTime = new Date().getTime();
   }
 });
 
