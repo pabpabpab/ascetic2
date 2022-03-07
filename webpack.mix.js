@@ -11,12 +11,33 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.js('resources/admin-js/app.js', 'public/admin-js')
+   .sass('resources/admin-sass/index.sass', 'public/css/admin.css')
+
+   .js('resources/public-js/app/productListApp.js', 'public/public-js')
+   .js('resources/public-js/app/singleProductApp.js', 'public/public-js')
+   .js('resources/public-js/app/menuApp.js', 'public/public-js')
+   .sass('resources/public-sass/index.sass', 'public/css/public.css')
+    .webpackConfig({
+        watch: true,
+        watchOptions: {
+            aggregateTimeout: 600,
+            poll: 1000,
+            ignored: /node_modules/,
+        }
+    });
+
+
+
+   //.version();
+
+
+
 /*
 mix.js('resources/js/app.js', 'public/js')
     .vue() // из-за этого ошибка
     .sass('resources/sass/app.sass', 'public/css');
 */
-
 
 // для админской части
 /*
@@ -40,23 +61,3 @@ mix.js('resources/js2/index.js', 'public/js2')
         }
     });
 */
-
-
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.sass', 'public/css')
-   //.js('resources/js2/index.js', 'public/js2')
-   .js('resources/js2/productListApp.js', 'public/js2')
-   .js('resources/js2/singleProductApp.js', 'public/js2')
-   .js('resources/js2/menuApp.js', 'public/js2')
-   .sass('resources/sass2/index.sass', 'public/css')
-    .webpackConfig({
-        watch: true,
-        watchOptions: {
-            aggregateTimeout: 600,
-            poll: 1000,
-            ignored: /node_modules/,
-        }
-    });
-
-
-   //.version();

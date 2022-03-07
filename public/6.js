@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70,10 +70,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -217,10 +217,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -382,21 +382,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _CheckNumberOfCategories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckNumberOfCategories */ "./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue");
-/* harmony import */ var _FilesInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FilesInput */ "./resources/js/components/Admin/Products/ProductForm/FilesInput.vue");
-/* harmony import */ var _CheckboxesList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CheckboxesList */ "./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue");
-/* harmony import */ var _functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../functions/fitTextareaHeight */ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js");
-/* harmony import */ var _functions_getFormattedPrice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../functions/getFormattedPrice */ "./resources/js/components/Admin/Products/functions/getFormattedPrice.js");
+/* harmony import */ var _CheckNumberOfCategories__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckNumberOfCategories */ "./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue");
+/* harmony import */ var _FilesInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FilesInput */ "./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue");
+/* harmony import */ var _CheckboxesList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CheckboxesList */ "./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue");
+/* harmony import */ var _functions_fitTextareaHeight__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../functions/fitTextareaHeight */ "./resources/admin-js/components/Admin/Products/functions/fitTextareaHeight.js");
+/* harmony import */ var _functions_getFormattedPrice__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../functions/getFormattedPrice */ "./resources/admin-js/components/Admin/Products/functions/getFormattedPrice.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -601,10 +601,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=3ede4348&":
-/*!*****************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=3ede4348& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=989759f4&":
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=989759f4& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -625,10 +625,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=dc62298a&":
-/*!********************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=dc62298a& ***!
-  \********************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=2c3a8dbd&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=2c3a8dbd& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -823,10 +823,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=6d95aa42&":
-/*!****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=6d95aa42& ***!
-  \****************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=204a5e61&":
+/*!**********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=204a5e61& ***!
+  \**********************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -938,10 +938,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=81d40892&":
-/*!*****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=81d40892& ***!
-  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=4aa73875&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=4aa73875& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1212,17 +1212,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue":
-/*!****************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue ***!
-  \****************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue":
+/*!**********************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue ***!
+  \**********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CheckNumberOfCategories_vue_vue_type_template_id_3ede4348___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckNumberOfCategories.vue?vue&type=template&id=3ede4348& */ "./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=3ede4348&");
-/* harmony import */ var _CheckNumberOfCategories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckNumberOfCategories.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CheckNumberOfCategories_vue_vue_type_template_id_989759f4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckNumberOfCategories.vue?vue&type=template&id=989759f4& */ "./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=989759f4&");
+/* harmony import */ var _CheckNumberOfCategories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckNumberOfCategories.vue?vue&type=script&lang=js& */ "./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1233,8 +1233,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _CheckNumberOfCategories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CheckNumberOfCategories_vue_vue_type_template_id_3ede4348___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CheckNumberOfCategories_vue_vue_type_template_id_3ede4348___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _CheckNumberOfCategories_vue_vue_type_template_id_989759f4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckNumberOfCategories_vue_vue_type_template_id_989759f4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1244,54 +1244,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue"
+component.options.__file = "resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckNumberOfCategories.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckNumberOfCategories.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=3ede4348&":
-/*!***********************************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=3ede4348& ***!
-  \***********************************************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=989759f4&":
+/*!*****************************************************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=989759f4& ***!
+  \*****************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_template_id_3ede4348___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckNumberOfCategories.vue?vue&type=template&id=3ede4348& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=3ede4348&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_template_id_3ede4348___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_template_id_989759f4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckNumberOfCategories.vue?vue&type=template&id=989759f4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/CheckNumberOfCategories.vue?vue&type=template&id=989759f4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_template_id_989759f4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_template_id_3ede4348___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckNumberOfCategories_vue_vue_type_template_id_989759f4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue ***!
-  \*******************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue":
+/*!*************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue ***!
+  \*************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CheckboxesList_vue_vue_type_template_id_dc62298a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckboxesList.vue?vue&type=template&id=dc62298a& */ "./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=dc62298a&");
-/* harmony import */ var _CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckboxesList.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _CheckboxesList_vue_vue_type_template_id_2c3a8dbd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CheckboxesList.vue?vue&type=template&id=2c3a8dbd& */ "./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=2c3a8dbd&");
+/* harmony import */ var _CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CheckboxesList.vue?vue&type=script&lang=js& */ "./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1302,8 +1302,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CheckboxesList_vue_vue_type_template_id_dc62298a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CheckboxesList_vue_vue_type_template_id_dc62298a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _CheckboxesList_vue_vue_type_template_id_2c3a8dbd___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CheckboxesList_vue_vue_type_template_id_2c3a8dbd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1313,54 +1313,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue"
+component.options.__file = "resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckboxesList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckboxesList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=dc62298a&":
-/*!**************************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=dc62298a& ***!
-  \**************************************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=2c3a8dbd&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=2c3a8dbd& ***!
+  \********************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_dc62298a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckboxesList.vue?vue&type=template&id=dc62298a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=dc62298a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_dc62298a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_2c3a8dbd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./CheckboxesList.vue?vue&type=template&id=2c3a8dbd& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/CheckboxesList.vue?vue&type=template&id=2c3a8dbd&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_2c3a8dbd___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_dc62298a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CheckboxesList_vue_vue_type_template_id_2c3a8dbd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/FilesInput.vue":
-/*!***************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/FilesInput.vue ***!
-  \***************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue ***!
+  \*********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FilesInput_vue_vue_type_template_id_6d95aa42___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FilesInput.vue?vue&type=template&id=6d95aa42& */ "./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=6d95aa42&");
-/* harmony import */ var _FilesInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilesInput.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js&");
+/* harmony import */ var _FilesInput_vue_vue_type_template_id_204a5e61___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FilesInput.vue?vue&type=template&id=204a5e61& */ "./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=204a5e61&");
+/* harmony import */ var _FilesInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilesInput.vue?vue&type=script&lang=js& */ "./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1371,8 +1371,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _FilesInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _FilesInput_vue_vue_type_template_id_6d95aa42___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _FilesInput_vue_vue_type_template_id_6d95aa42___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _FilesInput_vue_vue_type_template_id_204a5e61___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FilesInput_vue_vue_type_template_id_204a5e61___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1382,54 +1382,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Admin/Products/ProductForm/FilesInput.vue"
+component.options.__file = "resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./FilesInput.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./FilesInput.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=6d95aa42&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=6d95aa42& ***!
-  \**********************************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=204a5e61&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=204a5e61& ***!
+  \****************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_template_id_6d95aa42___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./FilesInput.vue?vue&type=template&id=6d95aa42& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=6d95aa42&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_template_id_6d95aa42___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_template_id_204a5e61___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./FilesInput.vue?vue&type=template&id=204a5e61& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/FilesInput.vue?vue&type=template&id=204a5e61&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_template_id_204a5e61___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_template_id_6d95aa42___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilesInput_vue_vue_type_template_id_204a5e61___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/ProductForm.vue":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/ProductForm.vue ***!
-  \****************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue":
+/*!**********************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ProductForm_vue_vue_type_template_id_81d40892___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductForm.vue?vue&type=template&id=81d40892& */ "./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=81d40892&");
-/* harmony import */ var _ProductForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductForm.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _ProductForm_vue_vue_type_template_id_4aa73875___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductForm.vue?vue&type=template&id=4aa73875& */ "./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=4aa73875&");
+/* harmony import */ var _ProductForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductForm.vue?vue&type=script&lang=js& */ "./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1440,8 +1440,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _ProductForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ProductForm_vue_vue_type_template_id_81d40892___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ProductForm_vue_vue_type_template_id_81d40892___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ProductForm_vue_vue_type_template_id_4aa73875___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ProductForm_vue_vue_type_template_id_4aa73875___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1451,47 +1451,47 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Admin/Products/ProductForm/ProductForm.vue"
+component.options.__file = "resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=81d40892&":
-/*!***********************************************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=81d40892& ***!
-  \***********************************************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=4aa73875&":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=4aa73875& ***!
+  \*****************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_template_id_81d40892___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductForm.vue?vue&type=template&id=81d40892& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=81d40892&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_template_id_81d40892___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_template_id_4aa73875___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ProductForm.vue?vue&type=template&id=4aa73875& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/admin-js/components/Admin/Products/ProductForm/ProductForm.vue?vue&type=template&id=4aa73875&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_template_id_4aa73875___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_template_id_81d40892___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProductForm_vue_vue_type_template_id_4aa73875___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/functions/fitTextareaHeight.js":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/functions/fitTextareaHeight.js ***!
-  \*******************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/functions/fitTextareaHeight.js":
+/*!*************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/functions/fitTextareaHeight.js ***!
+  \*************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1546,10 +1546,10 @@ function _resetTextareaHeight(event) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/Products/functions/getFormattedPrice.js":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/Admin/Products/functions/getFormattedPrice.js ***!
-  \*******************************************************************************/
+/***/ "./resources/admin-js/components/Admin/Products/functions/getFormattedPrice.js":
+/*!*************************************************************************************!*\
+  !*** ./resources/admin-js/components/Admin/Products/functions/getFormattedPrice.js ***!
+  \*************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

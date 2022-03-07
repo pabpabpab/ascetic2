@@ -1,8 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/index.css": "/css/index.css",
-    "/js2/menuApp.js": "/js2/menuApp.js",
-    "/js2/productListApp.js": "/js2/productListApp.js",
-    "/js2/singleProductApp.js": "/js2/singleProductApp.js"
+    "/admin-js/app.js": "/admin-js/app.js",
+    "/css/admin.css": "/css/admin.css",
+    "/css/public.css": "/css/public.css",
+    "/public-js/menuApp.js": "/public-js/menuApp.js",
+    "/public-js/productListApp.js": "/public-js/productListApp.js",
+    "/public-js/singleProductApp.js": "/public-js/singleProductApp.js"
 }

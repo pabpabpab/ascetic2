@@ -1,4 +1,4 @@
-import Aware from "../parentClasses/app/aware";
+import Aware from "../../parentClasses/app/aware";
 
 export default class Mutator extends Aware {
 
