@@ -19,3 +19,4 @@ composer.lock
 .styleci.yml
 package.json_copy
 webpack2.config.js
+artisan
