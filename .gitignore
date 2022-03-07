@@ -12,4 +12,10 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-
+yarn.lock
+composer.lock
+.editorconfig
+.env.example
+.styleci.yml
+package.json_copy
+webpack2.config.js
