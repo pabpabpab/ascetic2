@@ -36,9 +36,12 @@
                             class="product_item__photo__img"/>
                     </a>
                 @else
-                    <div class="product_item__no_photo">
-                        НЕТ ФОТО
-                    </div>
+                    <a href='{{ $singleProductUrl }}'>
+                        <img src="{{ asset('/images/nophoto.png') }}"
+                             alt="Нет фото"
+                             data-product-item-link="{{ $product->id }}"
+                             class="product_item__photo__img"/>
+                    </a>
                 @endif
             </div>
 

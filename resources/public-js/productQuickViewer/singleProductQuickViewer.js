@@ -51,6 +51,8 @@ export default class SingleProductQuickViewer extends Aware {
                 this.components.viewedProductsSummaryMaker.remakeWith(product);
                 const productObject = getProductObject(product);
                 this._renderProduct(productObject);
+
+                el('#productDescriptionContainer').innerText = 'Загрузка...';
                 this.components.productCache.getOneDescription(productId)
                     .then((data) => {
                         el('#productDescriptionContainer').innerText = data.description;

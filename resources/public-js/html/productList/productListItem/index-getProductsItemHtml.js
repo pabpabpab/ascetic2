@@ -22,9 +22,9 @@ export default function getProductsItemHtml(product, viewMode) {
                          </div>
 
                          ${
-                             Boolean(product.photos)
+                             product.photos.length > 0
                                 ? getPhotoBlockHtml(product)
-                                : getNoPhotoBlockHtml()
+                                : getNoPhotoBlockHtml(product)
                          }
                       </div>
 

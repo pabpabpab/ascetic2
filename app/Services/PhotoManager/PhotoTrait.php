@@ -13,7 +13,8 @@ trait PhotoTrait
     // удалить физически с диска все версии фото
     protected function _deletePhotoFromDisk($productId, $photoName)
     {
-        for ($i = 1; $i <= 6; $i++) {
+        // индекс 1 пропустить (мелкого фото нет)
+        for ($i = 2; $i <= 6; $i++) {
             $fileName = $productId."s".$i."-".$photoName;
             $folderName = config("my_photo.folders.size".$i);
             $filePath = $folderName."/".$fileName;

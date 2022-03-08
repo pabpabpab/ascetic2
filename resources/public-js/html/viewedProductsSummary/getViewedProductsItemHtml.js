@@ -1,4 +1,5 @@
 export default function getViewedProductsItemHtml(product) {
+
     return `<div class="product_item__wrapper">
                <div class="product_item product_item__in_viewed_summary">
 
@@ -13,7 +14,7 @@ export default function getViewedProductsItemHtml(product) {
                           </div>
 
                          ${
-                            Boolean(product.photos)
+                            product.photos.length > 0
                                ? _getPhotoBlockHtml(product)
                                : _getNoPhotoBlockHtml()
                           }
@@ -52,7 +53,7 @@ function _getPhotoBlockHtml(product) {
 }
 
 function _getNoPhotoBlockHtml() {
-    return `<div class="product_item__no_photo product_item__no_photo__in_viewed_summary">
+    return `<div class="product_item__no_photo__in_viewed_summary">
                 НЕТ ФОТО
             </div>`;
 }

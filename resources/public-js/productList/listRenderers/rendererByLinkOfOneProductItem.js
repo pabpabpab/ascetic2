@@ -65,6 +65,8 @@ export default class RendererByLinkOfOneProductItem extends Aware {
                 this._renderProduct(productObject);
                 this._storeSlug(productObject);
                 this._finalActions();
+
+                el('#productDescriptionContainer').innerText = 'Загрузка...';
                 this.components.productCache.getOneDescription(productId)
                     .then((data) => {
                         el('#productDescriptionContainer').innerText = data.description;
