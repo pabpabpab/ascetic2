@@ -29,8 +29,8 @@ export default class FavoriteProductsIndicationOnPageLoad extends Aware {
                 el(imgSelector).src = this.iconSrc.inFavorites;
 
                 const wrapperSelector = this._getIconWrapperSelector(productId);
-                if (!el(wrapperSelector).classList.contains("set-opacity")) {
-                    el(wrapperSelector).classList.add("set-opacity");
+                if (!el(wrapperSelector).classList.contains("set_opacity")) {
+                    el(wrapperSelector).classList.add("set_opacity");
                 }
 
                 const textSelector = this._getIconTextSelector(productId);

@@ -5,7 +5,7 @@
 
         <div>
             <div class="input_text__container display_flex">
-                <input class="input_text input_text__category_form"
+                <input class="input_text category_form__input_text"
                        :class="{ 'input_alarm': isAlarmingInput('name') }"
                        type="text" maxlength="50" placeholder=" "
                        v-model="localCategory.name"
@@ -16,7 +16,7 @@
 
                 <label class="input_text__label">{{ getLabelText }}</label>
 
-                <button class="button__save_category"
+                <button class="category_save_button"
                     @click.stop="saveCategory({
                         entity: $route.params.entity,
                         category: localCategory
@@ -30,7 +30,7 @@
             </p>
         </div>
 
-        <div class='icon__collapse_category_form'
+        <div class='collapse_category_form__icon'
              @click="changeAddingComponent()">
             &#215;
         </div>
@@ -63,7 +63,7 @@ export default {
             zeroCategory: {},
             animationClass: {
                 'category_form__animation_open pd20 mt20': true,
-                'category_form__animation_close': false
+                'category_form__animation_collapse': false
             },
         };
     },
@@ -92,7 +92,7 @@ export default {
         changeAddingComponent() {
             this.animationClass = {
                 'category_form__animation_open': false,
-                'category_form__animation_close': true
+                'category_form__animation_collapse': true
             };
             setTimeout(() => {
                 this.$emit('change-adding-component');

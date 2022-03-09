@@ -102,8 +102,8 @@ export default class RendererBySortSettings extends Aware {
 
     _makeInvisiblePaginationBlock() {
         const paginationBlock = el('#paginationContent');
-        if (paginationBlock && !paginationBlock.classList.contains("display-none")) {
-            paginationBlock.classList.add("display-none");
+        if (paginationBlock && !paginationBlock.classList.contains("display_none")) {
+            paginationBlock.classList.add("display_none");
         }
     }
 

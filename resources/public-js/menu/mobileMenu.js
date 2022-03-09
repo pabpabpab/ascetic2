@@ -83,16 +83,16 @@ export default class MobileMenu {
         }
     }
     _turnOnMenuIcon() {
-        el(this.menuIconSelector).classList.remove('display-none');
+        el(this.menuIconSelector).classList.remove('display_none');
     }
     _turnOffMenuIcon() {
-        el(this.menuIconSelector).classList.add('display-none');
+        el(this.menuIconSelector).classList.add('display_none');
     }
     _turnOnCollapseIcon() {
-        el(this.collapseIconSelector).classList.remove('display-none');
+        el(this.collapseIconSelector).classList.remove('display_none');
     }
     _turnOffCollapseIcon() {
-        el(this.collapseIconSelector).classList.add('display-none');
+        el(this.collapseIconSelector).classList.add('display_none');
     }
 
 

@@ -338,7 +338,7 @@ __webpack_require__.r(__webpack_exports__);
       return;
     }
 
-    if (event.target.className === 'photo__size1') {
+    if (event.target.className === 'photo_size1') {
       this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
     }
   },
@@ -397,7 +397,7 @@ __webpack_require__.r(__webpack_exports__);
     var folderName = "/storage/".concat(this.imgFolderPrefix, "3");
     var fileNamePrefix = "".concat(this.product.id, "s3-");
     var photoArr = photoInfoArr.map(function (timeName, index) {
-      return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size1\" />");
+      return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo_size1\" />");
     });
     return photoArr.join('');
   },

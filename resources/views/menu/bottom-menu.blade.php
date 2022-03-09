@@ -28,7 +28,7 @@
                            data-menu-link-category-id="{{ $category->id }}"
                            data-menu-link-category-slug="{{ $category->slug }}"
                            data-menu-link-category-name="{{ $category->name }}"
-                           class="bottom_menu__link bottom_menu__link_active m0 cursor-pointer">
+                           class="bottom_menu__link bottom_menu__link_active m0 cursor_pointer">
                             {{ $category->name }}
                         </p>
                     @else

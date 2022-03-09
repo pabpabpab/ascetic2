@@ -1,5 +1,5 @@
 <template>
-    <div class="users__list">
+    <div class="users_list">
         <user-item
             v-for="item of items"
             :key="item.id"

@@ -4,7 +4,7 @@
             <reload-icon></reload-icon>
             <h1 class="pd0 mb0 mauto">Пользователи</h1>
         </div>
-        <div class="content_block content_block__users">
+        <div class="content_block content_block_of_users">
             <search-user-panel></search-user-panel>
 
             <pagination-mobile v-if="usersLength > 1" entity="users" class="pdb0 pdt20"></pagination-mobile>

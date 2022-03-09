@@ -46,7 +46,7 @@
                 </files-input>
 
                 <div v-if="showButtonsPanel" class="send_cancel_buttons__panel">
-                    <button class="button__save_product"
+                    <button class="save_product_button"
                             @click.stop="sendPhotos()">
                         Добавить
                     </button>

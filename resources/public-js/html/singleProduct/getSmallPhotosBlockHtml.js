@@ -5,7 +5,7 @@ export default function getSmallPhotosBlockHtml(productId, photosArr) {
                 ${
                     photoCount > 5
                         ? `<div id="smallPhotos-scrollButtonUp"
-                            class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top display-none">
+                            class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top display_none">
                             <div class="single_product__small_photos__scroll_button_top__content">
                             </div>
                           </div>`
@@ -37,7 +37,7 @@ function _getSmallPhotos(productId, photosArr) {
         return `<img src='${smallPhotoFolder}${productId}s5-${item}'
                     alt=''
                     data-small-photo="${i + 1}"
-                    class="photo__size2"/>`;
+                    class="photo_size2"/>`;
     });
     return phArr.join('');
 }

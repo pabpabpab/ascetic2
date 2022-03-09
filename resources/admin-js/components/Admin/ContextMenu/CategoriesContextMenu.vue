@@ -4,11 +4,11 @@
             <li class="context_menu__li_header">
                 «{{ category.name }}»
             </li>
-            <li v-if="lastListIndex !== 0" class="context_menu__li__multiple">
+            <li v-if="lastListIndex !== 0" class="context_menu__li_multiple">
                 Сдвинуть
                 <span v-if="currentListIndex > 0"
                       title="вверх"
-                      class="context_menu__li__multiple__item"
+                      class="context_menu__li_multiple__item"
                       @click="changePosition({
                           entity: $route.params.entity,
                           categoryId: category.id,
@@ -18,7 +18,7 @@
                 </span>
                 <span v-if="currentListIndex < lastListIndex"
                       title="вниз"
-                      class="context_menu__li__multiple__item"
+                      class="context_menu__li_multiple__item"
                       @click="changePosition({
                           entity: $route.params.entity,
                           categoryId: category.id,

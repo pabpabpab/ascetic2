@@ -1,7 +1,7 @@
 
-.product_filters
+.product_filter
     position: fixed
-    z-index: $product_filters__z-index
+    z-index: $product_filter__z-index
     top: 0
     right: 0 //-370px
     height: 100%
@@ -11,10 +11,10 @@
     //visibility: hidden
 
 
-.product_filters-enter-active
+.product_filter-enter-active
     animation: showProductFilters .5s //forwards
 
-.product_filters-leave-active
+.product_filter-leave-active
     animation: hideProductFilters .3s //forwards
 
 @keyframes showProductFilters
@@ -36,7 +36,7 @@
 
 
 
-.product_filters__content
+.product_filter__content
     position: relative
     padding: 10px 25px 150px 25px
     width: 350px
@@ -59,7 +59,7 @@
 
 
 
-.button__filter_product
+.product_filter_button
     +font(15px, #fff, 400)
     padding: 20px
     width: 300px
@@ -71,7 +71,7 @@
         background-color: rgb(10, 65, 134)
 
 
-.product_filters__collapse_icon
+.product_filter__collapse_icon
     position: absolute
     top: 4px
     right: 4px
@@ -90,10 +90,10 @@
         color: #fff
 
 
-.product_filters__selectedCategories__wrapper
+.product_filter__selectedCategories__wrapper
     width: 100%
 
-.product_filters__checkbox_input__item
+.product_filter__checkbox_input__item
     //height: 25px
 
 

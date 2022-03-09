@@ -23,7 +23,7 @@
         <div class="single_product__small_photos__wrapper">
             @if ($photoCount > 5)
                 <div id="smallPhotos-scrollButtonUp"
-                    class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top display-none">
+                    class="single_product__small_photos__scroll_button single_product__small_photos__scroll_button_top display_none">
                     <div class="single_product__small_photos__scroll_button_top__content">
                     </div>
                 </div>
@@ -51,13 +51,13 @@
                             <img src="{{ $smallPhotoFolder . $product->id }}s2-{{ $photo->filename }}"
                                  alt="{{ $photoAltText }}"
                                  data-small-photo="{{ $loop->iteration }}"
-                                 class="photo__size2 mb5"/>
+                                 class="photo_size2 mb5"/>
                         </a>
                     @else
                         <img src="{{ $smallPhotoFolder . $product->id }}s2-{{ $photo->filename }}"
                              alt="{{ $photoAltText }}"
                              data-small-photo="{{ $loop->iteration }}"
-                             class="photo__size2"/>
+                             class="photo_size2"/>
                     @endif
                 @endforeach
             </div>
@@ -78,13 +78,13 @@
             <img src="/storage/products-photos-size5/{{ $product->id }}s5-{{ $objPhotoSet[0]->filename }}"
                  alt="{{ (bool) $objPhotoSet[0]->alt_text ? $objPhotoSet[0]->alt_text : $pageTitle }}"
                  id="mainPhoto"
-                 class="photo__size4"/>
+                 class="photo_size4"/>
         </div>
 
 
         @if ($photoCount > 1)
             <div id="largePhotoScrollLeftButton"
-                class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left display-none">
+                class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left display_none">
                 <div class="single_product__big_photo__scroll_button_left__content">
                 </div>
             </div>

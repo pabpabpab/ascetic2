@@ -69,7 +69,7 @@ export default class FavoriteProductsSwitcher {
         }
 
         if (el(wrapperSelector)) {
-            el(wrapperSelector).classList.toggle("set-opacity");
+            el(wrapperSelector).classList.toggle("set_opacity");
         }
 
         if (el(textSelector)) {
@@ -98,7 +98,7 @@ export default class FavoriteProductsSwitcher {
         }
 
         if (el(wrapperSelector)) {
-            el(wrapperSelector).classList.toggle("set-opacity");
+            el(wrapperSelector).classList.toggle("set_opacity");
         }
 
         if (el(textSelector)) {

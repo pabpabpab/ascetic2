@@ -1,7 +1,7 @@
 @php
     $invisibleCssOfViewMoreButton = '';
     if ($pageCount < 2 || $currentPage > 1) {
-        $invisibleCssOfViewMoreButton = 'display-none';
+        $invisibleCssOfViewMoreButton = 'display_none';
     }
 @endphp
 

@@ -7,7 +7,7 @@
 .content_block_of_categories
     padding: 20px 20px 10px 20px
 
-.categories__list
+.categories_list
     background-color: rgb(255, 255, 255)
     padding: 20px 0
     -webkit-user-select: none
@@ -27,6 +27,19 @@
             background-color: rgba(237, 237, 237, 0.6)
     &__name
         flex-grow: 10
+        &__link
+            text-align: left
+            +font(17px, rgb(50, 45, 45), 400)
+            border: none
+            &:hover
+                border-bottom: 1px solid rgba(50, 45, 45, 0.4)
+    &__products_count_link
+        +font(17px, rgb(25, 118, 210), 100)
+        margin: auto 10px
+        padding: 0 10px
+        border-radius: 5px
+        &:hover
+            background-color: rgb(229, 229, 229)
 
 .beneathDraggedCategory
     display: block
@@ -43,23 +56,7 @@
     pointer-events: none
 
 
-.category_item__name__link
-    text-align: left
-    +font(17px, rgb(50, 45, 45), 400)
-    border: none
-    &:hover
-        border-bottom: 1px solid rgba(50, 45, 45, 0.4)
-
-.category_item__products_count__link
-    +font(17px, rgb(25, 118, 210), 100)
-    margin: auto 10px
-    padding: 0 10px
-    border-radius: 5px
-    &:hover
-        background-color: rgb(229, 229, 229)
-
-
-.category__button_add
+.categories_add_button
     +font(15px, #fff, 400)
     padding: 20px
     width: 300px

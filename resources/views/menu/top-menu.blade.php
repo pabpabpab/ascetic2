@@ -11,7 +11,7 @@
             <p data-logo="link"
                data-menu-link-section-name="allProducts"
                data-menu-link-title-text="{{ $mainPageTitle }}"
-               class="logo__link logo__link_active m0 cursor-pointer">
+               class="logo__link logo__link_active m0 cursor_pointer">
                 AsceticShop.ru
             </p>
         @else
@@ -45,7 +45,7 @@
                            data-menu-link-category-id="{{ $category->id }}"
                            data-menu-link-category-slug="{{ $category->slug }}"
                            data-menu-link-category-name="{{ $category->name }}"
-                           class="top_menu__link top_menu__link_active m0 cursor-pointer">
+                           class="top_menu__link top_menu__link_active m0 cursor_pointer">
                             {{ $category->name }}
                         </p>
                     @else

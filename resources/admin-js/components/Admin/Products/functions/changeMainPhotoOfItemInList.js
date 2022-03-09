@@ -27,7 +27,7 @@ export default {
         if (this.numberOfPhotos < 2) {
             return;
         }
-        if (event.target.className === 'photo__size1') {
+        if (event.target.className === 'photo_size1') {
             this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
         }
     },

@@ -48,7 +48,7 @@ function _getPhotoBlockHtml(product) {
                 <img src='${photoFolder}${product.id}s3-${product.photos[0]}'
                     alt=""
                     data-product-item-link="${product.id}"
-                    class="photo__size3 product_item__photo__in_viewed_summary"/>
+                    class="photo_size3 product_item__photo__in_viewed_summary"/>
            </a>`;
 }
 

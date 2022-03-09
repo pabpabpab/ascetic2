@@ -859,7 +859,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "prePhoto__close_icon",
+                  staticClass: "prePhoto__delete_icon",
                   on: {
                     click: function($event) {
                       return _vm.removePreFile(item.index)
@@ -886,7 +886,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "prePhoto__close_icon prePhoto__close_icon_offset",
+                    "prePhoto__delete_icon prePhoto__delete_icon_offset",
                   on: {
                     click: function($event) {
                       return _vm.removePreFile(item.index)
@@ -918,7 +918,7 @@ var render = function() {
         ? _c(
             "button",
             {
-              staticClass: "button__select_photos mauto",
+              staticClass: "select_photos_button mauto",
               on: {
                 click: function($event) {
                   return _vm.selectFiles()
@@ -970,7 +970,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "content_block content_block__product_form" },
+        { staticClass: "content_block content_block_of_product_form" },
         [
           _c("p", { staticClass: "product_form__property_header mt20" }, [
             _vm._v("Название товара")
@@ -986,7 +986,7 @@ var render = function() {
                   expression: "localProduct.name"
                 }
               ],
-              staticClass: "input_text input_text__product_form",
+              staticClass: "input_text product_form__input_text",
               class: { input_alarm: _vm.isAlarmingInput("name") },
               attrs: { type: "text", maxlength: "50", placeholder: " " },
               domProps: { value: _vm.localProduct.name },
@@ -1089,7 +1089,7 @@ var render = function() {
                   expression: "localProduct.description"
                 }
               ],
-              staticClass: "input_text input_textarea input_text__product_form",
+              staticClass: "input_text input_textarea product_form__input_text",
               class: { input_alarm: _vm.isAlarmingInput("description") },
               attrs: { placeholder: " " },
               domProps: { value: _vm.localProduct.description },
@@ -1138,7 +1138,7 @@ var render = function() {
                   expression: "localProduct.price"
                 }
               ],
-              staticClass: "input_text input_text__product_form",
+              staticClass: "input_text product_form__input_text",
               class: { input_alarm: _vm.isAlarmingInput("price") },
               attrs: { type: "text", maxlength: "21", placeholder: " " },
               domProps: { value: _vm.localProduct.price },
@@ -1183,7 +1183,7 @@ var render = function() {
             ? _c(
                 "button",
                 {
-                  staticClass: "button__save_product mauto mt30",
+                  staticClass: "save_product_button mauto mt30",
                   on: {
                     click: function($event) {
                       $event.stopPropagation()

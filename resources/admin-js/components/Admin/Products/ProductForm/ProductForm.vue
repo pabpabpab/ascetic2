@@ -5,11 +5,11 @@
 
         <h1 v-if="action==='create'">Добавить товар</h1>
 
-        <div class="content_block content_block__product_form">
+        <div class="content_block content_block_of_product_form">
 
             <p class="product_form__property_header mt20">Название товара</p>
             <div class="input_text__container">
-                <input class="input_text input_text__product_form"
+                <input class="input_text product_form__input_text"
                        :class="{ 'input_alarm': isAlarmingInput('name') }"
                        type="text" maxlength="50"
                        placeholder=" "
@@ -54,7 +54,7 @@
 
             <p class="product_form__property_header mt40">Описание товара</p>
             <div class="input_text__container">
-                <textarea class="input_text input_textarea input_text__product_form"
+                <textarea class="input_text input_textarea product_form__input_text"
                           :class="{ 'input_alarm': isAlarmingInput('description') }"
                           placeholder=" "
                           @keyup="typeinValidation(localProduct);"
@@ -71,7 +71,7 @@
 
             <p class="product_form__property_header mt30">Цена товара</p>
             <div class="input_text__container">
-                <input class="input_text input_text__product_form"
+                <input class="input_text product_form__input_text"
                        :class="{ 'input_alarm': isAlarmingInput('price') }"
                        type="text" maxlength="21"
                        placeholder=" "
@@ -93,7 +93,7 @@
                 class="mt30">
             </files-input>
 
-            <button v-if="action==='create'" class="button__save_product mauto mt30"
+            <button v-if="action==='create'" class="save_product_button mauto mt30"
                     @click.stop="saveProduct({localProduct, photos});closeAllCheckboxesLists();">
                 Сохранить
             </button>

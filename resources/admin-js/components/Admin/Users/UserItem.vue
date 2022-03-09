@@ -7,7 +7,7 @@
                 target: 'Users',
                 data: { user }
             })"
-            class="context_menu__icon__user">
+            class="context_menu__icon_user">
             &#8942;
         </span>
 

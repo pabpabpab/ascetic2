@@ -11,10 +11,12 @@
 
     .viewing_sorting_filtering_container
         display: flex
+        flex-wrap: nowrap
         align-items: flex-start
         justify-content: space-between
         margin: 10px 0 0 15px
         padding: 0
+        //border: 1px solid #003cff
 
     .viewing_icon__wrapper
         margin: 0
@@ -38,10 +40,13 @@
             font-size: 14px
 
     .filter_icon__wrapper
-        position: relative
+        display: flex
+        flex-wrap: nowrap
+        align-items: flex-start
         margin: 0
-        padding: 6px 17px 6px 10px
+        padding: 9px 17px 6px 10px
         background-color: unset
+        //border: 1px solid #003cff
     .filter_icon__img
         height: 26px
     .filter_icon__total_indicator

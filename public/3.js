@@ -314,7 +314,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return "".concat(this.productId, "s").concat(this.sizeIndex, "-");
     },
     imgClass: function imgClass() {
-      return "photo__size".concat(this.sizeIndex);
+      return "photo_size".concat(this.sizeIndex);
     },
     lastPhotoListIndex: function lastPhotoListIndex() {
       return this.numberOfPhotos - 1;
@@ -718,7 +718,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('contextMenu', ['showContextMenu'])), _functions_startTouchHandler__WEBPACK_IMPORTED_MODULE_6__["default"]), _functions_endTouchHandler__WEBPACK_IMPORTED_MODULE_7__["default"]), _functions_scrollSmallPhotos__WEBPACK_IMPORTED_MODULE_3__["default"]), _functions_viewLargePhoto__WEBPACK_IMPORTED_MODULE_4__["default"]), _functions_scrollBigPhotos__WEBPACK_IMPORTED_MODULE_5__["default"]), {}, {
     changeMainPhotoBySmallPhoto: function changeMainPhotoBySmallPhoto(event) {
-      if (event.target.className === 'photo__size2') {
+      if (event.target.className === 'photo_size2') {
         this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
       }
     },
@@ -800,11 +800,11 @@ var render = function() {
     },
     [
       _c("ul", { staticClass: "context_menu__ul" }, [
-        _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+        _c("li", { staticClass: "context_menu__li_multiple_black" }, [
           _c(
             "span",
             {
-              staticClass: "context_menu__li__multiple__item_black",
+              staticClass: "context_menu__li_multiple__item_black",
               on: {
                 click: function($event) {
                   return _vm.rotatePhoto({
@@ -821,7 +821,7 @@ var render = function() {
           _c(
             "span",
             {
-              staticClass: "context_menu__li__multiple__item_black",
+              staticClass: "context_menu__li_multiple__item_black",
               on: {
                 click: function($event) {
                   return _vm.rotatePhoto({
@@ -838,7 +838,7 @@ var render = function() {
           _c(
             "span",
             {
-              staticClass: "context_menu__li__multiple__item_black",
+              staticClass: "context_menu__li_multiple__item_black",
               on: {
                 click: function($event) {
                   return _vm.rotatePhoto({
@@ -873,13 +873,13 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _vm.lastListIndex !== 0
-          ? _c("li", { staticClass: "context_menu__li__multiple_black" }, [
+          ? _c("li", { staticClass: "context_menu__li_multiple_black" }, [
               _vm._v("\n            Сдвинуть\n            "),
               _vm.currentListIndex > 0
                 ? _c(
                     "span",
                     {
-                      staticClass: "context_menu__li__multiple__item_black",
+                      staticClass: "context_menu__li_multiple__item_black",
                       attrs: { title: "влево (вверх)" },
                       on: {
                         click: function($event) {
@@ -899,7 +899,7 @@ var render = function() {
                 ? _c(
                     "span",
                     {
-                      staticClass: "context_menu__li__multiple__item_black",
+                      staticClass: "context_menu__li_multiple__item_black",
                       attrs: { title: "вправо (вниз)" },
                       on: {
                         click: function($event) {
@@ -1102,7 +1102,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "button__save_product",
+                      staticClass: "save_product_button",
                       on: {
                         click: function($event) {
                           $event.stopPropagation()
@@ -1203,7 +1203,7 @@ var render = function() {
         _c(
           "span",
           {
-            staticClass: "context_menu__icon__photo_manager",
+            staticClass: "context_menu__icon_photo_manager",
             on: {
               click: function($event) {
                 $event.stopPropagation()
@@ -1269,7 +1269,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "prePhoto__close_icon",
+                  staticClass: "prePhoto__delete_icon",
                   on: {
                     click: function($event) {
                       return _vm.removePreFile(item.index)
@@ -1296,7 +1296,7 @@ var render = function() {
                 "div",
                 {
                   staticClass:
-                    "prePhoto__close_icon prePhoto__close_icon_offset",
+                    "prePhoto__delete_icon prePhoto__delete_icon_offset",
                   on: {
                     click: function($event) {
                       return _vm.removePreFile(item.index)
@@ -1328,7 +1328,7 @@ var render = function() {
         ? _c(
             "button",
             {
-              staticClass: "button__select_photos mauto",
+              staticClass: "select_photos_button mauto",
               on: {
                 click: function($event) {
                   return _vm.selectFiles()
@@ -1635,7 +1635,7 @@ var render = function() {
     _c(
       "span",
       {
-        staticClass: "context_menu__icon__single_product",
+        staticClass: "context_menu__icon_single_product",
         style: { position: _vm.cssPositionOfContextIcon },
         on: {
           click: function($event) {
@@ -2372,7 +2372,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var folderName = "/storage/".concat(this.imgFolderPrefix, "5");
     var fileNamePrefix = "".concat(product.id, "s5-");
-    var cssClass = "photo__size".concat(this.mainPhotoSizeIndex);
+    var cssClass = "photo_size".concat(this.mainPhotoSizeIndex);
     var mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
     return "<img alt=\"\"\n                    src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(mainPhotoName, "\"\n                    class=\"").concat(cssClass, "\" />");
   },
@@ -2405,7 +2405,7 @@ __webpack_require__.r(__webpack_exports__);
     var folderName = "/storage/".concat(this.imgFolderPrefix, "5");
     var fileNamePrefix = "".concat(product.id, "s5-");
     var photoArr = photoInfoArr.map(function (timeName, index) {
-      return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size2\" />");
+      return "<img data-photoindex=\"".concat(index, "\" alt=\"\" src=\"").concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo_size2\" />");
     });
     return photoArr.join('');
   },
@@ -2424,7 +2424,7 @@ __webpack_require__.r(__webpack_exports__);
     var folderName = "/storage/".concat(this.imgFolderPrefix, "5");
     var fileNamePrefix = "".concat(product.id, "s5-");
     var photoArr = photoInfoArr.map(function (timeName, index) {
-      return "<img alt=\"\" src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo__size4\" />");
+      return "<img alt=\"\" src=\"".concat(folderName, "/").concat(fileNamePrefix).concat(timeName, "\" class=\"photo_size4\" />");
     });
     return photoArr.join('');
   },

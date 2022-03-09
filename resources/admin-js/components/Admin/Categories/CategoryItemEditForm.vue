@@ -8,7 +8,7 @@
                 <div class="display_flex">
                     <input type="text" maxlength="50"
                            placeholder="Введите название"
-                           class="input_text input_text__category_form"
+                           class="input_text category_form__input_text"
                            :class="{ 'input_alarm': isAlarmingInput('name') }"
                            v-model="localCategory.name"
                            @keyup="typeinValidation({
@@ -16,7 +16,7 @@
                                 category: localCategory
                             })">
 
-                    <button class="button__save_category"
+                    <button class="category_save_button"
                         @click.stop="saveCategory({
                             entity: $route.params.entity,
                             category: localCategory
@@ -30,7 +30,7 @@
                 </p>
             </div>
 
-            <div class='icon__collapse_category_form'
+            <div class='collapse_category_form__icon'
                  @click="changeItemComponent(category.id);">
                 &#215;
             </div>
@@ -53,7 +53,7 @@ export default {
             categoryNameHeader: '',
             animationClass: {
                 'category_form__animation_open pd20 mt20': true,
-                'category_form__animation_close': false
+                'category_form__animation_collapse': false
             },
         };
     },
@@ -65,7 +65,7 @@ export default {
         changeItemComponent(itemId) {
             this.animationClass = {
                 'category_form__animation_open': false,
-                'category_form__animation_close': true
+                'category_form__animation_collapse': true
             };
             setTimeout(() => {
                 this.$emit('change-item-component', itemId);

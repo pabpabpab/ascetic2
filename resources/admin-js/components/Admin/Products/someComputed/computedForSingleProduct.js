@@ -28,7 +28,7 @@ export default {
         }
         const folderName = `/storage/${this.imgFolderPrefix}5`;
         const fileNamePrefix = `${product.id}s5-`;
-        const cssClass = `photo__size${this.mainPhotoSizeIndex}`;
+        const cssClass = `photo_size${this.mainPhotoSizeIndex}`;
         const mainPhotoName = photoInfoArr[this.indexOfMainPhoto];
 
         return `<img alt=""
@@ -62,7 +62,7 @@ export default {
         const fileNamePrefix = `${product.id}s5-`;
 
         const photoArr = photoInfoArr.map(function (timeName, index) {
-            return `<img data-photoindex="${index}" alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo__size2" />`;
+            return `<img data-photoindex="${index}" alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo_size2" />`;
         });
         return photoArr.join('');
     },
@@ -80,7 +80,7 @@ export default {
         const fileNamePrefix = `${product.id}s5-`;
 
         const photoArr = photoInfoArr.map(function (timeName, index) {
-            return `<img alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo__size4" />`;
+            return `<img alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo_size4" />`;
         });
         return photoArr.join('');
     },

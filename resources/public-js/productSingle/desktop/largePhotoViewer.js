@@ -37,7 +37,7 @@ export default class DesktopLargePhotoViewer {
     _startViewLargePhoto() {
         this.viewingLargePhotoWasStarted = true;
         el('#mainPhotoContainer').style.display = 'block';
-        el('#mainPhoto').className = 'photo__size5';
+        el('#mainPhoto').className = 'photo_size5';
 
         const wrapper = this.photoContainer.getBoundingClientRect();
         this.mainPhotoRatio = 1600/(wrapper.right - wrapper.left); // 1600px ширина фото под лупой
@@ -56,7 +56,7 @@ export default class DesktopLargePhotoViewer {
 
     _finishViewLargePhoto() {
         this.viewingLargePhotoWasStarted = false;
-        el('#mainPhoto').className = 'photo__size4';
+        el('#mainPhoto').className = 'photo_size4';
         this.photoContainer.scrollLeft = 0;
         this.photoContainer.scrollTop = 0;
     }

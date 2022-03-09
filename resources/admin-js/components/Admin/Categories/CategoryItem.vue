@@ -18,7 +18,7 @@
                         lastListIndex: lastListIndex
                     }
                 })"
-                class="context_menu__icon__category">
+                class="context_menu__icon_category">
                 &#8942;
             </span>
 
@@ -46,7 +46,7 @@
                         categoryId: category.id,
                         categoryName: category.name,
                     }
-                }" class="category_item__products_count__link">
+                }" class="category_item__products_count_link">
                 {{ category.products_count }}
             </router-link>
 

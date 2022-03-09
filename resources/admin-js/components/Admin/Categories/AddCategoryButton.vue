@@ -1,7 +1,7 @@
 <template>
     <button
         @click="$emit('change-adding-component')"
-        class="category__button_add">
+        class="categories_add_button">
         {{ getButtonText }}
     </button>
 </template>

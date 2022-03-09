@@ -18,14 +18,14 @@ export default class headerVisibilityManager extends Aware {
 
     _turnOffVisibility() {
         const wrapper = el('.h1_viewing_sorting_filtering_container');
-        if (wrapper && !wrapper.classList.contains('display-none')) {
-            wrapper.classList.add('display-none');
+        if (wrapper && !wrapper.classList.contains('display_none')) {
+            wrapper.classList.add('display_none');
         }
     }
     _turnOnVisibility() {
         const wrapper = el('.h1_viewing_sorting_filtering_container');
-        if (wrapper && wrapper.classList.contains('display-none')) {
-            wrapper.classList.remove('display-none');
+        if (wrapper && wrapper.classList.contains('display_none')) {
+            wrapper.classList.remove('display_none');
         }
     }
 

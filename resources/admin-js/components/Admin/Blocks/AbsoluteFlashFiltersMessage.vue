@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute_filters_message_div">
+    <div class="absolute_filters_message">
         {{text}}
     </div>
 </template>

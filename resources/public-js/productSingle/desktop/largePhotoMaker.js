@@ -28,7 +28,7 @@ export default class LargePhotoMaker {
         let largePhotosHtml = smallPhotosHtml.replaceAll("products-photos-size2", "products-photos-size5");
         largePhotosHtml = largePhotosHtml.replaceAll("s2-", "s5-");
         largePhotosHtml = largePhotosHtml.replaceAll("data-small-photo", "data-large-photo");
-        largePhotosHtml = `<div id="largePhotos" class="display-none">${largePhotosHtml}</div>`;
+        largePhotosHtml = `<div id="largePhotos" class="display_none">${largePhotosHtml}</div>`;
         el('#singleProduct').insertAdjacentHTML('beforeend', largePhotosHtml);
         //console.log(largePhotosHtml);
     }

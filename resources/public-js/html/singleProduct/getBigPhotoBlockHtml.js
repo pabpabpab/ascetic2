@@ -7,13 +7,13 @@ export default function getBigPhotoBlockHtml(productId, photosArr) {
                     <img src="/storage/products-photos-size5/${productId}s5-${photosArr[0]}"
                         alt=""
                         id="mainPhoto"
-                        class="photo__size4"/>
+                        class="photo_size4"/>
                 </div>
 
                 ${
                     photoCount > 1
                         ? `<div id="largePhotoScrollLeftButton"
-                                class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left display-none">
+                                class="single_product__big_photo__scroll_button single_product__big_photo__scroll_button_left display_none">
                                 <div class="single_product__big_photo__scroll_button_left__content">
                                 </div>
                            </div>

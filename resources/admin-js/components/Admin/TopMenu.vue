@@ -38,7 +38,7 @@
                         :class="productsLinkClass">
                         Товары
 
-                        <div class="top_menu__link__trigram">
+                        <div class="top_menu__link_trigram">
                             <div class="top_menu__drop_menu show_block">
                                 <ul class="top_menu__drop_menu__ul">
                                     <li class="top_menu__drop_menu__li">
@@ -61,7 +61,7 @@
                         class="top_menu__link"
                         :class="categoriesLinkClass">Категории
 
-                        <div class="top_menu__link__trigram">
+                        <div class="top_menu__link_trigram">
                             <div class="top_menu__drop_menu show_block">
                                 <ul class="top_menu__drop_menu__ul">
                                     <li class="top_menu__drop_menu__li">
@@ -104,7 +104,7 @@
                     :class="usersLinkClass">
                     Пользователи
 
-                    <div class="top_menu__link__trigram">
+                    <div class="top_menu__link_trigram">
                         <div class="top_menu__drop_menu show_block">
                             <ul class="top_menu__drop_menu__ul">
                                 <li class="top_menu__drop_menu__li">

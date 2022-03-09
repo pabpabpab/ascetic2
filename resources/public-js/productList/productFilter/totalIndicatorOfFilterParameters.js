@@ -12,7 +12,7 @@ export default class TotalIndicatorOfFilterParameters extends Aware {
     }
 
     _render() {
-        const html = `<div class="filter_icon__total_indicator display-none"></div>`;
+        const html = `<div class="filter_icon__total_indicator display_none"></div>`;
         el('.filter_icon__wrapper').insertAdjacentHTML('beforeend', html);
     }
 
@@ -41,14 +41,14 @@ export default class TotalIndicatorOfFilterParameters extends Aware {
 
     _setVisibilityToTrue() {
         const indicator = el('.filter_icon__total_indicator');
-        if (indicator.classList.contains('display-none')) {
-            indicator.classList.remove('display-none');
+        if (indicator.classList.contains('display_none')) {
+            indicator.classList.remove('display_none');
         }
     }
     _setVisibilityToFalse() {
         const indicator = el('.filter_icon__total_indicator');
-        if (!indicator.classList.contains('display-none')) {
-            indicator.classList.add('display-none');
+        if (!indicator.classList.contains('display_none')) {
+            indicator.classList.add('display_none');
         }
     }
 }

@@ -21,7 +21,7 @@ export default class FrequentAbsoluteFlashMessage {
         this._removeMessage();
 
         const html = `<div id="${this.id}" class="absolute_message__wrapper show_block">
-                           <div class="absolute_message__div arial_sans-serif">
+                           <div class="absolute_message__content arial_sans-serif">
                                 ${this.text}
                            </div>
                       </div>`;

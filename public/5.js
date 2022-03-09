@@ -1570,7 +1570,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "selectedCategories__wrapper product_filters__selectedCategories__wrapper"
+        "selectedCategories__wrapper product_filter__selectedCategories__wrapper"
     },
     [
       _c("p", { staticClass: "product_form__property_header" }, [
@@ -1661,7 +1661,7 @@ var render = function() {
                     {
                       key: cat.id,
                       staticClass:
-                        "checkbox_input__item product_filters__checkbox_input__item tal"
+                        "checkbox_input__item product_filter__checkbox_input__item tal"
                     },
                     [
                       _c("input", {
@@ -1884,7 +1884,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "product_filters",
+      staticClass: "product_filter",
       on: {
         click: function($event) {
           $event.stopPropagation()
@@ -1895,7 +1895,7 @@ var render = function() {
       _c(
         "div",
         {
-          staticClass: "product_filters__content",
+          staticClass: "product_filter__content",
           on: {
             click: function($event) {
               return _vm.closeAllCheckboxesLists()
@@ -2079,7 +2079,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "button__filter_product mauto mt30",
+              staticClass: "product_filter_button mauto mt30",
               on: {
                 click: function($event) {
                   return _vm.closeProductsFilters()
@@ -2092,7 +2092,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "product_filters__collapse_icon",
+              staticClass: "product_filter__collapse_icon",
               on: {
                 click: function($event) {
                   $event.stopPropagation()
@@ -2527,7 +2527,7 @@ var render = function() {
           _c(
             "span",
             {
-              staticClass: "context_menu__icon__product",
+              staticClass: "context_menu__icon_product",
               on: {
                 click: function($event) {
                   $event.stopPropagation()
@@ -2652,7 +2652,7 @@ var render = function() {
         _vm.productsLength > 2
           ? _c(
               "transition",
-              { attrs: { name: "product_filters" } },
+              { attrs: { name: "product_filter" } },
               [
                 _c("products-filters", {
                   directives: [

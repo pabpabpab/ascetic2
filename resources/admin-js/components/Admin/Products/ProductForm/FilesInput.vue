@@ -12,7 +12,7 @@
 
                 <div
                     @click="removePreFile(item.index)"
-                    class="prePhoto__close_icon">
+                    class="prePhoto__delete_icon">
                     &#10006;
                 </div>
             </div>
@@ -29,7 +29,7 @@
 
                 <div
                     @click="removePreFile(item.index)"
-                    class="prePhoto__close_icon prePhoto__close_icon_offset">
+                    class="prePhoto__delete_icon prePhoto__delete_icon_offset">
                     &#10006;
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <button
                 v-if="showPhotoButton"
                 @click="selectFiles()"
-                class="button__select_photos mauto">
+                class="select_photos_button mauto">
                 {{ buttonHeader }}
             </button>
         </div>

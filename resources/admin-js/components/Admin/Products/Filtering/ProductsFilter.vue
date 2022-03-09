@@ -1,6 +1,6 @@
 <template>
-    <div @click.stop class="product_filters">
-        <div @click="closeAllCheckboxesLists()" class="product_filters__content">
+    <div @click.stop class="product_filter">
+        <div @click="closeAllCheckboxesLists()" class="product_filter__content">
 
             <p class="product_form__property_header mt30 mb20">
                 Цена, руб.
@@ -61,12 +61,12 @@
                 class="mt30">
             </filters-checkboxes-list>
 
-            <button class="button__filter_product mauto mt30"
+            <button class="product_filter_button mauto mt30"
                     @click="closeProductsFilters()">
                 Готово
             </button>
 
-            <div class='product_filters__collapse_icon'
+            <div class='product_filter__collapse_icon'
                  @click.stop="closeProductsFilters()">
                 &#215;
             </div>

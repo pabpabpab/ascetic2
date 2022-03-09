@@ -186,7 +186,7 @@ export default {
 
             return `<img alt=""
                         src="${folderName}/${fileNamePrefix}${photoName}"
-                        class="photo__size${this.photoSizeIndex} seo_manager__header__photo" />`;
+                        class="photo_size${this.photoSizeIndex} seo_manager__header__photo" />`;
         },
 
     },

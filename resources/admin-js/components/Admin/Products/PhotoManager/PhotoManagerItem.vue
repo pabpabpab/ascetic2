@@ -13,7 +13,7 @@
                 <img alt="" :src="photoSrc" :class="imgClass" style="pointer-events: none"/>
             </div>
 
-            <span class="context_menu__icon__photo_manager"
+            <span class="context_menu__icon_photo_manager"
                 @click.stop="showContextMenu({
                     event: $event,
                     target: 'Photos',
@@ -55,7 +55,7 @@ export default {
             return  `${this.productId}s${this.sizeIndex}-`;
         },
         imgClass() {
-            return `photo__size${this.sizeIndex}`;
+            return `photo_size${this.sizeIndex}`;
         },
         lastPhotoListIndex() {
             return this.numberOfPhotos - 1;

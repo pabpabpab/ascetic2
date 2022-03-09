@@ -40,14 +40,14 @@ export default class ViewMoreButtonManager extends Aware {
 
     _turnOnVisibility() {
         const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton && viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.remove("display-none");
+        if (viewMoreButton && viewMoreButton.classList.contains("display_none")) {
+            viewMoreButton.classList.remove("display_none");
         }
     }
     _turnOffVisibility() {
         const viewMoreButton = el('#viewMoreButton');
-        if (viewMoreButton && !viewMoreButton.classList.contains("display-none")) {
-            viewMoreButton.classList.add("display-none");
+        if (viewMoreButton && !viewMoreButton.classList.contains("display_none")) {
+            viewMoreButton.classList.add("display_none");
         }
     }
 }

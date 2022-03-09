@@ -107,7 +107,7 @@
         </div>
 
 
-        <span class="context_menu__icon__single_product"
+        <span class="context_menu__icon_single_product"
               :style="{ position: cssPositionOfContextIcon }"
               @click.stop="showContextMenu({
                 event: $event,
@@ -182,7 +182,7 @@ export default {
         ...scrollBigPhotos,
 
         changeMainPhotoBySmallPhoto(event) {
-            if (event.target.className === 'photo__size2') {
+            if (event.target.className === 'photo_size2') {
                 this.indexOfMainPhoto = Number(event.target.dataset.photoindex);
             }
         },

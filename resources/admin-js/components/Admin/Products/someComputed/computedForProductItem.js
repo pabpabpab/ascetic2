@@ -42,7 +42,7 @@ export default  {
         const fileNamePrefix = `${this.product.id}s3-`;
 
         const photoArr = photoInfoArr.map(function(timeName, index) {
-            return `<img data-photoindex="${index}" alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo__size1" />`;
+            return `<img data-photoindex="${index}" alt="" src="${folderName}/${fileNamePrefix}${timeName}" class="photo_size1" />`;
         });
         return photoArr.join('');
     },

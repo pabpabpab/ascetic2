@@ -1,6 +1,6 @@
 <template>
-    <div class="absolute_message_wrapper">
-        <div class="absolute_message_div">
+    <div class="absolute_message__wrapper">
+        <div class="absolute_message__content">
             {{text}}
         </div>
     </div>

@@ -37,7 +37,7 @@
             <pagination v-if="productsLength > 1" entity="products" class="pdt10"></pagination>
             <pagination-mobile v-if="productsLength > 1" entity="products" class="pdb0"></pagination-mobile>
 
-            <transition v-if="productsLength > 2" name="product_filters">
+            <transition v-if="productsLength > 2" name="product_filter">
                 <products-filters v-show="$route.name === 'Products' && visibility('productsFilters')"></products-filters>
             </transition>
 

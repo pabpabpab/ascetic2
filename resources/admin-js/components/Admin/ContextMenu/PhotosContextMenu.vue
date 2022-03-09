@@ -2,16 +2,16 @@
     <div class="context_menu__wrapper context_menu__wrapper_black" :style="coordinates">
         <ul class="context_menu__ul">
 
-            <li  class="context_menu__li__multiple_black">
-                    <span class="context_menu__li__multiple__item_black"
+            <li  class="context_menu__li_multiple_black">
+                    <span class="context_menu__li_multiple__item_black"
                           @click="rotatePhoto({productId, photoName, angle: 270})">
                         &#8635; 90&deg;
                     </span>
-                    <span class="context_menu__li__multiple__item_black"
+                    <span class="context_menu__li_multiple__item_black"
                           @click="rotatePhoto({productId, photoName, angle: 180})">
                         180&deg;
                     </span>
-                    <span class="context_menu__li__multiple__item_black"
+                    <span class="context_menu__li_multiple__item_black"
                           @click="rotatePhoto({productId, photoName, angle: 90})">
                         90&deg;&#8634;
                     </span>
@@ -23,17 +23,17 @@
                 Сделать главным
             </li>
 
-            <li v-if="lastListIndex !== 0" class="context_menu__li__multiple_black">
+            <li v-if="lastListIndex !== 0" class="context_menu__li_multiple_black">
                 Сдвинуть
                 <span v-if="currentListIndex > 0"
                       title="влево (вверх)"
-                      class="context_menu__li__multiple__item_black"
+                      class="context_menu__li_multiple__item_black"
                       @click="movePhoto({productId, photoName, to: 'up'})">
                     &larr; &uarr;
                 </span>
                 <span v-if="currentListIndex < lastListIndex"
                       title="вправо (вниз)"
-                      class="context_menu__li__multiple__item_black"
+                      class="context_menu__li_multiple__item_black"
                       @click="movePhoto({productId, photoName, to: 'down'})">
                     &darr; &rarr;
                 </span>

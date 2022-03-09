@@ -81,8 +81,8 @@ export default class RendererByViewMoreButton extends Aware {
         if (!paginationBlock) {
             return;
         }
-        if (!paginationBlock.classList.contains("display-none")) {
-            paginationBlock.classList.add("display-none");
+        if (!paginationBlock.classList.contains("display_none")) {
+            paginationBlock.classList.add("display_none");
         }
     }
 

@@ -18,8 +18,8 @@ export default class SortMenuVisibilityManager extends Aware {
 
     _turnOffVisibility() {
         const wrapper = el('.sorting_modes__wrapper');
-        if (wrapper && !wrapper.classList.contains('display-none')) {
-            wrapper.classList.add('display-none');
+        if (wrapper && !wrapper.classList.contains('display_none')) {
+            wrapper.classList.add('display_none');
         }
         if (el('#relativeWrapperOfSortingValues')) {
             el('#relativeWrapperOfSortingValues').remove();
@@ -27,8 +27,8 @@ export default class SortMenuVisibilityManager extends Aware {
     }
     _turnOnVisibility() {
         const wrapper = el('.sorting_modes__wrapper');
-        if (wrapper && wrapper.classList.contains('display-none')) {
-            wrapper.classList.remove('display-none');
+        if (wrapper && wrapper.classList.contains('display_none')) {
+            wrapper.classList.remove('display_none');
         }
     }
 

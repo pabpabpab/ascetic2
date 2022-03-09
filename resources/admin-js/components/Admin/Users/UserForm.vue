@@ -3,12 +3,12 @@
 
         <h1 v-if="action==='create'">Создать пользователя</h1>
 
-        <div class="content_block content_block__product_form">
+        <div class="content_block content_block_of_product_form">
 
             <template v-if="showEmailSection">
 
                 <div class="input_text__container mt20">
-                    <input class="input_text input_text__product_form"
+                    <input class="input_text product_form__input_text"
                            :class="{ 'input_alarm': isAlarmingInput('email') }"
                            type="text" maxlength="50"
                            placeholder=" "
@@ -58,7 +58,7 @@
 
 
                 <div class="input_text__container mt20">
-                    <input class="input_text input_text__product_form"
+                    <input class="input_text product_form__input_text"
                            :class="{ 'input_alarm': isAlarmingInput('name') }"
                            type="text" maxlength="50"
                            placeholder=" "
@@ -81,7 +81,7 @@
 
                 <div class="input_text__container mt30">
                     <select required
-                            class="input_select input_text__product_form"
+                            class="input_select product_form__input_text"
                             :class="{ 'input_alarm': isAlarmingInput('role') }"
                             @change="typeinValidation(localUser)"
                             v-model="localUser.role">
@@ -109,7 +109,7 @@
             <template v-if="showPasswordSection">
 
                 <div class="input_text__container mt30">
-                    <input class="input_text input_text__product_form"
+                    <input class="input_text product_form__input_text"
                            :class="{ 'input_alarm': isAlarmingInput('password') }"
                            type="text" maxlength="50"
                            placeholder=" "
@@ -142,7 +142,7 @@
             </template>
 
 
-            <button v-if="action==='create'" class="button__save_product mauto mt30"
+            <button v-if="action==='create'" class="save_product_button mauto mt30"
                     @click.stop="saveUser(localUser)">
                 Создать
             </button>

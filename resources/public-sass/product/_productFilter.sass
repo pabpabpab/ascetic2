@@ -8,15 +8,15 @@
     border-radius: 7px 0 0 7px
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3)
     //visibility: hidden
-    //animation: showProductFilters .5s
+    //animation: showProductFilter .5s
 
 .show_product_filter
-    animation: showProductFilters .5s //forwards
+    animation: showProductFilter .5s //forwards
 
 .hide_product_filter
-    animation: hideProductFilters .3s forwards
+    animation: hideProductFilter .3s forwards
 
-@keyframes showProductFilters
+@keyframes showProductFilter
     from, to
         right: -370px
         visibility: hidden
@@ -24,20 +24,18 @@
         right: 0
         visibility: visible
 
-@keyframes hideProductFilters
+@keyframes hideProductFilter
     from, to
         right: 0
         visibility: visible
     100%
         right: -370px
         visibility: hidden
-
-
 
 
 .product_filter__content
     position: relative
-    padding: 10px 25px 150px 25px
+    padding: 10px 25px 70px 25px
     width: 350px
     height: 100%
     box-sizing: border-box
@@ -115,7 +113,6 @@
     height: 200px
     overflow-y: auto
     padding: 0 10px 0 15px
-    //border: 1px solid #000
     border-radius: 5px
     &::-webkit-scrollbar
         width: 15px
@@ -130,7 +127,6 @@
     text-align: left
     margin: 0
     padding: 0 0 0 12px
-    //border: 1px solid #003cff
     &:nth-child(1)
         margin-top: -12px
 .product_filter__checkbox_input
@@ -168,8 +164,6 @@
     transform: rotate(45deg)
 
 
-
-
 .product_filter__price__text_input__wrapper
     display: flex
     align-items: center
@@ -190,11 +184,6 @@
         box-shadow: 0 0 5px rgba(16, 126, 248, 0.4)
 
 
-
-
-
-
-
 .product_filter__price__range_input__wrapper
     position: relative
     padding: 0
@@ -202,8 +191,6 @@
     height: 15px
     overflow: hidden
     background-color: #f4f9fc
-    //border: 1px solid #909090
-
 
 .product_filter__price__range_input__kernel
     position: absolute
@@ -247,7 +234,6 @@
         width: 10px
         background: #000
         cursor: pointer
-
 
 
     /* Оформление полосы диапазона */
