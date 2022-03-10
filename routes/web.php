@@ -60,15 +60,13 @@ Route::get('/my', [App\Http\Controllers\MyPageController::class, 'index'])
     ->name('my');
 
 
+Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])
+    ->middleware(['role:admin']);
 
 //Route::get('/products/by/material/{material:slug}', [ProductController::class, 'getByMaterial'])
 //->name('products.byMaterial');
 //Route::get('/products/by/color/{color:slug}', [ProductController::class, 'getByColor'])
 //->name('products.byColor');
-
-
-
-
 
 
 Route::get('/admin', function () {
