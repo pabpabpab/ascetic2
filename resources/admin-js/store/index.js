@@ -18,7 +18,7 @@ import settingsManager from './settingsManager_js/settingsManager';
 import dragAndDropByY from './dragAndDrop_js/dragAndDropByY';
 import dragAndDropByXY from './dragAndDrop_js/dragAndDropByXY';
 import dragAndDropInAbsDiv from './dragAndDrop_js/dragAndDropInAbsDiv';
-import mobileMenu from './mobileMenu';
+import mobileMenu from './menu_js/mobileMenu';
 import auxiliary_actions from "./index_js/auxiliary_actions";
 
 Vue.use(Vuex);
