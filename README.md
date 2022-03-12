@@ -1,4 +1,4 @@
-Алексей Постников, 47 лет, ищу работу удаленно, junior-программист JavaScript, Vue, Laravel, PHP. 
+Алексей Постников, 47 лет, junior-программист JavaScript, Vue, Laravel, PHP. 
 
 Telegram: @hugo117, email: pax75@yandex.ru
 ------------------------------------------
