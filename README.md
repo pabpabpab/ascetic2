@@ -4,7 +4,7 @@ Telegram: @hugo117, email: pax75@yandex.ru
 ------------------------------------------
 
 
-В качестве портфолио сделал данный сайт https://AsceticShop.ru, это магазин-витрина. 
+В качестве портфолио сделал данный сайт https://AsceticShop.ru 
 
 Бэкенд: Laravel, MySQL. 
 
