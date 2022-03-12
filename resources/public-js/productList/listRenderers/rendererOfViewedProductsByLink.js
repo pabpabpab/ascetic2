@@ -18,6 +18,7 @@ export default class RendererOfViewedProductsByLink extends Aware {
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.viewedProductsLink) {
                 e.preventDefault();
+                this.components.waitingScreen.show();
                 this.commit('resetSearchSettings');
                 this._setSectionSettings();
                 this._setPaginatorSettings();
@@ -69,10 +70,18 @@ export default class RendererOfViewedProductsByLink extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+
+                this._listenLastItemLoading();
                 this._setProductsCount(sectionProductsCount);
                 this._setAllViewedIds(allViewedIdsStr);
                 this._finalActions();
             });
+    }
+
+    _listenLastItemLoading() {
+        let nodes = el('#productListContent').querySelectorAll('.product_item__photo__img');
+        let lastNode = nodes[nodes.length-1];
+        lastNode.onload = this.components.waitingScreen.hide();
     }
 
     _setProductsCount(sectionProductsCount) {

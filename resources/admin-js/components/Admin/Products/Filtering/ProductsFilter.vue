@@ -220,7 +220,6 @@ export default {
             }
         }, 100);
 
-
         setTimeout(() => {
             this.search.minPrice = Number(this.productsMinPrice);
             this.search.maxPrice = Number(this.productsMaxPrice);

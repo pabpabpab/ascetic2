@@ -6,6 +6,7 @@ import MobileMenu from "../menu/mobileMenu";
 import authKit from "../auth/index-authKit";
 import FavoriteProductsSwitcher from "../favoriteProducts/favoriteProductsSwitcher";
 import FavoriteProductsTotalCountIndication from "../favoriteProducts/favoriteProductsTotalCountIndication";
+import WaitingScreen from "../waitingScreen";
 
 
 singleProductKit();
@@ -29,7 +30,7 @@ new TopDropMenuFiller();
 new MobileMenu();
 authKit();
 
-
+new WaitingScreen();
 
 
 

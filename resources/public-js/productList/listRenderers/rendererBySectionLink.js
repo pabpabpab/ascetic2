@@ -19,6 +19,7 @@ export default class RendererBySectionLink extends Aware {
             const dataset = e.target.dataset;
             if (dataset.menuLinkSectionName || dataset.linkSectionName) {
                 e.preventDefault();
+                this.components.waitingScreen.show();
                 this.components.rendererBySearchSettings.lock();
                 this.components.rendererBySortSettings.lock();
                 this.commit('resetSearchSettings');
@@ -99,9 +100,17 @@ export default class RendererBySectionLink extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+
+                this._listenLastItemLoading();
                 this._setProductsCount(sectionProductsCount);
                 this._finalActions();
             });
+    }
+
+    _listenLastItemLoading() {
+        let nodes = el('#productListContent').querySelectorAll('.product_item__photo__img');
+        let lastNode = nodes[nodes.length-1];
+        lastNode.onload = this.components.waitingScreen.hide();
     }
 
     _setProductsCount(sectionProductsCount) {

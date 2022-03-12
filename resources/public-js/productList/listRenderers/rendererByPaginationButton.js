@@ -20,6 +20,7 @@ export default class RendererByPaginationButton extends Aware {
         el('body').addEventListener('click', (e) => {
             if (e.target.dataset.paginatorPageNumber) {
                 e.preventDefault();
+                this.components.waitingScreen.show();
                 this._setPaginatorSettings(e);
                 this._showLoadingMessage();
                 this._render();
@@ -65,9 +66,17 @@ export default class RendererByPaginationButton extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+
+                this._listenLastItemLoading();
                 this._setProductsCount(sectionProductsCount);
                 this._finalActions();
             });
+    }
+
+    _listenLastItemLoading() {
+        let nodes = el('#productListContent').querySelectorAll('.product_item__photo__img');
+        let lastNode = nodes[nodes.length-1];
+        lastNode.onload = this.components.waitingScreen.hide();
     }
 
     _setProductsCount(sectionProductsCount) {

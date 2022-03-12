@@ -93,7 +93,7 @@
 
         <ul class="mobile_menu__ul">
             <li class="mobile_menu__li">
-                <a href="http://asceticshop.ru"
+                <a href="https://asceticshop.ru"
                    class="mobile_menu__link mobile_menu__link_with_top_offset">
                     AsceticShop.ru
                 </a>

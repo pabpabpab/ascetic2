@@ -9,7 +9,6 @@ import authKit from "../auth/index-authKit";
 import FavoriteProductsSwitcher from "../favoriteProducts/favoriteProductsSwitcher";
 import FavoriteProductsTotalCountIndication from "../favoriteProducts/favoriteProductsTotalCountIndication";
 
-
 const app = {
     state,
     mutations,
@@ -35,11 +34,7 @@ for (let item in app.components) {
 new FavoriteProductsSwitcher();
 new FavoriteProductsTotalCountIndication();
 
-
-
 new MenuVisibilityManager();
 new TopDropMenuFiller();
 new MobileMenu();
 authKit();
-
-

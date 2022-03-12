@@ -18,12 +18,14 @@ export default class RendererByViewMoreButton extends Aware {
 
         el('body').addEventListener('click', (e) => {
             if (e.target.id === 'viewMoreButton') {
+                this.components.waitingScreen.show();
                 this._setPaginatorSettings();
                 this._showLoadingMessage();
                 this._render();
             }
         });
     }
+
 
     _setPaginatorSettings() {
         const offsetOfProductsToLoad = document.querySelectorAll(this.productItemSelector).length;
@@ -58,9 +60,17 @@ export default class RendererByViewMoreButton extends Aware {
                 //const itemsHtml = `<div class="product_list__content show_block">${ itemsHtmlArr.join('') }</div>`;
                 // получать элемент только без ранее созданного указателя
                 el('#productListContent').insertAdjacentHTML('beforeend', itemsHtml);
+
+                this._listenLastItemLoading();
                 this._setProductsCount(sectionProductsCount);
                 this._finalActions();
             });
+    }
+
+    _listenLastItemLoading() {
+        let nodes = el('#productListContent').querySelectorAll('.product_item__photo__img');
+        let lastNode = nodes[nodes.length-1];
+        lastNode.onload = this.components.waitingScreen.hide();
     }
 
     _setProductsCount(sectionProductsCount) {

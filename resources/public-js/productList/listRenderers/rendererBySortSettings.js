@@ -67,6 +67,7 @@ export default class RendererBySortSettings extends Aware {
     }
 
     _render() {
+        this.components.waitingScreen.show();
         this.components.sourceOfFilteredProducts.getFiltered()
             .then(({filteredProducts, sectionProductsCount}) => {
                 this.messenger.hideMessage();
@@ -80,10 +81,18 @@ export default class RendererBySortSettings extends Aware {
                     el('#productListContent').remove();
                 }
                 this.wrapper.insertAdjacentHTML('afterbegin', itemsHtml);
+
+                this._listenLastItemLoading();
                 this._setProductsCount(sectionProductsCount);
                 this._finalActions();
                 this._showFinalMessage();
             });
+    }
+
+    _listenLastItemLoading() {
+        let nodes = el('#productListContent').querySelectorAll('.product_item__photo__img');
+        let lastNode = nodes[nodes.length-1];
+        lastNode.onload = this.components.waitingScreen.hide();
     }
 
     _setProductsCount(sectionProductsCount) {

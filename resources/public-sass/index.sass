@@ -70,3 +70,18 @@ a
     position: absolute
     display: none
 
+#loadingScreen
+    position: fixed
+    z-index: $absolute_message_wrapper__z-index - 1
+    top: 0
+    left: 0
+    min-width: 100vw
+    min-height: 100vh
+    background-color: rgba(255, 255, 255, 0.97)
+    display: flex
+    align-items: center
+    justify-content: center
+    +font(22px, #999, 700)
+    font-family: $h1_font_family
+    letter-spacing: 1px
+

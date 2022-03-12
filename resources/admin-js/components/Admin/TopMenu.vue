@@ -3,7 +3,7 @@
 
         <div class="top_menu__left">
 
-            <a href="http://asceticshop.ru" data-logo="link" class="logo__link">
+            <a href="https://asceticshop.ru" data-logo="link" class="logo__link">
                 AsceticShop.ru
             </a>
 

@@ -47,6 +47,7 @@ export default class RendererByLinkOfOneProductItem extends Aware {
 
     _showSingleProductPage(productId) {
         // на страницах где есть список товаров
+        this.components.waitingScreen.show();
         if (allProductsMustBeCached()) {
             this._showOneFromCache(productId);
         } else {
@@ -95,8 +96,13 @@ export default class RendererByLinkOfOneProductItem extends Aware {
             el('#productListContent').remove();
         }
         this.wrapper.insertAdjacentHTML('afterbegin', singleProductHtml);
+        this._listenPhotoLoading();
 
         singleProductKit();
+    }
+
+    _listenPhotoLoading() {
+        el('#mainPhoto').onload = this.components.waitingScreen.hide();
     }
 
     _storeSlug(product) {

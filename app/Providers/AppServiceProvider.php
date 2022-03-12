@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Observers\ProductObserver;
 use App\Services\Category\CategoryService;
 use App\Services\Settings\SettingsService;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +30,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(SettingsService $service, CategoryService $categoryService)
     {
+
+        if(config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
+
+
         Product::observe(ProductObserver::class);
 
         $categoryModelClassName = "App\Models\Category";

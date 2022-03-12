@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://asceticshop.ru'),
+    'url' => env('APP_URL', 'https://asceticshop.ru'),
 
     'asset_url' => env('ASSET_URL', null),
 

@@ -7,9 +7,9 @@ export default {
     },
 
     categoriesUrl: {
-        categories: '/admin-js/categories/',
-        materials: '/admin-js/materials/',
-        colors: '/admin-js/colors/',
+        categories: '/admin-js/categories',
+        materials: '/admin-js/materials',
+        colors: '/admin-js/colors',
     },
 
     singleCategoryUrl: {

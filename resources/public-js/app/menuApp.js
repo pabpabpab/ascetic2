@@ -4,6 +4,7 @@ import MobileMenu from "../menu/mobileMenu";
 import authKit from "../auth/index-authKit";
 import FavoriteProductsTotalCountIndication from "../favoriteProducts/favoriteProductsTotalCountIndication";
 import OrderWindow from "../orderWindow/orderWindow";
+import WaitingScreen from "../waitingScreen";
 
 
 new OrderWindow();
@@ -12,3 +13,5 @@ new MenuVisibilityManager();
 new TopDropMenuFiller();
 new MobileMenu();
 authKit();
+
+new WaitingScreen();

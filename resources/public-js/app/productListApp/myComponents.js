@@ -33,6 +33,7 @@ import TopTotalSearchParametersRenderer from "../../productList/productFilter/to
 import SettingsSetterOnPageLoad from "../../settings/settingsSetterOnPageLoad";
 import FavoriteProductsIndicationOnPageLoad from "../../favoriteProducts/favoriteProductsIndicationOnPageLoad";
 import OrderWindow from "../../orderWindow/orderWindow";
+import WaitingScreen from "../../waitingScreen";
 
 
 
@@ -93,4 +94,6 @@ export default {
     settingsSetterOnPageLoad: new SettingsSetterOnPageLoad(),
 
     favoriteProductsIndicationOnPageLoad: new FavoriteProductsIndicationOnPageLoad(),
+
+    waitingScreen: new WaitingScreen(),
 }
