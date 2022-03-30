@@ -40,3 +40,4 @@ class CreateProductsColorsTable extends Migration
 
 
 // php artisan make:migration create_products_colors_table
+

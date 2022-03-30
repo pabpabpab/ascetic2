@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import http from './http';
+import http from './http_js/http';
 import users from './users_js/users';
 import pagination from './pagination_js/pagination';
 import categories from './categories_js/categories';
