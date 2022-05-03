@@ -59,9 +59,5 @@ Route::group([
     // получение ответа от ulogin.ru (запрос делается из js-виджета)
     Route::post('/u-login/response', 'ULoginController@response')
         ->name('uLogin.response');
-
-    // запрос по ajax html-кода виджета
-    //Route::get('/u-login/widget', 'ULoginController@getWidgetHtml')
-        //->name('uLogin.widget');
 });
 

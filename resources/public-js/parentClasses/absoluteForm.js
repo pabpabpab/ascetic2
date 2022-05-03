@@ -62,8 +62,6 @@ export default class AbsoluteForm extends VisibleBlockByClick {
             return;
         }
 
-        el(this.submitSelector).innerText = 'Ждите...';
-
         // отправить данные и получить ответ
         postJson(this.postUrl, userData).then((data) => {
             if (data.backValidatorErrors) {

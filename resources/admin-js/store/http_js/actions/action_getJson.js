@@ -18,7 +18,6 @@ export default {
             .catch((error) => {
                 context.dispatch('showHttpError', error);
             });
-        // fetch(url,{method: 'GET', headers: {'X-CSRF-Token': token}})
     },
 
     getJsonWithWaitingScreen(context, url) {

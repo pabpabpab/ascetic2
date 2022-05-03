@@ -10,7 +10,10 @@ class FavoriteProductsListService
 {
     public function getList($sortValue = 'position')
     {
-        $frontIdsStr = (string) $_COOKIE['favoriteIds'];
+        $frontIdsStr = '';
+        if (array_key_exists('favoriteIds', $_COOKIE)) {
+            $frontIdsStr = (string) $_COOKIE['favoriteIds'];
+        }
 
         // обезопасить строку приведением элементов к Int
         $frontIdsArr = $this->_getArrayOfIntegers($frontIdsStr);

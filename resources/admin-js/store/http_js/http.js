@@ -26,19 +26,6 @@ export default {
             dispatch('showConfirmationDialog', settings);
         },
 
-        requestsAreProhibitedMessage({dispatch}, requestType) {
-            dispatch('hideWaitingScreen', null);
-            const settings = {};
-            settings.confirmationRequestText = `${requestType}-запросы сейчас отключены, во избежание изменения контента`;
-            settings.yesButtonText = '';
-            settings.cancelButtonText = 'Закрыть';
-            settings.yesAction = '';
-            settings.cancelAction = 'closeConfirmationDialog';
-            settings.yesPayload = {};
-            settings.finalRedirectRoute = '';
-            dispatch('showConfirmationDialog', settings);
-        },
-
         checkIfAccessDenied({dispatch}, reason) {
             if (!reason) {
                 return;
