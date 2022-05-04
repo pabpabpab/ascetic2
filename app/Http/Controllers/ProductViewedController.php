@@ -6,12 +6,19 @@ use App\Models\Product;
 use App\Services\PageTitleService;
 use App\Services\Product\ViewedProductsService;
 use App\Services\Settings\SettingsService;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Contracts\View\View;
 
 class ProductViewedController extends Controller
 {
-    public function getViewedProducts(ViewedProductsService $service, $pageNumber = 1)
+    /**
+     * Get list of viewed products.
+     *
+     * @param \App\Services\Product\ViewedProductsService $service
+     * @param int $pageNumber
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function getViewedProducts(ViewedProductsService $service, $pageNumber = 1): View
     {
         $pageData = (new PageTitleService())->getData('viewedProducts', []);
 
@@ -24,6 +31,7 @@ class ProductViewedController extends Controller
         $productsCount = $service->getAllViewed()->count();
         $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $products = $service->getAllViewed()->paginate($perPage);
+
         return view('products.list.index', [
             'products' => $products,
             'productSectionName' => 'viewedProducts',

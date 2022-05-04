@@ -5,14 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\PageTitleService;
-use App\Services\Product\ListService;
 use App\Services\Settings\SettingsService;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use \Illuminate\Contracts\View\View;
 
 class ProductByCategoryController extends Controller
 {
-    public function getByCategory(ListService $service, Category $category, $pageNumber = 1)
+
+    /**
+     * Get a listing of products of specified category.
+     * $category определена в роуте как {category:slug}
+     *
+     * @param \App\Models\Category $category
+     * @param int $pageNumber
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function getByCategory(Category $category, $pageNumber = 1): View
     {
         $pageData = (new PageTitleService())->getData('productCategory', [
             'category' => $category,
@@ -27,7 +35,7 @@ class ProductByCategoryController extends Controller
 
         $productsCount = $category->products()->count();
         $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
-        // $category определена в роуте как {category:slug}
+
         return view('products.list.index', [
             'category' => $category,
             'productSectionName' => 'productCategory',

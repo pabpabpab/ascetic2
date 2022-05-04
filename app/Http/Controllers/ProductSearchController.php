@@ -6,13 +6,24 @@ use App\Models\Product;
 use App\Services\PageTitleService;
 use App\Services\Product\SearchService;
 use App\Services\Settings\SettingsService;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Contracts\View\View;
 
 class ProductSearchController extends Controller
 {
-    //product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/{pageNumber}
-    public function search(SearchService $service, int $minPrice, int $maxPrice, string $categoriesIds, string $sortValue, int $pageNumber = 1)
+    /**
+     * Search for products by filter parameters.
+     * /product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/{pageNumber}
+     *
+     * @param \App\Services\Product\SearchService $service
+     * @param int $minPrice
+     * @param int $maxPrice
+     * @param string $categoriesIds
+     * @param string $sortValue
+     * @param int $pageNumber
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function search(SearchService $service, int $minPrice, int $maxPrice, string $categoriesIds, string $sortValue, int $pageNumber = 1): View
     {
         $pageData = (new PageTitleService())->getData('productSearchOnServer', []);
 

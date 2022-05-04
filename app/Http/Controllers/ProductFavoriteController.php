@@ -6,14 +6,21 @@ use App\Models\Product;
 use App\Services\PageTitleService;
 use App\Services\Product\FavoriteProductsListService;
 use App\Services\Settings\SettingsService;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Contracts\View\View;
 
 class ProductFavoriteController extends Controller
 {
-    public function getFavoriteProducts(FavoriteProductsListService $service, $pageNumber = 1)
-    {
 
+    /**
+     * Get a listing of favorite products.
+     *
+     * @param \App\Services\Product\FavoriteProductsListService $service
+     * @param int $pageNumber
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function getFavoriteProducts(FavoriteProductsListService $service, $pageNumber = 1): View
+    {
         $pageData = (new PageTitleService())->getData('favoriteProducts', []);
 
         // установить стартовую страницу для пагинатора
@@ -25,6 +32,7 @@ class ProductFavoriteController extends Controller
         $productsCount = $service->getList()->count();
         $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $products = $service->getList()->paginate($perPage);
+
         return view('products.list.index', [
             'products' => $products,
             'productSectionName' => 'favoriteProducts',

@@ -9,10 +9,17 @@ use App\Services\Product\ListService;
 use App\Services\Product\ViewedProductsService;
 use App\Services\Settings\SettingsService;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Contracts\View\View;
 
 class ProductController extends Controller
 {
-    public function index(ListService $service)
+    /**
+     * Get a listing of products for main page.
+     *
+     * @param \App\Services\Product\ListService $service
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index(ListService $service): View
     {
         $pageData = (new PageTitleService())->getData('allProducts', []);
 
@@ -26,6 +33,7 @@ class ProductController extends Controller
         $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
         $products = $service->getAll('active')
             ->paginate($perPage);
+
         return view('products.list.index', [
             'products' => $products,
             'productSectionName' => 'allProducts',
@@ -39,7 +47,14 @@ class ProductController extends Controller
         ]);
     }
 
-    public function list(ListService $service, $pageNumber)
+    /**
+     * Get a listing of products.
+     *
+     * @param \App\Services\Product\ListService $service
+     * @param int $pageNumber
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function list(ListService $service, int $pageNumber): View
     {
         $pageData = (new PageTitleService())->getData('allProducts', []);
 
@@ -51,8 +66,10 @@ class ProductController extends Controller
 
         $totalProductsCount = Product::count();
         $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
+
         $products = $service->getAll('active')
             ->paginate($perPage);
+
         return view('products.list.index', [
             'products' => $products,
             'productSectionName' => 'allProducts',
@@ -66,7 +83,14 @@ class ProductController extends Controller
         ]);
     }
 
-    public function getOne(PhotoSeoService $service, $slug, Product $product)
+    /**
+     * Get the specified product.
+     *
+     * @param \App\Services\PhotoManager\PhotoSeoService $service
+     * @param \App\Models\Product $product
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function getOne(PhotoSeoService $service, Product $product): View
     {
         $pageData = (new PageTitleService())->getData('oneProduct', [
             'product' => $product,
@@ -86,7 +110,15 @@ class ProductController extends Controller
         ]);
     }
 
-    public function getSinglePhotoPage(PhotoSeoService $service, Product $product, $photoSlug, $photoId)
+    /**
+     * Get the specified photo of specified product.
+     *
+     * @param \App\Services\PhotoManager\PhotoSeoService $service
+     * @param \App\Models\Product $product
+     * @param int $photoId
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function getSinglePhotoPage(PhotoSeoService $service, Product $product, int $photoId): View
     {
         (new ViewedProductsService())->addToViewed($product->id);
 
@@ -108,30 +140,7 @@ class ProductController extends Controller
         ]);
     }
 
-
-
-/*
-    public function getByMaterial(ListService $service, Material $material)
-    {
-        // $material определена в роуте как {material:slug}
-        return view('products.list.index', [
-            'category' => $material,
-            'products' => $material->products,
-        ]);
-    }
-
-    public function getByColor(ListService $service, Color $color)
-    {
-        // $color определена в роуте как {color:slug}
-        return view('products.list.index', [
-            'category' => $color,
-            'products' => $color->products,
-        ]);
-    }
-*/
-
 }
-
 
 // php artisan make:controller ProductController
 
