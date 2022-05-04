@@ -9,21 +9,30 @@ use Illuminate\Support\Facades\Auth;
 
 class ULoginController extends Controller
 {
+    /**
+     * Assigning middleware to the controller's actions.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    // запрос от ulogin.ru методом post (в ответ на запрос из js-виджета со страницы логина)
-    public function response(ULoginRequest $request) {
-
+    /**
+     * Запрос от ulogin.ru методом post (в ответ на запрос из js-виджета со страницы логина).
+     *
+     * @param \App\Http\Requests\Auth\ULoginRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function response(ULoginRequest $request): \Illuminate\Http\RedirectResponse
+    {
         // токен из $_POST['token'] от ulogin.ru
         $token = $request->token;
         $url = "http://ulogin.ru/token.php?token=".$token."&host=".$_SERVER['HTTP_HOST'];
 
         // json-строка {"first_name":"", "last_name":"", "email":"", "network":"", "identity":""}
         $socialUserData = file_get_contents($url);
-
 
         // если пустая строка
         if (blank($socialUserData)) {
@@ -66,21 +75,6 @@ class ULoginController extends Controller
 
         // переход в ЛК
         return redirect()->intended('/my');
-    }
-
-
-    // НЕ ИСПОЛЬЗУЕТСЯ
-    // запрос из iframe html-кода виджета
-    public function getWidgetHtml() {
-        $widget = "<script src='//ulogin.ru/js/ulogin.js'></script>
-                   <div id='uLogin'
-                   data-ulogin='display=panel;theme=flat;fields=first_name,last_name;
-                   providers=vkontakte,odnoklassniki,yandex,google,mailru;
-                   hidden=;
-                   redirect_uri=".env('APP_URL')."/u-login/response;
-                   mobilebuttons=0;'></div>";
-        return $widget;
-        //return response()->json($widget);
     }
 
 }

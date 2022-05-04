@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Hash;
 class SetNewPasswordController extends Controller
 {
 
+    /**
+     * Assigning middleware to the controller's actions.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -20,8 +25,15 @@ class SetNewPasswordController extends Controller
 
     // ===============================ПОКАЗАТЬ ФОРМУ===================================
 
-    // ПЕРЕХОД ПО SIGNED URL ИЗ ПИСЬМА. ПОКАЗАТЬ ФОРМУ СОЗДАНИЯ НОВОГО ПАРОЛЯ.
-    public function showNewPasswordForm(Request $request, $fakeUserId)
+    /**
+     * ПЕРЕХОД ПО SIGNED URL ИЗ ПИСЬМА. ПОКАЗАТЬ ФОРМУ СОЗДАНИЯ НОВОГО ПАРОЛЯ.
+     * Show the new password form.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $fakeUserId
+     * @return \Illuminate\Http\RedirectResponse | \Illuminate\Contracts\View\View
+     */
+    public function showNewPasswordForm(Request $request, int $fakeUserId)
     {
         // получить настоящий id
         $originalUserId = $fakeUserId - env('FAKE_ID_OFFSET');
@@ -62,16 +74,25 @@ class SetNewPasswordController extends Controller
         );
     }
 
-
-    // ОДИНАКОВЫЙ УКЛОНЧИВЫЙ ОТВЕТ НА ВСЕ СЛУЧАИ (ПРОТЕКТЕД)
-    protected function _evasiveAnswer() {
+    /**
+     * ОДИНАКОВЫЙ УКЛОНЧИВЫЙ ОТВЕТ НА ВСЕ СЛУЧАИ НЕПРАВИЛЬНОЙ ССЫЛКИ (протектед).
+     *
+     * @return string
+     */
+    protected function _evasiveAnswer(): string
+    {
         return 'Ссылка больше не действительна. Пожалуйста, сделайте новый запрос.';
     }
 
     // =================================СОХРАНИТЬ========================================
 
-    // СОХРАНИТЬ НОВЫЙ ПАРОЛЬ
-    public function update(UpdatePasswordRequest $request)
+    /**
+     * СОХРАНИТЬ НОВЫЙ ПАРОЛЬ.
+     *
+     * @param \App\Http\Requests\Auth\UpdatePasswordRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(UpdatePasswordRequest $request): \Illuminate\Http\RedirectResponse
     {
         // проверка что юзер такой есть
         // и токен в password_resets тоже есть и совпадает с токеном из формы

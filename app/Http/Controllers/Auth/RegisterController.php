@@ -10,24 +10,37 @@ use App\Services\User\FavoriteProductsSynchronizer;
 use App\Services\User\IsAdminService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\View\View;
 
 
 class RegisterController extends Controller
 {
-
+    /**
+     * Assigning middleware to the controller's actions.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    // Показать форму регистрации
-    public function showRegisterForm()
+    /**
+     * Show the register form.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function showRegisterForm(): View
     {
         return view('auth.register');
     }
 
-
-    // Создать регистрацию
+    /**
+     * Do register action.
+     *
+     * @param \App\Http\Requests\Auth\RegisterRequest $request
+     * @return \Illuminate\Http\RedirectResponse | \Illuminate\Http\JsonResponse
+     */
     public function store(RegisterRequest $request)
     {
         $role = 'user';

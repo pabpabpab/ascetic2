@@ -5,22 +5,38 @@ namespace App\Http\Controllers\Auth;
 use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Models\User;
 use App\Services\User\FavoriteProductsSynchronizer;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    /**
+     * Assigning middleware to the controller's actions.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    public function showLoginForm()
+    /**
+     * Show the login form.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function showLoginForm(): View
     {
         return view('auth.login');
     }
 
+    /**
+     * Do login action.
+     *
+     * @param \App\Http\Requests\Auth\LoginRequest $request
+     * @return \Illuminate\Http\RedirectResponse | \Illuminate\Http\JsonResponse
+     */
     public function doLogin(LoginRequest $request)
     {
         $remember = isset($request->remember) ? $request->remember : false;
@@ -45,11 +61,9 @@ class LoginController extends Controller
                 : back()->with(['authStatus' => 'Пользователь не определен.']);
         }
 
+        event(new UserRegisteredEvent($user));
 
-
-        //event(new UserRegisteredEvent($user));
-
-        //info((string) $_COOKIE['favoriteIds']);
+        // info((string) $_COOKIE['favoriteIds']);
         // почему-то не тот кук читает, поэтому с фронта favoriteIds в реквест добавлен при login
         $mixedFavoriteIdsStr = (new FavoriteProductsSynchronizer())
             ->mixFrontAndBackUserFavoriteIds($user->id, (string) $request->favoriteIds);

@@ -12,13 +12,23 @@ use Illuminate\Support\Facades\Auth;
 
 class VerificationResendController extends Controller
 {
+    /**
+     * Assigning middleware to the controller's actions.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    // ПО КНОПКЕ ПОВТОРИТЬ ОТПРАВКУ ПИСЬМА С verification link'ом
-    public function resend(Request $request)
+    /**
+     * ПО КНОПКЕ ПОВТОРИТЬ ОТПРАВКУ ПИСЬМА С verification link'ом.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function resend(Request $request): \Illuminate\Http\RedirectResponse
     {
         $user = Auth::user();
 
@@ -39,5 +49,4 @@ class VerificationResendController extends Controller
 
         return back()->with(['authStatus' => 'Письмо отправлено.']);
     }
-
 }

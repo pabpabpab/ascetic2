@@ -8,12 +8,21 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class ConfirmRegisterController extends Controller
 {
 
-    // ЭТО ПЕРЕХОД ПО SIGNED URL ИЗ ПИСЬМА. ВЕРИФИЦИРУЕТСЯ ЕМАЙЛ ПОЛЬЗОВАТЕЛЯ.
-    public function confirmRegister(Request $request, $fakeUserId)
+    /**
+     * ЭТО ПЕРЕХОД ПО SIGNED URL ИЗ ПИСЬМА. ВЕРИФИЦИРУЕТСЯ ЕМАЙЛ ПОЛЬЗОВАТЕЛЯ.
+     * Confirm user registration.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $fakeUserId
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function confirmRegister(Request $request, int $fakeUserId): RedirectResponse
     {
         $originalUserId = $fakeUserId - env('FAKE_ID_OFFSET');
 

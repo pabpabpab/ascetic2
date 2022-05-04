@@ -7,27 +7,39 @@ use App\Http\Requests\Auth\EmailRequest;
 use App\Mail\PasswordResetLink;
 use App\Models\User;
 use App\Services\Auth\ForgotPasswordService;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Contracts\View\View;
 
 class ForgotPasswordController extends Controller
 {
-   // use SendsPasswordResetEmails;
-
+    /**
+     * Assigning middleware to the controller's actions.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    // ПОКАЗАТЬ ФОРМУ «ЗАБЫЛИ ПАРОЛЬ?»
-    public function showForgotForm()
+    /**
+     * ПОКАЗАТЬ ФОРМУ «ЗАБЫЛИ ПАРОЛЬ?»
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function showForgotForm(): View
     {
         return view('auth.forgot-password');
     }
 
-    // ПРИНЯТЬ МЕТОДОМ POST ЕМАЙЛ, И ОТПРАВИТЬ НА ЭТОТ ЕМАЙЛ RESET LINK
+    /**
+     * ПРИНЯТЬ МЕТОДОМ POST ЕМАЙЛ, И ОТПРАВИТЬ НА ЭТОТ ЕМАЙЛ RESET LINK.
+     *
+     * @param \App\Http\Requests\Auth\EmailRequest $request
+     * @return \Illuminate\Http\RedirectResponse | \Illuminate\Http\JsonResponse
+     */
     public function sendResetLink(EmailRequest $request)
     {
         $email = $request->only('email');
@@ -80,10 +92,14 @@ class ForgotPasswordController extends Controller
             : back()->with(['authStatus' => $this->_evasiveAnswer()]);
     }
 
-
-
-    // ОДИНАКОВЫЙ УКЛОНЧИВЫЙ ОТВЕТ НА ВСЕ СЛУЧАИ (ПРОТЕКТЕД)
-    protected function _evasiveAnswer() {
+    /**
+     * ОДИНАКОВЫЙ УКЛОНЧИВЫЙ ОТВЕТ НА ВСЕ СЛУЧАИ ПРАВИЛЬНОГО
+     * ИЛИ НЕПРАВИЛЬНОГО ВВОДА ПОЛЬЗОВАТЕЛЯ (протектед).
+     *
+     * @return string
+     */
+    protected function _evasiveAnswer(): string
+    {
         return 'Если Вы правильно указали вашу почту,
                 ссылка была отправлена.
                 Проверьте пожалуйста Вашу почту.';

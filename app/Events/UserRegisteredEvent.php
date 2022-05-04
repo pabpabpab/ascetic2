@@ -19,7 +19,7 @@ class UserRegisteredEvent
     public $user;
 
 
-    public function __construct(User $user)
+    public function __construct(\Illuminate\Contracts\Auth\Authenticatable $user)
     {
         $this->user = $user;
     }
