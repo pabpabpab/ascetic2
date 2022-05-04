@@ -6,12 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Services\Product\SearchService;
 use App\Services\Settings\SettingsService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ProductSearchController extends Controller
 {
-
-    //product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/offset/{startOffset}
+    /**
+     * Search for products by filter parameters.
+     * /public-js/product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/offset/{startOffset}
+     *
+     * @param \App\Services\Product\SearchService $service
+     * @param int $minPrice
+     * @param int $maxPrice
+     * @param string $categoriesIds
+     * @param string $sortValue
+     * @param int $startOffset
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function search(SearchService $service, int $minPrice, int $maxPrice, string $categoriesIds, string $sortValue, int $startOffset): JsonResponse
     {
         $perPage = (new SettingsService())->getSettings('pagination')['perPage'];

@@ -5,10 +5,15 @@ namespace App\Http\Controllers\PublicJS;
 use App\Http\Controllers\Controller;
 use App\Services\Product\AggregateValuesService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class ProductAggregateValuesController extends Controller
 {
+    /**
+     * Get price range of products.
+     *
+     * @param \App\Services\Product\AggregateValuesService $service
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getPriceRange(AggregateValuesService $service): JsonResponse
     {
         return response()->json([

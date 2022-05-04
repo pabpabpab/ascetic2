@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 
 class ViewedProductController extends Controller
 {
+
+    /**
+     * Add product to viewed products.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Services\Product\ViewedProductsService $service
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function addToViewed(Request $request, ViewedProductsService $service): JsonResponse
     {
         $productId = (int) $request->productId ?? 0;
@@ -23,6 +31,12 @@ class ViewedProductController extends Controller
         ]);
     }
 
+    /**
+     * Get list of viewed products summary.
+     *
+     * @param \App\Services\Product\ViewedProductsService $service
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getSummaryList(ViewedProductsService $service): JsonResponse
     {
         return response()->json([
@@ -30,7 +44,12 @@ class ViewedProductController extends Controller
         ]);
     }
 
-
+    /**
+     * Get count of viewed products.
+     *
+     * @param \App\Services\Product\ViewedProductsService $service
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getTotalCount(ViewedProductsService $service): JsonResponse
     {
         return response()->json([
@@ -38,7 +57,14 @@ class ViewedProductController extends Controller
         ]);
     }
 
-    // /public-js/viewed-products/offset/${settings.startOffset}
+    /**
+     * Get list of viewed products.
+     * /public-js/viewed-products/offset/${settings.startOffset}
+     *
+     * @param \App\Services\Product\ViewedProductsService $service
+     * @param int $startOffset
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getViewedProductsForJS(ViewedProductsService $service, int $startOffset): JsonResponse
     {
         $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
@@ -46,15 +72,12 @@ class ViewedProductController extends Controller
 
         $allViewedIdsStr = $service->getAllViewedIdsStr();
 
-        //$sectionProductsCount = $service->getAllViewed()->count();
-
         return response()->json([
             'products' => $products,
             'sectionProductsCount' => count(explode(",", $allViewedIdsStr)),
             'allViewedIdsStr' => $allViewedIdsStr
         ]);
     }
-
 }
 
 // php artisan make:controller PublicJS/ViewedProductController

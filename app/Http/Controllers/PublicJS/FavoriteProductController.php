@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteProductController extends Controller
 {
+    /**
+     * Synchronize user favorites.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Services\User\FavoriteProductsSynchronizer $synchronizer
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function synchronizeUserFavorites(Request $request, FavoriteProductsSynchronizer $synchronizer): JsonResponse
     {
         $user = Auth::user();
@@ -21,7 +28,6 @@ class FavoriteProductController extends Controller
                 'reason' => 'userIsNotLoggedIn',
             ]);
         }
-
 
         $productIdsStr = $request->productIds ?? '';
 
@@ -39,8 +45,15 @@ class FavoriteProductController extends Controller
         ]);
     }
 
-
-    // /public-js/favorite-products/sort/${sortMode}/offset/${startOffset}
+    /**
+     * Get list of favorite products.
+     * /public-js/favorite-products/sort/${sortMode}/offset/${startOffset}
+     *
+     * @param \App\Services\Product\FavoriteProductsListService $service
+     * @param string $sortValue
+     * @param int $startOffset
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getFavoriteProductsForJS(FavoriteProductsListService $service, string $sortValue, int $startOffset): JsonResponse
     {
         $perPage = (new SettingsService())->getSettings('pagination')['perPage'];
