@@ -8,26 +8,48 @@ use App\Models\User;
 use App\Services\User\DeleteByAdminService;
 use App\Services\User\SaveByAdminService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * Get all users.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getAll(): JsonResponse
     {
         $users = User::query()->orderBy('id', 'desc')->get();
         return response()->json($users);
     }
 
+    /**
+     * Get count of users.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getCount(): JsonResponse
     {
         return response()->json(User::count());
     }
 
+    /**
+     * Get one user.
+     *
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getOne(User $user): JsonResponse
     {
         return response()->json($user);
     }
 
+    /**
+     * Deleting the specified user.
+     *
+     * @param \App\Services\User\DeleteByAdminService
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete(DeleteByAdminService $service, User $user): JsonResponse
     {
         // instance user'a в роуте как {user}
@@ -36,6 +58,13 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Creating user.
+     *
+     * @param  \App\Http\Requests\Admin\UserSaveRequest  $request
+     * @param \App\Services\User\SaveByAdminService $service
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function create(UserSaveRequest $request, SaveByAdminService $service): JsonResponse
     {
         // instance user в роуте как {user?}
@@ -44,6 +73,14 @@ class UserController extends Controller
         );
     }
 
+    /**
+     * Updating the specified user.
+     *
+     * @param  \App\Http\Requests\Admin\UserSaveRequest  $request
+     * @param \App\Services\User\SaveByAdminService $service
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function save(UserSaveRequest $request, SaveByAdminService $service, User $user): JsonResponse
     {
         // instance user в роуте как {user?}
@@ -51,16 +88,4 @@ class UserController extends Controller
             $service->saveOne($request, $user)
         );
     }
-
-
-
-/*
-
-    public function getLazyUsers(User $user, $lastId): JsonResponse
-    {
-        $users = $user->getMore($lastId)
-            ->take(30);
-        return response()->json($users);
-    }
-*/
 }

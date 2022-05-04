@@ -10,7 +10,14 @@ use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
-    public function getSettings(SettingsService $service, $subject): JsonResponse
+    /**
+     * Get site settings.
+     *
+     * @param \App\Services\Settings\SettingsService $service
+     * @param string $subject
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getSettings(SettingsService $service, string $subject): JsonResponse
     {
         $setting = Setting::where('slug', $subject)->first();
         $data = blank($setting)
@@ -19,7 +26,15 @@ class SettingsController extends Controller
         return response()->json($data);
     }
 
-    public function saveSettings(Request $request, SettingsService $service, $subject): JsonResponse
+    /**
+     * Save site settings.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Services\Settings\SettingsService $service
+     * @param string $subject
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function saveSettings(Request $request, SettingsService $service, string $subject): JsonResponse
     {
         $result = $service->saveSettings($request, $subject);
 
@@ -30,6 +45,4 @@ class SettingsController extends Controller
     }
 }
 
-
-// php artisan make:controller Api/Admin/SettingsController
 

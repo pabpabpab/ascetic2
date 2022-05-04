@@ -22,7 +22,6 @@ use App\Services\Product\SaveService;
 use App\Services\Product\SeoService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -360,5 +359,4 @@ class ProductController extends Controller
             $service->saveSeoData($product, $photoName)
         );
     }
-
 }
