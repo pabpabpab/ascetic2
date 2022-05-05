@@ -6,12 +6,22 @@ namespace App\Services\PhotoManager;
 
 use App\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+use Illuminate\Database\Eloquent\Model;
 
 class PhotoMover
 {
     use PhotoTrait;
 
-    public function movePhoto($product, $photoName, $to): array
+    /**
+     * Change position value of the specified photo of the specified product.
+     *
+     * @param \App\Models\Product $product
+     * @param string $photoName
+     * @param string $to
+     * @return array
+     */
+    public function movePhoto(Product $product, string $photoName, string $to): array
     {
         $direction = [
             'up' => ['sign' => '<', 'order' => 'desc'],
@@ -33,15 +43,10 @@ class PhotoMover
                 ->orderBy('position', $direction[$to]['order'])
                 ->first();
 
-            //$exchangeResult = $this->_exchangePhotoNames($operatedPhotoRecord, $occupiedPhotoRecord);
-
             $exchangeResult = $this->_exchangePhotosPosition($operatedPhotoRecord, $occupiedPhotoRecord);
-
-
 
             if ($exchangeResult) {
                 $this->_syncPhotoNamesAndAltsInProduct($product);
-                // $product->refresh();
 
                 DB::commit();
                 return [
@@ -71,21 +76,15 @@ class PhotoMover
         ];
     }
 
-/*
-    protected function _exchangePhotoNames($operatedPhotoRecord, $occupiedPhotoRecord): bool
-    {
-        $affected1 = DB::table('photo')
-            ->where('id', $occupiedPhotoRecord->id)
-            ->update(['filename' =>  $operatedPhotoRecord->filename]);
-
-        $affected2 = DB::table('photo')
-            ->where('id', $operatedPhotoRecord->id)
-            ->update(['filename' =>  $occupiedPhotoRecord->filename]);
-
-        return $affected1 === 1 && $affected2 === 1;
-    }
-   */
-    protected function _exchangePhotosPosition($operatedPhotoRecord, $occupiedPhotoRecord): bool
+    /**
+     * Exchange of position values between two specified photo records.
+     *
+     * @param \App\Models\Product $product
+     * @param object $operatedPhotoRecord
+     * @param object $occupiedPhotoRecord
+     * @return array
+     */
+    protected function _exchangePhotosPosition(object $operatedPhotoRecord, object $occupiedPhotoRecord): bool
     {
         $affected1 = DB::table('photo')
             ->where('id', $occupiedPhotoRecord->id)

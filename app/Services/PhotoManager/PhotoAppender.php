@@ -6,15 +6,22 @@ namespace App\Services\PhotoManager;
 
 use App\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+use Illuminate\Http\Request;
 
 class PhotoAppender
 {
     use PhotoTrait;
 
-
-    public function appendPhoto($product, $request): array
+    /**
+     * Append photo to the specified product.
+     *
+     * @param \App\Models\Product $product
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function appendPhoto(Product $product, Request $request): array
     {
-
         DB::beginTransaction();
 
         try {

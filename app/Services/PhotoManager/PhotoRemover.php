@@ -7,12 +7,20 @@ namespace App\Services\PhotoManager;
 use App\Models\Photo;
 use App\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class PhotoRemover
 {
     use PhotoTrait;
 
-    public function deletePhoto($product, $photoName): array
+    /**
+     * Deleting of the specified photo of the specified product.
+     *
+     * @param \App\Models\Product $product
+     * @param string $photoName
+     * @return array
+     */
+    public function deletePhoto(Product $product, string $photoName): array
     {
         DB::beginTransaction();
 
@@ -49,8 +57,15 @@ class PhotoRemover
     }
 
 
-
-    protected function _deletePhotoFromPhotoTable($product, $photoName): int
+    /**
+     * Deleting of the specified photo record of the specified product,
+     * and deleting seo data of the specified photo.
+     *
+     * @param \App\Models\Product $product
+     * @param string $photoName
+     * @return int
+     */
+    protected function _deletePhotoFromPhotoTable(Product $product, string $photoName): int
     {
         $photoRecord = DB::table('photo')
             ->where('product_id', $product->id)

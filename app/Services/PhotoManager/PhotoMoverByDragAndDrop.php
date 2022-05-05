@@ -7,12 +7,19 @@ namespace App\Services\PhotoManager;
 use App\Models\Photo;
 use App\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class PhotoMoverByDragAndDrop
 {
     use PhotoTrait;
 
-    public function movePhotoByDragAndDrop($product): array
+    /**
+     * Assign a position for the photo record located to the specified record.
+     *
+     * @param \App\Models\Product $product
+     * @return array
+     */
+    public function movePhotoByDragAndDrop(Product $product): array
     {
         $operatedPhotoName = request()->input('operatedPhotoName');
         $targetPhotoName = request()->input('targetPhotoName');
@@ -62,8 +69,15 @@ class PhotoMoverByDragAndDrop
         ];
     }
 
-    // при векторе above
-    protected function _makePlaceAbove($productId, $fromPosition): int
+    /**
+     * Изменить значение позиций записей начиная с указанной позиции.
+     * при векторе above
+     *
+     * @param int $productId
+     * @param int $fromPosition
+     * @return int
+     */
+    protected function _makePlaceAbove(int $productId, int $fromPosition): int
     {
         // сдвинуть все нижестоящие вниз, включая $fromPosition
         DB::table('photo')
@@ -75,8 +89,15 @@ class PhotoMoverByDragAndDrop
         return $fromPosition;
     }
 
-    // при векторе below
-    protected function _makePlaceBelow($productId, $fromPosition): int
+    /**
+     * Изменить значение позиций записей находящихся выше указанной позиции.
+     * при векторе below
+     *
+     * @param int $productId
+     * @param int $fromPosition
+     * @return int
+     */
+    protected function _makePlaceBelow(int $productId, int $fromPosition): int
     {
         // сдвинуть все нижестоящие вниз
         DB::table('photo')

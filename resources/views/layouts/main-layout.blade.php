@@ -19,8 +19,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ secure_asset('css/public.css') }}?t=@php echo time(); @endphp">
-    <script src="{{ secure_asset($jsAppName) }}?t=@php echo time(); @endphp" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/public.css') }}?t=@php echo time(); @endphp">
+    <script src="{{ asset($jsAppName) }}?t=@php echo time(); @endphp" defer></script>
 </head>
 <body>
 

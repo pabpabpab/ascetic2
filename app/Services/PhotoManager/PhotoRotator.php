@@ -8,17 +8,24 @@ use App\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use App\Models\Product;
 
 class PhotoRotator
 {
     use PhotoTrait;
 
-
-    public function rotatePhoto($product, $photoName, $angle): array
+    /**
+     * Rotating the specified photo of the specified product.
+     *
+     * @param \App\Models\Product $product
+     * @param string $photoName
+     * @param int $angle
+     * @return array
+     */
+    public function rotatePhoto(Product $product, string $photoName, int $angle): array
     {
         $ext = explode('.', $photoName)[1];
         $newPhotoName = time().".".$ext;
-
 
         DB::beginTransaction();
 
@@ -62,8 +69,16 @@ class PhotoRotator
         ];
     }
 
-
-    protected function _rotateAndSaveImageVersionsToDisk($productId, $newPhotoName, $oldPhoto, $angle)
+    /**
+     * Core of rotating method of the specified photo of specified product.
+     *
+     * @param int $productId
+     * @param string $newPhotoName
+     * @param string $oldPhoto
+     * @param int $angle
+     * @return void
+     */
+    protected function _rotateAndSaveImageVersionsToDisk(int $productId, string $newPhotoName, string $oldPhoto, int $angle): void
     {
         // индекс 1 пропустить (мелкого фото нет)
         for ($i = 2; $i <= 6; $i++) {
@@ -85,9 +100,15 @@ class PhotoRotator
         }
     }
 
-
-
-    protected function _updatePhotoNameInPhotoTable($productId, $oldPhotoName, $newPhotoName): int
+    /**
+     * Update photo name in photo table.
+     *
+     * @param int $productId
+     * @param string $oldPhotoName
+     * @param string $newPhotoName
+     * @return int
+     */
+    protected function _updatePhotoNameInPhotoTable(int $productId, string $oldPhotoName, string $newPhotoName): int
     {
         return DB::table('photo')
             ->where('product_id', $productId)
@@ -95,9 +116,15 @@ class PhotoRotator
             ->update(['filename' => $newPhotoName]);
     }
 
-
-
-    protected function _getPhotoFile($productId, $index, $photoName): string
+    /**
+     * Get path of photo file.
+     *
+     * @param int $productId
+     * @param int $index
+     * @param string $photoName
+     * @return string
+     */
+    protected function _getPhotoFile(int $productId, int $index, string $photoName): string
     {
         $fileName = $productId."s".$index."-".$photoName;
         $folderName = config("my_photo.folders.size".$index);
@@ -107,8 +134,15 @@ class PhotoRotator
         return '';
     }
 
-
-    protected function _getPhotoPath($productId, $index, $photoName): string
+    /**
+     * Get path of existing photo file.
+     *
+     * @param int $productId
+     * @param int $index
+     * @param string $photoName
+     * @return string
+     */
+    protected function _getPhotoPath(int $productId, int $index, string $photoName): string
     {
         $fileName = $productId."s".$index."-".$photoName;
         $folderName = config("my_photo.folders.size".$index);
