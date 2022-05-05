@@ -5,15 +5,22 @@ namespace App\Services\PhotoManager;
 
 
 use App\Services\Settings\SettingsService;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class PhotoUploader
 {
-
-    public function saveUploadedFiles($files, $productId): array
+    /**
+     * Save uploaded files.
+     *
+     * @param array $files
+     * @param int $productId
+     * @return array
+     */
+    public function saveUploadedFiles(array $files, int $productId): array
     {
-        //$files // они там элементы массива photos | $request->file('photos.'.$i)
+        //$files это элементы массива photos | $request->file('photos.'.$i)
 
         // считать из таблицы настроек сайта photoQuality
         $siteSetting = (new SettingsService())->getSettings('photo_quality');
@@ -46,8 +53,16 @@ class PhotoUploader
         return $timeNameArr;
     }
 
-
-    protected function _savePhotoVersion($file, $newFileName, $i, $quality)
+    /**
+     * Save photo file to disk.
+     *
+     * @param UploadedFile $file
+     * @param string $newFileName
+     * @param int $i // индекс в имени
+     * @param int $quality
+     * @return void
+     */
+    protected function _savePhotoVersion(UploadedFile $file, string $newFileName, int $i, int $quality): void
     {
         $folderName = config("my_photo.folders.size".$i);
         $fullPath = Storage::disk('public')->path($folderName."/".$newFileName);
@@ -66,6 +81,4 @@ class PhotoUploader
             Image::make($file)->heighten($height)->save($fullPath, $quality, $ext);
         }
     }
-
-
 }

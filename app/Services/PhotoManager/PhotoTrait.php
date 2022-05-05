@@ -6,12 +6,18 @@ namespace App\Services\PhotoManager;
 
 use App\Models\Photo;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Product;
 
 trait PhotoTrait
 {
-
-    // удалить физически с диска все версии фото
-    protected function _deletePhotoFromDisk($productId, $photoName)
+    /**
+     * Удалить с диска все версии фото.
+     *
+     * @param int $productId
+     * @param string $photoName
+     * @return void
+     */
+    protected function _deletePhotoFromDisk(int $productId, string $photoName): void
     {
         // индекс 1 пропустить (мелкого фото нет)
         for ($i = 2; $i <= 6; $i++) {
@@ -24,8 +30,13 @@ trait PhotoTrait
         }
     }
 
-    // получить массив имен фото из таблицы photo
-    protected function _getPhotoNamesAndAltsAsArrays($product): array
+    /**
+     * Получить массив имен фото из таблицы photo.
+     *
+     * @param \App\Models\Product $product
+     * @return array
+     */
+    protected function _getPhotoNamesAndAltsAsArrays(Product $product): array
     {
         $photoNameArr = []; $photoAltArr = [];
         foreach ($product->photo as $ph) {
@@ -35,9 +46,13 @@ trait PhotoTrait
         return [$photoNameArr, $photoAltArr];
     }
 
-
-    // сохранить массивы имен фоток и alt'ов в product в виде json
-    protected function _syncPhotoNamesAndAltsInProduct($product): bool
+    /**
+     * Сохранить массивы имен фоток и alt'ов в product в виде json.
+     *
+     * @param \App\Models\Product $product
+     * @return bool
+     */
+    protected function _syncPhotoNamesAndAltsInProduct(Product $product): bool
     {
         [$photoNameArr, $photoAltArr] = $this->_getPhotoNamesAndAltsAsArrays($product);
         $product->photo_set = json_encode($photoNameArr);
@@ -45,10 +60,14 @@ trait PhotoTrait
         return $product->save();
     }
 
-
-
-    // вставить имена фоток в таблицу photo
-    protected function _insertPhotoNamesIntoPhotoTable($product, $photoNameArr)
+    /**
+     * Вставить имена фоток в таблицу photo.
+     *
+     * @param \App\Models\Product $product
+     * @param array $photoNameArr
+     * @return void
+     */
+    protected function _insertPhotoNamesIntoPhotoTable(Product $product, array $photoNameArr): void
     {
         // подготовить массив имен фоток, для вставки в таблицу photo через one-to-many
         $photos = [];
@@ -61,7 +80,11 @@ trait PhotoTrait
         $product->photo()->createMany($photos);
     }
 
-    // получить макс position + 1
+    /**
+     * Получить макс position + 1 для добавляемого фото.
+     *
+     * @return int
+     */
     protected function _calcNewPhotoPosition(): int
     {
         if (Photo::count() === 0) {

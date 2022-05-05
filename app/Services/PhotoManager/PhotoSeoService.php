@@ -8,16 +8,23 @@ use App\Models\Photo;
 use App\Models\PhotoSEOText;
 use App\Services\ExceptionService;
 use App\Services\TextTrait;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+use Illuminate\Support\Collection;
 
 class PhotoSeoService
 {
     use TextTrait, PhotoTrait;
 
 
-    public function saveSeoData($product, $photoName): array
+    /**
+     * Save SEO data of the specified photo of the specified product.
+     *
+     * @param \App\Models\Product $product
+     * @param string $photoName
+     * @return array
+     */
+    public function saveSeoData(Product $product, string $photoName): array
     {
         $pageTitle = $this->_removeLineBreak(
             request()->input('pageTitle')
@@ -91,7 +98,14 @@ class PhotoSeoService
     }
 
 
-    public function getPhotoSeoModel($product, $photoName): Model
+    /**
+     * Get photo SEO model of the specified photo of the specified product.
+     *
+     * @param \App\Models\Product $product
+     * @param string $photoName
+     * @return PhotoSEOText
+     */
+    public function getPhotoSeoModel(Product $product, string $photoName): PhotoSEOText
     {
         $photoRecord = DB::table('photo')
             ->where('product_id', $product->id)
@@ -106,8 +120,13 @@ class PhotoSeoService
         return $seoModel;
     }
 
-    // get seo фоток при открытии photoManager
-    public function getProductPhotoSeoList($productId): \Illuminate\Support\Collection
+    /**
+     * Get seo фоток при открытии photoManager.
+     *
+     * @param int $productId
+     * @return \Illuminate\Support\Collection
+     */
+    public function getProductPhotoSeoList(int $productId): Collection
     {
         return DB::table('photo')
             ->join('photo_seo_texts', 'photo.id', '=', 'photo_seo_texts.photo_id')
@@ -116,8 +135,13 @@ class PhotoSeoService
             ->get();
     }
 
-    // get seo фоток с полным списком имен файлов при открытии страницы public single product
-    public function getProductPhotoSeoListWithFullListOfPhoto($productId): \Illuminate\Support\Collection
+    /**
+     * Get seo фоток с полным списком имен файлов при открытии страницы public single product.
+     *
+     * @param int $productId
+     * @return \Illuminate\Support\Collection
+     */
+    public function getProductPhotoSeoListWithFullListOfPhoto(int $productId): Collection
     {
         return DB::table('photo')
             ->leftJoin('photo_seo_texts', 'photo.id', '=', 'photo_seo_texts.photo_id')
@@ -127,8 +151,13 @@ class PhotoSeoService
             ->get();
     }
 
-    // get seo одного фото при открытии страницы public single photo
-    public function getProductPhotoSeoByPhotoId($photoId): \Illuminate\Support\Collection
+    /**
+     * Get seo одного фото при открытии страницы public single photo.
+     *
+     * @param int $photoId
+     * @return \Illuminate\Support\Collection
+     */
+    public function getProductPhotoSeoByPhotoId(int $photoId): Collection
     {
         return DB::table('photo')
             ->join('photo_seo_texts', 'photo.id', '=', 'photo_seo_texts.photo_id')
@@ -136,6 +165,4 @@ class PhotoSeoService
             ->select('photo_id', 'filename', 'alt_text', 'page_title', 'page_description')
             ->get();
     }
-
-
 }
