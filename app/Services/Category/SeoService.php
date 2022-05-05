@@ -13,6 +13,12 @@ class SeoService
 {
     use TextTrait;
 
+    /**
+     * Save SEO data for the category.
+     *
+     * @param \App\Models\Category|\App\Models\Material|\App\Models\Color $category
+     * @return array
+     */
     public function saveSeoData($category): array
     {
         $pageTitle = $this->_removeLineBreak(

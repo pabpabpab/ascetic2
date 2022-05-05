@@ -3,18 +3,27 @@
 
 namespace App\Services\Category;
 
-
-use App\Models\Category;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 
 class CategoryService
 {
+    /**
+     * The difference between the previous and next position value.
+     *
+     * @var int
+     */
     protected $positionStep = 10;
 
-
-    public function createOne($modelClassName, string $name): array
+    /**
+     * Creating new category.
+     *
+     * @param string $modelClassName
+     * @param string $name
+     * @return array
+     */
+    public function createOne(string $modelClassName, string $name): array
     {
         $model = new $modelClassName();
         $model->name = $name;
@@ -26,6 +35,13 @@ class CategoryService
         ];
     }
 
+    /**
+     * Updating new category.
+     *
+     * @param \App\Models\Category|\App\Models\Material|\App\Models\Color $model
+     * @param string $name
+     * @return array
+     */
     public function saveOne($model, string $name): array
     {
         $model->name = $name;
@@ -36,21 +52,37 @@ class CategoryService
         ];
     }
 
-    public function getAll($modelClassName)
+    /**
+     * Get listing of categories.
+     *
+     * @param string $modelClassName
+     * @return \Illuminate\Support\Collection
+     */
+    public function getAll(string $modelClassName): Collection
     {
         return $modelClassName::query()
             ->orderBy('position', 'asc')
             ->get();
     }
 
-
-    protected function calcNewAddedPosition($modelClassName): int
+    /**
+     * Calculate the position value for the newly created category.
+     *
+     * @param string $modelClassName
+     * @return int
+     */
+    protected function calcNewAddedPosition(string $modelClassName): int
     {
         return static::getMaxPosition($modelClassName) + $this->positionStep;
     }
 
-
-    protected function getMaxPosition($modelClassName): int
+    /**
+     * Get maximum position value in database.
+     *
+     * @param string $modelClassName
+     * @return int
+     */
+    protected function getMaxPosition(string $modelClassName): int
     {
         $count = $modelClassName::count();
         if ($count === 0) {
@@ -62,8 +94,14 @@ class CategoryService
         return $maxModel->position;
     }
 
-
-    public function upPosition($modelClassName, $currentModel): array
+    /**
+     * Exchange of position values for the current and previous records.
+     *
+     * @param string $modelClassName
+     * @param \App\Models\Category|\App\Models\Material|\App\Models\Color $currentModel
+     * @return array
+     */
+    public function upPosition(string $modelClassName, $currentModel): array
     {
         $currentPosition = $currentModel->position;
 
@@ -86,8 +124,14 @@ class CategoryService
         ];
     }
 
-
-    public function downPosition($modelClassName, $currentModel): array
+    /**
+     * Exchange of position values for the current and next records.
+     *
+     * @param string $modelClassName
+     * @param \App\Models\Category|\App\Models\Material|\App\Models\Color $currentModel
+     * @return array
+     */
+    public function downPosition(string $modelClassName, $currentModel): array
     {
         $currentPosition = $currentModel->position;
 
@@ -110,8 +154,14 @@ class CategoryService
         ];
     }
 
-
-    public function move($modelClassName, $currentModel): array
+    /**
+     * Assign a position for the record located next to the specified record.
+     *
+     * @param string $modelClassName
+     * @param \App\Models\Category|\App\Models\Material|\App\Models\Color $currentModel
+     * @return array
+     */
+    public function move(string $modelClassName, $currentModel): array
     {
         $closestTopCategoryId = request()->input('closestTopCategoryId');
 
