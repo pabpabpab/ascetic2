@@ -6,7 +6,6 @@ use App\Events\UserRegisteredEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
-use App\Services\User\FavoriteProductsSynchronizer;
 use App\Services\User\IsAdminService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -70,5 +69,4 @@ class RegisterController extends Controller
             : redirect()->route('my');
 
     }
-
 }

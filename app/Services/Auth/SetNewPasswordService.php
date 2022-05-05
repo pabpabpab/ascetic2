@@ -3,15 +3,21 @@
 
 namespace App\Services\Auth;
 
-
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class SetNewPasswordService
 {
-    // ПРОВЕРКА ЧТО ЮЗЕР ТАКОЙ ЕСТЬ
-    // И ТОКЕН В PASSWORD_RESETS ТОЖЕ ЕСТЬ И СОВПАДАЕТ С ТОКЕНОМ ИЗ ФОРМЫ
-    public function isCorrectCredentials($email, $token) {
+    /**
+     * ПРОВЕРКА ЧТО USER ТАКОЙ ЕСТЬ
+     * И ТОКЕН В PASSWORD_RESETS ТОЖЕ ЕСТЬ И СОВПАДАЕТ С ТОКЕНОМ ИЗ ФОРМЫ
+     *
+     * @param string $email
+     * @param string $token
+     * @return bool
+     */
+    public function isCorrectCredentials(string $email, string $token): bool
+    {
         $user = User::where('email', $email)->first();
 
         // нет такого юзера

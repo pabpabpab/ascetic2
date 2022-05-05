@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticable
 {
     use HasFactory, Notifiable;
 
@@ -48,7 +47,6 @@ class User extends Authenticatable
         return $this->name;
     }
 
-
     /**
      * The products that belong to the user.
      * Many-to-many relationship for products
@@ -62,16 +60,4 @@ class User extends Authenticatable
             'product_id'
         );
     }
-
-
-
-    /*
-
-    public function getMore($lastId)
-    {
-        return static::where('id', '>', $lastId)
-            ->orderBy('id', 'asc')
-            ->get();
-    }
-    */
 }

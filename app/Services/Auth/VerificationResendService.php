@@ -3,13 +3,18 @@
 
 namespace App\Services\Auth;
 
-
 use Carbon\Carbon;
 
 class VerificationResendService
 {
-    // ПРОШЛО 60 СЕКУНД С ПОСЛЕДНЕГО ОБНОВЛЕНИЯ UPDATED_AT У ЮЗЕРА?
-    public function mailWasRecentlySent($user): bool {
+    /**
+     * ПРОШЛО 60 СЕКУНД С ПОСЛЕДНЕГО ОБНОВЛЕНИЯ UPDATED_AT У USER?
+     *
+     * @param \Illuminate\Contracts\Auth\Authenticatable|null $user
+     * @return bool
+     */
+    public function mailWasRecentlySent($user): bool
+    {
         $secondsLimit = 60;
 
         if (blank($user->updated_at)) {

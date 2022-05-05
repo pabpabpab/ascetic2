@@ -3,14 +3,19 @@
 
 namespace App\Services\Auth;
 
-
 use Carbon\Carbon;
 
 class ForgotPasswordService
 {
-    // ПРОШЛО 60 СЕКУНД С ПОСЛЕДНЕГО ОБНОВЛЕНИЯ CREATED_AT У ТОКЕНА?
-    // входной $tokenObject это одна запись из таблицы password_resets
-    public function recentlyCreatedToken($tokenObject) {
+    /**
+     * ПРОШЛО 60 СЕКУНД С ПОСЛЕДНЕГО ОБНОВЛЕНИЯ CREATED_AT У ТОКЕНА?
+     * входной $tokenObject это одна запись из таблицы password_resets
+     *
+     * @param object|null $tokenObject
+     * @return bool
+     */
+    public function recentlyCreatedToken(object $tokenObject): bool
+    {
         $secondsLimit = 60;
 
         // записи о токене вообще нет
@@ -35,5 +40,4 @@ class ForgotPasswordService
         // прошло больше чем 60 секунд с последнего обновления created_at у токена
         return false;
     }
-
 }
