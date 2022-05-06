@@ -6,11 +6,19 @@ namespace App\Services\Product;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class ViewedProductsService
 {
 
-    public function addToViewed($productId)
+    /**
+     * Add specifid product to viewed products.
+     *
+     * @param int $productId
+     * @return void
+     */
+    public function addToViewed(int $productId): void
     {
         $productId = (Integer) $productId;
 
@@ -24,7 +32,6 @@ class ViewedProductsService
             Cookie::queue('viewedIds', $viewedStr, 144000); // в минутах, 100 дней
 
             return;
-            // return $viewedStr;
         }
 
         // если есть такой id, то удалить его со старой позиции, и добавить в начало
@@ -34,11 +41,14 @@ class ViewedProductsService
         $viewedStr = implode(',', $viewedArr);
 
         Cookie::queue('viewedIds', $viewedStr, 144000); // в минутах, 100 дней
-
-        // return $viewedStr;
     }
 
-    public function getAllViewed()
+    /**
+     * Get all viewed products.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function getAllViewed(): Builder
     {
         $frontIdsArr = $this->_getFrontIdsArr();
         $viewedStr = count($frontIdsArr) > 0 ? implode(',', $frontIdsArr) : '0';
@@ -46,13 +56,23 @@ class ViewedProductsService
             ->whereRaw("id IN ($viewedStr)")->orderByRaw("FIELD(id, $viewedStr)");
     }
 
+    /**
+     * Get string of ids of all viewed products.
+     *
+     * @return string
+     */
     public function getAllViewedIdsStr(): string
     {
         $frontIdsArr = $this->_getFrontIdsArr();
         return count($frontIdsArr) > 0 ? implode(',', $frontIdsArr) : '0';
     }
 
-    public function getSummaryOfViewed()
+    /**
+     * Get summary list of viewed products.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getSummaryOfViewed(): Collection
     {
         $itemCountOfSummary = 8;
         $frontIdsArr = $this->_getFrontIdsArr();
@@ -62,11 +82,21 @@ class ViewedProductsService
             ->whereRaw("id IN ($summaryIdsStr)")->orderByRaw("FIELD(id, $summaryIdsStr)")->get();
     }
 
+    /**
+     * Get count of all viewed products.
+     *
+     * @return int
+     */
     public function getAllViewedCount(): int
     {
         return count($this->_getFrontIdsArr());
     }
 
+    /**
+     * Get array of id of all viewed products.
+     *
+     * @return array
+     */
     protected function _getFrontIdsArr(): array
     {
         $frontIdsStr = request()->cookie('viewedIds') ?? '';
@@ -75,7 +105,6 @@ class ViewedProductsService
             ? $this->_getArrayOfIntegers((string) $frontIdsStr)
             : [];
     }
-
 
     /**
      * Get array of integers from comma separated numbers.

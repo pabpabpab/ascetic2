@@ -7,12 +7,19 @@ use App\Models\ProductSEOText;
 use App\Services\ExceptionService;
 use App\Services\TextTrait;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class SeoService
 {
     use TextTrait;
 
-    public function saveSeoData($product): array
+    /**
+     * Save seo data of the specified product.
+     *
+     * @param \App\Models\Product $product
+     * @return array
+     */
+    public function saveSeoData(Product $product): array
     {
         $pageTitle = $this->_removeLineBreak(
             request()->input('pageTitle')
@@ -65,6 +72,5 @@ class SeoService
         ];
 
     }
-
 
 }

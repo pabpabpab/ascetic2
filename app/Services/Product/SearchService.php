@@ -5,7 +5,6 @@ namespace App\Services\Product;
 
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
-// use Illuminate\Database\Eloquent\Builder;
 
 class SearchService
 {
