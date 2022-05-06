@@ -10,8 +10,14 @@ use Illuminate\Support\Facades\DB;
 
 class FavoriteProductsSynchronizer
 {
-
-    public function mixFrontAndBackUserFavoriteIds(Int $userId, String $frontIdsStr): String
+    /**
+     * Mix front and back user favorite ids.
+     *
+     * @param int $userId
+     * @param string $frontIdsStr
+     * @return string
+     */
+    public function mixFrontAndBackUserFavoriteIds(int $userId, string $frontIdsStr): string
     {
         $user = User::find($userId);
 
@@ -35,8 +41,14 @@ class FavoriteProductsSynchronizer
         }
     }
 
-
-    public function synchronize(Int $userId, String $productIdsStr): string
+    /**
+     * Вставка/удаление (синхронизация) products_ids в pivot table.
+     *
+     * @param int $userId
+     * @param string $productIdsStr
+     * @return string
+     */
+    public function synchronize(int $userId, string $productIdsStr): string
     {
         $user = User::find($userId);
 
@@ -58,12 +70,24 @@ class FavoriteProductsSynchronizer
         }
     }
 
-    protected function _getActualProductIds(String $productIdsStr): array
+    /**
+     * Get actual products id.
+     *
+     * @param string $productIdsStr
+     * @return array
+     */
+    protected function _getActualProductIds(string $productIdsStr): array
     {
         $ids = Product::whereRaw("id IN ($productIdsStr)")->pluck('id');
         return $ids->toArray();
     }
 
+    /**
+     * Get array of integers from comma separated numbers.
+     *
+     * @param string $commaSeparatedNumbers
+     * @return array
+     */
     protected function _getArrayOfIntegers(String $commaSeparatedNumbers): array
     {
         return array_map(
@@ -74,7 +98,13 @@ class FavoriteProductsSynchronizer
         );
     }
 
-    public function clearAll(Int $userId): int
+    /**
+     * Удаление всех favorite products id в pivot table.
+     *
+     * @param int $userId
+     * @return int
+     */
+    public function clearAll(int $userId): int
     {
         return DB::table('users_favorite_products')
             ->where('user_id', $userId)

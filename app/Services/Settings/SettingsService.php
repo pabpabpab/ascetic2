@@ -3,10 +3,17 @@
 namespace App\Services\Settings;
 
 use App\Models\Setting;
+use Illuminate\Http\Request;
 
 class SettingsService
 {
-    public function getSettings($subject): array
+    /**
+     * Get settings by subject.
+     *
+     * @param string $subject
+     * @return array
+     */
+    public function getSettings(string $subject): array
     {
         $setting = Setting::where('slug', $subject)->first();
         $data = blank($setting)
@@ -16,8 +23,14 @@ class SettingsService
         return (array) $data;
     }
 
-
-    public function saveSettings($request, $subject): array
+    /**
+     * Save settings by subject.
+     *
+     * @param string $subject
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function saveSettings(Request $request, string $subject): array
     {
         $setting = Setting::where('slug', $subject)->first();
         $setting = blank($setting) ? new Setting() : $setting;
@@ -45,14 +58,26 @@ class SettingsService
         ];
     }
 
-
-    protected function _prepareAdminEmailData($request): array
+    /**
+     * Prepare admin email data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function _prepareAdminEmailData(Request $request): array
     {
         return [
             'value' => (string) $request->value,
         ];
     }
-    protected function _preparePhotoQualityData($request): array
+
+    /**
+     * Prepare photo quality data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function _preparePhotoQualityData(Request $request): array
     {
         $value = $request->value + 0;
         if ($value < 1 || $value > 100) {
@@ -62,7 +87,14 @@ class SettingsService
             'value' => (string) $value,
         ];
     }
-    protected function _preparePaginationData($request): array
+
+    /**
+     *  Prepare pagination data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function _preparePaginationData(Request $request): array
     {
         $value = $request->perPage + 0;
         if ($value < 1 || $value > 100) {
@@ -72,7 +104,14 @@ class SettingsService
             'perPage' => (string) $value,
         ];
     }
-    protected function _prepareCacheLimitData($request): array
+
+    /**
+     * Prepare cache limit data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function _prepareCacheLimitData(Request $request): array
     {
         $value = $request->value + 0;
         if ($value < 1 || $value > 10000) {
@@ -82,7 +121,14 @@ class SettingsService
             'value' => (string) $value,
         ];
     }
-    protected function _prepareScrollSpeedRatioData($request): array
+
+    /**
+     * Prepare scroll speed ratio data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function _prepareScrollSpeedRatioData(Request $request): array
     {
         $value = $request->value + 0;
         if ($value < 3 || $value > 1000) {
@@ -92,7 +138,14 @@ class SettingsService
             'value' => (string) $value,
         ];
     }
-    protected function _prepareVisibleCategoriesLimitData($request): array
+
+    /**
+     * Prepare visible categories limit data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function _prepareVisibleCategoriesLimitData(Request $request): array
     {
         $value = $request->value + 0;
         if ($value < 0 || $value > 10) {
@@ -102,14 +155,28 @@ class SettingsService
             'value' => (string) $value,
         ];
     }
-    protected function _prepareMainPageSeoData($request): array
+
+    /**
+     * Prepare main page seo data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function _prepareMainPageSeoData(Request $request): array
     {
         return [
             'mainPageTitle' => (string) $request->mainPageTitle,
             'mainPageDescription' => (string) $request->mainPageDescription,
         ];
     }
-    protected function _prepareContactsData($request): array
+
+    /**
+     * Prepare contacts data.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    protected function _prepareContactsData(Request $request): array
     {
         return [
             'domain' => (string) $request->domain,
@@ -125,8 +192,13 @@ class SettingsService
         ];
     }
 
-
-    public function getBlankSettings($subject): array
+    /**
+     * Get blank settings.
+     *
+     * @param string $subject
+     * @return array
+     */
+    public function getBlankSettings(string $subject): array
     {
         $blankSettings = [
             'contacts' => [

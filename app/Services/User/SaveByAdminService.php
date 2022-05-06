@@ -8,15 +8,22 @@ use App\Events\UserRegisteredEvent;
 use App\Mail\PasswordResetLink;
 use App\Models\User;
 use App\Services\ExceptionService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class SaveByAdminService
 {
-    public function saveOne($request, $user = null): array
+    /**
+     * Create/update one user.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @return array
+     */
+    public function saveOne(Request $request, $user = null): array
     {
-
         DB::beginTransaction();
 
         try {
@@ -80,7 +87,13 @@ class SaveByAdminService
     }
 
 
-    protected function _createUser($request)
+    /**
+     * Create new use.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \App\Models\User
+     */
+    protected function _createUser(Request $request): User
     {
         $user = new User();
         $user->fill($request->input());
@@ -93,7 +106,14 @@ class SaveByAdminService
         return $user;
     }
 
-    protected function _editEmail($request, $user)
+    /**
+     * Update user's email.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @return void
+     */
+    protected function _editEmail(Request $request, User $user): void
     {
         $user->email = $request->email;
         $user->name = $request->name;
@@ -106,13 +126,27 @@ class SaveByAdminService
         }
     }
 
-    protected function _editRole($request, $user)
+    /**
+     * Update user's role.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @return void
+     */
+    protected function _editRole(Request $request, User $user): void
     {
         $user->role = $request->role === 'admin' ? 'admin' : 'user';
         $user->save();
     }
 
-    protected function _editPassword($request, $user)
+    /**
+     * Update user's email.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @return void
+     */
+    protected function _editPassword(Request $request, User $user): void
     {
         if (!empty($request->password)) {
             $user->password = Hash::make($request->password);
