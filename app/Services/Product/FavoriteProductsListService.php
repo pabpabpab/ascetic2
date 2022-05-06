@@ -5,10 +5,17 @@ namespace App\Services\Product;
 
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 
 class FavoriteProductsListService
 {
-    public function getList($sortValue = 'position')
+    /**
+     * Get builder of list of favorite products.
+     *
+     * @param string $sortValue
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function getList(string $sortValue = 'position'): Builder
     {
         $frontIdsStr = '';
         if (array_key_exists('favoriteIds', $_COOKIE)) {
@@ -28,7 +35,14 @@ class FavoriteProductsListService
         return $queryBuilder;
     }
 
-    protected function _sortBuilder($queryBuilder, String $sortValue)
+    /**
+     * Get sorting part of builder of list of favorite products.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $queryBuilder
+     * @param string $sortValue
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function _sortBuilder(Builder $queryBuilder, string $sortValue): Builder
     {
         if ($sortValue === 'priceUp') {
             return $queryBuilder->orderBy('price', 'asc');
@@ -39,7 +53,13 @@ class FavoriteProductsListService
         return $queryBuilder->orderBy('position', 'desc');
     }
 
-    protected function _getArrayOfIntegers(String $commaSeparatedNumbers): array
+    /**
+     * Get array of integers from comma separated numbers.
+     *
+     * @param string $commaSeparatedNumbers
+     * @return array
+     */
+    protected function _getArrayOfIntegers(string $commaSeparatedNumbers): array
     {
         return array_map(
             function ($value) {
@@ -48,5 +68,4 @@ class FavoriteProductsListService
             explode(",", $commaSeparatedNumbers)
         );
     }
-
 }

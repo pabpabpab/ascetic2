@@ -8,12 +8,24 @@ use App\Models\Product;
 
 class AggregateValuesService
 {
-    public function getMinPrice() {
+    /**
+     * Get min price of products.
+     *
+     * @return int
+     */
+    public function getMinPrice(): int
+    {
         $minPrice = Product::query()->min('price');
         return floor($minPrice);
     }
 
-    public function getMaxPrice() {
+    /**
+     * Get max price of products.
+     *
+     * @return int
+     */
+    public function getMaxPrice(): int
+    {
         $maxPrice = Product::query()->max('price');
         return ceil($maxPrice);
     }

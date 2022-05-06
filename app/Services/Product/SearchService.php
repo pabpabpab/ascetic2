@@ -3,15 +3,20 @@
 
 namespace App\Services\Product;
 
-
-use App\Models\Product;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Database\Eloquent\Builder;
 
 class SearchService
 {
-
-    public function getSearched($params)
+    /**
+     * Get searched products by filter parameters.
+     * /public-js/product-search/price/{minPrice}-{maxPrice}/categories/{categories}/sort/{sortValue}/offset/{startOffset}
+     *
+     * @param array $params
+     * @return array
+     */
+    public function getSearched(array $params): array
     {
         $minPrice = (int) $params['minPrice'];
         $maxPrice = (int) $params['maxPrice'];
@@ -68,7 +73,14 @@ class SearchService
         ];
     }
 
-    protected function _sortBuilder($queryBuilder, String $sortValue)
+    /**
+     * Get sorting part of builder of searched products.
+     *
+     * @param \Illuminate\Database\Query\Builder $queryBuilder
+     * @param string $sortValue
+     * @return \Illuminate\Database\Query\Builder
+     */
+    protected function _sortBuilder(Builder $queryBuilder, string $sortValue): Builder
     {
         if ($sortValue === 'priceUp') {
             return $queryBuilder->orderBy('price', 'asc');
@@ -79,7 +91,13 @@ class SearchService
         return $queryBuilder->orderBy('position', 'desc');
     }
 
-    protected function _getArrayOfIntegers(String $dashSeparatedNumbers): array
+    /**
+     * Get array of integers from dash separated numbers.
+     *
+     * @param string $dashSeparatedNumbers
+     * @return array
+     */
+    protected function _getArrayOfIntegers(string $dashSeparatedNumbers): array
     {
         return array_map(
             function ($value) {
@@ -89,6 +107,12 @@ class SearchService
         );
     }
 
+    /**
+     * Is there categories ids?
+     *
+     * @param array $categoriesIdsArr
+     * @return bool
+     */
     protected function _isThereCategoriesIds(array $categoriesIdsArr): bool
     {
         if (count($categoriesIdsArr) === 0) {

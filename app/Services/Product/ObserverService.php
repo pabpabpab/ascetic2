@@ -8,12 +8,15 @@ use App\Models\Product;
 
 class ObserverService
 {
+    // методы вызываются из App\Listeners\ProductModifiedListener
 
-    // функции вызываются из App\Listeners\ProductModifiedListener
-
-
-    // сохранить Количество товаров для каждой категории
-    static public function saveProductsCountForCategory(Product $product)
+    /**
+     * Сохранить Количество товаров для каждой категории.
+     *
+     * @param \App\Models\Product $product
+     * @return void
+     */
+    static public function saveProductsCountForCategory(Product $product): void
     {
         // using relationship many-to-many ($product->categories)
         foreach ($product->categories as $category) {
@@ -22,8 +25,13 @@ class ObserverService
         }
     }
 
-    // сохранить Количество товаров для каждого материала
-    static public function saveProductsCountForMaterial(Product $product)
+    /**
+     * Сохранить Количество товаров для каждого материала.
+     *
+     * @param \App\Models\Product $product
+     * @return void
+     */
+    static public function saveProductsCountForMaterial(Product $product): void
     {
         // using relationship many-to-many ($product->materials)
         foreach ($product->materials as $material) {
@@ -32,7 +40,12 @@ class ObserverService
         }
     }
 
-    // сохранить Количество товаров для каждого цвета
+    /**
+     * Сохранить Количество товаров для каждого цвета.
+     *
+     * @param \App\Models\Product $product
+     * @return void
+     */
     static public function saveProductsCountForColor(Product $product)
     {
         // using relationship many-to-many ($product->materials)

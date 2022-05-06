@@ -77,7 +77,13 @@ class ViewedProductsService
     }
 
 
-    protected function _getArrayOfIntegers(String $commaSeparatedNumbers): array
+    /**
+     * Get array of integers from comma separated numbers.
+     *
+     * @param string $commaSeparatedNumbers
+     * @return array
+     */
+    protected function _getArrayOfIntegers(string $commaSeparatedNumbers): array
     {
         return array_map(
             function ($value) {

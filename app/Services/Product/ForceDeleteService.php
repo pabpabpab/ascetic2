@@ -13,8 +13,13 @@ class ForceDeleteService
 {
     use PhotoTrait;
 
-
-    public function forceDeleteOne($productId): array
+    /**
+     * Force deleting the specified product.
+     *
+     * @param int $productId
+     * @return array
+     */
+    public function forceDeleteOne(int $productId): array
     {
         $product = Product::onlyTrashed()->find($productId);
 
@@ -30,21 +35,6 @@ class ForceDeleteService
         // $photoNameArr для удаления файлов фото
         [$photoNameArr, $photoAltArr] = $this->_getPhotoNamesAndAltsAsArrays($product);
 
-        /*
-        try {
-            [$photoNameArr, $photoAltArr] = $this->_getPhotoNamesAndAltsAsArrays($product);
-            foreach ($photoNameArr as $photoName) {
-                $this->_deletePhotoFromDisk($productId, $photoName);
-            }
-        }
-        catch (\Exception $e) {
-            ExceptionService::logAndThrowCustomException(
-                $e,
-                '\App\Exceptions\DeletePhotoException',
-                'DeletePhotoException occurs.'
-            );
-        }
-        */
 
         DB::beginTransaction();
 

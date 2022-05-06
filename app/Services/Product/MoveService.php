@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class MoveService
 {
-    public function move($operatedProduct): array
+    /**
+     * Move specified product to the target id.
+     *
+     * @param \App\Models\Product $operatedProduct
+     * @return array
+     */
+    public function move(Product $operatedProduct): array
     {
         $targetId = request()->input('targetId');
         $vector = request()->input('vector');
@@ -23,11 +29,16 @@ class MoveService
         return [
             'success' => $operatedProduct->save()
         ];
-
     }
 
-    // при векторе above
-    protected function _makePlaceAbove($fromPosition): int
+    /**
+     * Изменить значение позиций записей находящихся выше указанной позиции.
+     * при векторе above
+     *
+     * @param int $fromPosition
+     * @return int
+     */
+    protected function _makePlaceAbove(int $fromPosition): int
     {
         // сдвинуть все вышестоящие вверх
         DB::table('products')
@@ -38,8 +49,14 @@ class MoveService
         return $fromPosition + 1;
     }
 
-    // при векторе below
-    protected function _makePlaceBelow($fromPosition): int
+    /**
+     * Изменить значение позиций записей находящихся выше указанной позиции включая указанную позицию.
+     * при векторе below
+     *
+     * @param int $fromPosition
+     * @return int
+     */
+    protected function _makePlaceBelow(int $fromPosition): int
     {
         // сдвинуть все вышестоящие вверх, включая $fromPosition
         DB::table('products')

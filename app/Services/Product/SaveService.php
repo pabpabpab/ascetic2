@@ -9,30 +9,29 @@ use App\Services\PhotoManager\PhotoUploader;
 use App\Events\ProductModifiedEvent;
 use App\Models\Product;
 use App\Models\ProductDescription;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class SaveService
 {
-
     use PhotoTrait;
 
-
-    public function saveOne($request, $product = null): array
+    /**
+     * Create/update one product.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Product $product
+     * @return array
+     */
+    public function saveOne(Request $request, $product = null): array
     {
         // info($request->input());
 
         DB::beginTransaction();
 
         try {
-
-            //$action = $product->id > 0 ? 'edit' : 'create';
-
             $action = blank($product) ? 'create' : 'edit';
-
 
             // клон прежней версии товара, для обсчета потом категорий
             $formerProduct = null;
@@ -46,7 +45,6 @@ class SaveService
 
             // СОХРАНИТЬ ОСНОВНЫЕ ДАННЫЕ
             $product->fill($request->input());
-            //$product->position = $product->id > 0 ? $product->position : $this->_calcNewAddedPosition();
 
             if ($action === 'create') {
                 $product->position = $this->_calcNewAddedPosition();
@@ -135,10 +133,15 @@ class SaveService
         ];
     }
 
-
-
-    // ВСТАВКА ДАННЫХ В СВЯЗАННЫЕ ТАБЛИЦЫ
-    protected function _saveDataIntoRelatedTables($product, $request)
+    /**
+     * ВСТАВКА ДАННЫХ В СВЯЗАННЫЕ ТАБЛИЦЫ.
+     * Save the product data into related tables.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Product $product
+     * @return void
+     */
+    protected function _saveDataIntoRelatedTables(Product $product, Request $request): void
     {
         // вставка description using save method on relationship (one-to-one)
         if ($request->id) {
@@ -166,20 +169,14 @@ class SaveService
         );
     }
 
-
-    // СОХРАНИТЬ ДОП. ПАРАМЕТРЫ В parameters (В ВИДЕ JSON)
-    protected function _saveParametersInJson($product)
+    /**
+     * СОХРАНИТЬ ДОП. ПАРАМЕТРЫ В parameters (В ВИДЕ JSON).
+     *
+     * @param \App\Models\Product $product
+     * @return void
+     */
+    protected function _saveParametersInJson(Product $product): void
     {
-         /*
-        // взять название категории (через relationship one-to-many (belongs to))
-        $category = $product->category;
-        // взять только нужную инфу о category
-        $categoryData = [
-            'id' => $category->id,
-            'name' => $category->name,
-        ];
-        */
-
         // взять только нужную инфу о categories (через relationship many-to-many)
         $categories = [];
         foreach ($product->categories as $category) {
@@ -219,12 +216,14 @@ class SaveService
         ]);
         // сохранить parameters
         $product->save();
-
     }
 
-
-
-
+    /**
+     * Get array of integers from comma separated numbers.
+     *
+     * @param string $commaSeparatedNumbers
+     * @return array
+     */
     protected function _getArrayOfIntegers(String $commaSeparatedNumbers): array
     {
         return array_map(
@@ -235,7 +234,13 @@ class SaveService
         );
     }
 
-    protected function _getFormattedPrice($price): String
+    /**
+     * Get formatted price.
+     *
+     * @param int $price
+     * @return string
+     */
+    protected function _getFormattedPrice(int $price): string
     {
         if ($price == 0) {
             return '';
@@ -260,8 +265,11 @@ class SaveService
         return $formattedPrice;
     }
 
-
-
+    /**
+     * Calculate the position value for the newly created product.
+     *
+     * @return int
+     */
     protected function _calcNewAddedPosition(): int
     {
         if (Product::count() === 0) {
