@@ -87,11 +87,14 @@ class ProductController extends Controller
      * Get the specified product.
      *
      * @param \App\Services\PhotoManager\PhotoSeoService $service
+     * @param string $slug
      * @param \App\Models\Product $product
      * @return \Illuminate\Contracts\View\View
      */
-    public function getOne(PhotoSeoService $service, Product $product): View
+    public function getOne(PhotoSeoService $service, string $slug, Product $product): View
     {
+        info($product);
+
         $pageData = (new PageTitleService())->getData('oneProduct', [
             'product' => $product,
             'seo' => $product->seoText,
@@ -115,10 +118,11 @@ class ProductController extends Controller
      *
      * @param \App\Services\PhotoManager\PhotoSeoService $service
      * @param \App\Models\Product $product
+     * @param string $photoSlug
      * @param int $photoId
      * @return \Illuminate\Contracts\View\View
      */
-    public function getSinglePhotoPage(PhotoSeoService $service, Product $product, int $photoId): View
+    public function getSinglePhotoPage(PhotoSeoService $service, Product $product, string $photoSlug, int $photoId): View
     {
         (new ViewedProductsService())->addToViewed($product->id);
 

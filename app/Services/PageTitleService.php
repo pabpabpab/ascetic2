@@ -8,14 +8,26 @@ use App\Services\Settings\SettingsService;
 
 class PageTitleService
 {
+    /**
+     * Get title and description of the specified site section.
+     *
+     * @param string $sectionName
+     * @param array $data
+     * @return array
+     */
     public function getData(string $sectionName, array $data): array
     {
         $method = $sectionName;
         return $this->$method($data);
     }
 
-
-    protected function onePhoto($data): array
+    /**
+     * Get title and description of single photo page.
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function onePhoto(array $data): array
     {
         $photoSeo = $data['photoSeo'];
 
@@ -31,7 +43,13 @@ class PageTitleService
         ];
     }
 
-    protected function oneProduct($data): array
+    /**
+     * Get title and description of single product page.
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function oneProduct(array $data): array
     {
         $product = $data['product'];
         $seo = $data['seo'];
@@ -51,7 +69,13 @@ class PageTitleService
         ];
     }
 
-    protected function productCategory($data): array
+    /**
+     * Get title and description of product category page.
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function productCategory(array $data): array
     {
         $category = $data['category'];
         $categorySeo = $data['categorySeo'];
@@ -72,6 +96,11 @@ class PageTitleService
         ];
     }
 
+    /**
+     * Get title and description of main page.
+     *
+     * @return array
+     */
     protected function allProducts(): array
     {
         $mainPageSeo = (new SettingsService())->getSettings('main_page_seo');
@@ -80,7 +109,13 @@ class PageTitleService
             'pageDescription' => $mainPageSeo['mainPageDescription'],
         ];
     }
-    protected function productSearchOnServer($data): array
+
+    /**
+     * Get title and description of search result page.
+     *
+     * @return array
+     */
+    protected function productSearchOnServer(): array
     {
         $mainPageSeo = (new SettingsService())->getSettings('main_page_seo');
         return [
@@ -88,13 +123,25 @@ class PageTitleService
             'pageDescription' => $mainPageSeo['mainPageDescription'],
         ];
     }
-    protected function favoriteProducts($data): array
+
+    /**
+     * Get title and description of favorite products page.
+     *
+     * @return array
+     */
+    protected function favoriteProducts(): array
     {
         return [
             'pageTitle' => 'Избранные товары',
             'pageDescription' => 'Товары которые вам понравились.',
         ];
     }
+
+    /**
+     * Get title and description of viewed products page.
+     *
+     * @return array
+     */
     protected function viewedProducts(): array
     {
         return [
