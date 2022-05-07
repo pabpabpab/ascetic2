@@ -2,12 +2,9 @@
 
 namespace App\Events;
 
-use App\Models\User;
-use Illuminate\Broadcasting\Channel;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -18,8 +15,13 @@ class UserRegisteredEvent
 
     public $user;
 
-
-    public function __construct(\Illuminate\Contracts\Auth\Authenticatable $user)
+    /**
+     * Create a new event instance.
+     *
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     * @return void
+     */
+    public function __construct(Authenticatable $user)
     {
         $this->user = $user;
     }

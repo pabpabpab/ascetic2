@@ -8,7 +8,12 @@ use Illuminate\Http\JsonResponse;
 
 class DeletePhotoException extends Exception
 {
-    public function render($request): JsonResponse
+    /**
+     * Render the exception into an HTTP json response.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function render(): JsonResponse
     {
         return response()->json([
             'deleteSuccess' => false,

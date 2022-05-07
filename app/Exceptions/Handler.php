@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Support\Facades\Log;
@@ -42,9 +41,13 @@ class Handler extends ExceptionHandler
         });
     }
 
-
-    // кастомный overridden
-    public function report(\Throwable $exception)
+    /**
+     * (кастомный overridden)
+     * Report the exception.
+     *
+     * @return void
+     */
+    public function report(\Throwable $exception): void
     {
         // Remove stack-trace
         Log::error(
@@ -59,11 +62,19 @@ class Handler extends ExceptionHandler
         //parent::report($exception);
     }
 
-
-    // кастомный overridden
-    public function render($request, \Throwable $exception)
+    /**
+     * (кастомный overridden)
+     * Render TokenMismatchException into an HTTP response.
+     *
+     * @param $request
+     * @param \Throwable $e
+     * @return \Illuminate\Http\JsonResponse | \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Throwable
+     */
+    public function render($request, \Throwable $e)
     {
-        if ($exception instanceof TokenMismatchException) {
+        if ($e instanceof TokenMismatchException) {
             if ($request->wantsJson()) {
                 return response()->json([
                     'saveSuccess' => false,
@@ -74,8 +85,7 @@ class Handler extends ExceptionHandler
             }
         }
 
-        return parent::render($request, $exception);
+        return parent::render($request, $e);
     }
-
 
 }
