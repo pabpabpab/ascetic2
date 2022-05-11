@@ -10,13 +10,13 @@ export default function setCookie(name, value, options = {}) {
 
     let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
 
-    for (let optionKey in options) {
+    Object.keys(options).forEach((optionKey) => {
         updatedCookie += "; " + optionKey;
         let optionValue = options[optionKey];
         if (optionValue !== true) {
             updatedCookie += "=" + optionValue;
         }
-    }
+    });
 
     document.cookie = updatedCookie;
 }

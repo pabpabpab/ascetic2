@@ -20,10 +20,10 @@ export default  {
     },
 
     _collapseItems() {
-        const temp = {...this.currentComponentsNames};
-        for (let key in temp) {
+        const temp = { ...this.currentComponentsNames };
+        Object.keys(temp).forEach((key) => {
             temp[key] = this.simpleListItemComponentName;
-        }
+        });
         this.currentComponentsNames = {...temp};
     },
 

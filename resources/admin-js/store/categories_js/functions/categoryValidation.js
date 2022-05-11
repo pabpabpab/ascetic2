@@ -22,12 +22,11 @@ export default function categoryValidation(category, categories) {
         err2.name.push('уже есть такое название');
     }
 
-    for (let key in err) {
-        if (err.hasOwnProperty(key))
-            return {
-                popupErrors: err,
-                typeinErrors: err2
-            };
+    if (Object.keys(err).length > 0) {
+        return {
+            popupErrors: err,
+            typeinErrors: err2
+        };
     }
 
     return {

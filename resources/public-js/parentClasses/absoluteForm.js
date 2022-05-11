@@ -15,6 +15,7 @@ export default class AbsoluteForm extends VisibleBlockByClick {
 
         this.wrapSelector = '';
         this.submitSelector = '';
+        this.submitButtonText = '';
 
         this.basicCss = 'js_reg_form';
         this.showCss = 'show_block';
@@ -62,8 +63,12 @@ export default class AbsoluteForm extends VisibleBlockByClick {
             return;
         }
 
+        this.submitButtonText = el(this.submitSelector).innerText;
+        el(this.submitSelector).innerText = 'Ждите...';
+
         // отправить данные и получить ответ
         postJson(this.postUrl, userData).then((data) => {
+            el(this.submitSelector).innerText = this.submitButtonText;
             if (data.backValidatorErrors) {
                 this._weHaveErrors(data.backValidatorErrors);
                 return;

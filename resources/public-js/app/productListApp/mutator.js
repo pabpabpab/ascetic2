@@ -31,13 +31,11 @@ export default class Mutator extends Aware {
 
         const checkMethodList =  checkMethods[mutationName];
 
-        for (let item in this.app.components) {
-            if (this.app.components.hasOwnProperty(item)) {
-                checkMethodList.forEach(checkMethod => {
-                    this.app.components[item][checkMethod]();
-                });
-            }
-        }
+        Object.keys(this.app.components).forEach((item) => {
+            checkMethodList.forEach(checkMethod => {
+                this.app.components[item][checkMethod]();
+            });
+        });
     }
 }
 

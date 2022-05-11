@@ -13,10 +13,8 @@ export default function forgotPasswordValidation(data) {
         err.email.push('Некорректный email');
     }
 
-    for (let key in err) {
-        if (err.hasOwnProperty(key)) {
-            return err;
-        }
+    if (Object.keys(err).length > 0) {
+        return err;
     }
 
     return null;

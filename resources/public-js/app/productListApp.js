@@ -16,20 +16,17 @@ const app = {
     components,
 };
 
-
 app.mutator.app = app;
 
-for (let item in app.components) {
-    if (app.components.hasOwnProperty(item)) {
-        app.components[item].setAppRef(app);
-        // в классах будет this.components
-        app.components[item].components = app.components;
-        // в классах будет this.state
-        app.components[item].state = app.state;
-        // в классах будет this.commit();
-        app.components[item].commit = app.mutator.commit;
-    }
-}
+Object.keys(app.components).forEach((item) => {
+    app.components[item].setAppRef(app);
+    // в классах будет this.components
+    app.components[item].components = app.components;
+    // в классах будет this.state
+    app.components[item].state = app.state;
+    // в классах будет this.commit();
+    app.components[item].commit = app.mutator.commit;
+});
 
 new FavoriteProductsSwitcher();
 new FavoriteProductsTotalCountIndication();

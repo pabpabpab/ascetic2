@@ -33,13 +33,13 @@ export default class MobileLargePhotoMaker {
         const nodes = document.querySelectorAll('[data-small-photo]');
 
         const photoArr = [];
-        for (let node of nodes) {
+        Object.values(nodes).forEach((node) => {
             let src = node.src;
             src = src.replace("products-photos-size2", "products-photos-size5");
             src = src.replaceAll("s2-", "s5-");
             const photo = `<img alt="" src="${src}" class="photo_size4" />`;
             photoArr.push(photo);
-        }
+        });
         const largePhotosHtml = `<div id="tapeOfLargePhotos" class="display_flex">
                                     ${photoArr.join('')}
                                  </div>`;

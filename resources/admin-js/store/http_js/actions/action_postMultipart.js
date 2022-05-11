@@ -5,11 +5,9 @@ export default {
 
             const { url, data } = payload;
             const formData = new FormData();
-            // вытащить свойства объекта данных и добавить их в formData
+            // получить свойства объекта данных и добавить их в formData
             // (среди них есть фото-ии: data.photos[0])
-            for (let key in data) {
-                formData.append(key, data[key]);
-            }
+            Object.keys(data).forEach((key) => formData.append(key, data[key]));
 
             return fetch(url, {
                 method: 'POST',

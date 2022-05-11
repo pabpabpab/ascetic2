@@ -37,9 +37,9 @@ export default {
 
         setAlarmingInputs: (state, validationErrors) => {
             state.alarmingInputs = {};
-            for (let key in validationErrors) {
+            Object.keys(validationErrors).forEach((key) => {
                 state.alarmingInputs[key] = true;
-            }
+            });
         },
         resetAlarmingInputs: (state) => {
             state.alarmingInputs = {};

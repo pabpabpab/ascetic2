@@ -31,16 +31,16 @@ export default class ProductViewSwitcher extends Aware {
 
     _switchToBigView() {
         let nodes = el('#productList').querySelectorAll(this.itemSelector);
-        for (let node of nodes) {
+        Object.values(nodes).forEach((node) => {
             node.classList.add('big_view');
-        }
+        });
     }
 
     _switchToSmallView() {
         let nodes = el('#productList').querySelectorAll(this.itemSelector);
-        for (let node of nodes) {
+        Object.values(nodes).forEach((node) => {
             node.classList.remove('big_view');
-        }
+        });
     }
 
 }

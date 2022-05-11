@@ -14,13 +14,13 @@ export default class MenuLinkCssMaker extends Aware {
 
     resetMenuLinksCss() {
         let nodes = el('.top_menu').querySelectorAll('.top_menu__link');
-        for (let node of nodes) {
+        Object.values(nodes).forEach((node) => {
             node.classList.remove('top_menu__link_active');
-        }
+        });
         nodes = el('.bottom_menu').querySelectorAll('.bottom_menu__link');
-        for (let node of nodes) {
+        Object.values(nodes).forEach((node) => {
             node.classList.remove('bottom_menu__link_active');
-        }
+        });
         el('.logo__link').classList.remove('logo__link_active');
     }
 

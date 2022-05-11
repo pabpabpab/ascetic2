@@ -22,8 +22,8 @@ export default class TopDropMenuFiller {
         this.initiatorContainer.insertAdjacentHTML('beforeend', dropMenuHtml);
 
         let nodes = this.initiatorContainer.querySelectorAll('.bottom_menu__link');
-        for (let node of nodes) {
+        Object.values(nodes).forEach((node) => {
             node.className = 'top_menu__drop_menu__link';
-        }
+        });
     }
 }

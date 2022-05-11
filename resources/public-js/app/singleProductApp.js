@@ -15,13 +15,11 @@ const app = {
     components,
 };
 
-for (let item in app.components) {
-    if (app.components.hasOwnProperty(item)) {
-        app.components[item].setAppRef(app);
-        // в классах будет this.components
-        app.components[item].components = app.components;
-    }
-}
+Object.keys(app.components).forEach((item) => {
+    app.components[item].setAppRef(app);
+    // в классах будет this.components
+    app.components[item].components = app.components;
+});
 
 new FavoriteProductsSwitcher();
 new FavoriteProductsTotalCountIndication();

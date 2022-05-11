@@ -58,9 +58,9 @@ export default class SearchSettingsObserverForProductFilterRenderer extends Awar
         const settings = this.state.searchSettings;
         const wrapper = el('#productFilterCategoriesWrapper')
         const nodes = wrapper.querySelectorAll('[data-product-filter-category-checkbox-input]');
-        for (let node of nodes) {
+        Object.values(nodes).forEach((node) => {
             node.checked = false;
-        }
+        });
         settings.categoriesIds.forEach(categoryId => {
             if (el(`#filterCategory${categoryId}`)) {
                 el(`#filterCategory${categoryId}`).checked = true;

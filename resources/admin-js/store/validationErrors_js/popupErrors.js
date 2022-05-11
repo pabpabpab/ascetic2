@@ -5,16 +5,7 @@ export default {
     },
     getters: {
         popupErrors: (state) => state.popupErrors,
-
-        showPopupErrors: (state) => {
-            const errors = state.popupErrors;
-            for (let key in errors) {
-                if (errors.hasOwnProperty(key)) {
-                    return true;
-                }
-            }
-            return false;
-        },
+        showPopupErrors: (state) => Object.keys(state.popupErrors).length > 0,
     },
     mutations: {
         setPopupErrors: (state, errors) => {
