@@ -25,7 +25,7 @@ class NoProductsInTheMaterial implements Rule
      * @return bool
      */
 
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         $material = $value;
         return $material->products_count === 0;
@@ -37,7 +37,7 @@ class NoProductsInTheMaterial implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'В удаляемой категории не должно быть товаров.';
     }

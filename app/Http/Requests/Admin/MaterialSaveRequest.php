@@ -15,7 +15,12 @@ use Illuminate\Validation\Rule;
 class MaterialSaveRequest extends FormRequest
 {
 
-    public function rules()
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules(): array
     {
         return [
             'name' => [
@@ -27,14 +32,24 @@ class MaterialSaveRequest extends FormRequest
         ];
     }
 
-    public function attributes()
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
     {
         return [
             'name' => '«Материал»',
         ];
     }
 
-    public function messages()
+    /**
+     * Get the validation error message.
+     *
+     * @return array
+     */
+    public function messages(): array
     {
         return [
             'required' => 'заполните :attribute.',
@@ -44,7 +59,14 @@ class MaterialSaveRequest extends FormRequest
         ];
     }
 
-
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     * @return void
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
     protected function failedValidation(Validator $validator): void
     {
         $errors = $validator->errors();

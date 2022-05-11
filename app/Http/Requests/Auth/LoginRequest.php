@@ -8,8 +8,12 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class LoginRequest extends FormRequest
 {
-
-    public function rules()
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules(): array
     {
         return [
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -18,7 +22,12 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function attributes()
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
     {
         return [
             'email' => '«E-mail»',
@@ -27,7 +36,12 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /**
+     * Get the validation error message.
+     *
+     * @return array
+     */
+    public function messages(): array
     {
         return [
             'required' => 'заполните :attribute.',
@@ -39,7 +53,14 @@ class LoginRequest extends FormRequest
         ];
     }
 
-
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     * @return void
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
     protected function failedValidation(Validator $validator): void
     {
         if (request()->expectsJson()) {

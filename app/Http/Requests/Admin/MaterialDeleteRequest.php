@@ -11,8 +11,11 @@ use Symfony\Component\Console\Input\Input;
 
 class MaterialDeleteRequest extends FormRequest
 {
-
-
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
     protected function prepareForValidation(): void
     {
         $this->merge([
@@ -20,8 +23,12 @@ class MaterialDeleteRequest extends FormRequest
         ]);
     }
 
-
-    public function rules()
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules(): array
     {
         return [
             'category' => [
@@ -31,6 +38,14 @@ class MaterialDeleteRequest extends FormRequest
         ];
     }
 
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     * @return void
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
     protected function failedValidation(Validator $validator): void
     {
         $errors = $validator->errors();

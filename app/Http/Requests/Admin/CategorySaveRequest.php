@@ -17,18 +17,17 @@ class CategorySaveRequest extends FormRequest
      *
      * @return bool
      */
-    /*
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
-   */
+
     /**
      * Get the validation rules that apply to the request.
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         // если в роуте uri как save/{id}
         // Get the REQUEST (GET/POST) variable
@@ -54,15 +53,24 @@ class CategorySaveRequest extends FormRequest
         ];
     }
 
-    public function attributes()
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
     {
         return [
             'name' => '«Название категории»',
-            // 'description' => '«Описание категории»',
         ];
     }
 
-    public function messages()
+    /**
+     * Get the validation error message.
+     *
+     * @return array
+     */
+    public function messages(): array
     {
         return [
             'required' => 'заполните :attribute.',
@@ -72,7 +80,14 @@ class CategorySaveRequest extends FormRequest
         ];
     }
 
-
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
     protected function failedValidation(Validator $validator): void
     {
         $errors = $validator->errors();
@@ -82,14 +97,6 @@ class CategorySaveRequest extends FormRequest
                 'backValidatorErrors' => $errors
             ])
         );
-        /*
-        throw new HttpResponseException(
-            response()->json([
-                'validatorErrors' => $errors
-            ],
-            Response::HTTP_UNPROCESSABLE_ENTITY)
-        );
-        */
     }
 
 }

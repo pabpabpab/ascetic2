@@ -1,5 +1,8 @@
 export default {
     postMultipart(context, payload) {
+        // context.dispatch('requestsAreProhibitedMessage', 'POST');
+        // return {};
+
         const csrfUrl = context.getters.csrfUrl;
         return context.dispatch('getJson', csrfUrl).then((token) => {
 

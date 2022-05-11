@@ -15,7 +15,7 @@ class ProductSaveRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'category_ids' => ['required'],
@@ -27,7 +27,12 @@ class ProductSaveRequest extends FormRequest
         ];
     }
 
-    public function attributes()
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes(): array
     {
         return [
             'category_ids' => '«Категория товара»',
@@ -39,7 +44,12 @@ class ProductSaveRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /**
+     * Get the validation error message.
+     *
+     * @return array
+     */
+    public function messages(): array
     {
         return [
             'required' => 'заполните :attribute.',
@@ -50,7 +60,14 @@ class ProductSaveRequest extends FormRequest
         ];
     }
 
-
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator $validator
+     * @return void
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
     protected function failedValidation(Validator $validator): void
     {
         $errors = $validator->errors();

@@ -16,14 +16,16 @@ class CategoryDeleteRequest extends FormRequest
      *
      * @return bool
      */
-    /*
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
-    */
 
-
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
     protected function prepareForValidation(): void
     {
         $this->merge([
@@ -36,8 +38,7 @@ class CategoryDeleteRequest extends FormRequest
      *
      * @return array
      */
-
-    public function rules()
+    public function rules(): array
     {
         return [
             'category' => [
@@ -47,6 +48,14 @@ class CategoryDeleteRequest extends FormRequest
         ];
     }
 
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
+     * @return void
+     *
+     * @throws \Illuminate\Http\Exceptions\HttpResponseException
+     */
     protected function failedValidation(Validator $validator): void
     {
         $errors = $validator->errors();

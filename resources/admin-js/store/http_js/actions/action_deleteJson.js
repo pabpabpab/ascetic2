@@ -1,5 +1,8 @@
 export default {
     deleteJson(context, url) {
+        // context.dispatch('requestsAreProhibitedMessage', 'DELETE');
+        // return {};
+
         const csrfUrl = context.getters.csrfUrl;
         return context.dispatch('getJson', csrfUrl).then((token) => {
 

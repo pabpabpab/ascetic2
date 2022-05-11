@@ -1,5 +1,8 @@
 export default {
     putJson(context, payload) {
+        // context.dispatch('requestsAreProhibitedMessage', 'PUT');
+        // return {};
+
         const csrfUrl = context.getters.csrfUrl;
         return context.dispatch('getJson', csrfUrl).then((token) => {
 

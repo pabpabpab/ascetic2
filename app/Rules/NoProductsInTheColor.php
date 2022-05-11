@@ -24,8 +24,7 @@ class NoProductsInTheColor implements Rule
      * @param  mixed  $value
      * @return bool
      */
-
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         $color = $value;
         return $color->products_count === 0;
@@ -37,7 +36,7 @@ class NoProductsInTheColor implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'В удаляемой категории не должно быть товаров.';
     }

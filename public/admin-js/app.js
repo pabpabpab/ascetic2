@@ -22280,6 +22280,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   deleteJson: function deleteJson(context, url) {
+    // context.dispatch('requestsAreProhibitedMessage', 'DELETE');
+    // return {};
     var csrfUrl = context.getters.csrfUrl;
     return context.dispatch('getJson', csrfUrl).then(function (token) {
       return fetch(url, {
@@ -22378,6 +22380,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   postJson: function postJson(context, payload) {
+    // context.dispatch('requestsAreProhibitedMessage', 'POST');
+    // return {};
     var csrfUrl = context.getters.csrfUrl;
     return context.dispatch('getJson', csrfUrl).then(function (token) {
       var url = payload.url,
@@ -22418,6 +22422,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   postMultipart: function postMultipart(context, payload) {
+    // context.dispatch('requestsAreProhibitedMessage', 'POST');
+    // return {};
     var csrfUrl = context.getters.csrfUrl;
     return context.dispatch('getJson', csrfUrl).then(function (token) {
       var url = payload.url,
@@ -22466,6 +22472,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   putJson: function putJson(context, payload) {
+    // context.dispatch('requestsAreProhibitedMessage', 'PUT');
+    // return {};
     var csrfUrl = context.getters.csrfUrl;
     return context.dispatch('getJson', csrfUrl).then(function (token) {
       var url = payload.url,
