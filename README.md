@@ -1,6 +1,6 @@
 Алексей Постников, 47 лет, junior-программист JavaScript, Vue, Laravel, PHP. 
 
-Telegram: @hugo117, email: pax75@yandex.ru
+Telegram: @Efe117, email: pax75@yandex.ru
 ------------------------------------------
 
 
