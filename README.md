@@ -1,6 +1,6 @@
 Алексей, junior-программист JavaScript, Vue, Laravel, PHP. 
 
-Telegram: @Efe117, email: pax75@yandex.ru
+Telegram: @leha_davai, email: pax75@yandex.ru
 ------------------------------------------
 
 
