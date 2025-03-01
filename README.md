@@ -1,10 +1,10 @@
 Алексей, junior-программист JavaScript, Vue, Laravel, PHP. 
 
-Telegram: @leha_davai, email: pax75@yandex.ru
+Telegram: @leha111, email: pax75@yandex.ru
 ------------------------------------------
 
 
-В качестве портфолио сделал данный сайт https://lena-palun.ru 
+В качестве портфолио сделал данный проект веб-сайта 
 
 Бэкенд: Laravel, MySQL. 
 
