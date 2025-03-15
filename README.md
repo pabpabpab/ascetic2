@@ -1,4 +1,4 @@
-Алексей, junior-программист JavaScript, Vue, Laravel, PHP. 
+Привет, я Алексей. 
 
 Telegram: @leha111, email: pax75@yandex.ru
 ------------------------------------------
